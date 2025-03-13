@@ -12,6 +12,7 @@ This is a complete list of available environment variables; required variables a
 | DISABLE_CSRF_PROTECTION        | Disables [CSRF protection](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) (not recommended) |          | `false` |
 | DISABLE_DOWNLOAD_ENDPOINT_AUTH | Disable auth on download endpoint (WebRcade, Tinfoil)                                                                                               |          | `false` |
 | DISABLE_USERPASS_LOGIN         | Disables login with username and password (when using OIDC)                                                                                         |          | `false` |
+| KIOSK_MODE                     | Read-only mode for public displays or kiosks                                                                                                        |          | `false` |
 | UPLOAD_TIMEOUT                 | Timeout for file uploads (in seconds)                                                                                                               |          | `600`   |
 | SCAN_TIMEOUT                   | Timeout for the background scan/rescan tasks (in seconds)                                                                                           |          | `14400` |
 | DISABLE_EMULATOR_JS            | Disables playing in browser with [EmulatorJS](../Platforms-and-Players/EmulatorJS-Player.md)                                                        |          | `false` |
@@ -45,12 +46,14 @@ This is a complete list of available environment variables; required variables a
 
 ## Metadata providers
 
-| Variable            | Description                | Required | Default |
-| ------------------- | -------------------------- | :------: | ------- |
-| IGDB_CLIENT_ID      | Client ID for IGDB API     |          |         |
-| IGDB_CLIENT_SECRET  | Client secret for IGDB API |          |         |
-| MOBYGAMES_API_KEY   | MobyGames secret API key   |          |         |
-| STEAMGRIDDB_API_KEY | SteamGridDB secret API key |          |         |
+| Variable               | Description                | Required | Default |
+| ---------------------- | -------------------------- | :------: | ------- |
+| IGDB_CLIENT_ID         | Client ID for IGDB API     |          |         |
+| IGDB_CLIENT_SECRET     | Client secret for IGDB API |          |         |
+| SCREENSCRAPER_USER     | Screenscraper username     |          |         |
+| SCREENSCRAPER_PASSWORD | Screenscraper password     |          |         |
+| MOBYGAMES_API_KEY      | MobyGames secret API key   |          |         |
+| STEAMGRIDDB_API_KEY    | SteamGridDB secret API key |          |         |
 
 ## Authentication
 
