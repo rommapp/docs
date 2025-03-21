@@ -22,12 +22,24 @@ Before setting up a provider and app, ensure that Authelia is installed and runn
 
 ### Step 2: Add a client
 
-In Authelia's `configuration.yml`, under `identity_providers` → `oidc` → `clients`, add a new entry:
+First, in Authelia's `configuration.yml`, at `identity_providers` → `oidc` → `claims_policies` you'll need to add a Claims Policy if you do not already have one with the specified claims:
+```yaml
+# identity_providers:
+#   oidc:
+claims_policies:
+  with_email: # You can name this however you want
+    id_token: ['email', 'email_verified', 'alt_emails', 'preferred_username', 'name']
+```
+
+To read more about claims_policies and why you need it for RomM, see [this section in the Authelia docs](https://www.authelia.com/integration/openid-connect/openid-connect-1.0-claims/#restore-functionality-prior-to-claims-parameter). 
+
+Then, in the same `configuration.yml`, under `identity_providers` → `oidc` → `clients`, add a new entry:
 
 - A **random** `client_id` and `client_secret`
     - See the [official recommendations](https://www.authelia.com/integration/openid-connect/frequently-asked-questions/#how-do-i-generate-a-client-identifier-or-client-secret) on how to generate these.
 - `public` should be set to `false`.
 - `redirect_uris` should include your RomM instance's URL + `/api/oauth/openid` (e.g., `http://romm.host.local/api/oauth/openid`).
+- `claims_policy` is the name of the entry at claims_policies that you just added (or already had).
 - `scopes` includes `openid`, `email` and `profile`.
 - `token_endpoint_auth_method` should be set to `client_secret_basic`.
 - `userinfo_signed_response_alg` should be set to `none`.
@@ -49,6 +61,7 @@ This entry should look like this:
       - authorization_code
   redirect_uris:
       - "http://romm.host.local/api/oauth/openid"
+  claims_policy: 'with_email'
   scopes:
       - "openid"
       - "email"
