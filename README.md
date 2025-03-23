@@ -25,10 +25,17 @@ We use `uv` to build the documentation. To install it, run:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
+And activate it:
+
+```sh
+uv venv
+source .venv/bin/activate
+```
+
 Then install python and the required dependencies:
 
 ```sh
-uv install python
+uv python install
 uv sync --all-extras --dev
 ```
 

@@ -26,23 +26,6 @@ This guide will assume that you already have the following done, if not - stop h
 
 Head over to [API key docs](../Getting-Started/Generate-API-Keys.md) to get your Twitch and/or Screenscraper and/or MobyGames keys, then come back here
 
-### Generating Authentication Keys
-
-This step will generate a key that is used in the authorization of RomM. Without this, you will be unable to log in and use the platform
-
-Run the following command in a terminal:
-
-```sh
-openssl rand -hex 32
-```
-
-Then copy the output and save it to the `ROMM_AUTH_SECRET_KEY` variable in the docker-compose file. It should look like this:
-
-```sh
-~$: openssl rand -hex 32
-03a054b6ca27e0107c5eed552ea66becd9f3a2a8a91e7595cd462a593f9ecd09
-```
-
 ## Build
 
 Now that we have everything gathered, we can begin getting your instance set up!
@@ -50,19 +33,27 @@ Now that we have everything gathered, we can begin getting your instance set up!
 <!-- trunk-ignore-begin(markdownlint/MD040) -->
 1. Download a copy of the latest [docker-compose.example.yml](https://github.com/rommapp/romm/blob/release/examples/docker-compose.example.yml) file from GitHub
 2. Edit the file and modify the following values to configure the database
-    - `MYSQL_ROOT_PASSWORD`: Sets the root password of the database. Use a unique and secure password (_use a password generator for simplicity_)
-    - `MYSQL_DATABASE`: Sets the database name for RomM. This can be modified - but it's not necessary
-    - `MYSQL_USER`: User to connect to the database with. This can be modified - but it's not necessary
-    - `MYSQL_PASSWORD`: Password for the user to connect to the database with. Use a unique and secure password (_use a password generator for simplicity_)
+    - `MARIADB_ROOT_PASSWORD`: Sets the root password of the database. Use a unique and secure password (_use a password generator for simplicity_)
+    - `MARIADB_DATABASE`: Sets the database name for RomM. This can be modified - but it's not necessary
+    - `MARIADB_USER`: User to connect to the database with. This can be modified - but it's not necessary
+    - `MARIADB_PASSWORD`: Password for the user to connect to the database with. Use a unique and secure password (_use a password generator for simplicity_)
 3. Modify the following values in the **environment** to configure the application. _-- Other values can be changed, but should not be done unless you know what you are doing, and are outside the scope of this guide_
     - `DB_NAME`: Name of the database set in the database section
     - `DB_USER`: Name of the user to connect to the database
     - `DB_PASSWD`: Password of the user to connect to the database
-4. Modify the following values in the **volumes** to configure the application
+4. Run the following command in a terminal and save the output to the `ROMM_AUTH_SECRET_KEY` environment variable:
+    ```sh
+    openssl rand -hex 32
+    ```
+    It should look something like this:
+    ```sh
+    03a054b6ca27e0107c5eed552ea66becd9f3a2a8a91e7595cd462a593f9ecd09
+    ```
+5. Modify the following values in the **volumes** to configure the application
     - `/path/to/library`: Path to the directory where your rom files will be stored
     - `/path/to/assets`: Path to the directory where you will store your saves, etc
     - `/path/to/config`: Path to the directory where you will store the config.yml
-5. Save the file as _docker-compose.yml_ instead of _docker-compose.example.yml_. It should look something like this:
+6. Save the file as _docker-compose.yml_ instead of _docker-compose.example.yml_. It should look something like this:
 
     <!-- prettier-ignore -->
     ???+ example "Example Docker Compose"
@@ -70,8 +61,8 @@ Now that we have everything gathered, we can begin getting your instance set up!
         --8<-- "quick-start.docker-compose.yml"
         ```
 
-6. Open the terminal and navigate to the directory containing the docker-compose file
-7. Run `docker compose up -d` to kick off the docker pull. You will see it pull the container and set up the volumes and network:```asciinema-player
+7. Open the terminal and navigate to the directory containing the docker-compose file
+8. Run `docker compose up -d` to kick off the docker pull. You will see it pull the container and set up the volumes and network:```asciinema-player
     {
         "file": "resources/asciinema/quick-start-docker-compose.cast",
         "title": "RomM docker compose install",
@@ -86,10 +77,10 @@ Now that we have everything gathered, we can begin getting your instance set up!
         "terminal_font_family": "Roboto Mono, Monaco, Consolas, monospace"
     }
 ```
-8. Run `docker ps -f name=romm` to verify that the containers are running
-9. Open a web browser and navigate to `http://localhost:8080`, where you should be greeted with the RomM setup page
-10. Go through the setup wizard, setting your admin username and password
-11. Log in with the credentials you set in the setup flow
+9. Run `docker ps -f name=romm` to verify that the containers are running
+10. Open a web browser and navigate to `http://localhost:80`, where you should be greeted with the RomM setup page
+11. Go through the setup wizard, setting your admin username and password
+12. Log in with the credentials you set in the setup flow
 <!-- trunk-ignore-end(markdownlint/MD040) -->
 
 ## Configure
