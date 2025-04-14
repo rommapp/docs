@@ -35,6 +35,7 @@ Check the logs for RomM, you should find a line that looks like `ERROR:    [RomM
 The easiest method is to check the logs via this command, which will list all the scanned platforms since the RomM container was started `docker logs romm 2>/dev/null|egrep 'scan_handler.*Identified as.*🎮'`
 
 Here is an example output:
+
 ```text
 $ docker logs romm 2>/dev/null|egrep 'scan_handler.*Identified as.*🎮'
 INFO:     [RomM][scan_handler][2025-04-12 11:37:40]   Identified as PlayStation 🎮
