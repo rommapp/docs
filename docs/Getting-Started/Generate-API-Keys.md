@@ -16,14 +16,6 @@ Note the client ID and secret that appear on screen, and use them to set `IGDB_C
 | ![IGDB Creation](https://github.com/rommapp/romm/assets/3247106/7a93bf68-f6d9-46a5-ab72-719f2d5ec9d3) | ![IGDB Secret](https://github.com/rommapp/romm/assets/3247106/7a9dc056-52be-41c4-aec5-e2758aa520b5) |
 | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 
-## MobyGames
-
-To access the MobyGames API, [create a MobyGames account](https://www.mobygames.com/user/register/) and then visit your profile page. Click the **API** link under your user name to sign up for an API key. Copy the key shown and use it to set `MOBYGAMES_API_KEY`.
-
-<!-- prettier-ignore -->
-!!! important
-    MobyGames API became a [paid feature](https://www.mobygames.com/info/api/#non-commercial). Any existing key can be used as usual, but any new API key created will be under a paywall
-
 ## ScreenScraper
 
 To access the ScreenScraper API, create a [ScreenScraper](https://www.screenscraper.fr/membreinscription.php) and copy the **user** and **password** you just created to `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD` respectively.
@@ -31,3 +23,11 @@ To access the ScreenScraper API, create a [ScreenScraper](https://www.screenscra
 ## SteamGridDB
 
 To access steamGridDB API, you need to login into their [website](https://www.steamgriddb.com/) with a [steam account](https://store.steampowered.com/join). Once logged in, go to your [API tab under the preferences page](https://www.steamgriddb.com/profile/preferences/api). Copy the key shown and use it to set `STEAMGRIDDB_API_KEY`.
+
+## MobyGames
+
+To access the MobyGames API, [create a MobyGames account](https://www.mobygames.com/user/register/) and then visit your profile page. Click the **API** link under your user name to sign up for an API key. Copy the key shown and use it to set `MOBYGAMES_API_KEY`.
+
+<!-- prettier-ignore -->
+!!! important
+    MobyGames API became a [paid feature](https://www.mobygames.com/info/api/#non-commercial).

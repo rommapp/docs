@@ -15,16 +15,15 @@ This guide will assume that you already have the following done, if not - stop h
     - 2-factor authentication set up on your Twitch account
     - _This is required to get a developer account and an IGDB key_
 - A [Screenscraper](https://www.screenscraper.fr/) account (optional)
-- A [MobyGames](https://www.mobygames.com/) account (optional)
 - Your ROMs organized in the correct format
 
 <!-- prettier-ignore -->
 !!! warning
     Not setting up RomM with a metadata API will work for basic operation but can cause issues with, for instance, the Playnite plugin. It is recommended to setup IGDB API keys to avoid issues during setup.
 
-### Twitch and MobyGames API Keys
+### IGDB and Screenscraper API Keys
 
-Head over to [API key docs](../Getting-Started/Generate-API-Keys.md) to get your Twitch and/or Screenscraper and/or MobyGames keys, then come back here
+Head over to [API key docs](../Getting-Started/Generate-API-Keys.md) to get your IGDB and/or Screenscraper keys, then come back here
 
 ## Build
 
