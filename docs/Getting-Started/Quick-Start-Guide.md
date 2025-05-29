@@ -11,10 +11,10 @@ This quick start guide will help you get a RomM instance up and running. It is s
 This guide will assume that you already have the following done, if not - stop here and come back when you do.
 
 - Docker and Docker Compose installed
-- A [Twitch](https://dev.twitch.tv) account (optional)
+- A <a href="https://dev.twitch.tv" target="_blank" rel="noopener noreferrer">Twitch</a> account (optional)
     - 2-factor authentication set up on your Twitch account
     - _This is required to get a developer account and an IGDB key_
-- A [Screenscraper](https://www.screenscraper.fr/) account (optional)
+- A <a href="https://www.screenscraper.fr/" target="_blank" rel="noopener noreferrer">Screenscraper</a> account (optional)
 - Your ROMs organized in the correct [folder structure](../Folder-Structure)
 
 <!-- prettier-ignore -->
@@ -30,17 +30,17 @@ Head over to [API key docs](../Generate-API-Keys) to get your IGDB and/or Screen
 Now that we have everything gathered, we can begin getting your instance set up!
 
 <!-- trunk-ignore-begin(markdownlint/MD040) -->
-1. Download a copy of the latest [docker-compose.example.yml](https://github.com/rommapp/romm/blob/release/examples/docker-compose.example.yml) file from GitHub
-2. Edit the file and modify the following values to configure the database
+1. Download a copy of the latest <a href="https://github.com/rommapp/romm/blob/release/examples/docker-compose.example.yml" target="_blank" rel="noopener noreferrer">docker-compose.example.yml</a> file from GitHub
+3. Edit the file and modify the following values to configure the database
     - `MARIADB_ROOT_PASSWORD`: Sets the root password of the database. Use a unique and secure password (_use a password generator for simplicity_)
     - `MARIADB_DATABASE`: Sets the database name for RomM. This can be modified - but it's not necessary
     - `MARIADB_USER`: User to connect to the database with. This can be modified - but it's not necessary
     - `MARIADB_PASSWORD`: Password for the user to connect to the database with. Use a unique and secure password (_use a password generator for simplicity_)
-3. Modify the following values in the **environment** to configure the application. _-- Other values can be changed, but should not be done unless you know what you are doing, and are outside the scope of this guide_
+4. Modify the following values in the **environment** to configure the application. _-- Other values can be changed, but should not be done unless you know what you are doing, and are outside the scope of this guide_
     - `DB_NAME`: Name of the database set in the database section
     - `DB_USER`: Name of the user to connect to the database
     - `DB_PASSWD`: Password of the user to connect to the database
-4. Run the following command in a terminal and save the output to the `ROMM_AUTH_SECRET_KEY` environment variable:
+5. Run the following command in a terminal and save the output to the `ROMM_AUTH_SECRET_KEY` environment variable:
     ```sh
     openssl rand -hex 32
     ```
@@ -48,14 +48,14 @@ Now that we have everything gathered, we can begin getting your instance set up!
     ```sh
     03a054b6ca27e0107c5eed552ea66becd9f3a2a8a91e7595cd462a593f9ecd09
     ```
-5. Add your metadata sources API keys:
+6. Add your metadata sources API keys:
     - IGDB: `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET`
     - SCREENSCRAPER: `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD`
-6. Modify the following values in the **volumes** to configure the application
+7. Modify the following values in the **volumes** to configure the application
     - `/path/to/library`: Path to the directory where your rom files will be stored (usually the parent folder of the `roms` folder)
     - `/path/to/assets`: Path to the directory where you will store your saves, etc
     - `/path/to/config`: Path to the directory where you will store the config.yml
-7. Save the file as _docker-compose.yml_ instead of _docker-compose.example.yml_. It should look something like this:
+8. Save the file as _docker-compose.yml_ instead of _docker-compose.example.yml_. It should look something like this:
 
     <!-- prettier-ignore -->
     ???+ example "Example Docker Compose"
@@ -63,11 +63,11 @@ Now that we have everything gathered, we can begin getting your instance set up!
         --8<-- "quick-start.docker-compose.yml"
         ```
 
-8.  Open the terminal and navigate to the directory containing the docker-compose file
-9.  Run `docker compose up -d` to kick off the docker pull. You will see it pull the container and set up the volumes and network:
+9.  Open the terminal and navigate to the directory containing the docker-compose file
+10. Run `docker compose up -d` to kick off the docker pull. You will see it pull the container and set up the volumes and network:
 ```asciinema-player
     {
-        "file": "../resources/asciinema/quick-start-docker-compose.cast",
+        "file": "https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/asciinema/quick-start-docker-compose.cast",
         "title": "RomM docker compose install",
         "preload": true,
         "loop": true,
@@ -105,8 +105,8 @@ This method is certainly viable, but not recommended if you have a lot of ROMs a
 
 1. Log into RomM with your user credentials
 2. Click the `Upload` button in the sidebar
-3. Select the platform, then click _ADD ROMs_ and select the ROMs you want to upload in the file selector that appears
-4. Click _UPLOAD_ to begin uploading the ROMs
+3. Select the platform, then click `+ ADD` and select the ROMs you want to upload in the file selector that appears
+4. Click `Upload` to begin uploading the ROMs
 5. Repeat for all the `roms/platforms` you have
 
-<img src="https://github.com/rommapp/romm/assets/3247106/3e398e7a-d653-472c-9f11-82b2f0b52840" width="780" alt="upload dialog">
+<img src="https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/quickstart/upload_roms.png" width="780" alt="upload dialog">
