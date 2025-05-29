@@ -40,6 +40,7 @@ search:
     - [Authentication Issues](Troubleshooting/Authentication-Issues.md)
     - [Synology Issues](Troubleshooting/Synology-Issues.md)
     - [Miscellaneous Issues](Troubleshooting/Miscellaneous-Troubleshooting.md)
+    - [Kubernetes-Issues](Troubleshooting/Kubernetes-Issues.md)
 - Miscellaneous
     - [FAQs](Miscellaneous/FAQs.md)
     - [Branding Guidelines](Miscellaneous/Brand-Guidelines.md)
