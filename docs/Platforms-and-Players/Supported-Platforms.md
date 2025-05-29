@@ -1,6 +1,8 @@
 <!-- vale off -->
 
-Below is a list of all supported platforms/systems/consoles and their respective folder names. **The folder name is case-sensitive and must be used exactly as it appears in the list below.**
+Below is a list of all supported platforms/systems/consoles and their respective folder names. Supported platforms means RomM can fetch metadata from sources for those platforms. For platforms that can be playable in the browser, please check [emulatorjs supported platforms](../../Platforms-and-Players/EmulatorJS-Player) and [ruffle player](../../Platforms-and-Players/RuffleRS-Player).
+
+**The folder name is case-sensitive and must be used exactly as it appears in the list below.**
 
 | Platform Name                                         | Folder Name                                     | IGDB                                                                                                                                   | MobyGames                                                                                                                                  |
 | ----------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |

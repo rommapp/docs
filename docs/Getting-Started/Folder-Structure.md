@@ -37,7 +37,7 @@ For multifile games (games stored as folders with multiple files or folders insi
 - `prototype`
 
 !!! tip
-    For folder naming conventions, review the [Platform Support](../../Platforms-and-Players/Supported-Platforms/) section. To override default system names in the folder structure (if your directories are named differently), see the [Configuration File](../../Configuration-File) section.
+    For folder naming conventions, review the [Platform Support](../../Platforms-and-Players/Supported-Platforms) section. To override default system names in the folder structure (if your directories are named differently), see the [Configuration File](../../Getting-Started/Configuration-File) section.
 
 <table>
  <tr>
@@ -149,3 +149,20 @@ For multifile games (games stored as folders with multiple files or folders insi
 
 !!! note
     RomM can be setup without a prior folder structure. If files are manually uploaded from the webUI, RomM will automatically create the folder **Structure A**
+
+## Configuration file
+
+RomM's behavior can be customized using a `config.yml` file or through the `Library Management` page in the `Settings` menu. You can grab the example <a href="https://github.com/rommapp/romm/blob/release/examples/config.example.yml" target="_blank" rel="noopener noreferrer">config.example.yml</a> file and adapt it to your library.
+
+What is shown in the `Library Management` page is the content of the `config.yml`. For more details read the [configuration file](../../Getting-Started/Configuration-File) section.
+
+## Naming Convention
+
+### Tag Support
+
+Games can be tagged with region, revision, or other tags by using parentheses in the file name. Additionally, you can set the region and language by adding a prefix: `(USA)`, `[reg-J]`, `(French)`, `[De]`.
+
+- Revision tags must be prefixed with `rev` or `rev-` (e.g. `rev v1` or `rev-1`)
+- Other tags will also be imported, for example: `tetris [1.0001](HACK)[!].gba`
+
+Tags can be used to search for games in the search bar. For example, searching for `(USA)` will return all games with the USA tag.
