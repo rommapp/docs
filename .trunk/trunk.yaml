@@ -27,9 +27,9 @@ lint:
     - taplo@0.9.3
     - trufflehog@3.88.12
     - yamllint@1.35.1
-actions:
-  enabled:
-    - trunk-announce
-    - trunk-check-pre-push
-    - trunk-fmt-pre-commit
-    - trunk-upgrade-available
+# actions:
+  # enabled:
+    # - trunk-announce
+    # - trunk-check-pre-push
+    # - trunk-fmt-pre-commit
+    # - trunk-upgrade-available
