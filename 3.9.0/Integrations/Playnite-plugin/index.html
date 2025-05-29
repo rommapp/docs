@@ -121,7 +121,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#setup" class="md-skip">
+        <a href="#installation" class="md-skip">
           Skip to content
         </a>
       
@@ -1187,9 +1187,75 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setup" class="md-nav__link">
     <span class="md-ellipsis">
       Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#emulators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emulators
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Settings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emulator-path-mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emulator path mappings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing-your-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing your library
     </span>
   </a>
   
@@ -1516,9 +1582,75 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#setup" class="md-nav__link">
     <span class="md-ellipsis">
       Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#emulators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emulators
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Settings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emulator-path-mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emulator path mappings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing-your-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing your library
     </span>
   </a>
   
@@ -1551,8 +1683,73 @@
 
 <p><a href="https://playnite.link" target="_blank">Playnite</a> is an open source video game library manager with one simple goal: To provide a unified interface for all of your games.</p>
 <p><a href="https://github.com/rommapp/playnite-plugin" target="_blank">This plugin</a> allows you to import your RomM library into Playnite. It queries the RomM API to create Playnite library entires for each of your games. Installing a game in Playnite will download it from RomM and store it on your system, allowing you to launch it in your emulator of choice.</p>
+<h2 id="installation">Installation</h2>
+<ul>
+<li>Option A: Open this link in your browser to launch Playnite and install the plugin automatically: <code>playnite://playnite/installaddon/RomM_9700aa21-447d-41b4-a989-acd38f407d9f</code></li>
+<li>Option B: Download the plugin from the <a href="https://playnite.link/addons.html#RomM_9700aa21-447d-41b4-a989-acd38f407d9f">Playnite add-ons website</a></li>
+<li>Option C: In Playnite, go to <code>Menu</code> -&gt; <code>Add-ons...</code> -&gt; <code>Browse</code> -&gt; <code>Libraries</code>, search for <code>RomM</code>, and click <code>Install</code></li>
+<li>Option D: Download the latest release from the <a href="https://github.com/rommapp/playnite-plugin/releases/latest">releases page</a> and install it manually by dragging the <code>.pext</code> file onto Playnite</li>
+</ul>
 <h2 id="setup">Setup</h2>
-<p>You can find the installation guide <a href="https://github.com/rommapp/playnite-plugin?tab=readme-ov-file#installation" target="_blank">here</a>.</p></div>
+<h3 id="emulators">Emulators</h3>
+<p>The plugin requires that you have <strong>at least 1 emulator installed</strong> on your system and configured in Playnite. You can use a built-in emulator or a custom one. <strong>If no emulators are installed and configured, you won't be able to complete setup!</strong> To set up an emulator, go to <code>Menu</code> -&gt; <code>Library</code> -&gt; <code>Configure Emulators...</code> -&gt; <code>Add emulator...</code>.</p>
+<h3 id="settings">Settings</h3>
+<p>The plugin needs to be configured before it can be used. To do this, go to <code>Menu</code> -&gt; <code>Library</code> -&gt; <code>Configure Integrations...</code> -&gt; <code>RomM</code>.</p>
+<h4 id="authentication">Authentication</h4>
+<p>You'll need to enter the host URL of your RomM instance, as well as a username and password. Passwords are stored in plaintext in Playnite, so it's recommended to use a separate account with the "VIEWER" role. <strong>The host URL has the include the protocol (http/https) and should not include a trailing slash, e.g. <code>https://romm.example.com</code>.</strong></p>
+<h4 id="emulator-path-mappings">Emulator path mappings</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Example</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Emulator</td>
+<td>A built-in (or custom) emulator</td>
+<td>Dolphin</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Emulator Profile</td>
+<td>A built-in (or custom) emulator profile</td>
+<td>Nintendo GameCube</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Platform</td>
+<td>The platform or console</td>
+<td>Nintendo GameCube</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Destination Path</td>
+<td>The path where downloaded ROMs will be stored</td>
+<td><code>C:\roms\gc</code></td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Auto-extract</td>
+<td>Whether compressed files should be extracted automatically</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Enabled</td>
+<td>Whether the mapping is enabled</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="importing-your-library">Importing your library</h2>
+<p>Once you've set up the plugin, you can import your library by going to <code>Menu</code> -&gt; <code>Library</code> -&gt; <code>Import RomM library</code>. All games matching the emulator path mappings will be imported into Playnite.</p>
+<p>Installing a game will download it from RomM and store it in the destination path. You can then launch the game from Playnite, and it will be launched using the configured emulator.</p>
+<p>By default, compressed files will be extracted automatically into a folder matching the game's name. You can modify this behavior in the settings page.</p></div>
 
 
 
@@ -1575,7 +1772,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-24T10:00:21+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-24</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-05-29T20:10:05+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-05-29</span>
   </span>
 
     
