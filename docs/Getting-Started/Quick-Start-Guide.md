@@ -67,7 +67,7 @@ Now that we have everything gathered, we can begin getting your instance set up!
 10. Run `docker compose up -d` to kick off the docker pull. You will see it pull the container and set up the volumes and network:
 ```asciinema-player
     {
-        "file": "https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/asciinema/quick-start-docker-compose.cast",
+        "file": "../latest/resources/asciinema/quick-start-docker-compose.cast",
         "title": "RomM docker compose install",
         "preload": true,
         "loop": true,

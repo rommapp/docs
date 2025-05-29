@@ -57,4 +57,4 @@ In RomM, open your user profile and set your email address. This email **has to 
 
 After configuring the environment variables, restart (or stop and remove) your RomM instance and navigate to the login page. You should see an option to log in using OIDC. Click on the OIDC button, and you'll be redirected to Pocket ID for authentication. Once authenticated, you'll be redirected back to RomM.
 
-![Login with OIDC](../resources/pocketid/PocketID-login.png)
+![Login with OIDC](../resources/pocketid/2-romm-login.png)
