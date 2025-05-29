@@ -1621,12 +1621,12 @@
 <p>This guide will assume that you already have the following done, if not - stop here and come back when you do.</p>
 <ul>
 <li>Docker and Docker Compose installed</li>
-<li>A <a href="https://dev.twitch.tv">Twitch</a> account (optional)<ul>
+<li>A <a href="https://dev.twitch.tv" target="_blank" rel="noopener noreferrer">Twitch</a> account (optional)<ul>
 <li>2-factor authentication set up on your Twitch account</li>
 <li><em>This is required to get a developer account and an IGDB key</em></li>
 </ul>
 </li>
-<li>A <a href="https://www.screenscraper.fr/">Screenscraper</a> account (optional)</li>
+<li>A <a href="https://www.screenscraper.fr/" target="_blank" rel="noopener noreferrer">Screenscraper</a> account (optional)</li>
 <li>Your ROMs organized in the correct <a href="../Folder-Structure">folder structure</a></li>
 </ul>
 <!-- prettier-ignore -->
@@ -1640,7 +1640,7 @@
 <p>Now that we have everything gathered, we can begin getting your instance set up!</p>
 <!-- trunk-ignore-begin(markdownlint/MD040) -->
 <ol>
-<li>Download a copy of the latest <a href="https://github.com/rommapp/romm/blob/release/examples/docker-compose.example.yml">docker-compose.example.yml</a> file from GitHub</li>
+<li>Download a copy of the latest <a href="https://github.com/rommapp/romm/blob/release/examples/docker-compose.example.yml" target="_blank" rel="noopener noreferrer">docker-compose.example.yml</a> file from GitHub</li>
 <li>Edit the file and modify the following values to configure the database<ul>
 <li><code>MARIADB_ROOT_PASSWORD</code>: Sets the root password of the database. Use a unique and secure password (<em>use a password generator for simplicity</em>)</li>
 <li><code>MARIADB_DATABASE</code>: Sets the database name for RomM. This can be modified - but it's not necessary</li>
@@ -1752,7 +1752,7 @@
 </div>
 <script>
     window.addEventListener("load", function(event) {
-        AsciinemaPlayer.create("/../resources/asciinema/quick-start-docker-compose.cast", document.getElementById("asciinema-player-0"), {
+        AsciinemaPlayer.create("/https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/asciinema/quick-start-docker-compose.cast", document.getElementById("asciinema-player-0"), {
             cols: 140,
             rows: 30,
             autoPlay: true,
@@ -1794,11 +1794,11 @@
 <ol>
 <li>Log into RomM with your user credentials</li>
 <li>Click the <code>Upload</code> button in the sidebar</li>
-<li>Select the platform, then click <em>ADD ROMs</em> and select the ROMs you want to upload in the file selector that appears</li>
-<li>Click <em>UPLOAD</em> to begin uploading the ROMs</li>
+<li>Select the platform, then click <code>+ ADD</code> and select the ROMs you want to upload in the file selector that appears</li>
+<li>Click <code>Upload</code> to begin uploading the ROMs</li>
 <li>Repeat for all the <code>roms/platforms</code> you have</li>
 </ol>
-<p><a class="glightbox" href="https://github.com/rommapp/romm/assets/3247106/3e398e7a-d653-472c-9f11-82b2f0b52840" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="https://github.com/rommapp/romm/assets/3247106/3e398e7a-d653-472c-9f11-82b2f0b52840" width="780" alt="upload dialog"></a></p></div>
+<p><a class="glightbox" href="https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/quickstart/upload_roms.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/quickstart/upload_roms.png" width="780" alt="upload dialog"></a></p></div>
 
 
 
@@ -1821,7 +1821,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-05-29T09:38:25+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-05-29</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-05-29T10:01:28+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-05-29</span>
   </span>
 
     
