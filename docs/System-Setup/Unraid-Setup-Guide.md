@@ -56,6 +56,10 @@ Apply the changes, then head to the `DOCKER` tab. You should see both containers
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ls5YcsFdwLQ/0.jpg)](https://www.youtube.com/watch?v=ls5YcsFdwLQ)
 
+## Unraid community support
+
+You can find a [support thread](https://forums.unraid.net/topic/149738-support-eurotimmy-romm-rom-manager-by-zurdi15/) in the unraid forums.
+
 ## Shout-outs
 
 We want to give a special shout-out to @Smurre95 and @sfumat0 for their help documenting this process, and working towards getting RomM listed in CA. 🤝
