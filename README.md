@@ -15,11 +15,11 @@
 
 # Overview
 
-This is the official documentation for [RomM](https://romm.app/), the beautiful, powerful self-hosted ROM manager and player. Here you'll find everything you need to know about setting up, configuring, and using RomM.
+This is the [official documentation](https://docs.romm.app) repository of [RomM](https://romm.app/), the beautiful, powerful self-hosted ROM manager and player.
 
 # Contributing
 
-To contribute to RomM's documentation, please check [Contribution Guide](./CONTRIBUTING.md).
+To contribute to RomM's documentation, please check [Contribution Guide](CONTRIBUTING.md).
 
 # Community
 
