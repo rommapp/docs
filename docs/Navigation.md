@@ -10,7 +10,7 @@ search:
     - [Quick Start Guide](Getting-Started/Quick-Start-Guide.md)
     - [Folder Structure](Getting-Started/Folder-Structure.md)
     - [Configuration File](Getting-Started/Configuration-File.md)
-    - [Generate API Keys](Getting-Started/Generate-API-Keys.md)
+    - [Metadata Providers](Getting-Started/Metadata-Providers.md)
     - [Environment Variables](Getting-Started/Environment-Variables.md)
     - [Reverse Proxy](Getting-Started/Reverse-Proxy.md)
     - [Authentication](Getting-Started/Authentication.md)

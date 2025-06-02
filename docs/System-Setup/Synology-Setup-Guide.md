@@ -61,7 +61,7 @@ Save the output - you'll need it for the `ROMM_AUTH_SECRET_KEY` in your configur
 
 #### API Integration Setup
 
-RomM currently supports 3 metadata sources: IGDB, MobyGames and SteamGridDB. Follow the dedicated wiki page for [API key generation](../Getting-Started/Generate-API-Keys.md) to set up your API keys. We recommend setting up IGDG at the minimum.
+RomM currently supports 3 metadata sources: IGDB, MobyGames and SteamGridDB. Follow the dedicated wiki page for [API key generation](../Getting-Started/Metadata-Providers.md) to set up your API keys. We recommend setting up IGDG at the minimum.
 
 ### 4. MariaDB Configuration
 

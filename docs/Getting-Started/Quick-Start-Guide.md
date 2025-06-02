@@ -23,7 +23,7 @@ This guide will assume that you already have the following done, if not - stop h
 
 ### IGDB and Screenscraper API Keys
 
-Head over to [API key docs](../Generate-API-Keys) to get your IGDB and/or Screenscraper keys, then come back here
+Head over to [API key docs](../Metadata-Providers) to get your IGDB and/or Screenscraper keys, then come back here
 
 ## Build
 

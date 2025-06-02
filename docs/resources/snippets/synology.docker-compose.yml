@@ -17,7 +17,7 @@ services:
             - IGDB_CLIENT_ID= # Generate an ID and SECRET in IGDB
             - IGDB_CLIENT_SECRET= # https://api-docs.igdb.com/#account-creation
             - MOBYGAMES_API_KEY= # https://www.mobygames.com/info/api/
-            - STEAMGRIDDB_API_KEY= # https://github.com/rommapp/romm/wiki/Generate-API-Keys#steamgriddb
+            - STEAMGRIDDB_API_KEY= # https://github.com/rommapp/romm/wiki/Metadata-Providers#steamgriddb
         volumes:
             - /volume1/docker/romm/resources:/romm/resources
             - /volume1/docker/romm/redis-data:/redis-data

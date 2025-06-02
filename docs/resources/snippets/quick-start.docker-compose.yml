@@ -19,8 +19,8 @@ services:
       - IGDB_CLIENT_ID= # Generate an ID and SECRET in IGDB
       - IGDB_CLIENT_SECRET= # https://api-docs.igdb.com/#account-creation
       - SCREENSCRAPER_USER= # Use your ScreenScraper username and password
-      - SCREENSCRAPER_PASSWORD= # https://docs.romm.app/latest/Getting-Started/Generate-API-Keys/#screenscraper
-      - STEAMGRIDDB_API_KEY= # https://github.com/rommapp/romm/wiki/Generate-API-Keys#steamgriddb
+      - SCREENSCRAPER_PASSWORD= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#screenscraper
+      - STEAMGRIDDB_API_KEY= # https://github.com/rommapp/romm/wiki/Metadata-Providers#steamgriddb
     volumes:
       - romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
       - romm_redis_data:/redis-data # Cached data for background tasks

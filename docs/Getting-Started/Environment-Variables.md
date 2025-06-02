@@ -6,25 +6,26 @@ This is a complete list of available environment variables; required variables a
 
 ## Application settings
 
-| Variable                       | Description                                                                                                                                         | Required | Default |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | :------: | ------- |
-| ROMM_AUTH_SECRET_KEY           | Generate a key with `openssl rand -hex 32`                                                                                                          |    ✓     |         |
-| DISABLE_CSRF_PROTECTION        | Disables [CSRF protection](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) (not recommended) |          | `false` |
-| DISABLE_DOWNLOAD_ENDPOINT_AUTH | Disable auth on download endpoint (WebRcade, Tinfoil)                                                                                               |          | `false` |
-| DISABLE_USERPASS_LOGIN         | Disables login with username and password (when using OIDC)                                                                                         |          | `false` |
-| KIOSK_MODE                     | Read-only mode for public displays or kiosks                                                                                                        |          | `false` |
-| UPLOAD_TIMEOUT                 | Timeout for file uploads (in seconds)                                                                                                               |          | `600`   |
-| SCAN_TIMEOUT                   | Timeout for the background scan/rescan tasks (in seconds)                                                                                           |          | `14400` |
-| DISABLE_EMULATOR_JS            | Disables playing in browser with [EmulatorJS](../Platforms-and-Players/EmulatorJS-Player.md)                                                        |          | `false` |
-| DISABLE_RUFFLE_RS              | Disables playing flash games with [RuffleRS](../Platforms-and-Players/RuffleRS-Player.md)                                                           |          | `false` |
-| TZ                             | Sets the timezone                                                                                                                                   |          | `UTC`   |
-| GUNICORN_WORKERS [deprecated]  | Number of processes running the app                                                                                                                 |          | `2`     |
-| WEB_CONCURRENCY                | Number of processes running the app                                                                                                                 |          | `2`     |
-| ROMM_PORT                      | Port on which the application listens                                                                                                               |          | `8080`  |
-| ROMM_BASE_PATH                 | Base folder path for library, resources and assets                                                                                                  |          | `/romm` |
-| LOGLEVEL                       | Logging level for the app                                                                                                                           |          | `INFO`  |
-| FORCE_COLOR                    | Forces color output                                                                                                                                 |          | `false` |
-| NO_COLOR                       | Disables color output                                                                                                                               |          | `false` |
+| Variable                       | Description                                                                                                                                         | Required | Default   |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | :------: | --------- |
+| ROMM_AUTH_SECRET_KEY           | Generate a key with `openssl rand -hex 32`                                                                                                          |    ✓     |           |
+| DISABLE_CSRF_PROTECTION        | Disables [CSRF protection](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) (not recommended) |          | `false`   |
+| DISABLE_DOWNLOAD_ENDPOINT_AUTH | Disable auth on download endpoint (WebRcade, Tinfoil)                                                                                               |          | `false`   |
+| DISABLE_USERPASS_LOGIN         | Disables login with username and password (when using OIDC)                                                                                         |          | `false`   |
+| KIOSK_MODE                     | Read-only mode for public displays or kiosks                                                                                                        |          | `false`   |
+| UPLOAD_TIMEOUT                 | Timeout for file uploads (in seconds)                                                                                                               |          | `600`     |
+| SCAN_TIMEOUT                   | Timeout for the background scan/rescan tasks (in seconds)                                                                                           |          | `14400`   |
+| DISABLE_EMULATOR_JS            | Disables playing in browser with [EmulatorJS](../Platforms-and-Players/EmulatorJS-Player.md)                                                        |          | `false`   |
+| DISABLE_RUFFLE_RS              | Disables playing flash games with [RuffleRS](../Platforms-and-Players/RuffleRS-Player.md)                                                           |          | `false`   |
+| TZ                             | Sets the timezone                                                                                                                                   |          | `UTC`     |
+| GUNICORN_WORKERS [deprecated]  | Number of processes running the app                                                                                                                 |          | `2`       |
+| WEB_CONCURRENCY                | Number of processes running the app                                                                                                                 |          | `2`       |
+| ROMM_PORT                      | Port on which the application listens                                                                                                               |          | `8080`    |
+| ROMM_BASE_PATH                 | Base folder path for library, resources and assets                                                                                                  |          | `/romm`   |
+| ROMM_BASE_URL                  | Base url for properly display container logs links (like register or recover password)                                                              |          | `0.0.0.0` |
+| LOGLEVEL                       | Logging level for the app                                                                                                                           |          | `INFO`    |
+| FORCE_COLOR                    | Forces color output                                                                                                                                 |          | `false`   |
+| NO_COLOR                       | Disables color output                                                                                                                               |          | `false`   |
 
 ## Dependencies
 
@@ -46,14 +47,16 @@ This is a complete list of available environment variables; required variables a
 
 ## Metadata providers
 
-| Variable               | Description                | Required | Default |
-| ---------------------- | -------------------------- | :------: | ------- |
-| IGDB_CLIENT_ID         | Client ID for IGDB API     |          |         |
-| IGDB_CLIENT_SECRET     | Client secret for IGDB API |          |         |
-| SCREENSCRAPER_USER     | Screenscraper username     |          |         |
-| SCREENSCRAPER_PASSWORD | Screenscraper password     |          |         |
-| MOBYGAMES_API_KEY      | MobyGames secret API key   |          |         |
-| STEAMGRIDDB_API_KEY    | SteamGridDB secret API key |          |         |
+| Variable                             | Description                                      | Required | Default |
+| ------------------------------------ | ------------------------------------------------ | :------: | ------- |
+| IGDB_CLIENT_ID                       | Client ID for IGDB API                           |          |         |
+| IGDB_CLIENT_SECRET                   | Client secret for IGDB API                       |          |         |
+| SCREENSCRAPER_USER                   | Screenscraper username                           |          |         |
+| SCREENSCRAPER_PASSWORD               | Screenscraper password                           |          |         |
+| MOBYGAMES_API_KEY                    | MobyGames secret API key                         |          |         |
+| STEAMGRIDDB_API_KEY                  | SteamGridDB secret API key                       |          |         |
+| RETROACHIEVEMENTS_API_KEY            | Retroachievements secret API key                 |          |         |
+| REFRESH_RETROACHIEVEMENTS_CACHE_DAYS | Retroachievements metadata cache refresh on days |          |         |
 
 ## Authentication
 

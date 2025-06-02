@@ -19,7 +19,7 @@ services:
             - IGDB_CLIENT_ID= # Generate an ID and SECRET in IGDB
             - IGDB_CLIENT_SECRET= # https://api-docs.igdb.com/#account-creation
             - MOBYGAMES_API_KEY= # https://www.mobygames.com/info/api/
-            - STEAMGRIDDB_API_KEY= # https://github.com/rommapp/romm/wiki/Generate-API-Keys#steamgriddb
+            - STEAMGRIDDB_API_KEY= # https://github.com/rommapp/romm/wiki/Metadata-Providers#steamgriddb
         volumes: # Any /mnt paths may optionally be replaced with a docker volume
             - /mnt/tank/truenas/resources:/romm/resources # Replace /mnt...: file path with your own data structure
             - romm_redis_data:/romm/redis-data # Docker will manage this volume
