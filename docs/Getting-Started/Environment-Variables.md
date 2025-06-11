@@ -56,7 +56,7 @@ This is a complete list of available environment variables; required variables a
 | MOBYGAMES_API_KEY                    | MobyGames secret API key                         |          |         |
 | STEAMGRIDDB_API_KEY                  | SteamGridDB secret API key                       |          |         |
 | RETROACHIEVEMENTS_API_KEY            | Retroachievements secret API key                 |          |         |
-| REFRESH_RETROACHIEVEMENTS_CACHE_DAYS | Retroachievements metadata cache refresh on days |          |         |
+| REFRESH_RETROACHIEVEMENTS_CACHE_DAYS | Retroachievements metadata cache refresh on days |          |   30    |
 
 ## Authentication
 
