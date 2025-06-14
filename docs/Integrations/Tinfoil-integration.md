@@ -2,7 +2,9 @@
     <img src="../../resources/romm/integrations/tinfoil.svg" height="200px" width="200px" alt="romm[tinfoil] isotipo">
 </div>
 
-This will help you configure the [Tinfoil](https://tinfoil.io/) integration for your Switch to work with your RomM library.
+<a href="https://tinfoil.io" target="_blank">Tinfoil</a> is a homebrew application for the Nintendo Switch, primarily used for installing and managing software, including games and updates, that are not obtained through official channels.
+
+This will help you configure Tinfoil for your Switch to work with your RomM library.
 
 ## Setup
 
