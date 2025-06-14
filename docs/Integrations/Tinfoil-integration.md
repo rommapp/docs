@@ -1,8 +1,12 @@
+<div align="center">
+    <img src="../../resources/romm/integrations/tinfoil.svg" height="200px" width="200px" alt="romm[tinfoil] isotipo">
+</div>
+
 This will help you configure the [Tinfoil](https://tinfoil.io/) integration for your Switch to work with your RomM library.
 
-<img src="https://cdn2.steamgriddb.com/icon_thumb/1178cf1b6a47d41fc664b7d97e305840.png" alt="drawing" width="200"/>
+## Setup
 
-## Prepare
+### Prepare
 
 Please note down the following in order to make this as smooth as possible, as well as some pre-reqs:
 
@@ -14,7 +18,7 @@ Please note down the following in order to make this as smooth as possible, as w
 - Feed URL: `/api/tinfoil/feed`
 - The username and password you use to login to RomM
 
-## Configure
+### Configure
 
 Now it's time to configure your switch - Please follow the steps, this will assume you have Tinfoil installed and know how to use the basic functions of it.
 
@@ -37,7 +41,7 @@ Now you will be able to see the files in "New Games" tab of Tinfoil OR you can a
 
 ![Image of Tinfoil](../resources/tinfoil/tinfoilscreen.jpg)
 
-## Additional
+### Additional
 
 It didn't pull anything through to "New Games" and has not parsed any information about the titles?!
 
