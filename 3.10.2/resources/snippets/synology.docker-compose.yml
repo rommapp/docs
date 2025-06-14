@@ -32,9 +32,9 @@ services:
                 condition: service_healthy
                 restart: true
 
-    mariadb-romm:
+    romm-db:
         image: mariadb:latest
-        container_name: mariadb-romm
+        container_name: romm-db
         restart: unless-stopped
         environment:
             - MARIADB_ROOT_PASSWORD= # Use a unique, secure password
