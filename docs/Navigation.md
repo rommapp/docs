@@ -23,7 +23,6 @@ search:
     - [Unraid Setup](System-Setup/Unraid-Setup-Guide.md)
     - [Synology Setup](System-Setup/Synology-Setup-Guide.md)
     - [TrueNAS Setup](System-Setup/TrueNAS-Setup-Guide.md)
-    - [Tinfoil Integration](System-Setup/Tinfoil-Integration.md)
 - OIDC Setup Guides
     - [OIDC Setup With Authelia](OIDC-Guides/OIDC-Setup-With-Authelia.md)
     - [OIDC Setup With Authentik](OIDC-Guides/OIDC-Setup-With-Authentik.md)
@@ -36,6 +35,7 @@ search:
 - Integrations
     - [Playnite plugin](Integrations/Playnite-plugin.md)
     - [muOS app](Integrations/muOS-app.md)
+    - [Tinfoil Integration](Integrations/Tinfoil-integration.md)
 - Troubleshooting
     - [Scanning Issues](Troubleshooting/Scanning-Issues.md)
     - [Authentication Issues](Troubleshooting/Authentication-Issues.md)
