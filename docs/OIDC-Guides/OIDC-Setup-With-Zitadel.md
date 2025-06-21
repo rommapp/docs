@@ -6,7 +6,6 @@
 
 Zitadel is an enterprise-grade, open-source identity and access management (IAM) platform that supports OAuth2, OpenID Connect, SAML, and passwordless authentication. It's used to manage users, roles, and secure login for web and cloud applications.
 
-
 ### What is OAuth2?
 
 OAuth2 (Open Authorization 2.0) is an industry-standard protocol for authorization. It allows applications (clients) to gain limited access to user accounts on an HTTP service without sharing the user’s credentials. Instead, it uses access tokens to facilitate secure interactions. OAuth2 is commonly used in scenarios where users need to authenticate via a third-party service.
@@ -39,7 +38,6 @@ Recommended: If you allow registration to your platform, then anyone who registe
 
 Optional: It could be used if you plan on separating users by organizations for other applications, but creating separate organizations is not typically useful for general self-hosting purposes
 
-
 ### Step 2.5 (Optional: If you enabled "Check authorization on Authentication"): Grant user(s) access to the Project
 
 Click on the Authorization tab and click New.
@@ -60,9 +58,9 @@ On the General tab, click the New button under Applications.
 - `Response Types`: Code
 - `Authentication Method`: Basic
 - `Redirect URIs`:
-https://romm.domain.com/api/oauth/openid
+  https://romm.domain.com/api/oauth/openid
 - `Post Logout URIs`:
-https://romm.domain.com/
+  https://romm.domain.com/
 
 Click Create.
 
@@ -73,7 +71,7 @@ Click Create.
 To enable OIDC authentication in RomM, you need to set the following environment variables:
 
 - `OIDC_ENABLED`: Set to `true` to enable OIDC authentication.
-- `OIDC_PROVIDER`: The  name of the provider `Zitadel`.
+- `OIDC_PROVIDER`: The name of the provider `Zitadel`.
 - `OIDC_CLIENT_ID`: The client ID copied from the Zitadel application
 - `OIDC_CLIENT_SECRET`: The client secret generated from the Zitadel application
 - `OIDC_REDIRECT_URI`: The redirect URI configured in Zitadel `https://rom.domain.com/api/oauth/openid`.
