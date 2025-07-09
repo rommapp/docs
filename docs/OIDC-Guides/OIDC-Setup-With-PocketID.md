@@ -45,7 +45,7 @@ To enable OIDC authentication in RomM, you need to set the following environment
 - `OIDC_CLIENT_ID`: The client ID copied from the Pocket ID application
 - `OIDC_CLIENT_SECRET`: The client secret that is showing within your Pocket ID application.
 - `OIDC_REDIRECT_URI`: The redirect URI configured in the Pocket ID provider, in the format `https://{host}/api/oauth/openid`.
-- `OIDC_SERVER_APPLICATION_URL`: The authorization URL for you Pocket ID instance, e.g. `https://id.host.local/authorize`.
+- `OIDC_SERVER_APPLICATION_URL`: The authorization URL for you Pocket ID instance, e.g. `https://id.host.local`.
 
 ### Step 4: Set your Email in RomM
 
