@@ -15,7 +15,7 @@ This guide will assume that you already have the following done, if not - stop h
     - 2-factor authentication set up on your Twitch account
     - _This is required to get a developer account and an IGDB key_
 - A <a href="https://www.screenscraper.fr/" target="_blank" rel="noopener noreferrer">Screenscraper</a> account (optional)
-- Your ROMs organized in the correct [folder structure](../Folder-Structure)
+- Your ROMs organized in the correct [folder structure](./Folder-Structure.md)
 
 <!-- prettier-ignore -->
 !!! warning
@@ -23,7 +23,7 @@ This guide will assume that you already have the following done, if not - stop h
 
 ### IGDB and Screenscraper API Keys
 
-Head over to [API key docs](../Metadata-Providers) to get your IGDB and/or Screenscraper keys, then come back here
+Head over to [API key docs](./Metadata-Providers.md) to get your IGDB and/or Screenscraper keys, then come back here
 
 ## Build
 

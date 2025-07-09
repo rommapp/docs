@@ -37,7 +37,7 @@ For multifile games (games stored as folders with multiple files or folders insi
 - `prototype`
 
 !!! tip
-    For folder naming conventions, review the [Platform Support](../../Platforms-and-Players/Supported-Platforms) section. To override default system names in the folder structure (if your directories are named differently), see the [Configuration File](../../Getting-Started/Configuration-File) section.
+    For folder naming conventions, review the [Platform Support](../Platforms-and-Players/Supported-Platforms.md) section. To override default system names in the folder structure (if your directories are named differently), see the [Configuration File](Configuration-File.md) section.
 
 <table>
  <tr>
@@ -154,7 +154,7 @@ For multifile games (games stored as folders with multiple files or folders insi
 
 RomM's behavior can be customized using a `config.yml` file or through the `Library Management` page in the `Settings` menu. You can grab the example <a href="https://github.com/rommapp/romm/blob/release/examples/config.example.yml" target="_blank" rel="noopener noreferrer">config.example.yml</a> file and adapt it to your library.
 
-What is shown in the `Library Management` page is the content of the `config.yml`. For more details read the [configuration file](../../Getting-Started/Configuration-File) section.
+What is shown in the `Library Management` page is the content of the `config.yml`. For more details read the [configuration file](Configuration-File.md) section.
 
 ## Naming Convention
 
