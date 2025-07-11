@@ -12,13 +12,13 @@ This is a complete list of available environment variables; required variables a
 | DISABLE_CSRF_PROTECTION        | Disables [CSRF protection](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) (not recommended) |          | `false`   |
 | DISABLE_DOWNLOAD_ENDPOINT_AUTH | Disable auth on download endpoint (WebRcade, Tinfoil)                                                                                               |          | `false`   |
 | DISABLE_USERPASS_LOGIN         | Disables login with username and password (when using OIDC)                                                                                         |          | `false`   |
+| SESSION_MAX_AGE_SECONDS       | Maximum age of a session in seconds                                                                                                                |          | `1209600`   |
 | KIOSK_MODE                     | Read-only mode for public displays or kiosks                                                                                                        |          | `false`   |
 | UPLOAD_TIMEOUT                 | Timeout for file uploads (in seconds)                                                                                                               |          | `600`     |
 | SCAN_TIMEOUT                   | Timeout for the background scan/rescan tasks (in seconds)                                                                                           |          | `14400`   |
 | DISABLE_EMULATOR_JS            | Disables playing in browser with [EmulatorJS](../Platforms-and-Players/EmulatorJS-Player.md)                                                        |          | `false`   |
 | DISABLE_RUFFLE_RS              | Disables playing flash games with [RuffleRS](../Platforms-and-Players/RuffleRS-Player.md)                                                           |          | `false`   |
 | TZ                             | Sets the timezone                                                                                                                                   |          | `UTC`     |
-| GUNICORN_WORKERS [deprecated]  | Number of processes running the app                                                                                                                 |          | `2`       |
 | WEB_CONCURRENCY                | Number of processes running the app                                                                                                                 |          | `2`       |
 | ROMM_PORT                      | Port on which the application listens                                                                                                               |          | `8080`    |
 | ROMM_BASE_PATH                 | Base folder path for library, resources and assets                                                                                                  |          | `/romm`   |
@@ -57,6 +57,9 @@ This is a complete list of available environment variables; required variables a
 | STEAMGRIDDB_API_KEY                  | SteamGridDB secret API key                       |          |         |
 | RETROACHIEVEMENTS_API_KEY            | Retroachievements secret API key                 |          |         |
 | REFRESH_RETROACHIEVEMENTS_CACHE_DAYS | Retroachievements metadata cache refresh on days |          |   30    |
+| LAUNCHBOX_API_ENABLED               | Enable LaunchBox API integration                 |          | `false` |
+| PLAYMATCH_API_ENABLED               | Enable PlayMatch API integration                 |          | `false` |
+| HASHEOUS_API_ENABLED               | Enable Hasheous API integration                 |          | `false` |
 
 ## Authentication
 
@@ -80,3 +83,13 @@ This is a complete list of available environment variables; required variables a
 | SCHEDULED_RESCAN_CRON                  | Cron expression for scheduled re-scanning                           |          | `"0 3 * * *"` |
 | ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB | Enable scheduled updating of Switch TitleDB index                   |          | `false`       |
 | SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON   | Cron expression for scheduled updating of Switch TitleDB            |          | `"0 4 * * *"` |
+| ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA | Enable scheduled updating of LaunchBox metadata |          | `false`       |
+| SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON | Cron expression for scheduled updating of LaunchBox metadata |          | `"0 5 * * *"` |
+
+
+## Development
+
+| DEV_MODE                     | Enable development mode (debugging, hot-reloading) |          | `false`   |
+| DEV_HOST                     | Host for development server                          |          | `
+| DEV_PORT                     | Port for development server                          |          | `5000`    |
+| DEV_SQL_ECHO                | Enable SQL query logging in development mode         |          | `false`   |
