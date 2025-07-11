@@ -1,4 +1,34 @@
-## General providers
+RomM supports multiple metadata providers to enrich your game library with titles, descriptions, cover art, and achievements. You don't need all providers, so this guide covers provider[combos](#combos) and [setup](#setup).
+
+## Combos
+
+Here are some common combinations you can use based on your needs:
+
+### The Chef's Choice: [Hasheous](#hasheous) + [ScreenScraper](#screenscraper) + [Retroachievements](#retroachievements)
+- Supports 135+ most popular systems
+- Hasheous provides hash-based matching and proxies IGDB data (titles, descriptions and cover art)
+- ScreenScraper adds additional artwork and manuals
+- Retroachievements provides achievement progress
+- **This is the recommended setup for most users**
+
+### The Twitch Fan: [IGDB](#igdb) + [PlayMatch](#playmatch)
+- Supports 200+ systems available on IGDB
+- Provides titles, descriptions, cover art and related games from IGDB
+- PlayMatch adds hash-based matching for unmatched files
+- **Use this if you want a single-provider solution**
+
+### The Quick Starter: [Hasheous](#hasheous)
+- Hash-based matching exclusively
+- Proxies titles, descriptions and cover art from IGDB
+- **For users who want to avoid API keys**
+
+### The Privacy Freak: [LaunchBox](#launchbox)
+- Makes no API calls to cloud services
+- LaunchBox provides titles, descriptions, and cover art
+- Exact filename matching exclusively
+- **Ideal for LaunchBox users with correct filenames**
+
+## Setup
 
 ### IGDB
 

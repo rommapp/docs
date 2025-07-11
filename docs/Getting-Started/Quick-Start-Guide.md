@@ -10,20 +10,13 @@ This quick start guide will help you get a RomM instance up and running. It is s
 
 This guide will assume that you already have the following done, if not - stop here and come back when you do.
 
-- Docker and Docker Compose installed
-- A <a href="https://dev.twitch.tv" target="_blank" rel="noopener noreferrer">Twitch</a> account (optional)
-    - 2-factor authentication set up on your Twitch account
-    - _This is required to get a developer account and an IGDB key_
-- A <a href="https://www.screenscraper.fr/" target="_blank" rel="noopener noreferrer">Screenscraper</a> account (optional)
+- [Docker installed](https://docs.docker.com/get-docker/) and running on your system
 - Your ROMs organized in the correct [folder structure](./Folder-Structure.md)
+- The recommended [metadata providers](./Metadata-Providers.md) set up
 
 <!-- prettier-ignore -->
 !!! warning
-    Not setting up RomM with a metadata API will work for basic operation but can cause issues with, for instance, the Playnite plugin. It is recommended to setup IGDB API keys to avoid issues during setup.
-
-### IGDB and Screenscraper API Keys
-
-Head over to [API key docs](./Metadata-Providers.md) to get your IGDB and/or Screenscraper keys, then come back here
+    RomM works without a metadata API for basic use, but may cause issues with plugins like Playnite. Setting up IGDB API keys is recommended to prevent setup problems.
 
 ## Build
 
@@ -50,7 +43,13 @@ Now that we have everything gathered, we can begin getting your instance set up!
     ```
 6. Add your metadata sources API keys:
     - IGDB: `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET`
-    - SCREENSCRAPER: `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD`
+    - ScreenScraper.fr: `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD`
+    - RetroAchievements: `RETROACHIEVEMENTS_USERNAME` and `RETROACHIEVEMENTS_API_KEY`
+    - MobyGames: `MOBYGAMES_API_KEY`
+    - SteamGridDB: `STEAMGRIDDB_API_KEY`
+    - PlayMatch: `PLAYMATCH_API_ENABLED=true`
+    - Hasheous: `HASHEOUS_API_ENABLED=true`
+    - LaunchBox: `LAUNCHBOX_API_ENABLED=true`
 7. Modify the following values in the **volumes** to configure the application
     - `/path/to/library`: Path to the directory where your rom files will be stored (usually the parent folder of the `roms` folder)
     - `/path/to/assets`: Path to the directory where you will store your saves, etc
@@ -84,7 +83,7 @@ Now that we have everything gathered, we can begin getting your instance set up!
 1.  Run `docker ps -f name=romm` to verify that the containers are running
 2.  Open a web browser and navigate to `http://localhost:80`, where you should be greeted with the RomM setup page
 3.  Go through the setup wizard, setting your admin username and password
-4.  Log in with the credentials you set in the setup flow
+4.  Log in with the credentials you set in the last step
 <!-- trunk-ignore-end(markdownlint/MD040) -->
 
 ## Configure
