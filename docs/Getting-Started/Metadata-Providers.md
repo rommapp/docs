@@ -1,40 +1,42 @@
-RomM supports multiple metadata providers to enrich your game library with titles, descriptions, cover art, and achievements. You don't need all providers, so this guide covers provider[combos](#combos) and [setup](#setup).
+RomM supports multiple metadata providers to enrich your game library with titles, descriptions, cover art, and achievements. You don't need all providers, so this guide covers [popular combos](#popular-combos) and [setup instructions](#setup-instructions).
 
-## Combos
+## Popular combos
 
-Here are some common combinations you can use based on your needs:
+Here are some combinations you can use based on your needs:
 
-### The Chef's Choice: [Hasheous](#hasheous) + [ScreenScraper](#screenscraper) + [Retroachievements](#retroachievements)
-- Supports 135+ most popular systems
+#### ⭐ The Chef's Choice: [Hasheous](#hasheous) + [ScreenScraper](#screenscraper) + [Retroachievements](#retroachievements)
+- Supports 135+ of the most popular systems
 - Hasheous provides hash-based matching and proxies IGDB data (titles, descriptions and cover art)
 - ScreenScraper adds additional artwork and manuals
 - Retroachievements provides achievement progress
 - **This is the recommended setup for most users**
 
-### The Twitch Fan: [IGDB](#igdb) + [PlayMatch](#playmatch)
-- Supports 200+ systems available on IGDB
+#### The Twitch Fan: [IGDB](#igdb) + [PlayMatch](#playmatch)
+- Supports the 200+ systems available on IGDB
 - Provides titles, descriptions, cover art and related games from IGDB
 - PlayMatch adds hash-based matching for unmatched files
 - **Use this if you want a single-provider solution**
 
-### The Quick Starter: [Hasheous](#hasheous)
-- Hash-based matching exclusively
+#### The Quick Starter: [Hasheous](#hasheous)
+- Hash-based matching only ⚠️
 - Proxies titles, descriptions and cover art from IGDB
 - **For users who want to avoid API keys**
 
-### The Privacy Freak: [LaunchBox](#launchbox)
+#### The Privacy Freak: [LaunchBox](#launchbox)
+- Exact filename matching only ⚠️
 - Makes no API calls to cloud services
 - LaunchBox provides titles, descriptions, and cover art
-- Exact filename matching exclusively
 - **Ideal for LaunchBox users with correct filenames**
 
-## Setup
+## Setup instructions
 
 ### IGDB
 
+[IGDB](https://www.igdb.com/) (Internet Game Database) is a popular metadata provider that offers metadata, cover art, screenshots, related games and more.
+
 To access the IGDB API you'll need a Twitch account and a valid phone number for 2FA verification. Up-to-date instructions are available in the [IGDB API documentation](https://api-docs.igdb.com/#account-creation). When registering your application in the Twitch Developer Portal, fill out the form like so:
 
-- Name: Something **unique or random** like `correct-horse-battery-staple` or `KVV8NDXMSRFJ2MRNPNRSL7GQT`
+- Name: Something **unique or random** like `romm-3fca6fd7f94dea4a05d029f654c0c44b` or `KVV8NDXMSRFJ2MRNPNRSL7GQT`
 - OAuth Redirect URLs: `localhost`
 - Category: `Application Integration`
 - Client Type: `Confidential`
@@ -45,41 +47,62 @@ To access the IGDB API you'll need a Twitch account and a valid phone number for
 
 Note the client ID and secret that appear on screen, and use them to set `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` in your environment variables.
 
-![IGDB Creation](../resources/metadata_providers/1-igdb.png)
-![IGDB Secret](../resources/metadata_providers/2-igdb.png)
+<!-- prettier-ignore -->
+??? Screenshots
+    ![IGDB Creation](../resources/metadata_providers/1-igdb.png)
+    ![IGDB Secret](../resources/metadata_providers/2-igdb.png)
 
 ### ScreenScraper
 
-To access the ScreenScraper API, create a [ScreenScraper](https://www.screenscraper.fr/membreinscription.php) and copy the **user** and **password** you just created to `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD` respectively.
+[ScreenScraper.fr](https://screenscraper.fr/) is a French provider that offers metadata, cover art, screenshots and manuals. It supports a wide range of systems and is a great alternative to IGDB.
+
+To access the ScreenScraper API, create a [ScreenScraper](https://www.screenscraper.fr/membreinscription.php) account and copy the **user** and **password** you just created to `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD` respectively.
 
 ### MobyGames
+
+MobyGames is a metadata provider that offers medatada, cover art and screenshots.
 
 To access the MobyGames API, [create a MobyGames account](https://www.mobygames.com/user/register/) and then visit your profile page. Click the **API** link under your user name to sign up for an API key. Copy the key shown and use it to set `MOBYGAMES_API_KEY`.
 
 <!-- prettier-ignore -->
 !!! important
-    MobyGames API became a [paid feature](https://www.mobygames.com/info/api/#non-commercial). RomM will still support it but we won't release any new feature for it.
+    Access to the MobyGames API is now a [paid feature](https://www.mobygames.com/info/api/#non-commercial). While we will continue to support it, we recommend using [ScreenScraper](#screenscraper) or [Hasheous](#hasheous) instead, as they are free to use.
 
-## Artwork providers
+### LaunchBox
+
+The [LaunchBox](https://gamesdb.launchbox-app.com) Games Database is a community-driven database that provides metadata, cover art, and screenshots. Like the Launchbox desktop application, RomM downloads the entire database locally and matches games based on their exact filenames.
+
+To enable LaunchBox, set `LAUNCHBOX_API_ENABLED=true` in your environment variables. You can enable regular updates of the database by setting `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA`, and set the frequency on the cron job with `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON` (defaults to 5:00 AM every day).
+
+### Hasheous
+
+[Hasheous](https://hasheous.org/) is a free, open-source metadata provider that uses file hashes to match games. It proxies IGDB data for titles, descriptions, and cover art, and can provide Retroachievements IDs for matched games.
+
+Simply set `HASHEOUS_API_ENABLED=true` in your environment variables, and future scans will start using the [Hasheous API](https://hasheous.org/swagger/index.html).
+
+### PlayMatch
+
+[Playmatch](https://github.com/RetroRealm/playmatch) is a project built and hosted by a member of our comminuty. It provides a hash-based matching service for, and is used in conjunction with, IGDB.
+
+To enable PlayMatch, set `PLAYMATCH_API_ENABLED=true` in your environment variables.
 
 ### SteamGridDB
 
+SteamGridDB provides custom cover art for games or collections. It's not accessed through the scanner but from the "search cover" button when manually editing a game.
+
 To access steamGridDB API, you need to login into their [website](https://www.steamgriddb.com/) with a [steam account](https://store.steampowered.com/join). Once logged in, go to your [API tab under the preferences page](https://www.steamgriddb.com/profile/preferences/api). Copy the key shown and use it to set `STEAMGRIDDB_API_KEY`.
-
-SteamGridDB only provides custom cover art for games or collections. It's not accessed through the scanner but from the search cover button when manually editing a game.
-
-## Achievements providers
 
 ### Retroachievements
 
 RomM is able to display your achievements from [Retroachievements](https://retroachievements.org/). To sync it with your RomM instance, you need to generate an API key from your Retroechievements account in your [settings](https://retroachievements.org/settings)
 
-![RA API key](../resources/metadata_providers/1-ra.png)
-
 Copy the key shown and use it to set `RETROACHIEVEMENTS_API_KEY` and perform a partial scan targeting the platform you want to match with Retroachievements.
 
-After that, each user need to set their own username in their profile and sync it with Retroachievements. A new ``retroachievements`` tab will appear in the `personal` tab in the game details.
-
-![RA details](../resources/metadata_providers/2-ra.png)
+After that, each user need to set their own username in their profile and sync it with Retroachievements. A new ``Achievements`` tab will appear in the `Personal` tab in the game details.
 
 To avoid unneccessary API calls, a cached file with the RA database is stored in RomM. Refresh time for that cache file can be changed with the env variable `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS`
+
+<!-- prettier-ignore -->
+??? Screenshots
+    ![RA API key](../resources/metadata_providers/1-ra.png)
+    ![RA details](../resources/metadata_providers/2-ra.png)
