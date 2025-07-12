@@ -4,26 +4,33 @@ RomM supports multiple metadata providers to enrich your game library with title
 
 Here are some combinations you can use based on your needs:
 
-#### ⭐ The Chef's Choice: [Hasheous](#hasheous) + [ScreenScraper](#screenscraper) + [Retroachievements](#retroachievements) + [SteamGridDB](#steamgriddb)
-- Supports 135+ of the most popular systems
+#### ⭐ The Chef's Choice: [Hasheous](#hasheous) + [ScreenScraper](#screenscraper)  + [Retroachievements](#retroachievements)
+- Supports 135+. popular systems
 - Hasheous provides hash-based matching and proxies IGDB data (titles, descriptions and artwork)
-- SteamGridDB provides high-quality fallback cover art
-- ScreenScraper adds additional artwork and manuals
+- ScreenScraper adds additional screenshots and manuals
 - Retroachievements provides achievement progress
 - **This is the recommended setup for most users**
 
-#### The Twitch Fan: [IGDB](#igdb) + [PlayMatch](#playmatch)
+#### The Twitch Fanboy: [IGDB](#igdb) + [PlayMatch](#playmatch)
 - Supports the 200+ systems available on IGDB
 - Provides titles, descriptions, cover art and related games from IGDB
 - PlayMatch adds hash-based matching for unmatched files
 - **Use this if you want a single-provider solution**
 
+#### The French Connection: [ScreenScraper](#screenscraper) + [SteamGridDB](#steamgriddb) + [Retroachievements](#retroachievements)
+- Supports 125+ popular systems
+- ScreenScraper provides titles, descriptions, cover art, screenshots and manuals
+- SteamGridDB provides high-quality fallback cover art
+- Retroachievements provides achievement progress
+- **Use this if you want to avoid Twitch/Amazon products**
+
 #### The Quick Starter: [Hasheous](#hasheous)
 - Hash-based matching only ⚠️
 - Proxies titles, descriptions and cover art from IGDB
+- Incredibly fast scan times
 - **For users who want to avoid API keys**
 
-#### The LaunchBox Gamer: [LaunchBox](#launchbox)
+#### The LaunchBoxer: [LaunchBox](#launchbox)
 - Exact filename matching only ⚠️
 - Makes no API calls to cloud services
 - LaunchBox provides titles, descriptions, and cover art
