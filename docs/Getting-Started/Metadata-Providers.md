@@ -4,9 +4,10 @@ RomM supports multiple metadata providers to enrich your game library with title
 
 Here are some combinations you can use based on your needs:
 
-#### ⭐ The Chef's Choice: [Hasheous](#hasheous) + [ScreenScraper](#screenscraper) + [Retroachievements](#retroachievements)
+#### ⭐ The Chef's Choice: [Hasheous](#hasheous) + [ScreenScraper](#screenscraper) + [Retroachievements](#retroachievements) + [SteamGridDB](#steamgriddb)
 - Supports 135+ of the most popular systems
-- Hasheous provides hash-based matching and proxies IGDB data (titles, descriptions and cover art)
+- Hasheous provides hash-based matching and proxies IGDB data (titles, descriptions and artwork)
+- SteamGridDB provides high-quality fallback cover art
 - ScreenScraper adds additional artwork and manuals
 - Retroachievements provides achievement progress
 - **This is the recommended setup for most users**
@@ -22,7 +23,7 @@ Here are some combinations you can use based on your needs:
 - Proxies titles, descriptions and cover art from IGDB
 - **For users who want to avoid API keys**
 
-#### The Privacy Freak: [LaunchBox](#launchbox)
+#### The LaunchBox Gamer: [LaunchBox](#launchbox)
 - Exact filename matching only ⚠️
 - Makes no API calls to cloud services
 - LaunchBox provides titles, descriptions, and cover art
