@@ -1,7 +1,3 @@
-### Why is not PSP emulation enabled if EmulatorJS supports it?
-
-PSP emulation with the PPSSPP core requires special setup with a reverse proxy, or launching Chrome browser with the `--disable-web-security` and `--enable-features=SharedArrayBuffer` flags, which **WE STRONGLY DISCOURAGE** as it disables important security features.
-
 ### When will the next version of RomM be available?
 
 When it's ready.
