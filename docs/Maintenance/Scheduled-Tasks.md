@@ -2,14 +2,14 @@
 
 Scheduled tasks can be enabled and configured with the following environment variables:
 
-| Variable                               | Description                                              |     Value     |
-| -------------------------------------- | -------------------------------------------------------- | :-----------: |
-| ENABLE_SCHEDULED_RESCAN                | Enable scheduled re-scanning of library                  |    `true`     |
-| SCHEDULED_RESCAN_CRON                  | Cron expression for scheduled re-scanning                | `"0 3 * * *"` |
-| ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB | Enable scheduled updating of Switch TitleDB index        |    `true`     |
-| SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON   | Cron expression for scheduled updating of Switch TitleDB | `"0 4 * * *"` |
-| ENABLE_SCHEDULED_UPDATE_MAME_XML       | Enable scheduled updating of MAME XML index              |    `true`     |
-| SCHEDULED_UPDATE_MAME_XML_CRON         | Cron expression for scheduled updating of MAME XML       | `"0 5 * * *"` |
+| Variable                                   | Description                                                  |     Value     |
+| ------------------------------------------ | ------------------------------------------------------------ | :-----------: |
+| ENABLE_SCHEDULED_RESCAN                    | Enable scheduled re-scanning of library                      |    `true`     |
+| SCHEDULED_RESCAN_CRON                      | Cron expression for scheduled re-scanning                    | `"0 3 * * *"` |
+| ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB     | Enable scheduled updating of Switch TitleDB index            |    `true`     |
+| SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON       | Cron expression for scheduled updating of Switch TitleDB     | `"0 4 * * *"` |
+| ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA | Enable scheduled updating of LaunchBox metadata              |    `true`     |
+| SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON.  | Cron expression for scheduled updating of LaunchBox metadata | `"0 5 * * *"` |
 
 ### Scheduled re-scan
 
@@ -21,11 +21,9 @@ Support was added for Nintendo Switch ROMs with filenames using the [titleid/pro
 
 The associated task updates the `/fixtures/switch_titledb.json` file at a regular interval to support new game releases.
 
-### MAME XML update
+### LaunchBox metadata update
 
-Support was also added for MAME arcade games with shortcode names (e.g. `actionhw.zip` -> `ACTION HOLLYWOOD`), and works in the same way as the TitleID matcher (without the regex).
-
-The associated task updates the `/fixtures/mame.xml` file at a regular interval to support updates to the library.
+RomM can also update the LaunchBox metadata database at a regular interval. This is onyl useful if you've enabled the LaunchBox metadata provider. The database is updated by downloading the latest version from the [LaunchBox Games Database](https://gamesdb.launchbox-app.com/) and replacing the existing one.
 
 ## File system watcher
 
