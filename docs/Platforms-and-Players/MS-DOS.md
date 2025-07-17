@@ -7,13 +7,12 @@
 !!! info 
     I highly suggest you upload the games as .zip as the core can take advantage of unzipping and auto mounting options which are explained more below.
 
-!!! info 
-    Loading and saving states ARE supported so it's possible you only need to do the below steps once to load the game. 
+!!! info
+Loading and saving states ARE supported so it's possible you only need to do the below steps once to load the game.
 
+#### Running Games
 
-#### Running Games 
-
-Once you have the play button in the platform available for you there is some additional work you need to do in order to get the games playable and running. You first need to identify what DOS game you are trying to run, there would be three categories 
+Once you have the play button in the platform available for you there is some additional work you need to do in order to get the games playable and running. You first need to identify what DOS game you are trying to run, there would be three categories
 
 - Homebrew
   - Made by an indie dev, usually just an .exe file which will work fine in DOS once mounted.
@@ -21,38 +20,34 @@ Once you have the play button in the platform available for you there is some ad
   - Most sites which offer DOS games are shareware demo versions, these function similiar to homebrew and will have all the files needed within the folder.
 - Retail
   - These will need the CD mounted alongside the game files in order to play the games, this can get tricky and will be a unique per game basis but once you have cracked it you won't need to modify it again.
-  
+
 The official method to run the games from the EmulatorJS dev is the following (Only works for Homebrew and Demos):
 
 - Select commandline from the initial loading screen
-- `mount A / -t floppy` - This will mount the location of the files 
+- `mount A / -t floppy` - This will mount the location of the files
 - `A:` - This will take you to the location of the files
-- `dir` - to find the .EXE file 
-- `filename.exe` - This will run the .exe and run the game, you might need some additional configuration but that is purely on the dosbox side and you might need to run the setup.exe file or a file name similiar. 
+- `dir` - to find the .EXE file
+- `filename.exe` - This will run the .exe and run the game, you might need some additional configuration but that is purely on the dosbox side and you might need to run the setup.exe file or a file name similiar.
 
-
-  
-  
-#### Advanced Running Games 
+#### Advanced Running Games
 
 !!! warning
-    This is not for the faint of heart and will require a lot of trial and error.
+This is not for the faint of heart and will require a lot of trial and error.
 
-As the system is using DOSBOX pure it has a neat trick where it will run .CONF files it finds and automatically mount locations and run .exe files automatically, at the minute this is highly experimental and might be more effort then it is worth, but if you want the files running perfectly then I would suggest you look into this method, but it is extremely trail and error. 
+As the system is using DOSBOX pure it has a neat trick where it will run .CONF files it finds and automatically mount locations and run .exe files automatically, at the minute this is highly experimental and might be more effort then it is worth, but if you want the files running perfectly then I would suggest you look into this method, but it is extremely trail and error.
 
-When you run a game in DOSBOX Pure, before it runs and mounts anything it will look for a .conf file and follow those instructions, this way we can actually auto mount locations, mount the required CDs and play the game without typing anything, you just click play, the auto mount does everything in the background and you are presented with the game. 
-
+When you run a game in DOSBOX Pure, before it runs and mounts anything it will look for a .conf file and follow those instructions, this way we can actually auto mount locations, mount the required CDs and play the game without typing anything, you just click play, the auto mount does everything in the background and you are presented with the game.
 
 This is an example using the doom shareware file which has all the files in the folder.
 
-- Check the folder and make sure there is an .exe file for the game, make sure there is no `*.ins`, `*.cue` or `*.bin` files, if these exist it usually means this is a CD required game and these instructions will not work 
+- Check the folder and make sure there is an .exe file for the game, make sure there is no `*.ins`, `*.cue` or `*.bin` files, if these exist it usually means this is a CD required game and these instructions will not work
 - Create a new text document named the same as the .exe (DOOM.conf) and add the following information:
 
 <details>
 
 <summary>DOOM.conf Example</summary>
 
-``` shell
+```shell
 # This is the configurationfile for DOSBox 0.74. (Please use the latest version of DOSBox)
 # Lines starting with a # are commentlines and are ignored by DOSBox.
 # They are used to (briefly) document the effect of each option.
@@ -303,29 +298,28 @@ DOOM.exe
 :exit
 exit
 ```
+
 </details>
 
-- Most of the file is explained but to go into the nitty gritty of the [autoexec] it will mount the local location as C:, it changes to C: it will clear the screen and automatically run the DOOM.exe executable, and will exit the previous shell, meaning it will run the game by just clicking play. 
-- Zip up the folder and add it to RomM's DOS platform, then just simply click play. If you hit a blank screen it means that something is wrong with the auto exec, and will need manual troubleshooting. 
+- Most of the file is explained but to go into the nitty gritty of the [autoexec] it will mount the local location as C:, it changes to C: it will clear the screen and automatically run the DOOM.exe executable, and will exit the previous shell, meaning it will run the game by just clicking play.
+- Zip up the folder and add it to RomM's DOS platform, then just simply click play. If you hit a blank screen it means that something is wrong with the auto exec, and will need manual troubleshooting.
 
-### Advanced Running Retail Games 
+### Advanced Running Retail Games
 
-  !!! info
-      At the minute DOS games redesigned by GOG are NOT supported, this is due to how they mount and use the locations. I am looking into how I can figure this out but I have had a 100% failure rate from the GOG DOS Games.
+!!! info
+At the minute DOS games redesigned by GOG are NOT supported, this is due to how they mount and use the locations. I am looking into how I can figure this out but I have had a 100% failure rate from the GOG DOS Games.
 
-Retail games usually require to run alongside a disk even if the game has been "installed" locally. I will use Dungeon Keeper Gold as an example for a retail game with a disc and the configuration needed. 
+Retail games usually require to run alongside a disk even if the game has been "installed" locally. I will use Dungeon Keeper Gold as an example for a retail game with a disc and the configuration needed.
 
-- Prepare the files like you did before, but this time with the disk images (`*.bin` & `*.cue`) and move them to a folder named CD within the folder. Only within this folder you should all the .bin files and the "matching" .cue sheet (remember .cue is just a text document pulling all these files together, like a playlist) 
-- Have a look at the KEEPER.cfg file, this file will say how the game was installed and the path it expects the installed files to be at. 
-- Create a new .conf document named the same as the .exe for me that would be KEEPER.conf 
-
-
+- Prepare the files like you did before, but this time with the disk images (`*.bin` & `*.cue`) and move them to a folder named CD within the folder. Only within this folder you should all the .bin files and the "matching" .cue sheet (remember .cue is just a text document pulling all these files together, like a playlist)
+- Have a look at the KEEPER.cfg file, this file will say how the game was installed and the path it expects the installed files to be at.
+- Create a new .conf document named the same as the .exe for me that would be KEEPER.conf
 
 <details>
 
 <summary>KEEPER.conf Example</summary>
 
-``` shell
+```shell
 # This is the configurationfile for DOSBox 0.74. (Please use the latest version of DOSBox)
 # Lines starting with a # are commentlines and are ignored by DOSBox.
 # They are used to (briefly) document the effect of each option.
@@ -571,7 +565,7 @@ ipx=false
 @echo off
 Mount C ".."
 C:
-cd CD 
+cd CD
 imgmount d DUNGEO~8.CUE -t iso -fs iso
 cd ..
 cls
@@ -579,31 +573,27 @@ KEEPER.exe
 :exit
 exit
 ```
+
 </details>
 
-- Notice the different in the automount commands 
+- Notice the different in the automount commands
   - Mount the games files to can
   - Change to C:
   - Change Directory to CD
-  - Using dosbox imgmount, mount the CD to the D path 
-  - cd to the directory above where the .exe 
-  - Clear the working out 
-  - Run KEEPER.exe 
-  
-- Once this is done, the game will run. Zip the files up and add to your RomM and give it a test. 
+  - Using dosbox imgmount, mount the CD to the D path
+  - cd to the directory above where the .exe
+  - Clear the working out
+  - Run KEEPER.exe
+- Once this is done, the game will run. Zip the files up and add to your RomM and give it a test.
 
-
-
-
-#### Advanced Game Troubleshooting 
+#### Advanced Game Troubleshooting
 
 If the games are not working and you go back to a blank dos looking screen, this will require some manual troubleshooting but I have found success with the following methods:
 
-- Remove the .exe in the .CONF file and investigate the automounts 
-  - This means going to the C: and make sure the .exe is in the right place. 
+- Remove the .exe in the .CONF file and investigate the automounts
+  - This means going to the C: and make sure the .exe is in the right place.
   - Use the following command `type DEFAULT.cfg` to see the installation location, this is where the game is looking for the files, this should be set to a D: location.
   - Browse to that location and see if the files are there and they are readable.
 - The automount is simply following instructions, so it expects the files to be where you say, following this method is usually best to troubleshoot.
 
-
-Another way of troubleshooting is to use Retroarch and the core "dosbox-pure" because if it runs in here, it will run in RomM. Simply give it your ZIP and it will act the same as if you was doing it through RomM, once the .conf file is perfected add it back to the ZIP. 
+Another way of troubleshooting is to use Retroarch and the core "dosbox-pure" because if it runs in here, it will run in RomM. Simply give it your ZIP and it will act the same as if you was doing it through RomM, once the .conf file is perfected add it back to the ZIP.
