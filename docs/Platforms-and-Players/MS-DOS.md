@@ -320,7 +320,7 @@ Retail games usually require to run alongside a disk even if the game has been "
 
 <details>
 
-<summary>DOOM.conf Example</summary>
+<summary>KEEPER.conf Example</summary>
 
 ``` shell
 # This is the configurationfile for DOSBox 0.74. (Please use the latest version of DOSBox)
