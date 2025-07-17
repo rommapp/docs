@@ -16,9 +16,11 @@ search:
     - [Authentication](Getting-Started/Authentication.md)
 - Platforms and Players
     - [Supported Platforms](Platforms-and-Players/Supported-Platforms.md)
+    - Web Players
+        - [EmulatorJS](Platforms-and-Players/EmulatorJS-Player.md)
+        - [MS-DOS](Platforms-and-Players/MS-DOS.md)
+        - [RuffleRS](Platforms-and-Players/RuffleRS-Player.md)
     - [Custom Platforms](Platforms-and-Players/Custom-Platforms.md)
-    - [EmulatorJS Player](Platforms-and-Players/EmulatorJS-Player.md)
-    - [RuffleRS Player](Platforms-and-Players/RuffleRS-Player.md)
 - System Setup Guides
     - [Unraid Setup](System-Setup/Unraid-Setup-Guide.md)
     - [Synology Setup](System-Setup/Synology-Setup-Guide.md)

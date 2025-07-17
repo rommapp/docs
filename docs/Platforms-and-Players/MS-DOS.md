@@ -8,7 +8,7 @@
     I highly suggest you upload the games as .zip as the core can take advantage of unzipping and auto mounting options which are explained more below.
 
 !!! info
-Loading and saving states ARE supported so it's possible you only need to do the below steps once to load the game.
+    Loading and saving states ARE supported so it's possible you only need to do the below steps once to load the game.
 
 #### Running Games
 
