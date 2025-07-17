@@ -38,9 +38,9 @@ The official method to run the games from the EmulatorJS dev is the following (O
 !!! warning
     This is not for the faint of heart and will require a lot of trial and error.
 
-As the system is using DOSBOX pure it has a neat trick where it will run .CONF files it finds and automatically mount locations and run .exe files automatically, at the minute this is highly experimental and might be more effort then it is worth, but if you want the files running perfectly then I would suggest you look into this method, but at the minute it is extremely trail and error. 
+As the system is using DOSBOX pure it has a neat trick where it will run .CONF files it finds and automatically mount locations and run .exe files automatically, at the minute this is highly experimental and might be more effort then it is worth, but if you want the files running perfectly then I would suggest you look into this method, but it is extremely trail and error. 
 
-When you run a game in DOSBOX Pure, before it runs and mounts anything it will look for a .conf file and follow those instructions, this way we can actually auto mount locations, mount the required CDs and play the without typing anything, you just click play, the auto mount does everything in the background and you are presented with the game. 
+When you run a game in DOSBOX Pure, before it runs and mounts anything it will look for a .conf file and follow those instructions, this way we can actually auto mount locations, mount the required CDs and play the game without typing anything, you just click play, the auto mount does everything in the background and you are presented with the game. 
 
 
 This is an example using the doom shareware file which has all the files in the folder.
@@ -309,6 +309,9 @@ exit
 - Zip up the folder and add it to RomM's DOS platform, then just simply click play. If you hit a blank screen it means that something is wrong with the auto exec, and will need manual troubleshooting. 
 
 ### Advanced Running Retail Games 
+
+  !!! info
+      At the minute DOS games redesigned by GOG are NOT supported, this is due to how they mount and use the locations. I am looking into how I can figure this out but I have had a 100% failure rate from the GOG DOS Games.
 
 Retail games usually require to run alongside a disk even if the game has been "installed" locally. I will use Dungeon Keeper Gold as an example for a retail game with a disc and the configuration needed. 
 
