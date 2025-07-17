@@ -1,3 +1,5 @@
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 RomM provides support for various forms of authentication, granting flexibility in securing access to its features.
 
 ### Setup

@@ -1,5 +1,6 @@
 <!-- trunk-ignore-all(prettier) -->
 <!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore-all(markdownlint/MD041) -->
 
 RomM requires one of these folder structures for proper operation. It will first attempt to detect **Structure A (recommended)**, and if not found, will fall back to **Structure B**. This auto-detection ensures flexibility while encouraging organization best practices.
 

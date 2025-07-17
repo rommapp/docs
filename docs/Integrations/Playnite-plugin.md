@@ -1,3 +1,6 @@
+<!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 <div align="center">
     <img src="../../resources/romm/integrations/playnite.svg" height="200px" width="200px" alt="romm[playnite] isotipo">
 </div>

@@ -1,8 +1,12 @@
+<!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 ---
+
 title: Introduction
 description: An introduction to your beautiful, powerful, self-hosted rom manager
-hide:
-    - toc
+hide: - toc
+
 ---
 
 <img src="./resources/romm/isotipo.svg" height="200px" width="200px" alt="RomM logo">

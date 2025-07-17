@@ -1,3 +1,5 @@
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 Version 3.0 of RomM introduces a number of breaking changes aimed at improving performance and usability, which will require some users to make specific changes before upgrading to ensure compatibility and to take full advantage of the new features.
 
 All of the following changes are reflected in the [example docker-compose.yml file](https://github.com/rommapp/romm/blob/master/examples/docker-compose.example.yml), which has been simplified greatly. **Please read this entire file carefully, as failing to do so may cause RomM to become inaccessible or unresponsive.**

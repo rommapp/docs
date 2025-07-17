@@ -1,3 +1,5 @@
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 Here are some basic configurations for popular reverse proxies. Some installations may require modifications to configuration options not listed below.
 
 ## Caddy

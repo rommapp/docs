@@ -1,3 +1,5 @@
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 This is a complete list of available environment variables; required variables are marked with a `✓`.
 
 <!-- prettier-ignore -->
@@ -89,5 +91,5 @@ This is a complete list of available environment variables; required variables a
 ## Development
 
 | DEV_MODE | Enable development mode (debugging, hot-reloading) | | `false` |
-| DEV_HOST | Host for development server | | `| DEV_PORT                     | Port for development server                          |          |`5000`   |
-| DEV_SQL_ECHO                | Enable SQL query logging in development mode         |          |`false` |
+| DEV_HOST | Host for development server | | | `DEV_PORT` | Port for development server | |`5000` |
+| DEV_SQL_ECHO | Enable SQL query logging in development mode | |`false` |

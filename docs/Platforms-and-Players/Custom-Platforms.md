@@ -1,3 +1,6 @@
+<!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 While RomM supports every platform listed in the [Supported Platforms page](../Platforms-and-Players/Supported-Platforms.md), the list is not exhaustive, and you may have ROMs in your library for other platforms. To load those files into RomM, place them in a folder for each platform, and give it a name that's **all lowercase**, with **`-` to separate words**, and with **no white spaces**. For example, `pocket-challenge-v2` would map to `Pocket Challenge V2`, and display the default platform icon in the app.
 
 Furthermore, only a portion of the supported platforms have custom icons built-in. If your library has platforms that aren't listed in [the platforms icons list](https://github.com/rommapp/romm/tree/release/frontend/assets/platforms), RomM will display a default fallback icon.

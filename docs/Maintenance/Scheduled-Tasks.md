@@ -1,3 +1,5 @@
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 ## Scheduled tasks
 
 Scheduled tasks can be enabled and configured with the following environment variables:

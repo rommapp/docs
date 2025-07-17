@@ -1,3 +1,6 @@
+<!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 Below is a breakdown of each section of the `config.yml` file and its purpose:
 
 ### `exclude`

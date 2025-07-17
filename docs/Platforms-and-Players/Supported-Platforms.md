@@ -1,4 +1,6 @@
 <!-- vale off -->
+<!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore-all(markdownlint/MD041) -->
 
 Below is a list of all supported platforms/systems/consoles and their respective folder names. Supported platforms means RomM can fetch metadata from sources for those platforms.
 

@@ -1,3 +1,6 @@
+<!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 [DOS](https://github.com/schellingb/dosbox-pure) is now supported in versions of RomM 4.0 and above thanks to the EmulatorJS player - Simply create a DOS platform to enable the integration
 
 <!-- prettier-ignore -->

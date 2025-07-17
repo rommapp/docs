@@ -57,10 +57,8 @@ On the General tab, click the New button under Applications.
 - `Grant Types`: Authorization Code
 - `Response Types`: Code
 - `Authentication Method`: Basic
-- `Redirect URIs`:
-  https://romm.domain.com/api/oauth/openid
-- `Post Logout URIs`:
-  https://romm.domain.com/
+- `Redirect URIs`: `https://romm.domain.com/api/oauth/openid`
+- `Post Logout URIs`: `https://romm.domain.com/`
 
 Click Create.
 

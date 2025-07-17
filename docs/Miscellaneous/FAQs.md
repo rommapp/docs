@@ -1,3 +1,5 @@
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 ### When will the next version of RomM be available?
 
 When it's ready.

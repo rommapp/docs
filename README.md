@@ -1,3 +1,6 @@
+<!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 <div align="center">
 
   <img src=".github/resources/isotipo.png" height="180px" width="auto" alt="RomM docs logo">

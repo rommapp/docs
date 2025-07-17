@@ -1,4 +1,6 @@
 <!-- trunk-ignore-all(prettier) -->
+<!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore-all(markdownlint/MD041) -->
 
 This quick start guide will help you get a RomM instance up and running. It is split into 3 parts:
 
@@ -22,7 +24,6 @@ This guide will assume that you already have the following done, if not - stop h
 
 Now that we have everything gathered, we can begin getting your instance set up!
 
-<!-- trunk-ignore-begin(markdownlint/MD040) -->
 1. Download a copy of the latest <a href="https://github.com/rommapp/romm/blob/release/examples/docker-compose.example.yml" target="_blank" rel="noopener noreferrer">docker-compose.example.yml</a> file from GitHub
 3. Edit the file and modify the following values to configure the database
     - `MARIADB_ROOT_PASSWORD`: Sets the root password of the database. Use a unique and secure password (_use a password generator for simplicity_)
@@ -84,7 +85,6 @@ Now that we have everything gathered, we can begin getting your instance set up!
 2.  Open a web browser and navigate to `http://localhost:80`, where you should be greeted with the RomM setup page
 3.  Go through the setup wizard, setting your admin username and password
 4.  Log in with the credentials you set in the last step
-<!-- trunk-ignore-end(markdownlint/MD040) -->
 
 ## Configure
 

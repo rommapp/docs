@@ -1,3 +1,5 @@
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 [EmulatorJS](https://emulatorjs.org/) is a web-based emulator for various system; that is, it allows you to run old games in your web browser. It's based on [`RetroArch`](https://www.retroarch.com) compiled with [`Emscripten`](https://emscripten.org/), which is a toolchain for compiling C and C++ code to WebAssembly.
 
 <!-- prettier-ignore -->

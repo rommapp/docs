@@ -1,3 +1,6 @@
+<!-- trunk-ignore-all(markdownlint/MD001) -->
+<!-- trunk-ignore-all(markdownlint/MD041) -->
+
 RomM supports multiple metadata providers to enrich your game library with titles, descriptions, cover art, and achievements. You don't need all providers, so this guide covers [popular combos](#popular-combos) and [setup instructions](#setup-instructions).
 
 ## Popular combos

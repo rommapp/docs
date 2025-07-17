@@ -61,7 +61,7 @@ We use [mike](https://github.com/jimporter/mike) to build and deploy documentati
 uv run mike deploy --push --update-aliases <version> [alias]
 ```
 
-This will update the `gh-pages` branch and automatically deploys the version with the fix/update to https://docs.romm.app
+This will update the `gh-pages` branch and automatically deploys the version with the fix/update to <https://docs.romm.app>.
 
 ## Pull Request Guidelines
 
