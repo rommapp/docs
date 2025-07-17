@@ -28,9 +28,15 @@ First, in Authelia's `configuration.yml`, at `identity_providers` → `oidc` →
 # identity_providers:
 #   oidc:
 claims_policies:
-  with_email: # You can name this however you want
-    id_token:
-      ["email", "email_verified", "alt_emails", "preferred_username", "name"]
+    with_email: # You can name this however you want
+        id_token:
+            [
+                "email",
+                "email_verified",
+                "alt_emails",
+                "preferred_username",
+                "name",
+            ]
 ```
 
 To read more about claims_policies and why you need it for RomM, see [this section in the Authelia docs](https://www.authelia.com/integration/openid-connect/openid-connect-1.0-claims/#restore-functionality-prior-to-claims-parameter).
@@ -38,7 +44,7 @@ To read more about claims_policies and why you need it for RomM, see [this secti
 Then, in the same `configuration.yml`, under `identity_providers` → `oidc` → `clients`, add a new entry:
 
 - A **random** `client_id` and `client_secret`
-  - See the [official recommendations](https://www.authelia.com/integration/openid-connect/frequently-asked-questions/#how-do-i-generate-a-client-identifier-or-client-secret) on how to generate these.
+    - See the [official recommendations](https://www.authelia.com/integration/openid-connect/frequently-asked-questions/#how-do-i-generate-a-client-identifier-or-client-secret) on how to generate these.
 - `public` should be set to `false`.
 - `redirect_uris` should include your RomM instance's URL + `/api/oauth/openid` (e.g., `http://romm.host.local/api/oauth/openid`).
 - `claims_policy` is the name of the entry at claims_policies that you just added (or already had).
@@ -60,14 +66,14 @@ This entry should look like this:
   public: false
   authorization_policy: "two_factor" # or one_factor, depending on your needs
   grant_types:
-    - authorization_code
+      - authorization_code
   redirect_uris:
-    - "http://romm.host.local/api/oauth/openid"
+      - "http://romm.host.local/api/oauth/openid"
   claims_policy: "with_email"
   scopes:
-    - "openid"
-    - "email"
-    - "profile"
+      - "openid"
+      - "email"
+      - "profile"
   userinfo_signed_response_alg: "none"
   token_endpoint_auth_method: "client_secret_basic"
 ```

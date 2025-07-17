@@ -12,7 +12,7 @@ This is a complete list of available environment variables; required variables a
 | DISABLE_CSRF_PROTECTION        | Disables [CSRF protection](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) (not recommended) |          | `false`   |
 | DISABLE_DOWNLOAD_ENDPOINT_AUTH | Disable auth on download endpoint (WebRcade, Tinfoil)                                                                                               |          | `false`   |
 | DISABLE_USERPASS_LOGIN         | Disables login with username and password (when using OIDC)                                                                                         |          | `false`   |
-| SESSION_MAX_AGE_SECONDS       | Maximum age of a session in seconds                                                                                                                |          | `1209600`   |
+| SESSION_MAX_AGE_SECONDS        | Maximum age of a session in seconds                                                                                                                 |          | `1209600` |
 | KIOSK_MODE                     | Read-only mode for public displays or kiosks                                                                                                        |          | `false`   |
 | UPLOAD_TIMEOUT                 | Timeout for file uploads (in seconds)                                                                                                               |          | `600`     |
 | SCAN_TIMEOUT                   | Timeout for the background scan/rescan tasks (in seconds)                                                                                           |          | `14400`   |
@@ -56,10 +56,10 @@ This is a complete list of available environment variables; required variables a
 | MOBYGAMES_API_KEY                    | MobyGames secret API key                         |          |         |
 | STEAMGRIDDB_API_KEY                  | SteamGridDB secret API key                       |          |         |
 | RETROACHIEVEMENTS_API_KEY            | Retroachievements secret API key                 |          |         |
-| REFRESH_RETROACHIEVEMENTS_CACHE_DAYS | Retroachievements metadata cache refresh on days |          |   30    |
-| LAUNCHBOX_API_ENABLED               | Enable LaunchBox API integration                 |          | `false` |
-| PLAYMATCH_API_ENABLED               | Enable PlayMatch API integration                 |          | `false` |
-| HASHEOUS_API_ENABLED               | Enable Hasheous API integration                 |          | `false` |
+| REFRESH_RETROACHIEVEMENTS_CACHE_DAYS | Retroachievements metadata cache refresh on days |          | 30      |
+| LAUNCHBOX_API_ENABLED                | Enable LaunchBox API integration                 |          | `false` |
+| PLAYMATCH_API_ENABLED                | Enable PlayMatch API integration                 |          | `false` |
+| HASHEOUS_API_ENABLED                 | Enable Hasheous API integration                  |          | `false` |
 
 ## Authentication
 
@@ -75,21 +75,19 @@ This is a complete list of available environment variables; required variables a
 
 ## Background tasks
 
-| Variable                               | Description                                                         | Required | Default       |
-| -------------------------------------- | ------------------------------------------------------------------- | :------: | ------------- |
-| ENABLE_RESCAN_ON_FILESYSTEM_CHANGE     | Enable re-scanning of library when filesystem changes               |          | `false`       |
-| RESCAN_ON_FILESYSTEM_CHANGE_DELAY      | Delay in minutes before re-scanning library when filesystem changes |          | `5`           |
-| ENABLE_SCHEDULED_RESCAN                | Enable scheduled re-scanning of library                             |          | `false`       |
-| SCHEDULED_RESCAN_CRON                  | Cron expression for scheduled re-scanning                           |          | `"0 3 * * *"` |
-| ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB | Enable scheduled updating of Switch TitleDB index                   |          | `false`       |
-| SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON   | Cron expression for scheduled updating of Switch TitleDB            |          | `"0 4 * * *"` |
-| ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA | Enable scheduled updating of LaunchBox metadata |          | `false`       |
-| SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON | Cron expression for scheduled updating of LaunchBox metadata |          | `"0 5 * * *"` |
-
+| Variable                                   | Description                                                         | Required | Default       |
+| ------------------------------------------ | ------------------------------------------------------------------- | :------: | ------------- |
+| ENABLE_RESCAN_ON_FILESYSTEM_CHANGE         | Enable re-scanning of library when filesystem changes               |          | `false`       |
+| RESCAN_ON_FILESYSTEM_CHANGE_DELAY          | Delay in minutes before re-scanning library when filesystem changes |          | `5`           |
+| ENABLE_SCHEDULED_RESCAN                    | Enable scheduled re-scanning of library                             |          | `false`       |
+| SCHEDULED_RESCAN_CRON                      | Cron expression for scheduled re-scanning                           |          | `"0 3 * * *"` |
+| ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB     | Enable scheduled updating of Switch TitleDB index                   |          | `false`       |
+| SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON       | Cron expression for scheduled updating of Switch TitleDB            |          | `"0 4 * * *"` |
+| ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA | Enable scheduled updating of LaunchBox metadata                     |          | `false`       |
+| SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON   | Cron expression for scheduled updating of LaunchBox metadata        |          | `"0 5 * * *"` |
 
 ## Development
 
-| DEV_MODE                     | Enable development mode (debugging, hot-reloading) |          | `false`   |
-| DEV_HOST                     | Host for development server                          |          | `
-| DEV_PORT                     | Port for development server                          |          | `5000`    |
-| DEV_SQL_ECHO                | Enable SQL query logging in development mode         |          | `false`   |
+| DEV_MODE | Enable development mode (debugging, hot-reloading) | | `false` |
+| DEV_HOST | Host for development server | | `| DEV_PORT                     | Port for development server                          |          |`5000`   |
+| DEV_SQL_ECHO                | Enable SQL query logging in development mode         |          |`false` |

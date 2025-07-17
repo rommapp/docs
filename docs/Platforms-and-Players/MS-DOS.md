@@ -8,18 +8,18 @@
     I highly suggest you upload the games as .zip as the core can take advantage of unzipping and auto mounting options which are explained more below.
 
 !!! info
-    Loading and saving states ARE supported so it's possible you only need to do the below steps once to load the game.
+Loading and saving states ARE supported so it's possible you only need to do the below steps once to load the game.
 
 #### Running Games
 
 Once you have the play button in the platform available for you there is some additional work you need to do in order to get the games playable and running. You first need to identify what DOS game you are trying to run, there would be three categories
 
 - Homebrew
-  - Made by an indie dev, usually just an .exe file which will work fine in DOS once mounted.
+    - Made by an indie dev, usually just an .exe file which will work fine in DOS once mounted.
 - Demo
-  - Most sites which offer DOS games are shareware demo versions, these function similiar to homebrew and will have all the files needed within the folder.
+    - Most sites which offer DOS games are shareware demo versions, these function similiar to homebrew and will have all the files needed within the folder.
 - Retail
-  - These will need the CD mounted alongside the game files in order to play the games, this can get tricky and will be a unique per game basis but once you have cracked it you won't need to modify it again.
+    - These will need the CD mounted alongside the game files in order to play the games, this can get tricky and will be a unique per game basis but once you have cracked it you won't need to modify it again.
 
 The official method to run the games from the EmulatorJS dev is the following (Only works for Homebrew and Demos):
 
@@ -577,13 +577,13 @@ exit
 </details>
 
 - Notice the different in the automount commands
-  - Mount the games files to can
-  - Change to C:
-  - Change Directory to CD
-  - Using dosbox imgmount, mount the CD to the D path
-  - cd to the directory above where the .exe
-  - Clear the working out
-  - Run KEEPER.exe
+    - Mount the games files to can
+    - Change to C:
+    - Change Directory to CD
+    - Using dosbox imgmount, mount the CD to the D path
+    - cd to the directory above where the .exe
+    - Clear the working out
+    - Run KEEPER.exe
 - Once this is done, the game will run. Zip the files up and add to your RomM and give it a test.
 
 #### Advanced Game Troubleshooting
@@ -591,9 +591,9 @@ exit
 If the games are not working and you go back to a blank dos looking screen, this will require some manual troubleshooting but I have found success with the following methods:
 
 - Remove the .exe in the .CONF file and investigate the automounts
-  - This means going to the C: and make sure the .exe is in the right place.
-  - Use the following command `type DEFAULT.cfg` to see the installation location, this is where the game is looking for the files, this should be set to a D: location.
-  - Browse to that location and see if the files are there and they are readable.
+    - This means going to the C: and make sure the .exe is in the right place.
+    - Use the following command `type DEFAULT.cfg` to see the installation location, this is where the game is looking for the files, this should be set to a D: location.
+    - Browse to that location and see if the files are there and they are readable.
 - The automount is simply following instructions, so it expects the files to be where you say, following this method is usually best to troubleshoot.
 
 Another way of troubleshooting is to use Retroarch and the core "dosbox-pure" because if it runs in here, it will run in RomM. Simply give it your ZIP and it will act the same as if you was doing it through RomM, once the .conf file is perfected add it back to the ZIP.

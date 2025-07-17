@@ -29,14 +29,14 @@ You'll need to enter the host URL of your RomM instance, as well as a username a
 
 #### Emulator path mappings
 
-| Field | Description | Example | Required |
-|---|----|----|----|
-| Emulator | A built-in (or custom) emulator | Dolphin | ✓ |
-| Emulator Profile | A built-in (or custom) emulator profile | Nintendo GameCube | ✓ |
-| Platform | The platform or console | Nintendo GameCube | ✓ |
-| Destination Path | The path where downloaded ROMs will be stored | `C:\roms\gc` | ✓ |
-| Auto-extract | Whether compressed files should be extracted automatically |  |  |
-| Enabled | Whether the mapping is enabled |  |  |
+| Field            | Description                                                | Example           | Required |
+| ---------------- | ---------------------------------------------------------- | ----------------- | -------- |
+| Emulator         | A built-in (or custom) emulator                            | Dolphin           | ✓        |
+| Emulator Profile | A built-in (or custom) emulator profile                    | Nintendo GameCube | ✓        |
+| Platform         | The platform or console                                    | Nintendo GameCube | ✓        |
+| Destination Path | The path where downloaded ROMs will be stored              | `C:\roms\gc`      | ✓        |
+| Auto-extract     | Whether compressed files should be extracted automatically |                   |          |
+| Enabled          | Whether the mapping is enabled                             |                   |          |
 
 ## Importing your library
 

@@ -1,59 +1,59 @@
 name: Build and Deploy Docs
 
 on:
-  workflow_dispatch:
-    inputs:
-      # trunk-ignore(checkov/CKV_GHA_7)
-      version:
-        description: Version to publish
-        required: true
-        type: string
+    workflow_dispatch:
+        inputs:
+            # trunk-ignore(checkov/CKV_GHA_7)
+            version:
+                description: Version to publish
+                required: true
+                type: string
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+    group: pages
+    cancel-in-progress: true
 
 permissions:
-  contents: write # Needed to push to gh-pages
-  pages: write # Needed if using GitHub Pages
-  id-token: write # Needed for OIDC authentication (optional, for Pages API)
+    contents: write # Needed to push to gh-pages
+    pages: write # Needed if using GitHub Pages
+    id-token: write # Needed for OIDC authentication (optional, for Pages API)
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    deploy:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v5
-        with:
-          enable-cache: true
-          cache-dependency-glob: uv.lock
+            - name: Install uv
+              uses: astral-sh/setup-uv@v5
+              with:
+                  enable-cache: true
+                  cache-dependency-glob: uv.lock
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version-file: .python-version
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version-file: .python-version
 
-      - name: Install dependencies
-        run: uv sync --all-extras --dev
+            - name: Install dependencies
+              run: uv sync --all-extras --dev
 
-      - name: Set Git user
-        run: |
-          git config --global user.name ${{ secrets.GIT_NAME }}
-          git config --global user.email ${{ secrets.GIT_EMAIL }}
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          git fetch -a
-          git pull origin main
-          git checkout gh-pages
-          git pull origin gh-pages
-          git checkout main
+            - name: Set Git user
+              run: |
+                  git config --global user.name ${{ secrets.GIT_NAME }}
+                  git config --global user.email ${{ secrets.GIT_EMAIL }}
+                  git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+                  git fetch -a
+                  git pull origin main
+                  git checkout gh-pages
+                  git pull origin gh-pages
+                  git checkout main
 
-      - name: Build the documentation
-        run: uv run mike deploy --push --update-aliases ${{ github.event.inputs.version }} latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Build the documentation
+              run: uv run mike deploy --push --update-aliases ${{ github.event.inputs.version }} latest
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

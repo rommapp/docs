@@ -7,106 +7,106 @@ repo_url: https://github.com/rommapp/romm
 repo_name: rommapp/romm
 edit_uri: edit/main/docs/
 theme:
-  name: material
-  logo: resources/romm/isotipo.png
-  favicon: resources/romm/isotipo.png
-  features:
-    - navigation.instant
-    - navigation.instant.prefetch
-    - navigation.footer
-    - navigation.indexes
-    - navigation.tracking
-    - navigation.top
-    - search.suggest
-    - search.highlight
-    - content.tabs.link
-    - content.code.annotation
-    - content.code.copy
-    - version
-  language: en
-  palette:
-    # Dark mode
-    - scheme: slate
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
-      primary: custom
-      accent: custom
-    # Light mode
-    - scheme: default
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-      primary: custom
-      accent: custom
-  version:
-    provider: mike
+    name: material
+    logo: resources/romm/isotipo.png
+    favicon: resources/romm/isotipo.png
+    features:
+        - navigation.instant
+        - navigation.instant.prefetch
+        - navigation.footer
+        - navigation.indexes
+        - navigation.tracking
+        - navigation.top
+        - search.suggest
+        - search.highlight
+        - content.tabs.link
+        - content.code.annotation
+        - content.code.copy
+        - version
+    language: en
+    palette:
+        # Dark mode
+        - scheme: slate
+          toggle:
+              icon: material/toggle-switch
+              name: Switch to light mode
+          primary: custom
+          accent: custom
+        # Light mode
+        - scheme: default
+          toggle:
+              icon: material/toggle-switch-off-outline
+              name: Switch to dark mode
+          primary: custom
+          accent: custom
+    version:
+        provider: mike
 
 plugins:
-  - search
-  - mkdocs-video
-  - asciinema-player
-  - social:
-      cards_layout_options:
-        font_family: Roboto
-        background_color: "#371f69"
-        color: "#ede5f8"
-        logo: docs/assets/romm/romm-logo.pngg
-        title: RomM Docs
-        description: Your beautiful, powerful, self-hosted rom manager
-  - glightbox:
-      skip_classes:
-        - skip-lightbox
-  - markdownextradata: {}
-  - literate-nav:
-      nav_file: Navigation.md
-  - git-revision-date-localized:
-      enable_creation_date: true
-      type: timeago
-  - mike
+    - search
+    - mkdocs-video
+    - asciinema-player
+    - social:
+          cards_layout_options:
+              font_family: Roboto
+              background_color: "#371f69"
+              color: "#ede5f8"
+              logo: docs/assets/romm/romm-logo.pngg
+              title: RomM Docs
+              description: Your beautiful, powerful, self-hosted rom manager
+    - glightbox:
+          skip_classes:
+              - skip-lightbox
+    - markdownextradata: {}
+    - literate-nav:
+          nav_file: Navigation.md
+    - git-revision-date-localized:
+          enable_creation_date: true
+          type: timeago
+    - mike
 
 markdown_extensions:
-  - pymdownx.blocks.caption
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets:
-      base_path:
-        - docs
-        - docs/resources/snippets
-      check_paths: true
-  - admonition
-  - pymdownx.arithmatex:
-      generic: true
-  - footnotes
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.mark
-  - attr_list
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+    - pymdownx.blocks.caption
+    - pymdownx.highlight:
+          anchor_linenums: true
+    - pymdownx.inlinehilite
+    - pymdownx.snippets:
+          base_path:
+              - docs
+              - docs/resources/snippets
+          check_paths: true
+    - admonition
+    - pymdownx.arithmatex:
+          generic: true
+    - footnotes
+    - pymdownx.details
+    - pymdownx.superfences
+    - pymdownx.mark
+    - attr_list
+    - pymdownx.emoji:
+          emoji_index: !!python/name:material.extensions.emoji.twemoji
+          emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 copyright: Copyright &copy; 2025 RomM Team
 
 extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/rommapp/romm
-      name: rommapp/romm
-    - icon: fontawesome/brands/discord
-      link: https://discord.com/invite/RGPJHNMMwJ
-      name: RomM Discord Channel
-    - icon: fontawesome/solid/globe
-      link: https://romm.app/
-      name: romm.app
-  version:
-    provider: mike
-    alias: true
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/rommapp/romm
+          name: rommapp/romm
+        - icon: fontawesome/brands/discord
+          link: https://discord.com/invite/RGPJHNMMwJ
+          name: RomM Discord Channel
+        - icon: fontawesome/solid/globe
+          link: https://romm.app/
+          name: romm.app
+    version:
+        provider: mike
+        alias: true
 
 extra_css:
-  - resources/css/theme.css
+    - resources/css/theme.css
 
 watch:
-  - docs
-  - docs/resources
+    - docs
+    - docs/resources
