@@ -6,7 +6,8 @@
 
 <!-- prettier-ignore -->
 !!! warning
-    PSP emulation with the PPSSPP core requires [special setup with a reverse proxy](https://emulatorjs.org/docs/options#ejs_threads), or launching Chrome browser with the `--disable-web-security` and `--enable-features=SharedArrayBuffer` flags, which **WE STRONGLY DISCOURAGE** as it disables important security features.
+    PSP emulation with the PPSSPP core and MS-DOS with the dosbox-pure core requires [special setup with a reverse proxy](https://emulatorjs.org/docs/options#ejs_threads), or launching Chrome browser with the `--disable-web-security` and `--enable-features=SharedArrayBuffer` flags, which **WE STRONGLY DISCOURAGE** as it disables important security features.
+    There is also a RomM electron app that runs locally on your machine [App](https://github.com/smurflabs/RommBrowser/releases) Using this app once logged in you can enable these settings under `Developer Settings` restart the app and you will have access to PPSSPP and DOS.
 
 <!-- prettier-ignore -->
 !!! warning
@@ -30,8 +31,10 @@ Note that only the following systems are currently supported:
 - Atari Lynx
 - Commodore 64
 - ColecoVision
+- DOOM
 - Neo Geo Pocket
 - Neo Geo Pocket Color
+- MS-DOS
 - Nintendo 64
 - Nintendo Entertainment System (NES)
 - Nintendo Family Computer (Famicom)
