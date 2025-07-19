@@ -1,4 +1,3 @@
-<!-- trunk-ignore-all(prettier) -->
 <!-- trunk-ignore-all(markdownlint/MD033) -->
 <!-- trunk-ignore-all(markdownlint/MD041) -->
 
@@ -17,6 +16,7 @@ RomM organizes content in two main categories: ROMs and BIOS files.
     - `/{platform}/roms/` - Contains all game files for that platform
     - `/{platform}/bios/` - Contains all BIOS files for that platform
 
+<!-- prettier-ignore -->
 !!! note
     The BIOS folder is entirely optional and only needed for platforms that require BIOS files.
 
@@ -37,8 +37,9 @@ For multifile games (games stored as folders with multiple files or folders insi
 - `translation`
 - `prototype`
 
+<!-- prettier-ignore -->
 !!! tip
-    For folder naming conventions, review the [Platform Support](../Platforms-and-Players/Supported-Platforms.md) section. To override default system names in the folder structure (if your directories are named differently), see the [Configuration File](Configuration-File.md) section.
+  For folder naming conventions, review the [Platform Support](../Platforms-and-Players/Supported-Platforms.md) section. To override default system names in the folder structure (if your directories are named differently), see the [Configuration File](Configuration-File.md) section.
 
 <table>
  <tr>
@@ -148,8 +149,9 @@ For multifile games (games stored as folders with multiple files or folders insi
  </tr>
 </table>
 
+<!-- prettier-ignore -->
 !!! note
-    RomM can be setup without a prior folder structure. If files are manually uploaded from the webUI, RomM will automatically create the folder **Structure A**
+  RomM can be setup without a prior folder structure. If files are manually uploaded from the webUI, RomM will automatically create the folder **Structure A**
 
 ## Configuration file
 

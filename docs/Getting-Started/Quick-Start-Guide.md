@@ -1,4 +1,3 @@
-<!-- trunk-ignore-all(prettier) -->
 <!-- trunk-ignore-all(markdownlint/MD033) -->
 <!-- trunk-ignore-all(markdownlint/MD041) -->
 
@@ -25,16 +24,16 @@ This guide will assume that you already have the following done, if not - stop h
 Now that we have everything gathered, we can begin getting your instance set up!
 
 1. Download a copy of the latest <a href="https://github.com/rommapp/romm/blob/release/examples/docker-compose.example.yml" target="_blank" rel="noopener noreferrer">docker-compose.example.yml</a> file from GitHub
-3. Edit the file and modify the following values to configure the database
+2. Edit the file and modify the following values to configure the database
     - `MARIADB_ROOT_PASSWORD`: Sets the root password of the database. Use a unique and secure password (_use a password generator for simplicity_)
     - `MARIADB_DATABASE`: Sets the database name for RomM. This can be modified - but it's not necessary
     - `MARIADB_USER`: User to connect to the database with. This can be modified - but it's not necessary
     - `MARIADB_PASSWORD`: Password for the user to connect to the database with. Use a unique and secure password (_use a password generator for simplicity_)
-4. Modify the following values in the **environment** to configure the application. _-- Other values can be changed, but should not be done unless you know what you are doing, and are outside the scope of this guide_
+3. Modify the following values in the **environment** to configure the application. _-- Other values can be changed, but should not be done unless you know what you are doing, and are outside the scope of this guide_
     - `DB_NAME`: Name of the database set in the database section
     - `DB_USER`: Name of the user to connect to the database
     - `DB_PASSWD`: Password of the user to connect to the database
-5. Run the following command in a terminal and save the output to the `ROMM_AUTH_SECRET_KEY` environment variable:
+4. Run the following command in a terminal and save the output to the `ROMM_AUTH_SECRET_KEY` environment variable:
     ```sh
     openssl rand -hex 32
     ```
@@ -42,7 +41,7 @@ Now that we have everything gathered, we can begin getting your instance set up!
     ```sh
     03a054b6ca27e0107c5eed552ea66becd9f3a2a8a91e7595cd462a593f9ecd09
     ```
-6. Add your metadata sources API keys:
+5. Add your metadata sources API keys:
     - IGDB: `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET`
     - ScreenScraper.fr: `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD`
     - RetroAchievements: `RETROACHIEVEMENTS_USERNAME` and `RETROACHIEVEMENTS_API_KEY`
@@ -51,11 +50,11 @@ Now that we have everything gathered, we can begin getting your instance set up!
     - PlayMatch: `PLAYMATCH_API_ENABLED=true`
     - Hasheous: `HASHEOUS_API_ENABLED=true`
     - LaunchBox: `LAUNCHBOX_API_ENABLED=true`
-7. Modify the following values in the **volumes** to configure the application
+6. Modify the following values in the **volumes** to configure the application
     - `/path/to/library`: Path to the directory where your rom files will be stored (usually the parent folder of the `roms` folder)
     - `/path/to/assets`: Path to the directory where you will store your saves, etc
     - `/path/to/config`: Path to the directory where you will store the config.yml
-8. Save the file as _docker-compose.yml_ instead of _docker-compose.example.yml_. It should look something like this:
+7. Save the file as _docker-compose.yml_ instead of _docker-compose.example.yml_. It should look something like this:
 
     <!-- prettier-ignore -->
     ???+ example "Example Docker Compose"
@@ -63,8 +62,9 @@ Now that we have everything gathered, we can begin getting your instance set up!
         --8<-- "quick-start.docker-compose.yml"
         ```
 
-9.  Open the terminal and navigate to the directory containing the docker-compose file
-10. Run `docker compose up -d` to kick off the docker pull. You will see it pull the container and set up the volumes and network:
+8. Open the terminal and navigate to the directory containing the docker-compose file
+9. Run `docker compose up -d` to kick off the docker pull. You will see it pull the container and set up the volumes and network:
+
 ```asciinema-player
     {
         "file": "../latest/resources/asciinema/quick-start-docker-compose.cast",

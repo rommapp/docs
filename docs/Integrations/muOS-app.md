@@ -29,5 +29,6 @@ We use PortMaster to install the app on devices running EmulationStation.
 2. Make the `RomM App.sh` file executable by running `chmod +x RomM App.sh`.
 3. Launch EmulationStation and navigate to the `Ports` section.
 
+<!-- prettier-ignore -->
 !!! note
-Your device must connect to your RomM instance or home server over Wi-Fi. The easiest method is to keep them on the same network and set HOST to the server's IP and the port where RomM is running. Advanced users or those using reverse proxies can configure their network and DNS settings as needed, using a URL with a domain like `https://romm.domain.com`.
+    Your device must connect to your RomM instance or home server over Wi-Fi. The easiest method is to keep them on the same network and set HOST to the server's IP and the port where RomM is running. Advanced users or those using reverse proxies can configure their network and DNS settings as needed, using a URL with a domain like `https://romm.domain.com`.

@@ -44,8 +44,9 @@ Apply the changes, then head to the `DOCKER` tab. You should see both containers
 
 ![RomM and MariaDB running](https://github.com/user-attachments/assets/cba26de1-d2c9-4fff-88d8-bc7701f0dd88)
 
+<!-- prettier-ignore -->
 !!! warning
-It's strongly recommended to backup the `appdata` folder (or mount it in a safe location) before updating, since tearing down the container will wipe the resources (covers, screenshots, etc.)
+    It's strongly recommended to backup the `appdata` folder (or mount it in a safe location) before updating, since tearing down the container will wipe the resources (covers, screenshots, etc.)
 
 ## Video tutorial
 

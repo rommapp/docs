@@ -6,12 +6,14 @@
 <!-- prettier-ignore -->
 !!! warning
     This will need the same settings as the PSP emulation which you can find [here](https://docs.romm.app/latest/Platforms-and-Players/EmulatorJS-Player/) to enable the play button
-	
+
+<!-- prettier-ignore -->
 !!! info 
     I highly suggest you upload the games as .zip as the core can take advantage of unzipping and auto mounting options which are explained more below.
 
+<!-- prettier-ignore -->
 !!! info
-Loading and saving states ARE supported so it's possible you only need to do the below steps once to load the game.
+    Loading and saving states ARE supported so it's possible you only need to do the below steps once to load the game.
 
 #### Running Games
 
@@ -34,8 +36,9 @@ The official method to run the games from the EmulatorJS dev is the following (O
 
 #### Advanced Running Games
 
+<!-- prettier-ignore -->
 !!! warning
-This is not for the faint of heart and will require a lot of trial and error.
+    This is not for the faint of heart and will require a lot of trial and error.
 
 As the system is using DOSBOX pure it has a neat trick where it will run .CONF files it finds and automatically mount locations and run .exe files automatically, at the minute this is highly experimental and might be more effort then it is worth, but if you want the files running perfectly then I would suggest you look into this method, but it is extremely trail and error.
 
@@ -309,8 +312,9 @@ exit
 
 ### Advanced Running Retail Games
 
+<!-- prettier-ignore -->
 !!! info
-At the minute DOS games redesigned by GOG are NOT supported, this is due to how they mount and use the locations. I am looking into how I can figure this out but I have had a 100% failure rate from the GOG DOS Games.
+    At the minute DOS games redesigned by GOG are NOT supported, this is due to how they mount and use the locations. I am looking into how I can figure this out but I have had a 100% failure rate from the GOG DOS Games.
 
 Retail games usually require to run alongside a disk even if the game has been "installed" locally. I will use Dungeon Keeper Gold as an example for a retail game with a disc and the configuration needed.
 
