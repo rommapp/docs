@@ -1,13 +1,11 @@
-<!-- trunk-ignore-all(markdownlint/MD033) -->
-<!-- trunk-ignore-all(markdownlint/MD041) -->
-
 ---
-
 title: Introduction
 description: An introduction to your beautiful, powerful, self-hosted rom manager
-hide: - toc
-
+hide:
+    - toc
 ---
+
+<!-- trunk-ignore-all(markdownlint/MD033) -->
 
 <img src="./resources/romm/isotipo.svg" height="200px" width="200px" alt="RomM logo">
 <img src="./resources/romm/logotipo.png" height="250px" width="250px" alt="RomM word type" style="margin-top: 10px;">
@@ -46,7 +44,7 @@ We strive to create a safe and respectful space where everyone can contribute an
 Join us on Discord, where you can ask questions, submit ideas, get help, showcase your collection, and discuss RomM with other users.
 
 <div style="text-align: center">
-    <a href="https://discord.gg/RGPJHNMMwJ">
-        <img src="https://invidget.switchblade.xyz/RGPJHNMMwJ" alt="Join our Discord">
+    <a href="https://discord.gg/RGPJHNMMwJ" target="_blank">
+        <img src="https://invidget.switchblade.xyz/RGPJHNMMwJ" alt="Join our Discord" class="skip-lightbox">
     </a>
 </div>

@@ -41,6 +41,7 @@ theme:
           accent: custom
     version:
         provider: mike
+    custom_dir: overrides
 
 plugins:
     - search
