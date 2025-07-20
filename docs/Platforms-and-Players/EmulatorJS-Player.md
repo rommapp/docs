@@ -9,7 +9,7 @@
 <!-- prettier-ignore -->
 !!! warning
     PSP emulation with the PPSSPP core and MS-DOS with the dosbox-pure core requires [special setup with a reverse proxy](https://emulatorjs.org/docs/options#ejs_threads), or launching Chrome browser with the `--disable-web-security` and `--enable-features=SharedArrayBuffer` flags, which **WE STRONGLY DISCOURAGE** as it disables important security features.
-    There is also a RomM electron app that runs locally on your machine [App](https://github.com/smurflabs/RommBrowser/releases) Using this app once logged in you can enable these settings under `Developer Settings` restart the app and you will have access to PPSSPP and DOS.
+    Alternatively, use the unnoficial [desktop app](https://github.com/smurflabs/RommBrowser/releases) published by [smurflabs](https://github.com/smurflabs). Once logged into the app, you can enable the required settings settings under `Developer Settings`. Restart the app and you'll have access to PPSSPP and DOS.
 
 <!-- prettier-ignore -->
 !!! warning
