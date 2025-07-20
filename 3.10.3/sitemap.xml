@@ -2,138 +2,138 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.romm.app/3.10.3/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Navigation/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Getting-Started/Authentication/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Getting-Started/Configuration-File/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Getting-Started/Environment-Variables/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Getting-Started/Folder-Structure/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Getting-Started/Metadata-Providers/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Getting-Started/Quick-Start-Guide/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Getting-Started/Reverse-Proxy/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Integrations/Playnite-plugin/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Integrations/Tinfoil-integration/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Integrations/muOS-app/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Maintenance/Scheduled-Tasks/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Maintenance/Upgrading-to-3.0/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Miscellaneous/Brand-Guidelines/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Miscellaneous/FAQs/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/OIDC-Guides/OIDC-Setup-With-Authelia/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/OIDC-Guides/OIDC-Setup-With-Authentik/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/OIDC-Guides/OIDC-Setup-With-PocketID/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/OIDC-Guides/OIDC-Setup-With-Zitadel/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Platforms-and-Players/Custom-Platforms/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Platforms-and-Players/EmulatorJS-Player/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Platforms-and-Players/MS-DOS/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Platforms-and-Players/RuffleRS-Player/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Platforms-and-Players/Supported-Platforms/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/System-Setup/Synology-Setup-Guide/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/System-Setup/TrueNAS-Setup-Guide/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/System-Setup/Unraid-Setup-Guide/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Tools/Igir-Collection-Manager/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Troubleshooting/Authentication-Issues/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Troubleshooting/Kubernetes-Issues/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Troubleshooting/Miscellaneous-Troubleshooting/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Troubleshooting/Scanning-Issues/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/3.10.3/Troubleshooting/Synology-Issues/</loc>
-         <lastmod>2025-07-19</lastmod>
+         <lastmod>2025-07-20</lastmod>
     </url>
 </urlset>
