@@ -18,7 +18,6 @@ search:
     - [Supported Platforms](Platforms-and-Players/Supported-Platforms.md)
     - Web Players
         - [EmulatorJS](Platforms-and-Players/EmulatorJS-Player.md)
-        - [MS-DOS](Platforms-and-Players/MS-DOS.md)
         - [RuffleRS](Platforms-and-Players/RuffleRS-Player.md)
     - [Custom Platforms](Platforms-and-Players/Custom-Platforms.md)
 - System Setup Guides
