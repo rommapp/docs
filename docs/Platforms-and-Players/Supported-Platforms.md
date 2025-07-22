@@ -1,5 +1,6 @@
 <!-- vale off -->
 <!-- prettier-ignore -->
+<!-- trunk-ignore-all(markdownlint) -->
 
 Below is a list of all supported platforms/systems/consoles and their respective folder names. Supported platforms means RomM can fetch metadata from sources for those platforms.
 
@@ -8,6 +9,29 @@ Below is a list of all supported platforms/systems/consoles and their respective
 
 !!! danger
     **The folder name is case-sensitive and must be used exactly as it appears in the list below.**
+
+<div class="admonition">
+    <p class="admonition-title">Filter providers</p>
+    <div class="admonition-body">
+        <div class="filter-controls">
+            <button class="filter-pill" id="filter-igdb" data-provider="igdb" title="IGDB">
+            </button>
+            <button class="filter-pill" id="filter-ss" data-provider="ss" title="ScreenScraper">
+            </button>
+            <button class="filter-pill" id="filter-moby" data-provider="moby" title="MobyGames">
+            </button>
+            <button class="filter-pill" id="filter-launchbox" data-provider="launchbox" title="Launchbox">
+            </button>
+            <button class="filter-pill" id="filter-hasheous" data-provider="hasheous" title="Hasheous">
+            </button>
+            <button class="filter-pill" id="filter-ra" data-provider="ra" title="RetroAchievements">
+            </button>
+        </div>
+        <div class="filter-stats">
+            <span id="visible-count">0</span> of <span id="total-count">0</span> platforms shown
+        </div>
+    </div>
+</div>
 
 |Platform Name|Folder Name|Metadata Providers|
 |---|---|---|
@@ -475,3 +499,158 @@ Below is a list of all supported platforms/systems/consoles and their respective
 | ZX80 | `zx80` |   <a href="https://www.mobygames.com/platform/zx80" target="_blank" rel="noopener norefer"><img alt="mobygames logo" src="../../resources/metadata_providers/moby.png" height="24px" width="24px"></a>  <a href="https://hasheous.org/index.html?page=dataobjectdetail&type=platform&id=232985" target="_blank" rel="noopener norefer"><img alt="hasheous logo" src="../../resources/metadata_providers/hasheous.png" height="24px" width="24px"></a>   |
 
 <!-- vale on -->
+
+<style>
+.md-typeset__scrollwrap {
+    margin: 2rem 0 0;
+}
+
+.md-typeset__table {
+    padding: 0;
+}
+
+.md-typeset__table tbody tr.hidden {
+    display: none;
+}
+
+.admonition-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: .6rem 0 !important;
+}
+
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-pill {
+    width: 40px;
+    height: 40px;
+    background-color: var(--md-default-bg-color);
+    border: 2px solid var(--md-primary-fg-color--darker);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.filter-pill:hover {
+    transform: translateY(-1px);
+}
+
+.filter-pill.active {
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+.filter-pill:not(.active) {
+    opacity: 0.6;
+}
+
+.filter-pill:not(.active):hover {
+    opacity: 0.8;
+}
+
+#filter-igdb {
+    background-image: url('../../resources/metadata_providers/igdb.png');
+}
+
+#filter-ss {
+    background-image: url('../../resources/metadata_providers/ss.png');
+}
+
+#filter-moby {
+    background-image: url('../../resources/metadata_providers/moby.png');
+}
+
+#filter-launchbox {
+    background-image: url('../../resources/metadata_providers/launchbox.png');
+}
+
+#filter-hasheous {
+    background-image: url('../../resources/metadata_providers/hasheous.png');
+    background-size: 80%;
+}
+
+#filter-ra {
+    background-image: url('../../resources/metadata_providers/ra.png');
+}
+
+@media (max-width: 768px) {
+    .admonition-body {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .filter-stats {
+        font-size: 0.7rem;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const table = document.querySelector('table');
+    if (!table) return;
+
+    const rows = table.querySelectorAll('tbody tr');
+    const filterButtons = document.querySelectorAll('[data-provider]');
+    const visibleCountEl = document.getElementById('visible-count');
+    const totalCountEl = document.getElementById('total-count');
+
+    totalCountEl.textContent = rows.length;
+
+    function updateVisibleCount() {
+        const visibleRows = table.querySelectorAll('tbody tr:not(.hidden)').length;
+        visibleCountEl.textContent = visibleRows;
+    }
+
+    function filterPlatforms() {
+        const selectedProviders = Array.from(filterButtons)
+            .filter(btn => btn.classList.contains('active'))
+            .map(btn => btn.dataset.provider);
+
+        rows.forEach(row => {
+            if (selectedProviders.length === 0) {
+                row.classList.remove('hidden');
+                return;
+            }
+
+            // Check if row contains all of the selected providers
+            const metadataCell = row.cells[2]; // Third column contains metadata providers
+            if (!metadataCell) {
+                row.classList.add('hidden');
+                return;
+            }
+
+            const hasAllSelectedProvider = selectedProviders.every(provider => {
+                const providerImg = metadataCell.querySelector(`img[src*="${provider}.png"]`);
+                return providerImg !== null;
+            });
+
+            if (hasAllSelectedProvider) {
+                row.classList.remove('hidden');
+            } else {
+                row.classList.add('hidden');
+            }
+        });
+
+        updateVisibleCount();
+    }
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+            filterPlatforms();
+        });
+    });
+
+    filterPlatforms();
+});
+</script>
