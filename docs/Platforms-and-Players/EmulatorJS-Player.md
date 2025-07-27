@@ -10,7 +10,7 @@
 !!! warning
     PSP emulation with the PPSSPP core and MS-DOS with the dosbox-pure core requires one of the three options:
 
-    - the unnoficial [desktop app](https://github.com/smurflabs/RommBrowser/releases) published by [smurflabs](https://github.com/smurflabs). Once logged into the app, you can enable the required settings under `Developer Settings`. (Preferred)
+    - the unofficial [desktop app](https://github.com/smurflabs/RommBrowser/releases) published by [smurflabs](https://github.com/smurflabs). Once logged into the app, you can enable the required settings under `Developer Settings`. (Preferred)
     - [special setup with a reverse proxy](https://emulatorjs.org/docs/options#ejs_threads)
     - launching Chrome browser with the `--disable-web-security` and `--enable-features=SharedArrayBuffer` flags, which **WE STRONGLY DISCOURAGE** as it disables important security features.
 
