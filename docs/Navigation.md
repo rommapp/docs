@@ -22,8 +22,8 @@ search:
         - [RuffleRS](Platforms-and-Players/RuffleRS-Player.md)
     - [Custom Platforms](Platforms-and-Players/Custom-Platforms.md)
 - System Setup Guides
-    - [Unraid Setup](System-Setup/Unraid-Setup-Guide.md)
-        - [Docker Compose Add-on](System-Setup/Unraid-Compose-Setup.md)
+    - [Unraid](System-Setup/Unraid-Setup-Guide.md)
+        - [With Docker Compose](System-Setup/Unraid-Compose-Setup.md)
     - [Synology Setup](System-Setup/Synology-Setup-Guide.md)
     - [TrueNAS Setup](System-Setup/TrueNAS-Setup-Guide.md)
 - OIDC Setup Guides
