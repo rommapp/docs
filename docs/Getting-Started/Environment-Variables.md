@@ -20,6 +20,7 @@ This is a complete list of available environment variables; required variables a
 | SCAN_TIMEOUT                   | Timeout for the background scan/rescan tasks (in seconds)                                                                                           |          | `14400`   |
 | DISABLE_EMULATOR_JS            | Disables playing in browser with [EmulatorJS](../Platforms-and-Players/EmulatorJS-Player.md)                                                        |          | `false`   |
 | DISABLE_RUFFLE_RS              | Disables playing flash games with [RuffleRS](../Platforms-and-Players/RuffleRS-Player.md)                                                           |          | `false`   |
+| YOUTUBE_BASE_URL               | Base URL for alternate frontends (Piped, Invidious etc.)                                                                                               |          | `https://www.youtube.com` |
 | TZ                             | Sets the timezone                                                                                                                                   |          | `UTC`     |
 | WEB_CONCURRENCY                | Number of processes running the app                                                                                                                 |          | `2`       |
 | ROMM_PORT                      | Port on which the application listens                                                                                                               |          | `8080`    |
