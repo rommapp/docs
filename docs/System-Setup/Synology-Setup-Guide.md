@@ -8,8 +8,7 @@ While you can follow the below guide, there is written guides done by [Marius Bo
 
 [How to Install RomM With PostgreSQL on Your Synology NAS](https://mariushosting.com/how-to-install-romm-with-postgresql-on-your-synology-nas/)
 
-We would suggest to follow the above guides depending on your setup, but we will leave the other guide below as it was written by a community member. 
-
+We would suggest to follow the above guides depending on your setup, but we will leave the other guide below as it was written by a community member.
 
 ## Prerequisites
 
