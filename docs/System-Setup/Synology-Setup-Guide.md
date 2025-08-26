@@ -1,5 +1,14 @@
 <!-- trunk-ignore-all(markdownlint/MD041) -->
 
+## External Written Guides
+
+While you can follow the below guide, [Marius Bogdan Lixandru](https://mariushosting.com/) has written excellent guides which focus on Synology infrastructure and with support for both MariaDB and PostGresSQL:
+
+- [How to Install RomM on Your Synology NAS (MariaDB)](https://mariushosting.com/how-to-install-romm-on-your-synology-nas/)
+- [How to Install RomM With PostgreSQL on Your Synology NAS](https://mariushosting.com/how-to-install-romm-with-postgresql-on-your-synology-nas/)
+
+We suggest following the above guides if they fit your setup, and the guide below is available for all other use cases.
+
 ## Prerequisites
 
 This guide assumes you're familiar with Docker and have basic knowledge of server management. You'll need:
