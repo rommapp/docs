@@ -2,13 +2,12 @@
 
 ## External Written Guides
 
-While you can follow the below guide, there is written guides done by [Marius Bogdan Lixandru](https://mariushosting.com/) which focus on the synoloy infrastructure and using portainer. This supports both MariaDB and PostGresSQL.
+While you can follow the below guide, [Marius Bogdan Lixandru](https://mariushosting.com/) has written excellent guides which focus on Synology infrastructure and with support for both MariaDB and PostGresSQL:
 
-[How to Install RomM on Your Synology NAS (MariaDB)](https://mariushosting.com/how-to-install-romm-on-your-synology-nas/)
+- [How to Install RomM on Your Synology NAS (MariaDB)](https://mariushosting.com/how-to-install-romm-on-your-synology-nas/)
+- [How to Install RomM With PostgreSQL on Your Synology NAS](https://mariushosting.com/how-to-install-romm-with-postgresql-on-your-synology-nas/)
 
-[How to Install RomM With PostgreSQL on Your Synology NAS](https://mariushosting.com/how-to-install-romm-with-postgresql-on-your-synology-nas/)
-
-We would suggest to follow the above guides depending on your setup, but we will leave the other guide below as it was written by a community member.
+We suggest following the above guides if they fit your setup, and the guide below is available for all other use cases.
 
 ## Prerequisites
 

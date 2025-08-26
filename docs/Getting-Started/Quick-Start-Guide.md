@@ -14,7 +14,7 @@ This guide will assume that you already have the following done, if not - stop h
 - [Docker installed](https://docs.docker.com/get-docker/) and running on your system
 - Your ROMs organized in the correct [folder structure](./Folder-Structure.md)
 - The recommended [metadata providers](./Metadata-Providers.md) set up
-- A copy of the config.yml from [RomM Github](https://github.com/rommapp/romm/blob/master/examples/config.example.yml) - This is now mandatory since 4.1
+- A copy of the [config.yml](https://github.com/rommapp/romm/blob/master/examples/config.example.yml) in the config folder
 
 <!-- prettier-ignore -->
 !!! warning
@@ -54,7 +54,8 @@ Now that we have everything gathered, we can begin getting your instance set up!
 6. Modify the following values in the **volumes** to configure the application
     - `/path/to/library`: Path to the directory where your rom files will be stored (usually the parent folder of the `roms` folder)
     - `/path/to/assets`: Path to the directory where you will store your saves, etc
-    - `/path/to/config`: Path to the directory where you will store the config.yml - At this step please store the `config.yml` file in this folder now.
+    - `/path/to/config`: Path to the directory where you will store the config.yml
+    > At this step store the `config.yml` file in this folder
 7. Save the file as _docker-compose.yml_ instead of _docker-compose.example.yml_. It should look something like this:
 
     <!-- prettier-ignore -->
@@ -66,21 +67,21 @@ Now that we have everything gathered, we can begin getting your instance set up!
 8. Open the terminal and navigate to the directory containing the docker-compose file
 9. Run `docker compose up -d` to kick off the docker pull. You will see it pull the container and set up the volumes and network:
 
-```asciinema-player
-    {
-        "file": "../latest/resources/asciinema/quick-start-docker-compose.cast",
-        "title": "RomM docker compose install",
-        "preload": true,
-        "loop": true,
-        "auto_play": true,
-        "cols": 140,
-        "rows": 30,
-        "fit": "width",
-        "terminal_font_size": "small",
-        "terminal_line_height": "1.2",
-        "terminal_font_family": "Roboto Mono, Monaco, Consolas, monospace"
-    }
-```
+    ```asciinema-player
+        {
+            "file": "../latest/resources/asciinema/quick-start-docker-compose.cast",
+            "title": "RomM docker compose install",
+            "preload": true,
+            "loop": true,
+            "auto_play": true,
+            "cols": 140,
+            "rows": 30,
+            "fit": "width",
+            "terminal_font_size": "small",
+            "terminal_line_height": "1.2",
+            "terminal_font_family": "Roboto Mono, Monaco, Consolas, monospace"
+        }
+    ```
 
 1.  Run `docker ps -f name=romm` to verify that the containers are running
 2.  Open a web browser and navigate to `http://localhost:80`, where you should be greeted with the RomM setup page
