@@ -3,3 +3,4 @@ site
 .venv
 .cache
 .DS_Store
+*.kate-swp
