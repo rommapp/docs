@@ -90,9 +90,9 @@ filesystem: { roms_folder: "my_roms" }
 
 <!-- prettier-ignore -->
 !!! tip
-  You can find examples of full binded <a href="https://github.com/rommapp/romm/blob/release/examples/config.batocera-retrobat.yml" target="_blank" rel="noopener noreferrer">batocera</a> or <a href="https://github.com/rommapp/romm/blob/release/examples/config.es-de.example.yml" target="_blank" rel="noopener noreferrer">es-de</a> config files.
+  You can find examples of full binded <a href="https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml" target="_blank" rel="noopener noreferrer">batocera</a> or <a href="https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml" target="_blank" rel="noopener noreferrer">es-de</a> config files.
 
 <!-- prettier-ignore -->
 !!! warning
   Only uncomment or add the lines you need. Any omitted or empty sections will use RomM's defaults.
-For a full example, see the <a href="https://github.com/rommapp/romm/blob/release/examples/config.example.yml" target="_blank" rel="noopener noreferrer">config.example.yml</a> file.
+For a full example, see the <a href="https://github.com/rommapp/romm/blob/master/examples/config.example.yml" target="_blank" rel="noopener noreferrer">config.example.yml</a> file.

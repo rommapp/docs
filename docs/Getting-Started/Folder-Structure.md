@@ -155,7 +155,7 @@ For multifile games (games stored as folders with multiple files or folders insi
 
 ## Configuration file
 
-RomM's behavior can be customized using a `config.yml` file or through the `Library Management` page in the `Settings` menu. You can grab the example <a href="https://github.com/rommapp/romm/blob/release/examples/config.example.yml" target="_blank" rel="noopener noreferrer">config.example.yml</a> file and adapt it to your library.
+RomM's behavior can be customized using a `config.yml` file or through the `Library Management` page in the `Settings` menu. You can grab the example <a href="https://github.com/rommapp/romm/blob/master/examples/config.example.yml" target="_blank" rel="noopener noreferrer">config.example.yml</a> file and adapt it to your library.
 
 What is shown in the `Library Management` page is the content of the `config.yml`. For more details read the [configuration file](Configuration-File.md) section.
 
