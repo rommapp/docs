@@ -24,7 +24,7 @@ This guide will assume that you already have the following done, if not - stop h
 
 Now that we have everything gathered, we can begin getting your instance set up!
 
-1. Download a copy of the latest <a href="https://github.com/rommapp/romm/blob/release/examples/docker-compose.example.yml" target="_blank" rel="noopener noreferrer">docker-compose.example.yml</a> file from GitHub
+1. Download a copy of the latest <a href="https://github.com/rommapp/romm/blob/master/examples/docker-compose.example.yml" target="_blank" rel="noopener noreferrer">docker-compose.example.yml</a> file from GitHub
 2. Edit the file and modify the following values to configure the database
     - `MARIADB_ROOT_PASSWORD`: Sets the root password of the database. Use a unique and secure password (_use a password generator for simplicity_)
     - `MARIADB_DATABASE`: Sets the database name for RomM. This can be modified - but it's not necessary

@@ -16,7 +16,7 @@ MariaDB is required to run RomM, so install it from the plugin registry. Only th
 
 ![community apps search results for MariaDB](https://github.com/user-attachments/assets/76f4b6ef-5b63-454f-9357-d2920b9afd0e)
 
-Now fill in all the environment variables; descriptions of the options and sensible defaults are listed in the [example docker-compose.yml](https://github.com/rommapp/romm/blob/release/examples/docker-compose.example.yml) file.
+Now fill in all the environment variables; descriptions of the options and sensible defaults are listed in the [example docker-compose.yml](https://github.com/rommapp/romm/blob/master/examples/docker-compose.example.yml) file.
 
 <!-- prettier-ignore -->
 !!! warning
@@ -32,7 +32,7 @@ From the Unraid dashboard, click `APPS` in the navigation bar. In the search bar
 
 ## Configuration
 
-Configure the required environment variables, ports and paths as per the [example docker-compose.yml](https://github.com/rommapp/romm/blob/release/examples/docker-compose.example.yml) file.
+Configure the required environment variables, ports and paths as per the [example docker-compose.yml](https://github.com/rommapp/romm/blob/master/examples/docker-compose.example.yml) file.
 
 <!-- prettier-ignore -->
 !!! warning
