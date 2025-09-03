@@ -54,8 +54,7 @@ Now that we have everything gathered, we can begin getting your instance set up!
 6. Modify the following values in the **volumes** to configure the application
     - `/path/to/library`: Path to the directory where your rom files will be stored (usually the parent folder of the `roms` folder)
     - `/path/to/assets`: Path to the directory where you will store your saves, etc
-    - `/path/to/config`: Path to the directory where you will store the config.yml
-    > At this step store the `config.yml` file in this folder
+    - `/path/to/config`: Path to the directory where you will store the config.yml (store the `config.yml` file in this folder)
 7. Save the file as _docker-compose.yml_ instead of _docker-compose.example.yml_. It should look something like this:
 
     <!-- prettier-ignore -->
@@ -83,10 +82,10 @@ Now that we have everything gathered, we can begin getting your instance set up!
         }
     ```
 
-1.  Run `docker ps -f name=romm` to verify that the containers are running
-2.  Open a web browser and navigate to `http://localhost:80`, where you should be greeted with the RomM setup page
-3.  Go through the setup wizard, setting your admin username and password
-4.  Log in with the credentials you set in the last step
+10. Run `docker ps -f name=romm` to verify that the containers are running
+11. Open a web browser and navigate to `http://localhost:80`, where you should be greeted with the RomM setup page
+12. Go through the setup wizard, setting your admin username and password
+13. Log in with the credentials you set in the last step
 
 ## Configure
 
