@@ -5,7 +5,7 @@
 Below is a list of all supported platforms/systems/consoles and their respective folder names. Supported platforms means RomM can fetch metadata from sources for those platforms.
 
 !!! info
-    For platforms that can be playable in the browser, please check [emulatorjs supported platforms](./EmulatorJS-Player.md) and [ruffle player](./RuffleRS-Player.md).
+    For platforms that can be playable in the browser, please check [EmulatorJS supported platforms](./EmulatorJS-Player.md) and [RuffleRS player](./RuffleRS-Player.md).
 
 !!! danger
     **The folder name is case-sensitive and must be used exactly as it appears in the list below.**
