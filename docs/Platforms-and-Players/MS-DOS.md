@@ -4,11 +4,7 @@
 [DOS](https://github.com/schellingb/dosbox-pure) is now supported in versions of RomM 4.0 and above thanks to the EmulatorJS player - Simply create a DOS platform to enable the integration
 
 <!-- prettier-ignore -->
-!!! warning
-    This will need the same settings as the PSP emulation which you can find [here](https://docs.romm.app/latest/Platforms-and-Players/EmulatorJS-Player/) to enable the play button
-
-<!-- prettier-ignore -->
-!!! info 
+!!! info
     I highly suggest you upload the games as .zip as the core can take advantage of unzipping and auto mounting options which are explained more below.
 
 <!-- prettier-ignore -->
