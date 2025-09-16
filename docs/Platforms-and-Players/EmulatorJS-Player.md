@@ -45,6 +45,7 @@ Note that only the following systems are currently supported:
 - Game Boy Advance
 - PC-FX
 - PlayStation (PS)
+- PlayStation Portable (PSP)
 - Sega 32X
 - Sega CD
 - Sega Game Gear
