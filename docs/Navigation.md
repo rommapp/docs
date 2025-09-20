@@ -31,6 +31,10 @@ search:
     - [OIDC Setup With Authentik](OIDC-Guides/OIDC-Setup-With-Authentik.md)
     - [OIDC Setup With PocketID](OIDC-Guides/OIDC-Setup-With-PocketID.md)
     - [OIDC Setup With Zitadel](OIDC-Guides/OIDC-Setup-With-Zitadel.md)
+- Usage
+	- [User Management](Usage/UserManagement.md)
+	- [Library Management](Usage/LibraryManagement.md)
+	- [Administration](Administration/UserManagement.md)
 - Tools
     - [Igir Collection Manager](Tools/Igir-Collection-Manager.md)
 - Maintenance
