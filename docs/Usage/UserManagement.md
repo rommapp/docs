@@ -3,7 +3,7 @@ title: User Management
 description: Adding, Removing, and Managing your Users.
 ---
 
-In the Administration panel are the tools used to manage users on the server. The first user created will always be given the admin Role. 
+In the Administration panel are the tools used to manage users on the server. The first user created will always be given the admin Role.
 
 A user will be able to manage their own game saves, save states, their profile icon, and the "Personal" data tab on games.
 
