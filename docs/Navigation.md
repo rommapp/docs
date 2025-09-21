@@ -34,7 +34,7 @@ search:
 - Usage
     - [User Management](Usage/UserManagement.md)
     - [Library Management](Usage/LibraryManagement.md)
-    - [Administration](Administration/UserManagement.md)
+    - [Administration](Usage/UserManagement.md)
 - Tools
     - [Igir Collection Manager](Tools/Igir-Collection-Manager.md)
 - Maintenance

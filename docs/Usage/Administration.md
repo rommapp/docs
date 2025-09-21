@@ -3,7 +3,7 @@ title: Administration
 description: Navigating and using the Administration Menu
 ---
 
-Clicking on your Profile icon from any screen opens the Administration Drawer. This drawer will look slightly differently based on what role you possess. The options here can include **Profile**, **User Interface**, **Library Mangement**, **Administration**, **Server Stats**, and **About**.
+Clicking on your Profile icon from any screen opens the Administration Drawer. This drawer will look slightly differently based on what role you possess. The options here can include **Profile**, **User Interface**, **Library Management**, **Administration**, **Server Stats**, and **About**.
 
 ## Profile
 
