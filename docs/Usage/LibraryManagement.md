@@ -39,7 +39,7 @@ The filters that can be toggled include:
 Next there is a platform drop down. This allows you to select a platform you want to restrict your view to showing.
 
 After this you can filter by metadata: Game Genre, Franchise, Collections, Company, Age Rating, Region, and Language.
-One additional filter exists after these: Status. This allows you to use the "personal" data tab on any game to track your progress of the game (Never Playing, Backlogged, Compete, etc).
+One additional filter exists after these: Status. This allows you to use the "personal" data tab on any game to track your progress of the game (never playing, backlogged, complete, etc).
 
 ## The Menu bar
 
