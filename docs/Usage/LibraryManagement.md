@@ -15,6 +15,9 @@ In all views, a grid icon is present in the upper right of the screen or contain
 
 Platform cards can be clicked to go directly to the platform. A game card can be interacted in a few ways: putting your mouse over it allows you to download the game, play the game if the system is supported, or open a context menu giving you the option to manually match game information using a metadata agent, edit existing data, refresh the metadata, and add or remove the game from favourites or collections.
 
+![game card](https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/usage/gameCard.png)
+![context menu](https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/usage/ContextMenu.png)
+
 Clicking a platform will take you to the platform view, while clicking a game will take you to the game view.
 
 ### Filters
@@ -48,6 +51,8 @@ The menu bar is designed for quick access to the tools of your RomM server.
 ### Search
 
 Simply typing text into the search bar will bring up game cards for each game that matches the query. To the left of the search bar are two icons: the view filters and the new collection button.
+
+![search bar](https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/usage/SearchBar.png)
 
 ### List Platforms
 
@@ -111,6 +116,8 @@ Next comes all the metadata for the platform itself: the name, folder name, cate
 Following that are the platform settings, which consists of the style of cover used in the game cards for that platform.
 
 Finally, in the Danger Zone, is a Delete Platform button. This removes the platform from the database, it does NOT touch the files on your system. If you delete a platform in this way, scanning for new platforms will restore it, and all games will have to have their metadata re-matched.
+
+![platform drawer](https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/usage/PlatformView.png)
 
 ### Firmware
 
