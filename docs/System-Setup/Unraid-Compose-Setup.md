@@ -24,7 +24,7 @@ Click **Add New Stack**
 
 ![Edit Stack](../resources/unraid/edit-stack.png)
 
-- Add in the example Docker Compose from our [example docker-compose.yml](https://github.com/rommapp/romm/blob/master/examples/docker-compose.example.yml)
+- Add in the example Docker Compose from our [example docker-compose.yml](https://github.com/rommapp/romm/blob/master/examples/config.example.yml)
 
 - Add your environment variables, for example: API keys, MariaDB info, and metadata providers
 
