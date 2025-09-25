@@ -48,6 +48,12 @@ Click **Add New Stack**
 !!! warning
     It's strongly recommended to backup the `appdata` folder (or mount it in a safe location) before updating, since tearing down the container will wipe the resources (covers, screenshots, etc.)
 
+<!-- prettier-ignore -->
+!!! note
+    As of **v4.1.0**, `RomM` now **requires a valid `config.yml`** file to be present **before startup**.  
+    Make sure your `config.yml` is properly configured and mounted into the container. 
+    Refer to the [configuration documentation](https://docs.romm.app/latest/Getting-Started/Configuration-File/) for details.
+
 ## Finish
 
 - Click Compose Up
