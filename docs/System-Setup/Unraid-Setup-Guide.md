@@ -40,6 +40,12 @@ Configure the required environment variables, ports and paths as per the [exampl
 
 ![RomM docker tab](https://github.com/user-attachments/assets/4c4210c2-ed00-4790-a945-65cbe33620b0)
 
+<!-- prettier-ignore -->
+!!! note
+    As of **v4.1.0**, `RomM` now **requires a valid `config.yml`** file to be present **before startup**.  
+    Make sure your `config.yml` is properly configured and mounted into the container. 
+    Refer to the [configuration documentation](https://docs.romm.app/latest/Getting-Started/Configuration-File/) for details.
+
 Apply the changes, then head to the `DOCKER` tab. You should see both containers in a running state, and can access RomM using the IP:PORT of the container (highlighted below).
 
 ![RomM and MariaDB running](https://github.com/user-attachments/assets/cba26de1-d2c9-4fff-88d8-bc7701f0dd88)
