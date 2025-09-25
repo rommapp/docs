@@ -51,6 +51,11 @@ Replace any empty values with credentials you've created per the [Quick Start Gu
 
 #### Step 3: Save the configuration
 
+#### Step 4: Generate a config.yml
+As of **v4.1.0**, `RomM` now **requires a valid `config.yml`** file to be present **before startup**.  
+Make sure your `config.yml` is properly configured and mounted into the container. 
+Refer to the [configuration documentation](https://docs.romm.app/latest/Getting-Started/Configuration-File/) for details.
+
 Save, and you're done! If the app will not boot, refer to [Troubleshooting](#troubleshooting) or head on over to the [Discord](https://discord.gg/P5HtHnhUDH).
 
 ## Troubleshooting
