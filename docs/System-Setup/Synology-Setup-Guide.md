@@ -92,8 +92,12 @@ Create a `docker-compose.yml` file with the following content:
     ``` yaml
     --8<-- "synology.docker-compose.yml"
     ```
+#### 6. Generate a config.yml
+As of **v4.1.0**, `RomM` now **requires a valid `config.yml`** file to be present **before startup**.  
+Make sure your `config.yml` is properly configured and mounted into the container. 
+Refer to the [configuration documentation](https://docs.romm.app/latest/Getting-Started/Configuration-File/) for details.
 
-### 6. Initial Launch
+### 7. Initial Launch
 
 1. Start the containers using Docker Compose
 2. **Be patient!** The container can take a few minutes to setup on first launch
