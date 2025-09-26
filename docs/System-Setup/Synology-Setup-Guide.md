@@ -40,7 +40,7 @@ mkdir -p /volume1/data/media/games/library/roms
 mkdir -p /volume1/data/media/games/library/bios
 ```
 
-Note: For supported platforms and their specific folder names, refer to the [official RomM wiki](../Platforms-and-Players/Supported-Platforms.md).
+Note: For supported platforms and their specific folder names, refer to the [official RomM docs](../Platforms-and-Players/Supported-Platforms.md).
 
 #### Docker Data Folders
 
@@ -72,7 +72,7 @@ Save the output - you'll need it for the `ROMM_AUTH_SECRET_KEY` in your configur
 
 #### API Integration Setup
 
-Follow the dedicated wiki page for [API key generation](../Getting-Started/Metadata-Providers.md) to set up your API keys.
+Follow the dedicated docs page for [API key generation](../Getting-Started/Metadata-Providers.md) to set up your API keys.
 
 ### 4. MariaDB Configuration
 
@@ -116,4 +116,4 @@ Create a `docker-compose.yml` file with the following content:
 
 ## Contributing
 
-This guide is an abridged version of ChopFoo's original guide. If you have any suggestions or improvements, please submit a pull request to the [RomM wiki](https://github.com/rommapp/wiki).
+This guide is an abridged version of ChopFoo's original guide. If you have any suggestions or improvements, please submit a pull request to the [RomM docs](https://github.com/rommapp/docs).

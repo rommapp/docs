@@ -71,4 +71,4 @@ In my particular setup, I had to create a user/group in TrueNAS with uid:gid of 
 
 ## Contributing
 
-If you have any suggestions or improvements, please submit a pull request to the [RomM wiki](https://github.com/rommapp/wiki).
+If you have any suggestions or improvements, please submit a pull request to the [RomM docs](https://github.com/rommapp/docs).

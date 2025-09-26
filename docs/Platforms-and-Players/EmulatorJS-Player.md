@@ -16,7 +16,7 @@
 
 ### Loading saves and states
 
-Our integration with EmulatorJS automates the process of loading and saving save files and save states. Before starting the game, select a save and/or state file to load (if one is available). Anytime you save the game (or create a save state), the save and state files stored with RomM will be updated, so there's no need to manually download or upload them.
+Our integration with EmulatorJS automates the process of loading and save files and save states. Before starting the game, select a save and/or state file to load (if one is available). Anytime you manually save the game (or create a save state) by clicking the save or "save and quit" buttons, the save and state files stored with RomM will be updated, so there's no need to manually download or upload them.
 
 ### Supported systems
 
