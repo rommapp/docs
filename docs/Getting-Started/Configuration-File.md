@@ -93,7 +93,7 @@ filesystem: { roms_folder: "my_roms" }
 The metadata scanners can have their priority changed by your config.yaml file. See the [config.example.yaml](https://github.com/rommapp/romm/blob/master/examples/config.example.yml) for the default values.
 
 ```yaml
-priority: { "metadata", "artwork", "region", "language"  }
+priority: { "metadata", "artwork", "region", "language" }
 ```
 
 - **metadata**
@@ -101,19 +101,23 @@ priority: { "metadata", "artwork", "region", "language"  }
   Example:
 
     ```yaml
-    metadata: { "igdb", "moby", "ss", "ra", "lb", "hasheous", "flashpoint", "hltb" }
+    metadata:
+        { "igdb", "moby", "ss", "ra", "lb", "hasheous", "flashpoint", "hltb" }
     ```
 
 - **artwork**
   Changes the metadata provider preferred order for cover art and screenshots.
   Example:
+
     ```yaml
-    artwork: { "igdb", "moby", "ss", "ra", "lb", "hasheous", "flashpoint", "hltb" }
+    artwork:
+        { "igdb", "moby", "ss", "ra", "lb", "hasheous", "flashpoint", "hltb" }
     ```
 
 - **region**
   Changes the metadata provider preferred region for cover art and game title (only used by Screenscraper)
   Example:
+
     ```yaml
     region: { "us", "wor", "ss", "eu", "jp" }
     ```

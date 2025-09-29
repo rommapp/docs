@@ -125,14 +125,17 @@ To avoid unneccessary API calls, a cached file with the RA database is stored in
     ![RA details](../resources/metadata_providers/2-ra.png)
 
 ### Flashpoint
-The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) is a project that enables metadata for 180,000+ flash and browser-based games. Enable this metadata source with the `FLASHPOINT_API_ENABLED=true` envrionment variable. If you are adding this provider to an existing RomM setup, perform a *partial search* with Flashpoint selected to update an existing platform.
+
+The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) is a project that enables metadata for 180,000+ flash and browser-based games. Enable this metadata source with the `FLASHPOINT_API_ENABLED=true` envrionment variable. If you are adding this provider to an existing RomM setup, perform a _partial search_ with Flashpoint selected to update an existing platform.
 
 ### How Long To Beat
-The [How Long To Beat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` envrionment variable. If you are adding this provider to an existing RomM setup, perform a *partial search* with Flashpoint selected to update an existing platform.
 
-Game completion times will be added to a new tab on the details page for supported matched games. 
+The [How Long To Beat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` envrionment variable. If you are adding this provider to an existing RomM setup, perform a _partial search_ with Flashpoint selected to update an existing platform.
+
+Game completion times will be added to a new tab on the details page for supported matched games.
 
 ## Metadata Tags in Filenames
+
 Scans will now parse custom metadata tags in the filename that match specific patterns, and use them to fetch game metadata for the specified ID. The supported tags are:
 
 (igdb-xxxx) for [IGDB](https://www.igdb.com/)
