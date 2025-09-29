@@ -119,6 +119,26 @@ After that, each user need to set their own username in their profile and sync i
 
 To avoid unneccessary API calls, a cached file with the RA database is stored in RomM. Refresh time for that cache file can be changed with the env variable `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS`
 
+### Flashpoint
+The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) is a project that enables metadata for 180,000+ flash and browser-based games. Enable this metadata source with the `FLASHPOINT_API-ENABLED=true` envrionment variable. If you are adding this provider to an existing RomM setup, perform a *partial search* with Flashpoint selected to update an existing platform.
+
+### How Long To Beat
+The [How Long To Beat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API-ENABLED=true` envrionment variable. If you are adding this provider to an existing RomM setup, perform a *partial search* with Flashpoint selected to update an existing platform.
+
+Game completion times will be added to a new tab on the details page for supported matched games. 
+
+## Metadata Tags in Filenames
+Scans will now parse custom metadata tags in the filename that match specific patterns, and use them to fetch game metadata for the specified ID. The supported tags are:
+
+(igdb-xxxx) for [IGDB](https://www.igdb.com/)
+(moby-xxxx) for [MobyGames](https://www.mobygames.com/)
+(ra-xxxx) for [RetroAchievements](https://retroachievements.org/)
+(ssfr-xxxx) for [ScreenScraper](https://screenscraper.fr/)
+(launchbox-xxxx) for [Launchbox](https://gamesdb.launchbox-app.com/)
+(hltb-xxxx) for [HowLongToBeat](https://howlongtobeat.com/)
+
+Filenames will not be renamed by RomM to add tags, as they are a non-standard formatting system and could create conflicts with other software.
+
 <!-- prettier-ignore -->
 ??? Screenshots
     ![RA API key](../resources/metadata_providers/1-ra.png)

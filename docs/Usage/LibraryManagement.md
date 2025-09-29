@@ -136,4 +136,6 @@ The Details tab includes metadata for the game. This will show where the data co
 
 The Game Data tab includes save files and save states, the ability to upload and download them, as well as delete them. This data is personal to the logged in user.
 
-Finally the personal tab has check boxes denoting if a game is backlogged, being played, or if it should be hidden. User data such as rating, difficulty, % completed, and the status of the game can also be set here. Retroachievements can be viewed from this tab.
+Finally the Personal tab has check boxes denoting if a game is backlogged, being played, or if it should be hidden. User data such as rating, difficulty, % completed, and the status of the game can also be set here. Retroachievements can be viewed from this tab for supported matched games.
+
+If How Long To Beat is enabled as a metadata provider, there will also be a tab here for viewing that data as well.
