@@ -70,6 +70,8 @@ This is a complete list of available environment variables; required variables a
 | LAUNCHBOX_API_ENABLED                | Enable LaunchBox API integration                   |          | `false` |
 | PLAYMATCH_API_ENABLED                | Enable PlayMatch API integration                   |          | `false` |
 | HASHEOUS_API_ENABLED                 | Enable Hasheous API integration                    |          | `false` |
+| FLASHPOINT_API_ENABLED                | Enable Flashpoint API integration                   |          | `false` |
+| HLTB_API_ENABLED                      | Enable HowLongToBeat API integration                |          | `false` |
 
 ## Authentication
 
