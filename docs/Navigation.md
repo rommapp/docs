@@ -39,6 +39,7 @@ search:
     - [Igir Collection Manager](Tools/Igir-Collection-Manager.md)
 - Maintenance
     - [Scheduled Tasks](Maintenance/Scheduled-Tasks.md)
+    - [Migrating RomM](Maintenance/Migrating-to-new-machine.md)
     - [Upgrading to 3.0](Maintenance/Upgrading-to-3.0.md)
 - Integrations
     - [Playnite plugin](Integrations/Playnite-plugin.md)

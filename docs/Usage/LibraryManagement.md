@@ -138,7 +138,6 @@ The game view is broken down into two distinct parts.
 The first container is the poster, with the usual download, play (if the system allows for playing in a web browser) and context menu as well as a new button: copy download link.
 
 The second container is the game tabs: Details, Game Data, and Personal tabs. These are containers for information about the game, how RomM sees the save data, and your personal notes. Additional tabs may be visible here depending on your configuration, including the Game Manual, data from How Long to Beat, screenshots, as well as related games.
-
 The Details tab includes metadata for the game. This will show where the data comes from, the platform and year of release, as well as the file information like regions and collections. This is the information that is used for filtering.
 
 The Game Data tab includes save files and save states, the ability to upload and download them, as well as delete them. This data is personal to the logged in user.
