@@ -88,6 +88,49 @@ filesystem: { roms_folder: "my_roms" }
 
 ---
 
+### `scan`
+
+The metadata scanners can have their priority changed by your config.yaml file. See the [config.example.yaml](https://github.com/rommapp/romm/blob/master/examples/config.example.yml) for the default values.
+
+```yaml
+priority: { "metadata", "artwork", "region", "language" }
+```
+
+- **metadata**
+  Changes the metadata provider preferred order for metadata sources.
+  Example:
+
+    ```yaml
+    metadata:
+        { "igdb", "moby", "ss", "ra", "lb", "hasheous", "flashpoint", "hltb" }
+    ```
+
+- **artwork**
+  Changes the metadata provider preferred order for cover art and screenshots.
+  Example:
+
+    ```yaml
+    artwork:
+        { "igdb", "moby", "ss", "ra", "lb", "hasheous", "flashpoint", "hltb" }
+    ```
+
+- **region**
+  Changes the metadata provider preferred region for cover art and game title (only used by Screenscraper)
+  Example:
+
+    ```yaml
+    region: { "us", "wor", "ss", "eu", "jp" }
+    ```
+
+- **language**
+  Changes the metadata provider preferred language for cover art and game title (only used by Screenscraper)
+  Example:
+    ```yaml
+    language: { "en", "fr" }
+    ```
+
+---
+
 <!-- prettier-ignore -->
 !!! tip
   You can find examples of full binded <a href="https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml" target="_blank" rel="noopener noreferrer">batocera</a> or <a href="https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml" target="_blank" rel="noopener noreferrer">es-de</a> config files.
