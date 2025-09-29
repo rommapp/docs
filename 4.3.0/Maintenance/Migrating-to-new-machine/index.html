@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://docs.romm.app/4.3.0/Maintenance/Migrating-to-new-machine/">
       
       
+        <link rel="prev" href="../Scheduled-Tasks/">
+      
+      
+        <link rel="next" href="../Upgrading-to-3.0/">
       
       
       <link rel="icon" href="../../resources/romm/isotipo.png">
@@ -22,7 +26,7 @@
     
     
       
-        <title>Migrating to new machine - RomM</title>
+        <title>Migrating RomM - RomM</title>
       
     
     
@@ -65,7 +69,7 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="Migrating to new machine - RomM" >
+        <meta  property="og:title"  content="Migrating RomM - RomM" >
       
         <meta  property="og:description"  content="Your beautiful, powerful, self-hosted rom manager" >
       
@@ -81,7 +85,7 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="Migrating to new machine - RomM" >
+        <meta  name="twitter:title"  content="Migrating RomM - RomM" >
       
         <meta  name="twitter:description"  content="Your beautiful, powerful, self-hosted rom manager" >
       
@@ -161,7 +165,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Migrating to new machine
+              Migrating RomM
             
           </span>
         </div>
@@ -1265,8 +1269,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1279,11 +1285,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1298,7 +1304,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Maintenance
@@ -1331,10 +1337,29 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../Migrating-to-new-machine.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Migrating RomM
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1344,6 +1369,48 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#migrating-romm-to-a-new-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migrating RomM to a new system
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migrating RomM to a new system">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#determining-the-docker-root-directory-and-copying-the-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determining the docker root directory and copying the volumes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1820,7 +1887,7 @@
   
 
 
-  <h1>Migrating to new machine</h1>
+  <h1>Migrating RomM</h1>
 
 <div><h2 id="migrating-romm-to-a-new-system">Migrating RomM to a new system</h2>
 <p>Migrating RomM to a new system is possible, but all of the docker volumes must be copied for RomM to run correctly.</p>
@@ -1957,6 +2024,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Scheduled-Tasks/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Scheduled Tasks">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Scheduled Tasks
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Upgrading-to-3.0/" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrading to 3.0">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Upgrading to 3.0
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
