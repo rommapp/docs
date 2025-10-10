@@ -4,15 +4,12 @@
 
 <!-- prettier-ignore -->
 !!! warning
-    Due to a [change by Apple in iOS 18.2](https://bugs.webkit.org/show_bug.cgi?id=284752), emulation is severely limited, and likely non-functional, on iOS 18.2-18.3 devices. This was fixed in iOS 18.4
+    - Emulation is a complex and resource-intensive process. As such, it may not work well in all browser, especially older or less powerful ones. If you're having trouble running a game, try using a different browser or device.
+    - PSP emulation with the `ppsspp` core and MS-DOS with the `dosbox-pure` core are not currently supported when using the Console mode.
 
 <!-- prettier-ignore -->
-!!! warning
-    PSP emulation with the `ppsspp` core and MS-DOS with the `dosbox-pure` core are not currently supported when using the Console mode.
-
-<!-- prettier-ignore -->
-!!! warning
-    Emulation is a complex and resource-intensive process. As such, it may not work well in all browser, especially older or less powerful ones. If you're having trouble running a game, try using a different browser or device.
+!!! note
+    Some platforms may require multiple BIOS/firmware files to be loaded at the same time. To do this, create a **ZIP archive** containing all the firmware files for the emulator you've selected and upload it to the **firmware** section of the platform. This ZIP file will be recognized by EmulatorJS as the firmware bundle for the platform. Refer to the [EmulatorJS documentation](https://emulatorjs.org/docs/systems/) for the required list of files for each platform.
 
 ### Loading saves and states
 
