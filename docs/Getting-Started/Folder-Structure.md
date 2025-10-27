@@ -43,7 +43,7 @@ For multifile games (games stored as folders with multiple files or folders insi
 
 <table>
  <tr>
-    <th style="text-align: center"><b>Structure A (recommended)</b></tthd>
+    <th style="text-align: center"><b>Structure A (recommended)</b></th>
     <th style="text-align: center"><b>Structure B (fallback)</b></th>
  </tr>
  <tr>
@@ -116,11 +116,11 @@ For multifile games (games stored as folders with multiple files or folders insi
         │  │     ├─ dlc
         │  │     │  ├─ game_4_dlc_1.7z
         │  │     │  └─ game_4_dlc_2.7z
-        │  │     ├─ hacks
+        │  │     ├─ hack
         │  │     │  └─ game_4_hardmode.rar
-        │  │     ├─ manuals
+        │  │     ├─ manual
         │  │     │  └─ game_4_manual.pdf
-        │  │     ├─ mods
+        │  │     ├─ mod
         │  │     │  └─ game_4_crazy_mode.zip
         │  │     ├─ patch
         │  │     │  └─ game_4_patch_v1.1.zip
@@ -135,8 +135,8 @@ For multifile games (games stored as folders with multiple files or folders insi
         └─ ps/
            ├─ roms/
            │  ├─ game_5/
-           │  │  ├─ game_5_cd1.iso
-           │  │  └─ game_5_cd2.iso
+           │  │  ├─ game_5_cd_1.iso
+           │  │  └─ game_5_cd_2.iso
            │  │
            │  └─ game_6.iso
            │

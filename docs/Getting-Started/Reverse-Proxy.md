@@ -1,6 +1,6 @@
 <!-- trunk-ignore-all(markdownlint/MD041) -->
 
-Here are some basic configurations for popular reverse proxies. Some installations may require modifications to configuration options not listed below.
+Here are some basic configurations for popular reverse proxies. Additional configuration may be required depending on your specific setup.
 
 ## Caddy
 
@@ -90,21 +90,22 @@ server {
 
 ## Nginx Proxy Manager
 
-Items marked with ❗ are important to set, as RomM may not correctly otherwise!
+Items marked with ❗ are important to set, as RomM may not work correctly otherwise!
 
 ### ⚡ Details
 
-- Domain Names: `romm.example.com` (replace example with your own)\* Scheme: `http`
+- Domain Names: `romm.example.com` (replace example with your own)
+- Scheme: `http`
 - Forward Hostname/IP: device IP (like 192.168.X.X)
 - Forward Port: `8080`
 - Cache Assets: `off`
 - Block Common Exploits: `on`
 - Websockets Support: `on` ❗
-- Access List: -
+- Access List: - (or configure as needed)
 
 ### 🛡️ SSL
 
-Strongly recommended, but only required if you plan to secure your site (use HTTPS)
+Strongly recommended for security; enable this if you plan to use HTTPS.
 
 - SSL Certificate: "Request a new SSL Certificate"
 - Force SSL: `on`

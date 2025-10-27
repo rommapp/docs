@@ -69,11 +69,11 @@ This is where you'll scan for new platforms and games. Metadata sources are spec
 The Scan Operations drop down allows you to choose a specific operation to perform:
 
 - **New Platforms** - This will only look for platforms that aren't already in RomM.
-- **Quick Scan** - Searches all existing platforms for games that aren't already in RomM.
-- **Unidentified Games** - Selects all games in RomM that aren't yet matched and attempts to match them.
-- **Partial Metadata** - Selects games that have been matched, but whose metadata is incomplete, attempting to add more metadata.
-- **Recalculate Hashes** - Recalculates hashes for all files.
-- **Total Rescan** - Rescans the all platforms (unless specific platforms are specified) and scans every file presented in the platform folder.
+- **Quick Scan** - Scans any games in the selected platforms that aren't in the library yet (fastest).
+- **Unmatched Games** - Attempts to match games that aren't matched with the selected metadata sources.
+- **Update Metadata** - Updates the metadata for games that have been matched with selected metadata sources using the external ID (e.g. IGDB ID).
+- **Recalculate Hashes** - Recalculates hashes for all files in selected platforms.
+- **Total Rescan** - Rescans and rematches all games in selected platforms (slowest)
 
 ### Console
 

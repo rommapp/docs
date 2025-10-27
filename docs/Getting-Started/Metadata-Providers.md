@@ -74,7 +74,7 @@ To access the ScreenScraper API, create a [ScreenScraper](https://www.screenscra
 
 ### MobyGames
 
-MobyGames is a metadata provider that offers medatada, cover art and screenshots.
+MobyGames is a metadata provider that offers metadata, cover art and screenshots.
 
 To access the MobyGames API, [create a MobyGames account](https://www.mobygames.com/user/register/) and then visit your profile page. Click the **API** link under your user name to sign up for an API key. Copy the key shown and use it to set `MOBYGAMES_API_KEY`.
 
@@ -84,7 +84,7 @@ To access the MobyGames API, [create a MobyGames account](https://www.mobygames.
 
 ### LaunchBox
 
-The [LaunchBox](https://gamesdb.launchbox-app.com) Games Database is a community-driven database that provides metadata, cover art, and screenshots. Like the Launchbox desktop application, RomM downloads the entire database locally and matches games based on their exact filenames.
+The [LaunchBox](https://gamesdb.launchbox-app.com/) Games Database is a community-driven database that provides metadata, cover art, and screenshots. Like the Launchbox desktop application, RomM downloads the entire database locally and matches games based on their exact filenames.
 
 To enable LaunchBox, set `LAUNCHBOX_API_ENABLED=true` in your environment variables. You can enable regular updates of the database by setting `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA`, and set the frequency on the cron job with `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON` (defaults to 5:00 AM every day).
 
@@ -96,7 +96,7 @@ Simply set `HASHEOUS_API_ENABLED=true` in your environment variables, and future
 
 ### PlayMatch
 
-[Playmatch](https://github.com/RetroRealm/playmatch) is a project built and hosted by a member of our comminuty. It provides a hash-based matching service for, and is used in conjunction with, IGDB.
+[PlayMatch](https://github.com/RetroRealm/playmatch) is a hash-based matching service used in conjunction with IGDB to provide better matching for games, hosted by a member of our community.
 
 To enable PlayMatch, set `PLAYMATCH_API_ENABLED=true` in your environment variables.
 
@@ -104,17 +104,17 @@ To enable PlayMatch, set `PLAYMATCH_API_ENABLED=true` in your environment variab
 
 SteamGridDB provides custom cover art for games or collections. It's not accessed through the scanner but from the "search cover" button when manually editing a game.
 
-To access steamGridDB API, you need to login into their [website](https://www.steamgriddb.com/) with a [steam account](https://store.steampowered.com/join). Once logged in, go to your [API tab under the preferences page](https://www.steamgriddb.com/profile/preferences/api). Copy the key shown and use it to set `STEAMGRIDDB_API_KEY`.
+To access the SteamGridDB API, you need to login to their [website](https://www.steamgriddb.com/) with a [Steam account](https://store.steampowered.com/join). Once logged in, go to your [API tab under the preferences page](https://www.steamgriddb.com/profile/preferences/api). Copy the key shown and use it to set `STEAMGRIDDB_API_KEY`.
 
-### Retroachievements
+### RetroAchievements
 
-RomM is able to display your achievements from [Retroachievements](https://retroachievements.org/). To sync it with your RomM instance, you need to generate an API key from your Retroechievements account in your [settings](https://retroachievements.org/settings)
+RomM is able to display your achievements from [RetroAchievements](https://retroachievements.org/). To sync it with your RomM instance, you need to generate an API key from your RetroAchievements account in your [settings](https://retroachievements.org/settings).
 
-Copy the key shown and use it to set `RETROACHIEVEMENTS_API_KEY` and perform a partial scan targeting the platform you want to match with Retroachievements.
+Copy the key shown and use it to set `RETROACHIEVEMENTS_API_KEY` and perform a `UNMATCHED` scan targeting the platform you want to match with RetroAchievements.
 
-After that, each user need to set their own username in their profile and sync it with Retroachievements. A new `Achievements` tab will appear in the `Personal` tab in the game details.
+After that, each user needs to set their own username in their profile and sync it with RetroAchievements. A new `Achievements` tab will appear in the `Personal` tab in the game details.
 
-To avoid unneccessary API calls, a cached file with the RA database is stored in RomM. Refresh time for that cache file can be changed with the env variable `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS`
+To avoid unnecessary API calls, a cached file with the RA database is stored in RomM. Refresh time for that cache file can be changed with the environment variable `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS`.
 
 <!-- prettier-ignore -->
 ??? Screenshots
@@ -123,11 +123,11 @@ To avoid unneccessary API calls, a cached file with the RA database is stored in
 
 ### Flashpoint
 
-The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) is a project that enables metadata for 180,000+ flash and browser-based games. Enable this metadata source with the `FLASHPOINT_API_ENABLED=true` envrionment variable. If you are adding this provider to an existing RomM setup, perform a _partial search_ with Flashpoint selected to update an existing platform.
+The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) is a project that enables metadata for 180,000+ flash and browser-based games. Enable this metadata source with the `FLASHPOINT_API_ENABLED=true` environment variable. If you are adding this provider to an existing RomM setup, perform a `UNMATCHED` scan with Flashpoint selected to update an existing platform.
 
 ### How Long To Beat
 
-The [How Long To Beat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` envrionment variable. If you are adding this provider to an existing RomM setup, perform a _partial search_ with Flashpoint selected to update an existing platform.
+The [How Long To Beat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` environment variable. If you are adding this provider to an existing RomM setup, perform a `UNMATCHED` scan with How Long To Beat selected to update an existing platform.
 
 Game completion times will be added to a new tab on the details page for supported matched games.
 
@@ -139,8 +139,8 @@ EmulationStation, and it's modern successor ES-DE, use a custom XML format to st
 library/
   └─ roms/
     └─ gba/
-      ├─ game_1.gbc
-      ├─ game_2.gbc
+      ├─ game_1.gba
+      ├─ game_2.gba
       ├─ gamelist.xml
       ├─ 3dboxes/
       │  ├─ game_1.png

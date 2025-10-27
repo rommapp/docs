@@ -13,14 +13,6 @@ search:
     - [Metadata Providers](Getting-Started/Metadata-Providers.md)
     - [Environment Variables](Getting-Started/Environment-Variables.md)
     - [Reverse Proxy](Getting-Started/Reverse-Proxy.md)
-    - Authentication
-        - [Authentication](Getting-Started/Authentication.md)
-        - OIDC Setup
-            - [OIDC Setup](Getting-Started/OIDC-Setup.md)
-            - [With Authelia](OIDC-Guides/OIDC-Setup-With-Authelia.md)
-            - [With Authentik](OIDC-Guides/OIDC-Setup-With-Authentik.md)
-            - [With PocketID](OIDC-Guides/OIDC-Setup-With-PocketID.md)
-            - [With Zitadel](OIDC-Guides/OIDC-Setup-With-Zitadel.md)
 - Platforms and Players
     - [Supported Platforms](Platforms-and-Players/Supported-Platforms.md)
     - Web Players
@@ -37,10 +29,17 @@ search:
     - [User Management](Usage/UserManagement.md)
     - [Library Management](Usage/LibraryManagement.md)
     - [Administration](Usage/Administration.md)
+- OIDC Setup
+    - [OIDC Setup](Getting-Started/OIDC-Setup.md)
+    - [With Authelia](OIDC-Guides/OIDC-Setup-With-Authelia.md)
+    - [With Authentik](OIDC-Guides/OIDC-Setup-With-Authentik.md)
+    - [With PocketID](OIDC-Guides/OIDC-Setup-With-PocketID.md)
+    - [With Zitadel](OIDC-Guides/OIDC-Setup-With-Zitadel.md)
 - API & Development
-    - [API Reference](API-and-Development/API-Reference.md)
-    - [Contributing](API-and-Development/Contributing.md)
     - [Development Setup](API-and-Development/Development-Setup.md)
+    - [API Reference](API-and-Development/API-Reference.md)
+    - [Authentication](Getting-Started/Authentication.md)
+    - [Contributing](API-and-Development/Contributing.md)
 - Tools
     - [Igir Collection Manager](Tools/Igir-Collection-Manager.md)
 - Maintenance
