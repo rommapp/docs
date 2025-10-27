@@ -12,7 +12,10 @@ search:
     - [Configuration File](Getting-Started/Configuration-File.md)
     - [Metadata Providers](Getting-Started/Metadata-Providers.md)
     - [Environment Variables](Getting-Started/Environment-Variables.md)
-    - [Authentication](Getting-Started/Authentication.md)
+    - [Reverse Proxy](Getting-Started/Reverse-Proxy.md)
+    - Authentication
+        - [Authentication](Getting-Started/Authentication.md)
+        - [OIDC Setup](Getting-Started/OIDC-Setup.md)
 - Platforms and Players
     - [Supported Platforms](Platforms-and-Players/Supported-Platforms.md)
     - Web Players
@@ -25,17 +28,15 @@ search:
         - [With Docker Compose](System-Setup/Unraid-Compose-Setup.md)
     - [Synology Setup](System-Setup/Synology-Setup-Guide.md)
     - [TrueNAS Setup](System-Setup/TrueNAS-Setup-Guide.md)
-- OIDC Setup Guides
-    - [OIDC Setup With Authelia](OIDC-Guides/OIDC-Setup-With-Authelia.md)
-    - [OIDC Setup With Authentik](OIDC-Guides/OIDC-Setup-With-Authentik.md)
-    - [OIDC Setup With PocketID](OIDC-Guides/OIDC-Setup-With-PocketID.md)
-    - [OIDC Setup With Zitadel](OIDC-Guides/OIDC-Setup-With-Zitadel.md)
 - Usage
     - [User Management](Usage/UserManagement.md)
     - [Library Management](Usage/LibraryManagement.md)
-    - [Administration](Usage/UserManagement.md)
+    - [Administration](Usage/Administration.md)
+- API & Development
+    - [API Reference](API-and-Development/API-Reference.md)
+    - [Contributing](API-and-Development/Contributing.md)
+    - [Development Setup](API-and-Development/Development-Setup.md)
 - Tools
-    - [Reverse Proxy](Getting-Started/Reverse-Proxy.md)
     - [Igir Collection Manager](Tools/Igir-Collection-Manager.md)
 - Maintenance
     - [Scheduled Tasks](Maintenance/Scheduled-Tasks.md)
@@ -50,7 +51,7 @@ search:
     - [Authentication Issues](Troubleshooting/Authentication-Issues.md)
     - [Synology Issues](Troubleshooting/Synology-Issues.md)
     - [Miscellaneous Issues](Troubleshooting/Miscellaneous-Troubleshooting.md)
-    - [Kubernetes-Issues](Troubleshooting/Kubernetes-Issues.md)
+    - [Kubernetes Issues](Troubleshooting/Kubernetes-Issues.md)
 - Miscellaneous
     - [FAQs](Miscellaneous/FAQs.md)
     - [Branding Guidelines](Miscellaneous/Brand-Guidelines.md)
