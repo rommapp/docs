@@ -135,6 +135,7 @@ Game completion times will be added to a new tab on the details page for support
 
 EmulationStation, and it's modern successor ES-DE, use a custom XML format to store game metadata. RomM can parse this format and import the assets as cover art and screenshots. You'll need to store the gamelist.xml file and any related assets under the platform folder:
 
+<!-- prettier-ignore -->
 ```yaml
 library/
 └─ roms/

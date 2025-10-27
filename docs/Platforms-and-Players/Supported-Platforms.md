@@ -1,12 +1,13 @@
 <!-- vale off -->
-<!-- prettier-ignore -->
 <!-- trunk-ignore-all(markdownlint) -->
 
 Below is a list of all supported platforms/systems/consoles and their respective folder names. Supported platforms means RomM can fetch metadata from sources for those platforms.
 
+<!-- prettier-ignore -->
 !!! info
     For platforms that can be playable in the browser, please check [EmulatorJS supported platforms](./EmulatorJS-Player.md) and [RuffleRS player](./RuffleRS-Player.md).
 
+<!-- prettier-ignore -->
 !!! danger
     **The folder name is case-sensitive and must be used exactly as it appears in the list below.**
 
@@ -36,7 +37,6 @@ Below is a list of all supported platforms/systems/consoles and their respective
         </div>
     </div>
 </div>
-
 
 <style>
 .md-typeset__scrollwrap {
@@ -201,6 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<!-- prettier-ignore -->
 |Platform Name|Folder Name|Metadata Providers|
 |---|---|---|
 | 1292 Advanced Programmable Video System | `1292-advanced-programmable-video-system` | <a href="https://www.igdb.com/platforms/1292-advanced-programmable-video-system" target="_blank" rel="noopener noreferrer"><img alt="igdb logo" src="../../resources/metadata_providers/igdb.png" height="24px" width="24px"></a>  <a href="https://www.mobygames.com/platform/1292-advanced-programmable-video-system" target="_blank" rel="noopener noreferrer"><img alt="mobygames logo" src="../../resources/metadata_providers/moby.png" height="24px" width="24px"></a>       |
