@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: An introduction to your beautiful, powerful, self-hosted rom manager
+description: An introduction to your beautiful, powerful, self-hosted rom manager and player
 hide:
     - toc
 ---
