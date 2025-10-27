@@ -16,6 +16,18 @@ Here are some combinations you can use based on your needs:
 - Retroachievements provides achievement progress
 - **This is the recommended setup for most users**
 
+![Hasheous + IGDB + SteamGridDB + Retroachievements](../resources/metadata_providers/2dcovers.png)
+
+#### ⭐ The French Connection: [ScreenScraper](#screenscraper) + [Retroachievements](#retroachievements)
+
+- Supports 125+ popular systems
+- ScreenScraper provides titles, descriptions, cover art, screenshots and manuals
+  - With the option for 3D boxes and CD/cartridge covers
+- Retroachievements provides achievement progress
+- **Use this if you want to avoid Twitch/Amazon products**
+
+![ScreenScraper + Retroachievements](../resources/metadata_providers/3dboxes.png)
+
 #### The Twitch Fanboy: [IGDB](#igdb) + [PlayMatch](#playmatch)
 
 - Supports the 200+ systems available on IGDB
@@ -23,27 +35,12 @@ Here are some combinations you can use based on your needs:
 - PlayMatch adds hash-based matching for unmatched files
 - **Use this if you want a single-provider solution**
 
-#### The French Connection: [ScreenScraper](#screenscraper) + [SteamGridDB](#steamgriddb) + [Retroachievements](#retroachievements)
-
-- Supports 125+ popular systems
-- ScreenScraper provides titles, descriptions, cover art, screenshots and manuals
-- SteamGridDB provides high-quality alternative cover art
-- Retroachievements provides achievement progress
-- **Use this if you want to avoid Twitch/Amazon products**
-
 #### The Quick Starter: [Hasheous](#hasheous)
 
 - Hash-based matching only ⚠️
 - Proxies titles, descriptions and cover art from IGDB
 - Incredibly fast scan times
 - **For users who want to avoid API keys**
-
-#### The LaunchBoxer: [LaunchBox](#launchbox)
-
-- Exact filename matching only ⚠️
-- Makes no API calls to cloud services
-- LaunchBox provides titles, descriptions, and cover art
-- **Ideal for LaunchBox users with correct filenames**
 
 ## Setup instructions
 
@@ -71,7 +68,7 @@ Note the client ID and secret that appear on screen, and use them to set `IGDB_C
 
 ### ScreenScraper
 
-[ScreenScraper.fr](https://screenscraper.fr/) is a French provider that offers metadata, cover art, screenshots and manuals. It supports a wide range of systems and is a great alternative to IGDB.
+[ScreenScraper.fr](https://screenscraper.fr/) is a French provider that offers metadata, cover art, screenshots and manuals, along with the option for 3D boxes and CD/cartridge cover art. It supports a wide range of systems and is a great alternative to IGDB.
 
 To access the ScreenScraper API, create a [ScreenScraper](https://www.screenscraper.fr/membreinscription.php) account and copy the **user** and **password** you just created to `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD` respectively.
 
@@ -83,7 +80,7 @@ To access the MobyGames API, [create a MobyGames account](https://www.mobygames.
 
 <!-- prettier-ignore -->
 !!! important
-    Access to the MobyGames API is now a [paid feature](https://www.mobygames.com/info/api/#non-commercial). While we will continue to support it, we recommend using [ScreenScraper](#screenscraper) or [Hasheous](#hasheous) instead, as they are free to use.
+    Access to the MobyGames API is a [paid feature](https://www.mobygames.com/info/api/#non-commercial). While we will continue to support it, we recommend using [ScreenScraper](#screenscraper) instead, as it is free to use.
 
 ### LaunchBox
 
@@ -133,6 +130,25 @@ The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint
 The [How Long To Beat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` envrionment variable. If you are adding this provider to an existing RomM setup, perform a _partial search_ with Flashpoint selected to update an existing platform.
 
 Game completion times will be added to a new tab on the details page for supported matched games.
+
+### ES-DE gamelist.xml
+
+EmulationStation, and it's modern successor ES-DE, use a custom XML format to store game metadata. RomM can parse this format and import the assets as cover art and screenshots. You'll need to store the gamelist.xml file and any related assets under the platform folder:
+
+```yaml
+library/
+  └─ roms/
+    └─ gba/
+      ├─ game_1.gbc
+      ├─ game_2.gbc
+      ├─ gamelist.xml
+      ├─ 3dboxes/
+      │  ├─ game_1.png
+      │  └─ game_2.png
+      ├─ covers/
+      ├─ screenshots/
+      └─ etc...
+```
 
 ## Metadata Tags in Filenames
 
