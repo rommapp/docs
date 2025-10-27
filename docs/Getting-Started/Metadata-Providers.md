@@ -22,7 +22,7 @@ Here are some combinations you can use based on your needs:
 
 - Supports 125+ popular systems
 - ScreenScraper provides titles, descriptions, cover art, screenshots and manuals
-  - With the option for 3D boxes and CD/cartridge covers
+    - With the option for 3D boxes and CD/cartridge covers
 - Retroachievements provides achievement progress
 - **Use this if you want to avoid Twitch/Amazon products**
 
@@ -137,17 +137,17 @@ EmulationStation, and it's modern successor ES-DE, use a custom XML format to st
 
 ```yaml
 library/
-  └─ roms/
+└─ roms/
     └─ gba/
-      ├─ game_1.gba
-      ├─ game_2.gba
-      ├─ gamelist.xml
-      ├─ 3dboxes/
-      │  ├─ game_1.png
-      │  └─ game_2.png
-      ├─ covers/
-      ├─ screenshots/
-      └─ etc...
+        ├─ game_1.gba
+        ├─ game_2.gba
+        ├─ gamelist.xml
+        ├─ 3dboxes/
+        │  ├─ game_1.png
+        │  └─ game_2.png
+        ├─ covers/
+        ├─ screenshots/
+        └─ etc...
 ```
 
 ## Metadata Tags in Filenames

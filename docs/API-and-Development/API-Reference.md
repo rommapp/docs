@@ -10,6 +10,7 @@ RomM automatically generates interactive API documentation using OpenAPI (Swagge
 - **ReDoc**: Available at `http://your-instance:3000/api/redoc`
 
 These interactive docs allow you to:
+
 - Browse all available endpoints
 - View request/response schemas
 - Test API calls directly from your browser
@@ -19,6 +20,7 @@ These interactive docs allow you to:
 ## Base URL
 
 The API base URL is typically:
+
 ```text
 http://your-instance:3000/api
 ```
@@ -39,6 +41,7 @@ When using OAuth2, you'll need to obtain a token from `/api/token` endpoint and 
 The API uses OAuth2 scopes to control access to different resources:
 
 **Read Scopes:**
+
 - `me.read` - View your profile
 - `roms.read` - View ROMs
 - `platforms.read` - View platforms
@@ -49,6 +52,7 @@ The API uses OAuth2 scopes to control access to different resources:
 - `users.read` - View users
 
 **Write Scopes:**
+
 - `me.write` - Modify your profile
 - `assets.write` - Modify assets
 - `roms.user.write` - Modify user-rom properties
@@ -64,12 +68,14 @@ The API uses OAuth2 scopes to control access to different resources:
 The RomM API provides comprehensive endpoints for managing all aspects of your ROM collection:
 
 ### Core Resources
+
 - **Platforms** - Manage and configure gaming platforms
 - **ROMs** - Full CRUD operations for ROM files with extensive filtering, searching, and metadata matching
 - **Collections** - Create and manage ROM collections, smart collections, and virtual collections
 - **Users** - User management, authentication, invite links, and profiles
 
 ### Supporting Features
+
 - **Authentication** - OAuth2 token management, OIDC login, password resets
 - **Search** - Metadata provider search for ROMs and covers
 - **Tasks** - Background task management and execution
@@ -121,22 +127,22 @@ rom = response.json()
 ### Using JavaScript/Node.js
 
 ```javascript
-const axios = require('axios');
+const axios = require("axios");
 
 // Setup authentication
 const api = axios.create({
-  baseURL: 'http://your-instance:3000/api',
-  auth: {
-    username: 'username',
-    password: 'password'
-  }
+    baseURL: "http://your-instance:3000/api",
+    auth: {
+        username: "username",
+        password: "password",
+    },
 });
 
 // Get all libraries
-const libraries = await api.get('/libraries');
+const libraries = await api.get("/libraries");
 
 // Get a specific ROM
-const rom = await api.get('/roms/123');
+const rom = await api.get("/roms/123");
 ```
 
 ## OpenAPI Specification
@@ -157,4 +163,3 @@ For API-specific questions or issues:
 2. Review the code in the [RomM repository](https://github.com/rommapp/romm)
 3. Open an issue on [GitHub](https://github.com/rommapp/romm/issues)
 4. Join the [Discord community](https://discord.com/invite/romm)
-

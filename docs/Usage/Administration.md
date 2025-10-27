@@ -14,6 +14,7 @@ Additionally, you can submit your RetroAchievements username and synchronize you
 ## User Interface
 
 From here you can:
+
 - Change your language
 - Adjust the color scheme of RomM
 - Control which ribbons are visible on the home screen
@@ -24,6 +25,7 @@ From here you can:
 ## Library Management
 
 From this screen you can:
+
 - Edit platform bindings and versions on the Config tab
 - Manage missing games on the Missing Games tab
 

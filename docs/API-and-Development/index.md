@@ -12,4 +12,3 @@ Welcome to the RomM API & Development documentation. This section contains resou
 - **[API Reference](API-Reference.md)** - Complete API documentation with endpoints, schemas, and examples
 - **[Contributing](Contributing.md)** - Guidelines for contributing code, translations, and documentation
 - **[Development Setup](Development-Setup.md)** - How to set up your development environment
-

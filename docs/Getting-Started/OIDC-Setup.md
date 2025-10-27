@@ -18,15 +18,19 @@ OIDC is an identity layer built on top of OAuth2. While OAuth2 primarily handles
 RomM supports OIDC authentication with the following identity providers:
 
 ### [Authelia](../OIDC-Guides/OIDC-Setup-With-Authelia.md)
+
 An open-source authentication and authorization server providing two-factor authentication and SSO. Ideal for self-hosters looking for a lightweight solution.
 
 ### [Authentik](../OIDC-Guides/OIDC-Setup-With-Authentik.md)
+
 An open-source identity provider with support for modern authentication protocols, MFA, and comprehensive user management.
 
 ### [PocketID](../OIDC-Guides/OIDC-Setup-With-PocketID.md)
+
 A simple OIDC provider that exclusively supports passkey authentication - no passwords required.
 
 ### [Zitadel](../OIDC-Guides/OIDC-Setup-With-Zitadel.md)
+
 An enterprise-grade, open-source identity and access management platform supporting OAuth2, OIDC, SAML, and passwordless authentication.
 
 ## General Setup Requirements

@@ -76,7 +76,7 @@ The `Scan options` dropdown allows you to choose a specific type of scan to perf
     - For example, selecting `IGDB` and `ScreenScraper` will update the metadata for games that **are matched** with IGDB **or** ScreenScraper, and will use `igdb_id` and/or `ssfr_id` to refetch the metadata from the respective providers.
 - **Recalculate Hashes**: Recalculates hashes for all files in the selected platforms.
 - **Total Rescan**: Rescans and rematches all games in the selected platforms (slowest).
-    - This will wipe all existing metadata matches, including the external IDs, and attempt to match them again, like on a fresh scan. *Saves, states and notes will be preserved.*
+    - This will wipe all existing metadata matches, including the external IDs, and attempt to match them again, like on a fresh scan. _Saves, states and notes will be preserved._
 
 ### Console
 

@@ -17,7 +17,7 @@ Exclude entire platforms (folders) from being scanned.
 
 ```yaml
 exclude:
-  platforms: ["ps", "ngc", "gba"]
+    platforms: ["ps", "ngc", "gba"]
 ```
 
 ### ROMs
@@ -35,10 +35,10 @@ Applies to ROMs that are single files (not in subfolders).
 
 ```yaml
 exclude:
-  roms:
-    single_file:
-      extensions: ["xml", "txt"]
-      names: ["info.txt", "._*", "*.nfo"]
+    roms:
+        single_file:
+            extensions: ["xml", "txt"]
+            names: ["info.txt", "._*", "*.nfo"]
 ```
 
 #### Multi-File ROMs
@@ -53,12 +53,12 @@ Applies to ROMs stored as folders (multi-disc, with DLC, etc.).
 
 ```yaml
 exclude:
-  roms:
-    multi_file:
-      names: ["final fantasy VII", "DLC"]
-      parts:
-        names: ["data.xml", "._*"]
-        extensions: ["xml", "txt"]
+    roms:
+        multi_file:
+            names: ["final fantasy VII", "DLC"]
+            parts:
+                names: ["data.xml", "._*"]
+                extensions: ["xml", "txt"]
 ```
 
 ---
@@ -67,7 +67,7 @@ exclude:
 
 Customize how RomM interprets your folder and platform names.
 
-### Platforms
+### Custom Folder Names
 
 Map your custom folder names to RomM's recognized platform names.
 
@@ -75,9 +75,9 @@ Map your custom folder names to RomM's recognized platform names.
 
 ```yaml
 system:
-  platforms:
-    gc: "ngc"  # Treats 'gc' folder as GameCube
-    psx: "ps"  # Treats 'psx' folder as PlayStation
+    platforms:
+        gc: "ngc" # Treats 'gc' folder as GameCube
+        psx: "ps" # Treats 'psx' folder as PlayStation
 ```
 
 ### Versions
@@ -88,8 +88,8 @@ Associate a platform with its main version. This also tells RomM to fetch metada
 
 ```yaml
 system:
-  versions:
-    naomi: "arcade"
+    versions:
+        naomi: "arcade"
 ```
 
 ---
@@ -104,7 +104,7 @@ If your ROMs folder is named `my_roms` instead of `roms`:
 
 ```yaml
 filesystem:
-  roms_folder: "my_roms"
+    roms_folder: "my_roms"
 ```
 
 ---
@@ -137,11 +137,11 @@ Controls metadata provider priority order.
 
 ```yaml
 scan:
-  priority:
-    metadata:
-      - "igdb"
-      - "ss"
-      - "moby"
+    priority:
+        metadata:
+            - "igdb"
+            - "ss"
+            - "moby"
 ```
 
 #### Artwork
@@ -154,11 +154,11 @@ Controls artwork provider priority order for cover art and screenshots.
 
 ```yaml
 scan:
-  priority:
-    artwork:
-      - "igdb"
-      - "ss"
-      - "moby"
+    priority:
+        artwork:
+            - "igdb"
+            - "ss"
+            - "moby"
 ```
 
 #### Region
@@ -171,11 +171,11 @@ Sets preferred region for cover art and game title (Screenscraper only).
 
 ```yaml
 scan:
-  priority:
-    region:
-      - "us"
-      - "eu"
-      - "jp"
+    priority:
+        region:
+            - "us"
+            - "eu"
+            - "jp"
 ```
 
 #### Language
@@ -188,11 +188,11 @@ Sets preferred language for cover art and game title (Screenscraper only).
 
 ```yaml
 scan:
-  priority:
-    language:
-      - "en"
-      - "es"
-      - "fr"
+    priority:
+        language:
+            - "en"
+            - "es"
+            - "fr"
 ```
 
 ### Media
@@ -217,11 +217,11 @@ Configures which media assets to download (Screenscraper and ES-DE gamelist.xml 
 
 ```yaml
 scan:
-  media:
-    - box2d
-    - screenshot
-    - manual
-    - bezel
+    media:
+        - box2d
+        - screenshot
+        - manual
+        - bezel
 ```
 
 ---
@@ -238,7 +238,7 @@ Enable debug mode to log available options to the browser console.
 
 ```yaml
 emulatorjs:
-  debug: true
+    debug: true
 ```
 
 ### Cache Limit
@@ -249,7 +249,7 @@ Cache limit per ROM in bytes. Set to `null` for unlimited.
 
 ```yaml
 emulatorjs:
-  cache_limit: 52428800  # 50 MB
+    cache_limit: 52428800 # 50 MB
 ```
 
 ### Settings
@@ -260,13 +260,13 @@ Configure core-specific settings. Use `default` to apply settings to all cores.
 
 ```yaml
 emulatorjs:
-  settings:
-    parallel_n64:  # Use the exact core name
-      vsync: disable
-    snes9x:
-      snes9x_region: ntsc
-    default:  # These settings apply to all cores
-      fps: show
+    settings:
+        parallel_n64: # Use the exact core name
+            vsync: disable
+        snes9x:
+            snes9x_region: ntsc
+        default: # These settings apply to all cores
+            fps: show
 ```
 
 ### Controls
@@ -277,16 +277,16 @@ Map keyboard and controller controls for each player.
 
 ```yaml
 emulatorjs:
-  controls:
-    snes9x:
-      0:  # Player 1
-        0:  # Button mapping
-          value: x  # Keyboard mapping
-          value2: BUTTON_2  # Controller mapping
-      1:  # Player 2
-        0:
-          value: /
-          value2: BUTTON_2
+    controls:
+        snes9x:
+            0: # Player 1
+                0: # Button mapping
+                    value: x # Keyboard mapping
+                    value2: BUTTON_2 # Controller mapping
+            1: # Player 2
+                0:
+                    value: /
+                    value2: BUTTON_2
 ```
 
 See [EmulatorJS documentation](https://emulatorjs.org/docs4devs/control-mapping/) for control mapping details.
