@@ -1,20 +1,16 @@
 <!-- trunk-ignore-all(markdownlint/MD033) -->
 <!-- trunk-ignore-all(markdownlint/MD041) -->
 
-This quick start guide will help you get a RomM instance up and running. It is split into 3 parts:
-
-- Prepare
-- Build
-- Configure
+This quick start guide will help you get a RomM instance up and running. It is split into 3 parts: Prepare, Build and Configure.
 
 ## Prepare
 
-This guide will assume that you already have the following done, if not - stop here and come back when you do.
+There are a few things you need to have in place before you can start:
 
-- [Docker installed](https://docs.docker.com/get-docker/) and running on your system
+- [Docker](https://docs.docker.com/get-docker/) installed and running on your system
 - Your ROMs organized in the correct [folder structure](./Folder-Structure.md)
 - The recommended [metadata providers](./Metadata-Providers.md) set up
-- A copy of the [config.yml](https://github.com/rommapp/romm/blob/master/examples/config.example.yml) in the config folder
+- A copy of the [config.yml](./Configuration-File.md) in the config folder for your environment
 
 <!-- prettier-ignore -->
 !!! warning

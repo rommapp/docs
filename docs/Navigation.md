@@ -12,7 +12,6 @@ search:
     - [Configuration File](Getting-Started/Configuration-File.md)
     - [Metadata Providers](Getting-Started/Metadata-Providers.md)
     - [Environment Variables](Getting-Started/Environment-Variables.md)
-    - [Reverse Proxy](Getting-Started/Reverse-Proxy.md)
     - [Authentication](Getting-Started/Authentication.md)
 - Platforms and Players
     - [Supported Platforms](Platforms-and-Players/Supported-Platforms.md)
@@ -36,6 +35,7 @@ search:
     - [Library Management](Usage/LibraryManagement.md)
     - [Administration](Usage/UserManagement.md)
 - Tools
+    - [Reverse Proxy](Getting-Started/Reverse-Proxy.md)
     - [Igir Collection Manager](Tools/Igir-Collection-Manager.md)
 - Maintenance
     - [Scheduled Tasks](Maintenance/Scheduled-Tasks.md)
