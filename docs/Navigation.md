@@ -15,7 +15,12 @@ search:
     - [Reverse Proxy](Getting-Started/Reverse-Proxy.md)
     - Authentication
         - [Authentication](Getting-Started/Authentication.md)
-        - [OIDC Setup](Getting-Started/OIDC-Setup.md)
+        - OIDC Setup
+            - [OIDC Setup](Getting-Started/OIDC-Setup.md)
+            - [With Authelia](OIDC-Guides/OIDC-Setup-With-Authelia.md)
+            - [With Authentik](OIDC-Guides/OIDC-Setup-With-Authentik.md)
+            - [With PocketID](OIDC-Guides/OIDC-Setup-With-PocketID.md)
+            - [With Zitadel](OIDC-Guides/OIDC-Setup-With-Zitadel.md)
 - Platforms and Players
     - [Supported Platforms](Platforms-and-Players/Supported-Platforms.md)
     - Web Players
