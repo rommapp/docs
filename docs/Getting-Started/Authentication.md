@@ -10,7 +10,7 @@ You'll want to set the following environment variable before starting RomM:
 
 ### Sessions
 
-When the `/login` endpoint is called with valid credentials, a `session_id` is generated, stored as a cookie and sent to the browser. The same token is used to create a cache entry in Redis (or in-memory if Redis is disabled) which maps the token to the user. This way no sensitive information is stored on the client.
+When the `/login` endpoint is called with valid credentials, a `session_id` is generated, stored as a cookie and sent to the browser. The same token is used to create a cache entry in Valkey (or in-memory if Valkey is disabled) which maps the token to the user. This way no sensitive information is stored on the client.
 
 ### Roles
 

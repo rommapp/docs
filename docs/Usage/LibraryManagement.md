@@ -13,7 +13,7 @@ In all views, a grid icon is present in the upper right of the screen or contain
 
 ### Game and Platform cards
 
-Platform cards can be clicked to go directly to the platform. A game card can be interacted in a few ways: putting your mouse over it allows you to download the game, play the game if the system is supported, or open a context menu giving you the option to manually match game information using a metadata agent, edit existing data, refresh the metadata, and add or remove the game from favourites or collections.
+Platform cards can be clicked to go directly to the platform. A game card can be interacted with in several ways: putting your mouse over it allows you to download the game, play the game if the system is supported, or open a context menu giving you the option to manually match game information using a metadata agent, edit existing data, refresh the metadata, and add or remove the game from favourites or collections.
 
 ![game card](https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/usage/gameCard.png)
 ![context menu](https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/usage/ContextMenu.png)
@@ -24,7 +24,7 @@ Clicking a platform will take you to the platform view, while clicking a game wi
 
 Filters are present on nearly every screen in RomM, allowing you to quickly drill down to see only the information relevant to your search.
 
-If you perform a search first, the listed filters will be taken from the metadata of all present games. For example, if you searched for the word "Fox", and then clicked filters and selected a Language, the list of languages that can be selected from are taken from the displayed games.
+If you perform a search first, the listed filters will be taken from the metadata of all present games. For example, if you searched for the word "Fox", and then clicked filters and selected a Language, the list of languages available will be taken from the displayed games.
 
 #### Toggles
 
@@ -36,13 +36,13 @@ The filters that can be toggled include:
 - **Show Duplicates** - Show only games that have multiple copies.
 - **Show Playables** - Show only games that can be played in a browser.
 - **Show Missing** - Shows only games that exist in the database but are otherwise not present.
-- **Show Verified** - Shows only games that have matched to Hashelous.
-- **Show Retroachievements** - Shows only games that have support on the RetroAchievements website.
+- **Show Verified** - Shows only games that have matched to Hasheous.
+- **Show RetroAchievements** - Shows only games that have support on the RetroAchievements website.
 
-Next there is a platform drop down. This allows you to select a platform you want to restrict your view to showing.
+Next there is a platform dropdown. This allows you to select a platform you want to restrict your view to showing.
 
 After this you can filter by metadata: Game Genre, Franchise, Collections, Company, Age Rating, Region, and Language.
-One additional filter exists after these: Status. This allows you to use the "personal" data tab on any game to track your progress of the game (never playing, backlogged, complete, etc).
+One additional filter exists after these: Status. This allows you to use the "personal" data tab on any game to track your progress of the game (never played, backlogged, complete, etc).
 
 ## The Menu bar
 
@@ -64,16 +64,19 @@ The Collections button opens a drawer listing all of your manually created colle
 
 ### Scan
 
-This is where you'll scan for new platforms and games. Metadata sources are specified to determine where your metadata is coming from. Platforms allow you to restrict your scan operation to specific platforms.
+This is where you'll scan for new platforms and games. `Metadata sources` can be selected to determine which providers will be used to fetch metadata. Use the `Platforms` dropdown to restrict your scan to specific platforms.
 
-The Scan Operations drop down allows you to choose a specific operation to perform:
+The `Scan options` dropdown allows you to choose a specific type of scan to perform:
 
-- **New Platforms** - This will only look for platforms that aren't already in RomM.
-- **Quick Scan** - Searches all existing platforms for games that aren't already in RomM.
-- **Unidentified Games** - Selects all games in RomM that aren't yet matched and attempts to match them.
-- **Partial Metadata** - Selects games that have been matched, but whose metadata is incomplete, attempting to add more metadata.
-- **Recalculate Hashes** - Recalculates hashes for all files.
-- **Total Rescan** - Rescans the all platforms (unless specific platforms are specified) and scans every file presented in the platform folder.
+- **New Platforms**: This will only look for platforms that are not already in RomM.
+- **Quick Scan**: Scans for games that are not in the library yet (fastest).
+- **Unmatched Games**: Attempts to match games that are not matched with the selected metadata sources.
+    - For example, selecting `IGDB` and `ScreenScraper` will scan games that are **not matched** with IGDB **or** ScreenScraper.
+- **Update Metadata**: Updates the metadata for games that have been matched with selected metadata sources using the external ID (e.g. IGDB ID).
+    - For example, selecting `IGDB` and `ScreenScraper` will update the metadata for games that **are matched** with IGDB **or** ScreenScraper, and will use `igdb_id` and/or `ssfr_id` to refetch the metadata from the respective providers.
+- **Recalculate Hashes**: Recalculates hashes for all files in the selected platforms.
+- **Total Rescan**: Rescans and rematches all games in the selected platforms (slowest).
+    - This will wipe all existing metadata matches, including the external IDs, and attempt to match them again, like on a fresh scan. _Saves, states and notes will be preserved._
 
 ### Console
 
@@ -107,7 +110,7 @@ The platform view shows all of the games for a specific platform. There is a but
 
 The platform view drawer has a large icon representing the platform, along with its title.
 
-Below that is a button to upload roms and a button to initiate scans.
+Below that is a button to upload ROMs and a button to initiate scans.
 
 Below that is a line showing how many metadata providers are being used for that platform.
 
@@ -123,7 +126,7 @@ Finally, in the Danger Zone, is a Delete Platform button. This removes the platf
 
 Next to the platform drawer button is the firmware button. This allows you to review all of the firmware for that system, and upload firmware using the user interface.
 
-Uploading firmware will open a file browse dialog box. Simply select the bios file or files you wish to upload and click "Upload".
+Uploading firmware will open a file browse dialog box. Simply select the BIOS file or files you wish to upload and click "Upload".
 
 ## Collection View
 
@@ -142,6 +145,6 @@ The Details tab includes metadata for the game. This will show where the data co
 
 The Game Data tab includes save files and save states, the ability to upload and download them, as well as delete them. This data is personal to the logged in user.
 
-Finally the Personal tab has check boxes denoting if a game is backlogged, being played, or if it should be hidden. User data such as rating, difficulty, % completed, and the status of the game can also be set here. Retroachievements can be viewed from this tab for supported matched games.
+Finally the Personal tab has check boxes denoting if a game is backlogged, being played, or if it should be hidden. User data such as rating, difficulty, % completed, and the status of the game can also be set here. RetroAchievements can be viewed from this tab for supported matched games.
 
 If How Long To Beat is enabled as a metadata provider, there will also be a tab here for viewing that data as well.

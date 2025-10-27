@@ -1,20 +1,16 @@
 <!-- trunk-ignore-all(markdownlint/MD033) -->
 <!-- trunk-ignore-all(markdownlint/MD041) -->
 
-This quick start guide will help you get a RomM instance up and running. It is split into 3 parts:
-
-- Prepare
-- Build
-- Configure
+This quick start guide will help you get a RomM instance up and running. It is split into 3 parts: Prepare, Build and Configure.
 
 ## Prepare
 
-This guide will assume that you already have the following done, if not - stop here and come back when you do.
+There are a few things you need to have in place before you can start:
 
-- [Docker installed](https://docs.docker.com/get-docker/) and running on your system
+- [Docker](https://docs.docker.com/get-docker/) installed and running on your system
 - Your ROMs organized in the correct [folder structure](./Folder-Structure.md)
 - The recommended [metadata providers](./Metadata-Providers.md) set up
-- A copy of the [config.yml](https://github.com/rommapp/romm/blob/master/examples/config.example.yml) in the config folder
+- A copy of the [config.yml](./Configuration-File.md) in the config folder for your environment
 
 <!-- prettier-ignore -->
 !!! warning
@@ -45,15 +41,15 @@ Now that we have everything gathered, we can begin getting your instance set up!
 5. Add your metadata sources API keys:
     - IGDB: `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET`
     - ScreenScraper.fr: `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD`
-    - RetroAchievements: `RETROACHIEVEMENTS_USERNAME` and `RETROACHIEVEMENTS_API_KEY`
+    - RetroAchievements: `RETROACHIEVEMENTS_API_KEY`
     - MobyGames: `MOBYGAMES_API_KEY`
     - SteamGridDB: `STEAMGRIDDB_API_KEY`
-    - PlayMatch: `PLAYMATCH_API_ENABLED=true`
     - Hasheous: `HASHEOUS_API_ENABLED=true`
+    - PlayMatch: `PLAYMATCH_API_ENABLED=true`
     - LaunchBox: `LAUNCHBOX_API_ENABLED=true`
 6. Modify the following values in the **volumes** to configure the application
-    - `/path/to/library`: Path to the directory where your rom files will be stored (usually the parent folder of the `roms` folder)
-    - `/path/to/assets`: Path to the directory where you will store your saves, etc
+    - `/path/to/library`: Path to the directory where your ROM files will be stored (usually the parent folder of the `roms` folder)
+    - `/path/to/assets`: Path to the directory where you will store your save files and other assets
     - `/path/to/config`: Path to the directory where you will store the config.yml (store the `config.yml` file in this folder)
 7. Save the file as _docker-compose.yml_ instead of _docker-compose.example.yml_. It should look something like this:
 
@@ -96,12 +92,12 @@ This method is generally the fastest and recommended for first time setup. You n
 1. Log into RomM with your user credentials
 2. Click the `Scan` button in the sidebar
 3. Select the metadata providers you want to fetch metadata from
-4. The system will now begin scanning the rom files and applying metadata to them. You can click on any of the items that it has tagged to see the metadata it pulled without having to stop the scan
-5. After the scan completes, click the RomM logo to go back to the main screen. You should see the platforms and recent games it has scanned. You are now ready to rock and RomM!
+4. The system will now begin scanning the ROM files and applying metadata to them. You can click on any of the items that it has tagged to see the metadata it pulled without having to stop the scan
+5. After the scan completes, click the RomM logo to go back to the main screen. You should see the platforms and recent games it has scanned. You are now ready to rock with RomM!
 
 ### Uploading your ROMs via Web Interface
 
-This method is certainly viable, but not recommended if you have a lot of ROMs and/or multiple platforms. It is good for adding after the fact as your collection grows, but wouldn't be recommended for the first set up, nor for multi-file ROMs:
+This method is certainly viable, but not recommended if you have a lot of ROMs and/or multiple platforms. It is good for adding files after the fact as your collection grows, but wouldn't be recommended for the first setup, nor for multi-file ROMs:
 
 1. Log into RomM with your user credentials
 2. Click the `Upload` button in the sidebar

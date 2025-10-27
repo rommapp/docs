@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: An introduction to your beautiful, powerful, self-hosted rom manager
+description: An introduction to your beautiful, powerful, self-hosted rom manager and player
 hide:
     - toc
 ---
@@ -44,7 +44,7 @@ We strive to create a safe and respectful space where everyone can contribute an
 Join us on Discord, where you can ask questions, submit ideas, get help, showcase your collection, and discuss RomM with other users.
 
 <div style="text-align: center">
-    <a href="https://discord.gg/RGPJHNMMwJ" target="_blank">
-        <img src="https://invidget.switchblade.xyz/RGPJHNMMwJ" alt="Join our Discord" class="skip-lightbox">
+    <a href="https://discord.gg/romm" target="_blank">
+        <img src="https://invidget.switchblade.xyz/romm" alt="Join our Discord" class="skip-lightbox">
     </a>
 </div>

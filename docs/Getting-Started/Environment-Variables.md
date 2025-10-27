@@ -18,7 +18,10 @@ This is a complete list of available environment variables; required variables a
 | KIOSK_MODE                     | Read-only mode for public displays or kiosks                                                                                                        |          | `false`                   |
 | UPLOAD_TIMEOUT                 | Timeout for file uploads (in seconds)                                                                                                               |          | `600` (10 minutes)        |
 | SCAN_TIMEOUT                   | Timeout for the background scan/rescan tasks (in seconds)                                                                                           |          | `14400` (4 hours)         |
+| SCAN_WORKERS                   | Number of worker processes for scanning tasks                                                                                                       |          | `1`                       |
 | TASK_TIMEOUT                   | Timeout for the the rest of the background tasks (in seconds)                                                                                       |          | `300` (5 minutes)         |
+| TASK_RESULT_TTL                | How long to keep task results in Valkey (in seconds)                                                                                                |          | `86400` (24 hours)        |
+| SEVEN_ZIP_TIMEOUT              | Timeout for 7-Zip operations (in seconds)                                                                                                           |          | `60`                      |
 | DISABLE_EMULATOR_JS            | Disables playing in browser with [EmulatorJS](../Platforms-and-Players/EmulatorJS-Player.md)                                                        |          | `false`                   |
 | DISABLE_RUFFLE_RS              | Disables playing flash games with [RuffleRS](../Platforms-and-Players/RuffleRS-Player.md)                                                           |          | `false`                   |
 | YOUTUBE_BASE_URL               | Base URL for alternate frontends (Piped, Invidious, etc.)                                                                                           |          | `https://www.youtube.com` |
@@ -52,7 +55,7 @@ This is a complete list of available environment variables; required variables a
 | REDIS_USERNAME | Username for Redis/Valkey instance                                                                         |          |             |
 | REDIS_PASSWORD | Password for Redis/Valkey instance                                                                         |          |             |
 | REDIS_DB       | Database number for Redis/Valkey instance                                                                  |          | `0`         |
-| REDIS_SSL      | Enable SSL for Redis instance                                                                              |          | `false`     |
+| REDIS_SSL      | Enable SSL for Redis/Valkey instance                                                                       |          | `false`     |
 | SENTRY_DSN     | DSN for Sentry error tracking                                                                              |          |             |
 
 ## Metadata providers
@@ -70,8 +73,8 @@ This is a complete list of available environment variables; required variables a
 | LAUNCHBOX_API_ENABLED                | Enable LaunchBox API integration                   |          | `false` |
 | PLAYMATCH_API_ENABLED                | Enable PlayMatch API integration                   |          | `false` |
 | HASHEOUS_API_ENABLED                 | Enable Hasheous API integration                    |          | `false` |
-| FLASHPOINT_API_ENABLED                | Enable Flashpoint API integration                   |          | `false` |
-| HLTB_API_ENABLED                      | Enable HowLongToBeat API integration                |          | `false` |
+| FLASHPOINT_API_ENABLED               | Enable Flashpoint API integration                  |          | `false` |
+| HLTB_API_ENABLED                     | Enable HowLongToBeat API integration               |          | `false` |
 
 ## Authentication
 
