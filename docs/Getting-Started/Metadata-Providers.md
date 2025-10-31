@@ -7,6 +7,17 @@ RomM supports multiple metadata providers to enrich your game library with title
 
 Here are some combinations you can use based on your needs:
 
+#### ⭐ The French Connection: [ScreenScraper](#screenscraper) + [Retroachievements](#retroachievements)
+
+- Supports 125+ popular systems
+- ScreenScraper provides titles, descriptions, cover art, screenshots and manuals
+    - Also supports hash-based matching (as of `v4.4`)
+    - With the option for 3D boxes and CD/cartridge covers
+- Retroachievements provides achievement progress
+- **Use this if you want to avoid Twitch/Amazon products**
+
+![ScreenScraper + Retroachievements](../resources/metadata_providers/3dboxes.png)
+
 #### ⭐ The Chef's Choice: [Hasheous](#hasheous) + [IGDB](#igdb) + [SteamGridDB](#steamgriddb) + [Retroachievements](#retroachievements)
 
 - Supports 135+. popular systems
@@ -17,16 +28,6 @@ Here are some combinations you can use based on your needs:
 - **This is the recommended setup for most users**
 
 ![Hasheous + IGDB + SteamGridDB + Retroachievements](../resources/metadata_providers/2dcovers.png)
-
-#### ⭐ The French Connection: [ScreenScraper](#screenscraper) + [Retroachievements](#retroachievements)
-
-- Supports 125+ popular systems
-- ScreenScraper provides titles, descriptions, cover art, screenshots and manuals
-    - With the option for 3D boxes and CD/cartridge covers
-- Retroachievements provides achievement progress
-- **Use this if you want to avoid Twitch/Amazon products**
-
-![ScreenScraper + Retroachievements](../resources/metadata_providers/3dboxes.png)
 
 #### The Twitch Fanboy: [IGDB](#igdb) + [PlayMatch](#playmatch)
 
