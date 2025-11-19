@@ -44,6 +44,8 @@ The logo should always be used in its standard colors:
   </table>
 </div>
 
+![Branding guidelines](../resources/romm/brand_guidelines/poster.png)
+
 ## Do these things
 
 - Use our logo to link to any page or site owned or operated by the project.
