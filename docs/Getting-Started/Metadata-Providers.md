@@ -152,6 +152,26 @@ library/
         └─ etc...
 ```
 
+#### ES-DE settings
+
+Here are the settings you need to change so RomM can read your artwork and gamelist.xml files from the same folder that holds your ROMs.
+
+1. Open the ES-DE settings file:
+    - Linux / macOS: `~/ES-DE/settings/es_settings.xml`
+    - Windows: `C:\Program Files\ES-DE\settings\es_settings.xml`
+
+2. Make these two edits (add the lines if they don’t exist):
+```xml
+<string name="MediaDirectory" value="/path/to/ROMs/folder" />
+<bool name="LegacyGamelistFileLocation" value="true" />
+```
+    - `MediaDirectory="/path/to/ROMs/folder"` download artwork into the same directory that contains the ROMs (should match `ROMDirectory`)
+    - `LegacyGamelistFileLocation="true"` forces gamelist.xml to be written next to the ROMs instead of inside the ES-DE config folder
+
+3. If you already have scraped artwork, copy/move the systems from `~/ES-DE/downloaded_media/` and `~/ES-DE/gamelists/` into your ROMs folder
+
+After a restart, ES-DE will place new artwork and the updated gamelist.xml directly in `roms/<system>/`, which is the layout RomM expects.
+
 ## Metadata Tags in Filenames
 
 Scans will now parse custom metadata tags in the filename that match specific patterns, and use them to fetch game metadata for the specified ID. The supported tags are:
