@@ -43,7 +43,7 @@ This is a complete list of available environment variables; required variables a
 
 | Variable       | Description                                                                                                | Required | Default     |
 | -------------- | ---------------------------------------------------------------------------------------------------------- | :------: | ----------- |
-| DB_HOST        | Host name of database instance                                                                             |    ✓     | `127.0.0.1` |
+| DB_HOST        | Host name of database instance                                                                             |    ✓     |             |
 | DB_PORT        | Port number of database instance                                                                           |          | `3306`      |
 | DB_NAME        | Should match MYSQL_DATABASE in MariaDB                                                                     |          | `romm`      |
 | DB_USER        | Database username (in MariaDB, should match MARIADB_USER)                                                  |    ✓     |             |
