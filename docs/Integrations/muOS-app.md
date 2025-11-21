@@ -13,7 +13,7 @@ The <a href="https://github.com/rommapp/muos-app" target="_blank">muOS app</a> c
 
 ### muOS
 
-We leverage the muOS [Archive Manager](https://muos.dev/help/archive) to install/update the app.
+We leverage the muOS [Archive Manager](https://muos.dev/installation/archive) to install/update the app.
 
 1. Head to the [latest release](https://github.com/rommapp/muos-app/releases/latest) and download the `romm_muOS_install_x.x.x.zip` file.
 2. Move the **compressed** ZIP file to `/mnt/mmc/ARCHIVE` on your device.
