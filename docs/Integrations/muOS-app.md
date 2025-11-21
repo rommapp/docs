@@ -15,9 +15,9 @@ The <a href="https://github.com/rommapp/muos-app" target="_blank">muOS app</a> c
 
 We leverage the muOS [Archive Manager](https://muos.dev/installation/archive) to install/update the app.
 
-1. Head to the [latest release](https://github.com/rommapp/muos-app/releases/latest) and download the `romm_muOS_install_x.x.x.zip` file.
-2. Move the **compressed** ZIP file to `/mnt/mmc/ARCHIVE` on your device.
-3. Launch the manager from `Applications > Archive Manager` and select `romm_muOS_install_x.x.x.zip`.
+1. Head to the [latest release](https://github.com/rommapp/muos-app/releases/latest) and download the `RomM.muOS.x.x.x.muxapp` file.
+2. Move the muxapp file to `/mnt/mmc/ARCHIVE` on your device.
+3. Launch the manager from `Applications > Archive Manager` and select `RomM.muOS.x.x.x.muxapp`.
 4. Once installed, make a copy of `/mnt/mmc/MUOS/application/RomM/env.template`, rename it to `/mnt/mmc/MUOS/application/RomM/.env`, edit it (any method is fine, we recommend SSH) and set `HOST`, `USERNAME` and `PASSWORD`.
 5. Launch the app from `Applications > RomM` and start browsing your collection.
 
