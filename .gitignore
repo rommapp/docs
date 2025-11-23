@@ -2,3 +2,4 @@
 .github/
 .trunk/
 docs/
+.DS_Store
