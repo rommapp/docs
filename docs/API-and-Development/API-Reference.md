@@ -150,7 +150,7 @@ const rom = await api.get("/roms/123");
 You can download the complete OpenAPI specification from your RomM instance:
 
 ```text
-http://your-instance:3000/api/openapi.json
+http://your-instance:3000/openapi.json
 ```
 
 This specification can be imported into API testing tools like Postman, used to generate client libraries, or used for API mocking.
