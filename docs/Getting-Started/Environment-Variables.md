@@ -78,15 +78,16 @@ This is a complete list of available environment variables; required variables a
 
 ## Authentication
 
-| Variable                    | Description                                       | Required | Default |
-| --------------------------- | ------------------------------------------------- | :------: | ------- |
-| OIDC_ENABLED                | Enable OpenID Connect (OIDC) authentication       |          | `false` |
-| OIDC_PROVIDER               | Name of the OIDC provider in use                  |          |         |
-| OIDC_CLIENT_ID              | Client ID for OIDC authentication                 |          |         |
-| OIDC_CLIENT_SECRET          | Client secret for OIDC authentication             |          |         |
-| OIDC_REDIRECT_URI           | Absolute redirect URI for OIDC authentication     |          |         |
-| OIDC_SERVER_APPLICATION_URL | Absolute URL of the OIDC server application       |          |         |
-| OIDC_TLS_CACERTFILE         | Path to a file containing trusted CA certificates |          |         |
+| Variable                    | Description                                       | Required | Default              |
+| --------------------------- | ------------------------------------------------- | :------: | -------------------- |
+| OIDC_ENABLED                | Enable OpenID Connect (OIDC) authentication       |          | `false`              |
+| OIDC_PROVIDER               | Name of the OIDC provider in use                  |          |                      |
+| OIDC_CLIENT_ID              | Client ID for OIDC authentication                 |          |                      |
+| OIDC_CLIENT_SECRET          | Client secret for OIDC authentication             |          |                      |
+| OIDC_REDIRECT_URI           | Absolute redirect URI for OIDC authentication     |          |                      |
+| OIDC_SERVER_APPLICATION_URL | Absolute URL of the OIDC server application       |          |                      |
+| OIDC_TLS_CACERTFILE         | Path to a file containing trusted CA certificates |          |                      |
+| OIDC_USERNAME_ATTRIBUTE     | Attribute on OIDC user info used as the username  |          | `preferred_username` |
 
 ## Background tasks
 
