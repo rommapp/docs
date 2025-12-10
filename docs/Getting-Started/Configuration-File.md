@@ -13,8 +13,6 @@ Control which platforms, ROMs, or files to ignore during scanning.
 
 Exclude entire platforms (folders) from being scanned.
 
-**Example:**
-
 ```yaml
 exclude:
     platforms: ["ps", "ngc", "gba"]
@@ -31,8 +29,6 @@ Applies to ROMs that are single files (not in subfolders).
 - **extensions**: Exclude files by extension
 - **names**: Exclude files by name or pattern (supports Unix wildcards)
 
-**Example:**
-
 ```yaml
 exclude:
     roms:
@@ -48,8 +44,6 @@ Applies to ROMs stored as folders (multi-disc, with DLC, etc.).
 - **names**: Exclude entire folders by name
 - **parts.names**: Exclude files by name or pattern from within multi-file ROM folders
 - **parts.extensions**: Exclude files by extension from within multi-file ROM folders
-
-**Example:**
 
 ```yaml
 exclude:
@@ -71,8 +65,6 @@ Customize how RomM interprets your folder and platform names.
 
 Map your custom folder names to RomM's recognized platform names.
 
-**Example:**
-
 ```yaml
 system:
     platforms:
@@ -83,8 +75,6 @@ system:
 ### Versions
 
 Associate a platform with its main version. This also tells RomM to fetch metadata from the main version source.
-
-**Example:**
 
 ```yaml
 system:
@@ -98,8 +88,6 @@ system:
 
 Specify the folder name where your ROMs are located if it differs from the default.
 
-**Example:**
-
 If your ROMs folder is named `my_roms` instead of `roms`:
 
 ```yaml
@@ -107,6 +95,12 @@ filesystem:
     roms_folder: "my_roms"
 ```
 
+Disable file hash calculation for low power devices (e.g. Raspberry PI).
+
+```yaml
+filesystem:
+    skip_hash_calculation: true
+```
 ---
 
 ## Scan Section
@@ -133,8 +127,6 @@ Controls metadata provider priority order.
 - `flashpoint` - Flashpoint Project
 - `hltb` - HowLongToBeat (lowest priority)
 
-**Example:**
-
 ```yaml
 scan:
     priority:
@@ -149,8 +141,6 @@ scan:
 Controls artwork provider priority order for cover art and screenshots.
 
 **Default:** Same as `priority.metadata`
-
-**Example:**
 
 ```yaml
 scan:
@@ -167,8 +157,6 @@ Sets preferred region for cover art and game title (Screenscraper only).
 
 **Default:** `["us", "wor", "ss", "eu", "jp"]`
 
-**Example:**
-
 ```yaml
 scan:
     priority:
@@ -183,8 +171,6 @@ scan:
 Sets preferred language for cover art and game title (Screenscraper only).
 
 **Default:** `["en", "fr"]`
-
-**Example:**
 
 ```yaml
 scan:
@@ -213,8 +199,6 @@ Configures which media assets to download (Screenscraper and ES-DE gamelist.xml 
 - `manual` - Manual in PDF format (enabled by default)
 - `video` - Gameplay video (warning: large file size)
 
-**Example:**
-
 ```yaml
 scan:
     media:
@@ -234,8 +218,6 @@ Configure EmulatorJS per-core options and controls.
 
 Enable debug mode to log available options to the browser console.
 
-**Example:**
-
 ```yaml
 emulatorjs:
     debug: true
@@ -245,18 +227,31 @@ emulatorjs:
 
 Cache limit per ROM in bytes. Set to `null` for unlimited.
 
-**Example:**
-
 ```yaml
 emulatorjs:
     cache_limit: 52428800 # 50 MB
 ```
 
+### Netplay
+
+Enable [netplay](https://emulatorjs.org/docs4devs/netplay/#website-integration) and configure STUN/TURN servers. We recommend Google's public servers or [Metered's free tier](https://www.metered.ca/stun-turn).
+
+```yaml
+emulatorjs:
+  netplay:
+    enabled: true
+    ice_servers: # Google is your friend here!
+      - urls: 'stun:stun.l.google.com:19302'
+      - urls: 'stun:stun1.l.google.com:19302'
+      - urls: "stun:stun.relay.metered.ca:80"
+      - urls: "turn:global.relay.metered.ca:80"
+        username: "<username>"
+        credential: "<password>"
+```
+
 ### Settings
 
 Configure core-specific settings. Use `default` to apply settings to all cores.
-
-**Example:**
 
 ```yaml
 emulatorjs:
