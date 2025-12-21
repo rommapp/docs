@@ -20,7 +20,7 @@ Please note down the following in order to make this as smooth as possible, as w
 - The URL you use to access RomM
     - This can either be `http` or `https`
     - The system will prefer local access though to avoid reverse proxy issues
-- Feed URL: `/api/tinfoil/feed`
+- Feed URL: `/api/feeds/tinfoil`
 - The username and password you use to login to RomM
 
 ### Configure
@@ -33,7 +33,7 @@ Now it's time to configure your switch - Please follow the steps, this will assu
     - Protocol - `http` or `https` depending on your connection
     - Host - Host of your RomM instance
     - Port - Port of your RomM Instance
-    - Path - /api/tinfoil/feed
+    - Path - /api/feeds/tinfoil
     - Username - Username of your RomM instance
     - Password - Password of your RomM instance
     - Title - Free text title, make it whatever you want.
