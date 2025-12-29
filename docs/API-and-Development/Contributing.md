@@ -6,7 +6,7 @@ Thank you for considering contributing to RomM! This document outlines some guid
 
 ## Code of Conduct
 
-Please note that this project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md). By participating in this project, you are expected to uphold this code.
+Please note that this project adheres to the Contributor Covenant [code of conduct](https://github.com/rommapp/romm/blob/master/CODE_OF_CONDUCT.md). By participating in this project, you are expected to uphold this code.
 
 ## AI Assistance Notice
 
@@ -44,7 +44,7 @@ If you would like to translate the project into another language, create a new f
 1. Fork the repository.
 2. Clone your forked repository: `git clone https://github.com/your-username/romm.git`
 3. Checkout the `master` branch: `git checkout master`
-4. Follow the steps in the [developer setup guide](DEVELOPER_SETUP.md)
+4. Follow the steps in the [developer setup guide](https://github.com/rommapp/romm/blob/master/DEVELOPER_SETUP.md)
 5. Create a new branch for your feature/fix: `git checkout -b feature-or-fix-name`
 6. Make your changes and commit them with descriptive commit messages: `git commit -am 'Add feature XYZ'`
 7. Push your changes to your fork: `git push origin feature-or-fix-name`
@@ -74,7 +74,7 @@ If you encounter any bugs or have suggestions for improvements, please [create a
 
 ## Licensing
 
-By contributing to RomM, you agree that your contributions will be licensed under the project's [LICENSE](LICENSE).
+By contributing to RomM, you agree that your contributions will be licensed under the project's [LICENSE](https://github.com/rommapp/romm/blob/master/LICENSE).
 
 ---
 

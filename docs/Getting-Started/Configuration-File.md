@@ -101,6 +101,7 @@ Disable file hash calculation for low power devices (e.g. Raspberry PI).
 filesystem:
     skip_hash_calculation: true
 ```
+
 ---
 
 ## Scan Section
@@ -232,21 +233,42 @@ emulatorjs:
     cache_limit: 52428800 # 50 MB
 ```
 
+### Disable batch bootup
+
+Skips the step that runs a batch file that sets soundcard information, mounts file systems, and attempts to run an `autorun.bat` file (try this if DOS games fail to boot).
+
+```yaml
+emulatorjs:
+    disable_batch_bootup: true
+```
+
+### Disable auto-unload
+
+The emulator stops/shuts itself down when you navigate to a new page; this setting stops that behaviour (if that's something you want).
+
+```yaml
+emulatorjs:
+    disable_auto_unload: true
+```
+
 ### Netplay
 
 Enable [netplay](https://emulatorjs.org/docs4devs/netplay/#website-integration) and configure STUN/TURN servers. We recommend Google's public servers or [Metered's free tier](https://www.metered.ca/stun-turn).
 
 ```yaml
 emulatorjs:
-  netplay:
-    enabled: true
-    ice_servers: # Google is your friend here!
-      - urls: 'stun:stun.l.google.com:19302'
-      - urls: 'stun:stun1.l.google.com:19302'
-      - urls: "stun:stun.relay.metered.ca:80"
-      - urls: "turn:global.relay.metered.ca:80"
-        username: "<username>"
-        credential: "<password>"
+    netplay:
+        enabled: true
+        ice_servers:
+            - urls: "stun:stun.l.google.com:19302"
+            - urls: "stun:stun1.l.google.com:19302"
+            - urls: "stun:stun2.l.google.com:19302"
+            - urls: "turn:openrelay.metered.ca:80"
+              username: "openrelayproject"
+              credential: "openrelayproject"
+            - urls: "turn:openrelay.metered.ca:443"
+              username: "openrelayproject"
+              credential: "openrelayproject"
 ```
 
 ### Settings

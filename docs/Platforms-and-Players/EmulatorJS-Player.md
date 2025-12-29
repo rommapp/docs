@@ -21,49 +21,47 @@ Netplay lets you play with friends remotely, in realtime with the build-in web p
 
 ```yaml
 emulatorjs:
-  netplay:
-    enabled: true
+    netplay:
+        enabled: true
 ```
 
 If you require ICE servers for NAT traversal, we recommend a free-tier [Metered](https://www.metered.ca/stun-turn) account. Create new "TURN Credentials" and replace `<username>` and `<password>` with the entries under "Show ICE Server Array":
 
 ```yaml
 emulatorjs:
-  netplay:
-    ice_servers:
-      - urls: "stun:stun.relay.metered.ca:80"
-      - urls: "stun:stun.relay.metered.ca:80"
-      - urls: "turn:global.relay.metered.ca:80"
-        username: "<username>"
-        credential: "<password>"
-      - urls: "turn:global.relay.metered.ca:80?transport=tcp"
-        username: "<username>"
-        credential: "<password>"
-      - urls: "turn:global.relay.metered.ca:443"
-        username: "<username>"
-        credential: "<password>"
-      - urls: "turns:global.relay.metered.ca:443?transport=tcp"
-        username: "<username>"
-        credential: "<password>"
+    netplay:
+        ice_servers:
+            - urls: "stun:stun.relay.metered.ca:80"
+            - urls: "stun:stun.relay.metered.ca:80"
+            - urls: "turn:global.relay.metered.ca:80"
+              username: "<username>"
+              credential: "<password>"
+            - urls: "turn:global.relay.metered.ca:80?transport=tcp"
+              username: "<username>"
+              credential: "<password>"
+            - urls: "turn:global.relay.metered.ca:443"
+              username: "<username>"
+              credential: "<password>"
+            - urls: "turns:global.relay.metered.ca:443?transport=tcp"
+              username: "<username>"
+              credential: "<password>"
 ```
 
 Alternatively, use the free STUN servers from Google and TURN servers via the OpenRelayProject:
 
 ```yaml
 emulatorjs:
-  netplay:
-    enabled: true
-    ice_servers:
-        - urls: "stun:stun.l.google.com:19302"
-        - urls: "stun:stun1.l.google.com:19302"
-        - urls: "stun:stun2.l.google.com:19302"
-        - urls: "stun:stun.nextcloud.com:34782"
-        - urls: "turn:openrelay.metered.ca:80"
-          username: "openrelayproject"
-          credential: "openrelayproject"
-        - urls: "turn:openrelay.metered.ca:443"
-          username: "openrelayproject"
-          credential: "openrelayproject"
+    netplay:
+        ice_servers:
+            - urls: "stun:stun.l.google.com:19302"
+            - urls: "stun:stun1.l.google.com:19302"
+            - urls: "stun:stun2.l.google.com:19302"
+            - urls: "turn:openrelay.metered.ca:80"
+              username: "openrelayproject"
+              credential: "openrelayproject"
+            - urls: "turn:openrelay.metered.ca:443"
+              username: "openrelayproject"
+              credential: "openrelayproject"
 ```
 
 To host a game, start it, then hit the 🌐 icon in botton bar. Set your name, create a room (password optional), and other players should be able to see and join your room. **All players need access to your RomM server to join a room and play together.**
