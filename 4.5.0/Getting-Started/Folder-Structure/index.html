@@ -482,6 +482,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Tag Support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supported-languages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported Languages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-regions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported Regions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2038,6 +2062,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Tag Support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supported-languages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported Languages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-regions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported Regions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2072,18 +2120,18 @@
 <ul>
 <li>
 <p><strong>Structure A (Recommended)</strong>: Both ROMs and BIOS files have their own dedicated root folders, with platform folders inside each.</p>
-<ul>
-<li><code>/roms/{platform}/</code> - Contains all game files for that platform</li>
-<li><code>/bios/{platform}/</code> - Contains all BIOS files for that platform</li>
-</ul>
+</li>
+<li>
+<p><code>/roms/{platform}/</code> - Contains all game files for that platform</p>
+</li>
+<li>
+<p><code>/bios/{platform}/</code> - Contains all BIOS files for that platform</p>
 </li>
 <li>
 <p><strong>Structure B (Fallback)</strong>: Each platform has its own root folder containing both a ROMs folder and a BIOS folder.</p>
-<ul>
+</li>
 <li><code>/{platform}/roms/</code> - Contains all game files for that platform</li>
 <li><code>/{platform}/bios/</code> - Contains all BIOS files for that platform</li>
-</ul>
-</li>
 </ul>
 <!-- prettier-ignore -->
 <div class="admonition note">
@@ -2230,12 +2278,225 @@
 <p>What is shown in the <code>Library Management</code> page is the content of the <code>config.yml</code>. For more details read the <a href="../Configuration-File/">configuration file</a> section.</p>
 <h2 id="naming-convention">Naming Convention</h2>
 <h3 id="tag-support">Tag Support</h3>
-<p>Games can be tagged with region, revision, or other tags by using parentheses in the file name. Additionally, you can set the region and language by adding a prefix: <code>(USA)</code>, <code>[reg-J]</code>, <code>(French)</code>, <code>[De]</code>.</p>
+<p>Games can be tagged with region, revision, or other tags by using parentheses in the file name. RomM will parse both tags with <code>[]</code> and <code>()</code>.</p>
 <ul>
+<li>Regions and languages will be identified with both supported shortcodes and names. Additionally, you can set a custom region/language adding a <code>reg</code> prefix (e.g. <code>reg MyOwnLang</code>)</li>
 <li>Revision tags must be prefixed with <code>rev</code> or <code>rev-</code> (e.g. <code>rev v1</code> or <code>rev-1</code>)</li>
 <li>Other tags will also be imported, for example: <code>tetris [1.0001](HACK)[!].gba</code></li>
 </ul>
-<p>Tags can be used to search for games in the search bar. For example, searching for <code>(USA)</code> will return all games with the USA tag.</p></div>
+<p>Tags can be used to search for games in the search bar. For example, searching for <code>(USA)</code> will return all games with the USA tag.</p>
+<h4 id="supported-languages">Supported Languages</h4>
+<p>The following language tags are recognized by RomM:</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Language</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ar</td>
+<td>Arabic</td>
+</tr>
+<tr>
+<td>Da</td>
+<td>Danish</td>
+</tr>
+<tr>
+<td>De</td>
+<td>German</td>
+</tr>
+<tr>
+<td>El</td>
+<td>Greek</td>
+</tr>
+<tr>
+<td>En</td>
+<td>English</td>
+</tr>
+<tr>
+<td>Es</td>
+<td>Spanish</td>
+</tr>
+<tr>
+<td>Fi</td>
+<td>Finnish</td>
+</tr>
+<tr>
+<td>Fr</td>
+<td>French</td>
+</tr>
+<tr>
+<td>It</td>
+<td>Italian</td>
+</tr>
+<tr>
+<td>Ja</td>
+<td>Japanese</td>
+</tr>
+<tr>
+<td>Ko</td>
+<td>Korean</td>
+</tr>
+<tr>
+<td>Nl</td>
+<td>Dutch</td>
+</tr>
+<tr>
+<td>No</td>
+<td>Norwegian</td>
+</tr>
+<tr>
+<td>Pl</td>
+<td>Polish</td>
+</tr>
+<tr>
+<td>Pt</td>
+<td>Portuguese</td>
+</tr>
+<tr>
+<td>Ru</td>
+<td>Russian</td>
+</tr>
+<tr>
+<td>Sr</td>
+<td>Serbian</td>
+</tr>
+<tr>
+<td>Sv</td>
+<td>Swedish</td>
+</tr>
+<tr>
+<td>Zh</td>
+<td>Chinese</td>
+</tr>
+<tr>
+<td>nolang</td>
+<td>No Language</td>
+</tr>
+</tbody>
+</table>
+<h4 id="supported-regions">Supported Regions</h4>
+<p>The following region tags are recognized by RomM:</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Region</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Australia</td>
+</tr>
+<tr>
+<td>AS</td>
+<td>Asia</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Brazil</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Canada</td>
+</tr>
+<tr>
+<td>CH</td>
+<td>China</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Europe</td>
+</tr>
+<tr>
+<td>F</td>
+<td>France</td>
+</tr>
+<tr>
+<td>FN</td>
+<td>Finland</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Germany</td>
+</tr>
+<tr>
+<td>GR</td>
+<td>Greece</td>
+</tr>
+<tr>
+<td>H</td>
+<td>Holland</td>
+</tr>
+<tr>
+<td>HK</td>
+<td>Hong Kong</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Italy</td>
+</tr>
+<tr>
+<td>J</td>
+<td>Japan</td>
+</tr>
+<tr>
+<td>K</td>
+<td>Korea</td>
+</tr>
+<tr>
+<td>NL</td>
+<td>Netherlands</td>
+</tr>
+<tr>
+<td>NO</td>
+<td>Norway</td>
+</tr>
+<tr>
+<td>PD</td>
+<td>Public Domain</td>
+</tr>
+<tr>
+<td>R</td>
+<td>Russia</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Spain</td>
+</tr>
+<tr>
+<td>SW</td>
+<td>Sweden</td>
+</tr>
+<tr>
+<td>T</td>
+<td>Taiwan</td>
+</tr>
+<tr>
+<td>U</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>UK</td>
+<td>England</td>
+</tr>
+<tr>
+<td>UNK</td>
+<td>Unknown</td>
+</tr>
+<tr>
+<td>UNL</td>
+<td>Unlicensed</td>
+</tr>
+<tr>
+<td>W</td>
+<td>World</td>
+</tr>
+</tbody>
+</table></div>
 
 
 
@@ -2258,7 +2519,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-10-27T13:49:34+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-10-27</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-12-30T16:37:28+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-12-30</span>
   </span>
 
     
