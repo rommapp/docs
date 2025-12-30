@@ -19,7 +19,7 @@ Welcome to the **RomM Project**, the premier self-hosted, open source ROM manage
 
 RomM (ROM Manager) allows you to scan, enrich, and browse your game collection with a clean and responsive interface. With support for multiple platforms, various naming schemes, and custom tags, RomM is a must-have for anyone who plays on emulators.
 
-To get started with RomM, head over to the [Quick Start guide](Getting-Started/Quick-Start-Guide.md) in the main repository.
+To get started with RomM, head over to the [Quick Start guide](Getting-Started/Quick-Start-Guide.md).
 
 ### Philosophy
 
