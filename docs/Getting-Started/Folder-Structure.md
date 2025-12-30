@@ -9,12 +9,12 @@ RomM organizes content in two main categories: ROMs and BIOS files.
 
 - **Structure A (Recommended)**: Both ROMs and BIOS files have their own dedicated root folders, with platform folders inside each.
 
-    - `/roms/{platform}/` - Contains all game files for that platform
-    - `/bios/{platform}/` - Contains all BIOS files for that platform
+  - `/roms/{platform}/` - Contains all game files for that platform
+  - `/bios/{platform}/` - Contains all BIOS files for that platform
 
 - **Structure B (Fallback)**: Each platform has its own root folder containing both a ROMs folder and a BIOS folder.
-    - `/{platform}/roms/` - Contains all game files for that platform
-    - `/{platform}/bios/` - Contains all BIOS files for that platform
+  - `/{platform}/roms/` - Contains all game files for that platform
+  - `/{platform}/bios/` - Contains all BIOS files for that platform
 
 <!-- prettier-ignore -->
 !!! note
@@ -163,9 +163,71 @@ What is shown in the `Library Management` page is the content of the `config.yml
 
 ### Tag Support
 
-Games can be tagged with region, revision, or other tags by using parentheses in the file name. Additionally, you can set the region and language by adding a prefix: `(USA)`, `[reg-J]`, `(French)`, `[De]`.
+Games can be tagged with region, revision, or other tags by using parentheses in the file name. RomM will parse both tags with `[]` and `()`.
 
+- Regions and languages will be identified with both supported shortcodes and names. Additionally, you can set a custom region/language adding a `reg` prefix (e.g. `reg MyOwnLang`)
 - Revision tags must be prefixed with `rev` or `rev-` (e.g. `rev v1` or `rev-1`)
 - Other tags will also be imported, for example: `tetris [1.0001](HACK)[!].gba`
 
 Tags can be used to search for games in the search bar. For example, searching for `(USA)` will return all games with the USA tag.
+
+#### Supported Languages
+
+The following language tags are recognized by RomM:
+
+| Code   | Language    |
+| ------ | ----------- |
+| Ar     | Arabic      |
+| Da     | Danish      |
+| De     | German      |
+| El     | Greek       |
+| En     | English     |
+| Es     | Spanish     |
+| Fi     | Finnish     |
+| Fr     | French      |
+| It     | Italian     |
+| Ja     | Japanese    |
+| Ko     | Korean      |
+| Nl     | Dutch       |
+| No     | Norwegian   |
+| Pl     | Polish      |
+| Pt     | Portuguese  |
+| Ru     | Russian     |
+| Sr     | Serbian     |
+| Sv     | Swedish     |
+| Zh     | Chinese     |
+| nolang | No Language |
+
+#### Supported Regions
+
+The following region tags are recognized by RomM:
+
+| Code | Region        |
+| ---- | ------------- |
+| A    | Australia     |
+| AS   | Asia          |
+| B    | Brazil        |
+| C    | Canada        |
+| CH   | China         |
+| E    | Europe        |
+| F    | France        |
+| FN   | Finland       |
+| G    | Germany       |
+| GR   | Greece        |
+| H    | Holland       |
+| HK   | Hong Kong     |
+| I    | Italy         |
+| J    | Japan         |
+| K    | Korea         |
+| NL   | Netherlands   |
+| NO   | Norway        |
+| PD   | Public Domain |
+| R    | Russia        |
+| S    | Spain         |
+| SW   | Sweden        |
+| T    | Taiwan        |
+| U    | USA           |
+| UK   | England       |
+| UNK  | Unknown       |
+| UNL  | Unlicensed    |
+| W    | World         |
