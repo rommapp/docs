@@ -165,7 +165,7 @@ What is shown in the `Library Management` page is the content of the `config.yml
 
 Games can be tagged with region, revision, or other tags by using parentheses in the file name. RomM will parse both tags with `[]` and `()`.
 
-- Regions and languages will be identified with both supported shortcodes and names. Additionally, you can set a custom region/language adding a `reg` prefix (e.g. `reg MyOwnLang`)
+- Regions and languages will be identified with both supported shortcodes and names. Additionally, you can set a custom region/language adding a `reg` or `reg-` prefix (e.g. `reg MyOwnLang` or `reg-MyOwnLang`)
 - Revision tags must be prefixed with `rev` or `rev-` (e.g. `rev v1` or `rev-1`)
 - Other tags will also be imported, for example: `tetris [1.0001](HACK)[!].gba`
 
