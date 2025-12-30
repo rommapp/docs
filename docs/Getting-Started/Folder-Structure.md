@@ -171,6 +171,10 @@ Games can be tagged with region, revision, or other tags by using parentheses in
 
 Tags can be used to search for games in the search bar. For example, searching for `(USA)` will return all games with the USA tag.
 
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+
+<div>
+
 #### Supported Languages
 
 The following language tags are recognized by RomM:
@@ -197,6 +201,10 @@ The following language tags are recognized by RomM:
 | Sv     | Swedish     |
 | Zh     | Chinese     |
 | nolang | No Language |
+
+</div>
+
+<div>
 
 #### Supported Regions
 
@@ -231,3 +239,7 @@ The following region tags are recognized by RomM:
 | UNK  | Unknown       |
 | UNL  | Unlicensed    |
 | W    | World         |
+
+</div>
+
+</div>
