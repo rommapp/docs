@@ -171,13 +171,11 @@ Games can be tagged with region, revision, or other tags by using parentheses in
 
 Tags can be used to search for games in the search bar. For example, searching for `(USA)` will return all games with the USA tag.
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+<div class="grid cards" markdown>
 
-<div>
+<div markdown>
 
 #### Supported Languages
-
-The following language tags are recognized by RomM:
 
 | Code   | Language    |
 | ------ | ----------- |
@@ -204,11 +202,9 @@ The following language tags are recognized by RomM:
 
 </div>
 
-<div>
+<div markdown>
 
 #### Supported Regions
-
-The following region tags are recognized by RomM:
 
 | Code | Region        |
 | ---- | ------------- |
