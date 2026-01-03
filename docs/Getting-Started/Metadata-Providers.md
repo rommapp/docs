@@ -89,7 +89,7 @@ The [LaunchBox](https://gamesdb.launchbox-app.com/) Games Database is a communit
 
 To enable LaunchBox, set `LAUNCHBOX_API_ENABLED=true` and `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` in your environment variables. You can customize scheduled updates of the database by setting the frequency on the cron job with `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON` (defaults to 5:00 AM every day).
 
-You must run a LaunchBox metadata update (Either manually, or scheduled via cron) to generate a local .xml file with Launchbox metadata before using it as a metadata provider, because the software will parse the local .xml file when trying to match a rom and fetch metadata from this source.
+You must run a LaunchBox metadata update (either manually, or scheduled via cron) to generate a local `.xml` file with Launchbox metadata before using it as a metadata provider. The server will parse the local `.xml` file when trying to match a ROM and fetch metadata from this source.
 
 ### Hasheous
 
@@ -159,14 +159,17 @@ library/
 Here are the settings you need to change so RomM can read your artwork and gamelist.xml files from the same folder that holds your ROMs.
 
 1. Open the ES-DE settings file:
+
     - Linux / macOS: `~/ES-DE/settings/es_settings.xml`
     - Windows: `C:\Program Files\ES-DE\settings\es_settings.xml`
 
 2. Make these two edits (add the lines if they don’t exist):
+
 ```xml
 <string name="MediaDirectory" value="/path/to/ROMs/folder" />
 <bool name="LegacyGamelistFileLocation" value="true" />
 ```
+
     - `MediaDirectory="/path/to/ROMs/folder"` download artwork into the same directory that contains the ROMs (should match `ROMDirectory`)
     - `LegacyGamelistFileLocation="true"` forces gamelist.xml to be written next to the ROMs instead of inside the ES-DE config folder
 
