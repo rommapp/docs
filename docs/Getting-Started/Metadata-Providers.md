@@ -87,7 +87,9 @@ To access the MobyGames API, [create a MobyGames account](https://www.mobygames.
 
 The [LaunchBox](https://gamesdb.launchbox-app.com/) Games Database is a community-driven database that provides metadata, cover art, and screenshots. Like the Launchbox desktop application, RomM downloads the entire database locally and matches games based on their exact filenames.
 
-To enable LaunchBox, set `LAUNCHBOX_API_ENABLED=true` in your environment variables. You can enable regular updates of the database by setting `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA`, and set the frequency on the cron job with `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON` (defaults to 5:00 AM every day).
+To enable LaunchBox, set `LAUNCHBOX_API_ENABLED=true` and `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` in your environment variables. You can customize scheduled updates of the database by setting the frequency on the cron job with `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON` (defaults to 5:00 AM every day).
+
+You must run a LaunchBox metadata update (Either manually, or scheduled via cron) to generate a local .xml file with Launchbox metadata before using it as a metadata provider, because the software will parse the local .xml file when trying to match a rom and fetch metadata from this source.
 
 ### Hasheous
 
