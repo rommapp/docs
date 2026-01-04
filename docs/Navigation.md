@@ -50,6 +50,7 @@ search:
     - [Playnite plugin](Integrations/Playnite-plugin.md)
     - [muOS app](Integrations/muOS-app.md)
     - [Tinfoil Integration](Integrations/Tinfoil-integration.md)
+    - [pkgj Integration](Integrations/pkgj-integration.md)
 - Troubleshooting
     - [Scanning Issues](Troubleshooting/Scanning-Issues.md)
     - [Authentication Issues](Troubleshooting/Authentication-Issues.md)
