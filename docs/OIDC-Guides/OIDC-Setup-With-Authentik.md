@@ -26,7 +26,31 @@ Before setting up a provider and app, ensure that Authentik is installed and run
 
 ![Authentik user dashboard](../resources/authentik/1-user-dashboard.png)
 
-### Step 2: Create a Provider
+### Step 2: Create a Property Mapping
+
+In version 2025.10 Authentik changed their default value for the `email_verified` field from true to false.  
+Since RomM requires a verified email address, without this property, the authentication would fail.
+
+1. **Navigate to Property Mappings**
+    - Go to the "Property Mappings" section in the Authentik admin interface `Customization > Property Mappings`
+2. **Create a new Property Mapping**
+    - Select "Scope Mapping"
+    - Enter a Name like "RomM Email Verification"
+    - Set `email` as scope name.
+    - Set the following as the expression:
+    ```py
+    return {
+        "email": user.email,
+        "email_verified": True,
+    }
+    ```
+    - It should look like this  
+      ![Propperty Mapping](../resources/authentik/propperty-mapping.png)
+3. **Click Create**.
+
+[Authentik docs reference](https://version-2025-10.goauthentik.io/add-secure-apps/providers/property-mappings/#scope-mappings-with-oauth2)
+
+### Step 3: Create a Provider
 
 A provider in Authentik acts as the bridge between RomM and Authentik.
 
