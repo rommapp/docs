@@ -17,7 +17,7 @@ Our integration with EmulatorJS automates the process of loading and save files 
 
 ### Netplay
 
-Netplay lets you play with friends remotely, in realtime with the build-in web player. As it emulates playing on the same console with two controllers while streaming the video to players 2+, it's best for 2-player, co-op, turn based and party games. 
+Netplay lets you play with friends remotely, in realtime with the build-in web player. As it emulates playing on the same console with two controllers while streaming the video to players 2+, it's best for 2-player, co-op, turn based and party games.
 
 Start by enabling netplay in your `config.yml`:
 
