@@ -46,7 +46,7 @@ Since RomM requires a verified email address, without this property, the authent
     ```
     - It should look like this  
       ![Propperty Mapping](../resources/authentik/propperty-mapping.png)
-4. **Click Create**.
+3. **Click Create**.
 
 [Authentik docs reference](https://version-2025-10.goauthentik.io/add-secure-apps/providers/property-mappings/#scope-mappings-with-oauth2)
 
