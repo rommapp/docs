@@ -27,7 +27,9 @@ Fine-tune which ROMs or files are excluded.
 Applies to ROMs that are single files (not in subfolders).
 
 - **extensions**: Exclude files by extension
+  - Defaults to `["db", "ini", "tmp", "bak", "lock", "log", "cache", "crdownload"]`
 - **names**: Exclude files by name or pattern (supports Unix wildcards)
+  - Defaults to `[".DS_Store", ".localized", ".Trashes", ".stfolder", "@SynoResource", "gamelist.xml"]`
 
 ```yaml
 exclude:
@@ -42,8 +44,11 @@ exclude:
 Applies to ROMs stored as folders (multi-disc, with DLC, etc.).
 
 - **names**: Exclude entire folders by name
+  - Defaults to `["@eaDir", "__MACOSX", "$RECYCLE.BIN", ".Trash-*", ".stfolder", ".Spotlight-V100", ".fseventsd", ".DocumentRevisions-V100", "System Volume Information"]`
 - **parts.names**: Exclude files by name or pattern from within multi-file ROM folders
+  - Defaults to `[".DS_Store", ".localized", ".Trashes", ".stfolder", "@SynoResource", "gamelist.xml"]`
 - **parts.extensions**: Exclude files by extension from within multi-file ROM folders
+  - Defaults to `["db", "ini", "tmp", "bak", "lock", "log", "cache", "crdownload"]`
 
 ```yaml
 exclude:
@@ -207,6 +212,15 @@ scan:
         - screenshot
         - manual
         - bezel
+```
+
+### Export gamelist.xml
+
+Automatically generate an ES-DE compatible gamelist.xml file placed in the platform folder for selected/discovered platforms.
+
+```yaml
+scan:
+    export_gamelist: true
 ```
 
 ---

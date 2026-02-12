@@ -88,6 +88,11 @@ This is a complete list of available environment variables; required variables a
 | OIDC_SERVER_APPLICATION_URL | Absolute URL of the OIDC server application       |          |                      |
 | OIDC_TLS_CACERTFILE         | Path to a file containing trusted CA certificates |          |                      |
 | OIDC_USERNAME_ATTRIBUTE     | Attribute on OIDC user info used as the username  |          | `preferred_username` |
+| OIDC_AUTOLOGIN              | Skip click OIDC button on login page              |          | `false`              |
+| OIDC_CLAIM_ROLES            | OIDC claim containing user roles                  |          |                      |
+| OIDC_ROLE_VIEWER            | Role value mapping to viewer permissions          |          |                      |
+| OIDC_ROLE_EDITOR            | Role value mapping to editor permissions          |          |                      |
+| OIDC_ROLE_ADMIN             | Role value mapping to admin permissions           |          |                      |
 
 ## Background tasks
 
