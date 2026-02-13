@@ -37,6 +37,10 @@ A simple OIDC provider that exclusively supports passkey authentication - no pas
 
 An enterprise-grade, open-source identity and access management platform supporting OAuth2, OIDC, SAML, and passwordless authentication.
 
+### [Keycloak](../OIDC-Guides/OIDC-Setup-With-Keycloak.md)
+
+A popular open-source OIDC provider with extensive features for identity and access management.
+
 ## General Setup Requirements
 
 Regardless of which provider you choose, you'll need to configure these environment variables in RomM:
