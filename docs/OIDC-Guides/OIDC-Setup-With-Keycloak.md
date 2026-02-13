@@ -19,13 +19,13 @@ Log into the Admin Console and either create a new realm for RomM or reuse an ex
 1. In the Admin Console select your realm → **Clients** → **Create client**.
 2. Leave `Client type` as `OpenID Connect` and enter a `Client ID` (for example `romm`). Click **Next**.
 3. On the next page:
-   - Enable **Client authentication**.
-   - Leave only the **Standard flow** option enabled.
-   - Click **Next**.
+    - Enable **Client authentication**.
+    - Leave only the **Standard flow** option enabled.
+    - Click **Next**.
 4. Set the following URLs:
-   - **Root URL**: `http://romm.host.local` (replace with your RomM URL)
-   - **Valid Redirect URIs**: `http://romm.host.local/api/oauth/openid` (replace with your RomM URL)
-   - **Web origins**: `http://romm.host.local` (replace with your RomM URL)
+    - **Root URL**: `http://romm.host.local` (replace with your RomM URL)
+    - **Valid Redirect URIs**: `http://romm.host.local/api/oauth/openid` (replace with your RomM URL)
+    - **Web origins**: `http://romm.host.local` (replace with your RomM URL)
 5. Go to the **Credentials** tab and copy the **Client Secret** — you'll need this for the RomM configuration.
 
 ### Step 3: Configure RomM Environment Variables
