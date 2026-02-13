@@ -2,9 +2,13 @@
 
 OpenID Connect (OIDC) allows you to authenticate to RomM using external identity providers, enabling Single Sign-On (SSO) and centralized user management. This setup eliminates the need to manage separate credentials for RomM.
 
-## What is OIDC?
+## What is OAuth2?
 
-OIDC is an identity layer built on top of OAuth2. While OAuth2 primarily handles authorization, OIDC adds authentication, enabling applications to verify a user's identity and obtain profile information. This makes OIDC suitable for SSO solutions, where user identity is central to access management.
+OAuth2 (Open Authorization 2.0) is an industry-standard protocol for authorization. It allows applications (clients) to gain limited access to user accounts on an HTTP service without sharing the user’s credentials. Instead, it uses access tokens to facilitate secure interactions. OAuth2 is commonly used in scenarios where users need to authenticate via a third-party service.
+
+## What is OpenID Connect (OIDC)?
+
+OIDC (OpenID Connect) is an identity layer built on top of OAuth2. While OAuth2 primarily handles authorization, OIDC adds authentication, enabling applications to verify a user’s identity and obtain profile information. This makes OIDC suitable for SSO solutions, where user identity is central to access management.
 
 ## How It Works
 
@@ -32,6 +36,10 @@ A simple OIDC provider that exclusively supports passkey authentication - no pas
 ### [Zitadel](../OIDC-Guides/OIDC-Setup-With-Zitadel.md)
 
 An enterprise-grade, open-source identity and access management platform supporting OAuth2, OIDC, SAML, and passwordless authentication.
+
+### [Keycloak](../OIDC-Guides/OIDC-Setup-With-Keycloak.md)
+
+A popular open-source OIDC provider with extensive features for identity and access management.
 
 ## General Setup Requirements
 
