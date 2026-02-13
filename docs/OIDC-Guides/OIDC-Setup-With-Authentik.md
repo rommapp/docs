@@ -6,14 +6,6 @@
 
 Authentik is an open-source identity provider (IdP) designed to manage authentication, authorization, and user management across applications. It supports modern authentication protocols and provides tools to simplify integration, including single sign-on (SSO), multi-factor authentication (MFA), and auditing capabilities. Authentik can be deployed alongside your other services to centralize identity management.
 
-### What is OAuth2?
-
-OAuth2 (Open Authorization 2.0) is an industry-standard protocol for authorization. It allows applications (clients) to gain limited access to user accounts on an HTTP service without sharing the user’s credentials. Instead, it uses access tokens to facilitate secure interactions. OAuth2 is commonly used in scenarios where users need to authenticate via a third-party service.
-
-### What is OpenID Connect (OIDC)?
-
-OIDC (OpenID Connect) is an identity layer built on top of OAuth2. While OAuth2 primarily handles authorization, OIDC adds authentication, enabling applications to verify a user’s identity and obtain profile information. This makes OIDC suitable for SSO solutions, where user identity is central to access management.
-
 ## Setting up a Provider and Application in Authentik
 
 ### Step 1: Install and Configure Authentik
@@ -28,7 +20,7 @@ Before setting up a provider and app, ensure that Authentik is installed and run
 
 ### Step 2: Create a Property Mapping
 
-In version 2025.10 Authentik changed their default value for the `email_verified` field from true to false.  
+In version 2025.10 Authentik changed their default value for the `email_verified` field from true to false.
 Since RomM requires a verified email address, without this property, the authentication would fail.
 
 1. **Navigate to Property Mappings**
@@ -44,7 +36,7 @@ Since RomM requires a verified email address, without this property, the authent
         "email_verified": True,
     }
     ```
-    - It should look like this  
+    - It should look like this
       ![Propperty Mapping](../resources/authentik/propperty-mapping.png)
 3. **Click Create**.
 
