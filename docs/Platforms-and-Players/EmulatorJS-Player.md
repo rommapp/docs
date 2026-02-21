@@ -15,6 +15,17 @@
 
 Our integration with EmulatorJS automates the process of loading and save files and save states. Before starting the game, select a save and/or state file to load (if one is available). Anytime you manually save the game (or create a save state) by clicking the save or "save and quit" buttons, the save and state files stored with RomM will be updated, so there's no need to manually download or upload them.
 
+### Keyboard Lock
+
+Some emulation platforms use the Escape key, which is reserved (by default) in browsers for exiting fullscreen mode.  Some browsers support an additional keyboard lock, where the Escape key can instead be forwarded to the application, and exiting fullscreen mode requires holding the Escape key for a few seconds.  To enable this keyboard lock, set the `emulatorjs.keyboard_lock` option in your `config.yml`:
+
+```yaml
+emulatorjs:
+  keyboard_lock: true
+```
+
+This is not supported by all browsers but is known to work with Chrome.
+
 ### Netplay
 
 Netplay lets you play with friends remotely, in realtime with the build-in web player. As it emulates playing on the same console with two controllers while streaming the video to players 2+, it's best for 2-player, co-op, turn based and party games.
