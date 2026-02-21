@@ -30,6 +30,8 @@ The official method to run the games from the EmulatorJS dev is the following (O
 - `dir` - to find the .EXE file
 - `filename.exe` - This will run the .exe and run the game, you might need some additional configuration but that is purely on the dosbox side and you might need to run the setup.exe file or a file name similiar.
 
+If you are having issues with keyboard lock, try setting the `config.yml` option `emulatorjs.keyboard_lock` to `true`.
+
 #### Advanced Running Games
 
 <!-- prettier-ignore -->
