@@ -98,11 +98,13 @@ The Igir script will move games that have multiple discs to separate folders. Th
 To do this enter your platform directory, such as `ps` or `psx` and run the following:
 
 ```bash
-ls -d *Disc* | while read dir; do
-  game=$(echo "${dir}" | sed -r 's/ \(Disc [0-9]+\)//')
-  mkdir -p "${game}"
-  mv "${dir}"/* "${game}/"
-  rm -rf "${dir}"
+ls -d Disc | while read file; do
+    game=$(echo "${file}" | sed -E 's/ ?(Disc.*//')
+    mkdir -p "${game}"
+    mv "${file}" "${game}"
+    m3u="${game}/${game}.m3u"
+    touch "${m3u}"
+    echo "${file}" >> "${m3u}"
 done
 ```
 
