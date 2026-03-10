@@ -68,6 +68,10 @@ emulatorjs:
 
 To host a game, start it, then hit the 🌐 icon in botton bar. Set your name, create a room (password optional), and other players should be able to see and join your room. **All players need access to your RomM server to join a room and play together.**
 
+<!-- prettier-ignore -->
+!!! note
+    When netplay is enabled, EmulatorJS loads some assets (including localization files) from the nightly CDN (`https://cdn.emulatorjs.org/nightly/...`). This differs from stable mode, which uses local/bundled assets. Occasional temporary issues (e.g., 404 errors or untranslated UI elements) can occur if the nightly CDN has mismatches, but these usually resolve with the next EmulatorJS stable release integrated into RomM.
+
 ### Supported systems
 
 Note that only the following systems are currently supported:
