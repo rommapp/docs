@@ -13,12 +13,10 @@ http://romm.mysite.com {
 ### Caddy + TLS (HTTPS)
 
 ```caddyfile
-https://romm.mysite.com {
-  tls mysite.com.crt mysite.com.key  # Certificate and key files
-
+romm.mysite.com {
   encode zstd gzip
 
-  header * {
+  header {
     Strict-Transport-Security "max-age=31536000;"
     X-XSS-Protection "1; mode=block"
     X-Frame-Options "SAMEORIGIN"
