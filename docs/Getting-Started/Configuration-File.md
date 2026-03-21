@@ -27,7 +27,9 @@ Fine-tune which ROMs or files are excluded.
 Applies to ROMs that are single files (not in subfolders).
 
 - **extensions**: Exclude files by extension
+    - Defaults to `["db", "ini", "tmp", "bak", "lock", "log", "cache", "crdownload"]`
 - **names**: Exclude files by name or pattern (supports Unix wildcards)
+    - Defaults to `[".DS_Store", ".localized", ".Trashes", ".stfolder", "@SynoResource", "gamelist.xml"]`
 
 ```yaml
 exclude:
@@ -42,8 +44,11 @@ exclude:
 Applies to ROMs stored as folders (multi-disc, with DLC, etc.).
 
 - **names**: Exclude entire folders by name
+    - Defaults to `["@eaDir", "__MACOSX", "$RECYCLE.BIN", ".Trash-*", ".stfolder", ".Spotlight-V100", ".fseventsd", ".DocumentRevisions-V100", "System Volume Information"]`
 - **parts.names**: Exclude files by name or pattern from within multi-file ROM folders
+    - Defaults to `[".DS_Store", ".localized", ".Trashes", ".stfolder", "@SynoResource", "gamelist.xml"]`
 - **parts.extensions**: Exclude files by extension from within multi-file ROM folders
+    - Defaults to `["db", "ini", "tmp", "bak", "lock", "log", "cache", "crdownload"]`
 
 ```yaml
 exclude:
@@ -209,6 +214,15 @@ scan:
         - bezel
 ```
 
+### Export gamelist.xml
+
+Automatically generate an ES-DE compatible gamelist.xml file placed in the platform folder for selected/discovered platforms.
+
+```yaml
+scan:
+    export_gamelist: true
+```
+
 ---
 
 ## EmulatorJS Section
@@ -270,6 +284,10 @@ emulatorjs:
               username: "openrelayproject"
               credential: "openrelayproject"
 ```
+
+<!-- prettier-ignore -->
+!!! note
+    When netplay is enabled, EmulatorJS loads some assets (including localization files) from the nightly CDN (`https://cdn.emulatorjs.org/nightly/...`). This differs from stable mode, which uses local/bundled assets. Occasional temporary issues (e.g., 404 errors or untranslated UI elements) can occur if the nightly CDN has mismatches, but these usually resolve with the next EmulatorJS stable release integrated into RomM.
 
 ### Settings
 

@@ -16,7 +16,6 @@ This is a complete list of available environment variables; required variables a
 | DISABLE_USERPASS_LOGIN         | Disables login with username and password (when using OIDC)                                                                                         |          | `false`                   |
 | SESSION_MAX_AGE_SECONDS        | Maximum age of a session (in seconds)                                                                                                               |          | `1209600` (14 days)       |
 | KIOSK_MODE                     | Read-only mode for public displays or kiosks                                                                                                        |          | `false`                   |
-| UPLOAD_TIMEOUT                 | Timeout for file uploads (in seconds)                                                                                                               |          | `600` (10 minutes)        |
 | SCAN_TIMEOUT                   | Timeout for the background scan/rescan tasks (in seconds)                                                                                           |          | `14400` (4 hours)         |
 | SCAN_WORKERS                   | Number of worker processes for scanning tasks                                                                                                       |          | `1`                       |
 | TASK_TIMEOUT                   | Timeout for the the rest of the background tasks (in seconds)                                                                                       |          | `300` (5 minutes)         |
@@ -93,7 +92,18 @@ This is a complete list of available environment variables; required variables a
 | OIDC_REDIRECT_URI           | Absolute redirect URI for OIDC authentication     |          |                      |
 | OIDC_SERVER_APPLICATION_URL | Absolute URL of the OIDC server application       |          |                      |
 | OIDC_TLS_CACERTFILE         | Path to a file containing trusted CA certificates |          |                      |
+| OAUTH_ACCESS_TOKEN_EXPIRE_SECONDS | Access token lifetime (in seconds)                |          | `1800` (30 minutes)  |
+| OAUTH_REFRESH_TOKEN_EXPIRE_SECONDS | Refresh token lifetime (in seconds)               |          | `604800` (7 days)    |
+| INVITE_TOKEN_EXPIRY_SECONDS      | Invite token lifetime (in seconds)                |          | `600` (10 minutes)   |
+| OIDC_SERVER_METADATA_URL         | URL to the OIDC provider metadata endpoint        |          |                      |
+| OIDC_RP_INITIATED_LOGOUT         | Enable RP-initiated logout flow                   |          | `false`              |
+| OIDC_END_SESSION_ENDPOINT        | OIDC end-session endpoint override URL            |          | `""`                |
 | OIDC_USERNAME_ATTRIBUTE     | Attribute on OIDC user info used as the username  |          | `preferred_username` |
+| OIDC_AUTOLOGIN              | Skip click OIDC button on login page              |          | `false`              |
+| OIDC_CLAIM_ROLES            | OIDC claim containing user roles                  |          |                      |
+| OIDC_ROLE_VIEWER            | Role value mapping to viewer permissions          |          |                      |
+| OIDC_ROLE_EDITOR            | Role value mapping to editor permissions          |          |                      |
+| OIDC_ROLE_ADMIN             | Role value mapping to admin permissions           |          |                      |
 
 ## Background tasks
 
