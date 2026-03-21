@@ -19,13 +19,15 @@ Our integration with EmulatorJS automates the process of loading and save files 
 
 Netplay lets you play with friends remotely, in realtime with the build-in web player. As it emulates playing on the same console with two controllers while streaming the video to players 2+, it's best for 2-player, co-op, turn based and party games.
 
-**SFU-based netplay** (recommended): Uses a dedicated mediasoup server for reliable relay. See [Multiplayer Netplay Setup](../Getting-Started/Multiplayer-Netplay-Setup.md) for Docker Compose setup and configuration. Requires the RomM full image and the [romm-sfu](https://github.com/rommapp/romm-sfu-server) server.
+**SFU-based netplay** (recommended): Uses a dedicated mediasoup server for reliable relay. See [Multiplayer Netplay Setup](../Getting-Started/Multiplayer-Netplay-Setup.md) for Docker Compose setup and configuration. Requires the RomM full image and the [romm-sfu](https://github.com/rommapp/romm-sfu-server) server. When enabled, RomM loads EmulatorJS-SFU from jsDelivr. When disabled, it uses the original EmulatorJS from cdn.emulatorjs.org.
 
 ```yaml
 emulatorjs:
   netplay:
     enabled: true
 ```
+
+Or set `SFU_NETPLAY_ENABLED=true` (env var overrides config).
 
 If you require ICE servers for NAT traversal, we recommend a free-tier [Metered](https://www.metered.ca/stun-turn) account. Create new "TURN Credentials" and replace `<username>` and `<password>` with the entries under "Show ICE Server Array":
 

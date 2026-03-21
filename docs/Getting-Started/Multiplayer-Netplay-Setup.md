@@ -45,15 +45,23 @@ You can also copy from the [RomM examples](https://github.com/rommapp/romm/blob/
 | `SFU_PORT`                 | RomM             | SFU HTTP/WS port (default `3001`)                                                                        |
 | `ROMM_API_BASE_URL`        | SFU              | URL RomM is reachable at from the SFU (e.g. `http://romm:8080` inside Docker)                            |
 
-### 4. Enable netplay in config.yml
+### 4. Enable netplay via config or environment
 
-In your RomM config (e.g. `/romm/config/config.yml`):
+Enable netplay either in RomM config (e.g. `/romm/config/config.yml`):
 
 ```yaml
 emulatorjs:
   netplay:
     enabled: true
 ```
+
+Or via environment variable (overrides config):
+
+```yaml
+SFU_NETPLAY_ENABLED=true
+```
+
+When `SFU_NETPLAY_ENABLED=true`, RomM loads EmulatorJS-SFU from jsDelivr. When `false`, it uses the original EmulatorJS from cdn.emulatorjs.org (no netplay).
 
 ### 5. Expose required ports
 
@@ -177,7 +185,7 @@ To acheive high performance results on your local network, while still being rea
 
 ## Troubleshooting
 
-- **404 on loader.js or mediasoup-client-umd.js**: Use the RomM full image (not slim). The slim image does not include EmulatorJS-SFU assets.
+- **404 on loader.js or mediasoup-client-umd.js**: With SFU netplay enabled, EmulatorJS-SFU and mediasoup are loaded from jsDelivr CDN by default. If mediasoup fails from CDN, RomM falls back to `/assets/emulatorjs-sfu/data/vendor/` (requires RomM full image). The slim image does not include EmulatorJS-SFU assets.
 - **Connection refused to SFU**: Check `SFU_HOST` and `SFU_PORT`, and that both services share a Docker network (or use `host.docker.internal` for host-mode SFU).
 - **Token/auth errors**: Ensure `ROMM_SFU_INTERNAL_SECRET` is identical in RomM and the SFU.
 - **WebRTC fails behind NAT**: Add TURN servers in `config.yml` under `emulatorjs.netplay.ice_servers`.

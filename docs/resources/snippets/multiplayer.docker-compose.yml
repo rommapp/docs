@@ -18,7 +18,7 @@ services:
     container_name: romm
     restart: unless-stopped
     environment:
-      - EJS_NETPLAY_ENABLED=true
+      - SFU_NETPLAY_ENABLED=true
       - SFU_HOST=romm-sfu
       - SFU_PORT=3001
 
