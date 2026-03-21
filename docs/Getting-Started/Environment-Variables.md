@@ -38,8 +38,11 @@ This is a complete list of available environment variables; required variables a
 | WEB_SERVER_MAX_REQUESTS_JITTER | Random jitter to add to the maximum number of requests a worker will process before restarting                                                      |          | `100`                     |
 | WEB_SERVER_TIMEOUT             | Timeout for web server requests (in seconds)                                                                                                        |          | `300`                     |
 | WEB_SERVER_WORKER_CONNECTIONS  | Maximum number of simultaneous clients a single process can handle                                                                                  |          | `1000`                    |
-| SFU_HOST                       | Host name of mediasoup SFU instance                                                                                                                 |          | `localhost`               |
+| SFU_HOST                       | Host name of mediasoup SFU instance (for [multiplayer netplay](Multiplayer-Netplay-Setup.md))                                                         |          | `localhost`               |
 | SFU_PORT                       | Port number of mediasoup SFU instance                                                                                                               |          | `3001`                    |
+| ROMM_SFU_INTERNAL_SECRET       | Shared secret for SFU → RomM internal API auth. Required when using netplay. Generate with `openssl rand -hex 32`. **Must match** the value in the SFU container. |          |                           |
+| EMULATORJS_SFU_HOST            | Alternative to `SFU_HOST` (backwards-compatible alias)                                                                                               |          |                           |
+| EMULATORJS_SFU_PORT            | Alternative to `SFU_PORT` (backwards-compatible alias)                                                                                             |          |                           |
 
 ## Dependencies
 

@@ -12,6 +12,7 @@ search:
     - [Configuration File](Getting-Started/Configuration-File.md)
     - [Metadata Providers](Getting-Started/Metadata-Providers.md)
     - [Environment Variables](Getting-Started/Environment-Variables.md)
+    - [Multiplayer Netplay Setup](Getting-Started/Multiplayer-Netplay-Setup.md)
     - [Reverse Proxy](Getting-Started/Reverse-Proxy.md)
 - Platforms and Players
     - [Supported Platforms](Platforms-and-Players/Supported-Platforms.md)

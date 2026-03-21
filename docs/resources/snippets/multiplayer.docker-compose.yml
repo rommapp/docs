@@ -1,0 +1,88 @@
+version: "3"
+
+# Required .env values:
+# - ROMM_AUTH_SECRET_KEY=...   (generate with openssl rand -hex 32)
+# - ROMM_SFU_INTERNAL_SECRET=... (generate with openssl rand -hex 32, must match in both romm and romm-sfu)
+
+volumes:
+  mysql_data:
+  romm_resources:
+  romm_redis_data:
+
+networks:
+  romm:
+    name: romm
+services:
+  romm:
+    image: rommapp/romm:latest
+    container_name: romm
+    restart: unless-stopped
+    environment:
+      - EJS_NETPLAY_ENABLED=true
+      - SFU_HOST=romm-sfu
+      - SFU_PORT=3001
+
+      - DB_HOST=romm-db
+      - DB_NAME=romm
+      - DB_USER=romm-user
+      - DB_PASSWD=
+
+      - ROMM_AUTH_SECRET_KEY=${ROMM_AUTH_SECRET_KEY:?set ROMM_AUTH_SECRET_KEY}
+      - ROMM_SFU_INTERNAL_SECRET=${ROMM_SFU_INTERNAL_SECRET:?set ROMM_SFU_INTERNAL_SECRET}
+
+      - SCREENSCRAPER_USER=
+      - SCREENSCRAPER_PASSWORD=
+      - RETROACHIEVEMENTS_API_KEY=
+      - STEAMGRIDDB_API_KEY=
+      - HASHEOUS_API_ENABLED=true
+    volumes:
+      - romm_resources:/romm/resources
+      - romm_redis_data:/redis-data
+      - /path/to/library:/romm/library
+      - /path/to/assets:/romm/assets
+      - /path/to/config:/romm/config
+    ports:
+      - 80:8080
+    depends_on:
+      romm-db:
+        condition: service_healthy
+        restart: true
+    networks:
+      - romm
+
+  romm-sfu:
+    image: emulatorjs-sfu:latest
+    container_name: romm-sfu
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - ROMM_API_BASE_URL=http://romm:8080
+      - ROMM_SFU_INTERNAL_SECRET=${ROMM_SFU_INTERNAL_SECRET:?set ROMM_SFU_INTERNAL_SECRET}
+      - PORT=3001
+      - WEBRTC_PORT=20000
+      - ANNOUNCED_IP=your-public-ip-or-hostname
+      - PUBLIC_URL=https://your-public-url.com
+      - ENABLE_WEBRTC_TCP=1
+      - SFU_STUN_SERVERS=stun.your-stun-server.com:3478
+      - SFU_TURN_SERVERS=[{"urls":["turn:turn.your-turn-server.com:3478?transport=udp"],"username":"your-username","credential":"your-password"}]
+
+  romm-db:
+    image: docker.io/mariadb:latest
+    container_name: romm-db
+    restart: unless-stopped
+    environment:
+      - MARIADB_ROOT_PASSWORD=
+      - MARIADB_DATABASE=romm
+      - MARIADB_USER=romm-user
+      - MARIADB_PASSWORD=
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 30s
+      start_interval: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - romm
