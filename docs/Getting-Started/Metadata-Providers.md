@@ -220,9 +220,9 @@ Here are the text properties that will be read from `gamelist.xml`.
 | players       | Number of players supported     |
 | md5           | ROM file hash identifier        |
 
-#### ES-DE medias
+#### ES-DE media
 
-RomM have two ways of mapping media files: first it looks at `gamelist.xml` for properties, and fallbacks to looking at nested folders for images that have the same name as the rom.
+RomM has two ways of mapping media files: first it looks at `gamelist.xml` for properties, and it falls back to looking at nested folders for images that have the same name as the ROM.
 
 | Property Name | Folder Name   | Description                            |
 |---------------|---------------|----------------------------------------|
