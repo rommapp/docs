@@ -1,0 +1,59 @@
+version: "3"
+
+volumes:
+    mysql_data:
+    romm_redis_data:
+
+services:
+    romm:
+        image: rommapp/romm:latest
+        container_name: romm
+        restart: unless-stopped
+        user: 568:568
+        environment:
+            - DB_HOST=romm-db
+            - DB_NAME=romm # Should match MARIADB_DATABASE in mariadb
+            - DB_USER=romm-user # Should match MARIADB_USER in mariadb
+            - DB_PASSWD= # Should match MARIADB_PASSWORD in mariadb
+            - ROMM_AUTH_SECRET_KEY= # Generate a key with `openssl rand -hex 32`
+            - SCREENSCRAPER_USER= # These are the recommended metadata providers
+            - SCREENSCRAPER_PASSWORD= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#screenscraper
+            - RETROACHIEVEMENTS_API_KEY= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#retroachievements
+            - STEAMGRIDDB_API_KEY= # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#steamgriddb
+            - HASHEOUS_API_ENABLED=true # https://docs.romm.app/latest/Getting-Started/Metadata-Providers/#hasheous
+        volumes: # Any /mnt paths may optionally be replaced with a docker volume
+            - /mnt/tank/truenas/resources:/romm/resources # Replace /mnt...: file path with your own data structure
+            - romm_redis_data:/romm/redis-data # Docker will manage this volume
+            - /mnt/tank/truenas/roms:/romm/library # Replace /mnt...: file path with your own data structure
+            - /mnt/tank/truenas/assets:/romm/assets # Replace /mnt...: file path with your own data structure
+            - /mnt/tank/truenas/config:/romm/config # Replace /mnt...: file path with your own data structure
+        ports:
+            - 31100:8080
+        depends_on:
+            romm-db:
+                condition: service_healthy
+                restart: true
+        deploy:
+            resources:
+                limits:
+                    cpus: "2.0"
+                    memory: 4g
+
+    romm-db:
+        image: mariadb:latest
+        container_name: romm-db
+        restart: unless-stopped
+        environment:
+            - MARIADB_ROOT_PASSWORD= # Use a unique, secure password
+            - MARIADB_DATABASE=romm
+            - MARIADB_USER=romm-user
+            - MARIADB_PASSWORD=
+        volumes:
+            - mysql_data:/var/lib/mysql
+        healthcheck:
+            test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
+            start_period: 30s
+            start_interval: 10s
+            interval: 10s
+            timeout: 5s
+            retries: 5
