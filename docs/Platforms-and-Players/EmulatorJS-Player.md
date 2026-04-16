@@ -18,9 +18,9 @@ Our integration with EmulatorJS automates the process of loading and save files 
 ### Netplay
 
 !!! warning
-    Netplay is currently not available. We are looking to bring it back at a later date.
+Netplay is currently not available. We are looking to bring it back at a later date.
 
-    If you are an existing Netplay user, please disable this feature. 
+    If you are an existing Netplay user, please disable this feature.
 
     Leaving it on will result in `failed to start game` errors and other intermittent issues.
 
