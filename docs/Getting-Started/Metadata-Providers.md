@@ -205,14 +205,14 @@ library/
 
 Here are the text properties that will be read from `gamelist.xml`.
 
-| Property Name | Description                     |
-|---------------|---------------------------------|
-| name          | Game title                      |
-| desc          | Game description or synopsis    |
-| lang          | Game language (En, Es, etc.)    |
-| region        | Game region (USA, Europe, etc.) |
-| rating        | Game rating score               |
-| releasedate   | Game release date               |
+| Property Name | Description                                      |
+|---------------|--------------------------------------------------|
+| name          | Game title                                       |
+| desc          | Game description or synopsis                     |
+| lang          | Game language (ISO 639-1 lowercase, e.g. en, es) |
+| region        | Game region (USA, Europe, etc.)                  |
+| rating        | Game rating score                                |
+| releasedate   | Game release date                                |
 | developer     | Developer company               |
 | publisher     | Publisher company               |
 | family        | Game franchise or series        |
