@@ -154,7 +154,6 @@ library/
         └─ etc...
 ```
 
-
 <!-- prettier-ignore -->
 ```xml
 <?xml version="1.0"?>
@@ -206,7 +205,7 @@ library/
 Here are the text properties that will be read from `gamelist.xml`.
 
 | Property Name | Description                      |
-|---------------|----------------------------------|
+| ------------- | -------------------------------- |
 | name          | Game title                       |
 | desc          | Game description or synopsis     |
 | lang          | Game language (en, es, it, etc.) |
@@ -225,7 +224,7 @@ Here are the text properties that will be read from `gamelist.xml`.
 RomM has two ways of mapping media files: first it looks at `gamelist.xml` for properties, and it falls back to looking at nested folders for images that have the same name as the ROM.
 
 | Property Name | Folder Name   | Description                            |
-|---------------|---------------|----------------------------------------|
+| ------------- | ------------- | -------------------------------------- |
 | image         | images        | General game image                     |
 | cover         | covers        | Front cover artwork                    |
 | backcover     | backcovers    | Back cover artwork                     |
