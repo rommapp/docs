@@ -205,20 +205,20 @@ library/
 
 Here are the text properties that will be read from `gamelist.xml`.
 
-| Property Name | Description                                      |
-|---------------|--------------------------------------------------|
-| name          | Game title                                       |
-| desc          | Game description or synopsis                     |
-| lang          | Game language (ISO 639-1 lowercase, e.g. en, es) |
-| region        | Game region (USA, Europe, etc.)                  |
-| rating        | Game rating score                                |
-| releasedate   | Game release date                                |
-| developer     | Developer company               |
-| publisher     | Publisher company               |
-| family        | Game franchise or series        |
-| genre         | Game category or type           |
-| players       | Number of players supported     |
-| md5           | ROM file hash identifier        |
+| Property Name | Description                      |
+|---------------|----------------------------------|
+| name          | Game title                       |
+| desc          | Game description or synopsis     |
+| lang          | Game language (en, es, it, etc.) |
+| region        | Game region (us, eu, jp, etc.)   |
+| rating        | Game rating score                |
+| releasedate   | Game release date                |
+| developer     | Developer company                |
+| publisher     | Publisher company                |
+| family        | Game franchise or series         |
+| genre         | Game category or type            |
+| players       | Number of players supported      |
+| md5           | ROM file hash identifier         |
 
 #### ES-DE media
 
