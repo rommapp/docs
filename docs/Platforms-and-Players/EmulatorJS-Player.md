@@ -17,14 +17,9 @@ Our integration with EmulatorJS automates the process of loading and save files 
 
 ### Netplay
 
+<!-- prettier-ignore -->
 !!! warning
-Netplay is currently not available. We are looking to bring it back at a later date.
-
-    If you are an existing Netplay user, please disable this feature.
-
-    Leaving it on will result in `failed to start game` errors and other intermittent issues.
-
-    We apologize for the inconvenience.
+    Netplay is currently not available. We are looking to bring it back at a later date. If you are an existing Netplay user, please disable this feature. Leaving it on will result in `failed to start game` errors and other intermittent issues.
 
 Netplay lets you play with friends remotely, in realtime with the build-in web player. As it emulates playing on the same console with two controllers while streaming the video to players 2+, it's best for 2-player, co-op, turn based and party games.
 

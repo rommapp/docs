@@ -8,6 +8,7 @@ RomM requires one of these folder structures for proper operation. It will first
 RomM organizes content in two main categories: ROMs and BIOS files.
 
 - **Structure A (Recommended)**: Both ROMs and BIOS files have their own dedicated root folders, with platform folders inside each.
+
     - `/roms/{platform}/` - Contains all game files for that platform
     - `/bios/{platform}/` - Contains all BIOS files for that platform
 
