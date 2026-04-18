@@ -82,10 +82,10 @@ No other permissions. The app doesn't request contacts, camera, location, or any
 
 ## Troubleshooting
 
-- **Can't connect to RomM.** Check the URL (including `https://`), and that the RomM instance is reachable from your mobile network. Cellular might be blocked; try Wi-Fi first.
+- **Can't connect to RomM.** Check the URL (including `https://`), and that the RomM instance is reachable from your mobile network. Cellular might be blocked, so try Wi-Fi first.
 - **Token invalid.** Pair again. Tokens can expire or be revoked on the RomM side.
 - **Emulator won't launch.** Make sure the emulator app is installed and Argosy has permission to open it. Some emulators require an intent-filter setup.
-- **Downloads fail partway.** Usually network; Argosy resumes on retry.
+- **Downloads fail partway.** Usually network, and Argosy resumes on retry.
 
 Full sync-specific debugging in [Device Sync Troubleshooting](../troubleshooting/sync.md).
 

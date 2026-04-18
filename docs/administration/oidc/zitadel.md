@@ -7,7 +7,7 @@ description: Wire RomM's SSO to Zitadel: project, application, user info inside 
 
 [Zitadel](https://zitadel.com/) is an enterprise-grade open-source IAM platform supporting OAuth2, OIDC, SAML, and passwordless. Good fit when you want an enterprise-ish IdP without running Keycloak.
 
-Before starting, read the [OIDC Setup overview](index.md); it covers the RomM-side settings common to every provider.
+Before starting, read the [OIDC Setup overview](index.md). It covers the RomM-side settings common to every provider.
 
 ## 1. Prerequisites
 
@@ -19,7 +19,7 @@ Create a new project (e.g. `RomM`). This holds the client and its auth settings.
 
 On the project's **General** tab, the toggles mean:
 
-- **Assert Roles on Authentication**: not useful today; RomM 5.0 reads roles via `OIDC_CLAIM_ROLES` regardless. Leave off unless you're setting up role mapping.
+- **Assert Roles on Authentication**: not useful today. RomM 5.0 reads roles via `OIDC_CLAIM_ROLES` regardless. Leave off unless you're setting up role mapping.
 - **Check authorization on Authentication**: recommended. If off, anyone who can register in Zitadel can sign into RomM (as Viewer). Turn this on if Zitadel registration is open.
 - **Check for Project on Authentication**: only matters if you're separating users by Zitadel organization. Skip for a single RomM instance.
 
@@ -43,7 +43,7 @@ On the project's **General** tab, under **Applications**, click **New**. Tick **
 - **Redirect URIs**: `https://romm.example.com/api/oauth/openid`
 - **Post Logout URIs**: `https://romm.example.com/`
 
-Click **Create**. The **client secret is shown once**; copy it now.
+Click **Create**. The **client secret is shown once**. Copy it now.
 
 ## 4. Enable claims in the ID Token
 
@@ -74,6 +74,6 @@ In RomM → **Profile** → set your email to exactly the same address your Zita
 
 ## 7. Test
 
-Restart RomM and open `/login`. Click **Login with Zitadel**; you're redirected, authenticate, and bounce back signed into RomM.
+Restart RomM and open `/login`. Click **Login with Zitadel**. You're redirected, authenticate, and bounce back signed into RomM.
 
 If it doesn't work, head to [Authentication Troubleshooting](../../troubleshooting/authentication.md).

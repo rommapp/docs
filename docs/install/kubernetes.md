@@ -8,12 +8,12 @@ description: Deploy RomM on Kubernetes with manifest examples, required quirks, 
 There's no official Helm chart for RomM in 5.0. This page walks through a production-grade manifest set and points at the community charts worth looking at.
 
 !!! note "Community-maintained charts"
-    If you'd rather not hand-author manifests, there are community Helm charts around; check [ArtifactHub](https://artifacthub.io/packages/search?ts_query_web=romm) and the `#kubernetes` channel in the [RomM Discord](https://discord.gg/P5HtHnhUDH). The RomM team doesn't publish or formally support any chart today, so pick one with active maintenance and recent releases.
+    If you'd rather not hand-author manifests, there are community Helm charts around. Check [ArtifactHub](https://artifacthub.io/packages/search?ts_query_web=romm) and the `#kubernetes` channel in the [RomM Discord](https://discord.gg/P5HtHnhUDH). The RomM team doesn't publish or formally support any chart today, so pick one with active maintenance and recent releases.
 
 ## What you need
 
 - A cluster running Kubernetes 1.27+.
-- Persistent storage for the DB, cache, and RomM's assets/resources/config (block or RWX; see below).
+- Persistent storage for the DB, cache, and RomM's assets/resources/config (block or RWX, see below).
 - An Ingress controller (nginx-ingress, Traefik, etc.) for external access.
 - cert-manager or equivalent for HTTPS.
 
@@ -199,7 +199,7 @@ spec:
 
 ## Persistent Volume Claims
 
-One PVC per volume. Sizes are rough; tune to your library.
+One PVC per volume. Sizes are rough, so tune to your library.
 
 ```yaml
 apiVersion: v1
@@ -271,7 +271,7 @@ spec:
                 port: { number: 80 }
 ```
 
-`proxy-body-size: "0"` is important; the default is 1 MB and will reject every ROM upload with HTTP 413.
+`proxy-body-size: "0"` is important, because the default is 1 MB and will reject every ROM upload with HTTP 413.
 
 ## Scaling notes
 
@@ -285,7 +285,7 @@ spec:
 kubectl set image -n romm deployment/romm romm=rommapp/romm:5.0.1
 ```
 
-Alembic runs on startup; migrations happen automatically. Before major-version upgrades, read the release notes and take a backup (see [Backup & Restore](backup-and-restore.md)).
+Alembic runs on startup, so migrations happen automatically. Before major-version upgrades, read the release notes and take a backup (see [Backup & Restore](backup-and-restore.md)).
 
 ## Troubleshooting
 

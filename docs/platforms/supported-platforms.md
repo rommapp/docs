@@ -11,7 +11,7 @@ RomM ships support for ~400 platforms. "Support" means:
 2. **At least one metadata provider** has coverage.
 3. **EmulatorJS** may have a playable core (flagged per platform in the table below).
 
-Your folder name has to match the **platform slug** in the table. If yours differs, use [`system.platforms`](../reference/configuration-file.md#systemplatforms) in `config.yml` to remap; see [Folder Structure](../getting-started/folder-structure.md).
+Your folder name has to match the **platform slug** in the table. If yours differs, use [`system.platforms`](../reference/configuration-file.md#systemplatforms) in `config.yml` to remap. See [Folder Structure](../getting-started/folder-structure.md).
 
 ## Platform slugs + coverage
 

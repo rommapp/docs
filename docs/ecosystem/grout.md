@@ -18,14 +18,14 @@ description: Official Linux handheld companion for muOS and NextUI, sync ROMs an
 - **Pulls** ROMs from RomM to the handheld's SD card, organised into muOS / NextUI's expected folder layout.
 - **Pushes** saves and states back to RomM when you finish a session.
 - **Schedules** sync runs: on idle, on session end, or on a cron.
-- Works fully offline between syncs; the handheld doesn't need RomM to play.
+- Works fully offline between syncs, so the handheld doesn't need RomM to play.
 
 ## Why Grout (and not Argosy)?
 
 - **[Argosy](argosy.md)** is Android-native. Good for Android handhelds (Retroid Pocket running Android, phones).
 - **Grout** is for non-Android Linux handhelds. muOS and NextUI are Linux, not Android. Argosy's APK won't install.
 
-Same underlying protocol; different client for different OS.
+Same underlying protocol, but different client for different OS.
 
 ## Installing
 
@@ -40,7 +40,7 @@ Same underlying protocol; different client for different OS.
 ### On NextUI
 
 1. Download the NextUI-flavoured release from the same releases page.
-2. Follow NextUI's standard app install flow (paths differ by device; see NextUI docs).
+2. Follow NextUI's standard app install flow (paths differ by device, see NextUI docs).
 
 ## First-time setup
 
@@ -68,9 +68,9 @@ Bulk select for multi-file downloads, useful for pulling a whole collection at o
 
 Grout → Settings → Sync:
 
-- **Pull** cadence: how often to check RomM for new ROMs (default: manual; can set to every N minutes when on Wi-Fi).
+- **Pull** cadence: how often to check RomM for new ROMs (default: manual, and can be set to every N minutes when on Wi-Fi).
 - **Push** cadence: how often to upload saves (default: on session end).
-- **Full sync**: manual; triggers a full bidirectional sync right now.
+- **Full sync**: manual. Triggers a full bidirectional sync right now.
 
 ### What pushes back to RomM
 
@@ -96,7 +96,7 @@ If you want Grout to pull from RomM over SSH rather than HTTPS (e.g. on a truste
 ## Troubleshooting
 
 - **Can't see the handheld's Wi-Fi on RomM's network.** Make sure both are on the same SSID / VLAN.
-- **Token invalid.** Re-pair; token was revoked or expired.
+- **Token invalid.** Re-pair, because the token was revoked or expired.
 - **Saves aren't syncing.** Check the sync cadence is set to something other than "never", and that the handheld actually has network during the sync window.
 - **"Device not registered".** The pairing step wasn't completed. Re-run pairing from scratch.
 

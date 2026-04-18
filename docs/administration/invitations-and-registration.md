@@ -14,7 +14,7 @@ Three ways a new account ends up on a RomM instance:
 
 ## First-user setup
 
-When a fresh RomM container starts against an empty database, hitting any page redirects to the **Setup Wizard**. The wizard collects a username, email, and password; the resulting account is **always an Admin**, regardless of any env var.
+When a fresh RomM container starts against an empty database, hitting any page redirects to the **Setup Wizard**. The wizard collects a username, email, and password. The resulting account is **always an Admin**, regardless of any env var.
 
 To skip the wizard (e.g. when provisioning via automation and you'll create users through the API), set:
 
@@ -23,14 +23,14 @@ environment:
   - DISABLE_SETUP_WIZARD=true
 ```
 
-You'll then need to create the first admin via the API or by injecting a row at deploy time; the UI won't offer a setup flow.
+You'll then need to create the first admin via the API or by injecting a row at deploy time, because the UI won't offer a setup flow.
 
 ## Invite links
 
 The recommended way to add users, because it avoids you ever touching their password.
 
 1. **Administration → Users → Invite.** Pick a role (Viewer, Editor, Admin).
-2. RomM generates a single-use URL; copy it and send it to the invitee.
+2. RomM generates a single-use URL. Copy it and send it to the invitee.
 3. When they open it, they pick their own username and password. RomM creates the account with the role you chose and logs them straight in.
 
 Invite tokens are **single-use** and **time-limited**. Defaults:
@@ -39,10 +39,10 @@ Invite tokens are **single-use** and **time-limited**. Defaults:
 | --- | --- | --- |
 | Expiry | 30 days | `INVITE_TOKEN_DAYS` |
 
-Expired links return a clear error on the `/register` page; generate a new one from the Users panel.
+Expired links return a clear error on the `/register` page. Generate a new one from the Users panel.
 
 !!! tip "Invitations over HTTPS"
-    Invite URLs include a signed token; they're not useful to anyone without RomM's `ROMM_AUTH_SECRET_KEY`. Still, send them over a trusted channel; once someone has a valid invite URL, they can claim the account.
+    Invite URLs include a signed token, so they're not useful to anyone without RomM's `ROMM_AUTH_SECRET_KEY`. Still, send them over a trusted channel, because once someone has a valid invite URL, they can claim the account.
 
 ## Public self-registration
 
@@ -73,7 +73,7 @@ Anyone who signs up this way is a Viewer. Promote them manually from **Administr
 | Public registration (`ALLOW_PUBLIC_REGISTRATION=true`) | Viewer |
 | OIDC first login | Default Viewer, or mapped from claims via `OIDC_CLAIM_ROLES` |
 
-Changing a user's role afterwards is a normal admin action; see [Users & Roles](users-and-roles.md).
+Changing a user's role afterwards is a normal admin action. See [Users & Roles](users-and-roles.md).
 
 ## Password reset
 

@@ -26,7 +26,7 @@ This page lists the firmware RomM's EmulatorJS cores need for each platform. For
 | **Intellivision** | `intellivision` | `exec.bin`, `grom.bin` | Bundle both. |
 | **3DO** | `3do` | `panafz10.bin` (or similar region BIOS) | |
 | **PC Engine CD / TurboGrafx-CD** | `pcecd` / `tg16cd` | `syscard3.pce` | |
-| **Dreamcast** | `dc` | `dc_boot.bin`, `dc_flash.bin` | EmulatorJS Dreamcast support is limited; results vary. |
+| **Dreamcast** | `dc` | `dc_boot.bin`, `dc_flash.bin` | EmulatorJS Dreamcast support is limited, so results vary. |
 | **Atari 5200** | `atari5200` | `5200.rom` | |
 | **Atari 7800** | `atari7800` | `7800 BIOS (U).rom` | |
 
@@ -55,16 +55,16 @@ Common mistakes:
 
 - Upper vs lower case: most cores are case-sensitive. Use exact case from the table above.
 - Extensions: `.bin` vs `.rom` vs `.img` depend on the core. Don't rename.
-- Version suffixes: `scph1001 (US) v4.4.bin` won't load; it has to be `scph1001.bin`.
+- Version suffixes: `scph1001 (US) v4.4.bin` won't load. It has to be `scph1001.bin`.
 
-If you're not sure what name a core expects, check the [upstream EmulatorJS systems docs](https://emulatorjs.org/docs/systems/) or load the game with `emulatorjs.debug: true`; the browser console will tell you what file it tried to load.
+If you're not sure what name a core expects, check the [upstream EmulatorJS systems docs](https://emulatorjs.org/docs/systems/) or load the game with `emulatorjs.debug: true`. The browser console will tell you what file it tried to load.
 
 ## Getting firmware
 
 Your options (jurisdiction-dependent):
 
 - **Dump from real hardware you own.** The cleanest answer.
-- **Community archives.** Not linked here; the RomM project doesn't host these and doesn't recommend specific sources.
+- **Community archives.** Not linked here. The RomM project doesn't host these and doesn't recommend specific sources.
 - **Official emulator bundles.** Some modern emulators ship with (or include a button to download) BIOS files. If you bought one, it's yours to use.
 
 ## Verifying integrity

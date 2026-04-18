@@ -18,7 +18,7 @@ Both are Redis-backed (via `socket.io-redis`) so multi-instance RomM deployments
 
 RomM inherited Socket.IO from the Vue frontend, which uses `socket.io-client`. Sticking with Socket.IO avoids protocol drift, works in every browser, and handles reconnection + message framing for us.
 
-If you're writing a non-browser client in a language that has a Socket.IO library (Python's `python-socketio`, Go's `go-socket.io`, etc.), the protocol is straightforward. Raw WebSocket without Socket.IO framing **will not** work; Socket.IO adds its own handshake and message envelope.
+If you're writing a non-browser client in a language that has a Socket.IO library (Python's `python-socketio`, Go's `go-socket.io`, etc.), the protocol is straightforward. Raw WebSocket without Socket.IO framing **will not** work, because Socket.IO adds its own handshake and message envelope.
 
 ## Authentication
 
@@ -58,16 +58,16 @@ Default namespace. No sub-namespacing in 5.0.
 
 ### Client → server events
 
-No state changes via WebSocket; RomM's design is "REST for writes, Socket.IO for reads". A client can:
+No state changes via WebSocket. RomM's design is "REST for writes, Socket.IO for reads". A client can:
 
 - Emit `subscribe:scan` with a scan ID to join that scan's broadcast group.
 - Emit `unsubscribe:scan` to leave.
 
-Actual scan / task / ROM operations happen via the REST API; see [API Reference](api-reference.md).
+Actual scan / task / ROM operations happen via the REST API. See [API Reference](api-reference.md).
 
 ## `/netplay/socket.io`: Netplay coordination
 
-Separate endpoint for Netplay rooms. Used by EmulatorJS's Netplay logic; rarely touched directly.
+Separate endpoint for Netplay rooms. Used by EmulatorJS's Netplay logic, rarely touched directly.
 
 ### Server → client events
 
@@ -100,7 +100,7 @@ Without sticky sessions, Socket.IO's handshake polling phase can bounce between 
 
 ## Reverse-proxy requirements
 
-Every reverse-proxy setup must forward the WebSocket upgrade. See [Reverse Proxy](../install/reverse-proxy.md); all recipes there keep WebSockets on.
+Every reverse-proxy setup must forward the WebSocket upgrade. See [Reverse Proxy](../install/reverse-proxy.md). All recipes there keep WebSockets on.
 
 Common breakages:
 
@@ -140,7 +140,7 @@ sio.wait()
 
 - **Not every backend action emits a WS event.** Only the ones listed above. If you need a specific event, open an issue.
 - **No room-based user presence yet.** "Who else is online" isn't exposed.
-- **Netplay WebRTC is peer-to-peer after initial handshake.** RomM only brokers; the actual gameplay data never touches RomM's servers.
+- **Netplay WebRTC is peer-to-peer after initial handshake.** RomM only brokers. The actual gameplay data never touches RomM's servers.
 
 ## See also
 

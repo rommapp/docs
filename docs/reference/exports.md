@@ -135,7 +135,7 @@ For tight sync between RomM edits and the external frontend, run the export via 
 
 ## Hash stability
 
-Both export formats include some IDs (`igdb_id`, `moby_id`, etc.). If you rematch metadata, those IDs change. Don't point tools at the IDs as stable keys; use filenames / paths.
+Both export formats include some IDs (`igdb_id`, `moby_id`, etc.). If you rematch metadata, those IDs change. Don't point tools at the IDs as stable keys. Use filenames / paths.
 
 ## Permissions
 

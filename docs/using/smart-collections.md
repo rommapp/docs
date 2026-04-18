@@ -108,14 +108,14 @@ any of:
   - Title contains "zelda"
 ```
 
-(Combine `all of` + `any of` by nesting; the rule editor supports groups.)
+(Combine `all of` + `any of` by nesting. The rule editor supports groups.)
 
 ## Public / private
 
 Same visibility model as standard collections:
 
 - **Private**: only you see it (your personal data fields matter).
-- **Public**: everyone on the instance sees it. *Your* personal-data rules still apply; if your smart collection is "games I haven't finished", every user sees *your* unfinished games.
+- **Public**: everyone on the instance sees it. *Your* personal-data rules still apply. If your smart collection is "games I haven't finished", every user sees *your* unfinished games.
 
 For shared rule sets across users, use metadata-only fields and keep the collection public. Rules that reference Personal data (status, rating, playtime, favourites) only make sense as private collections.
 
@@ -138,7 +138,7 @@ Same as standard collections: removes the definition. ROMs stay in the library.
 ## Limitations
 
 - **No nested smart collections**: a smart collection can't reference another collection as a source. Compose rules directly.
-- **Performance**: very complex rule sets (many conditions, many nested groups) on huge libraries can slow down the gallery load. Usually imperceptible; mentioned here for completeness.
+- **Performance**: very complex rule sets (many conditions, many nested groups) on huge libraries can slow down the gallery load. Usually imperceptible, but mentioned here for completeness.
 - **Timezone**: "Release Year" uses UTC, not the user's timezone. Edge-case edge-of-year games might fall on the "wrong" side.
 
 ## API
@@ -151,4 +151,4 @@ PUT    /api/collections/smart/{id}      # update
 DELETE /api/collections/smart/{id}      # delete
 ```
 
-Rule schema is part of the POST body; see the [API Reference](../developers/api-reference.md) for the JSON structure. Requires `collections.read` / `collections.write`.
+Rule schema is part of the POST body. See the [API Reference](../developers/api-reference.md) for the JSON structure. Requires `collections.read` / `collections.write`.

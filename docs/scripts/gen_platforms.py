@@ -4,7 +4,7 @@ Output: docs/resources/snippets/supported-platforms.md
 
 Strategy: fetch backend/utils/generate_supported_platforms.py from upstream
 along with the platform metadata it consumes, then exec it in a sandbox.
-For now this is a stub that emits a placeholder snippet; the real exec
+For now this is a stub that emits a placeholder snippet. The real exec
 needs a copy of the upstream utility's input data layout, which we'll wire
 up after pinning a 5.0 SHA in sources.toml.
 

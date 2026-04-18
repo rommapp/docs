@@ -5,7 +5,7 @@ description: Pick a deployment path: Docker Compose, Unraid, Synology, TrueNAS, 
 
 # Install & Deploy
 
-RomM is distributed as a Docker image. Every supported deployment runs the same container; the differences are in who manages it.
+RomM is distributed as a Docker image. Every supported deployment runs the same container, and the differences are in who manages it.
 
 ## Pick your path
 

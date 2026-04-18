@@ -13,7 +13,7 @@ Checks in order:
 
 1. **Is it the slim image?** `ENABLE_EMULATORJS=true` on the slim image doesn't magically include EmulatorJS. Either switch to `rommapp/romm:<version>` (full) or disable in-browser play. See [Image Variants](../install/image-variants.md).
 2. **Browser console**: open devtools, look for 404s on `/assets/emulatorjs/...`. Indicates the EmulatorJS bundle didn't install correctly in the container. `docker logs romm` may show the entrypoint's install step failing.
-3. **Browser compatibility**: EmulatorJS uses SharedArrayBuffer. Needs a modern Chrome/Firefox/Safari and an HTTPS-served RomM (cross-origin isolation requires HTTPS). If you're still on plain HTTP for some reason, TLS it; see [Reverse Proxy](../install/reverse-proxy.md).
+3. **Browser compatibility**: EmulatorJS uses SharedArrayBuffer. Needs a modern Chrome/Firefox/Safari and an HTTPS-served RomM (cross-origin isolation requires HTTPS). If you're still on plain HTTP for some reason, TLS it. See [Reverse Proxy](../install/reverse-proxy.md).
 
 ## Black screen, no audio
 
@@ -50,7 +50,7 @@ Multi-file firmware: zip them together and upload as a single `firmware.zip`. Em
 - **Underpowered device.** Cheap TV boxes and old phones struggle. Try a lighter core (e.g. `snes9x` instead of `bsnes`), or accept the stutter.
 - **Tab is backgrounded.** Most browsers throttle background tabs. Keep the play tab foregrounded.
 - **Other tabs eating CPU.** Close them.
-- **Specific to a core.** `mednafen_saturn` is notorious; try `yabause` if Saturn audio is bad.
+- **Specific to a core.** `mednafen_saturn` is notorious. Try `yabause` if Saturn audio is bad.
 
 ## Save states crash on load
 
@@ -69,7 +69,7 @@ Rebind via Profile → User Interface (the operator-side overrides live in [`emu
 ## DOS games fail to boot
 
 - **autorun.bat issues**: turn on [`emulatorjs.disable_batch_bootup: true`](../reference/configuration-file.md#emulatorjsdisable_batch_bootup) in `config.yml`.
-- **Sound card config wrong**: dosbox-pure tries to auto-detect; may need manual tweaking. In-game Menu → **Settings** → set Sound Blaster port.
+- **Sound card config wrong**: dosbox-pure tries to auto-detect, but may need manual tweaking. In-game Menu → **Settings** → set Sound Blaster port.
 - **Game needs specific CPU speed**: some DOS games are CPU-bound. Slow down via dosbox-pure settings.
 
 See the [MS-DOS platform guide](../platforms/ms-dos.md) for deeper DOS-specific notes.
@@ -100,7 +100,7 @@ In-browser emulation is CPU-heavy. Mobile tips:
 | Core | Known issues |
 | --- | --- |
 | `ppsspp` (PSP) | Not supported in Console Mode. |
-| `dosbox-pure` (DOS) | Not supported in Console Mode. Some DOS quirks; see `disable_batch_bootup`. |
+| `dosbox-pure` (DOS) | Not supported in Console Mode. Some DOS quirks. See `disable_batch_bootup`. |
 | `mednafen_saturn` | Audio stutter on weak hardware. `yabause` is an alternative. |
 | `opera` (3DO) | Niche. Limited ROM compatibility. |
 | All Nintendo DS cores | Touchscreen emulation is imperfect on non-touch devices. |

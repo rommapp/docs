@@ -43,7 +43,7 @@ English (US/GB), Spanish, French, German, Italian, Portuguese (BR), Japanese, Ko
 
 ### Time to Beat & RetroAchievements tabs
 
-HowLongToBeat completion times and RetroAchievements progression now surface as dedicated tabs on every game's detail page. Both need provider credentials; see [Metadata Providers](../administration/metadata-providers.md).
+HowLongToBeat completion times and RetroAchievements progression now surface as dedicated tabs on every game's detail page. Both need provider credentials. See [Metadata Providers](../administration/metadata-providers.md).
 
 ### Bulk downloads, QR codes, copy-link
 
@@ -126,7 +126,7 @@ Two endpoints: `/ws/socket.io` for general live updates (scan progress, notifica
 | **Database schema** | Alembic migrates automatically, but back up first. |
 | **Env var names** | A few renames around scheduled-task cron vars and OIDC role mapping. See [migration table](../releases/upgrading-to-5.0.md). |
 | **`config.yml`** | New sections for `scan.region`, `scan.language`, `scan.media`, `emulatorjs.*`, `filesystem.firmware_folder`. Old settings carry over. |
-| **URL structure** | Docs URLs restructured (you're reading the new ones). Every old URL redirects; see [the redirect map](../releases/upgrading-to-5.0.md) in the migration guide. |
+| **URL structure** | Docs URLs restructured (you're reading the new ones). Every old URL redirects. See [the redirect map](../releases/upgrading-to-5.0.md) in the migration guide. |
 | **Image tags** | `:slim` and `:5.0.0-slim` are new options alongside `:latest` and `:5.0.0`. |
 
 ## Where to go from here

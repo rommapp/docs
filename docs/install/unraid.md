@@ -37,7 +37,7 @@ From **Apps** → search `mariadb`. Only the [official `mariadb`](https://hub.do
 
 ![community apps search results for MariaDB](https://github.com/user-attachments/assets/76f4b6ef-5b63-454f-9357-d2920b9afd0e)
 
-Fill in the env vars; names and sensible defaults live in the [reference `docker-compose.yml`](docker-compose.md). Set the network to **Custom: romm**.
+Fill in the env vars. Names and sensible defaults live in the [reference `docker-compose.yml`](docker-compose.md). Set the network to **Custom: romm**.
 
 ![MariaDB environment variables](https://github.com/user-attachments/assets/a11906c5-25b2-46f1-906b-451a9ee39dca)
 

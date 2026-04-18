@@ -5,7 +5,7 @@ description: Hand-curated ROM collections, create, edit, share, and delete.
 
 # Collections
 
-A **collection** is a named group of ROMs you curate by hand. Add or remove games one at a time; the list is exactly what you pick.
+A **collection** is a named group of ROMs you curate by hand. Add or remove games one at a time, and the list is exactly what you pick.
 
 RomM has three collection types. This page covers **standard** collections. For the other two:
 
@@ -29,7 +29,7 @@ Two ways:
 
 1. Run a search or apply filters in the library.
 2. Click the **New Collection from results** icon next to the search bar.
-3. Name it and save; RomM populates it with the current result set.
+3. Name it and save, and RomM populates it with the current result set.
 
 This is the fastest way to bootstrap a collection from "all the PSX games tagged (USA)" or similar.
 
@@ -39,7 +39,7 @@ Hover a game card → context menu (…) → **Add to Collection** → pick the 
 
 Or from the game detail page → Context menu → **Collections** → toggle.
 
-Bulk add is not available in 5.0 for standard collections; use [Smart Collections](smart-collections.md) if you want rule-based population.
+Bulk add is not available in 5.0 for standard collections. Use [Smart Collections](smart-collections.md) if you want rule-based population.
 
 ## Removing ROMs
 
@@ -68,7 +68,7 @@ For cross-instance sharing, generate a link via the collection drawer → **Copy
 
 Collection drawer → **Delete** → confirm.
 
-Deletion only removes the collection itself. The ROMs inside it stay in the library; nothing touches the actual files.
+Deletion only removes the collection itself. The ROMs inside it stay in the library, and nothing touches the actual files.
 
 ## Who can do what
 

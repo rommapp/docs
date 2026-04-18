@@ -5,7 +5,7 @@ description: Install RomM on TrueNAS SCALE via the App Catalog or YAML.
 
 # TrueNAS
 
-This guide covers **TrueNAS SCALE**. TrueNAS CORE isn't supported; its FreeBSD jail system doesn't run Docker images.
+This guide covers **TrueNAS SCALE**. TrueNAS CORE isn't supported because its FreeBSD jail system doesn't run Docker images.
 
 ## Prerequisites
 
@@ -23,9 +23,9 @@ This guide covers **TrueNAS SCALE**. TrueNAS CORE isn't supported; its FreeBSD j
 
 ### 2. Fill in the install form
 
-Step through the installation UI. You'll be asked for the same set of env vars as [Quick Start](../getting-started/quick-start.md); most defaults work. Things to look at:
+Step through the installation UI. You'll be asked for the same set of env vars as [Quick Start](../getting-started/quick-start.md), and most defaults work. Things to look at:
 
-- **Database credentials**: TrueNAS will offer to provision MariaDB for you; just pick a strong password.
+- **Database credentials**: TrueNAS will offer to provision MariaDB for you. Just pick a strong password.
 - **`ROMM_AUTH_SECRET_KEY`**: generate via `openssl rand -hex 32` on any Linux box and paste the output.
 - **Metadata provider credentials**: fill in whatever you've registered for. See [Metadata Providers](../administration/metadata-providers.md).
 - **Storage configurations**: point the **Library** and **Assets** volumes at datasets you control. Make sure the UID/GID defined in the app config (default: `568`, the `apps` user) has ACL access to those datasets.
@@ -57,7 +57,7 @@ Fill in the empty values with credentials you created in [Quick Start](../gettin
 
 ### 3. Install
 
-Save. Same troubleshooting applies; see below.
+Save. Same troubleshooting applies, see below.
 
 ## Troubleshooting
 
@@ -81,4 +81,4 @@ In at least one reported setup, creating a user/group in TrueNAS with UID/GID `1
 
 ## Contributing
 
-Suggestions welcome; PRs against [rommapp/docs](https://github.com/rommapp/docs).
+Suggestions welcome. PRs against [rommapp/docs](https://github.com/rommapp/docs).

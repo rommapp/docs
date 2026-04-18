@@ -5,7 +5,7 @@ description: Choose between the slim and full RomM container images.
 
 # Image Variants
 
-RomM publishes two production image variants. They're interchangeable at the config level; pick based on whether you want in-browser emulation.
+RomM publishes two production image variants. They're interchangeable at the config level, so pick based on whether you want in-browser emulation.
 
 | Variant | Tag | Includes | Approx size | When to pick |
 | --- | --- | --- | --- | --- |
@@ -28,11 +28,11 @@ services:
 docker compose up -d
 ```
 
-No data migration is required; saves, states, metadata, and `config.yml` are the same across variants.
+No data migration is required. Saves, states, metadata, and `config.yml` are the same across variants.
 
 ## Dev images
 
-`rommapp/romm:dev-slim` and `rommapp/romm:dev-full` track the `master` branch with hot-reload-friendly entrypoints. Useful for testing changes against a real library; not recommended for anything you care about. See [Development Setup](../developers/development-setup.md).
+`rommapp/romm:dev-slim` and `rommapp/romm:dev-full` track the `master` branch with hot-reload-friendly entrypoints. Useful for testing changes against a real library, but not recommended for anything you care about. See [Development Setup](../developers/development-setup.md).
 
 ## What's actually different
 
@@ -41,4 +41,4 @@ The two images share the same backend code, frontend bundle, nginx config, and e
 - **EmulatorJS** (~700 MB uncompressed): the in-browser retro emulator bundle.
 - **Ruffle** (~20 MB): the Flash/Shockwave emulator.
 
-If you set `ENABLE_EMULATORJS=false` and `ENABLE_RUFFLE=false` on the full image, behaviour matches slim; only the image is larger. Setting them to `true` on the slim image will cause players to 404 at runtime.
+If you set `ENABLE_EMULATORJS=false` and `ENABLE_RUFFLE=false` on the full image, behaviour matches slim, and only the image is larger. Setting them to `true` on the slim image will cause players to 404 at runtime.

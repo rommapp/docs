@@ -5,14 +5,14 @@ description: Install PS Vita and PSP games from your RomM library via pkgj homeb
 
 # pkgj
 
-[pkgj](https://github.com/blastrock/pkgj) is PS Vita homebrew for installing `.pkg`-format games and DLC. Default config points at well-known community URLs; point it at RomM's feed endpoints instead and you can install from your library over Wi-Fi.
+[pkgj](https://github.com/blastrock/pkgj) is PS Vita homebrew for installing `.pkg`-format games and DLC. Default config points at well-known community URLs, but you can point it at RomM's feed endpoints instead and install from your library over Wi-Fi.
 
 ## Prerequisites
 
 - **PS Vita** with [pkgj](https://github.com/blastrock/pkgj) installed.
 - A way to edit files on the Vita: [VitaShell](https://github.com/TheOfficialFloW/VitaShell) works well.
-- **RomM reachable from the Vita**: same LAN ideal; HTTP or HTTPS both work.
-- Your games stored as `.pkg` files (pkgj requires this format; it won't work with `.iso` or other formats).
+- **RomM reachable from the Vita**: same LAN ideal, and HTTP or HTTPS both work.
+- Your games stored as `.pkg` files (pkgj requires this format, and it won't work with `.iso` or other formats).
 
 ## Feed URLs
 
@@ -59,7 +59,7 @@ If you have non-`.pkg` files you want on the Vita, you'll need to convert them o
 
 The pkgi feeds honour basic auth. If your RomM doesn't have `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`, pkgj sends basic auth headers.
 
-Unlike [Tinfoil](tinfoil.md), pkgj handles auth natively: you don't have to turn off download auth on RomM to use it. Still, some users prefer disabling auth for a smoother first-time flow; either path works.
+Unlike [Tinfoil](tinfoil.md), pkgj handles auth natively: you don't have to turn off download auth on RomM to use it. Still, some users prefer disabling auth for a smoother first-time flow. Either path works.
 
 ## Troubleshooting
 

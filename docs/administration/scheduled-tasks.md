@@ -33,7 +33,7 @@ Examples:
 - `*/30 * * * *`: every 30 minutes.
 - `0 2 * * 0`: 2 AM every Sunday.
 
-Set the env var, restart the container. Alembic runs on every start; the scheduler picks up the new schedule the moment RomM comes back up.
+Set the env var, restart the container. Alembic runs on every start, and the scheduler picks up the new schedule the moment RomM comes back up.
 
 ## Disabling a scheduled task
 
@@ -87,11 +87,11 @@ Downloads an updated copy of the Nintendo Switch title ID database used for matc
 
 ### LaunchBox Metadata Sync
 
-Refreshes the local LaunchBox metadata cache used when LaunchBox is enabled as a metadata provider. Nightly at 2 AM by default. Only useful if `LAUNCHBOX_API_ENABLED=true`; disable it otherwise to save a handful of CPU seconds.
+Refreshes the local LaunchBox metadata cache used when LaunchBox is enabled as a metadata provider. Nightly at 2 AM by default. Only useful if `LAUNCHBOX_API_ENABLED=true`. Disable it otherwise to save a handful of CPU seconds.
 
 ### Image Conversion
 
-Re-encodes fetched cover art, screenshots, and manuals to WebP for faster serving. Nightly at 3 AM. Idempotent; safe to run more often if you're importing a lot of media.
+Re-encodes fetched cover art, screenshots, and manuals to WebP for faster serving. Nightly at 3 AM. Idempotent, so safe to run more often if you're importing a lot of media.
 
 ### RetroAchievements Sync
 
@@ -111,16 +111,16 @@ Walks the DB, checks each ROM's file still exists on disk, drops entries whose f
 
 ### Cleanup Orphaned Resources (manual)
 
-Deletes cover images, screenshots, and manuals no longer referenced by any ROM. Safe to run any time; can free tens of GB if you've been churning the library.
+Deletes cover images, screenshots, and manuals no longer referenced by any ROM. Safe to run any time, and can free tens of GB if you've been churning the library.
 
 ## Monitoring tasks
 
 - **Live**: Administration → Tasks page shows every task's current status (queued, running, idle, failed).
-- **API**: `GET /api/tasks/status` for a JSON summary; wire this to an uptime monitor if you want alerts.
+- **API**: `GET /api/tasks/status` for a JSON summary. Wire this to an uptime monitor if you want alerts.
 - **Logs**: `docker logs romm` → look for `rq.worker` lines.
-- **Heartbeat**: `GET /api/heartbeat` returns overall health plus per-task summary; handy for monitoring dashboards.
+- **Heartbeat**: `GET /api/heartbeat` returns overall health plus per-task summary, handy for monitoring dashboards.
 
-A task that's been "running" for hours is usually a scan that hit `SCAN_TIMEOUT_HOURS`; the log will say so. Tasks that fail leave a stack trace in the container logs; the RQ `failed` queue retains the last few for inspection.
+A task that's been "running" for hours is usually a scan that hit `SCAN_TIMEOUT_HOURS`, and the log will say so. Tasks that fail leave a stack trace in the container logs, and the RQ `failed` queue retains the last few for inspection.
 
 ## Tuning for small hosts
 

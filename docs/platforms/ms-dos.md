@@ -19,9 +19,9 @@ DOS games run in RomM via [`dosbox-pure`](https://github.com/schellingb/dosbox-p
 
 DOS games come in three flavours, each needs a different approach:
 
-- **Homebrew:** indie / modern DOS games. Just an `.exe`; usually Just Works once mounted.
+- **Homebrew:** indie / modern DOS games. Just an `.exe`, and usually Just Works once mounted.
 - **Shareware demos:** what most "free DOS games" sites distribute. Same as homebrew: all files in one folder.
-- **Retail:** need the original CD mounted alongside the installed game files. More work; every game is different.
+- **Retail:** need the original CD mounted alongside the installed game files. More work, and every game is different.
 
 ## The manual way (commandline)
 
@@ -34,7 +34,7 @@ dir                     # find the .EXE
 filename.exe            # launch
 ```
 
-Works for homebrew and shareware. Retail games usually fail here; they want a CD mounted somewhere.
+Works for homebrew and shareware. Retail games usually fail here because they want a CD mounted somewhere.
 
 ## The automatic way (`.conf` autoload)
 
@@ -189,7 +189,7 @@ Not supported: `dosbox-pure` works with EmulatorJS Netplay intermittently, not r
 - **Mouse lag.** Enable `autolock=true` in `[sdl]`.
 - **Wrong resolution / aspect.** Tweak `[render] aspect=` and `windowresolution=`.
 - **Audio crackle.** Lower `rate=22050` to `rate=11025` or raise the mixer blocksize.
-- **Game runs too fast.** Most auto-cycle issues; set `cycles=fixed 4000` (or another number) explicitly.
+- **Game runs too fast.** Most auto-cycle issues. Set `cycles=fixed 4000` (or another number) explicitly.
 - **Keyboard doesn't work for certain keys.** `usescancodes=false` sometimes fixes it.
 
 ## Dosemu / Exodos alternatives

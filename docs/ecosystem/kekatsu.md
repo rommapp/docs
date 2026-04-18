@@ -29,7 +29,7 @@ http://192.168.1.100:3000/api/feeds/kekatsu/nds
 
 ## Configuring Kekatsu
 
-Exact config steps depend on your Kekatsu build; the shared concept is "point the app at this URL and it fetches the manifest". Consult Kekatsu's own docs for the current config-file location.
+Exact config steps depend on your Kekatsu build, but the shared concept is "point the app at this URL and it fetches the manifest". Consult Kekatsu's own docs for the current config-file location.
 
 ## File format
 
@@ -43,11 +43,11 @@ Kekatsu can send basic auth. Either configure it on the DS side or enable `DISAB
 
 The DS's original Wi-Fi hardware supports WEP and an older WPA variant only. Modern home routers usually don't. Workarounds:
 
-- **Dedicated DS-friendly SSID.** Many routers allow per-SSID security; add a WEP one just for the DS.
+- **Dedicated DS-friendly SSID.** Many routers allow per-SSID security, so add a WEP one just for the DS.
 - **Travel router in bridge mode.** A cheap travel router configured for WEP uplinks to your main (secure) network.
 - **Use a DSi, 3DS, or homebrew replacement driver.** These support modern security.
 
-If none of this is appealing, Kekatsu-over-LAN isn't going to work; fall back to sideloading via flashcart or similar.
+If none of this is appealing, Kekatsu-over-LAN isn't going to work. Fall back to sideloading via flashcart or similar.
 
 ## Troubleshooting
 

@@ -22,7 +22,7 @@ Human-readable versions:
 - **Swagger UI** at `{romm_url}/api/docs`
 - **ReDoc** at `{romm_url}/api/redoc`
 
-Both are auto-generated from the same `openapi.json`. Swagger UI has a "Try it out" feature for live testing; ReDoc has a cleaner reading layout.
+Both are auto-generated from the same `openapi.json`. Swagger UI has a "Try it out" feature for live testing, and ReDoc has a cleaner reading layout.
 
 ## Versioning
 
@@ -56,7 +56,7 @@ npx @openapitools/openapi-generator-cli generate \
   -o ./romm-client-ts
 ```
 
-Generated clients handle auth, request shaping, and response parsing. Drop in, import, call. Quality varies by generator target; Python and TypeScript are the best-tested.
+Generated clients handle auth, request shaping, and response parsing. Drop in, import, call. Quality varies by generator target, but Python and TypeScript are the best-tested.
 
 ### Tips
 
@@ -86,7 +86,7 @@ If you're building something that calls RomM, consider validating requests again
 
 A few known quirks to work around:
 
-- **Some `additionalProperties` are loose.** RomM's spec lets some responses include fields not in the schema (debug hooks, feature-flag-gated fields). Don't treat the spec as an exact response guarantee; treat it as "everything here is always present; more may follow".
+- **Some `additionalProperties` are loose.** RomM's spec lets some responses include fields not in the schema (debug hooks, feature-flag-gated fields). Don't treat the spec as an exact response guarantee. Treat it as "everything here is always present, more may follow".
 - **Socket.IO isn't in the OpenAPI spec.** WebSocket endpoints are documented separately in [WebSockets](websockets.md).
 - **Pagination defaults vary per endpoint.** Some paginate, some don't. Check the spec per endpoint.
 

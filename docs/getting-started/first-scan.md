@@ -29,7 +29,7 @@ The page switches to live mode:
 - Per-platform **accordion panels** show counts update live: total found, matched, unmatched.
 - You can click a **matched ROM** while the scan is still running to see what metadata RomM pulled, with no need to wait for the full run.
 
-First scans on big libraries take a while. Expect ~1 second per ROM with a fast network to IGDB/ScreenScraper; hashing (which runs unless you disabled it) adds IO time proportional to file size.
+First scans on big libraries take a while. Expect ~1 second per ROM with a fast network to IGDB/ScreenScraper, and hashing (which runs unless you disabled it) adds IO time proportional to file size.
 
 ## What "matched" means
 
@@ -44,10 +44,10 @@ An **unmatched** ROM means no provider recognised it. Common causes:
 
 - Filename is too generic (`game.gba`).
 - Bad rip, intro / patch applied, or a regional variant no provider has indexed.
-- Platform folder misnamed: the scanner queries providers scoped to the detected platform; wrong platform = no results.
+- Platform folder misnamed: the scanner queries providers scoped to the detected platform, so wrong platform = no results.
 - Metadata provider credentials wrong or rate-limited: check the scan log for errors.
 
-Most of these are fixable; see [Scanning Troubleshooting](../troubleshooting/scanning.md).
+Most of these are fixable. See [Scanning Troubleshooting](../troubleshooting/scanning.md).
 
 ## When the scan finishes
 
@@ -60,7 +60,7 @@ Click the **RomM logo** (top-left) to go home. You should see:
 From here, typical next steps:
 
 - **Browse**: click a platform card, flip through the grid.
-- **Fix unmatched ROMs**: rename or re-tag; re-run an **Unmatched** scan to pick them up. See [Scanning & Watcher](../administration/scanning-and-watcher.md#scan-modes).
+- **Fix unmatched ROMs**: rename or re-tag, then re-run an **Unmatched** scan to pick them up. See [Scanning & Watcher](../administration/scanning-and-watcher.md#scan-modes).
 - **Tweak priorities**: if ScreenScraper's covers are nicer than IGDB's for your library, reorder `scan.priority.artwork` in [`config.yml`](../reference/configuration-file.md).
 - **Add more users**: [Invitations & Registration](../administration/invitations-and-registration.md).
 

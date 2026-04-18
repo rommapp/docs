@@ -15,7 +15,7 @@ All three share the same scan engine and the same set of **scan modes**.
 
 ## Scan modes
 
-Every scan picks one mode. Modes differ in what they touch; use the most-targeted mode that accomplishes what you want.
+Every scan picks one mode. Modes differ in what they touch, so use the most-targeted mode that accomplishes what you want.
 
 | Mode | What it does | When to use |
 | --- | --- | --- |
@@ -32,13 +32,13 @@ You can further scope a scan to specific **platforms** and specific **metadata p
 
 **Scan button in the sidebar.** The Scan page shows:
 
-- Platform checkboxes (select which to scan; leave empty to scan all).
+- Platform checkboxes (select which to scan, leave empty to scan all).
 - Metadata provider toggles (overrides the default priority for this one scan).
 - Advanced options: skip hashing (helpful on low-power hosts), target a LaunchBox refresh.
 - A live log of everything the scanner is doing.
 - Per-platform progress panels with matched / unmatched / missing counts.
 
-A running scan survives browser refreshes; the log streams over Socket.IO. Multiple admins opening the page see the same scan state.
+A running scan survives browser refreshes, and the log streams over Socket.IO. Multiple admins opening the page see the same scan state.
 
 ## Scheduled scans
 
@@ -55,7 +55,7 @@ To disable scheduled scans entirely, either unset the cron or set it to somethin
 
 ## Filesystem watcher
 
-The watcher tails your library folder and schedules scans in response to file events: files added, moved, deleted. It's off by default on some deployments; enable with:
+The watcher tails your library folder and schedules scans in response to file events: files added, moved, deleted. It's off by default on some deployments. Enable with:
 
 ```yaml
 environment:
@@ -68,9 +68,9 @@ environment:
 Behaviour:
 
 - Watches `/romm/library` (and everything under it) recursively.
-- Debounces bursts of events; the delay (default 10 seconds) lets a large `cp` or `rsync` settle before scanning.
+- Debounces bursts of events. The delay (default 10 seconds) lets a large `cp` or `rsync` settle before scanning.
 - Batches scans intelligently: many events → a single consolidated scan, not one scan per file.
-- Ignores content modifications and metadata-only changes; it cares about files appearing or disappearing, not about `chmod`.
+- Ignores content modifications and metadata-only changes. It cares about files appearing or disappearing, not about `chmod`.
 - Skips OS noise (`.DS_Store`, `Thumbs.db`, `.tmp`, etc.).
 - If a whole new platform folder appears, switches to a **New Platforms** scan to pick it up cleanly.
 
@@ -89,7 +89,7 @@ Behaviour:
 | Catches renames | Yes | Yes |
 | Survives a container restart | Yes, re-arms on startup | Yes |
 
-Run both. The watcher handles day-to-day additions; the scheduled scan is a safety net.
+Run both. The watcher handles day-to-day additions, and the scheduled scan is a safety net.
 
 ## What gets excluded
 

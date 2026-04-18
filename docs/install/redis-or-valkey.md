@@ -16,9 +16,9 @@ Both **Redis** and **Valkey** (the open-source Redis fork maintained by the Linu
 
 ## Option A: embedded (default)
 
-The default `full-image` container runs a Redis server inside itself. Zero config, fine for single-instance deployments. The `REDIS_HOST` / `REDIS_PORT` defaults (`localhost:6379`) point at the embedded instance; leave them alone.
+The default `full-image` container runs a Redis server inside itself. Zero config, fine for single-instance deployments. The `REDIS_HOST` / `REDIS_PORT` defaults (`localhost:6379`) point at the embedded instance, so leave them alone.
 
-**Data** is persisted to `/redis-data` inside the container. In the reference compose, that's mounted to a Docker volume (`romm_redis_data`) so queue state survives restarts. Don't skip the volume; you'll lose in-flight tasks on every `docker compose up -d`.
+**Data** is persisted to `/redis-data` inside the container. In the reference compose, that's mounted to a Docker volume (`romm_redis_data`) so queue state survives restarts. Don't skip the volume, because you'll lose in-flight tasks on every `docker compose up -d`.
 
 ## Option B: external Redis container
 
@@ -84,7 +84,7 @@ The full list of Redis env vars lives in [Environment Variables](../reference/en
 RomM's Redis usage is light: sessions, a queue, a bit of cache. Defaults are fine for anything up to tens of thousands of ROMs and a few dozen users. Things to know:
 
 - **`appendonly yes`** is strongly recommended (what the reference compose uses). Without it, a crash loses any task currently in the queue.
-- **RDB snapshotting** is fine on top; `save 60 1` gives you a minutely snapshot.
+- **RDB snapshotting** is fine on top. `save 60 1` gives you a minutely snapshot.
 - **Memory**: RomM doesn't hold large blobs in Redis. A 256 MB `maxmemory` is plenty for most instances.
 - **Key eviction**: leave `maxmemory-policy` alone (default: `noeviction`). RomM doesn't tolerate silent key loss: sessions would drop and running tasks would lose state.
 
@@ -98,7 +98,7 @@ docker exec romm redis-cli -h "$REDIS_HOST" -p "$REDIS_PORT" -a "$REDIS_PASSWD" 
 If you see `PONG` from the RomM container, you're good. If not, check:
 
 - That the DNS name in `REDIS_HOST` resolves from the RomM container (use `docker exec romm getent hosts romm-redis`).
-- That the password is correct; `redis-cli -a` will say `NOAUTH` if wrong.
+- That the password is correct. `redis-cli -a` will say `NOAUTH` if wrong.
 - That `REDIS_SSL=true` matches whether the server actually requires TLS.
 
-Debugging further: see the Redis line in `docker logs romm` at startup; RomM logs the connection target.
+Debugging further: see the Redis line in `docker logs romm` at startup, where RomM logs the connection target.

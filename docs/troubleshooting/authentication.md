@@ -18,11 +18,11 @@ Fix: [clear cookies](https://support.google.com/accounts/answer/32050) for the R
 
 CSRF protection is on by default. A mismatched or missing `csrftoken` cookie causes this.
 
-1. Reload the page; RomM sets a fresh CSRF cookie on GET requests, which should fix it on the next POST.
+1. Reload the page. RomM sets a fresh CSRF cookie on GET requests, which should fix it on the next POST.
 2. Still broken? Clear cookies for the RomM host and hard-reload (`CMD+SHIFT+R` / `CTRL+F5`).
-3. Known to happen on Chrome specifically; rare on Firefox/Safari.
+3. Known to happen on Chrome specifically, and rare on Firefox/Safari.
 
-If you're behind a reverse proxy and CSRF keeps failing, the proxy is probably stripping the `csrftoken` cookie or the `X-CSRFToken` header. See the [Reverse Proxy recipes](../install/reverse-proxy.md); every one of them forwards `Cookie` and all custom headers by default, so if yours doesn't, fix the proxy config.
+If you're behind a reverse proxy and CSRF keeps failing, the proxy is probably stripping the `csrftoken` cookie or the `X-CSRFToken` header. See the [Reverse Proxy recipes](../install/reverse-proxy.md). Every one of them forwards `Cookie` and all custom headers by default, so if yours doesn't, fix the proxy config.
 
 ## `400 Bad Request` on the WebSocket endpoint
 
@@ -30,7 +30,7 @@ Your reverse proxy is stripping the WebSocket upgrade. RomM uses Socket.IO for l
 
 Fixes per proxy:
 
-- **Nginx / NPM**: enable WebSockets Support; the [Reverse Proxy](../install/reverse-proxy.md) snippets already do this.
+- **Nginx / NPM**: enable WebSockets Support. The [Reverse Proxy](../install/reverse-proxy.md) snippets already do this.
 - **Traefik**: add `proxy_set_header Upgrade $http_upgrade` (or use the Traefik middleware equivalent).
 - **Caddy**: WebSockets work out of the box with `reverse_proxy`.
 - **Cloudflare**: enable **WebSockets** under Network settings.
@@ -41,7 +41,7 @@ IGDB creds are wrong or revoked on the Twitch side.
 
 1. Go to [dev.twitch.tv/console/apps](https://dev.twitch.tv/console/apps).
 2. Verify your RomM application still exists.
-3. Regenerate the Client Secret; copy both Client ID and Client Secret.
+3. Regenerate the Client Secret, and copy both Client ID and Client Secret.
 4. Update `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` in your RomM env.
 5. `docker compose up -d` to pick up the new values.
 
@@ -52,7 +52,7 @@ You set `DISABLE_USERPASS_LOGIN=true` and now OIDC isn't working.
 1. Edit your compose / env to unset `DISABLE_USERPASS_LOGIN` (or set it to `false`).
 2. `docker compose up -d` to restart with the new config.
 3. Log in with your local admin.
-4. Fix OIDC; see below.
+4. Fix OIDC. See below.
 5. Re-enable `DISABLE_USERPASS_LOGIN` only after confirming OIDC works end-to-end.
 
 This is the reason [OIDC Setup](../administration/oidc/index.md) tells you to verify OIDC before turning off local login.
@@ -80,7 +80,7 @@ You configured `OIDC_CLAIM_ROLES` but RomM isn't honouring it.
 2. **Does the value match?** `OIDC_ROLE_ADMIN=romm-admin` will only match if the claim contains exactly the string `romm-admin`. Case-sensitive.
 3. **Is the claim mapper on the IdP side configured to include the claim?** On Keycloak, for example, you need a Client Scope with a Group Membership mapper added to the client.
 
-Roles are re-evaluated on every login; there's no cache to bust. Log out and back in after fixing.
+Roles are re-evaluated on every login, and there's no cache to bust. Log out and back in after fixing.
 
 ### "Email is missing from token" (Zitadel-specific)
 
@@ -120,5 +120,5 @@ If `bypass_autologin` doesn't work in your version, shell into the container and
 ## Still stuck
 
 - Check the container logs: `docker logs romm 2>&1 | grep -iE 'auth|oidc|oauth'`.
-- Cross-reference your IdP's audit logs; they often show exactly why a login was rejected on their side.
+- Cross-reference your IdP's audit logs. They often show exactly why a login was rejected on their side.
 - Ask on [Discord](https://discord.gg/romm) `#help` with the IdP name and the exact error text.

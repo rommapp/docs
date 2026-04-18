@@ -9,12 +9,12 @@ description: Upload ROMs, firmware, saves, states, and screenshots into RomM fro
 
 | Type | Permission | Where | Details |
 | --- | --- | --- | --- |
-| **ROMs** | Admin, Editor | **Upload** in menu bar; **Upload ROM** on platform detail; ROM detail → Upload menu | Goes to the correct platform folder in `/romm/library`. |
+| **ROMs** | Admin, Editor | **Upload** in menu bar, **Upload ROM** on platform detail, ROM detail → Upload menu | Goes to the correct platform folder in `/romm/library`. |
 | **Firmware / BIOS** | Admin, Editor | Platform detail → Firmware button → Upload | See [Firmware Management](../administration/firmware-management.md). |
 | **Saves** | Self (own games) | Game detail → Game Data tab → Upload Save | Per-ROM, per-user. |
 | **States** | Self (own games) | Game detail → Game Data tab → Upload State | Per-ROM, per-user. Optional screenshot attached. |
 | **Screenshots** | Self (own games) | Game detail → Screenshots tab → Upload | Per-ROM, per-user. |
-| **Manuals** | Admin, Editor | Game detail → Manual tab → Upload (when empty) | PDF; becomes the Manual tab content. |
+| **Manuals** | Admin, Editor | Game detail → Manual tab → Upload (when empty) | PDF, becomes the Manual tab content. |
 | **Cover art** | Admin, Editor | Game detail → Edit → Upload cover | Replaces the provider-fetched cover. |
 
 ## ROM upload
@@ -26,7 +26,7 @@ description: Upload ROMs, firmware, saves, states, and screenshots into RomM fro
 3. **+ ADD** → select files, or drag-and-drop onto the upload zone.
 4. Click **Upload**.
 
-Multiple files upload in parallel. Progress bars show per-file status; failures surface with an error per file rather than stopping the whole batch.
+Multiple files upload in parallel. Progress bars show per-file status, and failures surface with an error per file rather than stopping the whole batch.
 
 ### Large uploads (chunked)
 
@@ -62,7 +62,7 @@ For your own games. Useful for importing existing save files from another emulat
 3. Optionally attach a screenshot (a thumbnail for the save).
 4. Save.
 
-The file's stored under `/romm/assets/<user>/<rom>/saves/` and is available to your [in-browser play](in-browser-play.md) sessions. RomM doesn't rewrite the file contents; it's stored as-is.
+The file's stored under `/romm/assets/<user>/<rom>/saves/` and is available to your [in-browser play](in-browser-play.md) sessions. RomM doesn't rewrite the file contents. It's stored as-is.
 
 See [Saves & States](saves-and-states.md) for more.
 
@@ -70,8 +70,8 @@ See [Saves & States](saves-and-states.md) for more.
 
 Emulator save-states. Same flow as saves but under **States**.
 
-- State formats are emulator-specific; a SNES9x state won't load in bsnes.
-- Screenshots can be attached; RomM generates one automatically from the emulator if you create a state from [in-browser play](in-browser-play.md).
+- State formats are emulator-specific. A SNES9x state won't load in bsnes.
+- Screenshots can be attached. RomM generates one automatically from the emulator if you create a state from [in-browser play](in-browser-play.md).
 
 ## Screenshot uploads
 
@@ -93,7 +93,7 @@ Supported: PDF. Renders in the browser via the Manual tab.
 
 ## Cover art uploads
 
-Admin / Editor. Game detail → Context menu (…) → **Edit** → **Upload cover** → PNG / JPG / WebP. Overrides provider-fetched cover. To revert: Edit → **Reset cover**; the next metadata refresh repopulates from providers.
+Admin / Editor. Game detail → Context menu (…) → **Edit** → **Upload cover** → PNG / JPG / WebP. Overrides provider-fetched cover. To revert: Edit → **Reset cover**, and the next metadata refresh repopulates from providers.
 
 ## Permissions summary
 
@@ -109,7 +109,7 @@ Full scope matrix in [Users & Roles](../administration/users-and-roles.md#scope-
 ## Troubleshooting
 
 - **`413 Request Entity Too Large`**: your reverse proxy or ingress is capping body size. See [Reverse Proxy](../install/reverse-proxy.md) for the `client_max_body_size 0` / `proxy-body-size: "0"` fix.
-- **Upload progresses then fails at 99%**: the finalise step timed out. Usually reverse-proxy read timeout is too tight; raise it.
+- **Upload progresses then fails at 99%**: the finalise step timed out. Usually reverse-proxy read timeout is too tight, so raise it.
 - **"File is not a valid ROM for this platform"**: RomM's extension check rejected the file. Either it's the wrong platform, or the extension is obscure. See [Folder Structure → Naming](../getting-started/folder-structure.md#naming-convention).
 - **Save upload silently doesn't appear in-emulator**: you uploaded to the wrong emulator core. Check [Saves & States → Emulator compatibility](saves-and-states.md) for the format → core matrix.
 

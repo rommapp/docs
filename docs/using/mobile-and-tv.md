@@ -45,7 +45,7 @@ You've got a TV-attached Android box, a mini-PC, a Nvidia Shield, or a browser r
 3. **Plug in a gamepad**: USB, Bluetooth, anything the browser sees.
 4. **Launch the PWA.** You're in Console Mode, gamepad-ready.
 
-Now it looks and feels like a console UI, running on a web page. Launching a game loads EmulatorJS full-screen; same gamepad passes through.
+Now it looks and feels like a console UI, running on a web page. Launching a game loads EmulatorJS full-screen, and the same gamepad passes through.
 
 ### What about actual emulation?
 
@@ -91,11 +91,11 @@ Some things are bandwidth-hungry, some aren't:
 
 | Activity | Typical bandwidth | Notes |
 | --- | --- | --- |
-| Browsing the library | Low | Cover-art thumbnails; a few hundred KB per page load. |
-| Playing in browser | Medium | ROM streams at boot; thereafter cached. PSP / Saturn ISOs can be hundreds of MB on first load. |
+| Browsing the library | Low | Cover-art thumbnails, a few hundred KB per page load. |
+| Playing in browser | Medium | ROM streams at boot, then cached. PSP / Saturn ISOs can be hundreds of MB on first load. |
 | Netplay | Medium–High | Video stream from host to players. ~500 kbps for SNES, more for higher-res cores. |
 | Bulk download | As-much-as-you-want | Rate-limited only by your reverse proxy and network. |
-| Device sync (saves) | Low | Saves are small; sync is fast. |
+| Device sync (saves) | Low | Saves are small, so sync is fast. |
 | Device sync (ROMs) | High | Pushing full ROM sets to a handheld initially is a lot. |
 
 On cellular? Set `DISABLE_DOWNLOAD_ENDPOINT_AUTH=false` (default: keep auth on) to avoid accidental discovery, and prefer native companion apps over in-browser play.
@@ -106,7 +106,7 @@ If you host RomM on a home server and want to reach it from cellular:
 
 - Put it behind a reverse proxy with TLS. See [Reverse Proxy](../install/reverse-proxy.md).
 - Use a VPN (Tailscale, WireGuard) instead of exposing to the internet. Handhelds with Tailscale setups "just work".
-- For public access without a VPN, put Cloudflare Access or similar zero-trust auth in front of RomM. Disable `ALLOW_PUBLIC_REGISTRATION` on RomM; the edge auth handles gatekeeping.
+- For public access without a VPN, put Cloudflare Access or similar zero-trust auth in front of RomM. Disable `ALLOW_PUBLIC_REGISTRATION` on RomM, because the edge auth handles gatekeeping.
 
 ## See also
 

@@ -11,7 +11,7 @@ Tokens are **per-user** and **per-scope-subset**: a token can hold any subset of
 
 ## Why not just store a password?
 
-- Passwords grant full access to the account; tokens can be scope-narrowed.
+- Passwords grant full access to the account, but tokens can be scope-narrowed.
 - Tokens are one-click revocable without changing your password.
 - Tokens are safer to type (or paste) into a companion app's config file than a password.
 - Tokens can be bound to a single device via the pairing flow, avoiding typing them at all.
@@ -35,10 +35,10 @@ Authorization: Bearer rmm_abcdef...
 From the RomM UI: **Profile → Client API Tokens → + New Token**.
 
 - **Name**: descriptive (e.g. "Grout on RG35XX").
-- **Scopes**: tick which scopes to include. Default: read-only. Think about it; don't give every token `users.write`.
-- **Expiry**: optional; blank = never expires until revoked.
+- **Scopes**: tick which scopes to include. Default: read-only. Think about it, and don't give every token `users.write`.
+- **Expiry**: optional, blank = never expires until revoked.
 
-The token is shown **exactly once**. Copy it now. If you lose it, revoke and regenerate; you can't get it back.
+The token is shown **exactly once**. Copy it now. If you lose it, revoke and regenerate, because you can't get it back.
 
 ## Device pairing (short-code flow)
 
@@ -77,7 +77,7 @@ Typing a 44-character token into a handheld thumbstick isn't realistic. Instead:
 
 ### Who generates the code
 
-The user who owns the token, from a device already signed into RomM (web UI, usually). The handheld / companion device then enters the code. No way for a device to generate a code on its own; that would defeat the pairing.
+The user who owns the token, from a device already signed into RomM (web UI, usually). The handheld / companion device then enters the code. No way for a device to generate a code on its own, because that would defeat the pairing.
 
 ### What "pairing" gives you
 
@@ -161,7 +161,7 @@ The UI's scope-selection step defaults to read-only. Only tick write scopes you 
 If the owning user's role drops below what the token needs:
 
 - Token continues to exist but fails at request time with **403 Forbidden**.
-- RomM doesn't automatically revoke it; that's the user's decision.
+- RomM doesn't automatically revoke it. That's the user's decision.
 
 If the user is deleted, all their tokens are revoked immediately.
 
@@ -169,7 +169,7 @@ If the user is deleted, all their tokens are revoked immediately.
 
 - **Sharing a token between users.** Tokens are single-user. If two people need access, give them each an account and each creates their own token.
 - **Embedding a token in public source.** Obvious but worth saying. If you accidentally commit one, revoke immediately from the RomM UI.
-- **A single token for every app.** Name and scope per-app; revoking one doesn't kill the others.
+- **A single token for every app.** Name and scope per-app, so revoking one doesn't kill the others.
 - **Infinite-expiry tokens in untrusted locations.** If a device might be lost / handed off, set an expiry.
 
 ## See also

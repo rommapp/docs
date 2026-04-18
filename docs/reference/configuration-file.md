@@ -15,7 +15,7 @@ Start from the [`config.example.yml`](https://github.com/rommapp/romm/blob/maste
 - [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml)
 
 !!! warning "Only set what you need"
-    Any omitted section uses the default. Don't copy the full example and then strip sections; just add what you want to change.
+    Any omitted section uses the default. Don't copy the full example and then strip sections. Just add what you want to change.
 
 ---
 
@@ -25,7 +25,7 @@ Control what the scanner ignores.
 
 ### `exclude.platforms`
 
-Skip entire platform folders. Values are platform slugs (not folder names; see [`system.platforms`](#systemplatforms) if your folders are named differently).
+Skip entire platform folders. Values are platform slugs, not folder names. See [`system.platforms`](#systemplatforms) if your folders are named differently.
 
 ```yaml
 exclude:
@@ -212,7 +212,7 @@ scan:
 
 ### `scan.priority.region` _(enhanced in 5.0)_
 
-Preferred region for titles, cover art, and regional variants. ScreenScraper uses this directly; other providers respect it where possible.
+Preferred region for titles, cover art, and regional variants. ScreenScraper uses this directly, and other providers respect it where possible.
 
 **Default:** `["us", "wor", "ss", "eu", "jp"]`
 
@@ -336,7 +336,7 @@ emulatorjs:
 
 ### `emulatorjs.netplay` _(new in 5.0)_
 
-Toggle Netplay and configure STUN/TURN servers. Google's public STUN servers are fine for most setups; run your own [coturn](https://github.com/coturn/coturn) or use [Metered's free tier](https://www.metered.ca/stun-turn) if you need TURN (symmetric NAT).
+Toggle Netplay and configure STUN/TURN servers. Google's public STUN servers are fine for most setups. Run your own [coturn](https://github.com/coturn/coturn) or use [Metered's free tier](https://www.metered.ca/stun-turn) if you need TURN (symmetric NAT).
 
 ```yaml
 emulatorjs:
@@ -398,7 +398,7 @@ See the [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/contr
 
 ## Editing via the UI
 
-Everything above is also available from the Library Management page in the web UI; edits there write back to the same `config.yml`. Either path works; they're not separate stores.
+Everything above is also available from the Library Management page in the web UI, and edits there write back to the same `config.yml`. Either path works. They're not separate stores.
 
 ## Per-file alternatives
 

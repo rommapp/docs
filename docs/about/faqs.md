@@ -13,7 +13,7 @@ See [Introduction](../index.md) for the full pitch.
 
 ## Is it free?
 
-Yes. [AGPL-3.0](license.md). Core always will be free; other repos in the umbrella use permissive licenses. No tracking, no upsells.
+Yes. [AGPL-3.0](license.md). Core always will be free, and other repos in the umbrella use permissive licenses. No tracking, no upsells.
 
 ## How does it compare to [X other manager]?
 
@@ -21,7 +21,7 @@ Not a direct comparison page. Short version: RomM emphasises self-hosted + multi
 
 ## Do I need metadata API keys?
 
-Not strictly. RomM runs without any; games just won't match to a metadata source, so no covers, descriptions, or ratings.
+Not strictly. RomM runs without any, but games just won't match to a metadata source, so no covers, descriptions, or ratings.
 
 Recommended: IGDB + ScreenScraper. See [Metadata Providers](../administration/metadata-providers.md) for the full list.
 
@@ -41,9 +41,9 @@ See [Install & Deploy](../install/index.md).
 
 Not supported:
 
-- Bare metal without containers (not documented; may work).
-- TrueNAS CORE (FreeBSD; no Docker).
-- Windows without WSL (Docker Desktop works; bare Windows doesn't).
+- Bare metal without containers (not documented, but may work).
+- TrueNAS CORE (FreeBSD, no Docker).
+- Windows without WSL (Docker Desktop works, but bare Windows doesn't).
 
 ## How much RAM / CPU does it need?
 

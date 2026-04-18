@@ -18,7 +18,7 @@ volumes:
 
 This only applies to SQLite. MariaDB / MySQL / Postgres users persist via the DB container's own volume (`mysql_data:/var/lib/mysql` and similar), not via a `/romm/database` mount.
 
-For anything multi-user or larger than a few hundred games, **don't use SQLite**; see [Databases](../install/databases.md).
+For anything multi-user or larger than a few hundred games, **don't use SQLite**. See [Databases](../install/databases.md).
 
 ## `Could not get twitch auth token: check client_id and client_secret`
 
@@ -78,7 +78,7 @@ Static media is served from `/romm/resources` through nginx. If images 404:
 Most common causes, in order:
 
 1. **Hashing large files on spinning disks.** Check **Skip hash calculation** or move the library to SSD.
-2. **SQLite with many users.** Switch to MariaDB or Postgres; see [Databases](../install/databases.md).
+2. **SQLite with many users.** Switch to MariaDB or Postgres. See [Databases](../install/databases.md).
 3. **Metadata provider rate limiting during scans.** Reduce `SCAN_WORKERS` or split scans by platform.
 4. **Container on underpowered hardware.** Check CPU/RAM headroom with `docker stats romm`. If RAM is pegged, raise container limits or disable `WATCHER_ENABLED`.
 
@@ -88,7 +88,7 @@ Most common causes, in order:
 2. Restore your DB dump from [Backup & Restore](../install/backup-and-restore.md).
 3. Open a bug report with: old version, new version, the exact error or behaviour, and `docker logs romm` from the failed startup.
 
-For 4.x → 5.0 specifically, read [Upgrading to 5.0](../releases/upgrading-to-5.0.md); the migration guide covers every known breaking change.
+For 4.x → 5.0 specifically, read [Upgrading to 5.0](../releases/upgrading-to-5.0.md). The migration guide covers every known breaking change.
 
 ## It's not listed here
 

@@ -1,6 +1,6 @@
 ---
 title: API Authentication
-description: How to authenticate to the RomM REST API: session cookies, Basic, OAuth2 tokens, client tokens, and OIDC.
+description: How to authenticate to the RomM REST API. Session cookies, Basic, OAuth2 tokens, client tokens, and OIDC.
 ---
 
 # API Authentication
@@ -15,7 +15,7 @@ RomM's REST API accepts four authentication modes. Pick the one that matches you
 | **Client API Token** | Companion apps (Argosy, Grout, Playnite, custom scripts) | `Authorization: Bearer rmm_<token>` |
 | **OIDC session** | Users who sign in via SSO | Same as session cookie, but issued after OIDC callback |
 
-All of them resolve to the same scope model; see the [scope matrix in Users & Roles](../administration/users-and-roles.md#scope-matrix). A request is allowed if the active identity holds all scopes the endpoint requires.
+All of them resolve to the same scope model. See the [scope matrix in Users & Roles](../administration/users-and-roles.md#scope-matrix). A request is allowed if the active identity holds all scopes the endpoint requires.
 
 ## Base URL
 
@@ -46,7 +46,7 @@ For OIDC logins, hitting `/api/auth/logout` also triggers RP-Initiated Logout if
 
 ## HTTP Basic
 
-Fine for quick scripts. Avoid in shared environments; the credentials are sent on every request.
+Fine for quick scripts. Avoid in shared environments, because the credentials are sent on every request.
 
 ```bash
 curl -u alice:s3cret https://romm.example.com/api/roms
@@ -94,7 +94,7 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=refresh_token&refresh_token=eyJhbGciOi...
 ```
 
-Request only the scopes you need; RomM will issue a token with the intersection of what you asked for and what the user has.
+Request only the scopes you need. RomM will issue a token with the intersection of what you asked for and what the user has.
 
 ## Client API tokens (for companion apps)
 
@@ -123,7 +123,7 @@ Every endpoint in the [API Reference](api-reference.md) lists its required scope
 - **Write**-ish endpoints want `*.write`.
 - **Admin** endpoints (anything under `/api/users` beyond `me`, `/api/tasks/run`) want `users.read`, `users.write`, or `tasks.run`.
 
-A token that holds `users.write` also implicitly grants lesser scopes like `users.read` or `me.read`; RomM doesn't require you to list them all. But a token that holds only `roms.read` can't write, even if the underlying user is an Admin.
+A token that holds `users.write` also implicitly grants lesser scopes like `users.read` or `me.read`, so RomM doesn't require you to list them all. But a token that holds only `roms.read` can't write, even if the underlying user is an Admin.
 
 ## Errors
 
@@ -136,7 +136,7 @@ A token that holds `users.write` also implicitly grants lesser scopes like `user
 When debugging a 403, check:
 
 1. The **user's role** in Administration → Users.
-2. The **token's scopes** (for OAuth2/Client API Tokens); scopes are narrower than the user's role by default.
+2. The **token's scopes** (for OAuth2/Client API Tokens). Scopes are narrower than the user's role by default.
 3. The endpoint's scope requirements in the [API Reference](api-reference.md).
 
 ## OpenAPI

@@ -13,15 +13,15 @@ The most common error. Almost always the operator-side config:
 
 1. **Is Netplay enabled?** `emulatorjs.netplay.enabled: true` in `config.yml`.
 2. **Are ICE servers configured?** The operator needs at least one STUN server in `emulatorjs.netplay.ice_servers`. Without any, NAT traversal can't begin.
-3. **ICE server URLs reachable?** RomM can't talk to `stun.l.google.com:19302` if your server has no outbound internet; sounds silly but happens in air-gapped labs.
+3. **ICE server URLs reachable?** RomM can't talk to `stun.l.google.com:19302` if your server has no outbound internet. Sounds silly but happens in air-gapped labs.
 
-Operator: check `docker logs romm | grep -i netplay`; errors usually point at ICE config or network access.
+Operator: check `docker logs romm | grep -i netplay`. Errors usually point at ICE config or network access.
 
 Full config: [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay-new-in-50).
 
 ## Can't see the room
 
-You created a room as host; other players don't see it.
+You created a room as host, but other players don't see it.
 
 - **They need RomM accounts on your instance.** Netplay doesn't federate. A user with no account or on a different RomM can't see or join.
 - **WebSocket connection is broken.** Open devtools → Network → WS tab. If Socket.IO is disconnecting, see [Authentication Troubleshooting → WebSockets](authentication.md#400-bad-request-on-the-websocket-endpoint).
@@ -29,8 +29,8 @@ You created a room as host; other players don't see it.
 
 ## Joined but video never appears
 
-- **Host's browser stopped streaming.** Check host's tab is still foregrounded; browsers throttle background tabs.
-- **NAT traversal failed.** STUN couldn't hole-punch, and you have no TURN configured. Add a TURN server; see [Netplay → ICE servers](../using/netplay.md#ice-servers-the-nat-stuff).
+- **Host's browser stopped streaming.** Check host's tab is still foregrounded, because browsers throttle background tabs.
+- **NAT traversal failed.** STUN couldn't hole-punch, and you have no TURN configured. Add a TURN server. See [Netplay → ICE servers](../using/netplay.md#ice-servers-the-nat-stuff).
 - **Symmetric NAT on one end.** Corporate networks and some carrier-grade NAT can't be STUN-traversed. Only TURN (relay) will work.
 
 ## High lag / input delay
@@ -38,7 +38,7 @@ You created a room as host; other players don't see it.
 Normal Netplay delay is 50–150 ms. More than that:
 
 - **You're routing through TURN.** TURN relays add latency proportional to your distance from the TURN server. Pick a TURN server geographically close to both players, or set up your own [coturn](https://github.com/coturn/coturn).
-- **Host has slow uplink.** The host is streaming video to everyone; if upload bandwidth is tight, lag spikes. Test host's upload with `speedtest-cli`.
+- **Host has slow uplink.** The host is streaming video to everyone, so if upload bandwidth is tight, lag spikes. Test host's upload with `speedtest-cli`.
 - **Weak host CPU.** The host runs the emulator AND encodes the video stream. A Raspberry Pi hosting N64 Netplay is going to struggle.
 
 ## Desync (players see different game state)
@@ -47,7 +47,7 @@ Different players' screens diverge over time: you do a move, they don't see it.
 
 - **Browser tab backgrounded.** Browsers throttle. Keep both tabs foregrounded.
 - **Bandwidth starvation.** Video stream is dropping frames, inputs are queueing. Reduce resolution or lower the emulator frame rate.
-- **Core-specific bug.** Not all cores handle Netplay cleanly. `snes9x` and `genesis_plus_gx` are most reliable; some 64-bit era cores have known desync bugs.
+- **Core-specific bug.** Not all cores handle Netplay cleanly. `snes9x` and `genesis_plus_gx` are most reliable, but some 64-bit era cores have known desync bugs.
 
 ## Audio crackle / cuts out on the client side
 
@@ -55,7 +55,7 @@ WebRTC audio is known to be fragile. Workarounds:
 
 - **Use Chrome.** Its WebRTC implementation is the most mature.
 - **Lower audio quality** in the in-game Menu → Audio.
-- **Restart the session**; audio sometimes recovers only after a full room teardown.
+- **Restart the session**. Audio sometimes recovers only after a full room teardown.
 
 ## Room disappears after the host leaves
 

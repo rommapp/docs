@@ -88,7 +88,7 @@ Two fixes:
 
 Startup ordering. RomM starts before the DB is ready, fails, and crashlooped-restarts forever because the restart is too fast for the DB to catch up.
 
-Fix: add an init container that waits, or a `readinessProbe` + generous `startupProbe` on the DB StatefulSet. The [Kubernetes install guide](../install/kubernetes.md#mariadb) has a readiness probe baked in; check you're using it.
+Fix: add an init container that waits, or a `readinessProbe` + generous `startupProbe` on the DB StatefulSet. The [Kubernetes install guide](../install/kubernetes.md#mariadb) has a readiness probe baked in, so check you're using it.
 
 ## Scheduler tasks don't run
 
@@ -117,7 +117,7 @@ resources:
     memory: "4Gi"
 ```
 
-Or disable hashing on the Scan page to cut memory use by ~80% (you lose RetroAchievements + Hasheous matching; see [Metadata Providers](../administration/metadata-providers.md)).
+Or disable hashing on the Scan page to cut memory use by ~80% (you lose RetroAchievements + Hasheous matching, see [Metadata Providers](../administration/metadata-providers.md)).
 
 ## Still stuck
 

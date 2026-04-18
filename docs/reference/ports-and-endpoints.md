@@ -12,7 +12,7 @@ Quick reference for the ports + URL paths a RomM instance exposes.
 | Port | Protocol | Purpose | Exposed? |
 | --- | --- | --- | --- |
 | `8080` | HTTP | nginx: the front door. Serves everything. | Yes, publish this. |
-| `5000` | HTTP | gunicorn: FastAPI backend. Internal only. | No; nginx proxies here. |
+| `5000` | HTTP | gunicorn: FastAPI backend. Internal only. | No. nginx proxies here. |
 | `6379` | TCP | Redis. Internal only (unless you externalise). | No. |
 
 Only **`8080`** should be reachable from outside the container in production. Typical compose `ports:`:
@@ -48,7 +48,7 @@ Most of the RomM web UI: every page under `/`. Authenticated via browser cookie.
 
 ### Token-authenticated (bearer)
 
-Every API endpoint under `/api/...` that requires a specific scope. Session cookies also work here; token auth is for scripts / companion apps.
+Every API endpoint under `/api/...` that requires a specific scope. Session cookies also work here, but token auth is for scripts / companion apps.
 
 ### Download endpoints (optionally auth-off)
 
@@ -63,7 +63,7 @@ See [Authentication → Download-endpoint auth bypass](../administration/authent
 
 | Path | Client | Auth |
 | --- | --- | --- |
-| `/api/feeds/tinfoil` | [Tinfoil](../ecosystem/tinfoil.md) | Respects `DISABLE_DOWNLOAD_ENDPOINT_AUTH`; can send basic auth. |
+| `/api/feeds/tinfoil` | [Tinfoil](../ecosystem/tinfoil.md) | Respects `DISABLE_DOWNLOAD_ENDPOINT_AUTH`, and can send basic auth. |
 | `/api/feeds/pkgi/...` | [pkgj](../ecosystem/pkgj.md) | Same. |
 | `/api/feeds/fpkgi/...` | [fpkgi](../ecosystem/fpkgi.md) | Same. |
 | `/api/feeds/kekatsu/...` | [Kekatsu](../ecosystem/kekatsu.md) | Same. |
@@ -78,7 +78,7 @@ Full catalogue in [Feeds](feeds.md).
 | `/ws/socket.io` | General live updates (scans, tasks). |
 | `/netplay/socket.io` | Netplay session coordination. |
 
-Both use Socket.IO; reverse proxy must pass through the upgrade. See [WebSockets](../developers/websockets.md) and [Reverse Proxy](../install/reverse-proxy.md).
+Both use Socket.IO, so the reverse proxy must pass through the upgrade. See [WebSockets](../developers/websockets.md) and [Reverse Proxy](../install/reverse-proxy.md).
 
 ## Volumes (not ports but relevant)
 
@@ -122,9 +122,9 @@ environment:
   - ROMM_BASE_PATH=/romm
 ```
 
-nginx inside the container rewrites paths internally; your reverse proxy forwards the full path.
+nginx inside the container rewrites paths internally, and your reverse proxy forwards the full path.
 
-Not the most common pattern; most deployments use a subdomain (`romm.example.com`) rather than a path.
+Not the most common pattern. Most deployments use a subdomain (`romm.example.com`) rather than a path.
 
 ## See also
 

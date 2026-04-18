@@ -9,7 +9,7 @@ description: Fix DSM-specific permission and Docker issues.
 
 The usual Synology permission issue. Fix via SSH:
 
-1. **Enable SSH** on the NAS if you haven't; see the [DSM guide](https://kb.synology.com/en-uk/DSM/tutorial/How_to_login_to_DSM_with_root_permission_via_SSH_Telnet).
+1. **Enable SSH** on the NAS if you haven't. See the [DSM guide](https://kb.synology.com/en-uk/DSM/tutorial/How_to_login_to_DSM_with_root_permission_via_SSH_Telnet).
 2. **SSH in** with your DSM admin account (same credentials as the DSM web UI).
 3. **Find your UID/GID**: type `id` and note `uid=NNNN(user) gid=NNNN(group)`.
 4. **Fix permissions on every RomM host path**:
@@ -40,7 +40,7 @@ Credit: the permission-mode string comes from [DrFrankenstein's Docker user guid
 
 Synology ships its own MariaDB on port `3306`. If you try to run RomM's MariaDB container on the same port, one of them won't bind.
 
-Fix: map MariaDB to a different host port in your compose file (the Synology install guide uses `3309:3306`); see [Synology install guide](../install/synology.md).
+Fix: map MariaDB to a different host port in your compose file (the Synology install guide uses `3309:3306`). See [Synology install guide](../install/synology.md).
 
 ## RomM "Page not found" on first open
 
@@ -58,7 +58,7 @@ DSM occasionally rotates Docker's data directory or the BTRFS subvolume paths af
 
 Fix:
 
-1. Don't panic; your host-mounted paths (`/volume1/...`) aren't touched.
+1. Don't panic. Your host-mounted paths (`/volume1/...`) aren't touched.
 2. Check your compose file. Any volumes declared as *named* Docker volumes (as opposed to host bind mounts) might have been recreated empty.
 3. Prefer host bind mounts on Synology specifically: `/volume1/docker/romm/resources` instead of a named `romm_resources` volume. The [Synology install guide](../install/synology.md) uses this pattern.
 

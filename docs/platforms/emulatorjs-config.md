@@ -16,7 +16,7 @@ environment:
   - ENABLE_EMULATORJS=true   # default
 ```
 
-Set to `false` to disable EmulatorJS entirely: useful on the slim image or when running headless with companion apps only. The Play button is hidden; Ruffle still works independently. See [Image Variants](../install/image-variants.md).
+Set to `false` to disable EmulatorJS entirely: useful on the slim image or when running headless with companion apps only. The Play button is hidden, but Ruffle still works independently. See [Image Variants](../install/image-variants.md).
 
 ## Debug mode
 
@@ -25,7 +25,7 @@ emulatorjs:
   debug: true
 ```
 
-Logs every available option for each core to the browser console when a game launches. Turn on when tuning; turn off in production (it's verbose).
+Logs every available option for each core to the browser console when a game launches. Turn on when tuning, and turn off in production (it's verbose).
 
 ## Cache limit
 
@@ -123,11 +123,11 @@ The structure:
 
 - Top level = core name.
 - Second level = player number (`0`, `1`, `2`, `3`).
-- Third level = button slot (core-specific; 0 is usually the first face button).
+- Third level = button slot (core-specific, and 0 is usually the first face button).
 - `value` = keyboard key.
 - `value2` = gamepad button.
 
-Slot indexes and what they map to vary per core; see [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/control-mapping/).
+Slot indexes and what they map to vary per core. See [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/control-mapping/).
 
 Users can override operator-level defaults in-game via Menu → **Controls**. Operator-level just sets the starting point.
 
@@ -171,7 +171,7 @@ For frontend parity:
 
 - **Settings don't apply.** `debug: true`, reload a game, check console for "option set" logs. Core name might be wrong.
 - **Netplay breaks after enabling.** See [Netplay Troubleshooting](../troubleshooting/netplay.md).
-- **Control map works in one game, not another.** Different cores; check you've set the right core name for the platform.
+- **Control map works in one game, not another.** Different cores. Check you've set the right core name for the platform.
 
 ## See also
 

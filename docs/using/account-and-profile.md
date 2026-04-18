@@ -7,7 +7,7 @@ description: Manage your RomM account: profile, password, avatar, API tokens, de
 
 Your account controls: profile drawer → **Profile**.
 
-Every user (Viewer, Editor, Admin) can manage their own profile. Admins can edit *other* users' profiles; see [Users & Roles](../administration/users-and-roles.md) for the admin side.
+Every user (Viewer, Editor, Admin) can manage their own profile. Admins can edit *other* users' profiles. See [Users & Roles](../administration/users-and-roles.md) for the admin side.
 
 ## Profile basics
 
@@ -16,13 +16,13 @@ Every user (Viewer, Editor, Admin) can manage their own profile. Admins can edit
 Editable from the profile page. Changing your email:
 
 - **OIDC users**: email is usually governed by the IdP. RomM lets you change it here but OIDC login will re-match on the IdP-supplied email at next login.
-- **Local users**: change freely. The new email is used for password reset (if email transport is configured; see [Authentication](../administration/authentication.md)).
+- **Local users**: change freely. The new email is used for password reset (if email transport is configured, see [Authentication](../administration/authentication.md)).
 
 ### Password
 
-For local accounts: **Current password** + **New password** (twice). RomM uses bcrypt: no plaintext storage, no password recovery by the admin (admins reset by setting a new password; they can't see your old one).
+For local accounts: **Current password** + **New password** (twice). RomM uses bcrypt: no plaintext storage, no password recovery by the admin (admins reset by setting a new password, but they can't see your old one).
 
-OIDC users don't have local passwords; authentication is via the IdP. Password fields are hidden on the profile page.
+OIDC users don't have local passwords, because authentication is via the IdP. Password fields are hidden on the profile page.
 
 ### Avatar
 
@@ -36,17 +36,17 @@ If you're an OIDC user and want RomM to show your `preferred_username` from the 
 
 Long-lived API tokens for companion apps, scripts, and integrations. Each token is scoped to a subset of your user's scopes, and optionally expires.
 
-See the full spec in [Client API Tokens](../ecosystem/client-api-tokens.md); this section is the "how I create one from the UI" version.
+See the full spec in [Client API Tokens](../ecosystem/client-api-tokens.md). This section is the "how I create one from the UI" version.
 
 ### Creating a token
 
 1. **Profile → Client API Tokens → + New Token**.
 2. Pick:
     - **Name**: descriptive (e.g. "Grout on my RG35XX").
-    - **Scopes**: which permissions to include. Default is read-only; tick write scopes deliberately.
+    - **Scopes**: which permissions to include. Default is read-only. Tick write scopes deliberately.
     - **Expiry**: optional. Blank = never expires.
 3. **Create**.
-4. The token appears **once**. Copy it immediately; you can't retrieve it later.
+4. The token appears **once**. Copy it immediately, because you can't retrieve it later.
 
 Token format: `rmm_` + 40 hex chars. Treat it like a password.
 
@@ -66,7 +66,7 @@ Full flow in [Client API Tokens](../ecosystem/client-api-tokens.md).
 ### Limits
 
 - **25 active tokens per user.** Delete old ones to free slots.
-- **Tokens carry a subset of your scopes.** If an admin demotes you to Viewer, any token you hold with admin scopes stops working; tokens don't escalate privileges beyond the owning user's current role.
+- **Tokens carry a subset of your scopes.** If an admin demotes you to Viewer, any token you hold with admin scopes stops working. Tokens don't escalate privileges beyond the owning user's current role.
 
 ### Revoking
 
@@ -101,7 +101,7 @@ Returns your user record plus a `personal_data` array of per-ROM ratings, notes,
 
 ## Deleting your account
 
-Self-deletion isn't available in 5.0. Ask an admin to delete your account; they can do it from **Administration → Users → [your account] → Delete**.
+Self-deletion isn't available in 5.0. Ask an admin to delete your account. They can do it from **Administration → Users → [your account] → Delete**.
 
 When deleted:
 
@@ -135,6 +135,6 @@ See those pages for detail.
 ## Troubleshooting
 
 - **"Current password incorrect"**: caps lock, or the password was changed by an admin. Ask them.
-- **Avatar upload silently fails**: file is too large; RomM accepts up to a few MB. Resize.
+- **Avatar upload silently fails**: file is too large. RomM accepts up to a few MB. Resize.
 - **Can't create API token**: you've hit the 25-token cap. Revoke old ones.
 - **OIDC login came back as Viewer when I'm an Admin**: role claim mapping is misconfigured or missing. See [OIDC Troubleshooting → Role mapping](../troubleshooting/authentication.md#user-is-created-but-stays-viewer-even-though-they-should-be-admin).

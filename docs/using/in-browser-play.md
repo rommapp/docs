@@ -10,7 +10,7 @@ RomM ships with two in-browser emulators:
 - **EmulatorJS**: RetroArch cores compiled to WebAssembly. Covers NES, SNES, Genesis, N64, PSX, PSP, Saturn, and 30+ other platforms.
 - **Ruffle**: Flash / Shockwave emulator for browser games.
 
-Hit the **Play** button on any supported game; the emulator loads full-screen in a new page. Same UI on desktop, mobile, and Console Mode.
+Hit the **Play** button on any supported game, and the emulator loads full-screen in a new page. Same UI on desktop, mobile, and Console Mode.
 
 ## EmulatorJS
 
@@ -72,7 +72,7 @@ If the platform doesn't support in-browser play, Play is replaced with Download.
 
 EmulatorJS maps keyboard and gamepad automatically. Defaults are core-specific, but approximate the original console layout. Rebind in-game via the **Menu** button during play.
 
-Operator-level default overrides live in `config.yml`; see [Configuration File → `emulatorjs.controls`](../reference/configuration-file.md#emulatorjscontrols).
+Operator-level default overrides live in `config.yml`. See [Configuration File → `emulatorjs.controls`](../reference/configuration-file.md#emulatorjscontrols).
 
 Keyboard + gamepad can be used simultaneously for multi-player: player 2 on the gamepad, player 1 on the keyboard, for example.
 
@@ -88,7 +88,7 @@ Full details: [Saves & States](saves-and-states.md).
 
 ### Cheats
 
-In-game Menu → **Cheats** → add manually or load a list. Saved cheats persist per-user per-ROM. RomM doesn't ship a cheat database; you bring your own codes.
+In-game Menu → **Cheats** → add manually or load a list. Saved cheats persist per-user per-ROM. RomM doesn't ship a cheat database, so you bring your own codes.
 
 ### Screenshots
 
@@ -128,7 +128,7 @@ See [Netplay](netplay.md). One-page deep dive on hosting/joining, ICE servers, a
 
 ### Controls
 
-Flash games were typically designed for mouse + keyboard; Ruffle passes input through as-is. No controller mapping; gamepad-only users will struggle with most Flash titles.
+Flash games were typically designed for mouse + keyboard, and Ruffle passes input through as-is. No controller mapping, so gamepad-only users will struggle with most Flash titles.
 
 ### Saves
 
@@ -136,7 +136,7 @@ Ruffle writes Flash's local-storage to RomM's assets directory. Appears under th
 
 ### Supported games
 
-Most 2D Flash games work. 3D Shockwave and some advanced ActionScript titles may have rendering glitches; see [Ruffle compatibility](https://ruffle.rs/#compatibility).
+Most 2D Flash games work. 3D Shockwave and some advanced ActionScript titles may have rendering glitches. See [Ruffle compatibility](https://ruffle.rs/#compatibility).
 
 ### Metadata
 
@@ -146,7 +146,7 @@ If you enable the [Flashpoint](../administration/metadata-providers.md#flashpoin
 
 - **Game won't boot**: check firmware is uploaded for platforms that need it. `docker logs romm | grep -i emulator` for server-side hints.
 - **Black screen, no audio**: core is incompatible with your browser. Try a different browser (Chrome / Firefox are most tested) or a different core via in-game Menu → **Core**.
-- **Controls do nothing**: browser needs focus; click once on the emulator canvas. Some cores need a button press to enumerate gamepads.
+- **Controls do nothing**: browser needs focus. Click once on the emulator canvas. Some cores need a button press to enumerate gamepads.
 - **Netplay "failed to start game"**: see [Netplay troubleshooting](../troubleshooting/netplay.md).
 - **DOS game fails to autorun**: try [`emulatorjs.disable_batch_bootup: true`](../reference/configuration-file.md#emulatorjs) in `config.yml`.
 

@@ -38,9 +38,9 @@ Now `web-games/` is treated as the `flash` platform. See [Configuration File →
 
 ## Supported content
 
-- **Flash (SWF):** 2D games, most work cleanly. AS1/AS2 excellent; AS3 still maturing in Ruffle.
-- **Shockwave (DCR):** partial support; complex 3D Shockwave games often fail.
-- **FLV / F4V:** Flash video; playable but not game-like.
+- **Flash (SWF):** 2D games, most work cleanly. AS1/AS2 excellent, and AS3 still maturing in Ruffle.
+- **Shockwave (DCR):** partial support. Complex 3D Shockwave games often fail.
+- **FLV / F4V:** Flash video, playable but not game-like.
 
 [Ruffle compatibility database](https://ruffle.rs/#compatibility) has per-title status if you want to check a specific game.
 
@@ -48,7 +48,7 @@ Now `web-games/` is treated as the `flash` platform. See [Configuration File →
 
 Ruffle honours the usual [RomM naming conventions](../getting-started/folder-structure.md#naming-convention): filename tags, regions, revisions.
 
-No specific requirements beyond that; Ruffle reads the SWF directly.
+No specific requirements beyond that. Ruffle reads the SWF directly.
 
 ## Saves
 
@@ -77,7 +77,7 @@ On a handheld / Console Mode, Flash games are generally unplayable unless you've
 
 ## Version / updates
 
-Ruffle is bundled in the full RomM image. Updates to Ruffle land when RomM updates its image; there's no separate Ruffle update knob.
+Ruffle is bundled in the full RomM image. Updates to Ruffle land when RomM updates its image, and there's no separate Ruffle update knob.
 
 ## Not in 5.0 yet
 

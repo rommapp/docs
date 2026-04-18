@@ -13,14 +13,14 @@ You'll need:
 
 - [Docker](https://docs.docker.com/get-docker/) and Docker Compose installed on the host.
 - Your ROM files organised in the expected [folder structure](folder-structure.md).
-- API credentials for at least one [metadata provider](../administration/metadata-providers.md). IGDB + ScreenScraper is the recommended pairing; RomM will run without any provider configured, but matching quality will suffer.
+- API credentials for at least one [metadata provider](../administration/metadata-providers.md). IGDB + ScreenScraper is the recommended pairing. RomM will run without any provider configured, but matching quality will suffer.
 
 !!! warning "Metadata providers are recommended"
     RomM works without a metadata API for basic use, but setup problems and companion-app integrations (e.g. Playnite) can fail without them. Setting up **IGDB** API keys before your first scan is strongly recommended.
 
 ## 1. Write your `docker-compose.yml`
 
-Start from the reference file shipped in the RomM repo; a known-good, minimally-edited version is included below. Save it as `docker-compose.yml` in an empty directory on your host.
+Start from the reference file shipped in the RomM repo. A known-good, minimally-edited version is included below. Save it as `docker-compose.yml` in an empty directory on your host.
 
 ???+ example "docker-compose.yml"
     ``` yaml
@@ -31,7 +31,7 @@ You'll want to edit the following values before launching:
 
 | Where | Variable | What to put |
 | --- | --- | --- |
-| `romm-db` service | `MARIADB_ROOT_PASSWORD` | A long random password. Generate one; don't reuse. |
+| `romm-db` service | `MARIADB_ROOT_PASSWORD` | A long random password. Generate one. Don't reuse. |
 | `romm-db` service | `MARIADB_PASSWORD` | A separate long random password for the `romm-user`. |
 | `romm` service | `DB_PASSWD` | Must match `MARIADB_PASSWORD` above. |
 | `romm` service | `ROMM_AUTH_SECRET_KEY` | Generate with `openssl rand -hex 32`. Keep it secret. |

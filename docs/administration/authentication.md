@@ -21,7 +21,7 @@ Sessions are cookie-based and stored in Redis. Relevant env vars:
 
 | Variable | Default | What it controls |
 | --- | --- | --- |
-| `ROMM_AUTH_SECRET_KEY` | _(required)_ | HS256 signing key for session tokens and JWTs. Generate with `openssl rand -hex 32`. **Never rotate this casually**; it invalidates every active session and every outstanding invite link. |
+| `ROMM_AUTH_SECRET_KEY` | _(required)_ | HS256 signing key for session tokens and JWTs. Generate with `openssl rand -hex 32`. **Never rotate this casually**, because it invalidates every active session and every outstanding invite link. |
 | `ROMM_AUTH_SECRET_KEY_FILE` | _unset_ | Alternative: read the secret from a file. Useful with Docker secrets. |
 | `SESSION_MAX_AGE_SECONDS` | 86400 (24 h) | How long a session cookie lives before the user has to sign in again. |
 | `OAUTH_ACCESS_TOKEN_EXPIRE_SECONDS` | 900 (15 min) | Short-lived OAuth2 access token TTL. |
@@ -30,7 +30,7 @@ Sessions are cookie-based and stored in Redis. Relevant env vars:
 
 ## Local (username + password)
 
-The default. Accounts are created via [invitations, registration, or the Setup Wizard](invitations-and-registration.md). Passwords are bcrypt-hashed; RomM does not log or store plaintext passwords at any point.
+The default. Accounts are created via [invitations, registration, or the Setup Wizard](invitations-and-registration.md). Passwords are bcrypt-hashed, and RomM does not log or store plaintext passwords at any point.
 
 **Disable local password login entirely** (force OIDC-only):
 
@@ -48,11 +48,11 @@ Until email-based self-serve reset lands, admins set passwords manually:
 
 **Administration → Users → Edit → New password → Save.**
 
-The next login on that account will use the new password; existing sessions for that user remain valid until they expire; revoke them explicitly by deleting all of the user's Client API Tokens if that's a concern.
+The next login on that account will use the new password. Existing sessions for that user remain valid until they expire. Revoke them explicitly by deleting all of the user's Client API Tokens if that's a concern.
 
 ### Self-serve password reset
 
-Users can click "Forgot password?" on the login page if you've configured an SMTP transport. (Not part of 5.0 GA; the UI path exists and will light up once email config is exposed.)
+Users can click "Forgot password?" on the login page if you've configured an SMTP transport. (Not part of 5.0 GA, but the UI path exists and will light up once email config is exposed.)
 
 ## OIDC
 
@@ -98,7 +98,7 @@ Appropriate for:
 - Public-facing "display" instances (e.g. a wall-mounted browse-only catalogue).
 - `demo.romm.app`.
 
-Authenticated users (when you do sign in) still see their full role; kiosk only affects anonymous traffic.
+Authenticated users (when you do sign in) still see their full role. Kiosk only affects anonymous traffic.
 
 ## Download-endpoint auth bypass
 

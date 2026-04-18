@@ -5,9 +5,9 @@ description: Wire RomM's SSO to Keycloak: realm, client, RomM env vars, optional
 
 # OIDC with Keycloak
 
-[Keycloak](https://www.keycloak.org/) is the heavyweight open-source IAM standard. Feature-complete, well-documented, widely deployed; the default choice when your SSO needs are serious.
+[Keycloak](https://www.keycloak.org/) is the heavyweight open-source IAM standard. Feature-complete, well-documented, widely deployed. The default choice when your SSO needs are serious.
 
-Before starting, read the [OIDC Setup overview](index.md); it covers the RomM-side settings common to every provider.
+Before starting, read the [OIDC Setup overview](index.md). It covers the RomM-side settings common to every provider.
 
 ## 1. Prerequisites
 
@@ -54,7 +54,7 @@ On the Keycloak side, **Admin Console → Users**: mark each RomM user's email a
 
 ## 5. Test
 
-Restart RomM and open `/login`. Click **Login with Keycloak**; you're redirected to Keycloak, authenticate, and bounce back signed into RomM.
+Restart RomM and open `/login`. Click **Login with Keycloak**. You're redirected to Keycloak, authenticate, and bounce back signed into RomM.
 
 If a user already exists in RomM with a matching email, they're signed into that account. Otherwise RomM creates a new account with Viewer permissions.
 

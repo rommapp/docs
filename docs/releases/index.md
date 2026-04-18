@@ -14,20 +14,20 @@ RomM's current stable is [`5.0.0`](changelog.md). Read [What's New in 5.0](../ge
 RomM follows **SemVer** for breaking changes and **CalVer-ish** for cadence: major versions are planned milestones, not scheduled.
 
 - **Patch releases** (`5.0.1`, `5.0.2`): bug fixes only. Safe to pull automatically. No migration.
-- **Minor releases** (`5.1.0`, `5.2.0`): additive features. Schema may migrate automatically via Alembic; no action required beyond reading the release notes.
+- **Minor releases** (`5.1.0`, `5.2.0`): additive features. Schema may migrate automatically via Alembic, but no action required beyond reading the release notes.
 - **Major releases** (`5.0.0`, `6.0.0`): breaking changes. Read the migration guide before upgrading.
 
 ## Image tags and what to pin
 
 | Tag | What it moves to | When to use |
 | --- | --- | --- |
-| `rommapp/romm:latest` | Every new stable release | Dev / "I'll deal with it" setups. **Never pin production to `:latest`**; you'll ship untested upgrades. |
+| `rommapp/romm:latest` | Every new stable release | Dev / "I'll deal with it" setups. **Never pin production to `:latest`** because you'll ship untested upgrades. |
 | `rommapp/romm:5.0.0` | Immutable, specific release | Production. Update deliberately by bumping the tag. |
 | `rommapp/romm:5` | Latest in the 5.x line | Middle ground: auto-minor-upgrades within a major. |
 | `rommapp/romm:develop` | Every push to `master` | Don't. |
 | `rommapp/romm:5.0.0-slim` | Same as `5.0.0` but without EmulatorJS/Ruffle | Headless / API-only deployments. See [Image Variants](../install/image-variants.md). |
 
-Registries: Docker Hub (`rommapp/romm`) and GitHub Container Registry (`ghcr.io/rommapp/romm`); same tags, same content.
+Registries: Docker Hub (`rommapp/romm`) and GitHub Container Registry (`ghcr.io/rommapp/romm`), same tags, same content.
 
 ## Docs versions
 
@@ -35,7 +35,7 @@ The docs site is versioned via [mike](https://github.com/jimporter/mike). Every 
 
 - `docs.romm.app/latest/` → 5.x (this is what you're reading).
 - `docs.romm.app/4.8/` → frozen 4.x docs.
-- Older majors may remain accessible for a while; see the support window below.
+- Older majors may remain accessible for a while. See the support window below.
 
 ## Support window
 
@@ -53,7 +53,7 @@ Older frozen docs are retained for 12 months after the major's support window en
 ## Migration guides
 
 - **[Upgrading to 5.0](upgrading-to-5.0.md):** 4.x → 5.0. Required reading.
-- **[Upgrading to 3.0](upgrading-to-3.0.md):** 2.x → 3.0. SQLite drop, auth requirement, Redis built-in, config folder mount. Historical; keep for 2.x migrators.
+- **[Upgrading to 3.0](upgrading-to-3.0.md):** 2.x → 3.0. SQLite drop, auth requirement, Redis built-in, config folder mount. Historical, but kept for 2.x migrators.
 
 ## Where releases are announced
 

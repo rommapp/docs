@@ -8,13 +8,13 @@ description: Historical migration guide for 2.x → 3.0: SQLite drop, auth requi
 !!! info "This is a historical guide"
     RomM 3.0 shipped a while ago. If you're on 2.x, still use this page. If you're on 3.x / 4.x, see [Upgrading to 5.0](upgrading-to-5.0.md).
 
-Version 3.0 introduced several breaking changes aimed at improving performance and unlocking new features (EmulatorJS, in-browser saves/states). Read this entire page before pulling the new image; skipping steps will make RomM inaccessible or unresponsive.
+Version 3.0 introduced several breaking changes aimed at improving performance and unlocking new features (EmulatorJS, in-browser saves/states). Read this entire page before pulling the new image. Skipping steps will make RomM inaccessible or unresponsive.
 
 All the changes below are reflected in the example [docker-compose.yml](https://github.com/rommapp/romm/blob/master/examples/docker-compose.example.yml), which was significantly simplified in 3.0.
 
 ## Dropped SQLite support
 
-SQLite was removed because of ongoing engineering issues; MariaDB is stabler and the only supported default. If you were on SQLite, RomM will auto-migrate your data to MariaDB, **but you need to make the following changes before upgrading**.
+SQLite was removed because of ongoing engineering issues. MariaDB is stabler and the only supported default. If you were on SQLite, RomM will auto-migrate your data to MariaDB, **but you need to make the following changes before upgrading**.
 
 In your environment variables, set `ROMM_DB_DRIVER` to `mariadb` (or drop the variable entirely, it's no longer required) and add:
 
@@ -42,7 +42,7 @@ We know this breaks the "unrestricted sharing" pattern some users relied on. See
 
 ## Redis is built in
 
-The 2.x "experimental Redis" add-on container is gone; RomM ships with Redis internally. Remove the external Redis container and these environment variables:
+The 2.x "experimental Redis" add-on container is gone. RomM ships with Redis internally. Remove the external Redis container and these environment variables:
 
 ```yaml
 # Remove:
@@ -51,7 +51,7 @@ The 2.x "experimental Redis" add-on container is gone; RomM ships with Redis int
 # - REDIS_PORT
 ```
 
-If you want an external Redis instance anyway (recommended for production), keep `REDIS_HOST` / `REDIS_PORT`; see [Redis or Valkey](../install/redis-or-valkey.md).
+If you want an external Redis instance anyway (recommended for production), keep `REDIS_HOST` / `REDIS_PORT`. See [Redis or Valkey](../install/redis-or-valkey.md).
 
 ## Configuration folder
 
@@ -68,7 +68,7 @@ Updated example: [config.example.yml](https://github.com/rommapp/romm/blob/maste
 
 ## New `/romm/assets` volume
 
-3.0 introduced save, state, and screenshot management. Uploads land in `/romm/assets` inside the container; mount a host path so they persist:
+3.0 introduced save, state, and screenshot management. Uploads land in `/romm/assets` inside the container, so mount a host path so they persist:
 
 ```yaml
 volumes:
@@ -79,9 +79,9 @@ Put this next to the folder you mount as `/romm/library` so all RomM-owned data 
 
 ## After the upgrade
 
-- Visit the web UI. You'll see a Setup Wizard if you had auth disabled previously; complete it to create the first admin.
+- Visit the web UI. You'll see a Setup Wizard if you had auth disabled previously. Complete it to create the first admin.
 - Run a scan to re-match any games that lost metadata during the SQLite → MariaDB migration.
-- Start using saves/states; they'll live under `/romm/assets` from now on.
+- Start using saves/states. They'll live under `/romm/assets` from now on.
 
 ## Rollback
 

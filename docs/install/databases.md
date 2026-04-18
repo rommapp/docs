@@ -5,7 +5,7 @@ description: Supported database drivers for RomM, connection strings, and recomm
 
 # Databases
 
-RomM uses SQLAlchemy + Alembic for persistence. Four drivers are supported; pick based on what you already run.
+RomM uses SQLAlchemy + Alembic for persistence. Four drivers are supported, so pick based on what you already run.
 
 | Driver | `ROMM_DB_DRIVER` | Image | Default port | Notes |
 | --- | --- | --- | --- | --- |
@@ -14,7 +14,7 @@ RomM uses SQLAlchemy + Alembic for persistence. Four drivers are supported; pick
 | **PostgreSQL** | `postgresql` | `postgres:16` | `5432` | Supported. Use if you already run Postgres. |
 | **SQLite** | `sqlite` | _(file on disk)_ | n/a | Dev/tiny deployments only. Not recommended for anything multi-user or larger than a few hundred games. |
 
-RomM runs Alembic migrations automatically on startup; no manual step when upgrading.
+RomM runs Alembic migrations automatically on startup. No manual step when upgrading.
 
 ## MariaDB (default)
 
@@ -109,7 +109,7 @@ services:
 
 ## SQLite (not recommended)
 
-Set `ROMM_DB_DRIVER=sqlite`. The DB file lives at `{ROMM_BASE_PATH}/database`. No separate container required; useful for a laptop demo or a one-user install on a low-power box. Don't use this for anything you care about:
+Set `ROMM_DB_DRIVER=sqlite`. The DB file lives at `{ROMM_BASE_PATH}/database`. No separate container required, and useful for a laptop demo or a one-user install on a low-power box. Don't use this for anything you care about:
 
 - No concurrent writers → scans and API calls block each other.
 - The file can corrupt if the container is killed mid-write.
@@ -124,13 +124,13 @@ environment:
   - DB_QUERY_JSON={"ssl": "true", "connect_timeout": "5"}
 ```
 
-Exact keys depend on the driver; see SQLAlchemy / the driver's docs.
+Exact keys depend on the driver. See SQLAlchemy / the driver's docs.
 
 ## Which should I pick?
 
 - **Sticking with defaults?** MariaDB. That's what the reference compose uses and what the team tests against.
 - **Already run Postgres?** Postgres. No reason to add a second DB engine.
-- **Single-user laptop demo?** SQLite is fine; upgrade before adding anyone else.
+- **Single-user laptop demo?** SQLite is fine, but upgrade before adding anyone else.
 - **External managed DB?** Any of MariaDB / MySQL / Postgres. Point `DB_HOST` at it and configure TLS via `DB_QUERY_JSON`.
 
-Don't switch DB drivers on a running install without a plan; migrating the data requires a dump + reload, covered in [Backup & Restore](backup-and-restore.md).
+Don't switch DB drivers on a running install without a plan. Migrating the data requires a dump + reload, covered in [Backup & Restore](backup-and-restore.md).

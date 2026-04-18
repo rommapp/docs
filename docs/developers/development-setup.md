@@ -76,11 +76,11 @@ cp env.template .env
 sudo apt install libmariadb3 libmariadb-dev libpq-dev
 ```
 
-Adjust for your distro; the key libraries are the MariaDB connector and libpq for Postgres.
+Adjust for your distro. The key libraries are the MariaDB connector and libpq for Postgres.
 
 #### RAHasher (optional)
 
-Only needed if you're working on RetroAchievements hash calculation. **Not supported on macOS; skip.**
+Only needed if you're working on RetroAchievements hash calculation. **Not supported on macOS, skip.**
 
 ```sh
 git clone --recursive https://github.com/RetroAchievements/RALibretro.git
@@ -142,11 +142,11 @@ ln -s ../../romm_mock/assets    assets/romm/assets
 npm run dev
 ```
 
-Frontend is on `http://localhost:3000`; it proxies API calls through to the backend.
+Frontend is on `http://localhost:3000`, and it proxies API calls through to the backend.
 
 ## Linting
 
-RomM uses [Trunk](https://trunk.io) as a meta-linter; it wraps ruff, prettier, eslint, markdownlint, and a few others under one config.
+RomM uses [Trunk](https://trunk.io) as a meta-linter. It wraps ruff, prettier, eslint, markdownlint, and a few others under one config.
 
 ```sh
 curl https://get.trunk.io -fsSL | bash
@@ -158,7 +158,7 @@ trunk check     # report what it can't
 Trunk runs as a pre-commit hook automatically after install. Alternative install methods are in [the Trunk docs](https://docs.trunk.io/check/usage#install-the-cli).
 
 !!! warning "CI blocks un-linted PRs"
-    Trunk's check runs on every PR. If it fails, your PR can't merge; same rules as the maintainers.
+    Trunk's check runs on every PR. If it fails, your PR can't merge. Same rules as the maintainers.
 
 ## Tests
 

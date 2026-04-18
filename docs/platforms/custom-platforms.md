@@ -5,7 +5,7 @@ description: Add platforms RomM doesn't natively support, plus custom platform i
 
 # Custom Platforms
 
-RomM ships with support for ~400 platforms. If yours isn't in [the list](supported-platforms.md), you can still load it as a custom platform; RomM just won't have metadata-provider coverage for it.
+RomM ships with support for ~400 platforms. If yours isn't in [the list](supported-platforms.md), you can still load it as a custom platform. RomM just won't have metadata-provider coverage for it.
 
 ## Adding a custom platform
 
@@ -27,7 +27,7 @@ Then either run a **Quick Scan** (the platform is auto-discovered) or trigger a 
 
 ## Mapping to a canonical platform (preferred when possible)
 
-If your platform is one RomM supports but under a different slug, you don't need a custom platform; just **remap**. Add to `config.yml`:
+If your platform is one RomM supports but under a different slug, you don't need a custom platform. Just **remap**. Add to `config.yml`:
 
 ```yaml
 system:
@@ -58,7 +58,7 @@ services:
 
 ### 2. Seed it with the official icons
 
-RomM's built-in icons live at [`frontend/assets/platforms`](https://github.com/rommapp/romm/tree/master/frontend/assets/platforms). Download them all and drop into your mounted directory; otherwise built-in platforms lose their icons too (because your mount overrides the whole directory).
+RomM's built-in icons live at [`frontend/assets/platforms`](https://github.com/rommapp/romm/tree/master/frontend/assets/platforms). Download them all and drop into your mounted directory, otherwise built-in platforms lose their icons too (because your mount overrides the whole directory).
 
 ### 3. Add your custom `.ico` files
 
@@ -83,7 +83,7 @@ Same mechanic: just use a filename matching an existing platform's slug and your
 ## What custom platforms don't get
 
 - **Metadata provider coverage.** Providers are IGDB-slug-driven. A genuinely unknown platform won't have IGDB / ScreenScraper / MobyGames data.
-- **EmulatorJS support.** The platform has to match a known EmulatorJS core; see [Supported Platforms → EmulatorJS column](supported-platforms.md).
+- **EmulatorJS support.** The platform has to match a known EmulatorJS core. See [Supported Platforms → EmulatorJS column](supported-platforms.md).
 - **RetroAchievements.** Hash-based, but restricted to RA-supported platforms.
 
 For the niche platform case, you'll likely rely on filename-only matching (no provider) and browsing the library like a straight file system.

@@ -19,7 +19,7 @@ For cases where you want the URL, not the file right now: sending it to another 
 
 Context menu (…) on a game card → **Copy download link**, and the URL is on your clipboard.
 
-Anyone with access to the link and the server can download. By default the link requires your session cookie or a bearer token; see [Third-party download auth](#third-party-download-auth) for the exception.
+Anyone with access to the link and the server can download. By default the link requires your session cookie or a bearer token. See [Third-party download auth](#third-party-download-auth) for the exception.
 
 ## QR code
 
@@ -67,17 +67,17 @@ curl -H "Authorization: Bearer rmm_..." \
 
 ## Streaming to an emulator
 
-Some emulators can take an HTTP URL directly; point them at the same URL the Copy Link button produces. With `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` and a reverse proxy that restricts access, you can set up truly remote ROM loading from a handheld over Wi-Fi.
+Some emulators can take an HTTP URL directly. Point them at the same URL the Copy Link button produces. With `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` and a reverse proxy that restricts access, you can set up truly remote ROM loading from a handheld over Wi-Fi.
 
 ## Download history
 
-Not tracked in 5.0. RomM doesn't log downloads for privacy reasons; use your reverse proxy's access log if you need to audit.
+Not tracked in 5.0. RomM doesn't log downloads for privacy reasons. Use your reverse proxy's access log if you need to audit.
 
 ## Troubleshooting
 
 - **Download stalls at N%**: usually the reverse proxy buffering to disk. See [Reverse Proxy → Nginx Proxy Manager](../install/reverse-proxy.md#nginx-proxy-manager) for the `proxy_max_temp_file_size 0` fix.
 - **Multi-file zip download is corrupt**: disk may have filled up during streaming, or the nginx mod_zip build is broken. Check `docker logs romm | grep mod_zip`.
-- **Bulk download ends early**: reverse proxy is enforcing a request timeout. Raise `proxy_read_timeout`; see [Kubernetes Troubleshooting](../troubleshooting/kubernetes.md#websockets-disconnect-immediately) for nginx-ingress annotation pattern.
+- **Bulk download ends early**: reverse proxy is enforcing a request timeout. Raise `proxy_read_timeout`. See [Kubernetes Troubleshooting](../troubleshooting/kubernetes.md#websockets-disconnect-immediately) for nginx-ingress annotation pattern.
 
 ## API
 

@@ -4,7 +4,7 @@ Output: docs/resources/snippets/scheduled-tasks.md
 
 Strategy: parse the upstream task registration calls (or, once a stable
 public registry exists, import it). For now we ship a hand-curated table
-to unblock Wave 1; real auto-extraction lands once the upstream registry
+to unblock Wave 1. Real auto-extraction lands once the upstream registry
 shape stabilizes for 5.0.
 
 Run manually:
@@ -94,7 +94,7 @@ TASKS = [
         "type": "Watcher",
         "default_cron": "-",
         "env_var": "WATCHER_ENABLED",
-        "purpose": "Live-watch the library folder; trigger quick scans on changes.",
+        "purpose": "Live-watch the library folder and trigger quick scans on changes.",
     },
 ]
 

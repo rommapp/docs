@@ -33,7 +33,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **Device**: a registered endpoint that syncs with RomM. Tracked via [Device Sync Protocol](../ecosystem/device-sync-protocol.md).
 
-**Editor**: mid-tier user role. Edit content (ROMs, platforms, collections), upload; no user management. See [Users & Roles](../administration/users-and-roles.md).
+**Editor**: mid-tier user role. Edit content (ROMs, platforms, collections), upload, but no user management. See [Users & Roles](../administration/users-and-roles.md).
 
 **EmulatorJS**: the in-browser retro emulator RomM uses for most platforms. [In-Browser Play](../using/in-browser-play.md).
 
@@ -63,7 +63,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **Library**: your ROM files on disk. Mounted as `/romm/library`. Platforms are subdirectories. [Folder Structure](../getting-started/folder-structure.md).
 
-**LaunchBox**: metadata provider; uses a local downloaded DB.
+**LaunchBox**: metadata provider. Uses a local downloaded DB.
 
 **Metadata provider**: external source of game data (IGDB, ScreenScraper, MobyGames, RetroAchievements, Hasheous, PlayMatch, LaunchBox, SteamGridDB, TheGamesDB, Flashpoint, HowLongToBeat, gamelist.xml, Libretro: 13 total in 5.0). [Metadata Providers](../administration/metadata-providers.md).
 
@@ -127,7 +127,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **User**: an account. One of three roles (Viewer / Editor / Admin).
 
-**Valkey**: open-source Redis fork; drop-in compatible. See [Redis or Valkey](../install/redis-or-valkey.md).
+**Valkey**: open-source Redis fork, drop-in compatible. See [Redis or Valkey](../install/redis-or-valkey.md).
 
 **Viewer**: lowest user role. Read-only on library, own saves/states/profile.
 

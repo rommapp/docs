@@ -7,11 +7,11 @@ description: Install PS4 / PS5 packages from your RomM library via fpkgi homebre
 
 [fpkgi](https://github.com/CyberYoshi64/fpkgi) is PS4 / PS5 homebrew for installing `.pkg` packages from custom URL feeds. RomM exposes fpkgi-compatible feeds for its PS4 and PS5 libraries.
 
-New in RomM 5.0; earlier versions didn't have fpkgi feeds.
+New in RomM 5.0. Earlier versions didn't have fpkgi feeds.
 
 ## Prerequisites
 
-- **PS4 or PS5** with fpkgi installed (requires CFW / jailbreak; setup is out of scope here).
+- **PS4 or PS5** with fpkgi installed (requires CFW / jailbreak, and setup is out of scope here).
 - **RomM reachable from the console over Wi-Fi.** LAN simplest.
 - Games stored as `.pkg` files. fpkgi, like pkgj, only handles the Sony installer format.
 
@@ -38,11 +38,11 @@ The feed returns JSON in the fpkgi-expected schema: titles, title IDs, content t
 
 Exact steps depend on the fpkgi version, but the gist:
 
-1. Put RomM's feed URL in fpkgi's config (usually a JSON file on the console; check fpkgi's own docs).
+1. Put RomM's feed URL in fpkgi's config (usually a JSON file on the console, so check fpkgi's own docs).
 2. Restart fpkgi.
 3. The RomM library appears in fpkgi's browse view.
 
-Consult [fpkgi's README](https://github.com/CyberYoshi64/fpkgi) for the current config-file location and format; the project moves faster than these docs.
+Consult [fpkgi's README](https://github.com/CyberYoshi64/fpkgi) for the current config-file location and format. The project moves faster than these docs.
 
 ## Authentication
 

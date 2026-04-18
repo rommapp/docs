@@ -12,4 +12,4 @@
 | Cleanup Missing ROMs | Manual | `-` | `-` | Remove DB entries whose files are no longer on disk. |
 | Cleanup Orphaned Resources | Manual | `-` | `-` | Delete cached media not referenced by any ROM. |
 | Sync Folder Scan | Manual | `-` | `-` | On-demand library scan + sync. |
-| Filesystem Watcher | Watcher | `-` | `WATCHER_ENABLED` | Live-watch the library folder; trigger quick scans on changes. |
+| Filesystem Watcher | Watcher | `-` | `WATCHER_ENABLED` | Live-watch the library folder and trigger quick scans on changes. |

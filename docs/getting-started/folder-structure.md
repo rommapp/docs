@@ -7,7 +7,7 @@ description: How to organise your ROM library on disk so RomM can scan and match
 
 # Folder Structure
 
-RomM expects your library to be organised in one of two layouts. It tries **Structure A** first, and falls back to **Structure B** if A isn't found. This auto-detection is per-library, so you don't pick one up front; just arrange files the way you prefer, and RomM figures it out.
+RomM expects your library to be organised in one of two layouts. It tries **Structure A** first, and falls back to **Structure B** if A isn't found. This auto-detection is per-library, so you don't pick one up front. Just arrange files the way you prefer, and RomM figures it out.
 
 ## The two layouts
 
@@ -164,7 +164,7 @@ Some games come as **folders** instead of single files: multi-disc, DLC, manuals
 
 ## Customising behaviour
 
-The on-disk layout is only half the story. Per-library exclusions, custom platform bindings, and metadata source priority all live in [`config.yml`](../reference/configuration-file.md). You can edit the file directly, or go through **Administration → Library Management** in the web UI; they're two views of the same data.
+The on-disk layout is only half the story. Per-library exclusions, custom platform bindings, and metadata source priority all live in [`config.yml`](../reference/configuration-file.md). You can edit the file directly, or go through **Administration → Library Management** in the web UI. They're two views of the same data.
 
 ## Naming convention
 

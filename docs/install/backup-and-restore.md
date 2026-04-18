@@ -14,9 +14,9 @@ This page covers both routine backups and migrating RomM to a new host: same pro
 | **Database** (`mysql_data`, `pg_data`, etc.) | User accounts, ROM metadata, collections, ratings, play sessions, paired devices, saves/states metadata | **Critical**: back this up nightly. |
 | **`/romm/assets`** | User uploads: save files, save states, user-uploaded screenshots, manuals, covers | **Critical**: back this up nightly. |
 | **`/romm/config`** | `config.yml` and any custom overrides | **Critical**: rarely changes, but small and painful to recreate. |
-| `/romm/resources` | Metadata images (covers, screenshots) fetched from IGDB/ScreenScraper/etc. | Low priority; can be re-downloaded on a rescan. Including it speeds up recovery. |
-| `/redis-data` | Task queue state | Low priority; in-flight tasks only; lost tasks can be re-run. |
-| **`/romm/library`** | Your ROM files | Back this up **separately**; it's your source data and you should already have a backup strategy for it independent of RomM. |
+| `/romm/resources` | Metadata images (covers, screenshots) fetched from IGDB/ScreenScraper/etc. | Low priority, and can be re-downloaded on a rescan. Including it speeds up recovery. |
+| `/redis-data` | Task queue state | Low priority, in-flight tasks only, and lost tasks can be re-run. |
+| **`/romm/library`** | Your ROM files | Back this up **separately**. It's your source data and you should already have a backup strategy for it independent of RomM. |
 
 ## Routine backup
 
@@ -69,7 +69,7 @@ rsync -a --delete /srv/romm/config/ "$DEST/config/"
 find "$DEST" -maxdepth 1 -name 'db-*.sql.gz' -mtime +14 -delete
 ```
 
-Offsite it however you already do (rclone to B2/S3, restic, borg, Proxmox Backup Server); RomM doesn't care.
+Offsite it however you already do (rclone to B2/S3, restic, borg, Proxmox Backup Server). RomM doesn't care.
 
 ## Restore
 
@@ -165,4 +165,4 @@ Before upgrading to a new RomM major version:
 4. Start back up: `docker compose start`.
 5. Pull the new image and upgrade.
 
-If the upgrade blows up, restore the dump + snapshot. For 4.x → 5.0 specifically, read [Upgrading to 5.0](../releases/upgrading-to-5.0.md) first; there are breaking changes.
+If the upgrade blows up, restore the dump + snapshot. For 4.x → 5.0 specifically, read [Upgrading to 5.0](../releases/upgrading-to-5.0.md) first, because there are breaking changes.

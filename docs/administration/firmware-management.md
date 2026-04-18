@@ -20,7 +20,7 @@ Legality varies by jurisdiction. RomM does not ship firmware and the project can
 
 The usual workflow if you have firmware on disk already.
 
-1. Put the file in the right `bios/` folder (Structure A or B; see [Folder Structure](../getting-started/folder-structure.md)).
+1. Put the file in the right `bios/` folder (Structure A or B, see [Folder Structure](../getting-started/folder-structure.md)).
 2. Run a scan. Firmware is picked up alongside ROMs.
 3. It shows up in **Administration → Library Management → Firmware**.
 
@@ -33,11 +33,11 @@ When you don't have shell access or you're uploading from a different machine.
 3. Drag and drop the file, or click to browse.
 4. RomM puts it in the correct `bios/{platform}/` directory on disk.
 
-Editors and Admins can upload firmware; Viewers can't (`firmware.write` scope required, see [Users & Roles](users-and-roles.md)).
+Editors and Admins can upload firmware, but Viewers can't (`firmware.write` scope required, see [Users & Roles](users-and-roles.md)).
 
 ## Platform-specific firmware
 
-Every emulator has its own requirements: which files it needs, specific hashes, naming conventions. The [Supported Platforms](../platforms/supported-platforms.md) table flags which platforms need firmware for EmulatorJS playback; a dedicated [Firmware by Platform](../platforms/firmware-by-platform.md) page lists what's needed for the popular ones.
+Every emulator has its own requirements: which files it needs, specific hashes, naming conventions. The [Supported Platforms](../platforms/supported-platforms.md) table flags which platforms need firmware for EmulatorJS playback, and a dedicated [Firmware by Platform](../platforms/firmware-by-platform.md) page lists what's needed for the popular ones.
 
 Common examples:
 
@@ -78,15 +78,15 @@ Requires `firmware.read` / `firmware.write` scopes. See the [API Reference](../d
 When a user launches a platform that requires firmware in EmulatorJS:
 
 1. The player checks RomM for a matching firmware file.
-2. If present, it's served directly; no user action required.
+2. If present, it's served directly. No user action required.
 3. If missing, the player surfaces an error ("firmware required") and the admin needs to upload one.
 
 Configure which emulator settings to expose to users via `emulatorjs.settings` in [`config.yml`](../reference/configuration-file.md). Details on the player side in [In-Browser Play](../using/in-browser-play.md).
 
 ## Integration with companion apps
 
-Handheld syncers (Grout, Argosy, DeckRommSync) can pull firmware alongside ROMs. They use the same Client API Token auth as for ROMs; scope the token to include `firmware.read`. See [Client API Tokens](../ecosystem/client-api-tokens.md).
+Handheld syncers (Grout, Argosy, DeckRommSync) can pull firmware alongside ROMs. They use the same Client API Token auth as for ROMs, so scope the token to include `firmware.read`. See [Client API Tokens](../ecosystem/client-api-tokens.md).
 
 ## Backups
 
-Firmware is user-owned data: back it up. `/romm/library/bios/` is part of your library mount; if you're backing up the library volume, firmware is already covered. See [Backup & Restore](../install/backup-and-restore.md).
+Firmware is user-owned data: back it up. `/romm/library/bios/` is part of your library mount, so if you're backing up the library volume, firmware is already covered. See [Backup & Restore](../install/backup-and-restore.md).

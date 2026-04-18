@@ -7,7 +7,7 @@ description: TV + gamepad UI for RomM. Spatial navigation, SFX, focus sounds, no
 
 **Console Mode** is a second UI for RomM, living at `/console`, designed for TV screens and gamepad input. Same instance, same data, completely different UX.
 
-New in 5.0. If you're on a desktop with a keyboard and mouse, you probably don't need it; the main [Library](library.md) view is your home. But if you're on:
+New in 5.0. If you're on a desktop with a keyboard and mouse, you probably don't need it. The main [Library](library.md) view is your home. But if you're on:
 
 - A TV with RomM on a stick / Shield / Pi / mini-PC,
 - A handheld running muOS / Knulli / Batocera / Steam Deck,
@@ -21,7 +21,7 @@ Three ways:
 
 1. **Menu bar → Console icon** (looks like a small controller).
 2. Type `/console` after your RomM URL: `https://romm.example.com/console`.
-3. Set the default view to Console Mode in **Profile → User Interface → Default view**; this signs you in straight into `/console` every time.
+3. Set the default view to Console Mode in **Profile → User Interface → Default view**. This signs you in straight into `/console` every time.
 
 Bookmarking `/console` on your TV browser is the most common pattern.
 
@@ -120,11 +120,11 @@ Not yet in Console Mode (still use the main UI):
 
 ### Grid layout
 
-**Settings → Console Mode → Grid size.** Pick small / medium / large card sizes. Large is best for 10-foot viewing; small is for close viewing on a phone or handheld.
+**Settings → Console Mode → Grid size.** Pick small / medium / large card sizes. Large is best for 10-foot viewing, and small is for close viewing on a phone or handheld.
 
 ### Background art
 
-**Settings → Console Mode → Backgrounds.** Use the focused game's screenshot as a faded background; makes Console Mode feel like a proper console UI. Off by default.
+**Settings → Console Mode → Backgrounds.** Use the focused game's screenshot as a faded background. Makes Console Mode feel like a proper console UI. Off by default.
 
 ## Launching games
 
@@ -136,7 +136,7 @@ If not, Console Mode shows a **Download** prompt with a QR code for mobile shari
 
 ### Pre-launch disc/save/state picker
 
-For multi-disc games, Console Mode asks which disc to boot before launching. For games with existing saves/states, you can pick which to resume from. No dialogs in the middle of a session; everything's picked up front.
+For multi-disc games, Console Mode asks which disc to boot before launching. For games with existing saves/states, you can pick which to resume from. No dialogs in the middle of a session, because everything's picked up front.
 
 ## Known limitations
 

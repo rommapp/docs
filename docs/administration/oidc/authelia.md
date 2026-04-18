@@ -7,7 +7,7 @@ description: Wire RomM's SSO to Authelia: claims policy, client registration, Ro
 
 [Authelia](https://www.authelia.com/) is a lightweight open-source authentication and authorisation server with two-factor auth and SSO. Good fit for homelabs that already proxy through a reverse proxy.
 
-Before starting, read the [OIDC Setup overview](index.md); it covers the RomM-side settings common to every provider.
+Before starting, read the [OIDC Setup overview](index.md). It covers the RomM-side settings common to every provider.
 
 ## 1. Prerequisites
 

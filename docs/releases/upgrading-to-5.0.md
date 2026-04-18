@@ -11,7 +11,7 @@ Migration guide for **RomM 4.x → 5.0**. If you're on 2.x or earlier, upgrade t
     5.0 is a major release with schema migrations and a handful of breaking changes. Skipping the pre-flight checklist will lose data or break your instance.
 
 !!! note "This guide is finalised at 5.0 GA"
-    Some sections below reference exact env-var renames and schema changes that will be confirmed against the final 5.0.0 source tag. If you're reading this before 5.0 GA, treat it as a structural outline; the commands are correct, specific rename lists will be filled in as the release tag is cut.
+    Some sections below reference exact env-var renames and schema changes that will be confirmed against the final 5.0.0 source tag. If you're reading this before 5.0 GA, treat it as a structural outline. The commands are correct, specific rename lists will be filled in as the release tag is cut.
 
 ## What changes in 5.0
 
@@ -25,7 +25,7 @@ Migration guide for **RomM 4.x → 5.0**. If you're on 2.x or earlier, upgrade t
 
 ### Big new features
 
-Highlights only; full list in [What's New in 5.0](../getting-started/what-is-new-in-5.md):
+Highlights only. Full list in [What's New in 5.0](../getting-started/what-is-new-in-5.md):
 
 - Console Mode (`/console`, TV/gamepad UI).
 - Smart and Virtual Collections.
@@ -90,7 +90,7 @@ Commit this to version control if you track your compose file. Saves guesswork o
 
 ### 5. Block access while you upgrade
 
-Optional but recommended for shared instances; take RomM offline for ~5 minutes:
+Optional but recommended for shared instances. Take RomM offline for ~5 minutes:
 
 ```sh
 # Return 503 at the reverse proxy while upgrading
@@ -133,19 +133,19 @@ What to watch for:
 - **Alembic migrations running:** lines prefixed `INFO [alembic.runtime.migration]`. Takes anywhere from seconds (small libraries) to a couple minutes (very large ones).
 - **`Application startup complete.`** RomM is healthy.
 - **`Watcher started.`** Filesystem watcher up (if enabled).
-- **ERROR lines:** bad; go to [Rollback](#rollback).
+- **ERROR lines:** bad. Go to [Rollback](#rollback).
 
 ### 4. Smoke-test
 
 Don't trust the migration until you've verified:
 
 - Log in as an Admin.
-- **Administration → Server Stats:** counts look reasonable; no massive loss.
-- Open a platform with lots of games; check a few games have metadata.
-- Open a game's details; Personal tab shows your rating / playtime if you had any.
-- Check **Administration → Users**; your accounts are intact.
-- Run a **Quick** scan; should complete cleanly in a few seconds.
-- (If you had OIDC) log out, log in via OIDC; should pick up `OIDC_CLAIM_ROLES` if configured.
+- **Administration → Server Stats:** counts look reasonable, no massive loss.
+- Open a platform with lots of games and check a few games have metadata.
+- Open a game's details. Personal tab shows your rating / playtime if you had any.
+- Check **Administration → Users**. Your accounts are intact.
+- Run a **Quick** scan. Should complete cleanly in a few seconds.
+- (If you had OIDC) log out, log in via OIDC. Should pick up `OIDC_CLAIM_ROLES` if configured.
 
 ## Env var migration table
 
@@ -170,7 +170,7 @@ Full list in [Environment Variables](../reference/environment-variables.md). The
 
 ## `config.yml` changes
 
-`config.yml` gains new sections; everything else stays backwards compatible.
+`config.yml` gains new sections, and everything else stays backwards compatible.
 
 - **`scan.region`:** region preference order (array).
 - **`scan.language`:** language preference order (array).
@@ -193,7 +193,7 @@ The docs site restructured in 5.0. Every old URL redirects to its new home:
 - `/latest/Usage/UserManagement/` → `/latest/administration/users-and-roles/`
 - `/latest/OIDC-Guides/OIDC-Setup-With-Keycloak/` → `/latest/administration/oidc/keycloak/`
 
-And so on; every page in the 4.x IA is covered. External links in forum posts, blog articles, issue threads, and Discord messages keep working. Internal bookmarks to `/latest/<old-pascal-case>/<old-page>/` hit a 301 to the new slug automatically.
+And so on. Every page in the 4.x IA is covered. External links in forum posts, blog articles, issue threads, and Discord messages keep working. Internal bookmarks to `/latest/<old-pascal-case>/<old-page>/` hit a 301 to the new slug automatically.
 
 ## Rollback
 
@@ -246,7 +246,7 @@ Open a bug report on [GitHub](https://github.com/rommapp/romm/issues) with:
 
 ### Migrations hang
 
-Watch `docker logs -f romm`. If Alembic is still running, it's still running; large DBs take a while. If it's been more than 10 minutes with no progress, something's wrong. Check for:
+Watch `docker logs -f romm`. If Alembic is still running, it's still running. Large DBs take a while. If it's been more than 10 minutes with no progress, something's wrong. Check for:
 
 - DB connection issues (`docker logs romm-db`).
 - Out-of-memory kills (`dmesg | grep -i oom`).
@@ -266,7 +266,7 @@ See [OIDC Setup → Role mapping](../administration/oidc/index.md#role-mapping-5
 
 ### Scheduled tasks stop firing
 
-5.0 renamed several cron env vars. Check [Environment Variables](../reference/environment-variables.md) and update your env to the new names; otherwise the old cron expressions are ignored and tasks run on defaults (or not at all, if you previously disabled them).
+5.0 renamed several cron env vars. Check [Environment Variables](../reference/environment-variables.md) and update your env to the new names, otherwise the old cron expressions are ignored and tasks run on defaults (or not at all, if you previously disabled them).
 
 ## After the upgrade
 

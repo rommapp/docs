@@ -80,7 +80,7 @@ From the RomM container, confirm SSH works:
 docker exec romm ssh -i "$SSH_PRIVATE_KEY_PATH" user@<device-ip> echo ok
 ```
 
-You should see `ok`. If you see a host-key prompt, accept it; RomM will remember it in its `known_hosts`. If you see `permission denied`, the authorised key isn't installed correctly.
+You should see `ok`. If you see a host-key prompt, accept it. RomM will remember it in its `known_hosts`. If you see `permission denied`, the authorised key isn't installed correctly.
 
 ## How sync runs
 
@@ -100,7 +100,7 @@ Disable sync for a specific device by deregistering it from **Administration →
 
 - **`Permission denied (publickey)`**: authorised key isn't set up on the device, or the private key inside the container can't be read (check the file permissions and bind-mount flags).
 - **`Host key verification failed`**: the device's host key changed (after a reinstall, typically). Shell into the container and remove the offending line from `~/.ssh/known_hosts`.
-- **Sync silently doesn't run**: check `GET /api/tasks/status` for the Push-Pull task's state. "failed" points you at the error; "never ran" means the cron isn't firing (see [Scheduled Tasks](scheduled-tasks.md)).
+- **Sync silently doesn't run**: check `GET /api/tasks/status` for the Push-Pull task's state. "failed" points you at the error, and "never ran" means the cron isn't firing (see [Scheduled Tasks](scheduled-tasks.md)).
 - **Connection times out**: the device is offline or the network path is blocked. Confirm reachability from the RomM container: `docker exec romm ping <device-ip>`.
 
 More at [Device Sync Troubleshooting](../troubleshooting/sync.md).

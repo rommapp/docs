@@ -11,9 +11,9 @@ Most scan problems boil down to: library not mounted where RomM expects, folder 
 
 Three common causes:
 
-1. **Library mounted in the wrong place.** RomM expects your library at `/romm/library` inside the container. Verify with `docker exec romm ls /romm/library`; you should see your `roms/` directory (Structure A) or platform folders (Structure B).
+1. **Library mounted in the wrong place.** RomM expects your library at `/romm/library` inside the container. Verify with `docker exec romm ls /romm/library`. You should see your `roms/` directory (Structure A) or platform folders (Structure B).
 2. **Permissions.** The RomM container has to read the files. Check from the host: `ls -lh /path/to/library`. If the RomM process can't see them, nothing scans.
-3. **Invalid folder structure.** Review [Folder Structure](../getting-started/folder-structure.md). RomM tries Structure A first; if it finds neither layout, the scan completes in seconds with nothing found.
+3. **Invalid folder structure.** Review [Folder Structure](../getting-started/folder-structure.md). RomM tries Structure A first, so if it finds neither layout, the scan completes in seconds with nothing found.
 
 ## "ROMs not found for platform X, check romm folder structure"
 
@@ -103,7 +103,7 @@ Check the scan log for per-provider errors:
 - **IGDB: "Could not get twitch auth token"** → `IGDB_CLIENT_ID` or `IGDB_CLIENT_SECRET` is wrong, or revoked on the Twitch side.
 - **ScreenScraper: "403 / DAILY_LIMIT_REACHED"** → you've hit the free-tier quota. Wait, or upgrade your ScreenScraper membership.
 - **RetroAchievements: "Invalid API key"** → regenerate at [retroachievements.org/settings](https://retroachievements.org/settings).
-- **Any provider: "Request timed out"** → transient; re-run an **Unmatched** scan to retry only the failures.
+- **Any provider: "Request timed out"** → transient. Re-run an **Unmatched** scan to retry only the failures.
 
 Full provider reference: [Metadata Providers](../administration/metadata-providers.md).
 
@@ -125,4 +125,4 @@ Hashing large ROMs (PS1, Saturn, DC images) is IO-bound. Options:
 
 ## Scan seems to work but nothing shows up
 
-Refresh the page; the ribbons on the home dashboard cache aggressively during a scan. Still blank? Check **Administration → Server Stats**; if counts are zero, the scan didn't actually persist anything. Usually a DB permission issue; check `docker logs romm 2>&1 | grep -i 'database'`.
+Refresh the page. The ribbons on the home dashboard cache aggressively during a scan. Still blank? Check **Administration → Server Stats**. If counts are zero, the scan didn't actually persist anything. Usually a DB permission issue, so check `docker logs romm 2>&1 | grep -i 'database'`.

@@ -7,7 +7,7 @@ description: Wire RomM's SSO to Authentik: property mapping for email_verified, 
 
 [Authentik](https://goauthentik.io/) is a full-featured open-source IdP with MFA, flows, and a sizeable audit/admin surface. Good fit for users who want more than Authelia offers.
 
-Before starting, read the [OIDC Setup overview](index.md); it covers the RomM-side settings common to every provider.
+Before starting, read the [OIDC Setup overview](index.md). It covers the RomM-side settings common to every provider.
 
 ## 1. Prerequisites
 
@@ -55,7 +55,7 @@ Configure:
 - **Authorization flow**: implicit consent
 - **Redirect URIs**: `https://romm.example.com/api/oauth/openid`
 
-Copy the generated **Client ID** and **Client Secret**; you'll use them as `OIDC_CLIENT_ID` / `OIDC_CLIENT_SECRET` on the RomM side.
+Copy the generated **Client ID** and **Client Secret**. You'll use them as `OIDC_CLIENT_ID` / `OIDC_CLIENT_SECRET` on the RomM side.
 
 ![Provider settings](../../resources/authentik/4-provider-secrets.png)
 
@@ -100,7 +100,7 @@ In RomM → **Profile** → set your email to exactly the same address Authentik
 
 ## 7. Test
 
-Restart RomM and open `/login`. Click the **Login with OIDC** button; you're redirected to Authentik, authenticate, and come back signed into RomM.
+Restart RomM and open `/login`. Click the **Login with OIDC** button. You're redirected to Authentik, authenticate, and come back signed into RomM.
 
 ![Login with OIDC](../../resources/authentik/8-romm-login.png)
 

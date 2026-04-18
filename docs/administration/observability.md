@@ -23,7 +23,7 @@ environment:
   - NO_COLOR=1            # 1 to disable colour entirely
 ```
 
-`INFO` is the default and sane for production. Drop to `DEBUG` only while debugging a specific issue; RomM is chatty on DEBUG.
+`INFO` is the default and sane for production. Drop to `DEBUG` only while debugging a specific issue, because RomM is chatty on DEBUG.
 
 ### Reading logs
 
@@ -142,7 +142,7 @@ Returns an array of every scheduled / manual / watcher task with current status 
 
 - **Don't parse unstructured log lines** for metrics. Use OTEL or `/api/tasks/status`.
 - **Don't log at DEBUG in production.** The volume is real and scans will drown in it.
-- **Don't scrape HTML pages for health checks.** `/api/heartbeat` is the contract; HTML changes between versions, the API endpoint is stable.
+- **Don't scrape HTML pages for health checks.** `/api/heartbeat` is the contract. HTML changes between versions, the API endpoint is stable.
 
 ## Minimum recommended stack
 

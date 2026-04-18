@@ -21,11 +21,11 @@ OpenID Connect (OIDC) lets users sign in to RomM through an external identity pr
 
 ## Provider guides
 
-Pick your provider and follow the step-by-step. They all end with the same set of env vars on the RomM side; the guides just differ on how to register RomM as an application and where to find the client ID/secret.
+Pick your provider and follow the step-by-step. They all end with the same set of env vars on the RomM side. The guides just differ on how to register RomM as an application and where to find the client ID/secret.
 
 - [Authelia](authelia.md): lightweight self-hosted IdP, great for homelabs.
 - [Authentik](authentik.md): full-featured open-source IdP with MFA and fancy flows.
-- [Keycloak](keycloak.md): the heavyweight standard; feature-complete.
+- [Keycloak](keycloak.md): the heavyweight standard, feature-complete.
 - [PocketID](pocketid.md): passkey-only, minimalist.
 - [Zitadel](zitadel.md): enterprise-grade open source with SAML + OIDC.
 
@@ -60,13 +60,13 @@ environment:
   - OIDC_ROLE_ADMIN=romm-admin,platform-admins
 ```
 
-On every login, RomM reads the claim named by `OIDC_CLAIM_ROLES` (often `groups`, sometimes `realm_access.roles` on Keycloak; check your provider's token output). Whichever role has a matching value wins; if nothing matches, the user stays/becomes a Viewer.
+On every login, RomM reads the claim named by `OIDC_CLAIM_ROLES` (often `groups`, sometimes `realm_access.roles` on Keycloak, check your provider's token output). Whichever role has a matching value wins. If nothing matches, the user stays/becomes a Viewer.
 
 Roles are re-evaluated on **every login**, so demoting someone on the IdP side takes effect the next time they sign in.
 
 ## Autologin
 
-Bypass the RomM login page entirely; redirects straight to the IdP:
+Bypass the RomM login page entirely. Redirects straight to the IdP:
 
 ```yaml
 environment:
@@ -88,7 +88,7 @@ environment:
   - OIDC_END_SESSION_ENDPOINT=https://auth.example.com/application/o/end-session/
 ```
 
-The endpoint URL is provider-specific; the per-provider guides list it.
+The endpoint URL is provider-specific. The per-provider guides list it.
 
 ## Username source
 

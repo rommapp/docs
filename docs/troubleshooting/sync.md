@@ -17,7 +17,7 @@ Troubleshooting paths differ.
 ### App says "token invalid"
 
 - **Token revoked.** Check Profile → Client API Tokens. Was it deleted?
-- **Token expired.** Tokens can have optional expiry; check the expiry date on the token page.
+- **Token expired.** Tokens can have optional expiry. Check the expiry date on the token page.
 - **Scopes mismatch.** App needs scopes the token doesn't carry. Create a new token with the required scopes. See [Users & Roles → scope matrix](../administration/users-and-roles.md#scope-matrix).
 - **User downgraded.** If the owning user got demoted (Admin to Viewer, say), tokens with scopes outside the new role stop working.
 
@@ -25,7 +25,7 @@ Troubleshooting paths differ.
 
 - **URL wrong.** Double-check what you entered in the app config. `https://romm.example.com`, not `https://romm.example.com/api` (the app appends the API path).
 - **TLS cert issues.** Self-signed certs cause problems. Use a proper cert (Let's Encrypt through your reverse proxy) or configure the app to skip cert validation (not recommended).
-- **Firewall.** From the device, `curl https://romm.example.com/api/heartbeat`; should return JSON. If not, network path is blocked.
+- **Firewall.** From the device, `curl https://romm.example.com/api/heartbeat`. Should return JSON. If not, network path is blocked.
 
 ### Pairing code doesn't work
 
@@ -42,7 +42,7 @@ Full flow: [Client API Tokens](../ecosystem/client-api-tokens.md).
 
 - **Sync hasn't run yet.** The Push-Pull Device Sync task runs every 15 minutes by default. Check Administration → Tasks for last-run timestamp.
 - **App didn't upload.** Open the app's logs. Some apps upload on app-close rather than on every save.
-- **Wrong save location on device.** RomM reads from a specific path; if the app stored saves elsewhere, they won't sync. Check the device's save path configuration.
+- **Wrong save location on device.** RomM reads from a specific path. If the app stored saves elsewhere, they won't sync. Check the device's save path configuration.
 
 ## SSH-based sync (handhelds)
 
@@ -80,12 +80,12 @@ OpenSSH refuses to use keys with loose permissions. On the host:
 chmod 600 /path/to/romm-sync-key
 ```
 
-And verify the Docker bind mount isn't forcing different perms (ro is fine; mode-reset-via-mount-option is the usual culprit).
+And verify the Docker bind mount isn't forcing different perms (ro is fine, but mode-reset-via-mount-option is the usual culprit).
 
 ### Sync task doesn't run
 
 - **`SSH_PRIVATE_KEY_PATH` not set.** Check the RomM container's env. If the path doesn't exist inside the container, sync quietly no-ops.
-- **No devices registered.** Administration → Devices; if empty, there's nothing to sync.
+- **No devices registered.** Administration → Devices. If empty, there's nothing to sync.
 - **Cron expression wrong.** Default `PUSH_PULL_SYNC_INTERVAL_CRON=*/15 * * * *`. Invalid cron silently doesn't run.
 - **Task failing silently.** `GET /api/tasks/status`: status shows per-task state. "failed" with a last-error is a direct pointer.
 
@@ -94,8 +94,8 @@ And verify the Docker bind mount isn't forcing different perms (ro is fine; mode
 Play sessions from a companion app (time-played tracking, Continue Playing ribbon):
 
 - **Not appearing in RomM**: app isn't POSTing to `/api/play-sessions`. Check app's logs.
-- **Duplicate sessions**: app is re-posting on sync. Known edge case for some companion apps; usually harmless.
-- **Times look wrong**: timezone mismatch between device and RomM. RomM stores UTC; display converts to user TZ.
+- **Duplicate sessions**: app is re-posting on sync. Known edge case for some companion apps, usually harmless.
+- **Times look wrong**: timezone mismatch between device and RomM. RomM stores UTC, and display converts to user TZ.
 
 ## Devices panel says "offline"
 
@@ -103,7 +103,7 @@ RomM sees no heartbeat from the device. Either:
 
 - Device is genuinely off.
 - Device's companion app has stopped phoning home. Check the app's logs / relaunch it.
-- RomM last-seen threshold elapsed. Devices show online for 1 hour after last heartbeat; after that, offline.
+- RomM last-seen threshold elapsed. Devices show online for 1 hour after last heartbeat. After that, offline.
 
 ## Smart collection / filter isn't updating after sync
 

@@ -71,8 +71,8 @@ The device remembers `id` for all subsequent calls.
 
 | Mode | Behaviour |
 | --- | --- |
-| `pull_only` | Server only pushes; device-side changes are ignored. |
-| `push_only` | Device pushes saves up; server changes never flow down. |
+| `pull_only` | Server only pushes, and device-side changes are ignored. |
+| `push_only` | Device pushes saves up, and server changes never flow down. |
 | `push_pull` | Bidirectional (most common). |
 
 ## Sync negotiation
@@ -151,7 +151,7 @@ RomM returns a set of **operations** the device should execute:
     - `keep_both`: rename and keep both copies.
     - `server_wins` / `device_wins`: overwrite the other.
     - Default is `keep_both`.
-- **`noop`**: nothing to do; hashes match.
+- **`noop`**: nothing to do because hashes match.
 
 ### Execution
 
@@ -230,12 +230,12 @@ Companion apps generally prefer the API model. SSH-based sync exists mostly for 
 Not strict in 5.0. Reasonable rule of thumb:
 
 - Sync once per session (not every save).
-- Large bursts (initial sync of a full library) are fine; RomM handles them.
-- Don't poll `/api/sync/negotiate` in a tight loop; it's expensive server-side.
+- Large bursts (initial sync of a full library) are fine, and RomM handles them.
+- Don't poll `/api/sync/negotiate` in a tight loop, because it's expensive server-side.
 
 ## Event notifications
 
-Currently polling-only. Companion apps check `/api/sync/negotiate` periodically (Grout defaults to every 15 minutes on Wi-Fi). Future versions may add a push notification channel; until then, polling.
+Currently polling-only. Companion apps check `/api/sync/negotiate` periodically (Grout defaults to every 15 minutes on Wi-Fi). Future versions may add a push notification channel. Until then, polling.
 
 ## See also
 

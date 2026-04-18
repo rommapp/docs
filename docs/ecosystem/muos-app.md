@@ -21,8 +21,8 @@ description: Official RomM app for muOS and EmulationStation handhelds, fetch ga
 
 This page covers the **muOS App**: a lightweight client focused on game fetching. For the fuller push/pull sync experience (saves back to RomM, play-session reporting), use [Grout](grout.md) instead. They're two different clients for the same family of devices.
 
-- **muOS App**: lightweight; pulls ROMs, no save sync.
-- **Grout**: full sync; ROMs + saves + states + play sessions.
+- **muOS App**: lightweight, pulls ROMs, no save sync.
+- **Grout**: full sync, ROMs + saves + states + play sessions.
 
 Pick based on what you need.
 
@@ -34,7 +34,7 @@ Installation uses muOS's [Archive Manager](https://muos.dev/installation/archive
 2. Move the `.muxapp` file to `/mnt/mmc/ARCHIVE/` on the device (USB, SD swap, or SSH).
 3. On the device: **Applications → Archive Manager** → select `RomM.muOS.x.x.x.muxapp` → install.
 4. Once installed, copy `/mnt/mmc/MUOS/application/RomM/env.template` to `.env` in the same folder.
-5. Edit `.env` (SSH works well; so does any method that writes to SD card):
+5. Edit `.env` (SSH works well, as does any method that writes to SD card):
 
     ```dotenv
     HOST=http://192.168.1.100:3000
@@ -65,12 +65,12 @@ The handheld has to reach your RomM instance over Wi-Fi.
 Simplest setup:
 
 - **Same LAN.** Handheld and RomM server on the same SSID. `HOST` = server IP + port.
-- **Plain HTTP works** on a trusted LAN; no reverse proxy needed.
+- **Plain HTTP works** on a trusted LAN, and no reverse proxy is needed.
 
 More-involved setups:
 
 - **Reverse proxy with TLS.** `HOST=https://romm.example.com`. HTTPS works but introduces cert-validation risk on handhelds (some fail strict TLS).
-- **Remote access via VPN.** Install Tailscale or similar on the handheld (if supported); lets the handheld reach RomM from outside the LAN.
+- **Remote access via VPN.** Install Tailscale or similar on the handheld (if supported). This lets the handheld reach RomM from outside the LAN.
 
 ## Using the app
 
@@ -90,7 +90,7 @@ If you need these, Grout is the app.
 
 - **Can't connect.** Wrong `HOST` in `.env`, or the handheld isn't on the same network as RomM. Ping RomM's IP from the handheld's shell to confirm reachability.
 - **"Authentication failed".** Password wrong, or `DISABLE_USERPASS_LOGIN=true` on the RomM side. Either re-enable user/pass login or use a token once supported.
-- **Downloaded games don't show in the platform.** Refresh the library from muOS's UI. If they still don't appear, the platform folder in `HOST_PATH` is wrong; check muOS's expected layout.
+- **Downloaded games don't show in the platform.** Refresh the library from muOS's UI. If they still don't appear, the platform folder in `HOST_PATH` is wrong. Check muOS's expected layout.
 
 ## See also
 

@@ -13,7 +13,7 @@ Maintained by the RomM team.
 
 - **[Argosy Launcher](argosy.md)**: Android launcher that browses and launches your RomM library on mobile.
 - **[Grout](grout.md)**: Linux handheld companion for muOS / NextUI devices.
-- **[Playnite Plugin](playnite-plugin.md)**: Windows desktop; imports your RomM library into [Playnite](https://playnite.link).
+- **[Playnite Plugin](playnite-plugin.md)**: Windows desktop, imports your RomM library into [Playnite](https://playnite.link).
 - **[muOS App](muos-app.md)**: official app for muOS / EmulationStation handhelds to fetch games wirelessly.
 
 ## Feeds (for third-party apps)
@@ -68,4 +68,4 @@ Not a RomM companion, but useful alongside:
 
 Built something RomM-adjacent? Open a PR on [rommapp/docs](https://github.com/rommapp/docs) adding it to [Community Apps](community-apps.md), or drop a link in the [Discord](https://discord.gg/romm) `#community-projects` channel.
 
-We list active, maintained projects. No gate on code quality; we do flag abandoned projects so users know what's current.
+We list active, maintained projects. No gate on code quality, but we do flag abandoned projects so users know what's current.

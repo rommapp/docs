@@ -17,8 +17,8 @@ description: Install Nintendo Switch games from your RomM library over Wi-Fi via
 
 - **RomM 3.5.0 or newer.** Tinfoil feeds landed in that release. Much better in 5.0.
 - **`DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`** on your RomM instance. Tinfoil can't send a bearer token, so the downloads endpoint has to be openable. **Only enable this when RomM isn't directly exposed to the public internet.** See [Authentication → Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass).
-- **Tinfoil installed on the Switch.** Setup varies; follow Tinfoil's own docs.
-- **A Switch that can reach RomM over Wi-Fi.** Same LAN is easiest; remote reachability requires reverse proxy + cert that the Switch accepts.
+- **Tinfoil installed on the Switch.** Setup varies, so follow Tinfoil's own docs.
+- **A Switch that can reach RomM over Wi-Fi.** Same LAN is easiest. Remote reachability requires reverse proxy + cert that the Switch accepts.
 
 ## Feed URL
 
@@ -37,7 +37,7 @@ No authentication: the endpoint works as long as `DISABLE_DOWNLOAD_ENDPOINT_AUTH
     - **Host:** RomM's hostname or IP.
     - **Port:** RomM's port (usually 80 or 443).
     - **Path:** `/api/feeds/tinfoil`
-    - **Username:** your RomM username (optional; Tinfoil can send basic auth; RomM tries it).
+    - **Username:** your RomM username (optional, Tinfoil can send basic auth, and RomM tries it).
     - **Password:** your RomM password.
     - **Title:** anything (e.g. `RomM Switch`).
     - **Enabled:** yes.
@@ -87,7 +87,7 @@ If you put RomM behind a reverse proxy, the proxy can handle auth separately fro
 - Proxy challenges for basic auth before reaching RomM.
 - RomM itself has `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`.
 
-Tinfoil sends basic auth upstream; proxy accepts and forwards; RomM serves.
+Tinfoil sends basic auth upstream, proxy accepts and forwards, and RomM serves.
 
 This gets you authenticated Tinfoil feeds without making RomM itself world-readable.
 
@@ -95,7 +95,7 @@ This gets you authenticated Tinfoil feeds without making RomM itself world-reada
 
 - **"can't get list: list is empty".** Either your RomM library has no `.nsp`/`.xci` files that Tinfoil recognises, or filenames lack title IDs.
 - **Tinfoil connects but nothing in New Games.** Title IDs missing from filenames. Rename.
-- **Tinfoil can't connect at all.** LAN reachability issue, or wrong port in the feed setup. Try `http://<ip>:<port>/api/feeds/tinfoil` in a browser; you should get JSON.
+- **Tinfoil can't connect at all.** LAN reachability issue, or wrong port in the feed setup. Try `http://<ip>:<port>/api/feeds/tinfoil` in a browser. You should get JSON.
 - **Downloads fail with 401.** `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` isn't set on RomM, or you forgot to restart the container after setting it.
 
 ## See also

@@ -1,11 +1,11 @@
 ---
 title: Changelog
-description: Summary of notable RomM releases; authoritative per-release notes live on GitHub.
+description: Summary of notable RomM releases. Authoritative per-release notes live on GitHub.
 ---
 
 # Changelog
 
-This page summarises major RomM releases. **The authoritative per-release changelog lives on [GitHub Releases](https://github.com/rommapp/romm/releases)**; every tag there has full commit lists, breaking changes flagged, and upgrade notes.
+This page summarises major RomM releases. **The authoritative per-release changelog lives on [GitHub Releases](https://github.com/rommapp/romm/releases)**. Every tag there has full commit lists, breaking changes flagged, and upgrade notes.
 
 For migration-grade detail on a major version, go straight to that version's guide:
 

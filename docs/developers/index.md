@@ -28,7 +28,7 @@ Looking for end-user or operator content? See [Using RomM](../using/index.md) or
 - **[Architecture](architecture.md):** high-level walkthrough of the codebase.
 - **[Contributing](contributing.md):** process, style, AI-assistance disclosure.
 - **[Translations (i18n)](i18n.md):** add or improve a locale.
-- **[Releasing](releasing.md):** maintainer-only; how releases are cut.
+- **[Releasing](releasing.md):** maintainer-only, how releases are cut.
 
 ## Reference
 

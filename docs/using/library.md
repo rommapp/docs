@@ -60,7 +60,7 @@ Double-click (or tap) the card to open the [game view](#game-view).
 
 ## Filters
 
-Every gallery has a Filters button in the top right. Filter combinations stack; RomM shows only games matching all active filters.
+Every gallery has a Filters button in the top right. Filter combinations stack, and RomM shows only games matching all active filters.
 
 ### Toggle filters
 
@@ -108,7 +108,7 @@ Clicking a platform card takes you to the platform view: every game on that plat
 
 Two side buttons:
 
-- **Platform drawer**: metadata for the platform itself: name, slug, category, generation, IGDB version, active providers, cover-art style setting. Admins see an **Upload** + **Scan** shortcut + a Danger Zone with "Delete Platform" (removes the DB entry; files on disk are not touched; a rescan re-creates the platform).
+- **Platform drawer**: metadata for the platform itself: name, slug, category, generation, IGDB version, active providers, cover-art style setting. Admins see an **Upload** + **Scan** shortcut + a Danger Zone with "Delete Platform" (removes the DB entry, files on disk are not touched, and a rescan re-creates the platform).
 - **Firmware**: every firmware file registered against the platform, plus an upload button. See [Firmware Management](../administration/firmware-management.md).
 
 ## Collection view

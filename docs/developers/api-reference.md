@@ -1,11 +1,11 @@
 ---
 title: API Reference
-description: Catalogue of RomM's REST API; authoritative interactive docs live on each instance.
+description: Catalogue of RomM's REST API. Authoritative interactive docs live on each instance.
 ---
 
 # API Reference
 
-RomM's REST API is documented via **OpenAPI 3.0**. The spec is the source of truth; this page catalogues what's there, but every running RomM instance serves its own interactive browser with live "try it out" functionality.
+RomM's REST API is documented via **OpenAPI 3.0**. The spec is the source of truth. This page catalogues what's there, but every running RomM instance serves its own interactive browser with live "try it out" functionality.
 
 ## Interactive docs
 
@@ -42,7 +42,7 @@ Full walkthrough in [API Authentication](api-authentication.md).
 
 ## Endpoint groups
 
-Every endpoint belongs to a group. Summaries below; the interactive docs at `/api/docs` have full request/response schemas.
+Every endpoint belongs to a group. Summaries below. The interactive docs at `/api/docs` have full request/response schemas.
 
 ### Auth & users
 

@@ -31,7 +31,7 @@ mkdir -p /volume1/data/media/games/library/roms
 mkdir -p /volume1/data/media/games/library/bios
 ```
 
-The platform folder names inside `roms/` have to match RomM's conventions; see [Folder Structure](../getting-started/folder-structure.md).
+The platform folder names inside `roms/` have to match RomM's conventions. See [Folder Structure](../getting-started/folder-structure.md).
 
 ### User uploads + config
 
@@ -60,7 +60,7 @@ openssl rand -hex 32
 # -> 03a054b6ca27e0107c5eed552ea66bacd9f3a2a8a91e7595cd462a593f9ecd09
 ```
 
-Keep the output; it becomes `ROMM_AUTH_SECRET_KEY` in your compose file. Don't lose it; rotating invalidates every session and invite link.
+Keep the output. It becomes `ROMM_AUTH_SECRET_KEY` in your compose file. Don't lose it, because rotating invalidates every session and invite link.
 
 ## 4. Set up metadata provider credentials
 
@@ -69,7 +69,7 @@ Recommended before the first scan. Full walkthrough in [Metadata Providers](../a
 ## 5. Docker Compose
 
 !!! info "MariaDB 10.7 note"
-    This guide pins MariaDB to **10.7** for stability on older DSM versions. MariaDB 11 works on DSM 7.2+; bump the image tag if you like.
+    This guide pins MariaDB to **10.7** for stability on older DSM versions. MariaDB 11 works on DSM 7.2+, so bump the image tag if you like.
 
 The Synology-flavoured compose file: MariaDB on port `3309` externally (to avoid colliding with Synology's built-in MariaDB), UID/GID customisation, simplified healthcheck:
 
@@ -98,7 +98,7 @@ Once RomM reports it's listening, open `http://<nas-ip>:7676` in a browser. The 
 
 ## Notes
 
-- **Permissions**: make sure the UID/GID in your compose file has read-write on every host path you mounted. Synology's default `docker` user is often `1024:100`; the `apps` user is `568`. Pick one and be consistent.
+- **Permissions**: make sure the UID/GID in your compose file has read-write on every host path you mounted. Synology's default `docker` user is often `1024:100`, and the `apps` user is `568`. Pick one and be consistent.
 - **HTTPS**: put Synology's built-in reverse proxy (Control Panel → Login Portal → Advanced → Reverse Proxy) in front of RomM, or use the [Reverse Proxy](reverse-proxy.md) recipes.
 - **Back up `/volume1/docker/romm` and your DB volume** before upgrading RomM versions. See [Backup & Restore](backup-and-restore.md).
 

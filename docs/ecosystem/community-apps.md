@@ -5,7 +5,7 @@ description: Third-party companion apps for RomM, maintained by the community, n
 
 # Community Apps
 
-Apps listed here are **community-maintained**. The RomM team doesn't build or officially support them; the authors do. Support is via the individual app's issue tracker and the RomM Discord.
+Apps listed here are **community-maintained**. The RomM team doesn't build or officially support them. The authors do. Support is via the individual app's issue tracker and the RomM Discord.
 
 First-party alternatives (built by the RomM team):
 
@@ -78,7 +78,7 @@ SteamOS downloader/syncer for Steam Deck.
 
 ### SwitchRomM
 
-Homebrew NRO app for Nintendo Switch; pull ROMs from RomM over Wi-Fi.
+Homebrew NRO app for Nintendo Switch. Pull ROMs from RomM over Wi-Fi.
 
 - **Author:** [@Shalasere](https://github.com/Shalasere)
 - **Platform:** Nintendo Switch (homebrew)
@@ -113,7 +113,7 @@ Push a Syncthing-managed library to RomM automatically.
 ## "Community-maintained": what it means
 
 - **The RomM team doesn't build these.** We won't fix bugs, ship features, or respond to support tickets for community apps.
-- **Support through the app author.** Each project has its own issue tracker; use it.
+- **Support through the app author.** Each project has its own issue tracker. Use it.
 - **Install at your own risk.** We don't code-review community apps or vouch for their security posture.
 - **Token safety.** These apps use [Client API Tokens](client-api-tokens.md) the same way first-party apps do. Scope tokens narrowly and revoke if an app misbehaves.
 

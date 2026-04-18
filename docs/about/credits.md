@@ -9,7 +9,7 @@ RomM exists because a lot of people contributed code, designs, translations, ide
 
 ## Core maintainers
 
-The small team that reviews PRs, cuts releases, and keeps the project moving. Check [rommapp/romm](https://github.com/rommapp/romm/graphs/contributors) for the current active list; credits here would drift.
+The small team that reviews PRs, cuts releases, and keeps the project moving. Check [rommapp/romm](https://github.com/rommapp/romm/graphs/contributors) for the current active list. Credits here would drift.
 
 ## Contributors
 
@@ -94,7 +94,7 @@ Donors via [Open Collective](https://opencollective.com/romm) make continued dev
 
 ## Missing?
 
-Open a PR against this page. Credit is cheap; we'd rather err on the side of naming everyone than leaving someone out.
+Open a PR against this page. Credit is cheap, and we'd rather err on the side of naming everyone than leaving someone out.
 
 ## See also
 

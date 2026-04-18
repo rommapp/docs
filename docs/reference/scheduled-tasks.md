@@ -38,7 +38,7 @@ Set the matching env var from the table above, restart the container, and the sc
 
 Two approaches:
 
-- **Dedicated enable flag.** Some tasks have a boolean toggle (e.g. `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=false`); cleanest.
+- **Dedicated enable flag.** Some tasks have a boolean toggle (e.g. `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=false`). Cleanest.
 - **Cron-it-off.** Set the cron to a moment that effectively never fires. `0 0 31 2 *` (Feb 31st) works.
 
 ## Where the table comes from
