@@ -1,0 +1,10 @@
+# Pinned upstream sources for the docs generators.
+#
+# Bumped automatically by .github/workflows/romm-release-bump.yml on each
+# rommapp/romm release. Do not hand-edit unless you know why.
+
+[romm]
+repo = "rommapp/romm"
+# Set to a tag (e.g. "v5.0.0") or a full SHA. Generators fetch raw files
+# from raw.githubusercontent.com/${repo}/${ref}/...
+ref = "master"

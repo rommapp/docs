@@ -52,7 +52,7 @@ plugins:
               font_family: Roboto
               background_color: "#371f69"
               color: "#ede5f8"
-              logo: docs/assets/romm/romm-logo.pngg
+              logo: docs/assets/romm/romm-logo.png
               title: RomM Docs
               description: Your beautiful, powerful, self-hosted rom manager
     - glightbox:
@@ -65,6 +65,63 @@ plugins:
           enable_creation_date: true
           type: timeago
     - mike
+    - redirects:
+          redirect_maps:
+              # Getting Started → new IA
+              Getting-Started/Quick-Start-Guide.md: getting-started/quick-start.md
+              Getting-Started/Folder-Structure.md: getting-started/folder-structure.md
+              Getting-Started/Configuration-File.md: reference/configuration-file.md
+              Getting-Started/Environment-Variables.md: reference/environment-variables.md
+              Getting-Started/Metadata-Providers.md: administration/metadata-providers.md
+              Getting-Started/OIDC-Setup.md: administration/oidc/index.md
+              Getting-Started/Reverse-Proxy.md: install/reverse-proxy.md
+              Getting-Started/Authentication.md: administration/authentication.md
+              # Platforms and Players
+              Platforms-and-Players/Supported-Platforms.md: platforms/supported-platforms.md
+              Platforms-and-Players/EmulatorJS-Player.md: using/in-browser-play.md
+              Platforms-and-Players/RuffleRS-Player.md: using/in-browser-play.md
+              Platforms-and-Players/MS-DOS.md: platforms/ms-dos.md
+              Platforms-and-Players/Custom-Platforms.md: platforms/custom-platforms.md
+              # System Setup → Install
+              System-Setup/Unraid-Setup-Guide.md: install/unraid.md
+              System-Setup/Unraid-Compose-Setup.md: install/unraid.md
+              System-Setup/Synology-Setup-Guide.md: install/synology.md
+              System-Setup/TrueNAS-Setup-Guide.md: install/truenas.md
+              # Usage → split into Administration + Using
+              Usage/LibraryManagement.md: using/library.md
+              Usage/UserManagement.md: administration/users-and-roles.md
+              Usage/Administration.md: administration/administration-page.md
+              # OIDC Guides
+              OIDC-Guides/OIDC-Setup-With-Authelia.md: administration/oidc/authelia.md
+              OIDC-Guides/OIDC-Setup-With-Authentik.md: administration/oidc/authentik.md
+              OIDC-Guides/OIDC-Setup-With-Keycloak.md: administration/oidc/keycloak.md
+              OIDC-Guides/OIDC-Setup-With-PocketID.md: administration/oidc/pocketid.md
+              OIDC-Guides/OIDC-Setup-With-Zitadel.md: administration/oidc/zitadel.md
+              # API & Development
+              API-and-Development/index.md: developers/index.md
+              API-and-Development/API-Reference.md: developers/api-reference.md
+              API-and-Development/Development-Setup.md: developers/development-setup.md
+              API-and-Development/Contributing.md: developers/contributing.md
+              # Tools → Ecosystem
+              Tools/Igir-Collection-Manager.md: ecosystem/igir.md
+              # Maintenance
+              Maintenance/Scheduled-Tasks.md: reference/scheduled-tasks.md
+              Maintenance/Migrating-to-new-machine.md: install/backup-and-restore.md
+              Maintenance/Upgrading-to-3.0.md: releases/upgrading-to-3.0.md
+              # Integrations → Ecosystem
+              Integrations/Playnite-plugin.md: ecosystem/playnite-plugin.md
+              Integrations/muOS-app.md: ecosystem/muos-app.md
+              Integrations/Tinfoil-integration.md: ecosystem/tinfoil.md
+              Integrations/pkgj-integration.md: ecosystem/pkgj.md
+              # Troubleshooting (just casing change)
+              Troubleshooting/Scanning-Issues.md: troubleshooting/scanning.md
+              Troubleshooting/Authentication-Issues.md: troubleshooting/authentication.md
+              Troubleshooting/Synology-Issues.md: troubleshooting/synology.md
+              Troubleshooting/Miscellaneous-Troubleshooting.md: troubleshooting/miscellaneous.md
+              Troubleshooting/Kubernetes-Issues.md: troubleshooting/kubernetes.md
+              # Miscellaneous → About
+              Miscellaneous/FAQs.md: about/faqs.md
+              Miscellaneous/Brand-Guidelines.md: about/brand-guidelines.md
 
 markdown_extensions:
     - pymdownx.blocks.caption

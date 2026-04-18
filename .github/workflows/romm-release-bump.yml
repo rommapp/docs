@@ -1,0 +1,85 @@
+name: RomM Release Bump
+
+# When rommapp/romm publishes a new release, update the pinned ref in
+# docs/scripts/sources.toml, regenerate snippets, and open a PR.
+
+on:
+    schedule:
+        - cron: "0 6 * * *" # daily at 06:00 UTC
+    workflow_dispatch:
+        inputs:
+            ref:
+                description: "Override RomM ref (tag or SHA). Leave blank for latest release."
+                required: false
+                type: string
+
+permissions:
+    contents: write
+    pull-requests: write
+
+jobs:
+    bump:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4.3.0
+
+            - name: Resolve target ref
+              id: ref
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  override="${{ github.event.inputs.ref }}"
+                  if [ -n "$override" ]; then
+                      echo "ref=$override" >> "$GITHUB_OUTPUT"
+                  else
+                      latest=$(gh release view --repo rommapp/romm --json tagName -q .tagName)
+                      echo "ref=$latest" >> "$GITHUB_OUTPUT"
+                  fi
+
+            - name: Update sources.toml
+              run: |
+                  python - <<'PY'
+                  import re, pathlib
+                  ref = "${{ steps.ref.outputs.ref }}"
+                  p = pathlib.Path("docs/scripts/sources.toml")
+                  text = p.read_text()
+                  new = re.sub(r'(?m)^ref\s*=.*$', f'ref = "{ref}"', text)
+                  p.write_text(new)
+                  PY
+
+            - name: Install uv
+              uses: astral-sh/setup-uv@v6.7.0
+              with:
+                  enable-cache: true
+                  cache-dependency-glob: uv.lock
+
+            - name: Set up Python
+              uses: actions/setup-python@v6.0.0
+              with:
+                  python-version-file: .python-version
+
+            - name: Install dependencies
+              run: uv sync --all-extras --dev
+
+            - name: Regenerate snippets
+              run: |
+                  uv run python docs/scripts/gen_env_vars.py
+                  uv run python docs/scripts/gen_platforms.py
+                  uv run python docs/scripts/gen_scheduled_tasks.py
+
+            - name: Open PR
+              uses: peter-evans/create-pull-request@v7
+              with:
+                  commit-message: "Docs: sync with rommapp/romm@${{ steps.ref.outputs.ref }}"
+                  branch: bot/romm-bump-${{ steps.ref.outputs.ref }}
+                  title: "Docs: sync with rommapp/romm@${{ steps.ref.outputs.ref }}"
+                  body: |
+                      Auto-bump triggered by a new RomM release.
+
+                      - Pinned `docs/scripts/sources.toml` ref to `${{ steps.ref.outputs.ref }}`.
+                      - Regenerated all source-of-truth snippets.
+
+                      Review the diff for any new env vars / endpoints / tasks that
+                      need narrative documentation.

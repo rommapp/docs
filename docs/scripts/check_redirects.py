@@ -1,0 +1,70 @@
+"""Validate the redirect_maps in mkdocs.yml against the built site.
+
+Fails CI if any redirect target file does not exist after `mkdocs build`.
+
+Run manually:
+    uv run mkdocs build
+    uv run python docs/scripts/check_redirects.py
+"""
+
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+import yaml
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+MKDOCS_YML = REPO_ROOT / "mkdocs.yml"
+SITE_DIR = REPO_ROOT / "site"
+
+
+class _LooseLoader(yaml.SafeLoader):
+    pass
+
+
+def _ignore_python_tags(loader, tag_suffix, node):  # noqa: ARG001
+    return None
+
+
+_LooseLoader.add_multi_constructor("tag:yaml.org,2002:python/", _ignore_python_tags)
+
+
+def load_redirect_map() -> dict[str, str]:
+    with MKDOCS_YML.open("r", encoding="utf-8") as f:
+        cfg = yaml.load(f, Loader=_LooseLoader)
+    for plugin in cfg.get("plugins", []):
+        if isinstance(plugin, dict) and "redirects" in plugin:
+            return plugin["redirects"].get("redirect_maps", {})
+    return {}
+
+
+def main() -> int:
+    if not SITE_DIR.exists():
+        print(
+            f"ERROR: {SITE_DIR} does not exist. Run `mkdocs build` first.",
+            file=sys.stderr,
+        )
+        return 2
+
+    redirects = load_redirect_map()
+    missing: list[tuple[str, str]] = []
+    for src, dst in redirects.items():
+        # mkdocs-redirects rewrites the source page to redirect to the target.
+        # Targets are .md paths relative to docs_dir; resolve to built HTML.
+        html_path = SITE_DIR / dst.replace(".md", "/index.html")
+        if not html_path.exists():
+            missing.append((src, dst))
+
+    if missing:
+        print(f"ERROR: {len(missing)} redirect target(s) do not exist in built site:")
+        for src, dst in missing:
+            print(f"  {src} -> {dst}")
+        return 1
+
+    print(f"OK: all {len(redirects)} redirect targets exist.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
