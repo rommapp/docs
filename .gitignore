@@ -4,3 +4,5 @@ site
 .cache
 .DS_Store
 *.kate-swp
+__pycache__
+*.pyc
