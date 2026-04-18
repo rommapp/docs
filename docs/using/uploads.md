@@ -1,10 +1,130 @@
 ---
-status: placeholder
-wave: 2
+title: Uploads
+description: Upload ROMs, firmware, saves, states, and screenshots into RomM from the web UI.
 ---
 
 # Uploads
 
-!!! warning "Placeholder — RomM 5.0 docs overhaul"
-    This page is part of the RomM 5.0 documentation overhaul (Wave 2) and
-    has not been written yet. See the overhaul plan for status and ownership.
+## What you can upload
+
+| Type | Permission | Where | Details |
+| --- | --- | --- | --- |
+| **ROMs** | Admin, Editor | **Upload** in menu bar; **Upload ROM** on platform detail; ROM detail → Upload menu | Goes to the correct platform folder in `/romm/library`. |
+| **Firmware / BIOS** | Admin, Editor | Platform detail → Firmware button → Upload | See [Firmware Management](../administration/firmware-management.md). |
+| **Saves** | Self (own games) | Game detail → Game Data tab → Upload Save | Per-ROM, per-user. |
+| **States** | Self (own games) | Game detail → Game Data tab → Upload State | Per-ROM, per-user. Optional screenshot attached. |
+| **Screenshots** | Self (own games) | Game detail → Screenshots tab → Upload | Per-ROM, per-user. |
+| **Manuals** | Admin, Editor | Game detail → Manual tab → Upload (when empty) | PDF; becomes the Manual tab content. |
+| **Cover art** | Admin, Editor | Game detail → Edit → Upload cover | Replaces the provider-fetched cover. |
+
+## ROM upload
+
+### The Upload page
+
+1. **Upload** in the menu bar.
+2. Pick a target platform.
+3. **+ ADD** → select files, or drag-and-drop onto the upload zone.
+4. Click **Upload**.
+
+Multiple files upload in parallel. Progress bars show per-file status; failures surface with an error per file rather than stopping the whole batch.
+
+### Large uploads (chunked)
+
+Files over 64 MB are uploaded in chunks. RomM:
+
+1. Opens an upload session (`POST /api/roms/upload/start`).
+2. Streams chunks (`PUT /api/roms/upload/{id}`) — 64 MB each.
+3. Finalises the upload (`POST /api/roms/upload/{id}/complete`), which assembles the file and indexes it.
+
+A browser refresh mid-upload cancels the session and cleans up partial data.
+
+### Multi-file uploads
+
+To upload a multi-file game (multi-disc, game + DLC):
+
+1. Zip the whole game folder on your end.
+2. Upload the zip — RomM detects the structure and unpacks to a folder under the platform directory.
+3. The resulting folder follows the [multi-file game convention](../getting-started/folder-structure.md#multi-file-games).
+
+### After upload
+
+Uploaded ROMs are immediately visible in the platform view, but aren't **matched** to metadata until the next scan. Two options:
+
+- **Run a Quick scan** — picks up new files only.
+- **Match manually** — game detail → Match → search for the title.
+
+## Save uploads
+
+For your own games. Useful for importing existing save files from another emulator or from the original console.
+
+1. Open the game → **Game Data** tab → **Upload Save**.
+2. Drag / browse the save file.
+3. Optionally attach a screenshot (a thumbnail for the save).
+4. Save.
+
+The file's stored under `/romm/assets/<user>/<rom>/saves/` and is available to your [in-browser play](in-browser-play.md) sessions. RomM doesn't rewrite the file contents — it's stored as-is.
+
+See [Saves & States](saves-and-states.md) for more.
+
+## State uploads
+
+Emulator save-states. Same flow as saves but under **States**.
+
+- State formats are emulator-specific — a SNES9x state won't load in bsnes.
+- Screenshots can be attached — RomM generates one automatically from the emulator if you create a state from [in-browser play](in-browser-play.md).
+
+## Screenshot uploads
+
+Personal screenshot uploads attach to a ROM (not to a save/state). Great for building a screenshot gallery per game.
+
+Game detail → **Screenshots** tab → **Upload**.
+
+Supported formats: PNG, JPEG, WebP. RomM converts on ingest to WebP via the Image Conversion task — see [Scheduled Tasks](../administration/scheduled-tasks.md).
+
+## Firmware uploads
+
+Admin / Editor only. See [Firmware Management](../administration/firmware-management.md) for the full flow — two paths (drop in folder + scan, or UI upload), per-platform organisation, file naming requirements.
+
+## Manual uploads
+
+Admin / Editor. Game detail → **Manual** tab → **Upload Manual** (button appears when no manual is set).
+
+Supported: PDF. Renders in the browser via the Manual tab.
+
+## Cover art uploads
+
+Admin / Editor. Game detail → Context menu (…) → **Edit** → **Upload cover** → PNG / JPG / WebP. Overrides provider-fetched cover. To revert: Edit → **Reset cover** → the next metadata refresh repopulates from providers.
+
+## Permissions summary
+
+| Action | Viewer | Editor | Admin |
+| --- | :---: | :---: | :---: |
+| Upload save/state/screenshot for own account | ✓ | ✓ | ✓ |
+| Upload ROMs | — | ✓ | ✓ |
+| Upload firmware | — | ✓ | ✓ |
+| Upload manual / cover art | — | ✓ | ✓ |
+
+Full scope matrix in [Users & Roles](../administration/users-and-roles.md#scope-matrix).
+
+## Troubleshooting
+
+- **`413 Request Entity Too Large`** — your reverse proxy or ingress is capping body size. See [Reverse Proxy](../install/reverse-proxy.md) for the `client_max_body_size 0` / `proxy-body-size: "0"` fix.
+- **Upload progresses then fails at 99%** — the finalise step timed out. Usually reverse-proxy read timeout is too tight; raise it.
+- **"File is not a valid ROM for this platform"** — RomM's extension check rejected the file. Either it's the wrong platform, or the extension is obscure — see [Folder Structure → Naming](../getting-started/folder-structure.md#naming-convention).
+- **Save upload silently doesn't appear in-emulator** — you uploaded to the wrong emulator core. Check [Saves & States → Emulator compatibility](saves-and-states.md) for the format → core matrix.
+
+## API
+
+```http
+POST   /api/roms/upload/start             # start a chunked ROM upload
+PUT    /api/roms/upload/{upload_id}       # chunk
+POST   /api/roms/upload/{upload_id}/complete
+POST   /api/roms/upload/{upload_id}/cancel
+
+POST   /api/saves                         # save file upload
+POST   /api/states                        # state upload
+POST   /api/screenshots                   # screenshot upload
+POST   /api/firmware                      # firmware upload
+```
+
+Requires appropriate `*.write` scopes. See [API Reference](../developers/api-reference.md).
