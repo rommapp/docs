@@ -28,18 +28,6 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Decide alias
-              id: alias
-              # Only `5.*` versions become `latest`. Older versions deploy as a
-              # frozen snapshot at /<version>/ with no alias change.
-              run: |
-                  version="${{ github.event.inputs.version }}"
-                  if [[ "$version" =~ ^5(\.|$) ]]; then
-                      echo "alias=latest" >> "$GITHUB_OUTPUT"
-                  else
-                      echo "alias=" >> "$GITHUB_OUTPUT"
-                  fi
-
             - name: Install uv
               uses: astral-sh/setup-uv@v6.7.0
               with:
@@ -72,6 +60,6 @@ jobs:
                   git checkout main
 
             - name: Build the documentation
-              run: uv run mike deploy --push --update-aliases ${{ github.event.inputs.version }} ${{ steps.alias.outputs.alias }}
+              run: uv run mike deploy --push --update-aliases ${{ github.event.inputs.version }} latest
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

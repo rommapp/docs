@@ -2,7 +2,7 @@ name: PR Checks
 
 on:
     pull_request:
-        branches: [main, v5]
+        branches: [main]
 
 concurrency:
     group: pr-checks-${{ github.ref }}
