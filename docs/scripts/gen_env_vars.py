@@ -108,17 +108,15 @@ def render(rows: Iterable[dict]) -> str:
     for section, items in grouped.items():
         out.append(f"### {section}")
         out.append("")
-        out.append("| Variable | Default | Description |")
-        out.append("| --- | --- | --- |")
+        out.append("| Variable | Default | Required | Description |")
+        out.append("| --- | --- | :---: | --- |")
         for r in items:
-            if r["required"]:
-                default = "**required**"
-            elif r["default"]:
-                default = f"`{r['default']}`"
-            else:
-                default = "_(unset)_"
+            default = f"`{r['default']}`" if r["default"] else ""
+            required = "✓" if r["required"] else ""
             desc = r["description"] or "—"
-            out.append(f"| `{r['name']}` | {default} | {desc} |")
+            out.append(
+                f"| `{r['name']}` | {default} | {required} | {desc} |"
+            )
         out.append("")
 
     return "\n".join(out)
