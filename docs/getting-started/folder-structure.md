@@ -7,7 +7,7 @@ description: How to organise your ROM library on disk so RomM can scan and match
 
 # Folder Structure
 
-RomM expects your library to be organised in one of two layouts. It tries **Structure A** first, and falls back to **Structure B** if A isn't found. This auto-detection is per-library, so you don't pick one up front. Just arrange files the way you prefer, and RomM figures it out.
+RomM expects your library to be organised in one of two layouts. It tries **Structure A** first, and falls back to **Structure B** if A isn't found. This auto-detection is per-library (not per-platform), so you don't pick one up front. Just arrange files the way you prefer, and RomM figures it out.
 
 ## The two layouts
 
@@ -38,22 +38,12 @@ The path you mount into the RomM container as `/romm/library` depends on which s
 
 See the [reference Docker Compose](../install/docker-compose.md) for where `/romm/library` lives.
 
-## Multi-file games
-
-Some games come as **folders** instead of single files: multi-disc, DLC, manuals, patches. RomM understands this layout and recognises these sub-folder names, surfacing them as tags in the UI:
-
-- `dlc`
-- `hack`
-- `manual`
-- `mod`
-- `patch`
-- `update`
-- `demo`
-- `translation`
-- `prototype`
-
 !!! tip "Platform folder names"
     The platform folder name has to match a known slug (`gbc`, `gba`, `ps`, `snes`, etc.). Full list in [Supported Platforms](../platforms/supported-platforms.md). If your existing folder names don't match (say, `super_nintendo/` instead of `snes/`), override the mapping via `system.platforms` in [`config.yml`](../reference/configuration-file.md).
+
+## Multi-file games
+
+Some games come as **folders** instead of single files, which could include multiple disc, DLCs, manuals, or patches. RomM understands this layout and recognises these sub-folder names, surfacing them as tags in the UI: `dlc`, `hack`, `manual`, `mod`, `patch`, `update`, `demo`, `translation`, `prototype`.
 
 ## Visual reference
 
@@ -174,6 +164,8 @@ Filenames are parsed for region, language, revision, and arbitrary tags. Both `[
 - **Revision**: prefix with `rev` / `rev-`. Example: `rev v1`, `rev-1`.
 - **Arbitrary tags**: anything else in brackets is imported verbatim. Example: `tetris [1.0001](HACK)[!].gba`.
 
+RomM also honours inline tags like `(igdb-1234)` in filenames to force a match to a specific provider entry, covered in [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames).
+
 Tags are searchable in the search bar: typing `(USA)` returns every game tagged USA.
 
 <div class="grid cards" markdown>
@@ -244,7 +236,3 @@ Tags are searchable in the search bar: typing `(USA)` returns every game tagged 
 </div>
 
 </div>
-
-## Filename metadata tags
-
-RomM also honours inline tags like `(igdb-1234)` in filenames to force a match to a specific provider entry, covered in [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames).

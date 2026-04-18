@@ -1,6 +1,6 @@
 ---
 title: Configuration File
-description: Full schema reference for config.yml: exclusions, system bindings, filesystem, scan priorities, EmulatorJS.
+description: Full schema reference for config.yml
 ---
 
 # Configuration File

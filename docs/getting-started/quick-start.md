@@ -5,7 +5,7 @@ description: Get a RomM 5.0 instance running in about fifteen minutes using Dock
 
 # Quick Start
 
-This guide gets a RomM instance up and running with the default stack (MariaDB + Redis + RomM) using Docker Compose. If you're on Unraid, Synology, TrueNAS, or Kubernetes, start there instead: the [Install & Deploy](../install/index.md) section has platform-specific guides.
+This guide gets a RomM instance up and running with the default stack (MariaDB + Valkey) using Docker Compose. If you're on Unraid, Synology, TrueNAS, or Kubernetes, start there instead: the [Install & Deploy](../install/index.md) section has platform-specific guides.
 
 ## Before you start
 
@@ -13,10 +13,10 @@ You'll need:
 
 - [Docker](https://docs.docker.com/get-docker/) and Docker Compose installed on the host.
 - Your ROM files organised in the expected [folder structure](folder-structure.md).
-- API credentials for at least one [metadata provider](../administration/metadata-providers.md). IGDB + ScreenScraper is the recommended pairing. RomM will run without any provider configured, but matching quality will suffer.
+- API credentials for at least one [metadata provider](../administration/metadata-providers.md). Hasheous + IGDB + SteamGridDB + Retroachievements is the recommended pairing. RomM will run without any provider configured, but matching quality will suffer.
 
 !!! warning "Metadata providers are recommended"
-    RomM works without a metadata API for basic use, but setup problems and companion-app integrations (e.g. Playnite) can fail without them. Setting up **IGDB** API keys before your first scan is strongly recommended.
+    RomM works without a metadata API for basic use, but setup problems and companion-app integrations (e.g. Playnite) can fail without them. Setting up **IGDB**, **SteamGridDB**, and **Retroachievements** API keys before your first scan is strongly recommended.
 
 ## 1. Write your `docker-compose.yml`
 
@@ -31,14 +31,14 @@ You'll want to edit the following values before launching:
 
 | Where | Variable | What to put |
 | --- | --- | --- |
-| `romm-db` service | `MARIADB_ROOT_PASSWORD` | A long random password. Generate one. Don't reuse. |
-| `romm-db` service | `MARIADB_PASSWORD` | A separate long random password for the `romm-user`. |
-| `romm` service | `DB_PASSWD` | Must match `MARIADB_PASSWORD` above. |
-| `romm` service | `ROMM_AUTH_SECRET_KEY` | Generate with `openssl rand -hex 32`. Keep it secret. |
-| `romm` service | Metadata provider creds | Fill in only the providers you've registered with. See [Metadata Providers](../administration/metadata-providers.md). |
-| `romm` service | `/path/to/library` volume | Absolute path to the directory containing your `roms/` folder. |
-| `romm` service | `/path/to/assets` volume | Absolute path where RomM will store saves, states, uploaded screenshots. |
-| `romm` service | `/path/to/config` volume | Absolute path to a directory that will hold `config.yml`. |
+| `romm-db` | `MARIADB_ROOT_PASSWORD` | A long, randomly generated password. |
+| `romm-db` | `MARIADB_PASSWORD` | A separate long, randomly generated password. |
+| `romm` | `DB_PASSWD` | Must match `MARIADB_PASSWORD` above. |
+| `romm` | `ROMM_AUTH_SECRET_KEY` | Generate with `openssl rand -hex 32` and keep it secret. |
+| `romm` | Metadata provider creds | Fill in only the providers you've registered with (see [Metadata Providers](../administration/metadata-providers.md)). |
+| `romm` | `/path/to/library` volume | Host path to the directory containing your `roms/` folder. |
+| `romm` | `/path/to/assets` volume | Host path where RomM will store saves, states, uploaded screenshots. |
+| `romm` | `/path/to/config` volume | Host path to a directory that will hold `config.yml`. |
 
 Generate the auth secret now so you don't forget:
 
@@ -90,9 +90,8 @@ The fastest way to populate RomM is to let it scan your mounted library:
 3. Start the scan. You can open any matched game while the scan continues to see the metadata RomM pulled.
 4. When the scan finishes, click the RomM logo to return home. You'll see your platforms and the most recently added games.
 
-That's it, you're running RomM. From here:
+That's it, you're up and running! From here:
 
-- Customise the on-disk layout: [Folder Structure](folder-structure.md)
 - Add more users and lock down access: [Users & Roles](../administration/users-and-roles.md)
 - Put RomM behind a reverse proxy with HTTPS: [Reverse Proxy](../install/reverse-proxy.md)
 - Learn what all those settings mean: [Core Concepts](concepts.md)

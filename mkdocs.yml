@@ -69,7 +69,6 @@ plugins:
           redirect_maps:
               # Getting Started → new IA
               Getting-Started/Quick-Start-Guide.md: getting-started/quick-start.md
-              Getting-Started/Folder-Structure.md: getting-started/folder-structure.md
               Getting-Started/Configuration-File.md: reference/configuration-file.md
               Getting-Started/Environment-Variables.md: reference/environment-variables.md
               Getting-Started/Metadata-Providers.md: administration/metadata-providers.md
