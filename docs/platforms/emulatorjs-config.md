@@ -1,11 +1,11 @@
 ---
 title: EmulatorJS Configuration
-description: Operator-level tuning of the EmulatorJS player — per-core settings, controls, cache, Netplay.
+description: Operator-level tuning of the EmulatorJS player, per-core settings, controls, cache, Netplay.
 ---
 
 # EmulatorJS Configuration
 
-End-user side of EmulatorJS lives in [In-Browser Play](../using/in-browser-play.md). This page is **operator-facing** — how to tune EmulatorJS via `config.yml` for every user on your instance.
+End-user side of EmulatorJS lives in [In-Browser Play](../using/in-browser-play.md). This page is **operator-facing**: how to tune EmulatorJS via `config.yml` for every user on your instance.
 
 All settings below live under the `emulatorjs:` key in [`config.yml`](../reference/configuration-file.md#emulatorjs).
 
@@ -16,7 +16,7 @@ environment:
   - ENABLE_EMULATORJS=true   # default
 ```
 
-Set to `false` to disable EmulatorJS entirely — useful on the slim image or when running headless with companion apps only. The Play button is hidden; Ruffle still works independently. See [Image Variants](../install/image-variants.md).
+Set to `false` to disable EmulatorJS entirely: useful on the slim image or when running headless with companion apps only. The Play button is hidden; Ruffle still works independently. See [Image Variants](../install/image-variants.md).
 
 ## Debug mode
 
@@ -34,7 +34,7 @@ emulatorjs:
   cache_limit: 52428800   # 50 MB per ROM; null = unlimited
 ```
 
-Each ROM's cache (core files, BIOS, settings) is capped. `null` removes the cap — useful for large PSP / Saturn libraries on hosts with plenty of disk.
+Each ROM's cache (core files, BIOS, settings) is capped. `null` removes the cap: useful for large PSP / Saturn libraries on hosts with plenty of disk.
 
 ## DOS-specific toggles
 
@@ -44,8 +44,8 @@ emulatorjs:
   disable_auto_unload: true
 ```
 
-- **`disable_batch_bootup`** — skips the `autorun.bat` step when `dosbox-pure` loads. Try this if DOS games hang on boot. See [MS-DOS](ms-dos.md).
-- **`disable_auto_unload`** — keeps the emulator running when the user navigates away. Default off (browsers unload the emulator on page change).
+- **`disable_batch_bootup`**: skips the `autorun.bat` step when `dosbox-pure` loads. Try this if DOS games hang on boot. See [MS-DOS](ms-dos.md).
+- **`disable_auto_unload`**: keeps the emulator running when the user navigates away. Default off (browsers unload the emulator on page change).
 
 ## Netplay
 
@@ -127,7 +127,7 @@ The structure:
 - `value` = keyboard key.
 - `value2` = gamepad button.
 
-Slot indexes and what they map to vary per core — see [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/control-mapping/).
+Slot indexes and what they map to vary per core; see [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/control-mapping/).
 
 Users can override operator-level defaults in-game via Menu → **Controls**. Operator-level just sets the starting point.
 
@@ -164,17 +164,17 @@ Per-user overrides take precedence. A config.yml setting is the fallback.
 
 For frontend parity:
 
-- [`config.batocera-retrobat.yml`](https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml) — Batocera / RetroBat control + setting layouts.
-- [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml) — ES-DE layout.
+- [`config.batocera-retrobat.yml`](https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml): Batocera / RetroBat control + setting layouts.
+- [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml): ES-DE layout.
 
 ## Troubleshooting
 
-- **Settings don't apply** — `debug: true`, reload a game, check console for "option set" logs. Core name might be wrong.
-- **Netplay breaks after enabling** — see [Netplay Troubleshooting](../troubleshooting/netplay.md).
-- **Control map works in one game, not another** — different cores; check you've set the right core name for the platform.
+- **Settings don't apply.** `debug: true`, reload a game, check console for "option set" logs. Core name might be wrong.
+- **Netplay breaks after enabling.** See [Netplay Troubleshooting](../troubleshooting/netplay.md).
+- **Control map works in one game, not another.** Different cores; check you've set the right core name for the platform.
 
 ## See also
 
-- [In-Browser Play](../using/in-browser-play.md) — end-user-facing.
-- [Configuration File → `emulatorjs`](../reference/configuration-file.md#emulatorjs) — full schema.
-- [EmulatorJS docs](https://emulatorjs.org/docs/) — upstream reference.
+- [In-Browser Play](../using/in-browser-play.md): end-user-facing.
+- [Configuration File → `emulatorjs`](../reference/configuration-file.md#emulatorjs): full schema.
+- [EmulatorJS docs](https://emulatorjs.org/docs/): upstream reference.

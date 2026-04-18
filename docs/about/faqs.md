@@ -21,7 +21,7 @@ Not a direct comparison page. Short version: RomM emphasises self-hosted + multi
 
 ## Do I need metadata API keys?
 
-Not strictly. RomM runs without any — games just won't match to a metadata source, so no covers, descriptions, or ratings.
+Not strictly. RomM runs without any; games just won't match to a metadata source, so no covers, descriptions, or ratings.
 
 Recommended: IGDB + ScreenScraper. See [Metadata Providers](../administration/metadata-providers.md) for the full list.
 
@@ -51,7 +51,7 @@ Not supported:
 - **Comfortable** (thousands of ROMs, a few users, occasional scans): 2 GB RAM, 2 cores.
 - **In-browser play**: browser-side resource-heavy, RomM-server-side negligible.
 
-Heaviest CPU is during scans — hashing + network-bound metadata calls. Plan for spikes.
+Heaviest CPU is during scans: hashing + network-bound metadata calls. Plan for spikes.
 
 ## How do I update?
 
@@ -70,19 +70,19 @@ Platform folder name probably doesn't match a known slug. Check [Supported Platf
 
 Most common reasons:
 
-- No metadata providers configured — enable at least one.
-- Filename too generic (no tags, unusual naming) — add filename tags like `(igdb-1234)` or try another provider.
-- Wrong platform detection — see previous FAQ.
+- No metadata providers configured: enable at least one.
+- Filename too generic (no tags, unusual naming): add filename tags like `(igdb-1234)` or try another provider.
+- Wrong platform detection: see previous FAQ.
 
 Full troubleshooting: [Scanning Troubleshooting](../troubleshooting/scanning.md).
 
 ## Can I share my library with friends?
 
-Yes — add them as users via the invite flow, then either share the URL (if accessible to them) or put RomM behind a VPN / Tailscale. See [Invitations & Registration](../administration/invitations-and-registration.md) + [Mobile & TV → Self-hosting tips](../using/mobile-and-tv.md#self-hosting-tips).
+Yes: add them as users via the invite flow, then either share the URL (if accessible to them) or put RomM behind a VPN / Tailscale. See [Invitations & Registration](../administration/invitations-and-registration.md) + [Mobile & TV → Self-hosting tips](../using/mobile-and-tv.md#self-hosting-tips).
 
 ## Can guests browse without an account?
 
-Yes — set `KIOSK_MODE=true`. Anonymous visitors get read-only access. See [Authentication → Kiosk mode](../administration/authentication.md#kiosk-mode).
+Yes: set `KIOSK_MODE=true`. Anonymous visitors get read-only access. See [Authentication → Kiosk mode](../administration/authentication.md#kiosk-mode).
 
 ## How do I back up?
 
@@ -125,7 +125,7 @@ Open an issue at [rommapp/romm](https://github.com/rommapp/romm/issues) with:
 - RomM version.
 - Deployment (Docker Compose / Unraid / K8s / etc.).
 - Exact repro steps.
-- Relevant logs — redact any secrets.
+- Relevant logs: redact any secrets.
 
 ## Who runs RomM?
 
@@ -141,6 +141,6 @@ A small team of maintainers plus a chunk of active community contributors. AGPL-
 
 ## See also
 
-- [Core Concepts](../getting-started/concepts.md) — if the vocabulary is new.
-- [Troubleshooting](../troubleshooting/index.md) — if something's broken.
-- [Release Notes](../releases/index.md) — for version-specific questions.
+- [Core Concepts](../getting-started/concepts.md): if the vocabulary is new.
+- [Troubleshooting](../troubleshooting/index.md): if something's broken.
+- [Release Notes](../releases/index.md): for version-specific questions.

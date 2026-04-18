@@ -1,15 +1,15 @@
 ---
 title: Development Setup
-description: Run RomM locally for development — Docker, manual, tests, lint.
+description: Run RomM locally for development: Docker, manual, tests, lint.
 ---
 
 # Development Setup
 
-Two paths: **Docker** (recommended — matches production closely) or **manual** (edit Python on your host, faster iteration cycles).
+Two paths: **Docker** (recommended, matches production closely) or **manual** (edit Python on your host, faster iteration cycles).
 
 If you're contributing, also read [Contributing](contributing.md).
 
-## Option 1 — Docker
+## Option 1: Docker
 
 Simplest. One command brings up the whole stack.
 
@@ -47,9 +47,9 @@ docker compose build    # --no-cache to force a clean rebuild
 docker compose up -d
 ```
 
-That's it. RomM is on `http://localhost:3000`. Source mounts are live — edit backend or frontend code and changes reflect on the next request (backend) or instantly (frontend HMR).
+That's it. RomM is on `http://localhost:3000`. Source mounts are live: edit backend or frontend code and changes reflect on the next request (backend) or instantly (frontend HMR).
 
-## Option 2 — Manual
+## Option 2: Manual
 
 Faster iteration cycles than Docker if you're touching Python a lot.
 
@@ -80,7 +80,7 @@ Adjust for your distro; the key libraries are the MariaDB connector and libpq fo
 
 #### RAHasher (optional)
 
-Only needed if you're working on RetroAchievements hash calculation. **Not supported on macOS — skip.**
+Only needed if you're working on RetroAchievements hash calculation. **Not supported on macOS; skip.**
 
 ```sh
 git clone --recursive https://github.com/RetroAchievements/RALibretro.git
@@ -146,7 +146,7 @@ Frontend is on `http://localhost:3000`; it proxies API calls through to the back
 
 ## Linting
 
-RomM uses [Trunk](https://trunk.io) as a meta-linter — it wraps ruff, prettier, eslint, markdownlint, and a few others under one config.
+RomM uses [Trunk](https://trunk.io) as a meta-linter; it wraps ruff, prettier, eslint, markdownlint, and a few others under one config.
 
 ```sh
 curl https://get.trunk.io -fsSL | bash
@@ -158,7 +158,7 @@ trunk check     # report what it can't
 Trunk runs as a pre-commit hook automatically after install. Alternative install methods are in [the Trunk docs](https://docs.trunk.io/check/usage#install-the-cli).
 
 !!! warning "CI blocks un-linted PRs"
-    Trunk's check runs on every PR. If it fails, your PR can't merge — same rules as the maintainers.
+    Trunk's check runs on every PR. If it fails, your PR can't merge; same rules as the maintainers.
 
 ## Tests
 
@@ -187,19 +187,19 @@ uv run pytest -k scan            # match by name
 | URL | Purpose |
 | --- | --- |
 | `http://localhost:3000` | Main UI |
-| `http://localhost:3000/api/docs` | Swagger UI — try endpoints live |
+| `http://localhost:3000/api/docs` | Swagger UI: try endpoints live |
 | `http://localhost:3000/api/redoc` | ReDoc-rendered API reference |
-| `http://localhost:3000/openapi.json` | OpenAPI spec — source of truth for client generators |
+| `http://localhost:3000/openapi.json` | OpenAPI spec: source of truth for client generators |
 | `http://localhost:3000/api/heartbeat` | Health + config snapshot |
 
 ## Architecture at a glance
 
 If you're new to the codebase, read [Architecture](architecture.md) for a high-level walkthrough, then come back here. The short version:
 
-- `backend/` — FastAPI, SQLAlchemy, Alembic, RQ workers.
-- `frontend/` — Vue 3 + Vuetify + Pinia + Vite. Separate `/console` SPA for TV/gamepad mode.
-- `docker/` — nginx config (with `mod_zip`), entrypoint scripts, multi-stage Dockerfiles.
-- `examples/` — reference compose files.
+- `backend/`: FastAPI, SQLAlchemy, Alembic, RQ workers.
+- `frontend/`: Vue 3 + Vuetify + Pinia + Vite. Separate `/console` SPA for TV/gamepad mode.
+- `docker/`: nginx config (with `mod_zip`), entrypoint scripts, multi-stage Dockerfiles.
+- `examples/`: reference compose files.
 
 ## Getting stuck
 

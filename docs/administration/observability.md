@@ -7,10 +7,10 @@ description: Logs, Sentry error tracking, OpenTelemetry, and the /heartbeat endp
 
 Four ways to know what RomM is doing:
 
-- **Container logs** — always available, the first stop.
-- **`/api/heartbeat`** — health + config summary for uptime monitors.
-- **Sentry** — opt-in error tracking with stack traces.
-- **OpenTelemetry** — opt-in distributed tracing + metrics.
+- **Container logs**: always available, the first stop.
+- **`/api/heartbeat`**: health + config summary for uptime monitors.
+- **Sentry**: opt-in error tracking with stack traces.
+- **OpenTelemetry**: opt-in distributed tracing + metrics.
 
 ## Logs
 
@@ -23,7 +23,7 @@ environment:
   - NO_COLOR=1            # 1 to disable colour entirely
 ```
 
-`INFO` is the default and sane for production. Drop to `DEBUG` only while debugging a specific issue — RomM is chatty on DEBUG.
+`INFO` is the default and sane for production. Drop to `DEBUG` only while debugging a specific issue; RomM is chatty on DEBUG.
 
 ### Reading logs
 
@@ -63,7 +63,7 @@ Returns:
 - Scheduled-task schedule summary.
 - Watcher status.
 
-Wire this to your uptime monitor. A failure here is real — the process is down or the DB/Redis is unreachable.
+Wire this to your uptime monitor. A failure here is real: the process is down or the DB/Redis is unreachable.
 
 ```bash
 # Basic uptime check
@@ -116,14 +116,14 @@ environment:
 
 Standard [OTEL env vars](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) apply. RomM emits:
 
-- **Traces** — HTTP request spans, DB query spans, RQ job spans.
-- **Metrics** — request counts, durations, queue depth, scan progress.
-- **Logs** — structured log correlation with trace IDs.
+- **Traces**: HTTP request spans, DB query spans, RQ job spans.
+- **Metrics**: request counts, durations, queue depth, scan progress.
+- **Logs**: structured log correlation with trace IDs.
 
 Exporters:
 
 - OTLP gRPC (default, port `4317`).
-- OTLP HTTP (port `4318`) — set `OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf`.
+- OTLP HTTP (port `4318`): set `OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf`.
 
 Send to an OpenTelemetry Collector, then fan out to Tempo / Jaeger / Honeycomb / Datadog / Grafana Cloud / whatever you run.
 
@@ -136,13 +136,13 @@ GET /api/tasks/status
 Authorization: Bearer <token-with-tasks.run>
 ```
 
-Returns an array of every scheduled / manual / watcher task with current status (`idle`, `queued`, `running`, `failed`) and last run time. Scrape this into your monitoring to alert on "Folder Scan hasn't run in 48 hours" — which usually means RQ workers are dead.
+Returns an array of every scheduled / manual / watcher task with current status (`idle`, `queued`, `running`, `failed`) and last run time. Scrape this into your monitoring to alert on "Folder Scan hasn't run in 48 hours", which usually means RQ workers are dead.
 
 ## Anti-patterns
 
 - **Don't parse unstructured log lines** for metrics. Use OTEL or `/api/tasks/status`.
 - **Don't log at DEBUG in production.** The volume is real and scans will drown in it.
-- **Don't scrape HTML pages for health checks.** `/api/heartbeat` is the contract — HTML changes between versions, the API endpoint is stable.
+- **Don't scrape HTML pages for health checks.** `/api/heartbeat` is the contract; HTML changes between versions, the API endpoint is stable.
 
 ## Minimum recommended stack
 

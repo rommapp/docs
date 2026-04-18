@@ -1,6 +1,6 @@
 ---
 title: Upgrading to 5.0
-description: Migrate from RomM 4.x to 5.0 — breaking changes, env var renames, pre-flight checklist, and rollback.
+description: Migrate from RomM 4.x to 5.0: breaking changes, env var renames, pre-flight checklist, and rollback.
 ---
 
 # Upgrading to 5.0
@@ -11,23 +11,23 @@ Migration guide for **RomM 4.x → 5.0**. If you're on 2.x or earlier, upgrade t
     5.0 is a major release with schema migrations and a handful of breaking changes. Skipping the pre-flight checklist will lose data or break your instance.
 
 !!! note "This guide is finalised at 5.0 GA"
-    Some sections below reference exact env-var renames and schema changes that will be confirmed against the final 5.0.0 source tag. If you're reading this before 5.0 GA, treat it as a structural outline — the commands are correct, specific rename lists will be filled in as the release tag is cut.
+    Some sections below reference exact env-var renames and schema changes that will be confirmed against the final 5.0.0 source tag. If you're reading this before 5.0 GA, treat it as a structural outline; the commands are correct, specific rename lists will be filled in as the release tag is cut.
 
 ## What changes in 5.0
 
 ### Summary
 
-- **Schema migration** — Alembic runs automatically on startup. Irreversible without a backup.
+- **Schema migration:** Alembic runs automatically on startup. Irreversible without a backup.
 - **New env vars**, some renamed (see [Env var migration table](#env-var-migration-table)).
-- **`config.yml` gains new sections** — `scan.region`, `scan.language`, `scan.media`, `scan.gamelist.export`, `scan.pegasus.export`, `emulatorjs.*`, `filesystem.firmware_folder`. Old settings keep working untouched.
-- **Image tags add `:slim` variants** — no change to existing `:latest` / `:5.0.0`.
-- **Docs URL structure** — every old URL redirects automatically. External links continue working.
+- **`config.yml` gains new sections:** `scan.region`, `scan.language`, `scan.media`, `scan.gamelist.export`, `scan.pegasus.export`, `emulatorjs.*`, `filesystem.firmware_folder`. Old settings keep working untouched.
+- **Image tags add `:slim` variants:** no change to existing `:latest` / `:5.0.0`.
+- **Docs URL structure:** every old URL redirects automatically. External links continue working.
 
 ### Big new features
 
-Highlights only — full list in [What's New in 5.0](../getting-started/what-is-new-in-5.md):
+Highlights only; full list in [What's New in 5.0](../getting-started/what-is-new-in-5.md):
 
-- Console Mode (`/console` — TV/gamepad UI).
+- Console Mode (`/console`, TV/gamepad UI).
 - Smart and Virtual Collections.
 - ROM Patcher.
 - Netplay with ICE servers.
@@ -90,7 +90,7 @@ Commit this to version control if you track your compose file. Saves guesswork o
 
 ### 5. Block access while you upgrade
 
-Optional but recommended for shared instances — take RomM offline for ~5 minutes:
+Optional but recommended for shared instances; take RomM offline for ~5 minutes:
 
 ```sh
 # Return 503 at the reverse proxy while upgrading
@@ -130,22 +130,22 @@ docker compose logs -f romm
 
 What to watch for:
 
-- **Alembic migrations running** — lines prefixed `INFO [alembic.runtime.migration]`. Takes anywhere from seconds (small libraries) to a couple minutes (very large ones).
-- **`Application startup complete.`** — RomM is healthy.
-- **`Watcher started.`** — filesystem watcher up (if enabled).
-- **ERROR lines** — bad; go to [Rollback](#rollback).
+- **Alembic migrations running:** lines prefixed `INFO [alembic.runtime.migration]`. Takes anywhere from seconds (small libraries) to a couple minutes (very large ones).
+- **`Application startup complete.`** RomM is healthy.
+- **`Watcher started.`** Filesystem watcher up (if enabled).
+- **ERROR lines:** bad; go to [Rollback](#rollback).
 
 ### 4. Smoke-test
 
 Don't trust the migration until you've verified:
 
 - Log in as an Admin.
-- **Administration → Server Stats** — counts look reasonable; no massive loss.
+- **Administration → Server Stats:** counts look reasonable; no massive loss.
 - Open a platform with lots of games; check a few games have metadata.
-- Open a game's details — Personal tab shows your rating / playtime if you had any.
-- Check **Administration → Users** — your accounts are intact.
-- Run a **Quick** scan — should complete cleanly in a few seconds.
-- (If you had OIDC) log out, log in via OIDC — should pick up `OIDC_CLAIM_ROLES` if configured.
+- Open a game's details; Personal tab shows your rating / playtime if you had any.
+- Check **Administration → Users**; your accounts are intact.
+- Run a **Quick** scan; should complete cleanly in a few seconds.
+- (If you had OIDC) log out, log in via OIDC; should pick up `OIDC_CLAIM_ROLES` if configured.
 
 ## Env var migration table
 
@@ -172,14 +172,14 @@ Full list in [Environment Variables](../reference/environment-variables.md). The
 
 `config.yml` gains new sections; everything else stays backwards compatible.
 
-- **`scan.region`** — region preference order (array).
-- **`scan.language`** — language preference order (array).
-- **`scan.media`** — which media types to fetch (`[box2d, screenshot, manual]`, etc.).
-- **`scan.gamelist.export`** + **`scan.gamelist.media.*`** — export gamelist.xml for ES-DE/Batocera.
-- **`scan.pegasus.export`** — export metadata.pegasus.txt for Pegasus.
-- **`filesystem.firmware_folder`** — override the `bios` folder name.
-- **`emulatorjs.netplay.ice_servers`** — STUN/TURN for Netplay.
-- **`emulatorjs.settings`** / **`emulatorjs.controls`** — per-core emulator config and button mappings.
+- **`scan.region`:** region preference order (array).
+- **`scan.language`:** language preference order (array).
+- **`scan.media`:** which media types to fetch (`[box2d, screenshot, manual]`, etc.).
+- **`scan.gamelist.export`** + **`scan.gamelist.media.*`:** export gamelist.xml for ES-DE/Batocera.
+- **`scan.pegasus.export`:** export metadata.pegasus.txt for Pegasus.
+- **`filesystem.firmware_folder`:** override the `bios` folder name.
+- **`emulatorjs.netplay.ice_servers`:** STUN/TURN for Netplay.
+- **`emulatorjs.settings`** / **`emulatorjs.controls`:** per-core emulator config and button mappings.
 - **`emulatorjs.cache_limit`** / **`emulatorjs.disable_batch_bootup`** / **`emulatorjs.disable_auto_unload`**.
 
 Full schema: [Configuration File](../reference/configuration-file.md).
@@ -193,7 +193,7 @@ The docs site restructured in 5.0. Every old URL redirects to its new home:
 - `/latest/Usage/UserManagement/` → `/latest/administration/users-and-roles/`
 - `/latest/OIDC-Guides/OIDC-Setup-With-Keycloak/` → `/latest/administration/oidc/keycloak/`
 
-And so on — every page in the 4.x IA is covered. External links in forum posts, blog articles, issue threads, and Discord messages keep working. Internal bookmarks to `/latest/<old-pascal-case>/<old-page>/` hit a 301 to the new slug automatically.
+And so on; every page in the 4.x IA is covered. External links in forum posts, blog articles, issue threads, and Discord messages keep working. Internal bookmarks to `/latest/<old-pascal-case>/<old-page>/` hit a 301 to the new slug automatically.
 
 ## Rollback
 
@@ -207,7 +207,7 @@ docker compose down
 
 ### 2. Revert the image tag
 
-Edit `docker-compose.yml` — change `rommapp/romm:5.0.0` back to whatever you were on (`rommapp/romm:4.8.1`).
+Edit `docker-compose.yml`: change `rommapp/romm:5.0.0` back to whatever you were on (`rommapp/romm:4.8.1`).
 
 ### 3. Restore the DB
 
@@ -246,7 +246,7 @@ Open a bug report on [GitHub](https://github.com/rommapp/romm/issues) with:
 
 ### Migrations hang
 
-Watch `docker logs -f romm`. If Alembic is still running, it's still running — large DBs take a while. If it's been more than 10 minutes with no progress, something's wrong. Check for:
+Watch `docker logs -f romm`. If Alembic is still running, it's still running; large DBs take a while. If it's been more than 10 minutes with no progress, something's wrong. Check for:
 
 - DB connection issues (`docker logs romm-db`).
 - Out-of-memory kills (`dmesg | grep -i oom`).
@@ -254,7 +254,7 @@ Watch `docker logs -f romm`. If Alembic is still running, it's still running —
 
 ### WebSockets fail after upgrade
 
-If you're behind a reverse proxy, the upgrade shouldn't change anything — but it's a good moment to verify the proxy forwards `Upgrade: websocket` properly. See [Reverse Proxy](../install/reverse-proxy.md).
+If you're behind a reverse proxy, the upgrade shouldn't change anything, but it's a good moment to verify the proxy forwards `Upgrade: websocket` properly. See [Reverse Proxy](../install/reverse-proxy.md).
 
 ### OIDC users lose role, come back as Viewer
 
@@ -266,13 +266,13 @@ See [OIDC Setup → Role mapping](../administration/oidc/index.md#role-mapping-5
 
 ### Scheduled tasks stop firing
 
-5.0 renamed several cron env vars. Check [Environment Variables](../reference/environment-variables.md) and update your env to the new names — otherwise the old cron expressions are ignored and tasks run on defaults (or not at all, if you previously disabled them).
+5.0 renamed several cron env vars. Check [Environment Variables](../reference/environment-variables.md) and update your env to the new names; otherwise the old cron expressions are ignored and tasks run on defaults (or not at all, if you previously disabled them).
 
 ## After the upgrade
 
 Once everything's stable:
 
 - Pin your image to `rommapp/romm:5.0.0` in version control.
-- Update your uptime monitor's heartbeat endpoint — still `/api/heartbeat`, but now exposes more info (see [Observability](../administration/observability.md)).
+- Update your uptime monitor's heartbeat endpoint: still `/api/heartbeat`, but now exposes more info (see [Observability](../administration/observability.md)).
 - Take a fresh backup of the post-migration state. You want a known-good 5.0 snapshot, not just the pre-5.0 one.
 - Explore the new stuff in [What's New in 5.0](../getting-started/what-is-new-in-5.md).

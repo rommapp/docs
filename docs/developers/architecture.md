@@ -1,6 +1,6 @@
 ---
 title: Architecture
-description: High-level walkthrough of the RomM codebase — backend, frontend, nginx, workers.
+description: High-level walkthrough of the RomM codebase: backend, frontend, nginx, workers.
 ---
 
 # Architecture
@@ -21,15 +21,15 @@ rommapp/romm
 
 Key sub-directories:
 
-- `backend/routers/` — FastAPI route definitions, one file per resource group.
-- `backend/handlers/` — business logic (scan engine, metadata providers, auth).
-- `backend/tasks/` — RQ job definitions (scheduled + manual + watcher tasks).
-- `backend/config/` — Pydantic config schemas for `config.yml`.
-- `backend/alembic/` — DB migrations.
-- `backend/romm_test/` — test suite.
-- `frontend/src/views/` — top-level Vue pages.
-- `frontend/src/console/` — Console Mode SPA (separate entry).
-- `frontend/src/stores/` — Pinia state stores.
+- `backend/routers/`: FastAPI route definitions, one file per resource group.
+- `backend/handlers/`: business logic (scan engine, metadata providers, auth).
+- `backend/tasks/`: RQ job definitions (scheduled + manual + watcher tasks).
+- `backend/config/`: Pydantic config schemas for `config.yml`.
+- `backend/alembic/`: DB migrations.
+- `backend/romm_test/`: test suite.
+- `frontend/src/views/`: top-level Vue pages.
+- `frontend/src/console/`: Console Mode SPA (separate entry).
+- `frontend/src/stores/`: Pinia state stores.
 
 ## Runtime topology
 
@@ -65,12 +65,12 @@ A running RomM container hosts several cooperating processes:
 
 ### The parts
 
-- **nginx** — listens on `8080`. Serves static assets (the SPA bundle, EmulatorJS core files, Ruffle, cover images). Proxies API + WebSocket traffic to gunicorn. Streams large downloads via `mod_zip`.
-- **gunicorn** — the Python WSGI server, running the FastAPI app. Multiple worker processes; `WEB_SERVER_CONCURRENCY` tunes count.
-- **FastAPI backend** — routes, handlers, DB access via SQLAlchemy, Redis for sessions + cache + queue.
-- **RQ workers** — separate process(es) that pop jobs off Redis queues and run them. Scans, metadata syncs, cleanup tasks.
-- **Redis / Valkey** — in-container by default (full image), externalisable.
-- **MariaDB / Postgres / MySQL / SQLite** — always external (or a separate container).
+- **nginx:** listens on `8080`. Serves static assets (the SPA bundle, EmulatorJS core files, Ruffle, cover images). Proxies API + WebSocket traffic to gunicorn. Streams large downloads via `mod_zip`.
+- **gunicorn:** the Python WSGI server, running the FastAPI app. Multiple worker processes; `WEB_SERVER_CONCURRENCY` tunes count.
+- **FastAPI backend:** routes, handlers, DB access via SQLAlchemy, Redis for sessions + cache + queue.
+- **RQ workers:** separate process(es) that pop jobs off Redis queues and run them. Scans, metadata syncs, cleanup tasks.
+- **Redis / Valkey:** in-container by default (full image), externalisable.
+- **MariaDB / Postgres / MySQL / SQLite:** always external (or a separate container).
 
 ## Request lifecycle
 
@@ -113,7 +113,7 @@ Large uploads go through the chunked-upload flow for a reason: gunicorn's per-re
 - **Vue 3 + Composition API**.
 - **Vuetify 3** for UI components.
 - **Vite** for build + dev server with HMR.
-- **Pinia** for state management — one store per resource family (auth, roms, platforms, collections, etc.).
+- **Pinia** for state management: one store per resource family (auth, roms, platforms, collections, etc.).
 - **vue-i18n** for localisation. Translations in `src/locales/<locale>/`.
 - **socket.io-client** for live updates.
 
@@ -131,11 +131,11 @@ Separate SPA, compiled as a second bundle. Entry point at `/console`. Built with
 
 RQ has three priority queues:
 
-- **high** — user-triggered scans, manual tasks. Get fast.
-- **default** — scheduled nightlies, sync operations.
-- **low** — cleanup, image conversion. Run when the system's idle.
+- **high:** user-triggered scans, manual tasks. Get fast.
+- **default:** scheduled nightlies, sync operations.
+- **low:** cleanup, image conversion. Run when the system's idle.
 
-All queues share the same worker pool. Jobs are Redis-backed, so restarting RomM doesn't lose in-flight work (appendonly needs to be on — see [Redis or Valkey](../install/redis-or-valkey.md)).
+All queues share the same worker pool. Jobs are Redis-backed, so restarting RomM doesn't lose in-flight work (appendonly needs to be on; see [Redis or Valkey](../install/redis-or-valkey.md)).
 
 ## Auth
 
@@ -147,9 +147,9 @@ Client API Tokens are stored as hash-only in the DB (we never store the plaintex
 
 ## Observability
 
-- **Sentry** (opt-in) — unhandled exceptions.
-- **OpenTelemetry** (opt-in) — traces, metrics, logs via OTLP.
-- **`/api/heartbeat`** — aggregated health snapshot.
+- **Sentry** (opt-in): unhandled exceptions.
+- **OpenTelemetry** (opt-in): traces, metrics, logs via OTLP.
+- **`/api/heartbeat`:** aggregated health snapshot.
 
 See [Observability](../administration/observability.md).
 
@@ -165,11 +165,11 @@ See [Observability](../administration/observability.md).
 
 See [Contributing](contributing.md) for the process + style expectations.
 
-For large changes, read the relevant handler in `backend/handlers/` first — the patterns there will guide what you write.
+For large changes, read the relevant handler in `backend/handlers/` first; the patterns there will guide what you write.
 
 ## See also
 
-- [Development Setup](development-setup.md) — get a local env running.
-- [API Reference](api-reference.md) — what the backend exposes.
-- [WebSockets](websockets.md) — Socket.IO endpoints in detail.
-- [Configuration File](../reference/configuration-file.md) — `config.yml` schema.
+- [Development Setup](development-setup.md): get a local env running.
+- [API Reference](api-reference.md): what the backend exposes.
+- [WebSockets](websockets.md): Socket.IO endpoints in detail.
+- [Configuration File](../reference/configuration-file.md): `config.yml` schema.

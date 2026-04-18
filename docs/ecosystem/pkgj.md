@@ -10,9 +10,9 @@ description: Install PS Vita and PSP games from your RomM library via pkgj homeb
 ## Prerequisites
 
 - **PS Vita** with [pkgj](https://github.com/blastrock/pkgj) installed.
-- A way to edit files on the Vita — [VitaShell](https://github.com/TheOfficialFloW/VitaShell) works well.
-- **RomM reachable from the Vita** — same LAN ideal; HTTP or HTTPS both work.
-- Your games stored as `.pkg` files (pkgj requires this format — it won't work with `.iso` or other formats).
+- A way to edit files on the Vita: [VitaShell](https://github.com/TheOfficialFloW/VitaShell) works well.
+- **RomM reachable from the Vita**: same LAN ideal; HTTP or HTTPS both work.
+- Your games stored as `.pkg` files (pkgj requires this format; it won't work with `.iso` or other formats).
 
 ## Feed URLs
 
@@ -59,18 +59,18 @@ If you have non-`.pkg` files you want on the Vita, you'll need to convert them o
 
 The pkgi feeds honour basic auth. If your RomM doesn't have `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`, pkgj sends basic auth headers.
 
-Unlike [Tinfoil](tinfoil.md), pkgj handles auth natively — you don't have to turn off download auth on RomM to use it. Still, some users prefer disabling auth for a smoother first-time flow; either path works.
+Unlike [Tinfoil](tinfoil.md), pkgj handles auth natively: you don't have to turn off download auth on RomM to use it. Still, some users prefer disabling auth for a smoother first-time flow; either path works.
 
 ## Troubleshooting
 
-- **"can't get list: list is empty"** — you don't have any `.pkg` content for the feeds you configured. Check your library actually contains `.pkg` files on the corresponding platforms.
-- **Refresh returns an error** — URL in `config.txt` is wrong. Verify the feed URL in a browser first (returns JSON).
-- **Download fails partway** — LAN connectivity or disk space on Vita. pkgj reports both.
-- **Game installs but won't boot** — the `.pkg` is for a different firmware / region. Not a RomM issue.
+- **"can't get list: list is empty".** You don't have any `.pkg` content for the feeds you configured. Check your library actually contains `.pkg` files on the corresponding platforms.
+- **Refresh returns an error.** URL in `config.txt` is wrong. Verify the feed URL in a browser first (returns JSON).
+- **Download fails partway.** LAN connectivity or disk space on Vita. pkgj reports both.
+- **Game installs but won't boot.** The `.pkg` is for a different firmware / region. Not a RomM issue.
 
 ## See also
 
-- [Feeds reference](../reference/feeds.md) — full feeds catalogue.
-- [Tinfoil](tinfoil.md) — Switch equivalent.
-- [fpkgi](fpkgi.md) — PS4 / PS5 equivalent.
-- [pkgj](https://github.com/blastrock/pkgj) — upstream homebrew.
+- [Feeds reference](../reference/feeds.md): full feeds catalogue.
+- [Tinfoil](tinfoil.md): Switch equivalent.
+- [fpkgi](fpkgi.md): PS4 / PS5 equivalent.
+- [pkgj](https://github.com/blastrock/pkgj): upstream homebrew.

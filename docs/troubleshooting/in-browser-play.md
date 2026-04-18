@@ -1,6 +1,6 @@
 ---
 title: In-Browser Play Troubleshooting
-description: Diagnose EmulatorJS and Ruffle issues — cores not loading, BIOS missing, audio, performance.
+description: Diagnose EmulatorJS and Ruffle issues: cores not loading, BIOS missing, audio, performance.
 ---
 
 # In-Browser Play Troubleshooting
@@ -12,8 +12,8 @@ Symptom: Play button spins forever or shows an error immediately.
 Checks in order:
 
 1. **Is it the slim image?** `ENABLE_EMULATORJS=true` on the slim image doesn't magically include EmulatorJS. Either switch to `rommapp/romm:<version>` (full) or disable in-browser play. See [Image Variants](../install/image-variants.md).
-2. **Browser console** — open devtools, look for 404s on `/assets/emulatorjs/...`. Indicates the EmulatorJS bundle didn't install correctly in the container. `docker logs romm` may show the entrypoint's install step failing.
-3. **Browser compatibility** — EmulatorJS uses SharedArrayBuffer. Needs a modern Chrome/Firefox/Safari and an HTTPS-served RomM (cross-origin isolation requires HTTPS). If you're still on plain HTTP for some reason, TLS it — see [Reverse Proxy](../install/reverse-proxy.md).
+2. **Browser console**: open devtools, look for 404s on `/assets/emulatorjs/...`. Indicates the EmulatorJS bundle didn't install correctly in the container. `docker logs romm` may show the entrypoint's install step failing.
+3. **Browser compatibility**: EmulatorJS uses SharedArrayBuffer. Needs a modern Chrome/Firefox/Safari and an HTTPS-served RomM (cross-origin isolation requires HTTPS). If you're still on plain HTTP for some reason, TLS it; see [Reverse Proxy](../install/reverse-proxy.md).
 
 ## Black screen, no audio
 
@@ -36,7 +36,7 @@ Specific examples:
 
 Not sure which files? Error message usually names them. Or check [EmulatorJS Systems docs](https://emulatorjs.org/docs/systems/).
 
-Multi-file firmware — zip them together and upload as a single `firmware.zip`. EmulatorJS unpacks automatically.
+Multi-file firmware: zip them together and upload as a single `firmware.zip`. EmulatorJS unpacks automatically.
 
 ## Controls do nothing
 
@@ -61,24 +61,24 @@ Multi-file firmware — zip them together and upload as a single `firmware.zip`.
 
 Different cores use different hotkeys:
 
-- **PC keyboard** — often F1, F9, or `~` (tilde). Some cores use ESC.
-- **Gamepad** — usually Select + Start simultaneously.
+- **PC keyboard**: often F1, F9, or `~` (tilde). Some cores use ESC.
+- **Gamepad**: usually Select + Start simultaneously.
 
 Rebind via Profile → User Interface (the operator-side overrides live in [`emulatorjs.controls`](../reference/configuration-file.md#emulatorjscontrols) in `config.yml`).
 
 ## DOS games fail to boot
 
-- **autorun.bat issues** — turn on [`emulatorjs.disable_batch_bootup: true`](../reference/configuration-file.md#emulatorjsdisable_batch_bootup) in `config.yml`.
-- **Sound card config wrong** — dosbox-pure tries to auto-detect; may need manual tweaking. In-game Menu → **Settings** → set Sound Blaster port.
-- **Game needs specific CPU speed** — some DOS games are CPU-bound. Slow down via dosbox-pure settings.
+- **autorun.bat issues**: turn on [`emulatorjs.disable_batch_bootup: true`](../reference/configuration-file.md#emulatorjsdisable_batch_bootup) in `config.yml`.
+- **Sound card config wrong**: dosbox-pure tries to auto-detect; may need manual tweaking. In-game Menu → **Settings** → set Sound Blaster port.
+- **Game needs specific CPU speed**: some DOS games are CPU-bound. Slow down via dosbox-pure settings.
 
 See the [MS-DOS platform guide](../platforms/ms-dos.md) for deeper DOS-specific notes.
 
 ## Ruffle games
 
-- **"File not Flash"** — confirm the file extension is `.swf`. Ruffle only handles Flash SWF.
+- **"File not Flash"**: confirm the file extension is `.swf`. Ruffle only handles Flash SWF.
 - **Wrong platform folder.** Ruffle only plays from `flash/` or `browser/` folders. See [Ruffle setup](../using/in-browser-play.md#ruffle).
-- **AS3 game crashes** — Ruffle's ActionScript 3 support is in progress. Some games won't work cleanly yet. [Ruffle compatibility list](https://ruffle.rs/#compatibility).
+- **AS3 game crashes**: Ruffle's ActionScript 3 support is in progress. Some games won't work cleanly yet. [Ruffle compatibility list](https://ruffle.rs/#compatibility).
 
 ## Performance on mobile
 
@@ -88,12 +88,12 @@ In-browser emulation is CPU-heavy. Mobile tips:
 - **Use Chrome on Android, Safari on iOS.** Other browsers are measurably slower for WASM.
 - **Close other tabs.**
 - **Try a lighter core.** `snes9x` over `bsnes`, `fceumm` over `nestopia`, etc.
-- **Consider a native app.** [Argosy Launcher](../ecosystem/argosy.md) on Android uses native emulators — orders of magnitude more efficient.
+- **Consider a native app.** [Argosy Launcher](../ecosystem/argosy.md) on Android uses native emulators, which are orders of magnitude more efficient.
 
 ## Fullscreen oddities
 
-- **Notch / cutout clipping on mobile** — iPhone notches and Android cutouts can eat corners of the emulator viewport. Rotate to landscape before going fullscreen, or toggle Profile → User Interface → Fullscreen strategy.
-- **Browser escapes fullscreen after idle** — browser security behaviour. Can't be worked around.
+- **Notch / cutout clipping on mobile**: iPhone notches and Android cutouts can eat corners of the emulator viewport. Rotate to landscape before going fullscreen, or toggle Profile → User Interface → Fullscreen strategy.
+- **Browser escapes fullscreen after idle**: browser security behaviour. Can't be worked around.
 
 ## Known limitations by core
 
@@ -107,8 +107,8 @@ In-browser emulation is CPU-heavy. Mobile tips:
 
 ## Still stuck
 
-- `docker logs romm | grep -i emulator` — server-side clues.
-- Browser devtools Console — client-side clues.
-- [Discord](https://discord.gg/romm) `#help` — include the ROM file, the core you tried, the exact error.
+- `docker logs romm | grep -i emulator`: server-side clues.
+- Browser devtools Console: client-side clues.
+- [Discord](https://discord.gg/romm) `#help`: include the ROM file, the core you tried, the exact error.
 
 For Netplay-specific issues: [Netplay Troubleshooting](netplay.md).

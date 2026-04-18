@@ -12,9 +12,9 @@ RomM uses SQLAlchemy + Alembic for persistence. Four drivers are supported; pick
 | **MariaDB** (default, recommended) | `mariadb` | `mariadb:11` | `3306` | What the reference compose uses. Well-tested. |
 | **MySQL** | `mysql` | `mysql:8` | `3306` | Largely interchangeable with MariaDB for RomM. |
 | **PostgreSQL** | `postgresql` | `postgres:16` | `5432` | Supported. Use if you already run Postgres. |
-| **SQLite** | `sqlite` | _(file on disk)_ | — | Dev/tiny deployments only. Not recommended for anything multi-user or larger than a few hundred games. |
+| **SQLite** | `sqlite` | _(file on disk)_ | n/a | Dev/tiny deployments only. Not recommended for anything multi-user or larger than a few hundred games. |
 
-RomM runs Alembic migrations automatically on startup — no manual step when upgrading.
+RomM runs Alembic migrations automatically on startup; no manual step when upgrading.
 
 ## MariaDB (default)
 
@@ -109,7 +109,7 @@ services:
 
 ## SQLite (not recommended)
 
-Set `ROMM_DB_DRIVER=sqlite`. The DB file lives at `{ROMM_BASE_PATH}/database`. No separate container required — useful for a laptop demo or a one-user install on a low-power box. Don't use this for anything you care about:
+Set `ROMM_DB_DRIVER=sqlite`. The DB file lives at `{ROMM_BASE_PATH}/database`. No separate container required; useful for a laptop demo or a one-user install on a low-power box. Don't use this for anything you care about:
 
 - No concurrent writers → scans and API calls block each other.
 - The file can corrupt if the container is killed mid-write.
@@ -124,7 +124,7 @@ environment:
   - DB_QUERY_JSON={"ssl": "true", "connect_timeout": "5"}
 ```
 
-Exact keys depend on the driver — see SQLAlchemy / the driver's docs.
+Exact keys depend on the driver; see SQLAlchemy / the driver's docs.
 
 ## Which should I pick?
 
@@ -133,4 +133,4 @@ Exact keys depend on the driver — see SQLAlchemy / the driver's docs.
 - **Single-user laptop demo?** SQLite is fine; upgrade before adding anyone else.
 - **External managed DB?** Any of MariaDB / MySQL / Postgres. Point `DB_HOST` at it and configure TLS via `DB_QUERY_JSON`.
 
-Don't switch DB drivers on a running install without a plan — migrating the data requires a dump + reload, covered in [Backup & Restore](backup-and-restore.md).
+Don't switch DB drivers on a running install without a plan; migrating the data requires a dump + reload, covered in [Backup & Restore](backup-and-restore.md).

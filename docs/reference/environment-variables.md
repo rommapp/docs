@@ -7,7 +7,7 @@ description: Every environment variable RomM reads, grouped by what it controls.
 
 Everything RomM does that's not in [`config.yml`](configuration-file.md) is driven by env vars. Set them on the `romm` service in your compose file, as Unraid / Synology / TrueNAS container env vars, or on your Kubernetes deployment.
 
-This page is the **authoritative lookup** — every var RomM reads. The table is generated directly from [`rommapp/romm`'s `env.template`][src] at the SHA pinned in [`docs/scripts/sources.toml`](https://github.com/rommapp/docs/blob/master/docs/scripts/sources.toml). When RomM adds an env var, the next docs bump re-runs the generator and this page updates.
+This page is the **authoritative lookup**: every var RomM reads. The table is generated directly from [`rommapp/romm`'s `env.template`][src] at the SHA pinned in [`docs/scripts/sources.toml`](https://github.com/rommapp/docs/blob/master/docs/scripts/sources.toml). When RomM adds an env var, the next docs bump re-runs the generator and this page updates.
 
 [src]: https://github.com/rommapp/romm/blob/master/env.template
 
@@ -47,7 +47,7 @@ You'll always set these:
 
 | Variable | Purpose |
 | --- | --- |
-| `ROMM_AUTH_SECRET_KEY` | JWT signing key. Generate with `openssl rand -hex 32`. **Never rotate lightly** — breaks all sessions. |
+| `ROMM_AUTH_SECRET_KEY` | JWT signing key. Generate with `openssl rand -hex 32`. **Never rotate lightly**: breaks all sessions. |
 | `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWD` | Database connection. |
 | `ROMM_DB_DRIVER` | `mariadb` (default), `mysql`, `postgresql`, or `sqlite`. See [Databases](../install/databases.md). |
 
@@ -56,7 +56,7 @@ For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../a
 ## When env vars are read
 
 - **Startup.** Most vars are consumed once at container start. Change requires `docker compose up -d` to apply.
-- **Per-request.** A handful of feature toggles (`KIOSK_MODE`, `DISABLE_USERPASS_LOGIN`) are re-checked per request — still, restart is safest to avoid partial-state caching.
+- **Per-request.** A handful of feature toggles (`KIOSK_MODE`, `DISABLE_USERPASS_LOGIN`) are re-checked per request. Still, restart is safest to avoid partial-state caching.
 - **Never at runtime.** There's no reload-config endpoint.
 
 ## Full reference
@@ -65,7 +65,7 @@ For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../a
 
 ## See also
 
-- [Configuration File](configuration-file.md) — everything that lives in `config.yml` rather than env vars.
-- [Scheduled Tasks](scheduled-tasks.md) — cron-controlling env vars in context.
-- [Authentication](../administration/authentication.md) — auth-related env vars in narrative form.
-- [Metadata Providers](../administration/metadata-providers.md) — per-provider credential env vars.
+- [Configuration File](configuration-file.md): everything that lives in `config.yml` rather than env vars.
+- [Scheduled Tasks](scheduled-tasks.md): cron-controlling env vars in context.
+- [Authentication](../administration/authentication.md): auth-related env vars in narrative form.
+- [Metadata Providers](../administration/metadata-providers.md): per-provider credential env vars.

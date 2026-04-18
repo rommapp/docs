@@ -35,8 +35,8 @@ Plus legacy `pkgj` formats for individual platforms:
 
 All feeds respect `DISABLE_DOWNLOAD_ENDPOINT_AUTH`:
 
-- **`DISABLE_DOWNLOAD_ENDPOINT_AUTH=false`** (default, secure) — feeds require basic auth. Most clients (Tinfoil, pkgj, fpkgi) can send basic auth in their URL config.
-- **`DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`** — feeds are public. Use when RomM is behind upstream auth (reverse proxy with auth, VPN).
+- **`DISABLE_DOWNLOAD_ENDPOINT_AUTH=false`** (default, secure): feeds require basic auth. Most clients (Tinfoil, pkgj, fpkgi) can send basic auth in their URL config.
+- **`DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`**: feeds are public. Use when RomM is behind upstream auth (reverse proxy with auth, VPN).
 
 See [Authentication → Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass) for the full security discussion.
 
@@ -63,7 +63,7 @@ Most feeds return JSON: Tinfoil, fpkgi, WebRcade.
 
 ### CSV feeds
 
-pkgi uses CSV per upstream's format — one line per game:
+pkgi uses CSV per upstream's format: one line per game:
 
 ```csv
 psvita,PCSA00003,Unknown,Game,1.0,https://romm.example.com/...,md5=...,52428800
@@ -71,7 +71,7 @@ psvita,PCSA00003,Unknown,Game,1.0,https://romm.example.com/...,md5=...,52428800
 
 ### Format per feed
 
-Each feed's exact schema matches what its client expects. Don't call feeds by accident from other tools — Tinfoil can't parse WebRcade JSON, and vice versa.
+Each feed's exact schema matches what its client expects. Don't call feeds by accident from other tools. Tinfoil can't parse WebRcade JSON, and vice versa.
 
 ## Filtering
 
@@ -86,7 +86,7 @@ Games not matching the expected extension are silently skipped, not reported as 
 
 ## Performance notes
 
-Feeds query the whole library for the target platform on every request. For large libraries that's measurable but not slow (< 1s typically). Clients generally cache feed responses — don't hit the feed in a tight loop.
+Feeds query the whole library for the target platform on every request. For large libraries that's measurable but not slow (< 1s typically). Clients generally cache feed responses, so don't hit the feed in a tight loop.
 
 ## Platform slugs
 
@@ -100,10 +100,10 @@ If you want RomM to expose a feed format it doesn't currently support:
 
 1. Check the [backend/routers/feeds/](https://github.com/rommapp/romm/tree/master/backend/routers) directory for existing implementations as templates.
 2. Open an issue describing the target client, its feed format, and any authentication requirements.
-3. Ideally, open a PR. Feed endpoints are usually small — a few dozen lines of Python to filter + format.
+3. Ideally, open a PR. Feed endpoints are usually small: a few dozen lines of Python to filter + format.
 
 ## See also
 
-- [Ecosystem](../ecosystem/index.md) — per-client setup guides.
-- [Authentication](../administration/authentication.md) — auth options affecting feeds.
-- [API Reference](../developers/api-reference.md) — full endpoint catalogue.
+- [Ecosystem](../ecosystem/index.md): per-client setup guides.
+- [Authentication](../administration/authentication.md): auth options affecting feeds.
+- [API Reference](../developers/api-reference.md): full endpoint catalogue.

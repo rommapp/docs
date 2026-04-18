@@ -11,24 +11,24 @@ Most scan problems boil down to: library not mounted where RomM expects, folder 
 
 Three common causes:
 
-1. **Library mounted in the wrong place.** RomM expects your library at `/romm/library` inside the container. Verify with `docker exec romm ls /romm/library` — you should see your `roms/` directory (Structure A) or platform folders (Structure B).
+1. **Library mounted in the wrong place.** RomM expects your library at `/romm/library` inside the container. Verify with `docker exec romm ls /romm/library`; you should see your `roms/` directory (Structure A) or platform folders (Structure B).
 2. **Permissions.** The RomM container has to read the files. Check from the host: `ls -lh /path/to/library`. If the RomM process can't see them, nothing scans.
 3. **Invalid folder structure.** Review [Folder Structure](../getting-started/folder-structure.md). RomM tries Structure A first; if it finds neither layout, the scan completes in seconds with nothing found.
 
 ## "ROMs not found for platform X, check romm folder structure"
 
-Same root cause as the previous one. RomM needs a `roms/` directory somewhere — either `/romm/library/roms/{platform}/` (Structure A) or `/romm/library/{platform}/roms/` (Structure B).
+Same root cause as the previous one. RomM needs a `roms/` directory somewhere: either `/romm/library/roms/{platform}/` (Structure A) or `/romm/library/{platform}/roms/` (Structure B).
 
 Common mount-path mistakes:
 
 ```yaml
-# WRONG — mounts the platform folder itself
+# WRONG: mounts the platform folder itself
 - /server/media/games/snes:/romm/library
 
-# WRONG — skips the roms/ layer entirely
+# WRONG: skips the roms/ layer entirely
 - /server/media/games:/romm/library
 
-# CORRECT — mounts the parent of roms/
+# CORRECT: mounts the parent of roms/
 - /server/media/library:/romm/library      # if library/ contains roms/
 - /server/media/games/roms:/romm/library/roms  # if you want to be explicit
 ```
@@ -56,7 +56,7 @@ Full list of supported slugs: [Supported Platforms](../platforms/supported-platf
 
 Scans are capped. If yours hits the cap:
 
-1. **Use `Quick` mode** from the Scan page — skips already-catalogued files. Most repeated scans complete in minutes.
+1. **Use `Quick` mode** from the Scan page: skips already-catalogued files. Most repeated scans complete in minutes.
 2. **Raise the cap** if you need a full rescan: `SCAN_TIMEOUT_HOURS=8` (or whatever). See [Environment Variables](../reference/environment-variables.md).
 3. **Run scans per-platform** instead of everything at once, to checkpoint progress.
 
@@ -70,9 +70,9 @@ docker logs romm 2>&1 | grep -E 'ERROR.*scan_handler'
 
 Common culprits:
 
-- **Corrupted file** — unzip it, re-zip, try again.
-- **Old DOS zip with backslash paths** — Python's `zipfile` chokes on these. Re-create the archive with forward slashes.
-- **Read errors on the mount** — usually SMB/NFS flakiness. Watch `dmesg` for mount drops.
+- **Corrupted file**: unzip it, re-zip, try again.
+- **Old DOS zip with backslash paths**: Python's `zipfile` chokes on these. Re-create the archive with forward slashes.
+- **Read errors on the mount**: usually SMB/NFS flakiness. Watch `dmesg` for mount drops.
 
 Log lines look like:
 
@@ -119,10 +119,10 @@ Options, in order of effort:
 
 Hashing large ROMs (PS1, Saturn, DC images) is IO-bound. Options:
 
-- **Skip hashing on small hosts** — check **Skip hash calculation** on the Scan page, or set `filesystem.skip_hash_calculation: true` in `config.yml`. You lose RetroAchievements and Hasheous matching (both depend on hashes).
+- **Skip hashing on small hosts**: check **Skip hash calculation** on the Scan page, or set `filesystem.skip_hash_calculation: true` in `config.yml`. You lose RetroAchievements and Hasheous matching (both depend on hashes).
 - **Use SSD/NVMe for the library** if you care about hash performance.
 - **Raise `SEVEN_ZIP_TIMEOUT`** if you're scanning many large `.7z` archives.
 
 ## Scan seems to work but nothing shows up
 
-Refresh the page — the ribbons on the home dashboard cache aggressively during a scan. Still blank? Check **Administration → Server Stats** — if counts are zero, the scan didn't actually persist anything. Usually a DB permission issue; check `docker logs romm 2>&1 | grep -i 'database'`.
+Refresh the page; the ribbons on the home dashboard cache aggressively during a scan. Still blank? Check **Administration → Server Stats**; if counts are zero, the scan didn't actually persist anything. Usually a DB permission issue; check `docker logs romm 2>&1 | grep -i 'database'`.

@@ -1,6 +1,6 @@
 ---
 title: WebSockets
-description: RomM's two Socket.IO endpoints — live updates and Netplay coordination.
+description: RomM's two Socket.IO endpoints for live updates and Netplay coordination.
 ---
 
 # WebSockets
@@ -9,8 +9,8 @@ RomM uses **Socket.IO** for real-time communication. Two endpoints:
 
 | Endpoint | Purpose |
 | --- | --- |
-| `/ws/socket.io` | General live updates — scan progress, task status, task completion, admin notifications. |
-| `/netplay/socket.io` | Netplay session coordination — room discovery, join/leave events, session lifecycle. |
+| `/ws/socket.io` | General live updates: scan progress, task status, task completion, admin notifications. |
+| `/netplay/socket.io` | Netplay session coordination: room discovery, join/leave events, session lifecycle. |
 
 Both are Redis-backed (via `socket.io-redis`) so multi-instance RomM deployments broadcast events to every replica.
 
@@ -18,11 +18,11 @@ Both are Redis-backed (via `socket.io-redis`) so multi-instance RomM deployments
 
 RomM inherited Socket.IO from the Vue frontend, which uses `socket.io-client`. Sticking with Socket.IO avoids protocol drift, works in every browser, and handles reconnection + message framing for us.
 
-If you're writing a non-browser client in a language that has a Socket.IO library (Python's `python-socketio`, Go's `go-socket.io`, etc.), the protocol is straightforward. Raw WebSocket without Socket.IO framing **will not** work — Socket.IO adds its own handshake and message envelope.
+If you're writing a non-browser client in a language that has a Socket.IO library (Python's `python-socketio`, Go's `go-socket.io`, etc.), the protocol is straightforward. Raw WebSocket without Socket.IO framing **will not** work; Socket.IO adds its own handshake and message envelope.
 
 ## Authentication
 
-Socket.IO connections inherit the HTTP session — if your `Cookie` header carries a RomM session cookie, the WS connection is authenticated as that user. Programmatic clients should pass the session or token via the handshake `auth` field:
+Socket.IO connections inherit the HTTP session: if your `Cookie` header carries a RomM session cookie, the WS connection is authenticated as that user. Programmatic clients should pass the session or token via the handshake `auth` field:
 
 ```javascript
 const socket = io("https://romm.example.com", {
@@ -35,7 +35,7 @@ const socket = io("https://romm.example.com", {
 
 If auth fails, the connection is closed with an error event.
 
-## `/ws/socket.io` — general events
+## `/ws/socket.io`: general events
 
 ### Namespaces
 
@@ -58,14 +58,14 @@ Default namespace. No sub-namespacing in 5.0.
 
 ### Client → server events
 
-No state changes via WebSocket — RomM's design is "REST for writes, Socket.IO for reads". A client can:
+No state changes via WebSocket; RomM's design is "REST for writes, Socket.IO for reads". A client can:
 
 - Emit `subscribe:scan` with a scan ID to join that scan's broadcast group.
 - Emit `unsubscribe:scan` to leave.
 
-Actual scan / task / ROM operations happen via the REST API — see [API Reference](api-reference.md).
+Actual scan / task / ROM operations happen via the REST API; see [API Reference](api-reference.md).
 
-## `/netplay/socket.io` — Netplay coordination
+## `/netplay/socket.io`: Netplay coordination
 
 Separate endpoint for Netplay rooms. Used by EmulatorJS's Netplay logic; rarely touched directly.
 
@@ -89,18 +89,18 @@ Plus WebRTC signalling events (`offer`, `answer`, `ice_candidate`) that shuttle 
 
 ## Redis backend (multi-instance)
 
-When you run multiple RomM replicas behind a load balancer, a WS-originated event on one replica needs to reach a client connected to another replica. `socket.io-redis` handles that — events are published to a Redis pub/sub channel, every replica subscribes, every replica delivers to its local sticky-session clients.
+When you run multiple RomM replicas behind a load balancer, a WS-originated event on one replica needs to reach a client connected to another replica. `socket.io-redis` handles that: events are published to a Redis pub/sub channel, every replica subscribes, every replica delivers to its local sticky-session clients.
 
 Required config when running multi-replica:
 
 - `REDIS_HOST` + `REDIS_PORT` shared across replicas.
 - Load balancer with **sticky sessions** (client IP or cookie hash).
 
-Without sticky sessions, Socket.IO's handshake polling phase can bounce between replicas and fail — see [Socket.IO multi-server docs](https://socket.io/docs/v4/using-multiple-nodes/) for context.
+Without sticky sessions, Socket.IO's handshake polling phase can bounce between replicas and fail. See [Socket.IO multi-server docs](https://socket.io/docs/v4/using-multiple-nodes/) for context.
 
 ## Reverse-proxy requirements
 
-Every reverse-proxy setup must forward the WebSocket upgrade. See [Reverse Proxy](../install/reverse-proxy.md) — all recipes there keep WebSockets on.
+Every reverse-proxy setup must forward the WebSocket upgrade. See [Reverse Proxy](../install/reverse-proxy.md); all recipes there keep WebSockets on.
 
 Common breakages:
 
@@ -110,9 +110,10 @@ Common breakages:
 
 Symptom of a broken WS: HTTP 400 responses on the upgrade, and the browser console full of `WebSocket connection failed`. See [Authentication Troubleshooting → WebSockets](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint).
 
+
 ## Writing a client in Python
 
-Simple example — tail scan logs:
+Simple example, tail scan logs:
 
 ```python
 import socketio
@@ -137,12 +138,12 @@ sio.wait()
 
 ## Limitations
 
-- **Not every backend action emits a WS event** — only the ones listed above. If you need a specific event, open an issue.
-- **No room-based user presence yet** — "who else is online" isn't exposed.
-- **Netplay WebRTC is peer-to-peer after initial handshake** — RomM only brokers; the actual gameplay data never touches RomM's servers.
+- **Not every backend action emits a WS event.** Only the ones listed above. If you need a specific event, open an issue.
+- **No room-based user presence yet.** "Who else is online" isn't exposed.
+- **Netplay WebRTC is peer-to-peer after initial handshake.** RomM only brokers; the actual gameplay data never touches RomM's servers.
 
 ## See also
 
-- [API Authentication](api-authentication.md) — general auth primer.
-- [Reverse Proxy](../install/reverse-proxy.md) — every recipe needs WebSocket passthrough.
-- [Netplay](../using/netplay.md) — end-user-facing side of the `/netplay` endpoint.
+- [API Authentication](api-authentication.md): general auth primer.
+- [Reverse Proxy](../install/reverse-proxy.md): every recipe needs WebSocket passthrough.
+- [Netplay](../using/netplay.md): end-user-facing side of the `/netplay` endpoint.

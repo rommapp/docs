@@ -5,23 +5,23 @@ description: How RomM releases are cut, published, and documented. Maintainer re
 
 # Releasing
 
-Maintainer reference. If you're not cutting a RomM release, you don't need this page — see [Release Notes & Migration](../releases/index.md) for user-facing release info.
+Maintainer reference. If you're not cutting a RomM release, you don't need this page. See [Release Notes & Migration](../releases/index.md) for user-facing release info.
 
 ## Release cadence
 
-RomM releases on a loose cadence — not scheduled, driven by readiness:
+RomM releases on a loose cadence, not scheduled, driven by readiness:
 
-- **Patch (`5.0.1`, `5.0.2`)** — bug fixes. Cut as needed; typically 1-4 per month.
-- **Minor (`5.1.0`, `5.2.0`)** — additive features. Cut when a cohesive batch of features is stable.
-- **Major (`6.0.0`)** — breaking changes. Planned well in advance, announced in the Discord + on GitHub.
+- **Patch (`5.0.1`, `5.0.2`):** bug fixes. Cut as needed; typically 1-4 per month.
+- **Minor (`5.1.0`, `5.2.0`):** additive features. Cut when a cohesive batch of features is stable.
+- **Major (`6.0.0`):** breaking changes. Planned well in advance, announced in the Discord + on GitHub.
 
 ## Version numbering
 
 [SemVer](https://semver.org/) for breaking-change semantics:
 
-- **MAJOR** — backwards-incompatible schema change, env var rename, or API-contract break.
-- **MINOR** — new feature, backwards-compatible.
-- **PATCH** — bug fix only.
+- **MAJOR:** backwards-incompatible schema change, env var rename, or API-contract break.
+- **MINOR:** new feature, backwards-compatible.
+- **PATCH:** bug fix only.
 
 Alembic migrations run on every startup; migrations are backwards-compatible within a major version.
 
@@ -38,20 +38,20 @@ Alembic migrations run on every startup; migrations are backwards-compatible wit
 
 - `pyproject.toml` → `version = "X.Y.Z"`.
 - `frontend/package.json` → `"version": "X.Y.Z"`.
-- Any hardcoded version strings (`backend/__init__.py`, etc.) — `rg '__version__'` or `rg '5\.0\.0'` to find them.
+- Any hardcoded version strings (`backend/__init__.py`, etc.); `rg '__version__'` or `rg '5\.0\.0'` to find them.
 
 ### 3. Update `env.template` if needed
 
 If the release adds / renames / removes env vars, `env.template` is the canonical reference. Add/rename/remove lines with inline comments. Keep alphabetical order per section.
 
-The docs site auto-generates [Environment Variables](../reference/environment-variables.md) from `env.template` on every release — skip this step and the docs drift.
+The docs site auto-generates [Environment Variables](../reference/environment-variables.md) from `env.template` on every release; skip this step and the docs drift.
 
 ### 4. Update changelog
 
-`CHANGELOG.md` at repo root (if present) — add a new section for the new version:
+`CHANGELOG.md` at repo root (if present): add a new section for the new version:
 
 ```md
-## 5.0.0 — 2026-04-18
+## 5.0.0 (2026-04-18)
 
 ### Breaking
 
@@ -78,7 +78,7 @@ git tag -a 5.0.0 -m "Release 5.0.0"
 git push origin 5.0.0
 ```
 
-The tag triggers the Docker build workflow — `rommapp/romm:5.0.0` (full) and `rommapp/romm:5.0.0-slim` are built and published to Docker Hub + GHCR.
+The tag triggers the Docker build workflow: `rommapp/romm:5.0.0` (full) and `rommapp/romm:5.0.0-slim` are built and published to Docker Hub + GHCR.
 
 ### 6. Publish the GitHub Release
 
@@ -110,9 +110,9 @@ docker push rommapp/romm:5
 
 ## Announcements
 
-- **Discord `#announcements`** — post a short summary with a link to the GitHub Release.
-- **Reddit** (r/selfhosted, etc.) — optional, for major versions.
-- **Docs site version switcher** — publish a new `mike`-managed version of the docs. See [Docs versioning](#docs-versioning).
+- **Discord `#announcements`:** post a short summary with a link to the GitHub Release.
+- **Reddit** (r/selfhosted, etc.): optional, for major versions.
+- **Docs site version switcher:** publish a new `mike`-managed version of the docs. See [Docs versioning](#docs-versioning).
 
 ## Docs versioning
 
@@ -140,7 +140,7 @@ If a regression ships in the release:
 
 ### Track issues
 
-Post-release, expect a spike in issues. Triage Day-1 issues aggressively — breakage reports need immediate attention; nice-to-haves can wait.
+Post-release, expect a spike in issues. Triage Day-1 issues aggressively: breakage reports need immediate attention; nice-to-haves can wait.
 
 ## Security releases
 
@@ -162,6 +162,6 @@ For major versions:
 
 ## See also
 
-- [Release Notes & Migration](../releases/index.md) — user-facing side.
-- [Upgrading to 5.0](../releases/upgrading-to-5.0.md) — reference migration guide style.
-- [Contributing](contributing.md) — general contribution process.
+- [Release Notes & Migration](../releases/index.md): user-facing side.
+- [Upgrading to 5.0](../releases/upgrading-to-5.0.md): reference migration guide style.
+- [Contributing](contributing.md): general contribution process.

@@ -7,7 +7,7 @@ description: Long-lived bearer tokens for companion apps, plus the device-pairin
 
 A **Client API Token** is a long-lived credential that a companion app (or script, or CI job) uses to authenticate against RomM on behalf of a specific user. Think "personal access token" on GitHub.
 
-Tokens are **per-user** and **per-scope-subset** — a token can hold any subset of the owning user's scopes, scoped narrower than the user's role. You get up to **25 active tokens per user**.
+Tokens are **per-user** and **per-scope-subset**: a token can hold any subset of the owning user's scopes, scoped narrower than the user's role. You get up to **25 active tokens per user**.
 
 ## Why not just store a password?
 
@@ -34,11 +34,11 @@ Authorization: Bearer rmm_abcdef...
 
 From the RomM UI: **Profile → Client API Tokens → + New Token**.
 
-- **Name** — descriptive (e.g. "Grout on RG35XX").
-- **Scopes** — tick which scopes to include. Default: read-only. Think about it; don't give every token `users.write`.
-- **Expiry** — optional; blank = never expires until revoked.
+- **Name**: descriptive (e.g. "Grout on RG35XX").
+- **Scopes**: tick which scopes to include. Default: read-only. Think about it; don't give every token `users.write`.
+- **Expiry**: optional; blank = never expires until revoked.
 
-The token is shown **exactly once**. Copy it now. If you lose it, revoke and regenerate — you can't get it back.
+The token is shown **exactly once**. Copy it now. If you lose it, revoke and regenerate; you can't get it back.
 
 ## Device pairing (short-code flow)
 
@@ -72,16 +72,16 @@ Typing a 44-character token into a handheld thumbstick isn't realistic. Instead:
 ### Timing
 
 - Pairing codes are valid for **5 minutes** after creation.
-- Single-use — once a device exchanges the code, it's invalid for anyone else.
+- Single-use: once a device exchanges the code, it's invalid for anyone else.
 - Re-create if the user doesn't complete within the window.
 
 ### Who generates the code
 
-The user who owns the token, from a device already signed into RomM (web UI, usually). The handheld / companion device then enters the code. No way for a device to generate a code on its own — that would defeat the pairing.
+The user who owns the token, from a device already signed into RomM (web UI, usually). The handheld / companion device then enters the code. No way for a device to generate a code on its own; that would defeat the pairing.
 
 ### What "pairing" gives you
 
-A Client API Token bound to the device's installation. The companion app stores the token and uses it on every subsequent API call. From RomM's side, it looks like any other token — no special treatment beyond the fact that pairing is how the token got there.
+A Client API Token bound to the device's installation. The companion app stores the token and uses it on every subsequent API call. From RomM's side, it looks like any other token: no special treatment beyond the fact that pairing is how the token got there.
 
 ## API reference for implementers
 
@@ -149,9 +149,9 @@ A token can only hold scopes the owning user *also* holds. If the user is an Edi
 
 Useful narrow scope-sets:
 
-- **Library-only read**: `roms.read`, `platforms.read`, `collections.read`, `devices.read` — e.g. for a browse-only app.
+- **Library-only read**: `roms.read`, `platforms.read`, `collections.read`, `devices.read` (e.g. for a browse-only app).
 - **Read + sync saves**: add `assets.read`, `assets.write`, `me.read`, `me.write`, `devices.write`.
-- **Playnite / external launcher**: `roms.read`, `platforms.read`, `collections.read` — it only needs to browse and download.
+- **Playnite / external launcher**: `roms.read`, `platforms.read`, `collections.read` (it only needs to browse and download).
 - **Grout / handheld companion**: library-read + assets read/write + device management.
 
 The UI's scope-selection step defaults to read-only. Only tick write scopes you actually need.
@@ -161,7 +161,7 @@ The UI's scope-selection step defaults to read-only. Only tick write scopes you 
 If the owning user's role drops below what the token needs:
 
 - Token continues to exist but fails at request time with **403 Forbidden**.
-- RomM doesn't automatically revoke it — that's the user's decision.
+- RomM doesn't automatically revoke it; that's the user's decision.
 
 If the user is deleted, all their tokens are revoked immediately.
 
@@ -174,6 +174,6 @@ If the user is deleted, all their tokens are revoked immediately.
 
 ## See also
 
-- [Device Sync Protocol](device-sync-protocol.md) — how the synced content flows after pairing.
-- [API Authentication](../developers/api-authentication.md) — all RomM auth modes side-by-side.
-- [Users & Roles → scope matrix](../administration/users-and-roles.md#scope-matrix) — the 19-scope taxonomy.
+- [Device Sync Protocol](device-sync-protocol.md): how the synced content flows after pairing.
+- [API Authentication](../developers/api-authentication.md): all RomM auth modes side-by-side.
+- [Users & Roles → scope matrix](../administration/users-and-roles.md#scope-matrix): the 19-scope taxonomy.

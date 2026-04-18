@@ -7,27 +7,27 @@ description: How to organise your ROM library on disk so RomM can scan and match
 
 # Folder Structure
 
-RomM expects your library to be organised in one of two layouts. It tries **Structure A** first, and falls back to **Structure B** if A isn't found. This auto-detection is per-library, so you don't pick one up front — just arrange files the way you prefer, and RomM figures it out.
+RomM expects your library to be organised in one of two layouts. It tries **Structure A** first, and falls back to **Structure B** if A isn't found. This auto-detection is per-library, so you don't pick one up front; just arrange files the way you prefer, and RomM figures it out.
 
 ## The two layouts
 
 Both layouts separate ROMs from BIOS files. They differ on whether the split lives at the top of the tree or inside each platform.
 
-- **Structure A (recommended)** — one top-level `roms/`, one top-level `bios/`, platforms nested inside each.
+- **Structure A (recommended)**: one top-level `roms/`, one top-level `bios/`, platforms nested inside each.
 
     ```text
     /roms/{platform}/
     /bios/{platform}/
     ```
 
-- **Structure B (fallback)** — one folder per platform at the top, `roms/` and `bios/` inside each.
+- **Structure B (fallback)**: one folder per platform at the top, `roms/` and `bios/` inside each.
 
     ```text
     /{platform}/roms/
     /{platform}/bios/
     ```
 
-The BIOS / firmware tree is **optional** — only platforms that require firmware for emulation need it.
+The BIOS / firmware tree is **optional**: only platforms that require firmware for emulation need it.
 
 ### Mount point
 
@@ -40,7 +40,7 @@ See the [reference Docker Compose](../install/docker-compose.md) for where `/rom
 
 ## Multi-file games
 
-Some games come as **folders** instead of single files — multi-disc, DLC, manuals, patches. RomM understands this layout and recognises these sub-folder names, surfacing them as tags in the UI:
+Some games come as **folders** instead of single files: multi-disc, DLC, manuals, patches. RomM understands this layout and recognises these sub-folder names, surfacing them as tags in the UI:
 
 - `dlc`
 - `hack`
@@ -164,17 +164,17 @@ Some games come as **folders** instead of single files — multi-disc, DLC, manu
 
 ## Customising behaviour
 
-The on-disk layout is only half the story. Per-library exclusions, custom platform bindings, and metadata source priority all live in [`config.yml`](../reference/configuration-file.md). You can edit the file directly, or go through **Administration → Library Management** in the web UI — they're two views of the same data.
+The on-disk layout is only half the story. Per-library exclusions, custom platform bindings, and metadata source priority all live in [`config.yml`](../reference/configuration-file.md). You can edit the file directly, or go through **Administration → Library Management** in the web UI; they're two views of the same data.
 
 ## Naming convention
 
 Filenames are parsed for region, language, revision, and arbitrary tags. Both `[]` and `()` delimiters work.
 
-- **Region / language** — both ISO-like codes and full names. Add a custom region or language by prefixing with `reg` / `reg-` (e.g. `reg MyOwnLang` or `reg-MyOwnLang`).
-- **Revision** — prefix with `rev` / `rev-`. Example: `rev v1`, `rev-1`.
-- **Arbitrary tags** — anything else in brackets is imported verbatim. Example: `tetris [1.0001](HACK)[!].gba`.
+- **Region / language**: both ISO-like codes and full names. Add a custom region or language by prefixing with `reg` / `reg-` (e.g. `reg MyOwnLang` or `reg-MyOwnLang`).
+- **Revision**: prefix with `rev` / `rev-`. Example: `rev v1`, `rev-1`.
+- **Arbitrary tags**: anything else in brackets is imported verbatim. Example: `tetris [1.0001](HACK)[!].gba`.
 
-Tags are searchable in the search bar — typing `(USA)` returns every game tagged USA.
+Tags are searchable in the search bar: typing `(USA)` returns every game tagged USA.
 
 <div class="grid cards" markdown>
 
@@ -247,4 +247,4 @@ Tags are searchable in the search bar — typing `(USA)` returns every game tagg
 
 ## Filename metadata tags
 
-RomM also honours inline tags like `(igdb-1234)` in filenames to force a match to a specific provider entry — covered in [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames).
+RomM also honours inline tags like `(igdb-1234)` in filenames to force a match to a specific provider entry, covered in [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames).

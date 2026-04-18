@@ -11,7 +11,7 @@ RomM ships support for ~400 platforms. "Support" means:
 2. **At least one metadata provider** has coverage.
 3. **EmulatorJS** may have a playable core (flagged per platform in the table below).
 
-Your folder name has to match the **platform slug** in the table. If yours differs, use [`system.platforms`](../reference/configuration-file.md#systemplatforms) in `config.yml` to remap — see [Folder Structure](../getting-started/folder-structure.md).
+Your folder name has to match the **platform slug** in the table. If yours differs, use [`system.platforms`](../reference/configuration-file.md#systemplatforms) in `config.yml` to remap; see [Folder Structure](../getting-started/folder-structure.md).
 
 ## Platform slugs + coverage
 
@@ -19,17 +19,17 @@ Your folder name has to match the **platform slug** in the table. If yours diffe
 
 ## What the columns mean
 
-- **Slug** — the folder name RomM expects. Matches the IGDB platform slug where possible.
-- **Name** — the human-readable platform name.
-- **Providers** — which metadata providers have at least partial coverage. See [Metadata Providers](../administration/metadata-providers.md).
-- **EmulatorJS** — a playable in-browser core exists. See [EmulatorJS Configuration](emulatorjs-config.md).
-- **Firmware** — platform needs BIOS files for emulation. See [Firmware by Platform](firmware-by-platform.md).
+- **Slug**: the folder name RomM expects. Matches the IGDB platform slug where possible.
+- **Name**: the human-readable platform name.
+- **Providers**: which metadata providers have at least partial coverage. See [Metadata Providers](../administration/metadata-providers.md).
+- **EmulatorJS**: a playable in-browser core exists. See [EmulatorJS Configuration](emulatorjs-config.md).
+- **Firmware**: platform needs BIOS files for emulation. See [Firmware by Platform](firmware-by-platform.md).
 
 ## Platform not listed?
 
 Two options:
 
-- **[Custom Platforms](custom-platforms.md)** — add an unknown platform. RomM will recognise the folder but won't have metadata or emulator support.
+- **[Custom Platforms](custom-platforms.md)**: add an unknown platform. RomM will recognise the folder but won't have metadata or emulator support.
 - **Map to an existing slug** via `config.yml` if yours is a naming variant of something RomM already supports (e.g. `super_nintendo` → `snes`).
 
 Open an issue at [rommapp/romm](https://github.com/rommapp/romm/issues) if you believe a platform should be added to the built-in list.
@@ -44,8 +44,8 @@ uv run python docs/scripts/gen_platforms.py
 
 ## See also
 
-- [Folder Structure](../getting-started/folder-structure.md) — how platform slugs map to on-disk folders.
-- [Custom Platforms](custom-platforms.md) — adding platforms outside the built-in list.
-- [Metadata Providers](../administration/metadata-providers.md) — provider coverage deep-dive.
-- [In-Browser Play](../using/in-browser-play.md) — EmulatorJS core catalogue.
-- [Firmware by Platform](firmware-by-platform.md) — per-platform BIOS requirements.
+- [Folder Structure](../getting-started/folder-structure.md): how platform slugs map to on-disk folders.
+- [Custom Platforms](custom-platforms.md): adding platforms outside the built-in list.
+- [Metadata Providers](../administration/metadata-providers.md): provider coverage deep-dive.
+- [In-Browser Play](../using/in-browser-play.md): EmulatorJS core catalogue.
+- [Firmware by Platform](firmware-by-platform.md): per-platform BIOS requirements.

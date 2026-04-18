@@ -17,20 +17,20 @@ This page lists the firmware RomM's EmulatorJS cores need for each platform. For
 | **PlayStation (PSX)** | `ps` | `scph1001.bin` (US), `scph5501.bin` (US), `scph5502.bin` (EU), `scph7502.bin` (JP) | At least one region BIOS required. |
 | **Saturn** | `saturn` | `saturn_bios.bin`, optional `mpr-17933.bin` (EU) | Bundle both in a zip. |
 | **Sega CD / Mega CD** | `segacd` | `bios_CD_U.bin` (US), `bios_CD_E.bin` (EU), `bios_CD_J.bin` (JP) | Region depends on your games. |
-| **Game Boy Advance** | `gba` | `gba_bios.bin` | Optional — games run without it, but accurate emulation needs it. |
+| **Game Boy Advance** | `gba` | `gba_bios.bin` | Optional. Games run without it, but accurate emulation needs it. |
 | **Nintendo DS** | `nds` | `bios7.bin`, `bios9.bin`, `firmware.bin` | All three are needed. |
-| **Atari Lynx** | `lynx` | `lynxboot.img` | — |
+| **Atari Lynx** | `lynx` | `lynxboot.img` | |
 | **Neo Geo Pocket / Color** | `ngp` / `ngpc` | `neopop.rom` | Bundle as zip. |
 | **Amiga** | `amiga` | Kickstart ROMs (various) | `puae` core. Kickstart 1.2, 1.3, 3.1 depending on title. Bundle as zip. |
-| **ColecoVision** | `colecovision` | `coleco.rom` | — |
+| **ColecoVision** | `colecovision` | `coleco.rom` | |
 | **Intellivision** | `intellivision` | `exec.bin`, `grom.bin` | Bundle both. |
-| **3DO** | `3do` | `panafz10.bin` (or similar region BIOS) | — |
-| **PC Engine CD / TurboGrafx-CD** | `pcecd` / `tg16cd` | `syscard3.pce` | — |
+| **3DO** | `3do` | `panafz10.bin` (or similar region BIOS) | |
+| **PC Engine CD / TurboGrafx-CD** | `pcecd` / `tg16cd` | `syscard3.pce` | |
 | **Dreamcast** | `dc` | `dc_boot.bin`, `dc_flash.bin` | EmulatorJS Dreamcast support is limited; results vary. |
-| **Atari 5200** | `atari5200` | `5200.rom` | — |
-| **Atari 7800** | `atari7800` | `7800 BIOS (U).rom` | — |
+| **Atari 5200** | `atari5200` | `5200.rom` | |
+| **Atari 7800** | `atari7800` | `7800 BIOS (U).rom` | |
 
-For cores + platforms not in this table — most Nintendo consoles (NES, SNES, N64), Sega Genesis, Atari 2600, Game Boy, most home computers — **no firmware is needed**.
+For cores + platforms not in this table (most Nintendo consoles such as NES, SNES, N64, plus Sega Genesis, Atari 2600, Game Boy, most home computers), **no firmware is needed**.
 
 ## Bundling multi-file firmware
 
@@ -53,11 +53,11 @@ Emulator cores look for **specific filenames**. If you rename `scph1001.bin` to 
 
 Common mistakes:
 
-- Upper vs lower case — most cores are case-sensitive. Use exact case from the table above.
-- Extensions — `.bin` vs `.rom` vs `.img` depend on the core. Don't rename.
-- Version suffixes — `scph1001 (US) v4.4.bin` won't load; it has to be `scph1001.bin`.
+- Upper vs lower case: most cores are case-sensitive. Use exact case from the table above.
+- Extensions: `.bin` vs `.rom` vs `.img` depend on the core. Don't rename.
+- Version suffixes: `scph1001 (US) v4.4.bin` won't load; it has to be `scph1001.bin`.
 
-If you're not sure what name a core expects, check the [upstream EmulatorJS systems docs](https://emulatorjs.org/docs/systems/) or load the game with `emulatorjs.debug: true` — the browser console will tell you what file it tried to load.
+If you're not sure what name a core expects, check the [upstream EmulatorJS systems docs](https://emulatorjs.org/docs/systems/) or load the game with `emulatorjs.debug: true`; the browser console will tell you what file it tried to load.
 
 ## Getting firmware
 
@@ -69,7 +69,7 @@ Your options (jurisdiction-dependent):
 
 ## Verifying integrity
 
-Firmware is hash-verified by the emulator — a wrong hash means the file won't load. Quick CLI check:
+Firmware is hash-verified by the emulator: a wrong hash means the file won't load. Quick CLI check:
 
 ```sh
 sha1sum scph1001.bin
@@ -80,7 +80,7 @@ Known-good hashes for common BIOS files are documented on [No-Intro](https://dat
 
 ## See also
 
-- [Firmware Management](../administration/firmware-management.md) — admin-side upload and lifecycle.
-- [Supported Platforms](supported-platforms.md) — catalogue with firmware-required flag.
-- [In-Browser Play Troubleshooting → "Firmware required"](../troubleshooting/in-browser-play.md#firmware-required) — diagnostic.
-- [EmulatorJS systems reference](https://emulatorjs.org/docs/systems/) — upstream firmware requirements per core.
+- [Firmware Management](../administration/firmware-management.md): admin-side upload and lifecycle.
+- [Supported Platforms](supported-platforms.md): catalogue with firmware-required flag.
+- [In-Browser Play Troubleshooting → "Firmware required"](../troubleshooting/in-browser-play.md#firmware-required): diagnostic.
+- [EmulatorJS systems reference](https://emulatorjs.org/docs/systems/): upstream firmware requirements per core.

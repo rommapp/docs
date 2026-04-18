@@ -1,6 +1,6 @@
 ---
 title: Kekatsu
-description: Nintendo DS multiboot loader — install DS games from RomM via custom feed.
+description: Nintendo DS multiboot loader, install DS games from RomM via custom feed.
 ---
 
 # Kekatsu
@@ -12,7 +12,7 @@ New in RomM 5.0.
 ## Prerequisites
 
 - A Nintendo DS with Kekatsu installed (requires a flashcart or homebrew launcher).
-- **RomM reachable from the DS over Wi-Fi** — the DS's Wi-Fi is WEP / old WPA only, so this typically means a dedicated legacy-SSID on your router or a travel router bridging the DS to your modern network.
+- **RomM reachable from the DS over Wi-Fi.** The DS's Wi-Fi is WEP / old WPA only, so this typically means a dedicated legacy-SSID on your router or a travel router bridging the DS to your modern network.
 - DS games in `.nds` format.
 
 ## Feed URL
@@ -43,19 +43,19 @@ Kekatsu can send basic auth. Either configure it on the DS side or enable `DISAB
 
 The DS's original Wi-Fi hardware supports WEP and an older WPA variant only. Modern home routers usually don't. Workarounds:
 
-- **Dedicated DS-friendly SSID.** Many routers allow per-SSID security — add a WEP one just for the DS.
+- **Dedicated DS-friendly SSID.** Many routers allow per-SSID security; add a WEP one just for the DS.
 - **Travel router in bridge mode.** A cheap travel router configured for WEP uplinks to your main (secure) network.
-- **Use a DSi, 3DS, or homebrew replacement driver** — these support modern security.
+- **Use a DSi, 3DS, or homebrew replacement driver.** These support modern security.
 
 If none of this is appealing, Kekatsu-over-LAN isn't going to work; fall back to sideloading via flashcart or similar.
 
 ## Troubleshooting
 
-- **Feed is empty** — no `.nds` files on the `nds` platform.
-- **DS can't see the network** — see the legacy-Wi-Fi section above.
-- **Downloads fail** — either network timeout (LAN latency over WEP is rough) or disk space. Retry one game at a time.
+- **Feed is empty.** No `.nds` files on the `nds` platform.
+- **DS can't see the network.** See the legacy-Wi-Fi section above.
+- **Downloads fail.** Either network timeout (LAN latency over WEP is rough) or disk space. Retry one game at a time.
 
 ## See also
 
-- [Feeds reference](../reference/feeds.md) — all feed endpoints.
-- Kekatsu upstream — find via the RomM Discord `#kekatsu` or community links (project moves).
+- [Feeds reference](../reference/feeds.md): all feed endpoints.
+- Kekatsu upstream: find via the RomM Discord `#kekatsu` or community links (project moves).

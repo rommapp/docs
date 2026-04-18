@@ -33,7 +33,7 @@ Multiple files upload in parallel. Progress bars show per-file status; failures 
 Files over 64 MB are uploaded in chunks. RomM:
 
 1. Opens an upload session (`POST /api/roms/upload/start`).
-2. Streams chunks (`PUT /api/roms/upload/{id}`) — 64 MB each.
+2. Streams chunks (`PUT /api/roms/upload/{id}`), 64 MB each.
 3. Finalises the upload (`POST /api/roms/upload/{id}/complete`), which assembles the file and indexes it.
 
 A browser refresh mid-upload cancels the session and cleans up partial data.
@@ -43,15 +43,15 @@ A browser refresh mid-upload cancels the session and cleans up partial data.
 To upload a multi-file game (multi-disc, game + DLC):
 
 1. Zip the whole game folder on your end.
-2. Upload the zip — RomM detects the structure and unpacks to a folder under the platform directory.
+2. Upload the zip: RomM detects the structure and unpacks to a folder under the platform directory.
 3. The resulting folder follows the [multi-file game convention](../getting-started/folder-structure.md#multi-file-games).
 
 ### After upload
 
 Uploaded ROMs are immediately visible in the platform view, but aren't **matched** to metadata until the next scan. Two options:
 
-- **Run a Quick scan** — picks up new files only.
-- **Match manually** — game detail → Match → search for the title.
+- **Run a Quick scan**: picks up new files only.
+- **Match manually**: game detail → Match → search for the title.
 
 ## Save uploads
 
@@ -62,7 +62,7 @@ For your own games. Useful for importing existing save files from another emulat
 3. Optionally attach a screenshot (a thumbnail for the save).
 4. Save.
 
-The file's stored under `/romm/assets/<user>/<rom>/saves/` and is available to your [in-browser play](in-browser-play.md) sessions. RomM doesn't rewrite the file contents — it's stored as-is.
+The file's stored under `/romm/assets/<user>/<rom>/saves/` and is available to your [in-browser play](in-browser-play.md) sessions. RomM doesn't rewrite the file contents; it's stored as-is.
 
 See [Saves & States](saves-and-states.md) for more.
 
@@ -70,8 +70,8 @@ See [Saves & States](saves-and-states.md) for more.
 
 Emulator save-states. Same flow as saves but under **States**.
 
-- State formats are emulator-specific — a SNES9x state won't load in bsnes.
-- Screenshots can be attached — RomM generates one automatically from the emulator if you create a state from [in-browser play](in-browser-play.md).
+- State formats are emulator-specific; a SNES9x state won't load in bsnes.
+- Screenshots can be attached; RomM generates one automatically from the emulator if you create a state from [in-browser play](in-browser-play.md).
 
 ## Screenshot uploads
 
@@ -79,11 +79,11 @@ Personal screenshot uploads attach to a ROM (not to a save/state). Great for bui
 
 Game detail → **Screenshots** tab → **Upload**.
 
-Supported formats: PNG, JPEG, WebP. RomM converts on ingest to WebP via the Image Conversion task — see [Scheduled Tasks](../administration/scheduled-tasks.md).
+Supported formats: PNG, JPEG, WebP. RomM converts on ingest to WebP via the Image Conversion task. See [Scheduled Tasks](../administration/scheduled-tasks.md).
 
 ## Firmware uploads
 
-Admin / Editor only. See [Firmware Management](../administration/firmware-management.md) for the full flow — two paths (drop in folder + scan, or UI upload), per-platform organisation, file naming requirements.
+Admin / Editor only. See [Firmware Management](../administration/firmware-management.md) for the full flow: two paths (drop in folder + scan, or UI upload), per-platform organisation, file naming requirements.
 
 ## Manual uploads
 
@@ -93,25 +93,25 @@ Supported: PDF. Renders in the browser via the Manual tab.
 
 ## Cover art uploads
 
-Admin / Editor. Game detail → Context menu (…) → **Edit** → **Upload cover** → PNG / JPG / WebP. Overrides provider-fetched cover. To revert: Edit → **Reset cover** → the next metadata refresh repopulates from providers.
+Admin / Editor. Game detail → Context menu (…) → **Edit** → **Upload cover** → PNG / JPG / WebP. Overrides provider-fetched cover. To revert: Edit → **Reset cover**; the next metadata refresh repopulates from providers.
 
 ## Permissions summary
 
 | Action | Viewer | Editor | Admin |
 | --- | :---: | :---: | :---: |
 | Upload save/state/screenshot for own account | ✓ | ✓ | ✓ |
-| Upload ROMs | — | ✓ | ✓ |
-| Upload firmware | — | ✓ | ✓ |
-| Upload manual / cover art | — | ✓ | ✓ |
+| Upload ROMs | - | ✓ | ✓ |
+| Upload firmware | - | ✓ | ✓ |
+| Upload manual / cover art | - | ✓ | ✓ |
 
 Full scope matrix in [Users & Roles](../administration/users-and-roles.md#scope-matrix).
 
 ## Troubleshooting
 
-- **`413 Request Entity Too Large`** — your reverse proxy or ingress is capping body size. See [Reverse Proxy](../install/reverse-proxy.md) for the `client_max_body_size 0` / `proxy-body-size: "0"` fix.
-- **Upload progresses then fails at 99%** — the finalise step timed out. Usually reverse-proxy read timeout is too tight; raise it.
-- **"File is not a valid ROM for this platform"** — RomM's extension check rejected the file. Either it's the wrong platform, or the extension is obscure — see [Folder Structure → Naming](../getting-started/folder-structure.md#naming-convention).
-- **Save upload silently doesn't appear in-emulator** — you uploaded to the wrong emulator core. Check [Saves & States → Emulator compatibility](saves-and-states.md) for the format → core matrix.
+- **`413 Request Entity Too Large`**: your reverse proxy or ingress is capping body size. See [Reverse Proxy](../install/reverse-proxy.md) for the `client_max_body_size 0` / `proxy-body-size: "0"` fix.
+- **Upload progresses then fails at 99%**: the finalise step timed out. Usually reverse-proxy read timeout is too tight; raise it.
+- **"File is not a valid ROM for this platform"**: RomM's extension check rejected the file. Either it's the wrong platform, or the extension is obscure. See [Folder Structure → Naming](../getting-started/folder-structure.md#naming-convention).
+- **Save upload silently doesn't appear in-emulator**: you uploaded to the wrong emulator core. Check [Saves & States → Emulator compatibility](saves-and-states.md) for the format → core matrix.
 
 ## API
 

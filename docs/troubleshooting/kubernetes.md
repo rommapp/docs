@@ -27,7 +27,7 @@ Covered in full in the [Kubernetes install guide](../install/kubernetes.md#requi
 
 ## Large uploads rejected with `413 Request Entity Too Large`
 
-The ingress controller is capping request body size. Default for nginx-ingress is 1 MB — won't survive a single ROM upload.
+The ingress controller is capping request body size. Default for nginx-ingress is 1 MB, which won't survive a single ROM upload.
 
 Add the annotation:
 
@@ -82,13 +82,13 @@ Two fixes:
           runAsUser: 0
     ```
 
-- **Storage class that supports `fsGroup`** — add `fsGroup: 1000` to the pod's `securityContext`. Works on most CSI drivers but not all.
+- **Storage class that supports `fsGroup`**: add `fsGroup: 1000` to the pod's `securityContext`. Works on most CSI drivers but not all.
 
 ## Pod can reach the DB but RomM crashes with `ConnectionRefused`
 
 Startup ordering. RomM starts before the DB is ready, fails, and crashlooped-restarts forever because the restart is too fast for the DB to catch up.
 
-Fix: add an init container that waits, or a `readinessProbe` + generous `startupProbe` on the DB StatefulSet. The [Kubernetes install guide](../install/kubernetes.md#mariadb) has a readiness probe baked in — check you're using it.
+Fix: add an init container that waits, or a `readinessProbe` + generous `startupProbe` on the DB StatefulSet. The [Kubernetes install guide](../install/kubernetes.md#mariadb) has a readiness probe baked in; check you're using it.
 
 ## Scheduler tasks don't run
 
@@ -117,7 +117,7 @@ resources:
     memory: "4Gi"
 ```
 
-Or disable hashing on the Scan page to cut memory use by ~80% (you lose RetroAchievements + Hasheous matching — see [Metadata Providers](../administration/metadata-providers.md)).
+Or disable hashing on the Scan page to cut memory use by ~80% (you lose RetroAchievements + Hasheous matching; see [Metadata Providers](../administration/metadata-providers.md)).
 
 ## Still stuck
 

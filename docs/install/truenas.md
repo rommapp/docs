@@ -5,7 +5,7 @@ description: Install RomM on TrueNAS SCALE via the App Catalog or YAML.
 
 # TrueNAS
 
-This guide covers **TrueNAS SCALE**. TrueNAS CORE isn't supported — its FreeBSD jail system doesn't run Docker images.
+This guide covers **TrueNAS SCALE**. TrueNAS CORE isn't supported; its FreeBSD jail system doesn't run Docker images.
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ This guide covers **TrueNAS SCALE**. TrueNAS CORE isn't supported — its FreeBS
 - Your ROM library arranged in the expected [folder structure](../getting-started/folder-structure.md).
 - A TrueNAS user/group with a UID/GID that can own the dataset paths you'll mount into RomM.
 
-## Option A — App Catalog (recommended)
+## Option A: App Catalog (recommended)
 
 ### 1. Open the RomM app
 
@@ -23,12 +23,12 @@ This guide covers **TrueNAS SCALE**. TrueNAS CORE isn't supported — its FreeBS
 
 ### 2. Fill in the install form
 
-Step through the installation UI. You'll be asked for the same set of env vars as [Quick Start](../getting-started/quick-start.md) — most defaults work. Things to look at:
+Step through the installation UI. You'll be asked for the same set of env vars as [Quick Start](../getting-started/quick-start.md); most defaults work. Things to look at:
 
-- **Database credentials** — TrueNAS will offer to provision MariaDB for you; just pick a strong password.
-- **`ROMM_AUTH_SECRET_KEY`** — generate via `openssl rand -hex 32` on any Linux box and paste the output.
-- **Metadata provider credentials** — fill in whatever you've registered for. See [Metadata Providers](../administration/metadata-providers.md).
-- **Storage configurations** — point the **Library** and **Assets** volumes at datasets you control. Make sure the UID/GID defined in the app config (default: `568` — the `apps` user) has ACL access to those datasets.
+- **Database credentials**: TrueNAS will offer to provision MariaDB for you; just pick a strong password.
+- **`ROMM_AUTH_SECRET_KEY`**: generate via `openssl rand -hex 32` on any Linux box and paste the output.
+- **Metadata provider credentials**: fill in whatever you've registered for. See [Metadata Providers](../administration/metadata-providers.md).
+- **Storage configurations**: point the **Library** and **Assets** volumes at datasets you control. Make sure the UID/GID defined in the app config (default: `568`, the `apps` user) has ACL access to those datasets.
 
 ![RomM Library Example](../resources/truenas/app-config.png)
 
@@ -36,7 +36,7 @@ Step through the installation UI. You'll be asked for the same set of env vars a
 
 Save. TrueNAS provisions the container + DB + Redis, runs migrations, and exposes the web UI on the port you configured. If it won't boot, jump to [Troubleshooting](#troubleshooting).
 
-## Option B — Install via YAML
+## Option B: Install via YAML
 
 Use this path when the App Catalog has a bug, or when you want more flexibility than the install UI exposes.
 
@@ -57,7 +57,7 @@ Fill in the empty values with credentials you created in [Quick Start](../gettin
 
 ### 3. Install
 
-Save. Same troubleshooting applies — see below.
+Save. Same troubleshooting applies; see below.
 
 ## Troubleshooting
 
@@ -81,4 +81,4 @@ In at least one reported setup, creating a user/group in TrueNAS with UID/GID `1
 
 ## Contributing
 
-Suggestions welcome — PRs against [rommapp/docs](https://github.com/rommapp/docs).
+Suggestions welcome; PRs against [rommapp/docs](https://github.com/rommapp/docs).

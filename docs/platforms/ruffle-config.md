@@ -22,11 +22,11 @@ Ruffle **only** plays games from platform folders named `flash` or `browser`. No
 
 If your Flash games live under a differently-named folder:
 
-### Option 1 — rename
+### Option 1: rename
 
 Just rename the folder to `flash/` and rescan.
 
-### Option 2 — remap via `config.yml`
+### Option 2: remap via `config.yml`
 
 ```yaml
 system:
@@ -38,17 +38,17 @@ Now `web-games/` is treated as the `flash` platform. See [Configuration File →
 
 ## Supported content
 
-- **Flash (SWF)** — 2D games, most work cleanly. AS1/AS2 excellent; AS3 still maturing in Ruffle.
-- **Shockwave (DCR)** — partial support; complex 3D Shockwave games often fail.
-- **FLV / F4V** — Flash video; playable but not game-like.
+- **Flash (SWF):** 2D games, most work cleanly. AS1/AS2 excellent; AS3 still maturing in Ruffle.
+- **Shockwave (DCR):** partial support; complex 3D Shockwave games often fail.
+- **FLV / F4V:** Flash video; playable but not game-like.
 
 [Ruffle compatibility database](https://ruffle.rs/#compatibility) has per-title status if you want to check a specific game.
 
 ## File naming
 
-Ruffle honours the usual [RomM naming conventions](../getting-started/folder-structure.md#naming-convention) — filename tags, regions, revisions.
+Ruffle honours the usual [RomM naming conventions](../getting-started/folder-structure.md#naming-convention): filename tags, regions, revisions.
 
-No specific requirements beyond that — Ruffle reads the SWF directly.
+No specific requirements beyond that; Ruffle reads the SWF directly.
 
 ## Saves
 
@@ -63,37 +63,37 @@ environment:
   - FLASHPOINT_API_ENABLED=true
 ```
 
-Then run an **Unmatched** scan on your `flash` platform. Titles, descriptions, cover art, tags — all populated if the game exists in Flashpoint's ~180,000-entry database.
+Then run an **Unmatched** scan on your `flash` platform. Titles, descriptions, cover art, tags: all populated if the game exists in Flashpoint's ~180,000-entry database.
 
 ## Controls
 
 Flash was designed around mouse + keyboard. Ruffle passes input through natively:
 
-- **Mouse** — full support.
-- **Keyboard** — full support.
-- **Gamepad** — **not supported.** Flash games using XInput or similar don't work.
+- **Mouse:** full support.
+- **Keyboard:** full support.
+- **Gamepad: not supported.** Flash games using XInput or similar don't work.
 
 On a handheld / Console Mode, Flash games are generally unplayable unless you've got a touchscreen + keyboard or a mouse.
 
 ## Version / updates
 
-Ruffle is bundled in the full RomM image. Updates to Ruffle land when RomM updates its image — there's no separate Ruffle update knob.
+Ruffle is bundled in the full RomM image. Updates to Ruffle land when RomM updates its image; there's no separate Ruffle update knob.
 
 ## Not in 5.0 yet
 
-- **Per-game config overrides** — Ruffle supports some game-specific options upstream, but RomM doesn't surface them yet.
-- **Networking** — Flash games that hit remote servers typically fail (those servers are dead). No proxy / emulated backend for networked Flash games.
-- **Control remapping** — straight passthrough only.
+- **Per-game config overrides.** Ruffle supports some game-specific options upstream, but RomM doesn't surface them yet.
+- **Networking.** Flash games that hit remote servers typically fail (those servers are dead). No proxy / emulated backend for networked Flash games.
+- **Control remapping.** Straight passthrough only.
 
 ## Troubleshooting
 
-- **Play button is missing on a Flash game** — platform folder isn't named `flash` or `browser` (or mapped via `system.platforms`).
-- **Game loads but blank** — AS3 game Ruffle doesn't handle yet. Check [Ruffle compatibility](https://ruffle.rs/#compatibility).
-- **Game says "Ruffle not loaded"** — you're on the slim image. Switch to full, or set `ENABLE_RUFFLE=false` to hide the Play button cleanly.
+- **Play button is missing on a Flash game.** Platform folder isn't named `flash` or `browser` (or mapped via `system.platforms`).
+- **Game loads but blank.** AS3 game Ruffle doesn't handle yet. Check [Ruffle compatibility](https://ruffle.rs/#compatibility).
+- **Game says "Ruffle not loaded".** You're on the slim image. Switch to full, or set `ENABLE_RUFFLE=false` to hide the Play button cleanly.
 
 See [In-Browser Play Troubleshooting → Ruffle](../troubleshooting/in-browser-play.md#ruffle-games).
 
 ## See also
 
-- [In-Browser Play → Ruffle](../using/in-browser-play.md#ruffle) — end-user side.
-- [Metadata Providers → Flashpoint](../administration/metadata-providers.md#flashpoint) — where Flash metadata comes from.
+- [In-Browser Play → Ruffle](../using/in-browser-play.md#ruffle): end-user side.
+- [Metadata Providers → Flashpoint](../administration/metadata-providers.md#flashpoint): where Flash metadata comes from.

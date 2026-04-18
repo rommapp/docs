@@ -5,22 +5,22 @@ description: Clean up and normalise your ROM collection with Igir before importi
 
 # Igir Collection Manager
 
-[Igir](https://igir.io/) is a zero-setup ROM collection manager — sorts, filters, extracts, archives, patches, and reports on collections of any size. Not a RomM companion per se; more a pre-processing tool. Useful for cleaning up a library *before* importing into RomM, so RomM's scans have a better-named, better-organised starting point.
+[Igir](https://igir.io/) is a zero-setup ROM collection manager: sorts, filters, extracts, archives, patches, and reports on collections of any size. Not a RomM companion per se; more a pre-processing tool. Useful for cleaning up a library *before* importing into RomM, so RomM's scans have a better-named, better-organised starting point.
 
 **This is not an official RomM app.** Igir is a separate community project. We document integration here because it's a common workflow and produces a RomM-compatible layout directly.
 
 ## When you'd use Igir
 
-- You have a messy collection — inconsistent naming, mixed formats, dumps from multiple sources.
+- You have a messy collection: inconsistent naming, mixed formats, dumps from multiple sources.
 - You want to **match against No-Intro / Redump DAT files** to verify authenticity and standardise names.
-- You want to **filter** — only retail releases, strip out hacks, keep only one region, etc.
+- You want to **filter**: only retail releases, strip out hacks, keep only one region, etc.
 - You want to move / rename files to RomM's expected platform folder layout.
 
 If your library is already clean, skip Igir. RomM's scans handle naming variations gracefully.
 
 ## Directory setup
 
-Igir works on a copy of your ROMs — never in place — to let you iterate on its config without risking the originals.
+Igir works on a copy of your ROMs (never in place) to let you iterate on its config without risking the originals.
 
 ```text
 .
@@ -40,8 +40,8 @@ cp -r roms/ roms-unverified/
 
 DAT files are hash-referenced catalogues Igir matches against.
 
-- **Cartridge systems:** [No-Intro daily](https://datomatic.no-intro.org/index.php?page=download&op=daily) — full DAT compilation.
-- **Optical systems (PS1, Saturn, etc.):** [Redump](http://redump.org/downloads/) — per-platform DAT files.
+- **Cartridge systems:** [No-Intro daily](https://datomatic.no-intro.org/index.php?page=download&op=daily), full DAT compilation.
+- **Optical systems (PS1, Saturn, etc.):** [Redump](http://redump.org/downloads/), per-platform DAT files.
 
 Drop the DAT files into `dats/`. You can use a subset if you only care about specific platforms.
 
@@ -81,12 +81,12 @@ chmod +x igir-romm-cleanup.sh
 
 ### What it does
 
-- `move extract` — extract archives and move the results.
-- `test` — verify checksums against DATs.
-- `report` — generate a markdown report of matches / misses.
-- `-o ${OUTPUT_DIR}/{romm}/` — output in RomM's expected platform layout (`{romm}` is Igir's RomM-layout template).
-- `--only-retail` — exclude betas, hacks, unlicensed dumps.
-- `--input-checksum-*` — check files thoroughly (slow but authoritative).
+- `move extract`: extract archives and move the results.
+- `test`: verify checksums against DATs.
+- `report`: generate a markdown report of matches / misses.
+- `-o ${OUTPUT_DIR}/{romm}/`: output in RomM's expected platform layout (`{romm}` is Igir's RomM-layout template).
+- `--only-retail`: exclude betas, hacks, unlicensed dumps.
+- `--input-checksum-*`: check files thoroughly (slow but authoritative).
 
 ## Run
 
@@ -96,9 +96,9 @@ chmod +x igir-romm-cleanup.sh
 
 Output:
 
-- `roms-verified/{platform-slug}/{Proper Game Name}.rom` — identified ROMs in RomM layout.
-- `roms-unverified/` — whatever Igir didn't identify, still available for manual review.
-- `report.csv` (or similar) — what matched, what didn't.
+- `roms-verified/{platform-slug}/{Proper Game Name}.rom`: identified ROMs in RomM layout.
+- `roms-unverified/`: whatever Igir didn't identify, still available for manual review.
+- `report.csv` (or similar): what matched, what didn't.
 
 ## Manually migrate leftovers
 
@@ -162,12 +162,12 @@ services:
       - /path/to/roms-verified:/romm/library/roms:ro
 ```
 
-Read-only is safer — if you need Igir to re-clean, you work in the parallel `roms-unverified/` and re-promote to `roms-verified/`.
+Read-only is safer: if you need Igir to re-clean, you work in the parallel `roms-unverified/` and re-promote to `roms-verified/`.
 
 Run a scan from RomM. Everything should match cleanly against providers.
 
 ## See also
 
-- [Igir docs](https://igir.io/) — the upstream reference.
-- [Folder Structure](../getting-started/folder-structure.md) — what RomM expects on-disk.
-- [Metadata Providers](../administration/metadata-providers.md) — how RomM matches after Igir's done its work.
+- [Igir docs](https://igir.io/): the upstream reference.
+- [Folder Structure](../getting-started/folder-structure.md): what RomM expects on-disk.
+- [Metadata Providers](../administration/metadata-providers.md): how RomM matches after Igir's done its work.

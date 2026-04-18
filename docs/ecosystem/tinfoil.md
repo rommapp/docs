@@ -16,7 +16,7 @@ description: Install Nintendo Switch games from your RomM library over Wi-Fi via
 ## Prerequisites
 
 - **RomM 3.5.0 or newer.** Tinfoil feeds landed in that release. Much better in 5.0.
-- **`DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`** on your RomM instance. Tinfoil can't send a bearer token, so the downloads endpoint has to be openable. **Only enable this when RomM isn't directly exposed to the public internet** — see [Authentication → Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass).
+- **`DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`** on your RomM instance. Tinfoil can't send a bearer token, so the downloads endpoint has to be openable. **Only enable this when RomM isn't directly exposed to the public internet.** See [Authentication → Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass).
 - **Tinfoil installed on the Switch.** Setup varies; follow Tinfoil's own docs.
 - **A Switch that can reach RomM over Wi-Fi.** Same LAN is easiest; remote reachability requires reverse proxy + cert that the Switch accepts.
 
@@ -26,7 +26,7 @@ description: Install Nintendo Switch games from your RomM library over Wi-Fi via
 {romm_url}/api/feeds/tinfoil
 ```
 
-No authentication — the endpoint works as long as `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`.
+No authentication: the endpoint works as long as `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`.
 
 ## Configuring Tinfoil
 
@@ -37,7 +37,7 @@ No authentication — the endpoint works as long as `DISABLE_DOWNLOAD_ENDPOINT_A
     - **Host:** RomM's hostname or IP.
     - **Port:** RomM's port (usually 80 or 443).
     - **Path:** `/api/feeds/tinfoil`
-    - **Username:** your RomM username (optional — Tinfoil can send basic auth; RomM tries it).
+    - **Username:** your RomM username (optional; Tinfoil can send basic auth; RomM tries it).
     - **Password:** your RomM password.
     - **Title:** anything (e.g. `RomM Switch`).
     - **Enabled:** yes.
@@ -50,12 +50,12 @@ On reopen, you should see a custom message of the day: `RomM Switch Library`. If
 
 ## Using it
 
-- **New Games** tab in Tinfoil — browseable list of your Switch ROMs.
-- **File Browser** — pick a file to install directly.
+- **New Games** tab in Tinfoil: browseable list of your Switch ROMs.
+- **File Browser**: pick a file to install directly.
 
 Tinfoil handles the install flow like any homebrew: downloads the `.nsp` / `.xci`, installs to eMMC or SD, cleans up.
 
-## Filename requirements — TitleIDs
+## Filename requirements: TitleIDs
 
 Tinfoil needs **Switch title IDs** in the filenames to parse and categorise games. The format:
 
@@ -68,7 +68,7 @@ The bracketed `[0100000000010000]` is the title ID. Without it, Tinfoil shows th
 ![TitleID example](../resources/tinfoil/titleid.jpg)
 
 !!! info "Improvement coming"
-    5.0 improves RomM's title-ID handling — it auto-detects title IDs from filenames that have them and feeds Tinfoil regardless of whether your filename format is standard. The guidance above still applies for older RomM releases.
+    5.0 improves RomM's title-ID handling: it auto-detects title IDs from filenames that have them and feeds Tinfoil regardless of whether your filename format is standard. The guidance above still applies for older RomM releases.
 
 ### Finding title IDs
 
@@ -93,12 +93,12 @@ This gets you authenticated Tinfoil feeds without making RomM itself world-reada
 
 ## Troubleshooting
 
-- **"can't get list: list is empty"** — either your RomM library has no `.nsp`/`.xci` files that Tinfoil recognises, or filenames lack title IDs.
-- **Tinfoil connects but nothing in New Games** — title IDs missing from filenames. Rename.
-- **Tinfoil can't connect at all** — LAN reachability issue, or wrong port in the feed setup. Try `http://<ip>:<port>/api/feeds/tinfoil` in a browser; you should get JSON.
-- **Downloads fail with 401** — `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` isn't set on RomM, or you forgot to restart the container after setting it.
+- **"can't get list: list is empty".** Either your RomM library has no `.nsp`/`.xci` files that Tinfoil recognises, or filenames lack title IDs.
+- **Tinfoil connects but nothing in New Games.** Title IDs missing from filenames. Rename.
+- **Tinfoil can't connect at all.** LAN reachability issue, or wrong port in the feed setup. Try `http://<ip>:<port>/api/feeds/tinfoil` in a browser; you should get JSON.
+- **Downloads fail with 401.** `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` isn't set on RomM, or you forgot to restart the container after setting it.
 
 ## See also
 
-- [Authentication → Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass) — the `DISABLE_DOWNLOAD_ENDPOINT_AUTH` caveat.
-- [Feeds reference](../reference/feeds.md) — full feeds catalogue.
+- [Authentication → Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass): the `DISABLE_DOWNLOAD_ENDPOINT_AUTH` caveat.
+- [Feeds reference](../reference/feeds.md): full feeds catalogue.

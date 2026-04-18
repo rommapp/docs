@@ -27,9 +27,9 @@ A breakdown of disk usage by directory:
 | Bucket | Maps to | Grows when |
 | --- | --- | --- |
 | **Library** | `/romm/library` | You add ROMs. Controlled by you, not RomM. |
-| **Resources** | `/romm/resources` | Scans fetch cover art, screenshots, manuals. Safe to purge — can be rebuilt from a rescan. |
+| **Resources** | `/romm/resources` | Scans fetch cover art, screenshots, manuals. Safe to purge; can be rebuilt from a rescan. |
 | **Assets** | `/romm/assets` | Users upload saves, states, screenshots. **Back this up.** |
-| **Config** | `/romm/config` | Rarely — you or admins edit `config.yml`. |
+| **Config** | `/romm/config` | Rarely: you or admins edit `config.yml`. |
 
 ### Per-platform breakdown
 
@@ -38,7 +38,7 @@ Under the summary, an expandable table sorted by either ROM count or disk usage.
 - Matched / unmatched count.
 - Region distribution (how many games tagged USA, Japan, Europe, World, etc.).
 - Language distribution.
-- Metadata coverage — how many games have each field populated (cover, description, release date, rating).
+- Metadata coverage: how many games have each field populated (cover, description, release date, rating).
 
 Useful for: "which platform is eating my disk?" and "which platform has the worst match rate?"
 
@@ -47,9 +47,9 @@ Useful for: "which platform is eating my disk?" and "which platform has the wors
 
 ## What the numbers don't include
 
-- **Disk usage for the database itself** — MariaDB / Postgres data volume isn't reported here. Use `docker system df -v` or your volume backend's native tooling.
-- **Redis memory** — same; monitor Redis separately if you're tight on RAM.
-- **Per-user storage breakdown** — not exposed in 5.0.
+- **Disk usage for the database itself**: MariaDB / Postgres data volume isn't reported here. Use `docker system df -v` or your volume backend's native tooling.
+- **Redis memory**: same; monitor Redis separately if you're tight on RAM.
+- **Per-user storage breakdown**: not exposed in 5.0.
 
 ## Using stats for capacity planning
 
@@ -61,7 +61,7 @@ Rule-of-thumb sizes:
 | Assets / Library | <1% unless you have lots of heavy PSP/PS3 saves. |
 | DB size / Games | ~10-50 KB per ROM row, depending on metadata richness. |
 
-If **Resources** is ballooning, run the [Cleanup Orphaned Resources](scheduled-tasks.md#cleanup-orphaned-resources-manual) task. If **Assets** is growing unexpectedly, a user is probably uploading save states for long-form JRPGs — that's fine, just plan for it.
+If **Resources** is ballooning, run the [Cleanup Orphaned Resources](scheduled-tasks.md#cleanup-orphaned-resources-manual) task. If **Assets** is growing unexpectedly, a user is probably uploading save states for long-form JRPGs; that's fine, just plan for it.
 
 ## API
 
@@ -77,8 +77,8 @@ Wire to your monitoring stack via the API rather than scraping the HTML page. Se
 
 ## Troubleshooting
 
-- **Numbers look stale** — stats are computed on page load, not cached. Reload. If still stale, the DB connection is degraded; check `docker logs romm 2>&1 | grep -i database`.
-- **Disk sizes look wrong** — RomM reports what it sees in `/romm/*`. If your compose mounts a path that's smaller than the host dataset (e.g. you mounted a sub-directory), RomM only sees that subset.
-- **"Platform stats couldn't load"** — the DB query timed out. On very large libraries this happens; retry, or raise `SCAN_TIMEOUT_HOURS` (yes, it also gates the stats query).
+- **Numbers look stale**: stats are computed on page load, not cached. Reload. If still stale, the DB connection is degraded; check `docker logs romm 2>&1 | grep -i database`.
+- **Disk sizes look wrong**: RomM reports what it sees in `/romm/*`. If your compose mounts a path that's smaller than the host dataset (e.g. you mounted a sub-directory), RomM only sees that subset.
+- **"Platform stats couldn't load"**: the DB query timed out. On very large libraries this happens; retry, or raise `SCAN_TIMEOUT_HOURS` (yes, it also gates the stats query).
 
 For anything else: [Troubleshooting](../troubleshooting/index.md).

@@ -7,8 +7,8 @@ description: Manage save files and save-states across in-browser play and synced
 
 Two different things, often confused:
 
-- **Save files** — the in-game save (`.srm`, `.sav`, `.save`, etc.). What the game writes when you use the in-game save feature. Works across emulator cores that share the format.
-- **Save states** — a full memory snapshot of the emulator at a moment in time. Emulator-specific; a SNES9x state won't load in bsnes.
+- **Save files**: the in-game save (`.srm`, `.sav`, `.save`, etc.). What the game writes when you use the in-game save feature. Works across emulator cores that share the format.
+- **Save states**: a full memory snapshot of the emulator at a moment in time. Emulator-specific; a SNES9x state won't load in bsnes.
 
 Both are **per-user per-ROM** and stored under `/romm/assets/<user>/<rom>/`. They follow you across browsers and devices.
 
@@ -16,8 +16,8 @@ Both are **per-user per-ROM** and stored under `/romm/assets/<user>/<rom>/`. The
 
 Game detail page → **Game Data** tab. Separate sub-tabs for:
 
-- **Saves** — all save files for this ROM, with date and emulator.
-- **States** — all states, with thumbnail (if one was captured).
+- **Saves**: all save files for this ROM, with date and emulator.
+- **States**: all states, with thumbnail (if one was captured).
 
 ## Uploading a save
 
@@ -32,23 +32,23 @@ The save is available to [in-browser play](in-browser-play.md) on the next launc
 
 ## Uploading a state
 
-Same flow under **Upload State**. Optional screenshot attachment — RomM autogenerates one when you create a state from in-browser play; only matters when uploading from outside.
+Same flow under **Upload State**. Optional screenshot attachment; RomM autogenerates one when you create a state from in-browser play. Only matters when uploading from outside.
 
 ## Creating during play
 
 In-game Menu in EmulatorJS:
 
-- **Save** — writes in-game save data back to RomM. Same as the native console's save-to-cartridge flow.
-- **Save State** / **Load State** — creates a full memory snapshot, or restores from one. RomM uploads the snapshot automatically.
+- **Save**: writes in-game save data back to RomM. Same as the native console's save-to-cartridge flow.
+- **Save State** / **Load State**: creates a full memory snapshot, or restores from one. RomM uploads the snapshot automatically.
 
-There's no "forgot to upload" step — everything persists as soon as you do it in-emulator.
+There's no "forgot to upload" step; everything persists as soon as you do it in-emulator.
 
 ## Selecting on launch
 
 If a ROM has multiple saves or states, the pre-launch picker appears before the emulator loads:
 
-- **Save file** dropdown — which save to load on boot.
-- **State** dropdown — optional; loads immediately after boot.
+- **Save file** dropdown: which save to load on boot.
+- **State** dropdown: optional; loads immediately after boot.
 
 [Console Mode](console-mode.md) surfaces the same picker on a larger gamepad-friendly dialog.
 
@@ -70,11 +70,11 @@ For bulk cleanup (e.g. "delete every state for games I've beaten"), use the mult
 
 Saves and states can sync to/from registered devices (Grout on muOS, DeckRommSync on a Deck, etc.). Covered in depth in the ecosystem section:
 
-- [Device Sync Protocol](../ecosystem/device-sync-protocol.md) — wire-level reference.
-- [SSH Sync](../administration/ssh-sync.md) — operator-side config.
-- [Argosy Launcher](../ecosystem/argosy.md) / [Grout](../ecosystem/grout.md) — per-app setup.
+- [Device Sync Protocol](../ecosystem/device-sync-protocol.md): wire-level reference.
+- [SSH Sync](../administration/ssh-sync.md): operator-side config.
+- [Argosy Launcher](../ecosystem/argosy.md) / [Grout](../ecosystem/grout.md): per-app setup.
 
-From the end-user side: once your device is paired and sync is running, saves made on the device appear in RomM within a couple of sync cycles (default: 15 minutes). Conflicts — same ROM saved on two devices between syncs — surface as two separate save entries; pick which to keep.
+From the end-user side: once your device is paired and sync is running, saves made on the device appear in RomM within a couple of sync cycles (default: 15 minutes). Conflicts (same ROM saved on two devices between syncs) surface as two separate save entries; pick which to keep.
 
 ## Format / core compatibility
 
@@ -88,7 +88,7 @@ Save files are usually format-interchangeable across cores for the same platform
 | SNES | `.srm` | Yes, across SNES9x / bsnes |
 | Genesis / Mega Drive | `.srm` | Yes |
 | Game Boy / GBC / GBA | `.sav` | Yes, across Gambatte / mGBA |
-| N64 | `.srm`, `.eep`, `.fla` | Yes, but per-type — the right file must be uploaded |
+| N64 | `.srm`, `.eep`, `.fla` | Yes, but per-type: the right file must be uploaded |
 | PSX | `.srm` (memory card) | Yes, across Mednafen / PCSX cores |
 | Saturn / Dreamcast | Varies | Check core docs |
 
@@ -110,10 +110,10 @@ When you create a state via in-game Menu → Save State, EmulatorJS grabs a fram
 
 ## Troubleshooting
 
-- **Save uploaded but the game doesn't see it** — wrong format for the core. Check the compatibility table above; re-upload or switch cores.
-- **State loads a corrupted frame** — state was saved by a different build of the core. If RomM updated the emulator bundle, old states may not load cleanly. Re-create or start a fresh save.
-- **Save disappears after play** — the emulator didn't flush on quit. Use in-game **Save and Quit** instead of just closing the browser.
-- **Can't upload — "file too large"** — reverse proxy limit; raise `client_max_body_size` / `proxy-body-size`. See [Reverse Proxy](../install/reverse-proxy.md).
+- **Save uploaded but the game doesn't see it**: wrong format for the core. Check the compatibility table above; re-upload or switch cores.
+- **State loads a corrupted frame**: state was saved by a different build of the core. If RomM updated the emulator bundle, old states may not load cleanly. Re-create or start a fresh save.
+- **Save disappears after play**: the emulator didn't flush on quit. Use in-game **Save and Quit** instead of just closing the browser.
+- **Can't upload, "file too large"**: reverse proxy limit; raise `client_max_body_size` / `proxy-body-size`. See [Reverse Proxy](../install/reverse-proxy.md).
 
 More in [Troubleshooting](../troubleshooting/index.md).
 

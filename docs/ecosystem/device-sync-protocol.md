@@ -1,6 +1,6 @@
 ---
 title: Device Sync Protocol
-description: Wire-level reference for RomM's save/state/play-session sync protocol — for companion-app developers.
+description: Wire-level reference for RomM's save/state/play-session sync protocol, for companion-app developers.
 ---
 
 # Device Sync Protocol
@@ -11,9 +11,9 @@ End users: this is under the hood. You don't need to read it. See [Saves & State
 
 ## The three primitives
 
-1. **Devices** — registered endpoints. Each device has a name, hostname, and links to a specific user's [Client API Token](client-api-tokens.md).
-2. **Sync sessions** — an atomic bidirectional sync run. One session handles "pull anything new from server" + "push anything new from device" + "reconcile conflicts" + "ingest play sessions".
-3. **Play sessions** — per-session records of ROM playtime. Independent of sync but commonly posted in batch at the end of a sync run.
+1. **Devices**: registered endpoints. Each device has a name, hostname, and links to a specific user's [Client API Token](client-api-tokens.md).
+2. **Sync sessions**: an atomic bidirectional sync run. One session handles "pull anything new from server" + "push anything new from device" + "reconcile conflicts" + "ingest play sessions".
+3. **Play sessions**: per-session records of ROM playtime. Independent of sync but commonly posted in batch at the end of a sync run.
 
 ## Authentication
 
@@ -101,7 +101,7 @@ Content-Type: application/json
 }
 ```
 
-The device reports every save/state it knows about for each ROM — filename, last-modified time, and hash.
+The device reports every save/state it knows about for each ROM: filename, last-modified time, and hash.
 
 ### Response
 
@@ -145,13 +145,13 @@ RomM returns a set of **operations** the device should execute:
 
 ### Operation types
 
-- **`upload`** — device pushes the file to the server.
-- **`download`** — device pulls the file from the server.
-- **`conflict`** — both sides have newer versions. Resolution strategy:
-    - `keep_both` — rename and keep both copies.
-    - `server_wins` / `device_wins` — overwrite the other.
+- **`upload`**: device pushes the file to the server.
+- **`download`**: device pulls the file from the server.
+- **`conflict`**: both sides have newer versions. Resolution strategy:
+    - `keep_both`: rename and keep both copies.
+    - `server_wins` / `device_wins`: overwrite the other.
     - Default is `keep_both`.
-- **`noop`** — nothing to do; hashes match.
+- **`noop`**: nothing to do; hashes match.
 
 ### Execution
 
@@ -230,7 +230,7 @@ Companion apps generally prefer the API model. SSH-based sync exists mostly for 
 Not strict in 5.0. Reasonable rule of thumb:
 
 - Sync once per session (not every save).
-- Large bursts (initial sync of a full library) are fine — RomM handles them.
+- Large bursts (initial sync of a full library) are fine; RomM handles them.
 - Don't poll `/api/sync/negotiate` in a tight loop; it's expensive server-side.
 
 ## Event notifications
@@ -239,8 +239,8 @@ Currently polling-only. Companion apps check `/api/sync/negotiate` periodically 
 
 ## See also
 
-- [Client API Tokens](client-api-tokens.md) — auth + pairing.
-- [API Authentication](../developers/api-authentication.md) — general auth primer.
-- [API Reference](../developers/api-reference.md) — full endpoint catalogue.
-- [SSH Sync](../administration/ssh-sync.md) — alternative transport for handhelds.
-- [Argosy](argosy.md), [Grout](grout.md) — reference client implementations.
+- [Client API Tokens](client-api-tokens.md): auth + pairing.
+- [API Authentication](../developers/api-authentication.md): general auth primer.
+- [API Reference](../developers/api-reference.md): full endpoint catalogue.
+- [SSH Sync](../administration/ssh-sync.md): alternative transport for handhelds.
+- [Argosy](argosy.md), [Grout](grout.md): reference client implementations.

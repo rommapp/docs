@@ -1,13 +1,13 @@
 ---
 title: Metadata Providers
-description: Configure the thirteen metadata sources RomM supports — IGDB, ScreenScraper, MobyGames, RetroAchievements, SteamGridDB, Hasheous, PlayMatch, LaunchBox, TheGamesDB, Flashpoint, HowLongToBeat, gamelist.xml, Libretro.
+description: Configure the thirteen metadata sources RomM supports: IGDB, ScreenScraper, MobyGames, RetroAchievements, SteamGridDB, Hasheous, PlayMatch, LaunchBox, TheGamesDB, Flashpoint, HowLongToBeat, gamelist.xml, Libretro.
 ---
 
 # Metadata Providers
 
-RomM pulls game metadata — titles, descriptions, cover art, screenshots, manuals, achievement data, completion times — from up to **thirteen** providers. You don't need all of them. This page covers the recommended combinations and per-provider setup.
+RomM pulls game metadata (titles, descriptions, cover art, screenshots, manuals, achievement data, completion times) from up to **thirteen** providers. You don't need all of them. This page covers the recommended combinations and per-provider setup.
 
-Configure providers either via env vars (below) or interactively in **Administration → Metadata Sources** in the UI. Scan priority (which provider wins when two disagree) is set in [`config.yml`](../reference/configuration-file.md) — see `scan.priority.metadata` and `scan.priority.artwork`.
+Configure providers either via env vars (below) or interactively in **Administration → Metadata Sources** in the UI. Scan priority (which provider wins when two disagree) is set in [`config.yml`](../reference/configuration-file.md); see `scan.priority.metadata` and `scan.priority.artwork`.
 
 ## Popular combos
 
@@ -51,7 +51,7 @@ Configure providers either via env vars (below) or interactively in **Administra
 
 Access requires a Twitch account and a phone number for 2FA. Up-to-date instructions live in the [IGDB API docs](https://api-docs.igdb.com/#account-creation). When registering your application in the Twitch Developer Portal:
 
-- **Name**: something unique — picking an existing name fails silently. Use `romm-<random hex>`.
+- **Name**: something unique; picking an existing name fails silently. Use `romm-<random hex>`.
 - **OAuth Redirect URLs**: `localhost`
 - **Category**: Application Integration
 - **Client Type**: Confidential
@@ -77,7 +77,7 @@ Metadata, cover art, and screenshots. [Create an account](https://www.mobygames.
 
 ### SteamGridDB
 
-[SteamGridDB](https://www.steamgriddb.com/) serves custom cover art for games and collections. It's not used by the scanner directly — it surfaces in the **Search Cover** button when you manually edit a game's artwork.
+[SteamGridDB](https://www.steamgriddb.com/) serves custom cover art for games and collections. It's not used by the scanner directly; it surfaces in the **Search Cover** button when you manually edit a game's artwork.
 
 Log in with a [Steam account](https://store.steampowered.com/join), go to your [API tab](https://www.steamgriddb.com/profile/preferences/api), and set `STEAMGRIDDB_API_KEY`.
 
@@ -85,7 +85,7 @@ Log in with a [Steam account](https://store.steampowered.com/join), go to your [
 
 [RetroAchievements](https://retroachievements.org/) provides achievement data and hash matching. Generate a web API key from your RA [settings page](https://retroachievements.org/settings) and set `RETROACHIEVEMENTS_API_KEY`. Run an **Unmatched** scan on the platforms you want matched.
 
-Each RomM user also links their own RA username in their profile to sync personal progression — a new **Achievements** tab appears on the **Personal** data panel once linked.
+Each RomM user also links their own RA username in their profile to sync personal progression; a new **Achievements** tab appears on the **Personal** data panel once linked.
 
 The RA database is cached locally; refresh frequency is controlled by `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS` (default: 30).
 
@@ -103,7 +103,7 @@ The RA database is cached locally; refresh frequency is controlled by `REFRESH_R
 
 ### LaunchBox
 
-The [LaunchBox Games Database](https://gamesdb.launchbox-app.com/) is a community-driven catalogue. RomM downloads the full database locally and matches on exact filenames — just like the LaunchBox desktop app.
+The [LaunchBox Games Database](https://gamesdb.launchbox-app.com/) is a community-driven catalogue. RomM downloads the full database locally and matches on exact filenames, just like the LaunchBox desktop app.
 
 ```yaml
 environment:
@@ -112,7 +112,7 @@ environment:
   - SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON=0 5 * * *  # default: 5am daily
 ```
 
-Run at least one LaunchBox update (manually from the Scan page, or wait for the cron) before using it as a scan source — RomM won't match against an empty local DB.
+Run at least one LaunchBox update (manually from the Scan page, or wait for the cron) before using it as a scan source; RomM won't match against an empty local DB.
 
 ### TheGamesDB
 
@@ -120,7 +120,7 @@ Run at least one LaunchBox update (manually from the Scan page, or wait for the 
 
 ### Flashpoint
 
-The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) covers 180,000+ Flash and browser-based games — the thing Ruffle is for. Flag with `FLASHPOINT_API_ENABLED=true`. Run an **Unmatched** scan to update existing platforms.
+The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) covers 180,000+ Flash and browser-based games, the thing Ruffle is for. Flag with `FLASHPOINT_API_ENABLED=true`. Run an **Unmatched** scan to update existing platforms.
 
 ### HowLongToBeat
 
@@ -163,7 +163,7 @@ Two edits in the ES-DE settings file so ES-DE writes its metadata and media into
 
 ### Libretro
 
-Libretro's retro core metadata is used internally for platform mapping and fallback artwork — no env flag, no credentials. Nothing to configure; RomM uses it automatically when it knows the libretro core for a platform.
+Libretro's retro core metadata is used internally for platform mapping and fallback artwork: no env flag, no credentials. Nothing to configure; RomM uses it automatically when it knows the libretro core for a platform.
 
 ## Metadata tags in filenames
 
@@ -178,7 +178,7 @@ RomM honours inline tags in ROM filenames to force a match against a specific pr
 | `(launchbox-xxxx)` | [LaunchBox](https://gamesdb.launchbox-app.com/) |
 | `(hltb-xxxx)` | [HowLongToBeat](https://howlongtobeat.com/) |
 
-RomM will **not** rename your files to add these — they're opt-in, and renaming would conflict with other tooling that walks the filesystem.
+RomM will **not** rename your files to add these; they're opt-in, and renaming would conflict with other tooling that walks the filesystem.
 
 ## Priority and conflict resolution
 
@@ -210,6 +210,6 @@ scan:
       - hltb
 ```
 
-Reorder these lists to taste — for example, put `ss` first if you prefer ScreenScraper boxart, or move `hltb` up if you care about completion times more than descriptions.
+Reorder these lists to taste. For example, put `ss` first if you prefer ScreenScraper boxart, or move `hltb` up if you care about completion times more than descriptions.
 
 See the full [Configuration File reference](../reference/configuration-file.md) for everything `scan.priority` can do.

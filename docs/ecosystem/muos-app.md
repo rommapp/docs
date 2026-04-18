@@ -1,6 +1,6 @@
 ---
 title: muOS App
-description: Official RomM app for muOS and EmulationStation handhelds — fetch games wirelessly.
+description: Official RomM app for muOS and EmulationStation handhelds, fetch games wirelessly.
 ---
 
 <!-- trunk-ignore-all(markdownlint/MD033) -->
@@ -11,7 +11,7 @@ description: Official RomM app for muOS and EmulationStation handhelds — fetch
     <img src="../../resources/romm/integrations/muos.svg" height="200px" width="200px" alt="RomM muOS logo">
 </div>
 
-[muOS](https://muos.dev) is a custom firmware (CFW) for handheld devices — Anbernic, Miyoo, and similar. The **muOS App** connects to your RomM instance and fetches ROMs wirelessly.
+[muOS](https://muos.dev) is a custom firmware (CFW) for handheld devices: Anbernic, Miyoo, and similar. The **muOS App** connects to your RomM instance and fetches ROMs wirelessly.
 
 - **Repo:** [rommapp/muos-app](https://github.com/rommapp/muos-app)
 - **Platforms:** muOS, EmulationStation (via PortMaster)
@@ -19,14 +19,14 @@ description: Official RomM app for muOS and EmulationStation handhelds — fetch
 
 ## muOS-specific flavour vs Grout
 
-This page covers the **muOS App** — a lightweight client focused on game fetching. For the fuller push/pull sync experience (saves back to RomM, play-session reporting), use [Grout](grout.md) instead. They're two different clients for the same family of devices.
+This page covers the **muOS App**: a lightweight client focused on game fetching. For the fuller push/pull sync experience (saves back to RomM, play-session reporting), use [Grout](grout.md) instead. They're two different clients for the same family of devices.
 
-- **muOS App** — lightweight; pulls ROMs, no save sync.
-- **Grout** — full sync; ROMs + saves + states + play sessions.
+- **muOS App**: lightweight; pulls ROMs, no save sync.
+- **Grout**: full sync; ROMs + saves + states + play sessions.
 
 Pick based on what you need.
 
-## Installing — muOS
+## Installing: muOS
 
 Installation uses muOS's [Archive Manager](https://muos.dev/installation/archive):
 
@@ -49,7 +49,7 @@ Installation uses muOS's [Archive Manager](https://muos.dev/installation/archive
 
     Once RomM's 5.0 Client API Token flow is wired into the muOS app (planned), prefer pairing via token instead of password.
 
-## Installing — EmulationStation (via PortMaster)
+## Installing: EmulationStation (via PortMaster)
 
 For EmulationStation-based devices:
 
@@ -70,7 +70,7 @@ Simplest setup:
 More-involved setups:
 
 - **Reverse proxy with TLS.** `HOST=https://romm.example.com`. HTTPS works but introduces cert-validation risk on handhelds (some fail strict TLS).
-- **Remote access via VPN.** Install Tailscale or similar on the handheld (if supported) — lets the handheld reach RomM from outside the LAN.
+- **Remote access via VPN.** Install Tailscale or similar on the handheld (if supported); lets the handheld reach RomM from outside the LAN.
 
 ## Using the app
 
@@ -80,21 +80,21 @@ Downloaded games appear in the device's usual ROM folder for the platform, so mu
 
 ## What it doesn't do (yet)
 
-- **Save sync** — this app is pull-only. For bidirectional sync, use [Grout](grout.md).
-- **Play session tracking** — not ingested into RomM.
-- **Firmware download** — not in scope.
+- **Save sync.** This app is pull-only. For bidirectional sync, use [Grout](grout.md).
+- **Play session tracking.** Not ingested into RomM.
+- **Firmware download.** Not in scope.
 
 If you need these, Grout is the app.
 
 ## Troubleshooting
 
-- **Can't connect** — wrong `HOST` in `.env`, or the handheld isn't on the same network as RomM. Ping RomM's IP from the handheld's shell to confirm reachability.
-- **"Authentication failed"** — password wrong, or `DISABLE_USERPASS_LOGIN=true` on the RomM side. Either re-enable user/pass login or use a token once supported.
-- **Downloaded games don't show in the platform** — refresh the library from muOS's UI. If they still don't appear, the platform folder in `HOST_PATH` is wrong — check muOS's expected layout.
+- **Can't connect.** Wrong `HOST` in `.env`, or the handheld isn't on the same network as RomM. Ping RomM's IP from the handheld's shell to confirm reachability.
+- **"Authentication failed".** Password wrong, or `DISABLE_USERPASS_LOGIN=true` on the RomM side. Either re-enable user/pass login or use a token once supported.
+- **Downloaded games don't show in the platform.** Refresh the library from muOS's UI. If they still don't appear, the platform folder in `HOST_PATH` is wrong; check muOS's expected layout.
 
 ## See also
 
-- [Grout](grout.md) — the fuller sync client for the same device family.
-- [Client API Tokens](client-api-tokens.md) — safer auth than plaintext credentials in `.env`.
-- [Mobile & TV](../using/mobile-and-tv.md) — handheld usage patterns.
-- [rommapp/muos-app](https://github.com/rommapp/muos-app) — source, issues, releases.
+- [Grout](grout.md): the fuller sync client for the same device family.
+- [Client API Tokens](client-api-tokens.md): safer auth than plaintext credentials in `.env`.
+- [Mobile & TV](../using/mobile-and-tv.md): handheld usage patterns.
+- [rommapp/muos-app](https://github.com/rommapp/muos-app): source, issues, releases.

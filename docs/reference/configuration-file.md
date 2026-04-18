@@ -1,11 +1,11 @@
 ---
 title: Configuration File
-description: Full schema reference for config.yml — exclusions, system bindings, filesystem, scan priorities, EmulatorJS.
+description: Full schema reference for config.yml: exclusions, system bindings, filesystem, scan priorities, EmulatorJS.
 ---
 
 # Configuration File
 
-RomM reads `config.yml` from `/romm/config/config.yml` inside the container. The whole file is optional — any section you omit falls back to RomM's defaults.
+RomM reads `config.yml` from `/romm/config/config.yml` inside the container. The whole file is optional: any section you omit falls back to RomM's defaults.
 
 You can edit `config.yml` directly on disk **or** through **Administration → Library Management** in the UI, which is a two-way view of the same file.
 
@@ -15,7 +15,7 @@ Start from the [`config.example.yml`](https://github.com/rommapp/romm/blob/maste
 - [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml)
 
 !!! warning "Only set what you need"
-    Any omitted section uses the default. Don't copy the full example and then strip sections — just add what you want to change.
+    Any omitted section uses the default. Don't copy the full example and then strip sections; just add what you want to change.
 
 ---
 
@@ -25,7 +25,7 @@ Control what the scanner ignores.
 
 ### `exclude.platforms`
 
-Skip entire platform folders. Values are platform slugs (not folder names — see [`system.platforms`](#systemplatforms) if your folders are named differently).
+Skip entire platform folders. Values are platform slugs (not folder names; see [`system.platforms`](#systemplatforms) if your folders are named differently).
 
 ```yaml
 exclude:
@@ -256,7 +256,7 @@ Which media types to fetch during a scan. Applies primarily to ScreenScraper and
 | `fanart` | Community-uploaded fan art. |
 | `bezel` | EmulatorJS-compatible bezel. |
 | `manual` | PDF manual. Enabled by default. |
-| `video` | Gameplay video (big files — watch your disk). |
+| `video` | Gameplay video (big files, watch your disk). |
 
 ```yaml
 scan:
@@ -372,7 +372,7 @@ emulatorjs:
       fps: show
 ```
 
-Core names must match the EmulatorJS core identifier exactly — see the `getSupportedEJSCores` utility in the frontend source for the full list, or leave the core out and use `default`.
+Core names must match the EmulatorJS core identifier exactly. See the `getSupportedEJSCores` utility in the frontend source for the full list, or leave the core out and use `default`.
 
 ### `emulatorjs.controls`
 
@@ -398,18 +398,18 @@ See the [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/contr
 
 ## Editing via the UI
 
-Everything above is also available from the Library Management page in the web UI — edits there write back to the same `config.yml`. Either path works; they're not separate stores.
+Everything above is also available from the Library Management page in the web UI; edits there write back to the same `config.yml`. Either path works; they're not separate stores.
 
 ## Per-file alternatives
 
-RomM also ships two pre-built config.yml variants for people coming from existing frontends — copy them wholesale rather than writing one from scratch:
+RomM also ships two pre-built config.yml variants for people coming from existing frontends. Copy them wholesale rather than writing one from scratch:
 
-- [`config.batocera-retrobat.yml`](https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml) — Batocera / RetroBat layouts.
-- [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml) — ES-DE layout.
+- [`config.batocera-retrobat.yml`](https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml): Batocera / RetroBat layouts.
+- [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml): ES-DE layout.
 
 ## Related
 
-- [Folder Structure](../getting-started/folder-structure.md) — how the filesystem shape interacts with `config.yml`.
-- [Metadata Providers](../administration/metadata-providers.md) — per-provider detail for the `scan.priority.*` slugs.
-- [Scanning & Watcher](../administration/scanning-and-watcher.md) — how `exclude.*` interacts with scan runs.
-- [Environment Variables](environment-variables.md) — env-var overrides for some of the same knobs.
+- [Folder Structure](../getting-started/folder-structure.md): how the filesystem shape interacts with `config.yml`.
+- [Metadata Providers](../administration/metadata-providers.md): per-provider detail for the `scan.priority.*` slugs.
+- [Scanning & Watcher](../administration/scanning-and-watcher.md): how `exclude.*` interacts with scan runs.
+- [Environment Variables](environment-variables.md): env-var overrides for some of the same knobs.

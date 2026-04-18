@@ -1,13 +1,13 @@
 ---
 title: MS-DOS
-description: How to run DOS games in RomM via dosbox-pure — homebrew, shareware demos, and retail CDs.
+description: How to run DOS games in RomM via dosbox-pure, homebrew, shareware demos, and retail CDs.
 ---
 
 <!-- trunk-ignore-all(markdownlint/MD033) -->
 
 # MS-DOS
 
-DOS games run in RomM via [`dosbox-pure`](https://github.com/schellingb/dosbox-pure) — the EmulatorJS integration. Create a DOS platform (folder named `dos`) and drop your games in.
+DOS games run in RomM via [`dosbox-pure`](https://github.com/schellingb/dosbox-pure), the EmulatorJS integration. Create a DOS platform (folder named `dos`) and drop your games in.
 
 !!! tip "Upload games as `.zip`"
     `dosbox-pure` knows how to unzip and auto-mount zipped DOS games. Much easier than packaging a raw folder.
@@ -17,11 +17,11 @@ DOS games run in RomM via [`dosbox-pure`](https://github.com/schellingb/dosbox-p
 
 ## Game categories
 
-DOS games come in three flavours — each needs a different approach:
+DOS games come in three flavours, each needs a different approach:
 
-- **Homebrew** — indie / modern DOS games. Just an `.exe`; usually Just Works once mounted.
-- **Shareware demos** — what most "free DOS games" sites distribute. Same as homebrew — all files in one folder.
-- **Retail** — need the original CD mounted alongside the installed game files. More work; every game is different.
+- **Homebrew:** indie / modern DOS games. Just an `.exe`; usually Just Works once mounted.
+- **Shareware demos:** what most "free DOS games" sites distribute. Same as homebrew: all files in one folder.
+- **Retail:** need the original CD mounted alongside the installed game files. More work; every game is different.
 
 ## The manual way (commandline)
 
@@ -34,7 +34,7 @@ dir                     # find the .EXE
 filename.exe            # launch
 ```
 
-Works for homebrew and shareware. Retail games usually fail here — they want a CD mounted somewhere.
+Works for homebrew and shareware. Retail games usually fail here; they want a CD mounted somewhere.
 
 ## The automatic way (`.conf` autoload)
 
@@ -42,7 +42,7 @@ Works for homebrew and shareware. Retail games usually fail here — they want a
 
 Once you have a working `.conf`, click Play → game boots straight into DOS → `[autoexec]` runs → you're in the game. No typing.
 
-### Homebrew / demo example — DOOM shareware
+### Homebrew / demo example: DOOM shareware
 
 1. Confirm no `.ins`, `.cue`, or `.bin` files in the folder (those mean it's a retail CD game).
 2. Create `DOOM.conf` next to `DOOM.exe`:
@@ -110,19 +110,19 @@ exit
 
 Walkthrough of `[autoexec]`:
 
-- `Mount C ".."` — mount the current folder as drive `C:`.
-- `C:` — switch to `C:`.
-- `cls` — clear the screen.
-- `DOOM.exe` — launch the game.
-- `:exit` + `exit` — return after quitting.
+- `Mount C ".."`: mount the current folder as drive `C:`.
+- `C:`: switch to `C:`.
+- `cls`: clear the screen.
+- `DOOM.exe`: launch the game.
+- `:exit` + `exit`: return after quitting.
 
 3. Zip up the folder (including `DOOM.conf`).
 4. Upload to RomM under the `dos` platform.
 5. Click Play. Game boots.
 
-Blank screen after boot? Something's off in `[autoexec]` — usually a path or mount issue.
+Blank screen after boot? Something's off in `[autoexec]`, usually a path or mount issue.
 
-### Retail with CD example — Dungeon Keeper
+### Retail with CD example: Dungeon Keeper
 
 Retail games need the game CD image mounted alongside the install directory.
 
@@ -136,7 +136,7 @@ Retail games need the game CD image mounted alongside the install directory.
         DUNGEON.CUE
         DUNGEON.BIN
     ```
-2. Read `KEEPER.cfg` — it tells you where the game expects the CD.
+2. Read `KEEPER.cfg`: it tells you where the game expects the CD.
 3. Create `KEEPER.conf` with this `[autoexec]`:
 
     ```ini
@@ -154,12 +154,12 @@ Retail games need the game CD image mounted alongside the install directory.
     ```
 
     Key lines:
-    - `Mount C ".."` — game files as `C:`.
-    - `imgmount d DUNGEO~8.CUE -t iso -fs iso` — CD image as `D:`.
-    - `cd ..` — back to `C:\` where `KEEPER.exe` lives.
-    - `KEEPER.exe` — run.
+    - `Mount C ".."`: game files as `C:`.
+    - `imgmount d DUNGEO~8.CUE -t iso -fs iso`: CD image as `D:`.
+    - `cd ..`: back to `C:\` where `KEEPER.exe` lives.
+    - `KEEPER.exe`: run.
 
-    (File names in DOS are 8.3 — `DUNGEON8.CUE` becomes `DUNGEO~8.CUE`.)
+    (File names in DOS are 8.3: `DUNGEON8.CUE` becomes `DUNGEO~8.CUE`.)
 
 4. Zip, upload, play.
 
@@ -170,9 +170,9 @@ Retail games need the game CD image mounted alongside the install directory.
 
 If the game lands on a blank DOS prompt:
 
-1. **Remove the final `.exe` line from `[autoexec]`** — drops you at a prompt after mounting. Check manually:
+1. **Remove the final `.exe` line from `[autoexec]`.** Drops you at a prompt after mounting. Check manually:
     - Is the game directory mounted correctly?
-    - `type DEFAULT.cfg` (or whatever the game's config is named) — the install path should line up with what you mounted.
+    - `type DEFAULT.cfg` (or whatever the game's config is named): the install path should line up with what you mounted.
 2. **Check drive paths.** Many retail DOS games hard-code `D:\` as the CD. If you mount the CD as `E:`, the game won't find it.
 3. **Debug with native `dosbox-pure`.** Run the same zip in [RetroArch](https://retroarch.com/) with the `dosbox-pure` core. If it works there, it should work in RomM. If it doesn't, the `.conf` is the problem.
 
@@ -182,15 +182,15 @@ The DOOM example above is minimal. The full config can include dozens more optio
 
 ## Netplay on DOS
 
-Not supported — `dosbox-pure` works with EmulatorJS Netplay intermittently, not reliably. Stick to single-player for DOS.
+Not supported: `dosbox-pure` works with EmulatorJS Netplay intermittently, not reliably. Stick to single-player for DOS.
 
 ## Known issues
 
-- **Mouse lag** — enable `autolock=true` in `[sdl]`.
-- **Wrong resolution / aspect** — tweak `[render] aspect=` and `windowresolution=`.
-- **Audio crackle** — lower `rate=22050` to `rate=11025` or raise the mixer blocksize.
-- **Game runs too fast** — most auto-cycle issues; set `cycles=fixed 4000` (or another number) explicitly.
-- **Keyboard doesn't work for certain keys** — `usescancodes=false` sometimes fixes it.
+- **Mouse lag.** Enable `autolock=true` in `[sdl]`.
+- **Wrong resolution / aspect.** Tweak `[render] aspect=` and `windowresolution=`.
+- **Audio crackle.** Lower `rate=22050` to `rate=11025` or raise the mixer blocksize.
+- **Game runs too fast.** Most auto-cycle issues; set `cycles=fixed 4000` (or another number) explicitly.
+- **Keyboard doesn't work for certain keys.** `usescancodes=false` sometimes fixes it.
 
 ## Dosemu / Exodos alternatives
 
@@ -198,6 +198,6 @@ Dosemu (Linux native) and Exodos (Windows frontend) are separate DOS tools, not 
 
 ## See also
 
-- [In-Browser Play](../using/in-browser-play.md) — general EmulatorJS behaviour.
-- [EmulatorJS Configuration](emulatorjs-config.md) — operator-level tuning, including `disable_batch_bootup` for DOS-specific issues.
-- [dosbox-pure docs](https://github.com/schellingb/dosbox-pure) — upstream reference for every config option.
+- [In-Browser Play](../using/in-browser-play.md): general EmulatorJS behaviour.
+- [EmulatorJS Configuration](emulatorjs-config.md): operator-level tuning, including `disable_batch_bootup` for DOS-specific issues.
+- [dosbox-pure docs](https://github.com/schellingb/dosbox-pure): upstream reference for every config option.

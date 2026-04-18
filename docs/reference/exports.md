@@ -1,6 +1,6 @@
 ---
 title: Exports
-description: Export RomM metadata for use in other frontends — gamelist.xml and Pegasus format.
+description: Export RomM metadata for use in other frontends: gamelist.xml and Pegasus format.
 ---
 
 # Exports
@@ -70,8 +70,8 @@ Once RomM has generated `gamelist.xml` and populated `covers/` + `screenshots/`,
 <bool name="LegacyGamelistFileLocation" value="true" />
 ```
 
-- `MediaDirectory` — point it at the ROM folder (same path ES-DE uses for `ROMDirectory`), so ES-DE looks for media in-place rather than in its own library.
-- `LegacyGamelistFileLocation` — makes ES-DE write updates back to the same `gamelist.xml` RomM reads from, rather than its separate config dir.
+- `MediaDirectory`: point it at the ROM folder (same path ES-DE uses for `ROMDirectory`), so ES-DE looks for media in-place rather than in its own library.
+- `LegacyGamelistFileLocation`: makes ES-DE write updates back to the same `gamelist.xml` RomM reads from, rather than its separate config dir.
 
 See also [Metadata Providers → gamelist.xml](../administration/metadata-providers.md) for the *import* direction (reading gamelist.xml into RomM).
 
@@ -127,7 +127,7 @@ Not in 5.0. If you want another format (LaunchBox, Attract-Mode, etc.), open an 
 
 Exports don't auto-rerun on every metadata edit. Triggers:
 
-- **Next scan** — exports are part of scan completion when enabled.
+- **Next scan**: exports are part of scan completion when enabled.
 - **Manual trigger** via the API above.
 - **Admin → Tasks → Export** (if surfaced in your build).
 
@@ -135,14 +135,14 @@ For tight sync between RomM edits and the external frontend, run the export via 
 
 ## Hash stability
 
-Both export formats include some IDs (`igdb_id`, `moby_id`, etc.). If you rematch metadata, those IDs change. Don't point tools at the IDs as stable keys — use filenames / paths.
+Both export formats include some IDs (`igdb_id`, `moby_id`, etc.). If you rematch metadata, those IDs change. Don't point tools at the IDs as stable keys; use filenames / paths.
 
 ## Permissions
 
-`tasks.run` scope required to trigger an export via API. Config-driven export runs as the scan does — no extra permission check.
+`tasks.run` scope required to trigger an export via API. Config-driven export runs as the scan does, with no extra permission check.
 
 ## See also
 
 - [Configuration File → `scan.gamelist`](../reference/configuration-file.md#scangamelistexport-new-in-50)
 - [Configuration File → `scan.pegasus`](../reference/configuration-file.md#scanpegasusexport-new-in-50)
-- [Metadata Providers → gamelist.xml importer](../administration/metadata-providers.md) — reverse direction.
+- [Metadata Providers → gamelist.xml importer](../administration/metadata-providers.md): reverse direction.

@@ -1,11 +1,11 @@
 ---
 title: Community Apps
-description: Third-party companion apps for RomM — maintained by the community, not the RomM team.
+description: Third-party companion apps for RomM, maintained by the community, not the RomM team.
 ---
 
 # Community Apps
 
-Apps listed here are **community-maintained**. The RomM team doesn't build or officially support them — the authors do. Support is via the individual app's issue tracker and the RomM Discord.
+Apps listed here are **community-maintained**. The RomM team doesn't build or officially support them; the authors do. Support is via the individual app's issue tracker and the RomM Discord.
 
 First-party alternatives (built by the RomM team):
 
@@ -78,7 +78,7 @@ SteamOS downloader/syncer for Steam Deck.
 
 ### SwitchRomM
 
-Homebrew NRO app for Nintendo Switch — pull ROMs from RomM over Wi-Fi.
+Homebrew NRO app for Nintendo Switch; pull ROMs from RomM over Wi-Fi.
 
 - **Author:** [@Shalasere](https://github.com/Shalasere)
 - **Platform:** Nintendo Switch (homebrew)
@@ -88,7 +88,7 @@ Homebrew NRO app for Nintendo Switch — pull ROMs from RomM over Wi-Fi.
 
 ### romm-comm
 
-Discord bot for interacting with RomM from a Discord server — query library, post stats, request games.
+Discord bot for interacting with RomM from a Discord server: query library, post stats, request games.
 
 - **Author:** [@idio-sync](https://github.com/idio-sync)
 - **Platform:** Discord bot
@@ -110,10 +110,10 @@ Push a Syncthing-managed library to RomM automatically.
 - **Platform:** Wherever Syncthing runs
 - **Status:** Active
 
-## "Community-maintained" — what it means
+## "Community-maintained": what it means
 
 - **The RomM team doesn't build these.** We won't fix bugs, ship features, or respond to support tickets for community apps.
-- **Support through the app author.** Each project has its own issue tracker — use it.
+- **Support through the app author.** Each project has its own issue tracker; use it.
 - **Install at your own risk.** We don't code-review community apps or vouch for their security posture.
 - **Token safety.** These apps use [Client API Tokens](client-api-tokens.md) the same way first-party apps do. Scope tokens narrowly and revoke if an app misbehaves.
 
@@ -131,4 +131,4 @@ We'll merge if the project's real, has a working repo, and isn't obviously broke
 
 ## Reporting an abandoned app
 
-If an app here hasn't been updated in >12 months and the maintainer isn't responsive, let us know — either a PR marking it as Abandoned, or a Discord message in `#community-projects`. We flag abandoned projects so users know not to rely on them.
+If an app here hasn't been updated in >12 months and the maintainer isn't responsive, let us know: either a PR marking it as Abandoned, or a Discord message in `#community-projects`. We flag abandoned projects so users know not to rely on them.

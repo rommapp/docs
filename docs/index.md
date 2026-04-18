@@ -17,13 +17,13 @@ Welcome to the **RomM Project**, the premier self-hosted, open source ROM manage
 <a href="https://romm.app" target="_blank">Website</a> · <a href="https://demo.romm.app" target="_blank" >Demo</a> · <a href="https://discord.gg/romm" target="_blank">Discord</a>
 </div>
 
-RomM (ROM Manager) lets you scan, enrich, organise, and play your game collection from a clean web UI — with deep metadata from IGDB, ScreenScraper, MobyGames, RetroAchievements, Hasheous, LaunchBox, and more; in-browser play via EmulatorJS and Ruffle; companion apps for Android, handhelds, and desktop; and a first-class multi-user experience with OIDC SSO.
+RomM (ROM Manager) lets you scan, enrich, organise, and play your game collection from a clean web UI, with deep metadata from IGDB, ScreenScraper, MobyGames, RetroAchievements, Hasheous, LaunchBox, and more; in-browser play via EmulatorJS and Ruffle; companion apps for Android, handhelds, and desktop; and a first-class multi-user experience with OIDC SSO.
 
 ## Where do you want to go?
 
 <div class="grid cards" markdown>
 
--   :material-rocket-launch-outline: __I'm new — get me running__
+-   :material-rocket-launch-outline: __I'm new, get me running__
 
     ---
 

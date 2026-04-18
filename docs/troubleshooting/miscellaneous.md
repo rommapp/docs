@@ -18,7 +18,7 @@ volumes:
 
 This only applies to SQLite. MariaDB / MySQL / Postgres users persist via the DB container's own volume (`mysql_data:/var/lib/mysql` and similar), not via a `/romm/database` mount.
 
-For anything multi-user or larger than a few hundred games, **don't use SQLite** — see [Databases](../install/databases.md).
+For anything multi-user or larger than a few hundred games, **don't use SQLite**; see [Databases](../install/databases.md).
 
 ## `Could not get twitch auth token: check client_id and client_secret`
 
@@ -61,7 +61,7 @@ docker logs romm 2>&1 | grep -iE 'database|redis'
 
 Open devtools → Network tab → reload. You're looking for:
 
-- **404 on `/assets/index-*.js`** — nginx inside the container is misrouting. Restart the container.
+- **404 on `/assets/index-*.js`**: nginx inside the container is misrouting. Restart the container.
 - **WebSocket connection failed** → reverse proxy isn't forwarding WebSockets. See [Authentication Troubleshooting → WebSockets](authentication.md#400-bad-request-on-the-websocket-endpoint).
 - **CORS error** → `ROMM_BASE_URL` doesn't match the URL you're actually accessing. Set it correctly and restart.
 
@@ -69,16 +69,16 @@ Open devtools → Network tab → reload. You're looking for:
 
 Static media is served from `/romm/resources` through nginx. If images 404:
 
-1. **Mount is wrong** — `docker exec romm ls /romm/resources` should show cached files after at least one scan.
-2. **Permissions** — same fix pattern as [Synology permissions](synology.md).
-3. **Scan hasn't run yet** — covers are fetched during scan. Run one.
+1. **Mount is wrong**: `docker exec romm ls /romm/resources` should show cached files after at least one scan.
+2. **Permissions**: same fix pattern as [Synology permissions](synology.md).
+3. **Scan hasn't run yet**: covers are fetched during scan. Run one.
 
 ## RomM is slow
 
 Most common causes, in order:
 
 1. **Hashing large files on spinning disks.** Check **Skip hash calculation** or move the library to SSD.
-2. **SQLite with many users.** Switch to MariaDB or Postgres — see [Databases](../install/databases.md).
+2. **SQLite with many users.** Switch to MariaDB or Postgres; see [Databases](../install/databases.md).
 3. **Metadata provider rate limiting during scans.** Reduce `SCAN_WORKERS` or split scans by platform.
 4. **Container on underpowered hardware.** Check CPU/RAM headroom with `docker stats romm`. If RAM is pegged, raise container limits or disable `WATCHER_ENABLED`.
 
@@ -88,10 +88,10 @@ Most common causes, in order:
 2. Restore your DB dump from [Backup & Restore](../install/backup-and-restore.md).
 3. Open a bug report with: old version, new version, the exact error or behaviour, and `docker logs romm` from the failed startup.
 
-For 4.x → 5.0 specifically, read [Upgrading to 5.0](../releases/upgrading-to-5.0.md) — the migration guide covers every known breaking change.
+For 4.x → 5.0 specifically, read [Upgrading to 5.0](../releases/upgrading-to-5.0.md); the migration guide covers every known breaking change.
 
 ## It's not listed here
 
-- [Discord](https://discord.gg/romm) `#help` — active, friendly, fast.
-- [GitHub Issues](https://github.com/rommapp/romm/issues) — for reproducible bugs.
+- [Discord](https://discord.gg/romm) `#help`: active, friendly, fast.
+- [GitHub Issues](https://github.com/rommapp/romm/issues): for reproducible bugs.
 - Include your RomM version, deployment method, logs (secrets redacted), and exact repro steps.

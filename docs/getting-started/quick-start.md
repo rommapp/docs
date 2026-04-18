@@ -20,7 +20,7 @@ You'll need:
 
 ## 1. Write your `docker-compose.yml`
 
-Start from the reference file shipped in the RomM repo — a known-good, minimally-edited version is included below. Save it as `docker-compose.yml` in an empty directory on your host.
+Start from the reference file shipped in the RomM repo; a known-good, minimally-edited version is included below. Save it as `docker-compose.yml` in an empty directory on your host.
 
 ???+ example "docker-compose.yml"
     ``` yaml
@@ -31,7 +31,7 @@ You'll want to edit the following values before launching:
 
 | Where | Variable | What to put |
 | --- | --- | --- |
-| `romm-db` service | `MARIADB_ROOT_PASSWORD` | A long random password. Generate one — don't reuse. |
+| `romm-db` service | `MARIADB_ROOT_PASSWORD` | A long random password. Generate one; don't reuse. |
 | `romm-db` service | `MARIADB_PASSWORD` | A separate long random password for the `romm-user`. |
 | `romm` service | `DB_PASSWD` | Must match `MARIADB_PASSWORD` above. |
 | `romm` service | `ROMM_AUTH_SECRET_KEY` | Generate with `openssl rand -hex 32`. Keep it secret. |
@@ -79,7 +79,7 @@ docker ps -f name=romm
 
 ## 3. Create the admin user
 
-Open `http://<host>:80` in a browser. The first time RomM starts, you'll be redirected to the **Setup Wizard**. Set an admin username and password — the first user created always gets the Admin role — then log in.
+Open `http://<host>:80` in a browser. The first time RomM starts, you'll be redirected to the **Setup Wizard**. Set an admin username and password (the first user created always gets the Admin role), then log in.
 
 ## 4. Scan your library
 
@@ -90,7 +90,7 @@ The fastest way to populate RomM is to let it scan your mounted library:
 3. Start the scan. You can open any matched game while the scan continues to see the metadata RomM pulled.
 4. When the scan finishes, click the RomM logo to return home. You'll see your platforms and the most recently added games.
 
-That's it — you're running RomM. From here:
+That's it, you're running RomM. From here:
 
 - Customise the on-disk layout: [Folder Structure](folder-structure.md)
 - Add more users and lock down access: [Users & Roles](../administration/users-and-roles.md)
@@ -99,7 +99,7 @@ That's it — you're running RomM. From here:
 
 ## Alternative: upload ROMs through the UI
 
-If your library isn't mounted (yet) or you're just adding a handful of files, the upload dialog is fine for small batches — not recommended for the initial import of a large collection, and it doesn't handle multi-file ROMs:
+If your library isn't mounted (yet) or you're just adding a handful of files, the upload dialog is fine for small batches. Not recommended for the initial import of a large collection, and it doesn't handle multi-file ROMs:
 
 1. Click **Upload** in the sidebar.
 2. Choose the target platform, click **+ ADD**, and select the files to upload.

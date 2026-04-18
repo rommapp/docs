@@ -15,7 +15,7 @@ RomM is multi-user from the start. The first user created during Setup is always
 | **Editor** | Household members who help curate the library. | Read everything, edit ROMs/platforms/collections, upload. No user management. |
 | **Viewer** | Guests, kids, anyone who should only play and track their own progress. | Read the library, manage their own saves/states/screenshots/profile. |
 
-Roles are a convenience layer on top of **scopes** — see the scope matrix below for exactly what each role grants. You can't create custom roles in 5.0; if you need finer-grained access, use the role that's most restrictive and rely on [Client API Tokens](../ecosystem/client-api-tokens.md) for per-app customisation.
+Roles are a convenience layer on top of **scopes**; see the scope matrix below for exactly what each role grants. You can't create custom roles in 5.0; if you need finer-grained access, use the role that's most restrictive and rely on [Client API Tokens](../ecosystem/client-api-tokens.md) for per-app customisation.
 
 ## Scope matrix
 
@@ -32,16 +32,16 @@ RomM authorisation is scope-based. Every API call and UI action maps to one or m
 | `assets.read` | View own saves/states/screenshots | ✓ | ✓ | ✓ |
 | `assets.write` | Upload saves/states/screenshots | ✓ | ✓ | ✓ |
 | `collections.read` | Browse collections | ✓ | ✓ | ✓ |
-| `collections.write` | Create/edit collections | — | ✓ | ✓ |
-| `roms.write` | Edit ROM metadata | — | ✓ | ✓ |
-| `platforms.write` | Edit/create platforms | — | ✓ | ✓ |
-| `firmware.read` | List firmware | — | ✓ | ✓ |
-| `firmware.write` | Upload/delete firmware | — | ✓ | ✓ |
+| `collections.write` | Create/edit collections | - | ✓ | ✓ |
+| `roms.write` | Edit ROM metadata | - | ✓ | ✓ |
+| `platforms.write` | Edit/create platforms | - | ✓ | ✓ |
+| `firmware.read` | List firmware | - | ✓ | ✓ |
+| `firmware.write` | Upload/delete firmware | - | ✓ | ✓ |
 | `devices.read` | View own paired devices | ✓ | ✓ | ✓ |
 | `devices.write` | Manage own paired devices | ✓ | ✓ | ✓ |
-| `users.read` | List all users | — | — | ✓ |
-| `users.write` | Create/edit/delete users | — | — | ✓ |
-| `tasks.run` | Trigger background tasks (scan, cleanup, etc.) | — | — | ✓ |
+| `users.read` | List all users | - | - | ✓ |
+| `users.write` | Create/edit/delete users | - | - | ✓ |
+| `tasks.run` | Trigger background tasks (scan, cleanup, etc.) | - | - | ✓ |
 
 ## Creating users
 
@@ -57,15 +57,15 @@ Better when you don't want to handle someone else's password.
 
 1. **Administration → Users → Invite.** Pick a role; RomM generates a single-use invite link.
 2. Send the link. The recipient opens it, picks their own username and password, and is logged in.
-3. Invite links expire — the default is 30 days, configurable via [`INVITE_TOKEN_DAYS`](../reference/environment-variables.md).
+3. Invite links expire; the default is 30 days, configurable via [`INVITE_TOKEN_DAYS`](../reference/environment-variables.md).
 
 ### Public self-registration
 
-Off by default. To let anyone with the URL register their own Viewer account, set `ALLOW_PUBLIC_REGISTRATION=true`. Only enable this if your instance is behind auth at the reverse-proxy layer (Authelia, etc.) or you genuinely want open registration — once on, anyone who reaches `/register` can create an account.
+Off by default. To let anyone with the URL register their own Viewer account, set `ALLOW_PUBLIC_REGISTRATION=true`. Only enable this if your instance is behind auth at the reverse-proxy layer (Authelia, etc.) or you genuinely want open registration. Once on, anyone who reaches `/register` can create an account.
 
 ### OIDC
 
-If you've wired up OIDC, new identities can be provisioned on first login. Role mapping from OIDC claims is covered in [OIDC Setup](oidc/index.md) — look for `OIDC_CLAIM_ROLES` and the per-role env vars.
+If you've wired up OIDC, new identities can be provisioned on first login. Role mapping from OIDC claims is covered in [OIDC Setup](oidc/index.md); look for `OIDC_CLAIM_ROLES` and the per-role env vars.
 
 ## Editing and deleting users
 

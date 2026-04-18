@@ -11,8 +11,8 @@ Quick reference for the ports + URL paths a RomM instance exposes.
 
 | Port | Protocol | Purpose | Exposed? |
 | --- | --- | --- | --- |
-| `8080` | HTTP | nginx — the front door. Serves everything. | Yes — publish this. |
-| `5000` | HTTP | gunicorn — FastAPI backend. Internal only. | No — nginx proxies here. |
+| `8080` | HTTP | nginx: the front door. Serves everything. | Yes, publish this. |
+| `5000` | HTTP | gunicorn: FastAPI backend. Internal only. | No; nginx proxies here. |
 | `6379` | TCP | Redis. Internal only (unless you externalise). | No. |
 
 Only **`8080`** should be reachable from outside the container in production. Typical compose `ports:`:
@@ -44,7 +44,7 @@ Everything below is served by nginx on port 8080. Auth / protection depends on t
 
 ### Session-authenticated (cookies)
 
-Most of the RomM web UI — every page under `/`. Authenticated via browser cookie.
+Most of the RomM web UI: every page under `/`. Authenticated via browser cookie.
 
 ### Token-authenticated (bearer)
 
@@ -128,6 +128,6 @@ Not the most common pattern; most deployments use a subdomain (`romm.example.com
 
 ## See also
 
-- [Reverse Proxy](../install/reverse-proxy.md) — passthrough recipes per proxy.
-- [Environment Variables](environment-variables.md) — including `ROMM_PORT`, `ROMM_BASE_PATH`, `ROMM_BASE_URL`.
-- [Architecture](../developers/architecture.md) — how the port layout fits into the bigger picture.
+- [Reverse Proxy](../install/reverse-proxy.md): passthrough recipes per proxy.
+- [Environment Variables](environment-variables.md): including `ROMM_PORT`, `ROMM_BASE_PATH`, `ROMM_BASE_URL`.
+- [Architecture](../developers/architecture.md): how the port layout fits into the bigger picture.

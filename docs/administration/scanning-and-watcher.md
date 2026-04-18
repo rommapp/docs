@@ -9,13 +9,13 @@ RomM keeps its catalogue in sync with your filesystem through three mechanisms:
 
 1. **Manual scans** you trigger from the Scan page.
 2. **Scheduled scans** (default: nightly) run by the task runner.
-3. **The filesystem watcher** — live reaction to files landing in or leaving your library.
+3. **The filesystem watcher**: live reaction to files landing in or leaving your library.
 
 All three share the same scan engine and the same set of **scan modes**.
 
 ## Scan modes
 
-Every scan picks one mode. Modes differ in what they touch — use the most-targeted mode that accomplishes what you want.
+Every scan picks one mode. Modes differ in what they touch; use the most-targeted mode that accomplishes what you want.
 
 | Mode | What it does | When to use |
 | --- | --- | --- |
@@ -26,7 +26,7 @@ Every scan picks one mode. Modes differ in what they touch — use the most-targ
 | **Hashes** | Recalculates CRC/MD5/SHA1 hashes. | After upgrading from a version that didn't hash (pre-4.4) or when you suspect file corruption. |
 | **Complete** | Full rescan. Recalculates hashes, re-fetches metadata for everything. | Rarely. Takes a long time. |
 
-You can further scope a scan to specific **platforms** and specific **metadata providers** — useful when only one provider has changed (e.g. just enabled Hasheous → Unmatched scan, Hasheous selected, on all platforms).
+You can further scope a scan to specific **platforms** and specific **metadata providers**, useful when only one provider has changed (e.g. just enabled Hasheous → Unmatched scan, Hasheous selected, on all platforms).
 
 ## Manual scans
 
@@ -38,7 +38,7 @@ You can further scope a scan to specific **platforms** and specific **metadata p
 - A live log of everything the scanner is doing.
 - Per-platform progress panels with matched / unmatched / missing counts.
 
-A running scan survives browser refreshes — the log streams over Socket.IO. Multiple admins opening the page see the same scan state.
+A running scan survives browser refreshes; the log streams over Socket.IO. Multiple admins opening the page see the same scan state.
 
 ## Scheduled scans
 
@@ -49,13 +49,13 @@ Configured via env vars (full table in the [Scheduled Tasks reference](../refere
 | `SCAN_INTERVAL_CRON` | `0 0 * * *` | Cron expression for the scheduled library scan. Runs a **Quick** scan by default. |
 | `SCAN_TIMEOUT_HOURS` | `1` | Hard cap. Scans that exceed this are killed and logged. |
 | `SCAN_WORKERS` | _auto_ | Concurrent worker processes for scanning. Leave as auto unless you're tuning. |
-| `SEVEN_ZIP_TIMEOUT` | — | Per-archive timeout for `.7z` extraction during scan. Raise if scanning huge compressed ROM sets. |
+| `SEVEN_ZIP_TIMEOUT` | _unset_ | Per-archive timeout for `.7z` extraction during scan. Raise if scanning huge compressed ROM sets. |
 
 To disable scheduled scans entirely, either unset the cron or set it to something unreachable (`SCAN_INTERVAL_CRON=0 0 31 2 *`).
 
 ## Filesystem watcher
 
-The watcher tails your library folder and schedules scans in response to file events — files added, moved, deleted. It's off by default on some deployments; enable with:
+The watcher tails your library folder and schedules scans in response to file events: files added, moved, deleted. It's off by default on some deployments; enable with:
 
 ```yaml
 environment:
@@ -68,16 +68,16 @@ environment:
 Behaviour:
 
 - Watches `/romm/library` (and everything under it) recursively.
-- Debounces bursts of events — the delay (default 10 seconds) lets a large `cp` or `rsync` settle before scanning.
+- Debounces bursts of events; the delay (default 10 seconds) lets a large `cp` or `rsync` settle before scanning.
 - Batches scans intelligently: many events → a single consolidated scan, not one scan per file.
-- Ignores content modifications and metadata-only changes — it cares about files appearing or disappearing, not about `chmod`.
+- Ignores content modifications and metadata-only changes; it cares about files appearing or disappearing, not about `chmod`.
 - Skips OS noise (`.DS_Store`, `Thumbs.db`, `.tmp`, etc.).
 - If a whole new platform folder appears, switches to a **New Platforms** scan to pick it up cleanly.
 
 ### When **not** to enable the watcher
 
 - **Slow / high-latency filesystems** (SMB mounts, rclone mounts, anything not local disk). The watcher reacts to every event, and flaky mounts generate a lot. Use scheduled scans instead.
-- **Libraries under active write load from other tools** (e.g. a ROM manager constantly tagging files). The watcher will re-scan on every change — at best noisy, at worst a scan loop.
+- **Libraries under active write load from other tools** (e.g. a ROM manager constantly tagging files). The watcher will re-scan on every change: at best noisy, at worst a scan loop.
 
 ### Watcher vs scheduled scan
 
@@ -87,7 +87,7 @@ Behaviour:
 | CPU cost | Only when files change | Constant cadence |
 | Works over SMB/NFS | Flakily | Reliably |
 | Catches renames | Yes | Yes |
-| Survives a container restart | Yes — re-arms on startup | Yes |
+| Survives a container restart | Yes, re-arms on startup | Yes |
 
 Run both. The watcher handles day-to-day additions; the scheduled scan is a safety net.
 
@@ -127,7 +127,7 @@ When a metadata provider returns multiple regional variants (Japanese cover, US 
 
 ## Metadata source priority
 
-Who wins when two providers disagree — covered in [Metadata Providers](metadata-providers.md#priority-and-conflict-resolution). Short version: `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`.
+Who wins when two providers disagree: covered in [Metadata Providers](metadata-providers.md#priority-and-conflict-resolution). Short version: `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`.
 
 ## Troubleshooting
 

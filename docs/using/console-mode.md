@@ -7,7 +7,7 @@ description: TV + gamepad UI for RomM. Spatial navigation, SFX, focus sounds, no
 
 **Console Mode** is a second UI for RomM, living at `/console`, designed for TV screens and gamepad input. Same instance, same data, completely different UX.
 
-New in 5.0. If you're on a desktop with a keyboard and mouse, you probably don't need it — the main [Library](library.md) view is your home. But if you're on:
+New in 5.0. If you're on a desktop with a keyboard and mouse, you probably don't need it; the main [Library](library.md) view is your home. But if you're on:
 
 - A TV with RomM on a stick / Shield / Pi / mini-PC,
 - A handheld running muOS / Knulli / Batocera / Steam Deck,
@@ -21,7 +21,7 @@ Three ways:
 
 1. **Menu bar → Console icon** (looks like a small controller).
 2. Type `/console` after your RomM URL: `https://romm.example.com/console`.
-3. Set the default view to Console Mode in **Profile → User Interface → Default view** — signs you in straight into `/console` every time.
+3. Set the default view to Console Mode in **Profile → User Interface → Default view**; this signs you in straight into `/console` every time.
 
 Bookmarking `/console` on your TV browser is the most common pattern.
 
@@ -29,7 +29,7 @@ Bookmarking `/console` on your TV browser is the most common pattern.
 
 ### Gamepad
 
-Standard gamepad API. Xbox, PS, 8BitDo, Steam Controller, Switch Pro — anything the browser sees as a standard gamepad works. Handhelds with native gamepad input (Steam Deck, muOS devices) work out of the box.
+Standard gamepad API. Xbox, PS, 8BitDo, Steam Controller, Switch Pro: anything the browser sees as a standard gamepad works. Handhelds with native gamepad input (Steam Deck, muOS devices) work out of the box.
 
 Default bindings (most platforms, configurable):
 
@@ -45,7 +45,7 @@ Default bindings (most platforms, configurable):
 | Start | Main menu |
 | Select / Back | Filters |
 
-Button labels follow the Xbox convention regardless of actual controller — "A" is always the bottom face button.
+Button labels follow the Xbox convention regardless of actual controller: "A" is always the bottom face button.
 
 ### Keyboard (fallback)
 
@@ -61,13 +61,13 @@ If you're browsing `/console` without a gamepad for some reason:
 
 ### Touch
 
-Console Mode is gamepad-first, but touch works on handhelds without native gamepad input — tap to activate, swipe to scroll.
+Console Mode is gamepad-first, but touch works on handhelds without native gamepad input: tap to activate, swipe to scroll.
 
 ## What's different from the main UI
 
 ### Spatial navigation
 
-Every focusable element is placed on a 2D grid. D-pad Up / Down / Left / Right moves to the visually-nearest focusable element — not the next DOM element. Works the way a TV UI should.
+Every focusable element is placed on a 2D grid. D-pad Up / Down / Left / Right moves to the visually-nearest focusable element, not the next DOM element. Works the way a TV UI should.
 
 ### Focus sounds
 
@@ -76,6 +76,7 @@ Subtle SFX play on focus, activate, and back. Turn off in **Settings → Console
 ### Bigger hit targets
 
 Cards and buttons are sized for 10-foot viewing. Grids show fewer items per row than the main UI.
+
 
 ### Simpler information density
 
@@ -87,7 +88,7 @@ The cursor disappears after a few seconds of no movement. Wiggle the mouse (or t
 
 ### Theme
 
-Console Mode uses its own color palette — higher contrast, bigger typography. It follows the main UI's dark/light mode setting but with TV-appropriate rendering.
+Console Mode uses its own color palette: higher contrast, bigger typography. It follows the main UI's dark/light mode setting but with TV-appropriate rendering.
 
 ## Features
 
@@ -96,7 +97,7 @@ Most of the main UI's features are available in Console Mode:
 - ✓ Browse library, platforms, collections.
 - ✓ Search and filters.
 - ✓ Play (launches [In-Browser Play](in-browser-play.md) or shows a download prompt if the platform isn't browser-playable).
-- ✓ Saves and states — upload, select, delete.
+- ✓ Saves and states: upload, select, delete.
 - ✓ Smart and virtual collections.
 - ✓ RetroAchievements progression display.
 
@@ -123,7 +124,7 @@ Not yet in Console Mode (still use the main UI):
 
 ### Background art
 
-**Settings → Console Mode → Backgrounds.** Use the focused game's screenshot as a faded background — makes Console Mode feel like a proper console UI. Off by default.
+**Settings → Console Mode → Backgrounds.** Use the focused game's screenshot as a faded background; makes Console Mode feel like a proper console UI. Off by default.
 
 ## Launching games
 
@@ -135,28 +136,28 @@ If not, Console Mode shows a **Download** prompt with a QR code for mobile shari
 
 ### Pre-launch disc/save/state picker
 
-For multi-disc games, Console Mode asks which disc to boot before launching. For games with existing saves/states, you can pick which to resume from. No dialogs in the middle of a session — everything's picked up front.
+For multi-disc games, Console Mode asks which disc to boot before launching. For games with existing saves/states, you can pick which to resume from. No dialogs in the middle of a session; everything's picked up front.
 
 ## Known limitations
 
-- **Admin features aren't available** — if you're the admin, flip back to the main UI for scans / user management.
-- **Some metadata tabs collapse** — the main UI's "Related Games" + "Additional Content" tabs may be merged on the smaller Console detail view.
-- **Mobile browsers with no gamepad** — touch works, but the UX is designed for gamepads, not fingers. Use the main UI or the Argosy mobile app ([Ecosystem](../ecosystem/argosy.md)).
+- **Admin features aren't available**: if you're the admin, flip back to the main UI for scans / user management.
+- **Some metadata tabs collapse**: the main UI's "Related Games" + "Additional Content" tabs may be merged on the smaller Console detail view.
+- **Mobile browsers with no gamepad**: touch works, but the UX is designed for gamepads, not fingers. Use the main UI or the Argosy mobile app ([Ecosystem](../ecosystem/argosy.md)).
 
 ## Handheld-specific notes
 
 Running on muOS / Batocera / Knulli / a Steam Deck? Consider:
 
-- **[Grout](../ecosystem/grout.md)** — official handheld companion that syncs saves/states to/from the device.
-- **[Argosy Launcher](../ecosystem/argosy.md)** — Android handhelds that can run a browser, but want a native-feeling app.
+- **[Grout](../ecosystem/grout.md)**: official handheld companion that syncs saves/states to/from the device.
+- **[Argosy Launcher](../ecosystem/argosy.md)**: Android handhelds that can run a browser, but want a native-feeling app.
 
 Both use [Client API Tokens](../ecosystem/client-api-tokens.md) for auth.
 
 ## Troubleshooting
 
-- **Gamepad not detected** — Chrome sometimes needs a button press on the page before enumerating gamepads. Press any button and it'll show up.
-- **Cursor stays visible** — you have a USB mouse plugged into a handheld. Unplug it or set **Cursor hide** to "always" in Console settings.
-- **Laggy navigation** — low-powered device running a heavy browser. Try Firefox or a lighter browser build.
-- **SFX plays during video** — turn it off in **Console → Audio** or lower volume.
+- **Gamepad not detected**: Chrome sometimes needs a button press on the page before enumerating gamepads. Press any button and it'll show up.
+- **Cursor stays visible**: you have a USB mouse plugged into a handheld. Unplug it or set **Cursor hide** to "always" in Console settings.
+- **Laggy navigation**: low-powered device running a heavy browser. Try Firefox or a lighter browser build.
+- **SFX plays during video**: turn it off in **Console → Audio** or lower volume.
 
 More in [Troubleshooting](../troubleshooting/index.md).

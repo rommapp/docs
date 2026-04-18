@@ -1,13 +1,13 @@
 ---
 title: OIDC with Authelia
-description: Wire RomM's SSO to Authelia — claims policy, client registration, RomM env vars.
+description: Wire RomM's SSO to Authelia: claims policy, client registration, RomM env vars.
 ---
 
 # OIDC with Authelia
 
 [Authelia](https://www.authelia.com/) is a lightweight open-source authentication and authorisation server with two-factor auth and SSO. Good fit for homelabs that already proxy through a reverse proxy.
 
-Before starting, read the [OIDC Setup overview](index.md) — it covers the RomM-side settings common to every provider.
+Before starting, read the [OIDC Setup overview](index.md); it covers the RomM-side settings common to every provider.
 
 ## 1. Prerequisites
 
@@ -80,7 +80,7 @@ environment:
   - ROMM_BASE_URL=https://romm.example.com
 ```
 
-`OIDC_REDIRECT_URI` must match what you put in `redirect_uris` exactly — scheme, host, path, no trailing slash.
+`OIDC_REDIRECT_URI` must match what you put in `redirect_uris` exactly: scheme, host, path, no trailing slash.
 
 For role mapping from Authelia groups, see [OIDC Setup → Role mapping](index.md#role-mapping-50).
 

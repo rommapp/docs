@@ -1,13 +1,13 @@
 ---
 title: Administration Page
-description: A tour of the in-app Administration UI — where every operator control lives.
+description: A tour of the in-app Administration UI, where every operator control lives.
 ---
 
 # Administration Page
 
 Click your **profile avatar** (top right, any page) to open the settings drawer. The links you see depend on your role. Admins see everything; Editors and Viewers see a subset.
 
-This page is a map of what's behind each link. The deep mechanics of each feature live on their own pages — this is where to click.
+This page is a map of what's behind each link. The deep mechanics of each feature live on their own pages; this is where to click.
 
 ## The drawer
 
@@ -19,16 +19,16 @@ This page is a map of what's behind each link. The deep mechanics of each featur
 | **Metadata Sources** | Admins | Credentials for the 13 metadata providers; scan priority. |
 | **Administration** | Admins | Users, Client API Tokens, Tasks. The main admin hub. |
 | **Client API Tokens** | Everyone (own tokens) | Each user's personal API tokens. Admins see a separate "all tokens" view under Administration. |
-| **Server Stats** | Admins | Numbers — platforms, games, saves, states, screenshots, disk usage. |
+| **Server Stats** | Admins | Numbers: platforms, games, saves, states, screenshots, disk usage. |
 | **About** | Everyone | RomM version, links to Discord / GitHub / docs. |
 
 ## Profile
 
 The thing every user touches.
 
-- **Username / email / password** — self-serve changes. Password changes require the current password.
-- **Avatar** — upload a small image; displayed next to your name everywhere.
-- **RetroAchievements** — set your RA username to link accounts; "Sync now" pulls fresh progression data.
+- **Username / email / password**: self-serve changes. Password changes require the current password.
+- **Avatar**: upload a small image; displayed next to your name everywhere.
+- **RetroAchievements**: set your RA username to link accounts; "Sync now" pulls fresh progression data.
 
 See [Users & Roles](users-and-roles.md) for what role-specific self-serve is allowed.
 
@@ -36,19 +36,19 @@ See [Users & Roles](users-and-roles.md) for what role-specific self-serve is all
 
 Per-user UI preferences. Stored in the user's row + localStorage, not in `config.yml`.
 
-- **Language** — 19 locales supported; see [Languages](../using/languages.md) for the list.
-- **Theme** — Dark, Light, or Auto (follows OS preference). Palette overrides via `extra_css` are operator-level.
-- **Game card layout** — cover style (2D, 3D boxart, poster), info-density, the `vanilla-tilt` 3D hover effect on/off.
-- **Home dashboard ribbons** — show/hide "Recently Added", "Continue Playing", "Collections", etc.
-- **Virtual collections** — enable/disable auto-generated groupings (by genre, developer, year, etc.).
+- **Language**: 19 locales supported; see [Languages](../using/languages.md) for the list.
+- **Theme**: Dark, Light, or Auto (follows OS preference). Palette overrides via `extra_css` are operator-level.
+- **Game card layout**: cover style (2D, 3D boxart, poster), info-density, the `vanilla-tilt` 3D hover effect on/off.
+- **Home dashboard ribbons**: show/hide "Recently Added", "Continue Playing", "Collections", etc.
+- **Virtual collections**: enable/disable auto-generated groupings (by genre, developer, year, etc.).
 
 ## Library Management
 
 Editor-grade tools for catalogue hygiene.
 
-- **Platform bindings** — map a filesystem folder name (`super_nintendo/`) to a platform slug (`snes`). Mirrors `system.platforms` in `config.yml`.
-- **Platform versions** — some platforms have multiple IGDB "versions" (e.g. Mega Drive vs Genesis). Pin which one RomM uses for lookups.
-- **Missing ROMs** — a filter/table view showing DB entries whose files are gone. Bulk-delete from here, or run the [Cleanup Missing ROMs](scheduled-tasks.md#cleanup-missing-roms-manual) task.
+- **Platform bindings**: map a filesystem folder name (`super_nintendo/`) to a platform slug (`snes`). Mirrors `system.platforms` in `config.yml`.
+- **Platform versions**: some platforms have multiple IGDB "versions" (e.g. Mega Drive vs Genesis). Pin which one RomM uses for lookups.
+- **Missing ROMs**: a filter/table view showing DB entries whose files are gone. Bulk-delete from here, or run the [Cleanup Missing ROMs](scheduled-tasks.md#cleanup-missing-roms-manual) task.
 
 ## Metadata Sources
 
@@ -63,10 +63,10 @@ The main admin hub. Three sub-panels:
 ### Users
 
 - Table of all users with role, last login, creation date.
-- **Add** — manual user creation with username + email + password + role.
-- **Invite** — generate an invite link. See [Invitations & Registration](invitations-and-registration.md).
-- **Edit** — change username, email, role, password. Reset password by typing a new one.
-- **Delete** — red trash icon. RomM won't let you delete yourself or the last admin.
+- **Add**: manual user creation with username + email + password + role.
+- **Invite**: generate an invite link. See [Invitations & Registration](invitations-and-registration.md).
+- **Edit**: change username, email, role, password. Reset password by typing a new one.
+- **Delete**: red trash icon. RomM won't let you delete yourself or the last admin.
 
 ### Client API Tokens
 
@@ -76,7 +76,7 @@ The main admin hub. Three sub-panels:
 
 ### Tasks
 
-- Status of every scheduled / manual / watcher task — queued, running, idle, failed.
+- Status of every scheduled / manual / watcher task: queued, running, idle, failed.
 - **Run** button per task (requires `tasks.run` scope).
 - See [Scheduled Tasks](scheduled-tasks.md) for what each one does.
 
@@ -86,7 +86,7 @@ Admin-only. A dashboard of counts and sizes:
 
 - Total platforms, games, saves, states, screenshots.
 - Total disk footprint (library + resources + assets).
-- Per-platform breakdown — handy for spotting a platform that's ballooned.
+- Per-platform breakdown: handy for spotting a platform that's ballooned.
 
 Full details in [Server Stats](server-stats.md).
 
@@ -111,9 +111,9 @@ Full shortcut reference is on the [Using RomM](../using/index.md) page.
 | User Interface | ✓ | ✓ | ✓ |
 | Client API Tokens (own) | ✓ | ✓ | ✓ |
 | About | ✓ | ✓ | ✓ |
-| Library Management | — | ✓ | ✓ |
-| Metadata Sources | — | — | ✓ |
-| Administration → Users | — | — | ✓ |
-| Administration → Tokens (all) | — | — | ✓ |
-| Administration → Tasks | — | — | ✓ |
-| Server Stats | — | — | ✓ |
+| Library Management | - | ✓ | ✓ |
+| Metadata Sources | - | - | ✓ |
+| Administration → Users | - | - | ✓ |
+| Administration → Tokens (all) | - | - | ✓ |
+| Administration → Tasks | - | - | ✓ |
+| Server Stats | - | - | ✓ |

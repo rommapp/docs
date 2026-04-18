@@ -5,12 +5,12 @@ description: Configure SSH key-based push/pull sync to handhelds and other devic
 
 # SSH Sync
 
-RomM's Push-Pull Device Sync task can push saves/states to registered devices and pull them back after a session — over SSH, using a key that RomM holds. This page covers the server-side setup.
+RomM's Push-Pull Device Sync task can push saves/states to registered devices and pull them back after a session, over SSH, using a key that RomM holds. This page covers the server-side setup.
 
-The client side — a handheld running Grout, a SteamDeck running DeckRommSync, etc. — lives in [Integrations & Ecosystem](../ecosystem/index.md). The wire protocol (API-level sync negotiation, play-session ingest) lives in [Device Sync Protocol](../ecosystem/device-sync-protocol.md).
+The client side (a handheld running Grout, a SteamDeck running DeckRommSync, etc.) lives in [Integrations & Ecosystem](../ecosystem/index.md). The wire protocol (API-level sync negotiation, play-session ingest) lives in [Device Sync Protocol](../ecosystem/device-sync-protocol.md).
 
 !!! note "Most companion apps don't need this"
-    Argosy, Playnite, and most mobile/desktop clients sync via HTTPS + Client API Tokens. SSH sync is specifically for handhelds and similar devices where RomM pushes files to a filesystem the device exposes via SSH — Grout on muOS / NextUI being the canonical case.
+    Argosy, Playnite, and most mobile/desktop clients sync via HTTPS + Client API Tokens. SSH sync is specifically for handhelds and similar devices where RomM pushes files to a filesystem the device exposes via SSH, with Grout on muOS / NextUI being the canonical case.
 
 ## When you need SSH sync
 
@@ -18,7 +18,7 @@ The client side — a handheld running Grout, a SteamDeck running DeckRommSync, 
 - You want RomM to automatically copy saves/states to the device and pull them back when a session ends.
 - Your sync runs on a schedule, not on-demand.
 
-If none of that applies, you don't need this page — HTTPS + Client API Tokens is simpler and more flexible.
+If none of that applies, you don't need this page. HTTPS + Client API Tokens is simpler and more flexible.
 
 ## Configuring the server
 
@@ -45,7 +45,7 @@ services:
 
 Keep it read-only. RomM doesn't need to modify the key.
 
-`SSH_PRIVATE_KEY_PATH` can point anywhere inside the container — conventionally `/romm/.ssh/id_rsa`.
+`SSH_PRIVATE_KEY_PATH` can point anywhere inside the container, conventionally `/romm/.ssh/id_rsa`.
 
 ### 3. Restart RomM
 
@@ -61,7 +61,7 @@ For each handheld / device you want to sync:
 
 ### 1. Authorise the RomM key
 
-Copy the **public** key (`~/romm-sync-key.pub` from step 1 above) to the device's `~/.ssh/authorized_keys`. Exactly how depends on the device — Grout on muOS has a helper, others expose a filesystem you can `ssh-copy-id` into.
+Copy the **public** key (`~/romm-sync-key.pub` from step 1 above) to the device's `~/.ssh/authorized_keys`. Exactly how depends on the device: Grout on muOS has a helper, others expose a filesystem you can `ssh-copy-id` into.
 
 ### 2. Register the device in RomM
 
@@ -80,7 +80,7 @@ From the RomM container, confirm SSH works:
 docker exec romm ssh -i "$SSH_PRIVATE_KEY_PATH" user@<device-ip> echo ok
 ```
 
-You should see `ok`. If you see a host-key prompt, accept it — RomM will remember it in its `known_hosts`. If you see `permission denied`, the authorised key isn't installed correctly.
+You should see `ok`. If you see a host-key prompt, accept it; RomM will remember it in its `known_hosts`. If you see `permission denied`, the authorised key isn't installed correctly.
 
 ## How sync runs
 
@@ -98,10 +98,10 @@ Disable sync for a specific device by deregistering it from **Administration →
 
 ## Troubleshooting
 
-- **`Permission denied (publickey)`** — authorised key isn't set up on the device, or the private key inside the container can't be read (check the file permissions and bind-mount flags).
-- **`Host key verification failed`** — the device's host key changed (after a reinstall, typically). Shell into the container and remove the offending line from `~/.ssh/known_hosts`.
-- **Sync silently doesn't run** — check `GET /api/tasks/status` for the Push-Pull task's state. "failed" points you at the error; "never ran" means the cron isn't firing (see [Scheduled Tasks](scheduled-tasks.md)).
-- **Connection times out** — the device is offline or the network path is blocked. Confirm reachability from the RomM container: `docker exec romm ping <device-ip>`.
+- **`Permission denied (publickey)`**: authorised key isn't set up on the device, or the private key inside the container can't be read (check the file permissions and bind-mount flags).
+- **`Host key verification failed`**: the device's host key changed (after a reinstall, typically). Shell into the container and remove the offending line from `~/.ssh/known_hosts`.
+- **Sync silently doesn't run**: check `GET /api/tasks/status` for the Push-Pull task's state. "failed" points you at the error; "never ran" means the cron isn't firing (see [Scheduled Tasks](scheduled-tasks.md)).
+- **Connection times out**: the device is offline or the network path is blocked. Confirm reachability from the RomM container: `docker exec romm ping <device-ip>`.
 
 More at [Device Sync Troubleshooting](../troubleshooting/sync.md).
 

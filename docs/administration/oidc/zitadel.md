@@ -1,13 +1,13 @@
 ---
 title: OIDC with Zitadel
-description: Wire RomM's SSO to Zitadel — project, application, user info inside ID token, RomM env vars.
+description: Wire RomM's SSO to Zitadel: project, application, user info inside ID token, RomM env vars.
 ---
 
 # OIDC with Zitadel
 
 [Zitadel](https://zitadel.com/) is an enterprise-grade open-source IAM platform supporting OAuth2, OIDC, SAML, and passwordless. Good fit when you want an enterprise-ish IdP without running Keycloak.
 
-Before starting, read the [OIDC Setup overview](index.md) — it covers the RomM-side settings common to every provider.
+Before starting, read the [OIDC Setup overview](index.md); it covers the RomM-side settings common to every provider.
 
 ## 1. Prerequisites
 
@@ -19,9 +19,9 @@ Create a new project (e.g. `RomM`). This holds the client and its auth settings.
 
 On the project's **General** tab, the toggles mean:
 
-- **Assert Roles on Authentication** — not useful today; RomM 5.0 reads roles via `OIDC_CLAIM_ROLES` regardless. Leave off unless you're setting up role mapping.
-- **Check authorization on Authentication** — recommended. If off, anyone who can register in Zitadel can sign into RomM (as Viewer). Turn this on if Zitadel registration is open.
-- **Check for Project on Authentication** — only matters if you're separating users by Zitadel organization. Skip for a single RomM instance.
+- **Assert Roles on Authentication**: not useful today; RomM 5.0 reads roles via `OIDC_CLAIM_ROLES` regardless. Leave off unless you're setting up role mapping.
+- **Check authorization on Authentication**: recommended. If off, anyone who can register in Zitadel can sign into RomM (as Viewer). Turn this on if Zitadel registration is open.
+- **Check for Project on Authentication**: only matters if you're separating users by Zitadel organization. Skip for a single RomM instance.
 
 ### 2.5 (Optional) Grant users to the project
 
@@ -29,7 +29,7 @@ If you enabled **Check authorization on Authentication**:
 
 1. **Authorization** tab → **New**.
 2. Select user(s) → **Continue**.
-3. "No role has been created yet" is fine — just **Save**. The user appears in the authorization list with no roles.
+3. "No role has been created yet" is fine: just **Save**. The user appears in the authorization list with no roles.
 
 ## 3. Create the application
 
@@ -43,7 +43,7 @@ On the project's **General** tab, under **Applications**, click **New**. Tick **
 - **Redirect URIs**: `https://romm.example.com/api/oauth/openid`
 - **Post Logout URIs**: `https://romm.example.com/`
 
-Click **Create**. The **client secret is shown once** — copy it now.
+Click **Create**. The **client secret is shown once**; copy it now.
 
 ## 4. Enable claims in the ID Token
 
@@ -64,7 +64,7 @@ environment:
   - ROMM_BASE_URL=https://romm.example.com
 ```
 
-Zitadel's OIDC discovery URL is at `<OIDC_SERVER_APPLICATION_URL>/.well-known/openid-configuration` — handy for debugging.
+Zitadel's OIDC discovery URL is at `<OIDC_SERVER_APPLICATION_URL>/.well-known/openid-configuration`, handy for debugging.
 
 For role mapping from Zitadel, see [OIDC Setup → Role mapping](index.md#role-mapping-50).
 
@@ -74,6 +74,6 @@ In RomM → **Profile** → set your email to exactly the same address your Zita
 
 ## 7. Test
 
-Restart RomM and open `/login`. Click **Login with Zitadel** — you're redirected, authenticate, and bounce back signed into RomM.
+Restart RomM and open `/login`. Click **Login with Zitadel**; you're redirected, authenticate, and bounce back signed into RomM.
 
 If it doesn't work, head to [Authentication Troubleshooting](../../troubleshooting/authentication.md).

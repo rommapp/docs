@@ -11,7 +11,7 @@ description: Import your RomM library into Playnite on Windows.
     <img src="../../resources/romm/integrations/playnite.svg" height="200px" width="200px" alt="romm[playnite] logo">
 </div>
 
-[Playnite](https://playnite.link) is a unified, open-source game library manager for Windows — one place to launch Steam, Epic, GOG, RetroArch, and emulated games. This plugin imports your RomM library into Playnite, so your RomM ROMs appear alongside your Steam games.
+[Playnite](https://playnite.link) is a unified, open-source game library manager for Windows: one place to launch Steam, Epic, GOG, RetroArch, and emulated games. This plugin imports your RomM library into Playnite, so your RomM ROMs appear alongside your Steam games.
 
 - **Repo:** [rommapp/playnite-plugin](https://github.com/rommapp/playnite-plugin)
 - **Language:** C#
@@ -27,7 +27,7 @@ description: Import your RomM library into Playnite on Windows.
 
 ## Installing
 
-Four paths — pick whichever's easiest:
+Four paths, pick whichever's easiest:
 
 - **A.** Paste this URL into a browser to launch Playnite and install automatically:
   `playnite://playnite/installaddon/RomM_9700aa21-447d-41b4-a989-acd38f407d9f`
@@ -49,11 +49,11 @@ Playnite: **Menu → Library → Configure Integrations → RomM**.
 
 #### Authentication
 
-- **Host URL** — your RomM URL, including scheme, no trailing slash. Examples:
+- **Host URL**: your RomM URL, including scheme, no trailing slash. Examples:
     - ✓ `https://romm.example.com`
     - ✗ `romm.example.com`
     - ✗ `https://romm.example.com/`
-- **Username + password** — Playnite stores these in plaintext. Use a **dedicated Viewer-role account** for Playnite, not your admin account.
+- **Username + password**: Playnite stores these in plaintext. Use a **dedicated Viewer-role account** for Playnite, not your admin account.
 
 !!! tip "Use a Client API Token instead"
     If your RomM version supports API tokens, create a Viewer-scoped [Client API Token](client-api-tokens.md) and use it instead of a password. Safer and easier to revoke.
@@ -68,8 +68,8 @@ One mapping per platform:
 | Emulator Profile | The profile within the emulator | Nintendo GameCube | ✓ |
 | Platform | The RomM platform slug | Nintendo GameCube | ✓ |
 | Destination Path | Where downloaded ROMs are stored | `C:\roms\gc` | ✓ |
-| Auto-extract | Unpack zipped ROMs after download | | — |
-| Enabled | Whether this mapping is active | | — |
+| Auto-extract | Unpack zipped ROMs after download | | |
+| Enabled | Whether this mapping is active | | |
 
 Map every platform you want Playnite to see. Platforms without a mapping are skipped during import.
 
@@ -102,14 +102,14 @@ For automatic refresh: use Playnite's scheduled-library-refresh add-on, or manua
 
 ## Troubleshooting
 
-- **"Unable to connect"** — check the URL scheme, host, and that RomM is reachable from this machine (corporate firewalls, etc.).
-- **"Authentication failed"** — username/password mismatch, or the account is disabled. If using a token, make sure it has `roms.read` + `platforms.read`.
-- **No games imported** — emulator path mappings don't cover any platforms in your RomM library. Add mappings for your platforms.
-- **Install fails** — destination path isn't writable, or disk is full.
-- **Wrong emulator launches** — fix the mapping for that platform.
+- **"Unable to connect".** Check the URL scheme, host, and that RomM is reachable from this machine (corporate firewalls, etc.).
+- **"Authentication failed".** Username/password mismatch, or the account is disabled. If using a token, make sure it has `roms.read` + `platforms.read`.
+- **No games imported.** Emulator path mappings don't cover any platforms in your RomM library. Add mappings for your platforms.
+- **Install fails.** Destination path isn't writable, or disk is full.
+- **Wrong emulator launches.** Fix the mapping for that platform.
 
 ## See also
 
-- [Client API Tokens](client-api-tokens.md) — recommended auth method.
-- [rommapp/playnite-plugin](https://github.com/rommapp/playnite-plugin) — source, issues, releases.
-- [Playnite docs](https://playnite.link/docs/) — Playnite basics if you're new to it.
+- [Client API Tokens](client-api-tokens.md): recommended auth method.
+- [rommapp/playnite-plugin](https://github.com/rommapp/playnite-plugin): source, issues, releases.
+- [Playnite docs](https://playnite.link/docs/): Playnite basics if you're new to it.

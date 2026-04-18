@@ -11,7 +11,7 @@ Something's broken. Start with the symptom that best matches:
 
 ### RomM won't start
 
-- Container crashes immediately → check `docker logs romm`. If it's `invalid host in "tcp://..."`, you're on Kubernetes — see [Kubernetes Troubleshooting](kubernetes.md).
+- Container crashes immediately → check `docker logs romm`. If it's `invalid host in "tcp://..."`, you're on Kubernetes; see [Kubernetes Troubleshooting](kubernetes.md).
 - Database connection errors → verify `DB_HOST` / `DB_PASSWD` match your DB container, and that the DB has finished initialising (first run takes longer than you'd think).
 - "Page not found" on first load → wait; initial migrations and resource seeding take a minute.
 
@@ -38,12 +38,12 @@ Something's broken. Start with the symptom that best matches:
 
 ### Platform-specific
 
-- [Synology Troubleshooting](synology.md) — permission errors, DSM gotchas.
-- [Kubernetes Troubleshooting](kubernetes.md) — the `enableServiceLinks` fix and related.
-- [Miscellaneous Troubleshooting](miscellaneous.md) — everything else.
+- [Synology Troubleshooting](synology.md): permission errors, DSM gotchas.
+- [Kubernetes Troubleshooting](kubernetes.md): the `enableServiceLinks` fix and related.
+- [Miscellaneous Troubleshooting](miscellaneous.md): everything else.
 
 ## Still stuck
 
-- [GitHub issues](https://github.com/rommapp/romm/issues) — search first; open if you've got a reproducible bug.
-- [Discord](https://discord.gg/romm) — `#help` channel, staffed by community + maintainers.
+- [GitHub issues](https://github.com/rommapp/romm/issues): search first; open if you've got a reproducible bug.
+- [Discord](https://discord.gg/romm): `#help` channel, staffed by community + maintainers.
 - Logs to include when asking for help: `docker logs romm` (redact secrets), your RomM version (top of the About modal in the profile drawer), and the exact steps you took.

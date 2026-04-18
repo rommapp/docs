@@ -1,13 +1,13 @@
 ---
 title: OIDC with Authentik
-description: Wire RomM's SSO to Authentik — property mapping for email_verified, provider, application, RomM env vars.
+description: Wire RomM's SSO to Authentik: property mapping for email_verified, provider, application, RomM env vars.
 ---
 
 # OIDC with Authentik
 
 [Authentik](https://goauthentik.io/) is a full-featured open-source IdP with MFA, flows, and a sizeable audit/admin surface. Good fit for users who want more than Authelia offers.
 
-Before starting, read the [OIDC Setup overview](index.md) — it covers the RomM-side settings common to every provider.
+Before starting, read the [OIDC Setup overview](index.md); it covers the RomM-side settings common to every provider.
 
 ## 1. Prerequisites
 
@@ -55,7 +55,7 @@ Configure:
 - **Authorization flow**: implicit consent
 - **Redirect URIs**: `https://romm.example.com/api/oauth/openid`
 
-Copy the generated **Client ID** and **Client Secret** — you'll use them as `OIDC_CLIENT_ID` / `OIDC_CLIENT_SECRET` on the RomM side.
+Copy the generated **Client ID** and **Client Secret**; you'll use them as `OIDC_CLIENT_ID` / `OIDC_CLIENT_SECRET` on the RomM side.
 
 ![Provider settings](../../resources/authentik/4-provider-secrets.png)
 
@@ -88,7 +88,7 @@ environment:
   - ROMM_BASE_URL=https://romm.example.com
 ```
 
-Note `OIDC_SERVER_APPLICATION_URL` points at the per-application URL (`/application/o/<slug>`) — not the Authentik root.
+Note `OIDC_SERVER_APPLICATION_URL` points at the per-application URL (`/application/o/<slug>`), not the Authentik root.
 
 For role mapping from Authentik groups, see [OIDC Setup → Role mapping](index.md#role-mapping-50).
 
@@ -100,7 +100,7 @@ In RomM → **Profile** → set your email to exactly the same address Authentik
 
 ## 7. Test
 
-Restart RomM and open `/login`. Click the **Login with OIDC** button — you're redirected to Authentik, authenticate, and come back signed into RomM.
+Restart RomM and open `/login`. Click the **Login with OIDC** button; you're redirected to Authentik, authenticate, and come back signed into RomM.
 
 ![Login with OIDC](../../resources/authentik/8-romm-login.png)
 

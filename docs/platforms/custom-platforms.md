@@ -5,7 +5,7 @@ description: Add platforms RomM doesn't natively support, plus custom platform i
 
 # Custom Platforms
 
-RomM ships with support for ~400 platforms. If yours isn't in [the list](supported-platforms.md), you can still load it as a custom platform — RomM just won't have metadata-provider coverage for it.
+RomM ships with support for ~400 platforms. If yours isn't in [the list](supported-platforms.md), you can still load it as a custom platform; RomM just won't have metadata-provider coverage for it.
 
 ## Adding a custom platform
 
@@ -27,7 +27,7 @@ Then either run a **Quick Scan** (the platform is auto-discovered) or trigger a 
 
 ## Mapping to a canonical platform (preferred when possible)
 
-If your platform is one RomM supports but under a different slug, you don't need a custom platform — just **remap**. Add to `config.yml`:
+If your platform is one RomM supports but under a different slug, you don't need a custom platform; just **remap**. Add to `config.yml`:
 
 ```yaml
 system:
@@ -58,7 +58,7 @@ services:
 
 ### 2. Seed it with the official icons
 
-RomM's built-in icons live at [`frontend/assets/platforms`](https://github.com/rommapp/romm/tree/master/frontend/assets/platforms). Download them all and drop into your mounted directory — otherwise built-in platforms lose their icons too (because your mount overrides the whole directory).
+RomM's built-in icons live at [`frontend/assets/platforms`](https://github.com/rommapp/romm/tree/master/frontend/assets/platforms). Download them all and drop into your mounted directory; otherwise built-in platforms lose their icons too (because your mount overrides the whole directory).
 
 ### 3. Add your custom `.ico` files
 
@@ -70,7 +70,7 @@ The filename has to **match the IGDB platform slug**. Examples:
 | Pocket Challenge V2 | `pocket-challenge-v2` (custom) | `pocket-challenge-v2.ico` |
 | NES | `nes` | `nes.ico` |
 
-Find the slug in the URL of the platform's IGDB page — e.g. [igdb.com/platforms/acpc](https://www.igdb.com/platforms/acpc) → slug is `acpc`.
+Find the slug in the URL of the platform's IGDB page, e.g. [igdb.com/platforms/acpc](https://www.igdb.com/platforms/acpc) → slug is `acpc`.
 
 ### 4. Restart RomM
 
@@ -78,7 +78,7 @@ Find the slug in the URL of the platform's IGDB page — e.g. [igdb.com/platform
 
 ### Replacing an existing platform's icon
 
-Same mechanic — just use a filename matching an existing platform's slug and your file overrides the built-in.
+Same mechanic: just use a filename matching an existing platform's slug and your file overrides the built-in.
 
 ## What custom platforms don't get
 
@@ -90,7 +90,7 @@ For the niche platform case, you'll likely rely on filename-only matching (no pr
 
 ## Contributing a platform
 
-If you've added a custom platform that should be supported natively by RomM — e.g. a widely-used platform that's missing — open an issue on [rommapp/romm](https://github.com/rommapp/romm/issues) with:
+If you've added a custom platform that should be supported natively by RomM (e.g. a widely-used platform that's missing) open an issue on [rommapp/romm](https://github.com/rommapp/romm/issues) with:
 
 - Platform name.
 - IGDB platform URL (if it exists on IGDB).

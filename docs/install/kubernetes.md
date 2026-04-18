@@ -1,6 +1,6 @@
 ---
 title: Kubernetes
-description: Deploy RomM on Kubernetes — manifest examples, required quirks, and community Helm charts.
+description: Deploy RomM on Kubernetes with manifest examples, required quirks, and community Helm charts.
 ---
 
 # Kubernetes
@@ -8,18 +8,18 @@ description: Deploy RomM on Kubernetes — manifest examples, required quirks, a
 There's no official Helm chart for RomM in 5.0. This page walks through a production-grade manifest set and points at the community charts worth looking at.
 
 !!! note "Community-maintained charts"
-    If you'd rather not hand-author manifests, there are community Helm charts around — check [ArtifactHub](https://artifacthub.io/packages/search?ts_query_web=romm) and the `#kubernetes` channel in the [RomM Discord](https://discord.gg/P5HtHnhUDH). The RomM team doesn't publish or formally support any chart today — pick one with active maintenance and recent releases.
+    If you'd rather not hand-author manifests, there are community Helm charts around; check [ArtifactHub](https://artifacthub.io/packages/search?ts_query_web=romm) and the `#kubernetes` channel in the [RomM Discord](https://discord.gg/P5HtHnhUDH). The RomM team doesn't publish or formally support any chart today, so pick one with active maintenance and recent releases.
 
 ## What you need
 
 - A cluster running Kubernetes 1.27+.
-- Persistent storage for the DB, cache, and RomM's assets/resources/config (block or RWX — see below).
+- Persistent storage for the DB, cache, and RomM's assets/resources/config (block or RWX; see below).
 - An Ingress controller (nginx-ingress, Traefik, etc.) for external access.
 - cert-manager or equivalent for HTTPS.
 
 ## Required quirk: `enableServiceLinks: false`
 
-Kubernetes injects service addresses as environment variables into every pod — `HOSTNAME_PORT=tcp://<service-ip>:<port>`. nginx inside the RomM image picks these up and tries to bind to the service IP, producing:
+Kubernetes injects service addresses as environment variables into every pod (`HOSTNAME_PORT=tcp://<service-ip>:<port>`). nginx inside the RomM image picks these up and tries to bind to the service IP, producing:
 
 ```text
 invalid host in "tcp://<internal ip>:8080" of the "listen" directive in
@@ -40,7 +40,7 @@ spec:
       enableServiceLinks: false  # ← required
 ```
 
-Without this, RomM crashloops on startup. This is the single most common Kubernetes gotcha — if you're here because of the error above, add the flag and move on.
+Without this, RomM crashloops on startup. This is the single most common Kubernetes gotcha. If you're here because of the error above, add the flag and move on.
 
 ## Namespace
 
@@ -64,7 +64,7 @@ stringData:
   ROMM_AUTH_SECRET_KEY: "<openssl rand -hex 32>"
   DB_PASSWD: "<db-password>"
   MARIADB_ROOT_PASSWORD: "<root-password>"
-  # Metadata providers — fill in only what you've configured:
+  # Metadata providers: fill in only what you've configured:
   IGDB_CLIENT_ID: ""
   IGDB_CLIENT_SECRET: ""
   SCREENSCRAPER_USER: ""
@@ -271,13 +271,13 @@ spec:
                 port: { number: 80 }
 ```
 
-`proxy-body-size: "0"` is important — the default is 1 MB and will reject every ROM upload with HTTP 413.
+`proxy-body-size: "0"` is important; the default is 1 MB and will reject every ROM upload with HTTP 413.
 
 ## Scaling notes
 
 - **One RomM replica** is the simple path. The scan runs as a single worker, which prefers a single replica.
 - **Multiple replicas** work, but you need RWX for `/romm/assets` and `/romm/resources` and an external Redis (set `REDIS_HOST` to a shared service). See [Redis or Valkey](redis-or-valkey.md).
-- **No HPA** (horizontal pod autoscaler) on RomM — CPU spikes during scans are normal and not a scaling signal.
+- **No HPA** (horizontal pod autoscaler) on RomM: CPU spikes during scans are normal and not a scaling signal.
 
 ## Updating
 
