@@ -248,4 +248,3 @@ Tags are searchable in the search bar — typing `(USA)` returns every game tagg
 ## Filename metadata tags
 
 RomM also honours inline tags like `(igdb-1234)` in filenames to force a match to a specific provider entry — covered in [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames).
-
