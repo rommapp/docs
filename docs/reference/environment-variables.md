@@ -38,7 +38,7 @@ services:
 Don't embed `ROMM_AUTH_SECRET_KEY`, DB passwords, or provider API keys directly in a committed compose file. Use:
 
 - A `.env` that's `.gitignore`d.
-- Docker secrets (`ROMM_AUTH_SECRET_KEY_FILE` reads from a mounted file).
+- Docker secrets (`ROMM_AUTH_SECRET_KEY_FILE` reads from a [mounted file](https://docs.docker.com/compose/how-to/use-secrets/)).
 - Your orchestrator's secret store (K8s Secrets, HashiCorp Vault, AWS Secrets Manager).
 
 ## Essential variables
