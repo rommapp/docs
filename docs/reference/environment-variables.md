@@ -50,7 +50,6 @@ You'll always set these:
 | `ROMM_AUTH_SECRET_KEY` | JWT signing key. Generate with `openssl rand -hex 32`. **Never rotate lightly** — breaks all sessions. |
 | `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWD` | Database connection. |
 | `ROMM_DB_DRIVER` | `mariadb` (default), `mysql`, `postgresql`, or `sqlite`. See [Databases](../install/databases.md). |
-| `ROMM_BASE_URL` | Public URL behind your reverse proxy. Needed for correct OIDC redirects, QR codes, and invite links. |
 
 For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../administration/metadata-providers.md). For OIDC, see [OIDC Setup](../administration/oidc/index.md).
 

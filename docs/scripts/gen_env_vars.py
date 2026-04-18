@@ -112,7 +112,7 @@ def render(rows: Iterable[dict]) -> str:
         out.append("| --- | --- | :---: | --- |")
         for r in items:
             default = f"`{r['default']}`" if r["default"] else ""
-            required = "✓" if r["required"] else ""
+            required = "`✓`" if r["required"] else ""
             desc = r["description"] or "—"
             out.append(
                 f"| `{r['name']}` | {default} | {required} | {desc} |"
