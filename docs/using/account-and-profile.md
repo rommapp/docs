@@ -86,6 +86,24 @@ Available throughout the app:
 | `j` / `k` | Next / previous item in a list view. |
 | `Enter` | Activate focused item. |
 
+## Accessibility
+
+RomM's main UI supports screen readers (VoiceOver, NVDA, JAWS, Orca). Every interactive element has proper ARIA labels, focus states are visible, and semantic heading structure is consistent.
+
+Other accessibility features:
+
+- **Keyboard-only navigation**: every user-facing action reachable without a mouse. Tab through interactive elements, and the shortcuts above get you around quickly.
+- **Dark / light / auto theme**: Profile → User Interface → Theme. Auto follows OS preference.
+- **Reduced motion**: RomM respects `prefers-reduced-motion` from your OS, so animations shorten or disable automatically.
+- **19 locales**: see [Languages](languages.md).
+
+Gaps you should know about:
+
+- **[Console Mode](console-mode.md)** (the `/console` SPA) isn't currently screen-reader-friendly the way the main UI is. It's built around gamepad / spatial navigation. Stick with the main UI if you use assistive tech.
+- **In-browser play**: EmulatorJS is a third-party component and its accessibility is outside RomM's control.
+
+Known issue? Please file on [rommapp/romm](https://github.com/rommapp/romm/issues). Accessibility fixes get prioritised.
+
 ## Personal data
 
 Per-game data you set (ratings, notes, status, playtime) is all stored per-user. Admins can't see your per-game ratings unless you share them via a public collection.

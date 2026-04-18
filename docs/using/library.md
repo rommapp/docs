@@ -93,6 +93,16 @@ Click the search icon in the menu bar. Real-time search against:
 
 Search is platform-aware: type `zelda` and you'll see every matched Zelda across every platform you have.
 
+### Multi-keyword search
+
+Separate terms with `|` to match any of them:
+
+```text
+zelda|mario|sonic
+```
+
+Returns every game whose metadata matches `zelda` **or** `mario` **or** `sonic`. Useful for building a collection from a quick ad-hoc pattern: combine with the "New collection from results" button below.
+
 ![search bar](https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/usage/SearchBar.png)
 
 Two icons next to the search bar:
@@ -135,7 +145,8 @@ Which tabs appear depends on your metadata providers:
 
 - **Details**: title, description, release date, genres, developer/publisher, regions, rating, matched providers. Filterable metadata surfaces here.
 - **Game Data**: save files, save states, screenshots. Per-user. Upload, download, and delete. See [Saves & States](saves-and-states.md).
-- **Personal**: your data on this game: status (Never Played / Backlogged / Playing / Complete / Hidden), rating, difficulty, percent complete, notes. Stored per-user.
+- **Personal**: your data on this game: status (Never Played / Backlogged / Playing / Complete / Hidden), rating, difficulty, percent complete, and **playtime** (accumulated as you play via the [in-browser player](in-browser-play.md) or companion apps that post play sessions). Stored per-user.
+- **Notes**: Markdown-formatted notes on the game. Per-user. Set a note to **public** to share with other users on the instance. You can have multiple notes per game (e.g. "walkthrough tips", "save states reference", "secret moves"). Edited via a Markdown editor with preview pane.
 - **Manual**: PDF viewer if you have a manual for this game.
 - **Time to Beat**: [HowLongToBeat](../administration/metadata-providers.md#howlongtobeat) data if enabled.
 - **Screenshots**: provider-fetched + user-uploaded screenshots.

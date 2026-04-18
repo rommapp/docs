@@ -29,6 +29,16 @@ Context menu (…) → **Show QR Code**, then point the other device's camera at
 
 The QR decodes to the same URL as Copy Link. Same auth rules apply.
 
+### Nintendo 3DS direct install
+
+The 3DS built-in QR scanner can install compatible `.cia` files directly from a URL. For supported Nintendo 3DS files, RomM's QR code becomes a one-tap install path:
+
+1. Open the ROM on RomM → context menu → **Show QR Code**.
+2. On the 3DS, launch FBI (or another CIA installer that accepts QR input).
+3. Select **Install from URL** → **Scan QR** → point at your screen.
+
+Same prerequisites as any Copy Link / QR download: the 3DS needs network access to your RomM instance, and the file has to be accessible (either authenticated with basic-auth support on the 3DS side, or `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` behind upstream auth).
+
 ## Multi-file and bulk downloads (nginx `mod_zip`)
 
 RomM's nginx is built with `mod_zip`, which streams a zip archive over HTTP without ever materialising the file on disk. Two places this matters:
