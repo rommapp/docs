@@ -44,9 +44,9 @@ Why would you use WebRcade over RomM's built-in player?
 
 When to stay with RomM's player:
 
-- **You want library management.** WebRcade is frontend-only, but RomM owns the metadata and scanning.
+- **You want library management.** WebRcade is frontend-only but RomM owns the metadata and scanning.
 - **You want user accounts + collections + per-user progress.** WebRcade is single-user-ish.
-- **You want [Netplay](../using/netplay.md).** RomM has it, but WebRcade doesn't.
+- **You want [Netplay](../using/netplay.md).** RomM has it but WebRcade doesn't.
 
 Totally reasonable to run both: WebRcade as a launcher UI pointed at RomM for the library.
 

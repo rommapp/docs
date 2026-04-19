@@ -7,10 +7,6 @@ description: The humans, projects, and services that make RomM possible.
 
 RomM exists because a lot of people contributed code, designs, translations, ideas, and, most importantly, running bug reports back to the project. Thanks to every one of them.
 
-## Core maintainers
-
-The small team that reviews PRs, cuts releases, and keeps the project moving. Check [rommapp/romm](https://github.com/rommapp/romm/graphs/contributors) for the current active list. Credits here would drift.
-
 ## Contributors
 
 [Every contributor](https://github.com/rommapp/romm/graphs/contributors) to [rommapp/romm](https://github.com/rommapp/romm), plus contributors to the surrounding repos:
@@ -18,7 +14,6 @@ The small team that reviews PRs, cuts releases, and keeps the project moving. Ch
 - [rommapp/argosy-launcher](https://github.com/rommapp/argosy-launcher/graphs/contributors)
 - [rommapp/grout](https://github.com/rommapp/grout/graphs/contributors)
 - [rommapp/playnite-plugin](https://github.com/rommapp/playnite-plugin/graphs/contributors)
-- [rommapp/muos-app](https://github.com/rommapp/muos-app/graphs/contributors)
 - [rommapp/docs](https://github.com/rommapp/docs/graphs/contributors)
 
 ## Translators
@@ -29,51 +24,55 @@ RomM's 19 locales exist because individual community members took the time to tr
 
 Built by the community, not the RomM team. Full list in [Community Apps](../ecosystem/community-apps.md).
 
+## Financial supporters
+
+Donors via [Open Collective](https://opencollective.com/romm) make continued development possible. The project wouldn't exist without you. Thank you! ❤️
+
 ## Upstream projects
 
 RomM stands on an enormous amount of open-source work. In rough order of "how visible they are to users":
 
 ### In-browser emulation
 
-- [EmulatorJS](https://emulatorjs.org/): the retro emulator that powers most of our in-browser play.
-- [Ruffle](https://ruffle.rs/): the Flash / Shockwave emulator.
-- [dosbox-pure](https://github.com/schellingb/dosbox-pure): DOS emulation core via EmulatorJS.
+- [EmulatorJS](https://emulatorjs.org/)
+- [Ruffle](https://ruffle.rs/)
+- [dosbox-pure](https://github.com/schellingb/dosbox-pure)
 
 ### Metadata sources
 
-- [IGDB](https://www.igdb.com/): the Internet Game Database.
-- [ScreenScraper](https://screenscraper.fr/): French community metadata.
-- [MobyGames](https://www.mobygames.com/): game database.
-- [RetroAchievements](https://retroachievements.org/): achievements and hash matching.
-- [SteamGridDB](https://www.steamgriddb.com/): cover art.
-- [Hasheous](https://hasheous.org/): hash-based matching.
-- [PlayMatch](https://github.com/RetroRealm/playmatch): community hash service.
-- [LaunchBox Games Database](https://gamesdb.launchbox-app.com/): local metadata DB.
-- [TheGamesDB](https://thegamesdb.net/): free community DB.
-- [Flashpoint Archive](https://flashpointproject.github.io/flashpoint-database/): Flash game preservation.
-- [HowLongToBeat](https://howlongtobeat.com/): completion times.
-- [Libretro](https://www.libretro.com/): core metadata.
+- [IGDB](https://www.igdb.com/)
+- [ScreenScraper](https://screenscraper.fr/)
+- [MobyGames](https://www.mobygames.com/)
+- [RetroAchievements](https://retroachievements.org/)
+- [SteamGridDB](https://www.steamgriddb.com/)
+- [Hasheous](https://hasheous.org/)
+- [PlayMatch](https://github.com/RetroRealm/playmatch)
+- [LaunchBox Games Database](https://gamesdb.launchbox-app.com/)
+- [TheGamesDB](https://thegamesdb.net/)
+- [Flashpoint Archive](https://flashpointproject.github.io/flashpoint-database/)
+- [HowLongToBeat](https://howlongtobeat.com/)
+- [Libretro](https://www.libretro.com/)
 
 ### Backend stack
 
-- [FastAPI](https://fastapi.tiangolo.com/) + [Starlette](https://www.starlette.io/): the web framework.
-- [SQLAlchemy](https://www.sqlalchemy.org/) + [Alembic](https://alembic.sqlalchemy.org/): ORM and migrations.
-- [RQ](https://python-rq.org/): background job queue.
-- [MariaDB](https://mariadb.org/) / [PostgreSQL](https://www.postgresql.org/) / [MySQL](https://www.mysql.com/): database backends.
-- [Redis](https://redis.io/) / [Valkey](https://valkey.io/): cache and queue.
-- [nginx](https://nginx.org/) with [`mod_zip`](https://github.com/evanmiller/mod_zip): reverse proxy + streaming zip downloads.
-- [uv](https://docs.astral.sh/uv/): Python package manager.
+- [FastAPI](https://fastapi.tiangolo.com/) + [Starlette](https://www.starlette.io/)
+- [SQLAlchemy](https://www.sqlalchemy.org/) + [Alembic](https://alembic.sqlalchemy.org/)
+- [RQ](https://python-rq.org/)
+- [MariaDB](https://mariadb.org/) / [PostgreSQL](https://www.postgresql.org/) / [MySQL](https://www.mysql.com/)
+- [Redis](https://redis.io/) / [Valkey](https://valkey.io/)
+- [nginx](https://nginx.org/) with [`mod_zip`](https://github.com/evanmiller/mod_zip)
+- [uv](https://docs.astral.sh/uv/)
 
 ### Frontend stack
 
-- [Vue 3](https://vuejs.org/): frontend framework.
-- [Vuetify](https://vuetifyjs.com/): component library.
-- [Pinia](https://pinia.vuejs.org/): state management.
-- [Vite](https://vitejs.dev/): build tool.
-- [Socket.IO](https://socket.io/): real-time communication.
-- [vue-i18n](https://vue-i18n.intlify.dev/): localisation.
-- [rom-patcher-js](https://www.marcrobledo.com/RomPatcher.js/): the ROM patcher library.
-- [vite-plugin-pwa](https://vite-pwa-org.netlify.app/): PWA support.
+- [Vue 3](https://vuejs.org/)
+- [Vuetify](https://vuetifyjs.com/)
+- [Pinia](https://pinia.vuejs.org/)
+- [Vite](https://vitejs.dev/)
+- [Socket.IO](https://socket.io/)
+- [vue-i18n](https://vue-i18n.intlify.dev/)
+- [rom-patcher-js](https://www.marcrobledo.com/RomPatcher.js/)
+- [vite-plugin-pwa](https://vite-pwa-org.netlify.app/)
 
 ### Docs stack
 
@@ -81,20 +80,9 @@ RomM stands on an enormous amount of open-source work. In rough order of "how vi
 - [mike](https://github.com/jimporter/mike): docs versioning.
 - [asciinema](https://asciinema.org/): terminal recordings.
 
-## Community
-
-- [#selfh.st](https://selfh.st/): early visibility for the project.
-- [Hacker News](https://news.ycombinator.com/): the launch-day bump.
-- [Aikido Security](https://www.aikido.dev/): security audit.
-- Everyone who submitted a bug report, pinged Discord, or pushed a typo fix.
-
-## Financial supporters
-
-Donors via [Open Collective](https://opencollective.com/romm) make continued development possible. The project wouldn't exist without you. Thanks.
-
 ## Missing?
 
-Open a PR against this page. Credit is cheap, and we'd rather err on the side of naming everyone than leaving someone out.
+Open a PR against this page. Credit is cheap, and we want to give it where it's due.
 
 ## See also
 

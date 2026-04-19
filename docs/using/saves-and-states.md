@@ -80,7 +80,7 @@ From the end-user side: once your device is paired and sync is running, saves ma
 
 ### Saves
 
-Save files are usually format-interchangeable across cores for the same platform, but not always.
+Save files are usually format-interchangeable across cores for the same platform but not always.
 
 | Platform             | Format                 | Usually-compatible                                 |
 | -------------------- | ---------------------- | -------------------------------------------------- |
@@ -88,7 +88,7 @@ Save files are usually format-interchangeable across cores for the same platform
 | SNES                 | `.srm`                 | Yes, across SNES9x / bsnes                         |
 | Genesis / Mega Drive | `.srm`                 | Yes                                                |
 | Game Boy / GBC / GBA | `.sav`                 | Yes, across Gambatte / mGBA                        |
-| N64                  | `.srm`, `.eep`, `.fla` | Yes, but per-type: the right file must be uploaded |
+| N64                  | `.srm`, `.eep`, `.fla` | Yes but per-type: the right file must be uploaded |
 | PSX                  | `.srm` (memory card)   | Yes, across Mednafen / PCSX cores                  |
 | Saturn / Dreamcast   | Varies                 | Check core docs                                    |
 
@@ -102,7 +102,7 @@ Practical advice: stick to one core per platform if you use states heavily, or u
 
 ## RetroAchievements and states
 
-If you use [RetroAchievements](retroachievements.md) in hardcore mode, loading a save state **disables achievement tracking** for that session. RomM doesn't enforce this, but the RA server will stop crediting achievements. Use save files (the in-game save) instead of states if you care.
+If you use [RetroAchievements](retroachievements.md) in hardcore mode, loading a save state **disables achievement tracking** for that session. RomM doesn't enforce this but the RA server will stop crediting achievements. Use save files (the in-game save) instead of states if you care.
 
 ## Screenshots with states
 

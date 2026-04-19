@@ -33,7 +33,7 @@ When you don't have shell access or you're uploading from a different machine.
 3. Drag and drop the file, or click to browse.
 4. RomM puts it in the correct `bios/{platform}/` directory on disk.
 
-Editors and Admins can upload firmware, but Viewers can't (`firmware.write` scope required, see [Users & Roles](users-and-roles.md)).
+Editors and Admins can upload firmware but Viewers can't (`firmware.write` scope required, see [Users & Roles](users-and-roles.md)).
 
 ## Platform-specific firmware
 

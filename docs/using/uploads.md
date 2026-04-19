@@ -48,7 +48,7 @@ To upload a multi-file game (multi-disc, game + DLC):
 
 ### After upload
 
-Uploaded ROMs are immediately visible in the platform view, but aren't **matched** to metadata until the next scan. Two options:
+Uploaded ROMs are immediately visible in the platform view but aren't **matched** to metadata until the next scan. Two options:
 
 - **Run a Quick scan**: picks up new files only.
 - **Match manually**: game detail → Match → search for the title.

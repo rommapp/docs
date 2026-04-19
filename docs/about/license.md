@@ -57,7 +57,7 @@ No: AGPL is a strong copyleft, so forks remain AGPL, and while you can add your 
 
 ### Can I charge money for RomM-as-a-service?
 
-Yes, but you owe your users the source, so you can't run a modified closed-source hosted RomM for paying customers.
+Yes but you owe your users the source, so you can't run a modified closed-source hosted RomM for paying customers.
 
 ### Can I sell ROMs through RomM?
 

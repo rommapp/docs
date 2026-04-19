@@ -119,7 +119,7 @@ Community-made, still relevant for general Unraid/RomM debugging even if specifi
 
 [![RomM on Unraid, DemonWarriorTech](https://img.youtube.com/vi/Oo5obHNy2iw/0.jpg)](https://www.youtube.com/watch?v=Oo5obHNy2iw)
 
-[AlienTech42](https://www.youtube.com/@AlienTech42): [older install + debugging walkthrough](https://www.youtube.com/watch?v=ls5YcsFdwLQ). Install steps are out of date, but the general-setup and debugging portions still hold.
+[AlienTech42](https://www.youtube.com/@AlienTech42): [older install + debugging walkthrough](https://www.youtube.com/watch?v=ls5YcsFdwLQ). Install steps are out of date but the general-setup and debugging portions still hold.
 
 [![RomM on Unraid, AlienTech42](https://img.youtube.com/vi/ls5YcsFdwLQ/0.jpg)](https://www.youtube.com/watch?v=ls5YcsFdwLQ)
 

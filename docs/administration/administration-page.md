@@ -52,7 +52,7 @@ Editor-grade tools for catalogue hygiene.
 
 ## Metadata Sources
 
-Admin-only. Per-provider credentials, test buttons, and the priority-ordering drag-and-drop UI. Equivalent to editing the `*_CLIENT_ID` / `*_API_KEY` env vars and `scan.priority` in `config.yml`, but interactive.
+Admin-only. Per-provider credentials, test buttons, and the priority-ordering drag-and-drop UI. Equivalent to editing the `*_CLIENT_ID` / `*_API_KEY` env vars and `scan.priority` in `config.yml` but interactive.
 
 Full provider details in [Metadata Providers](metadata-providers.md).
 

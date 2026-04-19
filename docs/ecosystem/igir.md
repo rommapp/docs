@@ -5,7 +5,7 @@ description: Clean up and normalise your ROM collection with Igir before importi
 
 # Igir Collection Manager
 
-[Igir](https://igir.io/) is a zero-setup ROM collection manager: sorts, filters, extracts, archives, patches, and reports on collections of any size. Not a RomM companion per se, but more a pre-processing tool. Useful for cleaning up a library _before_ importing into RomM, so RomM's scans have a better-named, better-organised starting point.
+[Igir](https://igir.io/) is a zero-setup ROM collection manager: sorts, filters, extracts, archives, patches, and reports on collections of any size. Not a RomM companion per se but more a pre-processing tool. Useful for cleaning up a library _before_ importing into RomM, so RomM's scans have a better-named, better-organised starting point.
 
 **This is not an official RomM app.** Igir is a separate community project. We document integration here because it's a common workflow and produces a RomM-compatible layout directly.
 

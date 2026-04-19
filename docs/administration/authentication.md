@@ -49,11 +49,11 @@ Until email-based self-serve reset lands, admins set passwords manually:
 
 **Administration → Users → Edit → New password → Save.**
 
-The next login on that account will use the new password, but existing sessions for that user remain valid until they expire. If that's a concern, revoke them explicitly by deleting all of the user's Client API Tokens.
+The next login on that account will use the new password but existing sessions for that user remain valid until they expire. If that's a concern, revoke them explicitly by deleting all of the user's Client API Tokens.
 
 ### Self-serve password reset
 
-Users can click "Forgot password?" on the login page if you've configured an SMTP transport. (Not part of 5.0 GA, but the UI path exists and will light up once email config is exposed.)
+Users can click "Forgot password?" on the login page if you've configured an SMTP transport. (Not part of 5.0 GA but the UI path exists and will light up once email config is exposed.)
 
 ## OIDC
 
@@ -86,7 +86,7 @@ Each user gets up to 25 active tokens, revokable from the same page. The API sid
 
 ## Kiosk mode
 
-Turns every GET endpoint into unauthenticated read-only access: anyone reaching the instance can browse, but nobody can write, scan, upload, or manage users.
+Turns every GET endpoint into unauthenticated read-only access: anyone reaching the instance can browse but nobody can write, scan, upload, or manage users.
 
 ```yaml
 environment:

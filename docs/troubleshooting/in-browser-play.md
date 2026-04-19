@@ -17,7 +17,7 @@ Checks in order:
 
 ## Black screen, no audio
 
-EmulatorJS loaded, but the game is dead.
+EmulatorJS loaded but the game is dead.
 
 - **Core incompatibility.** Some cores have issues with specific ROMs. Try a different core via in-game Menu → **Core**.
 - **ROM dump is bad.** A broken dump produces a black screen on most emulators. Try a known-good No-Intro / Redump version.
@@ -69,7 +69,7 @@ Rebind via Profile → User Interface (the operator-side overrides live in [`emu
 ## DOS games fail to boot
 
 - **autorun.bat issues**: turn on [`emulatorjs.disable_batch_bootup: true`](../reference/configuration-file.md#emulatorjsdisable_batch_bootup) in `config.yml`.
-- **Sound card config wrong**: dosbox-pure tries to auto-detect, but may need manual tweaking. In-game Menu → **Settings** → set Sound Blaster port.
+- **Sound card config wrong**: dosbox-pure tries to auto-detect but may need manual tweaking. In-game Menu → **Settings** → set Sound Blaster port.
 - **Game needs specific CPU speed**: some DOS games are CPU-bound. Slow down via dosbox-pure settings.
 
 See the [MS-DOS platform guide](../platforms/ms-dos.md) for deeper DOS-specific notes.

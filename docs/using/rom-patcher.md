@@ -73,7 +73,7 @@ No-intro patches, region-free patches. Apply, download, and verify with the Hash
 
 ## Limits
 
-- **Browser memory**: huge ROMs (PSX / Saturn / PSP ISOs, > 1 GB) can struggle in browsers with low memory limits. Safari is the most restrictive, but Firefox / Chrome handle bigger files.
+- **Browser memory**: huge ROMs (PSX / Saturn / PSP ISOs, > 1 GB) can struggle in browsers with low memory limits. Safari is the most restrictive but Firefox / Chrome handle bigger files.
 - **Multi-file ROMs**: the Patcher operates on a single file. For multi-disc games, patch each ISO separately.
 - **Encrypted ROMs**: if the patch was authored against a decrypted ROM (e.g. DS `.nds` vs raw cartridge), your source has to match.
 - **Save format changes**: patches that alter save-data layout will invalidate existing save files. Back them up before applying.

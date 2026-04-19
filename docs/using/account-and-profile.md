@@ -20,7 +20,7 @@ Editable from the profile page. Changing your email:
 
 ### Password
 
-For local accounts: **Current password** + **New password** (twice). RomM uses bcrypt: no plaintext storage, no password recovery by the admin (admins reset by setting a new password, but they can't see your old one).
+For local accounts: **Current password** + **New password** (twice). RomM uses bcrypt: no plaintext storage, no password recovery by the admin (admins reset by setting a new password but they can't see your old one).
 
 OIDC users don't have local passwords, because authentication is via the IdP. Password fields are hidden on the profile page.
 
@@ -124,7 +124,7 @@ When deleted:
 
 - Your profile is removed.
 - Your saves, states, screenshots, personal ROM data (ratings, notes, play sessions) are removed.
-- Your **public collections** stay (they belong to the community), but show as orphaned.
+- Your **public collections** stay (they belong to the community) but show as orphaned.
 - Your **private collections** are deleted.
 - Your **Client API Tokens** are revoked.
 

@@ -84,7 +84,7 @@ Same mechanic: just use a filename matching an existing platform's slug and your
 
 - **Metadata provider coverage.** Providers are IGDB-slug-driven. A genuinely unknown platform won't have IGDB / ScreenScraper / MobyGames data.
 - **EmulatorJS support.** The platform has to match a known EmulatorJS core. See [Supported Platforms → EmulatorJS column](supported-platforms.md).
-- **RetroAchievements.** Hash-based, but restricted to RA-supported platforms.
+- **RetroAchievements.** Hash-based but restricted to RA-supported platforms.
 
 For the niche platform case, you'll likely rely on filename-only matching (no provider) and browsing the library like a straight file system.
 

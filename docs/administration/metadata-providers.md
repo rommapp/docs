@@ -74,7 +74,7 @@ Metadata, cover art, and screenshots. [Create an account](https://www.mobygames.
 
 <!-- prettier-ignore -->
 !!! important "MobyGames API is paid"
-    Access to the MobyGames API is a [paid, non-commercial-licensed feature](https://www.mobygames.com/info/api/#non-commercial). RomM will continue to support it, but we recommend ScreenScraper as a free alternative.
+    Access to the MobyGames API is a [paid, non-commercial-licensed feature](https://www.mobygames.com/info/api/#non-commercial). RomM will continue to support it but we recommend ScreenScraper as a free alternative.
 
 ### SteamGridDB
 

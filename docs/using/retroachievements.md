@@ -23,7 +23,7 @@ When RomM is wired up to RetroAchievements, each user's progression (achievement
     - **API Key**: the key you just copied.
 4. **Sync now**: RomM pulls your progression data and populates the Achievements tab on matched games.
 
-From this point on, RomM auto-syncs every user's progression via the nightly RetroAchievements Sync scheduled task. See [Scheduled Tasks](../administration/scheduled-tasks.md). No manual sync needed, but you can force one from the Profile page whenever.
+From this point on, RomM auto-syncs every user's progression via the nightly RetroAchievements Sync scheduled task. See [Scheduled Tasks](../administration/scheduled-tasks.md). No manual sync needed but you can force one from the Profile page whenever.
 
 ## Where it shows up
 
@@ -57,7 +57,7 @@ RetroAchievements distinguishes two play modes:
 - **Softcore**: save states allowed. Achievements still count.
 - **Hardcore**: no save states. More points per achievement, flagged separately.
 
-RomM doesn't enforce hardcore. You toggle it per-game in RetroAchievements-capable cores. Loading a save state during a hardcore run will silently drop hardcore crediting on the RA server side. You'll still see the achievement, but marked as softcore.
+RomM doesn't enforce hardcore. You toggle it per-game in RetroAchievements-capable cores. Loading a save state during a hardcore run will silently drop hardcore crediting on the RA server side. You'll still see the achievement but marked as softcore.
 
 If you care about hardcore, use the in-game save feature instead of save states. See [Saves & States → RetroAchievements and states](saves-and-states.md#retroachievements-and-states).
 

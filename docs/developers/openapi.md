@@ -56,7 +56,7 @@ npx @openapitools/openapi-generator-cli generate \
   -o ./romm-client-ts
 ```
 
-Generated clients handle auth, request shaping, and response parsing. Drop in, import, call. Quality varies by generator target, but Python and TypeScript are the best-tested.
+Generated clients handle auth, request shaping, and response parsing. Drop in, import, call. Quality varies by generator target but Python and TypeScript are the best-tested.
 
 ### Tips
 

@@ -56,7 +56,7 @@ For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../a
 ## When env vars are read
 
 - **Startup:** most vars are consumed once at container start, so changes need a `docker compose up -d` to apply.
-- **Per-request:** a handful of feature toggles (`KIOSK_MODE`, `DISABLE_USERPASS_LOGIN`) are re-checked per request, but a restart is safest to avoid partial-state caching.
+- **Per-request:** a handful of feature toggles (`KIOSK_MODE`, `DISABLE_USERPASS_LOGIN`) are re-checked per request but a restart is safest to avoid partial-state caching.
 - **Never at runtime:** there's no reload-config endpoint.
 
 ## Full reference

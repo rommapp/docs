@@ -36,7 +36,7 @@ The feed returns JSON in the fpkgi-expected schema: titles, title IDs, content t
 
 ## Configuring fpkgi
 
-Exact steps depend on the fpkgi version, but the gist:
+Exact steps depend on the fpkgi version but the gist:
 
 1. Put RomM's feed URL in fpkgi's config (usually a JSON file on the console, so check fpkgi's own docs).
 2. Restart fpkgi.

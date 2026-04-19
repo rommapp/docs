@@ -11,7 +11,7 @@ Tokens are **per-user** and **per-scope-subset**: a token can hold any subset of
 
 ## Why not just store a password?
 
-- Passwords grant full access to the account, but tokens can be scope-narrowed.
+- Passwords grant full access to the account but tokens can be scope-narrowed.
 - Tokens are one-click revocable without changing your password.
 - Tokens are safer to type (or paste) into a companion app's config file than a password.
 - Tokens can be bound to a single device via the pairing flow, avoiding typing them at all.
@@ -145,7 +145,7 @@ DELETE /api/client-tokens/{id}/admin  # revoke any user's token
 
 ## Scoping tokens properly
 
-A token can only hold scopes the owning user _also_ holds. If the user is an Editor, their token can hold any Editor scope, but not `users.write` (which is Admin-only).
+A token can only hold scopes the owning user _also_ holds. If the user is an Editor, their token can hold any Editor scope but not `users.write` (which is Admin-only).
 
 Useful narrow scope-sets:
 

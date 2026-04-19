@@ -5,7 +5,7 @@ description: Install PS Vita and PSP games from your RomM library via pkgj homeb
 
 # pkgj
 
-[pkgj](https://github.com/blastrock/pkgj) is PS Vita homebrew for installing `.pkg`-format games and DLC. Default config points at well-known community URLs, but you can point it at RomM's feed endpoints instead and install from your library over Wi-Fi.
+[pkgj](https://github.com/blastrock/pkgj) is PS Vita homebrew for installing `.pkg`-format games and DLC. Default config points at well-known community URLs but you can point it at RomM's feed endpoints instead and install from your library over Wi-Fi.
 
 ## Prerequisites
 

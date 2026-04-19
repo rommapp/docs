@@ -61,7 +61,7 @@ If you're browsing `/console` without a gamepad for some reason:
 
 ### Touch
 
-Console Mode is gamepad-first, but touch works on handhelds without native gamepad input: tap to activate, swipe to scroll.
+Console Mode is gamepad-first but touch works on handhelds without native gamepad input: tap to activate, swipe to scroll.
 
 ## What's different from the main UI
 
@@ -141,14 +141,14 @@ For multi-disc games, Console Mode asks which disc to boot before launching. For
 
 - **Admin features aren't available**: if you're the admin, flip back to the main UI for scans / user management.
 - **Some metadata tabs collapse**: the main UI's "Related Games" + "Additional Content" tabs may be merged on the smaller Console detail view.
-- **Mobile browsers with no gamepad**: touch works, but the UX is designed for gamepads, not fingers. Use the main UI or the Argosy mobile app ([Ecosystem](../ecosystem/argosy.md)).
+- **Mobile browsers with no gamepad**: touch works but the UX is designed for gamepads, not fingers. Use the main UI or the Argosy mobile app ([Ecosystem](../ecosystem/argosy.md)).
 
 ## Handheld-specific notes
 
 Running on muOS / Batocera / Knulli / a Steam Deck? Consider:
 
 - **[Grout](../ecosystem/grout.md)**: official handheld companion that syncs saves/states to/from the device.
-- **[Argosy Launcher](../ecosystem/argosy.md)**: Android handhelds that can run a browser, but want a native-feeling app.
+- **[Argosy Launcher](../ecosystem/argosy.md)**: Android handhelds that can run a browser but want a native-feeling app.
 
 Both use [Client API Tokens](../ecosystem/client-api-tokens.md) for auth.
 

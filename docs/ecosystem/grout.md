@@ -25,7 +25,7 @@ description: Official Linux handheld companion for muOS and NextUI, sync ROMs an
 - **[Argosy](argosy.md)** is Android-native. Good for Android handhelds (Retroid Pocket running Android, phones).
 - **Grout** is for non-Android Linux handhelds. muOS and NextUI are Linux, not Android. Argosy's APK won't install.
 
-Same underlying protocol, but different client for different OS.
+Same underlying protocol but different client for different OS.
 
 ## Installing
 
@@ -87,7 +87,7 @@ Grout uses your Client API Token for all API calls. Token scopes:
 - `devices.read`, `devices.write`: to register as a device.
 - `firmware.read`: if you're syncing firmware too.
 
-Scope the token narrowly when creating: default scopes are fine for most users, but an admin shouldn't hand Grout `users.write` just because the token-creation page offers it.
+Scope the token narrowly when creating: default scopes are fine for most users but an admin shouldn't hand Grout `users.write` just because the token-creation page offers it.
 
 ## SSH sync (operator-side)
 

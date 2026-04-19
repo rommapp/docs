@@ -21,7 +21,7 @@ Full config: [Configuration File → `emulatorjs.netplay`](../reference/configur
 
 ## Can't see the room
 
-You created a room as host, but other players don't see it.
+You created a room as host but other players don't see it.
 
 - **They need RomM accounts on your instance.** Netplay doesn't federate. A user with no account or on a different RomM can't see or join.
 - **WebSocket connection is broken.** Open devtools → Network → WS tab. If Socket.IO is disconnecting, see [Authentication Troubleshooting → WebSockets](authentication.md#400-bad-request-on-the-websocket-endpoint).
@@ -47,7 +47,7 @@ Different players' screens diverge over time: you do a move, they don't see it.
 
 - **Browser tab backgrounded.** Browsers throttle. Keep both tabs foregrounded.
 - **Bandwidth starvation.** Video stream is dropping frames, inputs are queueing. Reduce resolution or lower the emulator frame rate.
-- **Core-specific bug.** Not all cores handle Netplay cleanly. `snes9x` and `genesis_plus_gx` are most reliable, but some 64-bit era cores have known desync bugs.
+- **Core-specific bug.** Not all cores handle Netplay cleanly. `snes9x` and `genesis_plus_gx` are most reliable but some 64-bit era cores have known desync bugs.
 
 ## Audio crackle / cuts out on the client side
 

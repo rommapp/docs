@@ -29,7 +29,7 @@ http://192.168.1.100:3000/api/feeds/kekatsu/nds
 
 ## Configuring Kekatsu
 
-Exact config steps depend on your Kekatsu build, but the shared concept is "point the app at this URL and it fetches the manifest". Consult Kekatsu's own docs for the current config-file location.
+Exact config steps depend on your Kekatsu build but the shared concept is "point the app at this URL and it fetches the manifest". Consult Kekatsu's own docs for the current config-file location.
 
 ## File format
 

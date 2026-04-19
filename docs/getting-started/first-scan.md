@@ -12,7 +12,7 @@ You've got RomM running ([Quick Start](quick-start.md)), your ROMs are laid out 
 A fifteen-second check that saves hours:
 
 - **Library is mounted**: on the host, `ls /path/to/library` should show your `roms/` (or per-platform) folders. If it doesn't, the mount is wrong.
-- **At least one metadata provider is configured**: RomM will scan without one, but every game comes back "unmatched" and you'll have nothing useful to look at.
+- **At least one metadata provider is configured**: RomM will scan without one but every game comes back "unmatched" and you'll have nothing useful to look at.
 - **The Setup Wizard is done**: if RomM is still showing the wizard, finish that first. The first user becomes an admin.
 
 ## Run the scan

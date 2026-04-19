@@ -36,7 +36,7 @@ dir                     # find the .EXE
 filename.exe            # launch
 ```
 
-Works for homebrew and shareware, but retail games usually fail here because they want a CD mounted somewhere.
+Works for homebrew and shareware but retail games usually fail here because they want a CD mounted somewhere.
 
 ## The automatic way (`.conf` autoload)
 

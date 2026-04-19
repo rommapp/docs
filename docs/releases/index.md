@@ -14,7 +14,7 @@ RomM's current stable is [`5.0.0`](changelog.md). Read [Upgrading to 5.0](upgrad
 RomM follows **SemVer** for breaking changes and **CalVer-ish** for cadence: major versions are planned milestones, not scheduled.
 
 - **Patch releases** (`5.0.1`, `5.0.2`): bug fixes only. Safe to pull automatically. No migration.
-- **Minor releases** (`5.1.0`, `5.2.0`): additive features. Schema may migrate automatically via Alembic, but no action required beyond reading the release notes.
+- **Minor releases** (`5.1.0`, `5.2.0`): additive features. Schema may migrate automatically via Alembic but no action required beyond reading the release notes.
 - **Major releases** (`5.0.0`, `6.0.0`): breaking changes. Read the migration guide before upgrading.
 
 ## Image tags and what to pin
@@ -53,7 +53,7 @@ Older frozen docs are retained for 12 months after the major's support window en
 ## Migration guides
 
 - **[Upgrading to 5.0](upgrading-to-5.0.md):** 4.x → 5.0. Required reading.
-- **[Upgrading to 3.0](upgrading-to-3.0.md):** 2.x → 3.0. SQLite drop, auth requirement, Redis built-in, config folder mount. Historical, but kept for 2.x migrators.
+- **[Upgrading to 3.0](upgrading-to-3.0.md):** 2.x → 3.0. SQLite drop, auth requirement, Redis built-in, config folder mount. Historical but kept for 2.x migrators.
 
 ## Where releases are announced
 

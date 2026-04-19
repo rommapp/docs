@@ -80,7 +80,7 @@ OpenSSH refuses to use keys with loose permissions. On the host:
 chmod 600 /path/to/romm-sync-key
 ```
 
-And verify the Docker bind mount isn't forcing different perms (ro is fine, but mode-reset-via-mount-option is the usual culprit).
+And verify the Docker bind mount isn't forcing different perms (ro is fine but mode-reset-via-mount-option is the usual culprit).
 
 ### Sync task doesn't run
 

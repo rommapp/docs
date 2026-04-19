@@ -81,7 +81,7 @@ Ruffle is bundled in the full RomM image. Updates to Ruffle land when RomM updat
 
 ## Not in 5.0 yet
 
-- **Per-game config overrides.** Ruffle supports some game-specific options upstream, but RomM doesn't surface them yet.
+- **Per-game config overrides.** Ruffle supports some game-specific options upstream but RomM doesn't surface them yet.
 - **Networking.** Flash games that hit remote servers typically fail (those servers are dead). No proxy / emulated backend for networked Flash games.
 - **Control remapping.** Straight passthrough only.
 

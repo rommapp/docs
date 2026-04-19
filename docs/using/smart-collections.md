@@ -125,7 +125,7 @@ Smart collections refresh:
 
 - **Live**: when you add, remove, rate, or edit a ROM, RomM re-evaluates rules instantly.
 - **On scan**: after every scan, rules are re-evaluated against the new state.
-- **No manual refresh needed**, but admins can trigger a full re-evaluation via **Administration → Tasks → Refresh Smart Collections** if something looks stale.
+- **No manual refresh needed** but admins can trigger a full re-evaluation via **Administration → Tasks → Refresh Smart Collections** if something looks stale.
 
 ## Editing a rule
 
@@ -138,7 +138,7 @@ Same as standard collections: removes the definition. ROMs stay in the library.
 ## Limitations
 
 - **No nested smart collections**: a smart collection can't reference another collection as a source. Compose rules directly.
-- **Performance**: very complex rule sets (many conditions, many nested groups) on huge libraries can slow down the gallery load. Usually imperceptible, but mentioned here for completeness.
+- **Performance**: very complex rule sets (many conditions, many nested groups) on huge libraries can slow down the gallery load. Usually imperceptible but mentioned here for completeness.
 - **Timezone**: "Release Year" uses UTC, not the user's timezone. Edge-case edge-of-year games might fall on the "wrong" side.
 
 ## API

@@ -311,7 +311,7 @@ spec:
 ## Scaling notes
 
 - **One RomM replica** is the simple path. The scan runs as a single worker, which prefers a single replica.
-- **Multiple replicas** work, but you need RWX for `/romm/assets` and `/romm/resources` and an external Redis (set `REDIS_HOST` to a shared service). See [Redis or Valkey](redis-or-valkey.md).
+- **Multiple replicas** work but you need RWX for `/romm/assets` and `/romm/resources` and an external Redis (set `REDIS_HOST` to a shared service). See [Redis or Valkey](redis-or-valkey.md).
 - **No HPA** (horizontal pod autoscaler) on RomM: CPU spikes during scans are normal and not a scaling signal.
 
 ## Updating

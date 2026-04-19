@@ -10,7 +10,7 @@ The canonical way to run RomM is with Docker Compose, and this page describes th
 The RomM stack has three parts:
 
 1. **`romm`**: the application container with Valkey embedded.
-2. **A database**: MariaDB by default, but MySQL and PostgreSQL are also supported. See [Databases](databases.md) for details and driver-specific notes.
+2. **A database**: MariaDB by default but MySQL and PostgreSQL are also supported. See [Databases](databases.md) for details and driver-specific notes.
 
 ## Reference `docker-compose.yml`
 
@@ -80,4 +80,4 @@ docker compose pull
 docker compose up -d
 ```
 
-Alembic migrations run automatically on startup, but read the [release notes](../releases/index.md) before every major-version bump. The 4.x → 5.0 jump in particular has breaking changes, covered in [Upgrading to 5.0](../releases/upgrading-to-5.0.md).
+Alembic migrations run automatically on startup but read the [release notes](../releases/index.md) before every major-version bump. The 4.x → 5.0 jump in particular has breaking changes, covered in [Upgrading to 5.0](../releases/upgrading-to-5.0.md).

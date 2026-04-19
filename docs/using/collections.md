@@ -60,7 +60,7 @@ Change:
 
 ## Sharing
 
-If the collection is **Public**, any other user on the same RomM instance sees it in their Collections drawer. They can browse, play, download, but can't add or remove ROMs. Only the owner edits.
+If the collection is **Public**, any other user on the same RomM instance sees it in their Collections drawer. They can browse, play, download but can't add or remove ROMs. Only the owner edits.
 
 For cross-instance sharing, generate a link via the collection drawer → **Copy link**. Anyone with access to your RomM instance and the link can open it directly.
 

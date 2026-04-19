@@ -13,11 +13,11 @@ You'll need:
 
 - [Docker](https://docs.docker.com/get-docker/) and Docker Compose installed on the host.
 - Your ROM files organised in the expected [folder structure](folder-structure.md).
-- API credentials for at least one [metadata provider](../administration/metadata-providers.md). Hasheous + IGDB + SteamGridDB + Retroachievements is the recommended pairing. RomM will run without any provider configured, but matching quality will suffer.
+- API credentials for at least one [metadata provider](../administration/metadata-providers.md). Hasheous + IGDB + SteamGridDB + Retroachievements is the recommended pairing. RomM will run without any provider configured but matching quality will suffer.
 
 <!-- prettier-ignore -->
 !!! warning "Metadata providers are recommended"
-    RomM works without a metadata API for basic use, but setup problems and companion-app integrations (e.g. Playnite) can fail without them. Setting up **IGDB**, **SteamGridDB**, and **Retroachievements** API keys before your first scan is strongly recommended.
+    RomM works without a metadata API for basic use but setup problems and companion-app integrations (e.g. Playnite) can fail without them. Setting up **IGDB**, **SteamGridDB**, and **Retroachievements** API keys before your first scan is strongly recommended.
 
 ## 1. Write your `docker-compose.yml`
 

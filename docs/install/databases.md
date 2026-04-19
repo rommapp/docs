@@ -50,7 +50,7 @@ services:
 
 ## MySQL
 
-Identical compose to MariaDB, but swap the image and the healthcheck:
+Identical compose to MariaDB but swap the image and the healthcheck:
 
 ```yaml
 services:
@@ -130,7 +130,7 @@ Exact keys depend on the driver. See SQLAlchemy / the driver's docs.
 
 - **Sticking with defaults?** MariaDB. That's what the reference compose uses and what the team tests against.
 - **Already run Postgres?** Postgres. No reason to add a second DB engine.
-- **Single-user laptop demo?** SQLite is fine, but upgrade before adding anyone else.
+- **Single-user laptop demo?** SQLite is fine but upgrade before adding anyone else.
 - **External managed DB?** Any of MariaDB / MySQL / Postgres. Point `DB_HOST` at it and configure TLS via `DB_QUERY_JSON`.
 
 Don't switch DB drivers on a running install without a plan. Migrating the data requires a dump + reload, covered in [Backup & Restore](backup-and-restore.md).

@@ -48,7 +48,7 @@ Most of the RomM web UI: every page under `/`. Authenticated via browser cookie.
 
 ### Token-authenticated (bearer)
 
-Every API endpoint under `/api/...` that requires a specific scope. Session cookies also work here, but token auth is for scripts / companion apps.
+Every API endpoint under `/api/...` that requires a specific scope. Session cookies also work here but token auth is for scripts / companion apps.
 
 ### Download endpoints (optionally auth-off)
 

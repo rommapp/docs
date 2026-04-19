@@ -16,7 +16,7 @@ environment:
     - ENABLE_EMULATORJS=true # default
 ```
 
-Set to `false` to disable EmulatorJS entirely: useful on the slim image or when running headless with companion apps only. The Play button is hidden, but Ruffle still works independently. See [Image Variants](../install/image-variants.md).
+Set to `false` to disable EmulatorJS entirely: useful on the slim image or when running headless with companion apps only. The Play button is hidden but Ruffle still works independently. See [Image Variants](../install/image-variants.md).
 
 ## Debug mode
 

@@ -90,7 +90,7 @@ See [OIDC with Zitadel → Enable claims](../administration/oidc/zitadel.md) for
 
 ### Authentik 2025.10: login succeeds but RomM rejects the user
 
-Authentik 2025.10 changed the default `email_verified` claim from `true` to `false`, but RomM requires a verified email so the claim must arrive as `true`.
+Authentik 2025.10 changed the default `email_verified` claim from `true` to `false` but RomM requires a verified email so the claim must arrive as `true`.
 
 Fix: add the property mapping documented in [OIDC with Authentik → Create a property mapping](../administration/oidc/authentik.md#2-create-a-property-mapping-authentik-202510).
 

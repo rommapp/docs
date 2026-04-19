@@ -60,7 +60,7 @@ For developers building something new on top of RomM:
 
 ## External tooling
 
-Not a RomM companion, but useful alongside:
+Not a RomM companion but useful alongside:
 
 - **[Igir Collection Manager](igir.md)**: ROM sorting/verifying tool that cleans up library layout before importing into RomM.
 
@@ -68,4 +68,4 @@ Not a RomM companion, but useful alongside:
 
 Built something RomM-adjacent? Open a PR on [rommapp/docs](https://github.com/rommapp/docs) adding it to [Community Apps](community-apps.md), or drop a link in the [Discord](https://discord.gg/romm) `#community-projects` channel.
 
-We list active, maintained projects, with no gate on code quality, but we do flag abandoned projects so users know what's current.
+We list active, maintained projects, with no gate on code quality but we do flag abandoned projects so users know what's current.

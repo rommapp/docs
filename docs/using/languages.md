@@ -33,7 +33,7 @@ Two more ship as work-in-progress with partial coverage. Check the language drop
 
 ## What gets translated
 
-- All UI strings: menus, buttons, labels, tooltips, dialogs.
+- All UI strings: menus buttons, labels, tooltips, dialogs.
 - Error messages and notifications.
 - Help text and inline instructions.
 

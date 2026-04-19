@@ -7,7 +7,7 @@ description: How to use the RomM name, logo, and colors.
 
 # Brand Guidelines
 
-Guidelines for anyone who wants to use the RomM name and logo. In this context, "RomM", "The RomM Project", "the project", "we", "us", and "our" refer to the RomM project.
+In this context, "RomM", "The RomM Project", "the project", "we", "us", and "our" refer to the RomM project and organization.
 
 ## The logo
 

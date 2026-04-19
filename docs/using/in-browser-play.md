@@ -73,7 +73,7 @@ If the platform doesn't support in-browser play, Play is replaced with Download.
 
 ### Controls
 
-EmulatorJS maps keyboard and gamepad automatically. Defaults are core-specific, but approximate the original console layout. Rebind in-game via the **Menu** button during play.
+EmulatorJS maps keyboard and gamepad automatically. Defaults are core-specific but approximate the original console layout. Rebind in-game via the **Menu** button during play.
 
 Operator-level default overrides live in `config.yml`. See [Configuration File → `emulatorjs.controls`](../reference/configuration-file.md#emulatorjscontrols).
 
@@ -116,7 +116,7 @@ Profile → User Interface → **Fullscreen on launch**: always enters fullscree
 
 ### Per-core settings
 
-In-game Menu → **Settings**: core-specific knobs (vsync, region, sound quality). Your tweaks persist per-core per-user, but operator defaults in [`config.yml`](../reference/configuration-file.md#emulatorjssettings) set the initial values.
+In-game Menu → **Settings**: core-specific knobs (vsync, region, sound quality). Your tweaks persist per-core per-user but operator defaults in [`config.yml`](../reference/configuration-file.md#emulatorjssettings) set the initial values.
 
 ### Netplay
 
