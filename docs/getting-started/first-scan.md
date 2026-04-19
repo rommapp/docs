@@ -13,23 +13,21 @@ A fifteen-second check that saves hours:
 
 - **Library is mounted**: on the host, `ls /path/to/library` should show your `roms/` (or per-platform) folders. If it doesn't, the mount is wrong.
 - **At least one metadata provider is configured**: RomM will scan without one, but every game comes back "unmatched" and you'll have nothing useful to look at.
-- **The Setup Wizard is done**: if RomM is still showing the wizard, finish that first. The first user becomes Admin.
+- **The Setup Wizard is done**: if RomM is still showing the wizard, finish that first. The first user becomes an admin.
 
 ## Run the scan
 
 1. Click **Scan** in the sidebar.
-2. Leave all platforms checked (they're auto-discovered from your folders).
-3. Leave all configured providers checked.
-4. Leave the mode as the default.
-5. Click **Start Scan**.
+2. Select the metadata sources you want to hit.
+3. Set the mode to Quick Scan
+4. Click **SCAN**.
 
-The page switches to live mode:
+The page switches to a live feed of the scan's progress. You can leave and come back later, or even close the browser and check back in an hour. During the scan:
 
-- A **log** on the right streams everything the scanner is doing: file hashed, provider queried, match found or not.
 - Per-platform **accordion panels** show counts update live: total found, matched, unmatched.
 - You can click a **matched ROM** while the scan is still running to see what metadata RomM pulled, with no need to wait for the full run.
 
-First scans on big libraries take a while. Expect ~1 second per ROM with a fast network to IGDB/ScreenScraper, and hashing (which runs unless you disabled it) adds IO time proportional to file size.
+First scans on big libraries take a while. Expect ~4 seconds per ROM with a fast network to IGDB/ScreenScraper, and hashing (which runs unless you disabled it) adds IO time proportional to file size.
 
 ## What "matched" means
 
@@ -43,9 +41,9 @@ For each ROM the scanner:
 An **unmatched** ROM means no provider recognised it. Common causes:
 
 - Filename is too generic (`game.gba`).
-- Bad rip, intro / patch applied, or a regional variant no provider has indexed.
-- Platform folder misnamed: the scanner queries providers scoped to the detected platform, so wrong platform = no results.
-- Metadata provider credentials wrong or rate-limited: check the scan log for errors.
+- Bad rip, intro/patch applied, or a regional variant no provider has indexed.
+- Platform folder misnamed: the scanner queries providers scoped to the detected platform, so wrong platform equals no results.
+- Metadata provider credentials wrong or rate-limited: check the scan log for errors or the metadata provider status page in the admin dashboard.
 
 Most of these are fixable. See [Scanning Troubleshooting](../troubleshooting/scanning.md).
 
@@ -55,7 +53,7 @@ Click the **RomM logo** (top-left) to go home. You should see:
 
 - Platform cards for each folder it scanned.
 - A **Recently Added** carousel on the dashboard.
-- A **Continue Playing** section: empty until you play something.
+- A **Continue Playing** section (empty until you play something).
 
 From here, typical next steps:
 

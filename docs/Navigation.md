@@ -11,7 +11,6 @@ search:
     - [Folder Structure](getting-started/folder-structure.md)
     - [Your First Scan](getting-started/first-scan.md)
     - [Core Concepts](getting-started/concepts.md)
-    - [What's New in 5.0](getting-started/what-is-new-in-5.md)
 - Install & Deploy
     - [Overview](install/index.md)
     - [Docker Compose](install/docker-compose.md)
