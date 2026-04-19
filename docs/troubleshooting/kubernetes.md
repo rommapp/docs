@@ -15,12 +15,12 @@ Fix: disable service-link env vars on the RomM pod.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: romm
-  namespace: romm
+    name: romm
+    namespace: romm
 spec:
-  template:
-    spec:
-      enableServiceLinks: false   # ← this line
+    template:
+        spec:
+            enableServiceLinks: false # ← this line
 ```
 
 Covered in full in the [Kubernetes install guide](../install/kubernetes.md#required-quirk-enableservicelinks-false).
@@ -33,16 +33,16 @@ Add the annotation:
 
 ```yaml
 metadata:
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
 ```
 
 Traefik equivalent:
 
 ```yaml
 metadata:
-  annotations:
-    traefik.ingress.kubernetes.io/request-maxsize: "0"
+    annotations:
+        traefik.ingress.kubernetes.io/request-maxsize: "0"
 ```
 
 Cloudflare (when in front of your ingress): check plan limits. Free tier caps uploads at 100 MB regardless of what your cluster allows.
@@ -55,9 +55,9 @@ nginx-ingress:
 
 ```yaml
 metadata:
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    annotations:
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
 ```
 
 ## Pod crashes on startup: `permission denied` writing to `/romm/resources`
@@ -70,16 +70,21 @@ Two fixes:
 
     ```yaml
     initContainers:
-      - name: fix-permissions
-        image: busybox
-        command: ["sh", "-c", "chown -R 1000:1000 /romm/resources /romm/assets /romm/config /redis-data"]
-        volumeMounts:
-          - { name: resources, mountPath: /romm/resources }
-          - { name: assets, mountPath: /romm/assets }
-          - { name: config, mountPath: /romm/config }
-          - { name: redis-data, mountPath: /redis-data }
-        securityContext:
-          runAsUser: 0
+        - name: fix-permissions
+          image: busybox
+          command:
+              [
+                  "sh",
+                  "-c",
+                  "chown -R 1000:1000 /romm/resources /romm/assets /romm/config /redis-data",
+              ]
+          volumeMounts:
+              - { name: resources, mountPath: /romm/resources }
+              - { name: assets, mountPath: /romm/assets }
+              - { name: config, mountPath: /romm/config }
+              - { name: redis-data, mountPath: /redis-data }
+          securityContext:
+              runAsUser: 0
     ```
 
 - **Storage class that supports `fsGroup`**: add `fsGroup: 1000` to the pod's `securityContext`. Works on most CSI drivers but not all.
@@ -111,10 +116,10 @@ Raise the limit:
 
 ```yaml
 resources:
-  requests:
-    memory: "1Gi"
-  limits:
-    memory: "4Gi"
+    requests:
+        memory: "1Gi"
+    limits:
+        memory: "4Gi"
 ```
 
 Or disable hashing on the Scan page to cut memory use by ~80% (you lose RetroAchievements + Hasheous matching, see [Metadata Providers](../administration/metadata-providers.md)).

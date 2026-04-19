@@ -51,9 +51,9 @@ Use this path when the App Catalog has a bug, or when you want more flexibility 
 Fill in the empty values with credentials you created in [Quick Start](../getting-started/quick-start.md).
 
 ???+ example "docker-compose.yml"
-    ``` yaml
+`yaml
     --8<-- "truenas.docker-compose.yml"
-    ```
+   `
 
 ### 3. Install
 
@@ -69,7 +69,7 @@ Save. Same troubleshooting applies, see below.
 
 ### Permission errors inside the container
 
-If you're seeing permission errors on paths *inside* the RomM container (not on TrueNAS datasets), try temporarily running the container as root (`user: 0`) to unblock yourself, fix the offending permissions via shell, and switch back to a non-root user.
+If you're seeing permission errors on paths _inside_ the RomM container (not on TrueNAS datasets), try temporarily running the container as root (`user: 0`) to unblock yourself, fix the offending permissions via shell, and switch back to a non-root user.
 
 In at least one reported setup, creating a user/group in TrueNAS with UID/GID `1000:1000` and the auxiliary `apps` group was needed to get RomM talking to its embedded Valkey cleanly.
 

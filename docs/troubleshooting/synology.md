@@ -31,6 +31,7 @@ The usual Synology permission issue. Fix via SSH:
 
 Scans should now complete cleanly.
 
+<!-- prettier-ignore -->
 !!! tip
     If you're still getting permission errors *inside* the container after this, the UID/GID running inside the container doesn't match the host files. Either change the container's `user:` directive to match your Synology user, or change the host file ownership to match the container's expected UID.
 
@@ -59,7 +60,7 @@ DSM occasionally rotates Docker's data directory or the BTRFS subvolume paths af
 Fix:
 
 1. Don't panic. Your host-mounted paths (`/volume1/...`) aren't touched.
-2. Check your compose file. Any volumes declared as *named* Docker volumes (as opposed to host bind mounts) might have been recreated empty.
+2. Check your compose file. Any volumes declared as _named_ Docker volumes (as opposed to host bind mounts) might have been recreated empty.
 3. Prefer host bind mounts on Synology specifically: `/volume1/docker/romm/resources` instead of a named `romm_resources` volume. The [Synology install guide](../install/synology.md) uses this pattern.
 
 ## Still stuck

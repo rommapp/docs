@@ -13,7 +13,7 @@ All settings below live under the `emulatorjs:` key in [`config.yml`](../referen
 
 ```yaml
 environment:
-  - ENABLE_EMULATORJS=true   # default
+    - ENABLE_EMULATORJS=true # default
 ```
 
 Set to `false` to disable EmulatorJS entirely: useful on the slim image or when running headless with companion apps only. The Play button is hidden, but Ruffle still works independently. See [Image Variants](../install/image-variants.md).
@@ -22,7 +22,7 @@ Set to `false` to disable EmulatorJS entirely: useful on the slim image or when 
 
 ```yaml
 emulatorjs:
-  debug: true
+    debug: true
 ```
 
 Logs every available option for each core to the browser console when a game launches. Turn on when tuning, and turn off in production (it's verbose).
@@ -31,7 +31,7 @@ Logs every available option for each core to the browser console when a game lau
 
 ```yaml
 emulatorjs:
-  cache_limit: 52428800   # 50 MB per ROM; null = unlimited
+    cache_limit: 52428800 # 50 MB per ROM; null = unlimited
 ```
 
 Each ROM's cache (core files, BIOS, settings) is capped. `null` removes the cap: useful for large PSP / Saturn libraries on hosts with plenty of disk.
@@ -40,8 +40,8 @@ Each ROM's cache (core files, BIOS, settings) is capped. `null` removes the cap:
 
 ```yaml
 emulatorjs:
-  disable_batch_bootup: true
-  disable_auto_unload: true
+    disable_batch_bootup: true
+    disable_auto_unload: true
 ```
 
 - **`disable_batch_bootup`**: skips the `autorun.bat` step when `dosbox-pure` loads. Try this if DOS games hang on boot. See [MS-DOS](ms-dos.md).
@@ -51,17 +51,18 @@ emulatorjs:
 
 ```yaml
 emulatorjs:
-  netplay:
-    enabled: true
-    ice_servers:
-      - urls: "stun:stun.l.google.com:19302"
-      - urls: "turn:openrelay.metered.ca:443"
-        username: "openrelayproject"
-        credential: "openrelayproject"
+    netplay:
+        enabled: true
+        ice_servers:
+            - urls: "stun:stun.l.google.com:19302"
+            - urls: "turn:openrelay.metered.ca:443"
+              username: "openrelayproject"
+              credential: "openrelayproject"
 ```
 
 Full Netplay config in [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay-new-in-50) and user-side docs in [Netplay](../using/netplay.md).
 
+<!-- prettier-ignore -->
 !!! warning "Nightly CDN caveat"
     Enabling Netplay switches some assets to EmulatorJS's nightly CDN. Occasional hiccups are possible. If you don't need Netplay, leave it off.
 
@@ -71,24 +72,24 @@ Every core exposes different options. Set defaults your users get pre-filled:
 
 ```yaml
 emulatorjs:
-  settings:
-    # Apply to all cores
-    default:
-      fps: show
+    settings:
+        # Apply to all cores
+        default:
+            fps: show
 
-    # Per-core
-    snes9x:
-      snes9x_region: ntsc
-      snes9x_layer_1: true
-      snes9x_overclock: false
+        # Per-core
+        snes9x:
+            snes9x_region: ntsc
+            snes9x_layer_1: true
+            snes9x_overclock: false
 
-    parallel_n64:
-      vsync: disable
-      parallel-n64-gfxplugin: "auto"
+        parallel_n64:
+            vsync: disable
+            parallel-n64-gfxplugin: "auto"
 
-    ppsspp:
-      ppsspp_internal_resolution: "2"    # 2x
-      ppsspp_frame_skipping: "0"
+        ppsspp:
+            ppsspp_internal_resolution: "2" # 2x
+            ppsspp_frame_skipping: "0"
 ```
 
 Finding core names and their options:
@@ -104,19 +105,19 @@ Upstream reference: [EmulatorJS core options](https://emulatorjs.org/docs4devs/s
 
 ```yaml
 emulatorjs:
-  controls:
-    snes9x:
-      0:                       # player 1
-        0:                     # B button slot (index 0)
-          value: x             # keyboard key "x"
-          value2: BUTTON_2     # controller button 2
-        1:                     # Y button slot
-          value: z
-          value2: BUTTON_3
-      1:                       # player 2
-        0:
-          value: /
-          value2: BUTTON_2
+    controls:
+        snes9x:
+            0: # player 1
+                0: # B button slot (index 0)
+                    value: x # keyboard key "x"
+                    value2: BUTTON_2 # controller button 2
+                1: # Y button slot
+                    value: z
+                    value2: BUTTON_3
+            1: # player 2
+                0:
+                    value: /
+                    value2: BUTTON_2
 ```
 
 The structure:
@@ -135,28 +136,28 @@ Users can override operator-level defaults in-game via Menu → **Controls**. Op
 
 ```yaml
 emulatorjs:
-  settings:
-    snes9x:
-      snes9x_region: ntsc
-  controls:
-    snes9x:
-      0:   # P1 on keyboard (WASD cluster)
-        0:  { value: ",",       value2: "BUTTON_2" }   # B
-        1:  { value: ".",       value2: "BUTTON_3" }   # A
-        2:  { value: "l",       value2: "BUTTON_1" }   # Y
-        3:  { value: "p",       value2: "BUTTON_4" }   # X
-      1:   # P2 on arrows + numpad
-        0:  { value: "/",       value2: "BUTTON_2" }
-        1:  { value: "'",       value2: "BUTTON_3" }
+    settings:
+        snes9x:
+            snes9x_region: ntsc
+    controls:
+        snes9x:
+            0: # P1 on keyboard (WASD cluster)
+                0: { value: ",", value2: "BUTTON_2" } # B
+                1: { value: ".", value2: "BUTTON_3" } # A
+                2: { value: "l", value2: "BUTTON_1" } # Y
+                3: { value: "p", value2: "BUTTON_4" } # X
+            1: # P2 on arrows + numpad
+                0: { value: "/", value2: "BUTTON_2" }
+                1: { value: "'", value2: "BUTTON_3" }
 ```
 
 ## Per-user vs operator-level
 
-| Where the setting is stored | Who it affects | Survives upgrades? |
-| --- | --- | --- |
-| Operator: `config.yml` / env vars | Everyone, as default | Yes |
-| Per-user: in-game Menu → Settings | Just that user | Yes |
-| Per-user: in-game Menu → Controls | Just that user | Yes |
+| Where the setting is stored       | Who it affects       | Survives upgrades? |
+| --------------------------------- | -------------------- | ------------------ |
+| Operator: `config.yml` / env vars | Everyone, as default | Yes                |
+| Per-user: in-game Menu → Settings | Just that user       | Yes                |
+| Per-user: in-game Menu → Controls | Just that user       | Yes                |
 
 Per-user overrides take precedence. A config.yml setting is the fallback.
 

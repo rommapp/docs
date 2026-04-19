@@ -19,13 +19,13 @@ RomM follows **SemVer** for breaking changes and **CalVer-ish** for cadence: maj
 
 ## Image tags and what to pin
 
-| Tag | What it moves to | When to use |
-| --- | --- | --- |
-| `rommapp/romm:latest` | Every new stable release | Dev / "I'll deal with it" setups. **Never pin production to `:latest`** because you'll ship untested upgrades. |
-| `rommapp/romm:5.0.0` | Immutable, specific release | Production. Update deliberately by bumping the tag. |
-| `rommapp/romm:5` | Latest in the 5.x line | Middle ground: auto-minor-upgrades within a major. |
-| `rommapp/romm:develop` | Every push to `master` | Don't. |
-| `rommapp/romm:5.0.0-slim` | Same as `5.0.0` but without EmulatorJS/Ruffle | Headless / API-only deployments. See [Image Variants](../install/image-variants.md). |
+| Tag                       | What it moves to                              | When to use                                                                                                    |
+| ------------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `rommapp/romm:latest`     | Every new stable release                      | Dev / "I'll deal with it" setups. **Never pin production to `:latest`** because you'll ship untested upgrades. |
+| `rommapp/romm:5.0.0`      | Immutable, specific release                   | Production. Update deliberately by bumping the tag.                                                            |
+| `rommapp/romm:5`          | Latest in the 5.x line                        | Middle ground: auto-minor-upgrades within a major.                                                             |
+| `rommapp/romm:develop`    | Every push to `master`                        | Don't.                                                                                                         |
+| `rommapp/romm:5.0.0-slim` | Same as `5.0.0` but without EmulatorJS/Ruffle | Headless / API-only deployments. See [Image Variants](../install/image-variants.md).                           |
 
 Registries: Docker Hub (`rommapp/romm`) and GitHub Container Registry (`ghcr.io/rommapp/romm`), same tags, same content.
 
@@ -41,12 +41,12 @@ The docs site is versioned via [mike](https://github.com/jimporter/mike). Every 
 
 We support the current major and the previous major for critical bug fixes and security patches.
 
-| Major | Status | Frozen docs |
-| --- | --- | --- |
-| **5.x** | **Current**, active development | `docs.romm.app/latest/` |
-| **4.x** | Security + critical bugs only | `docs.romm.app/4.8/` |
-| **3.x** | Unsupported, upgrade | N/A |
-| **≤2.x** | Unsupported | N/A |
+| Major    | Status                          | Frozen docs             |
+| -------- | ------------------------------- | ----------------------- |
+| **5.x**  | **Current**, active development | `docs.romm.app/latest/` |
+| **4.x**  | Security + critical bugs only   | `docs.romm.app/4.8/`    |
+| **3.x**  | Unsupported, upgrade            | N/A                     |
+| **≤2.x** | Unsupported                     | N/A                     |
 
 Older frozen docs are retained for 12 months after the major's support window ends, then removed. Plan upgrades accordingly.
 

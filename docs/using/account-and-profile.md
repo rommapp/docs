@@ -7,7 +7,7 @@ description: Manage your RomM account: profile, password, avatar, API tokens, de
 
 Your account controls: profile drawer → **Profile**.
 
-Every user (Viewer, Editor, Admin) can manage their own profile. Admins can edit *other* users' profiles. See [Users & Roles](../administration/users-and-roles.md) for the admin side.
+Every user (Viewer, Editor, Admin) can manage their own profile. Admins can edit _other_ users' profiles. See [Users & Roles](../administration/users-and-roles.md) for the admin side.
 
 ## Profile basics
 
@@ -54,7 +54,6 @@ Token format: `rmm_` + 40 hex chars, and you should treat it like a password.
 
 For handheld apps like Grout, typing a 44-character token on a thumbstick isn't realistic. Instead:
 
-
 1. **Profile → Client API Tokens → [token] → Pair Device**.
 2. A short numeric code appears (8 digits, valid for 5 minutes).
 3. On the device (Grout app, etc.): enter the code.
@@ -76,15 +75,15 @@ Full flow in [Client API Tokens](../ecosystem/client-api-tokens.md).
 
 Available throughout the app:
 
-| Key | Action |
-| --- | --- |
-| `/` | Focus the search bar. |
-| `Esc` | Close dialog, drawer, or player. |
-| `g h` | Go to home dashboard. |
-| `g s` | Open search page. |
-| `g c` | Focus the scan / admin action in the sidebar. |
-| `j` / `k` | Next / previous item in a list view. |
-| `Enter` | Activate focused item. |
+| Key       | Action                                        |
+| --------- | --------------------------------------------- |
+| `/`       | Focus the search bar.                         |
+| `Esc`     | Close dialog, drawer, or player.              |
+| `g h`     | Go to home dashboard.                         |
+| `g s`     | Open search page.                             |
+| `g c`     | Focus the scan / admin action in the sidebar. |
+| `j` / `k` | Next / previous item in a list view.          |
+| `Enter`   | Activate focused item.                        |
 
 ## Accessibility
 

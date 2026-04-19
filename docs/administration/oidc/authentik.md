@@ -19,6 +19,7 @@ Log in as admin and open **Admin Interface**.
 
 ## 2. Create a property mapping (Authentik 2025.10+)
 
+<!-- prettier-ignore -->
 !!! important "Authentik 2025.10 breaking change"
     In version 2025.10, Authentik changed the default of `email_verified` from `true` to `false`. RomM requires a verified email, so without this property mapping, authentication silently fails.
 
@@ -79,13 +80,13 @@ Click **Create**.
 
 ```yaml
 environment:
-  - OIDC_ENABLED=true
-  - OIDC_PROVIDER=authentik
-  - OIDC_CLIENT_ID=<from Authentik>
-  - OIDC_CLIENT_SECRET=<from Authentik>
-  - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
-  - OIDC_SERVER_APPLICATION_URL=https://auth.example.com/application/o/romm
-  - ROMM_BASE_URL=https://romm.example.com
+    - OIDC_ENABLED=true
+    - OIDC_PROVIDER=authentik
+    - OIDC_CLIENT_ID=<from Authentik>
+    - OIDC_CLIENT_SECRET=<from Authentik>
+    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
+    - OIDC_SERVER_APPLICATION_URL=https://auth.example.com/application/o/romm
+    - ROMM_BASE_URL=https://romm.example.com
 ```
 
 Note `OIDC_SERVER_APPLICATION_URL` points at the per-application URL (`/application/o/<slug>`), not the Authentik root.

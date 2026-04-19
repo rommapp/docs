@@ -25,12 +25,12 @@ Authorization: Bearer rmm_...
 
 Required scopes:
 
-| Endpoint family | Scope |
-| --- | --- |
-| `/devices/*` | `devices.read`, `devices.write` |
-| `/sync/*` | `assets.read`, `assets.write`, `devices.write` |
-| `/play-sessions/*` | `me.read`, `me.write` (read own); `users.read` (read others') |
-| `/assets/*` (save/state I/O) | `assets.read`, `assets.write` |
+| Endpoint family              | Scope                                                         |
+| ---------------------------- | ------------------------------------------------------------- |
+| `/devices/*`                 | `devices.read`, `devices.write`                               |
+| `/sync/*`                    | `assets.read`, `assets.write`, `devices.write`                |
+| `/play-sessions/*`           | `me.read`, `me.write` (read own); `users.read` (read others') |
+| `/assets/*` (save/state I/O) | `assets.read`, `assets.write`                                 |
 
 ## Registering a device
 
@@ -69,11 +69,11 @@ The device remembers `id` for all subsequent calls.
 
 ### Sync modes
 
-| Mode | Behaviour |
-| --- | --- |
-| `pull_only` | Server only pushes, and device-side changes are ignored. |
+| Mode        | Behaviour                                                   |
+| ----------- | ----------------------------------------------------------- |
+| `pull_only` | Server only pushes, and device-side changes are ignored.    |
 | `push_only` | Device pushes saves up, and server changes never flow down. |
-| `push_pull` | Bidirectional (most common). |
+| `push_pull` | Bidirectional (most common).                                |
 
 ## Sync negotiation
 
@@ -109,37 +109,37 @@ RomM returns a set of **operations** the device should execute:
 
 ```json
 {
-  "session_id": "550e8400-e29b-41d4-a716-446655440000",
-  "operations": [
-    {
-      "type": "upload",
-      "rom_id": 1234,
-      "file": "mario.srm",
-      "destination": "/api/saves",
-      "reason": "server_newer"
-    },
-    {
-      "type": "download",
-      "rom_id": 5678,
-      "file": "zelda.srm",
-      "source": "/api/saves/42/content",
-      "dest_path": "/saves/zelda.srm"
-    },
-    {
-      "type": "conflict",
-      "rom_id": 9999,
-      "file": "tetris.srm",
-      "server_mtime": "...",
-      "device_mtime": "...",
-      "resolution": "keep_both"
-    },
-    {
-      "type": "noop",
-      "rom_id": 1111,
-      "file": "goldeneye.srm",
-      "reason": "already_synced"
-    }
-  ]
+    "session_id": "550e8400-e29b-41d4-a716-446655440000",
+    "operations": [
+        {
+            "type": "upload",
+            "rom_id": 1234,
+            "file": "mario.srm",
+            "destination": "/api/saves",
+            "reason": "server_newer"
+        },
+        {
+            "type": "download",
+            "rom_id": 5678,
+            "file": "zelda.srm",
+            "source": "/api/saves/42/content",
+            "dest_path": "/saves/zelda.srm"
+        },
+        {
+            "type": "conflict",
+            "rom_id": 9999,
+            "file": "tetris.srm",
+            "server_mtime": "...",
+            "device_mtime": "...",
+            "resolution": "keep_both"
+        },
+        {
+            "type": "noop",
+            "rom_id": 1111,
+            "file": "goldeneye.srm",
+            "reason": "already_synced"
+        }
+    ]
 }
 ```
 

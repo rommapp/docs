@@ -12,6 +12,7 @@ Two supported install paths on Unraid. Pick one:
 
 Both end up with the same running stack.
 
+<!-- prettier-ignore -->
 !!! warning "Back up `appdata` before updates"
     Tearing down the RomM container wipes its resources directory (covers, screenshots, cached metadata). Mount `appdata` on a safe path or [back it up](backup-and-restore.md) before every upgrade.
 
@@ -41,6 +42,7 @@ Fill in the env vars. Names and sensible defaults live in the [reference `docker
 
 ![MariaDB environment variables](https://github.com/user-attachments/assets/a11906c5-25b2-46f1-906b-451a9ee39dca)
 
+<!-- prettier-ignore -->
 !!! warning "Network type"
     MariaDB's network type **must** be set to `Custom: romm`. Otherwise RomM can't resolve its hostname.
 
@@ -91,6 +93,7 @@ Paste the [reference `docker-compose.yml`](docker-compose.md) and fill in your e
 
 Save after each edit.
 
+<!-- prettier-ignore -->
 !!! warning "Folder structure"
     Make sure your library matches one of the [supported folder layouts](../getting-started/folder-structure.md) before scanning. Unraid users often forget this step.
 

@@ -23,49 +23,49 @@ RomM (ROM Manager) lets you scan, enrich, organise, and play your game collectio
 
 <div class="grid cards" markdown>
 
--   :material-rocket-launch-outline: __I'm new, get me running__
+- :material-rocket-launch-outline: **I'm new, get me running**
 
-    ---
+    ***
 
     15 minute Docker Compose walkthrough to a working RomM instance.
 
     [Quick Start →](getting-started/quick-start.md)
 
--   :material-upload-outline: __I'm upgrading from 4.x__
+- :material-upload-outline: **I'm upgrading from 4.x**
 
-    ---
+    ***
 
     Breaking changes, migrations, and the pre-flight checklist for RomM 5.0.
 
     [Upgrade guide →](releases/upgrading-to-5.0.md)
 
--   :material-cog-outline: __I'm running RomM for my family/friends__
+- :material-cog-outline: **I'm running RomM for my family/friends**
 
-    ---
+    ***
 
     Users, roles, OIDC, scheduled tasks, backups, reverse-proxy recipes.
 
     [Administration →](administration/index.md)
 
--   :material-controller-classic-outline: __I just want to play__
+- :material-controller-classic-outline: **I just want to play**
 
-    ---
+    ***
 
     Library, collections, saves & states, Console Mode, ROM Patcher, Netplay.
 
     [Using RomM →](using/index.md)
 
--   :material-api: __I'm building on top of RomM__
+- :material-api: **I'm building on top of RomM**
 
-    ---
+    ***
 
     REST API reference, WebSockets, device sync protocol, client tokens.
 
     [Developers →](developers/index.md)
 
--   :material-book-open-outline: __Just looking something up__
+- :material-book-open-outline: **Just looking something up**
 
-    ---
+    ***
 
     Environment variables, `config.yml`, scheduled tasks, glossary.
 

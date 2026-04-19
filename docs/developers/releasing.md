@@ -156,7 +156,7 @@ For security fixes:
 For major versions:
 
 1. **Announce early.** Open a tracking issue at least a month out. Post to Discord.
-2. **Document the migration.** Write the upgrade guide *before* the release, so it's ready at cut time.
+2. **Document the migration.** Write the upgrade guide _before_ the release, so it's ready at cut time.
 3. **Deprecate first when possible.** Ship a warning in a minor release before removing in a major.
 4. **Migration scripts.** If the breaking change requires user action, ship a script in `scripts/migrate_<version>.py` or similar.
 

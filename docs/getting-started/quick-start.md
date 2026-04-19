@@ -15,6 +15,7 @@ You'll need:
 - Your ROM files organised in the expected [folder structure](folder-structure.md).
 - API credentials for at least one [metadata provider](../administration/metadata-providers.md). Hasheous + IGDB + SteamGridDB + Retroachievements is the recommended pairing. RomM will run without any provider configured, but matching quality will suffer.
 
+<!-- prettier-ignore -->
 !!! warning "Metadata providers are recommended"
     RomM works without a metadata API for basic use, but setup problems and companion-app integrations (e.g. Playnite) can fail without them. Setting up **IGDB**, **SteamGridDB**, and **Retroachievements** API keys before your first scan is strongly recommended.
 
@@ -23,22 +24,22 @@ You'll need:
 Start from the reference file shipped in the RomM repo. A known-good, minimally-edited version is included below. Save it as `docker-compose.yml` in an empty directory on your host.
 
 ???+ example "docker-compose.yml"
-    ``` yaml
+`yaml
     --8<-- "quick-start.docker-compose.yml"
-    ```
+   `
 
 You'll want to edit the following values before launching:
 
-| Where | Variable | What to put |
-| --- | --- | --- |
-| `romm-db` | `MARIADB_ROOT_PASSWORD` | A long, randomly generated password. |
-| `romm-db` | `MARIADB_PASSWORD` | A separate long, randomly generated password. |
-| `romm` | `DB_PASSWD` | Must match `MARIADB_PASSWORD` above. |
-| `romm` | `ROMM_AUTH_SECRET_KEY` | Generate with `openssl rand -hex 32` and keep it secret. |
-| `romm` | Metadata provider creds | Fill in only the providers you've registered with (see [Metadata Providers](../administration/metadata-providers.md)). |
-| `romm` | `/path/to/library` volume | Host path to the directory containing your `roms/` folder. |
-| `romm` | `/path/to/assets` volume | Host path where RomM will store saves, states, uploaded screenshots. |
-| `romm` | `/path/to/config` volume | Host path to a directory that will hold `config.yml`. |
+| Where     | Variable                  | What to put                                                                                                            |
+| --------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `romm-db` | `MARIADB_ROOT_PASSWORD`   | A long, randomly generated password.                                                                                   |
+| `romm-db` | `MARIADB_PASSWORD`        | A separate long, randomly generated password.                                                                          |
+| `romm`    | `DB_PASSWD`               | Must match `MARIADB_PASSWORD` above.                                                                                   |
+| `romm`    | `ROMM_AUTH_SECRET_KEY`    | Generate with `openssl rand -hex 32` and keep it secret.                                                               |
+| `romm`    | Metadata provider creds   | Fill in only the providers you've registered with (see [Metadata Providers](../administration/metadata-providers.md)). |
+| `romm`    | `/path/to/library` volume | Host path to the directory containing your `roms/` folder.                                                             |
+| `romm`    | `/path/to/assets` volume  | Host path where RomM will store saves, states, uploaded screenshots.                                                   |
+| `romm`    | `/path/to/config` volume  | Host path to a directory that will hold `config.yml`.                                                                  |
 
 Generate the auth secret now so you don't forget:
 

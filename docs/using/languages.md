@@ -9,25 +9,25 @@ RomM's UI is translated into 19 locales. Pick yours from **Profile → User Inte
 
 ## Supported locales
 
-| Code | Language |
-| --- | --- |
+| Code    | Language                         |
+| ------- | -------------------------------- |
 | `en_US` | English (United States), default |
-| `en_GB` | English (United Kingdom) |
-| `es_ES` | Spanish (Spain) |
-| `fr_FR` | French |
-| `de_DE` | German |
-| `it_IT` | Italian |
-| `pt_BR` | Portuguese (Brazil) |
-| `ja_JP` | Japanese |
-| `ko_KR` | Korean |
-| `ru_RU` | Russian |
-| `pl_PL` | Polish |
-| `cs_CZ` | Czech |
-| `hu_HU` | Hungarian |
-| `ro_RO` | Romanian |
-| `bg_BG` | Bulgarian |
-| `zh_CN` | Chinese (Simplified) |
-| `zh_TW` | Chinese (Traditional) |
+| `en_GB` | English (United Kingdom)         |
+| `es_ES` | Spanish (Spain)                  |
+| `fr_FR` | French                           |
+| `de_DE` | German                           |
+| `it_IT` | Italian                          |
+| `pt_BR` | Portuguese (Brazil)              |
+| `ja_JP` | Japanese                         |
+| `ko_KR` | Korean                           |
+| `ru_RU` | Russian                          |
+| `pl_PL` | Polish                           |
+| `cs_CZ` | Czech                            |
+| `hu_HU` | Hungarian                        |
+| `ro_RO` | Romanian                         |
+| `bg_BG` | Bulgarian                        |
+| `zh_CN` | Chinese (Simplified)             |
+| `zh_TW` | Chinese (Traditional)            |
 
 Two more ship as work-in-progress with partial coverage. Check the language dropdown to see the current list.
 

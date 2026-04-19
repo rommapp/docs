@@ -1,25 +1,26 @@
 ---
 title: Backup & Restore
-description: Protect your RomM install against data loss, and move it between hosts.
+description: Protect your RomM install against data loss and move it between hosts.
 ---
 
 # Backup & Restore
 
-This page covers both routine backups and migrating RomM to a new host: same procedure, different frequency.
+This page covers both routine backups and migrating RomM to a new host.
 
 ## What to back up
 
-| Path / volume | What's in it | Backup? |
-| --- | --- | --- |
-| **Database** (`mysql_data`, `pg_data`, etc.) | User accounts, ROM metadata, collections, ratings, play sessions, paired devices, saves/states metadata | **Critical**: back this up nightly. |
-| **`/romm/assets`** | User uploads: save files, save states, user-uploaded screenshots, manuals, covers | **Critical**: back this up nightly. |
-| **`/romm/config`** | `config.yml` and any custom overrides | **Critical**: rarely changes, but small and painful to recreate. |
-| `/romm/resources` | Metadata images (covers, screenshots) fetched from IGDB/ScreenScraper/etc. | Low priority, and can be re-downloaded on a rescan. Including it speeds up recovery. |
-| `/redis-data` | Task queue state | Low priority, in-flight tasks only, and lost tasks can be re-run. |
-| **`/romm/library`** | Your ROM files | Back this up **separately**. It's your source data and you should already have a backup strategy for it independent of RomM. |
+| Path / volume                                | What's in it                                                                                            | Backup?                                                                                                                      |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **Database** (`mysql_data`, `pg_data`, etc.) | User accounts, ROM metadata, collections, ratings, play sessions, paired devices, saves/states metadata | **Critical**: back this up nightly.                                                                                          |
+| **`/romm/assets`**                           | User uploads: save files, save states, user-uploaded screenshots, manuals, covers                       | **Critical**: back this up nightly.                                                                                          |
+| **`/romm/config`**                           | `config.yml` and any custom overrides                                                                   | **Critical**: rarely changes, but small and painful to recreate.                                                             |
+| `/romm/resources`                            | Metadata images (covers, screenshots) fetched from IGDB/ScreenScraper/etc.                              | Low priority, and can be re-downloaded on a rescan. Including it speeds up recovery.                                         |
+| `/redis-data`                                | Task queue state                                                                                        | Low priority, in-flight tasks only, and lost tasks can be re-run.                                                            |
+| **`/romm/library`**                          | Your ROM files                                                                                          | Back this up **separately**. It's your source data and you should already have a backup strategy for it independent of RomM. |
 
 ## Routine backup
 
+<!-- prettier-ignore -->
 !!! warning "Always stop the stack or use consistent snapshots"
     A live `cp -r` of the DB volume can copy an inconsistent state. Either bring the stack down briefly, or use `mysqldump` / `pg_dump` for a consistent logical dump.
 

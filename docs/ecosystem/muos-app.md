@@ -44,6 +44,7 @@ Installation uses muOS's [Archive Manager](https://muos.dev/installation/archive
 
 6. Launch from **Applications → RomM** on the device.
 
+<!-- prettier-ignore -->
 !!! tip "Use a dedicated account or token"
     The username/password lives in plaintext on the SD card. Use a dedicated Viewer-role account for the handheld, not your admin credentials.
 

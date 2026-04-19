@@ -18,12 +18,12 @@ description: Install PS Vita and PSP games from your RomM library via pkgj homeb
 
 RomM exposes four pkgi-compatible feeds:
 
-| Content | URL |
-| --- | --- |
+| Content       | URL                                     |
+| ------------- | --------------------------------------- |
 | PS Vita games | `{romm_url}/api/feeds/pkgi/psvita/game` |
-| PS Vita DLCs | `{romm_url}/api/feeds/pkgi/psvita/dlc` |
-| PSP games | `{romm_url}/api/feeds/pkgi/psp/game` |
-| PSP DLCs | `{romm_url}/api/feeds/pkgi/psp/dlc` |
+| PS Vita DLCs  | `{romm_url}/api/feeds/pkgi/psvita/dlc`  |
+| PSP games     | `{romm_url}/api/feeds/pkgi/psp/game`    |
+| PSP DLCs      | `{romm_url}/api/feeds/pkgi/psp/dlc`     |
 
 ## Configuring pkgj
 

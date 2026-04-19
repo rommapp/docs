@@ -30,36 +30,50 @@ Better for:
 
 ```yaml
 services:
-  romm:
-    environment:
-      - REDIS_HOST=romm-redis
-      - REDIS_PORT=6379
-      - REDIS_PASSWD=<strong-password>
-    depends_on:
-      romm-redis:
-        condition: service_healthy
+    romm:
+        environment:
+            - REDIS_HOST=romm-redis
+            - REDIS_PORT=6379
+            - REDIS_PASSWD=<strong-password>
+        depends_on:
+            romm-redis:
+                condition: service_healthy
 
-  romm-redis:
-    image: redis:7-alpine
-    command: ["redis-server", "--requirepass", "<strong-password>", "--appendonly", "yes"]
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "-a", "<strong-password>", "ping"]
-      interval: 10s
-      timeout: 3s
-      retries: 5
+    romm-redis:
+        image: redis:7-alpine
+        command:
+            [
+                "redis-server",
+                "--requirepass",
+                "<strong-password>",
+                "--appendonly",
+                "yes",
+            ]
+        volumes:
+            - redis_data:/data
+        healthcheck:
+            test: ["CMD", "redis-cli", "-a", "<strong-password>", "ping"]
+            interval: 10s
+            timeout: 3s
+            retries: 5
 
 volumes:
-  redis_data:
+    redis_data:
 ```
 
 ### Valkey drop-in
 
 ```yaml
-  romm-redis:
+romm-redis:
     image: valkey/valkey:7-alpine
-    command: ["valkey-server", "--requirepass", "<strong-password>", "--appendonly", "yes"]
+    command:
+        [
+            "valkey-server",
+            "--requirepass",
+            "<strong-password>",
+            "--appendonly",
+            "yes",
+        ]
     # everything else the same
 ```
 
@@ -69,12 +83,12 @@ If you've got an AWS ElastiCache / Upstash / Redis Cloud instance, point RomM at
 
 ```yaml
 environment:
-  - REDIS_HOST=my-redis.cache.amazonaws.com
-  - REDIS_PORT=6379
-  - REDIS_USERNAME=romm            # omit if your Redis uses legacy auth
-  - REDIS_PASSWORD=<managed-pw>
-  - REDIS_SSL=true                 # for managed Redis, almost always yes
-  - REDIS_DB=0                     # separate RomM from other apps on the same instance
+    - REDIS_HOST=my-redis.cache.amazonaws.com
+    - REDIS_PORT=6379
+    - REDIS_USERNAME=romm # omit if your Redis uses legacy auth
+    - REDIS_PASSWORD=<managed-pw>
+    - REDIS_SSL=true # for managed Redis, almost always yes
+    - REDIS_DB=0 # separate RomM from other apps on the same instance
 ```
 
 The full list of Redis env vars lives in [Environment Variables](../reference/environment-variables.md).

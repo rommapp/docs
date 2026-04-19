@@ -7,12 +7,12 @@ description: Supported database drivers for RomM, connection strings, and recomm
 
 RomM uses SQLAlchemy + Alembic for persistence. Four drivers are supported, so pick based on what you already run.
 
-| Driver | `ROMM_DB_DRIVER` | Image | Default port | Notes |
-| --- | --- | --- | --- | --- |
-| **MariaDB** (default, recommended) | `mariadb` | `mariadb:11` | `3306` | What the reference compose uses. Well-tested. |
-| **MySQL** | `mysql` | `mysql:8` | `3306` | Largely interchangeable with MariaDB for RomM. |
-| **PostgreSQL** | `postgresql` | `postgres:16` | `5432` | Supported. Use if you already run Postgres. |
-| **SQLite** | `sqlite` | _(file on disk)_ | n/a | Dev/tiny deployments only. Not recommended for anything multi-user or larger than a few hundred games. |
+| Driver                             | `ROMM_DB_DRIVER` | Image            | Default port | Notes                                                                                                  |
+| ---------------------------------- | ---------------- | ---------------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| **MariaDB** (default, recommended) | `mariadb`        | `mariadb:11`     | `3306`       | What the reference compose uses. Well-tested.                                                          |
+| **MySQL**                          | `mysql`          | `mysql:8`        | `3306`       | Largely interchangeable with MariaDB for RomM.                                                         |
+| **PostgreSQL**                     | `postgresql`     | `postgres:16`    | `5432`       | Supported. Use if you already run Postgres.                                                            |
+| **SQLite**                         | `sqlite`         | _(file on disk)_ | n/a          | Dev/tiny deployments only. Not recommended for anything multi-user or larger than a few hundred games. |
 
 RomM runs Alembic migrations automatically on startup. No manual step when upgrading.
 
@@ -22,30 +22,30 @@ This is what the [reference Compose](docker-compose.md) sets up. No extra config
 
 ```yaml
 services:
-  romm:
-    environment:
-      - ROMM_DB_DRIVER=mariadb  # optional; this is the default
-      - DB_HOST=romm-db
-      - DB_PORT=3306
-      - DB_NAME=romm
-      - DB_USER=romm-user
-      - DB_PASSWD=<strong-password>
+    romm:
+        environment:
+            - ROMM_DB_DRIVER=mariadb # optional; this is the default
+            - DB_HOST=romm-db
+            - DB_PORT=3306
+            - DB_NAME=romm
+            - DB_USER=romm-user
+            - DB_PASSWD=<strong-password>
 
-  romm-db:
-    image: mariadb:11
-    environment:
-      - MARIADB_ROOT_PASSWORD=<separate-strong-password>
-      - MARIADB_DATABASE=romm
-      - MARIADB_USER=romm-user
-      - MARIADB_PASSWORD=<same-as-DB_PASSWD>
-    volumes:
-      - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-      start_period: 30s
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    romm-db:
+        image: mariadb:11
+        environment:
+            - MARIADB_ROOT_PASSWORD=<separate-strong-password>
+            - MARIADB_DATABASE=romm
+            - MARIADB_USER=romm-user
+            - MARIADB_PASSWORD=<same-as-DB_PASSWD>
+        volumes:
+            - mysql_data:/var/lib/mysql
+        healthcheck:
+            test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+            start_period: 30s
+            interval: 10s
+            timeout: 5s
+            retries: 5
 ```
 
 ## MySQL
@@ -54,57 +54,57 @@ Identical compose to MariaDB, but swap the image and the healthcheck:
 
 ```yaml
 services:
-  romm:
-    environment:
-      - ROMM_DB_DRIVER=mysql
-      - DB_HOST=romm-db
-      - DB_PORT=3306
-      - DB_NAME=romm
-      - DB_USER=romm-user
-      - DB_PASSWD=<strong-password>
+    romm:
+        environment:
+            - ROMM_DB_DRIVER=mysql
+            - DB_HOST=romm-db
+            - DB_PORT=3306
+            - DB_NAME=romm
+            - DB_USER=romm-user
+            - DB_PASSWD=<strong-password>
 
-  romm-db:
-    image: mysql:8
-    environment:
-      - MYSQL_ROOT_PASSWORD=<separate-strong-password>
-      - MYSQL_DATABASE=romm
-      - MYSQL_USER=romm-user
-      - MYSQL_PASSWORD=<same-as-DB_PASSWD>
-    volumes:
-      - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    romm-db:
+        image: mysql:8
+        environment:
+            - MYSQL_ROOT_PASSWORD=<separate-strong-password>
+            - MYSQL_DATABASE=romm
+            - MYSQL_USER=romm-user
+            - MYSQL_PASSWORD=<same-as-DB_PASSWD>
+        volumes:
+            - mysql_data:/var/lib/mysql
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
 ```
 
 ## PostgreSQL
 
 ```yaml
 services:
-  romm:
-    environment:
-      - ROMM_DB_DRIVER=postgresql
-      - DB_HOST=romm-db
-      - DB_PORT=5432
-      - DB_NAME=romm
-      - DB_USER=romm-user
-      - DB_PASSWD=<strong-password>
+    romm:
+        environment:
+            - ROMM_DB_DRIVER=postgresql
+            - DB_HOST=romm-db
+            - DB_PORT=5432
+            - DB_NAME=romm
+            - DB_USER=romm-user
+            - DB_PASSWD=<strong-password>
 
-  romm-db:
-    image: postgres:16
-    environment:
-      - POSTGRES_DB=romm
-      - POSTGRES_USER=romm-user
-      - POSTGRES_PASSWORD=<same-as-DB_PASSWD>
-    volumes:
-      - pg_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U romm-user -d romm"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    romm-db:
+        image: postgres:16
+        environment:
+            - POSTGRES_DB=romm
+            - POSTGRES_USER=romm-user
+            - POSTGRES_PASSWORD=<same-as-DB_PASSWD>
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U romm-user -d romm"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
 ```
 
 ## SQLite (not recommended)

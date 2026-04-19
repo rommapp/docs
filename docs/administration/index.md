@@ -45,11 +45,11 @@ The end-user equivalent (how to actually play the games, build collections, uplo
 
 Three built-in roles, all backed by the same scope system:
 
-| Role | Summary |
-| --- | --- |
-| **Admin** | Full control. User management, task execution, every scope. First user always gets this. |
+| Role       | Summary                                                                                     |
+| ---------- | ------------------------------------------------------------------------------------------- |
+| **Admin**  | Full control. User management, task execution, every scope. First user always gets this.    |
 | **Editor** | Curate the library: edit ROMs, platforms, collections, upload firmware. No user management. |
-| **Viewer** | Play games, manage own saves/states/profile. Read-only everywhere else. |
+| **Viewer** | Play games, manage own saves/states/profile. Read-only everywhere else.                     |
 
 Full scope matrix in [Users & Roles](users-and-roles.md).
 

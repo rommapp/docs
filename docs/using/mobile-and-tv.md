@@ -82,21 +82,20 @@ Any browser works. Use the PWA install flow (same as desktop) for a dedicated la
 
 Syncs ROMs and saves to the Deck's local library so RetroArch / EmuDeck picks them up natively. Set up once, then play without RomM in the loop. See [Community Apps](../ecosystem/community-apps.md).
 
-
 Best combo: DeckRommSync for saves, plus the PWA for browsing / managing the library.
 
 ## Bandwidth considerations
 
 Some things are bandwidth-hungry, some aren't:
 
-| Activity | Typical bandwidth | Notes |
-| --- | --- | --- |
-| Browsing the library | Low | Cover-art thumbnails, a few hundred KB per page load. |
-| Playing in browser | Medium | ROM streams at boot, then cached. PSP / Saturn ISOs can be hundreds of MB on first load. |
-| Netplay | Medium–High | Video stream from host to players. ~500 kbps for SNES, more for higher-res cores. |
-| Bulk download | As-much-as-you-want | Rate-limited only by your reverse proxy and network. |
-| Device sync (saves) | Low | Saves are small, so sync is fast. |
-| Device sync (ROMs) | High | Pushing full ROM sets to a handheld initially is a lot. |
+| Activity             | Typical bandwidth   | Notes                                                                                    |
+| -------------------- | ------------------- | ---------------------------------------------------------------------------------------- |
+| Browsing the library | Low                 | Cover-art thumbnails, a few hundred KB per page load.                                    |
+| Playing in browser   | Medium              | ROM streams at boot, then cached. PSP / Saturn ISOs can be hundreds of MB on first load. |
+| Netplay              | Medium–High         | Video stream from host to players. ~500 kbps for SNES, more for higher-res cores.        |
+| Bulk download        | As-much-as-you-want | Rate-limited only by your reverse proxy and network.                                     |
+| Device sync (saves)  | Low                 | Saves are small, so sync is fast.                                                        |
+| Device sync (ROMs)   | High                | Pushing full ROM sets to a handheld initially is a lot.                                  |
 
 On cellular? Set `DISABLE_DOWNLOAD_ENDPOINT_AUTH=false` (default: keep auth on) to avoid accidental discovery, and prefer native companion apps over in-browser play.
 

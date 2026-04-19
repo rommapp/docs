@@ -18,9 +18,9 @@ Four ways to know what RomM is doing:
 
 ```yaml
 environment:
-  - LOG_LEVEL=INFO        # DEBUG | INFO | WARNING | ERROR
-  - FORCE_COLOR=0         # 1 to force colour even when not a TTY
-  - NO_COLOR=1            # 1 to disable colour entirely
+    - LOG_LEVEL=INFO # DEBUG | INFO | WARNING | ERROR
+    - FORCE_COLOR=0 # 1 to force colour even when not a TTY
+    - NO_COLOR=1 # 1 to disable colour entirely
 ```
 
 `INFO` is the default and sane for production. Drop to `DEBUG` only while debugging a specific issue, because RomM is chatty on DEBUG.
@@ -89,7 +89,7 @@ Opt-in error tracking: nothing is sent without a DSN.
 
 ```yaml
 environment:
-  - SENTRY_DSN=https://abc123@sentry.example.com/42
+    - SENTRY_DSN=https://abc123@sentry.example.com/42
 ```
 
 What's sent:
@@ -108,10 +108,10 @@ Opt-in distributed tracing and metrics. Useful if you run RomM alongside other s
 
 ```yaml
 environment:
-  - OTEL_ENABLED=true
-  - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
-  - OTEL_SERVICE_NAME=romm
-  - OTEL_RESOURCE_ATTRIBUTES=deployment.environment=prod
+    - OTEL_ENABLED=true
+    - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+    - OTEL_SERVICE_NAME=romm
+    - OTEL_RESOURCE_ATTRIBUTES=deployment.environment=prod
 ```
 
 Standard [OTEL env vars](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) apply. RomM emits:

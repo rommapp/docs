@@ -11,17 +11,17 @@ New in 5.0. Powered by the `rom-patcher-js` library.
 
 ## Supported patch formats
 
-| Extension | Purpose |
-| --- | --- |
-| `.ips` | International Patching System. Oldest + most common. |
-| `.ups` | Universal Patching System. Successor to IPS. |
-| `.bps` | Binary Patch System. Modern, preferred for ROM hacks. |
-| `.ppf` | PlayStation Patch Format. For PSX / Saturn / Dreamcast ISOs. |
-| `.rup` | Retroarch Universal Patch. |
-| `.aps` | GBA-focused patch format. |
-| `.bdf` | Binary diff format. |
-| `.pmsr` | Paper Mario Star Rod. |
-| `.vcdiff` (`.xdelta`) | Generic binary diff. |
+| Extension             | Purpose                                                      |
+| --------------------- | ------------------------------------------------------------ |
+| `.ips`                | International Patching System. Oldest + most common.         |
+| `.ups`                | Universal Patching System. Successor to IPS.                 |
+| `.bps`                | Binary Patch System. Modern, preferred for ROM hacks.        |
+| `.ppf`                | PlayStation Patch Format. For PSX / Saturn / Dreamcast ISOs. |
+| `.rup`                | Retroarch Universal Patch.                                   |
+| `.aps`                | GBA-focused patch format.                                    |
+| `.bdf`                | Binary diff format.                                          |
+| `.pmsr`               | Paper Mario Star Rod.                                        |
+| `.vcdiff` (`.xdelta`) | Generic binary diff.                                         |
 
 If your patch has an unusual extension, try renaming to one of the above. Many are just different framings of the same underlying algorithm.
 
@@ -50,10 +50,10 @@ Metadata isn't inherited, so the new ROM is **unmatched** until you run a scan. 
 
 ## Permissions
 
-| Action | Viewer | Editor | Admin |
-| --- | :---: | :---: | :---: |
-| Use Patcher → Download | ✓ | ✓ | ✓ |
-| Use Patcher → Save to library | - | ✓ | ✓ |
+| Action                        | Viewer | Editor | Admin |
+| ----------------------------- | :----: | :----: | :---: |
+| Use Patcher → Download        |   ✓    |   ✓    |   ✓   |
+| Use Patcher → Save to library |   -    |   ✓    |   ✓   |
 
 Saving to the library requires `roms.write` scope.
 

@@ -28,13 +28,13 @@ In PocketID admin:
 
 ```yaml
 environment:
-  - OIDC_ENABLED=true
-  - OIDC_PROVIDER=pocket-id
-  - OIDC_CLIENT_ID=<from PocketID>
-  - OIDC_CLIENT_SECRET=<from PocketID>
-  - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
-  - OIDC_SERVER_APPLICATION_URL=https://id.example.com
-  - ROMM_BASE_URL=https://romm.example.com
+    - OIDC_ENABLED=true
+    - OIDC_PROVIDER=pocket-id
+    - OIDC_CLIENT_ID=<from PocketID>
+    - OIDC_CLIENT_SECRET=<from PocketID>
+    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
+    - OIDC_SERVER_APPLICATION_URL=https://id.example.com
+    - ROMM_BASE_URL=https://romm.example.com
 ```
 
 `OIDC_SERVER_APPLICATION_URL` is the root URL of your PocketID instance.

@@ -1,6 +1,6 @@
 ---
 title: Downloads
-description: Download ROMs from RomM: single, bulk, QR codes, copy-link, and streaming for third-party apps.
+description: Download ROMs from RomM to your local device
 ---
 
 # Downloads
@@ -59,11 +59,12 @@ Some third-party tools (a dumb emulator loading a ROM by URL, a browser extensio
 
 ```yaml
 environment:
-  - DISABLE_DOWNLOAD_ENDPOINT_AUTH=true
+    - DISABLE_DOWNLOAD_ENDPOINT_AUTH=true
 ```
 
 This makes ROM and firmware download URLs work unauthenticated.
 
+<!-- prettier-ignore -->
 !!! danger "Only enable this behind upstream auth"
     This flag makes your library world-downloadable from whatever URL RomM lives at. Only set it when you have authentication at the reverse-proxy layer (Authelia, Cloudflare Access, an IP allowlist, a VPN).
 

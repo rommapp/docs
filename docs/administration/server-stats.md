@@ -11,25 +11,25 @@ description: Read the Server Stats admin page and know what the numbers mean.
 
 ### Top-line counts
 
-| Metric | What it counts |
-| --- | --- |
-| **Platforms** | Every platform RomM has seen at least one ROM for. Deleted platforms don't count. |
-| **Games** | Total ROM entries. A multi-file game (folder with multiple files) counts as 1. |
-| **Saves** | User save files across all users. |
-| **States** | Emulator save states across all users. |
-| **Screenshots** | User-uploaded screenshots. Provider-fetched screenshots aren't counted here. |
-| **Firmware** | Uploaded BIOS / firmware files. |
+| Metric          | What it counts                                                                    |
+| --------------- | --------------------------------------------------------------------------------- |
+| **Platforms**   | Every platform RomM has seen at least one ROM for. Deleted platforms don't count. |
+| **Games**       | Total ROM entries. A multi-file game (folder with multiple files) counts as 1.    |
+| **Saves**       | User save files across all users.                                                 |
+| **States**      | Emulator save states across all users.                                            |
+| **Screenshots** | User-uploaded screenshots. Provider-fetched screenshots aren't counted here.      |
+| **Firmware**    | Uploaded BIOS / firmware files.                                                   |
 
 ### Storage footprint
 
 A breakdown of disk usage by directory:
 
-| Bucket | Maps to | Grows when |
-| --- | --- | --- |
-| **Library** | `/romm/library` | You add ROMs. Controlled by you, not RomM. |
+| Bucket        | Maps to           | Grows when                                                                                |
+| ------------- | ----------------- | ----------------------------------------------------------------------------------------- |
+| **Library**   | `/romm/library`   | You add ROMs. Controlled by you, not RomM.                                                |
 | **Resources** | `/romm/resources` | Scans fetch cover art, screenshots, manuals. Safe to purge, can be rebuilt from a rescan. |
-| **Assets** | `/romm/assets` | Users upload saves, states, screenshots. **Back this up.** |
-| **Config** | `/romm/config` | Rarely: you or admins edit `config.yml`. |
+| **Assets**    | `/romm/assets`    | Users upload saves, states, screenshots. **Back this up.**                                |
+| **Config**    | `/romm/config`    | Rarely: you or admins edit `config.yml`.                                                  |
 
 ### Per-platform breakdown
 
@@ -42,6 +42,7 @@ Under the summary, an expandable table sorted by either ROM count or disk usage.
 
 Useful for: "which platform is eating my disk?" and "which platform has the worst match rate?"
 
+<!-- prettier-ignore -->
 !!! note "Per-platform stats are opt-in"
     Computing per-platform stats walks the whole DB and costs real time on big libraries. The main stats load fast, and per-platform expansion loads on demand.
 
@@ -55,11 +56,11 @@ Useful for: "which platform is eating my disk?" and "which platform has the wors
 
 Rule-of-thumb sizes:
 
-| Ratio | Typical value |
-| --- | --- |
+| Ratio               | Typical value                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------ |
 | Resources / Library | 2-5% on average, higher if you've enabled many metadata providers or run Image Conversion often. |
-| Assets / Library | <1% unless you have lots of heavy PSP/PS3 saves. |
-| DB size / Games | ~10-50 KB per ROM row, depending on metadata richness. |
+| Assets / Library    | <1% unless you have lots of heavy PSP/PS3 saves.                                                 |
+| DB size / Games     | ~10-50 KB per ROM row, depending on metadata richness.                                           |
 
 If **Resources** is ballooning, run the [Cleanup Orphaned Resources](scheduled-tasks.md#cleanup-orphaned-resources-manual) task. If **Assets** is growing unexpectedly, a user is probably uploading save states for long-form JRPGs. That's fine, just plan for it.
 

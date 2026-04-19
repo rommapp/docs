@@ -68,15 +68,16 @@ Recommended before the first scan. Full walkthrough in [Metadata Providers](../a
 
 ## 5. Docker Compose
 
+<!-- prettier-ignore -->
 !!! info "MariaDB 10.7 note"
     This guide pins MariaDB to **10.7** for stability on older DSM versions. MariaDB 11 works on DSM 7.2+, so bump the image tag if you like.
 
 The Synology-flavoured compose file: MariaDB on port `3309` externally (to avoid colliding with Synology's built-in MariaDB), UID/GID customisation, simplified healthcheck:
 
 ???+ example "docker-compose.yml"
-    ``` yaml
+`yaml
     --8<-- "synology.docker-compose.yml"
-    ```
+   `
 
 Replace placeholder UIDs, GIDs, passwords, API keys, and `ROMM_AUTH_SECRET_KEY` with your own before starting.
 

@@ -19,14 +19,14 @@ Authentication flows RomM supports:
 
 Sessions are cookie-based and stored in Redis. Relevant env vars:
 
-| Variable | Default | What it controls |
-| --- | --- | --- |
-| `ROMM_AUTH_SECRET_KEY` | _(required)_ | HS256 signing key for session tokens and JWTs. Generate with `openssl rand -hex 32`. **Never rotate this casually**, because it invalidates every active session and every outstanding invite link. |
-| `ROMM_AUTH_SECRET_KEY_FILE` | _unset_ | Alternative: read the secret from a file. Useful with Docker secrets. |
-| `SESSION_MAX_AGE_SECONDS` | 86400 (24 h) | How long a session cookie lives before the user has to sign in again. |
-| `OAUTH_ACCESS_TOKEN_EXPIRE_SECONDS` | 900 (15 min) | Short-lived OAuth2 access token TTL. |
-| `OAUTH_REFRESH_TOKEN_EXPIRE_SECONDS` | 2592000 (30 d) | Refresh token TTL for OAuth2. |
-| `DISABLE_CSRF_PROTECTION` | `false` | Disable CSRF middleware. Only do this behind a trusted reverse proxy that strips unwanted cross-origin traffic. |
+| Variable                             | Default        | What it controls                                                                                                                                                                                    |
+| ------------------------------------ | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ROMM_AUTH_SECRET_KEY`               | _(required)_   | HS256 signing key for session tokens and JWTs. Generate with `openssl rand -hex 32`. **Never rotate this casually**, because it invalidates every active session and every outstanding invite link. |
+| `ROMM_AUTH_SECRET_KEY_FILE`          | _unset_        | Alternative: read the secret from a file. Useful with Docker secrets.                                                                                                                               |
+| `SESSION_MAX_AGE_SECONDS`            | 86400 (24 h)   | How long a session cookie lives before the user has to sign in again.                                                                                                                               |
+| `OAUTH_ACCESS_TOKEN_EXPIRE_SECONDS`  | 900 (15 min)   | Short-lived OAuth2 access token TTL.                                                                                                                                                                |
+| `OAUTH_REFRESH_TOKEN_EXPIRE_SECONDS` | 2592000 (30 d) | Refresh token TTL for OAuth2.                                                                                                                                                                       |
+| `DISABLE_CSRF_PROTECTION`            | `false`        | Disable CSRF middleware. Only do this behind a trusted reverse proxy that strips unwanted cross-origin traffic.                                                                                     |
 
 ## Local (username + password)
 
@@ -36,9 +36,10 @@ The default: accounts are created via [invitations, registration, or the Setup W
 
 ```yaml
 environment:
-  - DISABLE_USERPASS_LOGIN=true
+    - DISABLE_USERPASS_LOGIN=true
 ```
 
+<!-- prettier-ignore -->
 !!! warning "Keep a way in"
     Before setting `DISABLE_USERPASS_LOGIN=true`, confirm that at least one Admin account can sign in via OIDC and reach the Administration page. If OIDC breaks and you've already disabled local login, your only way in is editing the container env.
 
@@ -60,12 +61,12 @@ See [OIDC Setup](oidc/index.md) for the full walkthrough. One-liner config sketc
 
 ```yaml
 environment:
-  - OIDC_ENABLED=true
-  - OIDC_PROVIDER=keycloak
-  - OIDC_CLIENT_ID=...
-  - OIDC_CLIENT_SECRET=...
-  - OIDC_SERVER_APPLICATION_URL=https://auth.example.com
-  - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
+    - OIDC_ENABLED=true
+    - OIDC_PROVIDER=keycloak
+    - OIDC_CLIENT_ID=...
+    - OIDC_CLIENT_SECRET=...
+    - OIDC_SERVER_APPLICATION_URL=https://auth.example.com
+    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
 ```
 
 When OIDC is configured, the login page grows an "OIDC" button. Set `OIDC_AUTOLOGIN=true` to redirect straight to the IdP without the user having to click it.
@@ -89,7 +90,7 @@ Turns every GET endpoint into unauthenticated read-only access: anyone reaching 
 
 ```yaml
 environment:
-  - KIOSK_MODE=true
+    - KIOSK_MODE=true
 ```
 
 Appropriate for:
@@ -104,7 +105,7 @@ Authenticated users (when you do sign in) still see their full role. Kiosk only 
 
 ```yaml
 environment:
-  - DISABLE_DOWNLOAD_ENDPOINT_AUTH=true
+    - DISABLE_DOWNLOAD_ENDPOINT_AUTH=true
 ```
 
 Skips auth on `GET /api/roms/{id}/content/…` and the firmware download endpoint. Exists so third-party apps that can't carry a bearer header (dumb emulators loading a ROM by URL) can still pull files.

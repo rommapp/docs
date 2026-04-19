@@ -41,13 +41,13 @@ Every emulator has its own requirements: which files it needs, specific hashes, 
 
 Common examples:
 
-| Platform | Typical firmware file | Where to put it |
-| --- | --- | --- |
-| PlayStation (PSX) | `scph1001.bin`, `scph5501.bin`, `scph5502.bin` | `bios/ps/` |
-| Game Boy Advance | `gba_bios.bin` | `bios/gba/` |
-| Sega CD | `bios_CD_U.bin`, `bios_CD_E.bin`, `bios_CD_J.bin` | `bios/segacd/` |
-| Saturn | `saturn_bios.bin`, `mpr-17933.bin` | `bios/saturn/` |
-| Nintendo DS | `firmware.bin`, `bios9.bin`, `bios7.bin` | `bios/nds/` |
+| Platform          | Typical firmware file                             | Where to put it |
+| ----------------- | ------------------------------------------------- | --------------- |
+| PlayStation (PSX) | `scph1001.bin`, `scph5501.bin`, `scph5502.bin`    | `bios/ps/`      |
+| Game Boy Advance  | `gba_bios.bin`                                    | `bios/gba/`     |
+| Sega CD           | `bios_CD_U.bin`, `bios_CD_E.bin`, `bios_CD_J.bin` | `bios/segacd/`  |
+| Saturn            | `saturn_bios.bin`, `mpr-17933.bin`                | `bios/saturn/`  |
+| Nintendo DS       | `firmware.bin`, `bios9.bin`, `bios7.bin`          | `bios/nds/`     |
 
 File naming matters: emulators look for specific filenames. Double-check against the emulator core's documentation if something won't boot.
 
@@ -59,6 +59,7 @@ File naming matters: emulators look for specific filenames. Double-check against
 - Download a firmware file (useful for verifying integrity off-host).
 - Delete a firmware entry.
 
+<!-- prettier-ignore -->
 !!! warning "Deleting firmware"
     Deleting from the UI **does** remove the file from disk. If you want to keep the file but unlink it from RomM, move it out of the `bios/` folder first, then rescan.
 

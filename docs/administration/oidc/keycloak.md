@@ -35,13 +35,13 @@ In the Admin Console, select your realm → **Clients** → **Create client**.
 
 ```yaml
 environment:
-  - OIDC_ENABLED=true
-  - OIDC_PROVIDER=keycloak
-  - OIDC_CLIENT_ID=romm
-  - OIDC_CLIENT_SECRET=<from Keycloak Credentials tab>
-  - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
-  - OIDC_SERVER_APPLICATION_URL=https://keycloak.example.com/realms/<realm-name>
-  - ROMM_BASE_URL=https://romm.example.com
+    - OIDC_ENABLED=true
+    - OIDC_PROVIDER=keycloak
+    - OIDC_CLIENT_ID=romm
+    - OIDC_CLIENT_SECRET=<from Keycloak Credentials tab>
+    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
+    - OIDC_SERVER_APPLICATION_URL=https://keycloak.example.com/realms/<realm-name>
+    - ROMM_BASE_URL=https://romm.example.com
 ```
 
 `OIDC_SERVER_APPLICATION_URL` must include the realm (`.../realms/<realm-name>`), not just the Keycloak root.
@@ -66,9 +66,10 @@ Force users through Keycloak:
 
 ```yaml
 environment:
-  - DISABLE_USERPASS_LOGIN=true
+    - DISABLE_USERPASS_LOGIN=true
 ```
 
+<!-- prettier-ignore -->
 !!! warning
     Before flipping this, confirm at least one Admin account can sign in via OIDC. Otherwise a broken OIDC flow locks you out.
 
@@ -78,10 +79,10 @@ By default, new OIDC users come in as Viewers. To map Keycloak roles/groups to R
 
 ```yaml
 environment:
-  - OIDC_CLAIM_ROLES=groups              # or realm_access.roles, depending on your token
-  - OIDC_ROLE_VIEWER=romm-viewer
-  - OIDC_ROLE_EDITOR=romm-editor
-  - OIDC_ROLE_ADMIN=romm-admin
+    - OIDC_CLAIM_ROLES=groups # or realm_access.roles, depending on your token
+    - OIDC_ROLE_VIEWER=romm-viewer
+    - OIDC_ROLE_EDITOR=romm-editor
+    - OIDC_ROLE_ADMIN=romm-admin
 ```
 
 Configure Keycloak's client to include the role/group claim in the ID token (usually via a **Group Membership** or **Realm Role** client scope mapper). Values in the claim are compared against the `OIDC_ROLE_*` env vars on every login, so demoting in Keycloak takes effect on the user's next sign-in.

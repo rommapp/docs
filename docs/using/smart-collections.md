@@ -63,14 +63,14 @@ Each condition has three parts:
 
 Available operators depend on the field type:
 
-| Operator | Works with |
-| --- | --- |
-| `equals`, `not equals` | Everything. |
-| `contains`, `does not contain` | Text fields. |
-| `starts with`, `ends with` | Text fields. |
-| `is`, `is not` | Boolean / enum fields (Status, Matched, Favourites). |
-| `greater than`, `less than`, `between` | Numeric fields (Rating, Playtime, Release Year). |
-| `in`, `not in` | Multi-value fields (Region, Language, Genre). |
+| Operator                               | Works with                                           |
+| -------------------------------------- | ---------------------------------------------------- |
+| `equals`, `not equals`                 | Everything.                                          |
+| `contains`, `does not contain`         | Text fields.                                         |
+| `starts with`, `ends with`             | Text fields.                                         |
+| `is`, `is not`                         | Boolean / enum fields (Status, Matched, Favourites). |
+| `greater than`, `less than`, `between` | Numeric fields (Rating, Playtime, Release Year).     |
+| `in`, `not in`                         | Multi-value fields (Region, Language, Genre).        |
 
 ## Examples
 
@@ -115,7 +115,7 @@ any of:
 Same visibility model as standard collections:
 
 - **Private**: only you see it (your personal data fields matter).
-- **Public**: everyone on the instance sees it. *Your* personal-data rules still apply. If your smart collection is "games I haven't finished", every user sees *your* unfinished games.
+- **Public**: everyone on the instance sees it. _Your_ personal-data rules still apply. If your smart collection is "games I haven't finished", every user sees _your_ unfinished games.
 
 For shared rule sets across users, use metadata-only fields and keep the collection public. Rules that reference Personal data (status, rating, playtime, favourites) only make sense as private collections.
 

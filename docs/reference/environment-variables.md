@@ -17,20 +17,20 @@ This page is the **authoritative lookup**: every var RomM reads. The table is ge
 
 ```yaml
 services:
-  romm:
-    environment:
-      - ROMM_AUTH_SECRET_KEY=abcd1234...
-      - DB_PASSWD=secure-password
-      # ...
+    romm:
+        environment:
+            - ROMM_AUTH_SECRET_KEY=abcd1234...
+            - DB_PASSWD=secure-password
+            # ...
 ```
 
 Or from a `.env` file next to your compose:
 
 ```yaml
 services:
-  romm:
-    env_file:
-      - .env
+    romm:
+        env_file:
+            - .env
 ```
 
 ### Secrets
@@ -45,11 +45,11 @@ Don't embed `ROMM_AUTH_SECRET_KEY`, DB passwords, or provider API keys directly 
 
 You'll always set these:
 
-| Variable | Purpose |
-| --- | --- |
-| `ROMM_AUTH_SECRET_KEY` | JWT signing key generated with `openssl rand -hex 32`. **Never rotate lightly**, as it breaks all sessions. |
-| `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWD` | Database connection. |
-| `ROMM_DB_DRIVER` | One of `mariadb` (default), `mysql`, `postgresql`, or `sqlite`: see [Databases](../install/databases.md). |
+| Variable                                     | Purpose                                                                                                     |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `ROMM_AUTH_SECRET_KEY`                       | JWT signing key generated with `openssl rand -hex 32`. **Never rotate lightly**, as it breaks all sessions. |
+| `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWD` | Database connection.                                                                                        |
+| `ROMM_DB_DRIVER`                             | One of `mariadb` (default), `mysql`, `postgresql`, or `sqlite`: see [Databases](../install/databases.md).   |
 
 For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../administration/metadata-providers.md). For OIDC, see [OIDC Setup](../administration/oidc/index.md).
 

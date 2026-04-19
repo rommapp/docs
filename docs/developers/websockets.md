@@ -7,10 +7,10 @@ description: RomM's two Socket.IO endpoints for live updates and Netplay coordin
 
 RomM uses **Socket.IO** for real-time communication. Two endpoints:
 
-| Endpoint | Purpose |
-| --- | --- |
-| `/ws/socket.io` | General live updates: scan progress, task status, task completion, admin notifications. |
-| `/netplay/socket.io` | Netplay session coordination: room discovery, join/leave events, session lifecycle. |
+| Endpoint             | Purpose                                                                                 |
+| -------------------- | --------------------------------------------------------------------------------------- |
+| `/ws/socket.io`      | General live updates: scan progress, task status, task completion, admin notifications. |
+| `/netplay/socket.io` | Netplay session coordination: room discovery, join/leave events, session lifecycle.     |
 
 Both are Redis-backed (via `socket.io-redis`) so multi-instance RomM deployments broadcast events to every replica.
 
@@ -26,10 +26,10 @@ Socket.IO connections inherit the HTTP session: if your `Cookie` header carries 
 
 ```javascript
 const socket = io("https://romm.example.com", {
-  path: "/ws/socket.io",
-  auth: {
-    token: "rmm_..."
-  }
+    path: "/ws/socket.io",
+    auth: {
+        token: "rmm_...",
+    },
 });
 ```
 
@@ -43,18 +43,18 @@ Default namespace. No sub-namespacing in 5.0.
 
 ### Server → client events
 
-| Event | Payload | When |
-| --- | --- | --- |
-| `scan:start` | `{ scan_id, platforms, mode }` | A scan starts. |
-| `scan:log` | `{ scan_id, level, message }` | Live scan log line. |
-| `scan:progress` | `{ scan_id, platform, matched, unmatched, total }` | Per-platform progress update. |
-| `scan:complete` | `{ scan_id, summary }` | Scan finished. |
-| `task:start` | `{ task_id, task_name }` | Any scheduled/manual task starts. |
-| `task:complete` | `{ task_id, task_name, status }` | Task finished (status: success/failed). |
-| `rom:created` | `{ rom_id }` | New ROM added. |
-| `rom:updated` | `{ rom_id }` | Metadata or user data changed. |
-| `rom:deleted` | `{ rom_id }` | ROM removed. |
-| `notification` | `{ message, level }` | Admin broadcast / error message. |
+| Event           | Payload                                            | When                                    |
+| --------------- | -------------------------------------------------- | --------------------------------------- |
+| `scan:start`    | `{ scan_id, platforms, mode }`                     | A scan starts.                          |
+| `scan:log`      | `{ scan_id, level, message }`                      | Live scan log line.                     |
+| `scan:progress` | `{ scan_id, platform, matched, unmatched, total }` | Per-platform progress update.           |
+| `scan:complete` | `{ scan_id, summary }`                             | Scan finished.                          |
+| `task:start`    | `{ task_id, task_name }`                           | Any scheduled/manual task starts.       |
+| `task:complete` | `{ task_id, task_name, status }`                   | Task finished (status: success/failed). |
+| `rom:created`   | `{ rom_id }`                                       | New ROM added.                          |
+| `rom:updated`   | `{ rom_id }`                                       | Metadata or user data changed.          |
+| `rom:deleted`   | `{ rom_id }`                                       | ROM removed.                            |
+| `notification`  | `{ message, level }`                               | Admin broadcast / error message.        |
 
 ### Client → server events
 
@@ -71,19 +71,19 @@ Separate endpoint for Netplay rooms. Used by EmulatorJS's Netplay logic, rarely 
 
 ### Server → client events
 
-| Event | Payload |
-| --- | --- |
-| `netplay:room_created` | `{ room_id, host, rom_id, password_protected }` |
-| `netplay:room_updated` | `{ room_id, players }` |
-| `netplay:room_destroyed` | `{ room_id }` |
+| Event                    | Payload                                         |
+| ------------------------ | ----------------------------------------------- |
+| `netplay:room_created`   | `{ room_id, host, rom_id, password_protected }` |
+| `netplay:room_updated`   | `{ room_id, players }`                          |
+| `netplay:room_destroyed` | `{ room_id }`                                   |
 
 ### Client → server events
 
-| Event | Payload |
-| --- | --- |
+| Event                 | Payload                              |
+| --------------------- | ------------------------------------ |
 | `netplay:create_room` | `{ rom_id, password?, max_players }` |
-| `netplay:join_room` | `{ room_id, password? }` |
-| `netplay:leave_room` | `{ room_id }` |
+| `netplay:join_room`   | `{ room_id, password? }`             |
+| `netplay:leave_room`  | `{ room_id }`                        |
 
 Plus WebRTC signalling events (`offer`, `answer`, `ice_candidate`) that shuttle between peers for the actual game session. These are opaque to anything but EmulatorJS.
 
@@ -109,7 +109,6 @@ Common breakages:
 - Traefik without the default passthrough middlewares.
 
 Symptom of a broken WS: HTTP 400 responses on the upgrade, and the browser console full of `WebSocket connection failed`. See [Authentication Troubleshooting → WebSockets](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint).
-
 
 ## Writing a client in Python
 

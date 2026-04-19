@@ -17,11 +17,11 @@ Make a folder for the platform under your library root. Rules:
 
 Examples:
 
-| Folder name | Displays as |
-| --- | --- |
+| Folder name           | Displays as         |
+| --------------------- | ------------------- |
 | `pocket-challenge-v2` | Pocket Challenge V2 |
 | `my-homebrew-console` | My Homebrew Console |
-| `wasm4` | Wasm4 |
+| `wasm4`               | Wasm4               |
 
 Then either run a **Quick Scan** (the platform is auto-discovered) or trigger a **New Platforms** scan from the **Scan** page.
 
@@ -31,10 +31,10 @@ If your platform is one RomM supports but under a different slug, you don't need
 
 ```yaml
 system:
-  platforms:
-    super_nintendo: "snes"       # your folder → canonical slug
-    psx: "ps"
-    game-cube: "ngc"
+    platforms:
+        super_nintendo: "snes" # your folder → canonical slug
+        psx: "ps"
+        game-cube: "ngc"
 ```
 
 This gets you full metadata-provider support with your preferred folder name. See [Configuration File → `system.platforms`](../reference/configuration-file.md#systemplatforms).
@@ -51,9 +51,9 @@ Bind-mount a host directory onto the container's icon path:
 
 ```yaml
 services:
-  romm:
-    volumes:
-      - /path/to/your/icons:/var/www/html/assets/platforms
+    romm:
+        volumes:
+            - /path/to/your/icons:/var/www/html/assets/platforms
 ```
 
 ### 2. Seed it with the official icons
@@ -64,11 +64,11 @@ RomM's built-in icons live at [`frontend/assets/platforms`](https://github.com/r
 
 The filename has to **match the IGDB platform slug**. Examples:
 
-| Platform | IGDB slug | Filename |
-| --- | --- | --- |
-| Amstrad CPC | `acpc` | `acpc.ico` |
+| Platform            | IGDB slug                      | Filename                  |
+| ------------------- | ------------------------------ | ------------------------- |
+| Amstrad CPC         | `acpc`                         | `acpc.ico`                |
 | Pocket Challenge V2 | `pocket-challenge-v2` (custom) | `pocket-challenge-v2.ico` |
-| NES | `nes` | `nes.ico` |
+| NES                 | `nes`                          | `nes.ico`                 |
 
 Find the slug in the URL of the platform's IGDB page, e.g. [igdb.com/platforms/acpc](https://www.igdb.com/platforms/acpc) → slug is `acpc`.
 

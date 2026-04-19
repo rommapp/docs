@@ -9,9 +9,11 @@ description: How to run DOS games in RomM via dosbox-pure, homebrew, shareware d
 
 DOS games run in RomM via [`dosbox-pure`](https://github.com/schellingb/dosbox-pure), the EmulatorJS integration: create a DOS platform (folder named `dos`) and drop your games in.
 
+<!-- prettier-ignore -->
 !!! tip "Upload games as `.zip`"
     `dosbox-pure` knows how to unzip and auto-mount zipped DOS games, which is much easier than packaging a raw folder.
 
+<!-- prettier-ignore -->
 !!! info "Save states work"
     Once you've got a game running, save state and resume from there, so you only need to do the boot dance once per game.
 
@@ -154,6 +156,7 @@ Retail games need the game CD image mounted alongside the install directory.
     ```
 
     Key lines:
+
     - `Mount C ".."`: game files as `C:`.
     - `imgmount d DUNGEO~8.CUE -t iso -fs iso`: CD image as `D:`.
     - `cd ..`: back to `C:\` where `KEEPER.exe` lives.
@@ -163,6 +166,7 @@ Retail games need the game CD image mounted alongside the install directory.
 
 4. Zip, upload, play.
 
+<!-- prettier-ignore -->
 !!! info "GOG DOS re-releases don't work"
     GOG's DOS games ship with custom wrappers (DOSBox Staging, ScummVM scripts, etc.) that don't translate to `dosbox-pure`: 100% failure rate observed. For GOG titles, extract the underlying game files and build a `.conf` yourself.
 

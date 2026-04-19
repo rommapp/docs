@@ -99,7 +99,7 @@ Fix: add the property mapping documented in [OIDC with Authentik → Create a pr
 Two possibilities:
 
 1. **Email not verified in Keycloak**: Admin Console → Users → open the user → **Email Verified**: on. RomM rejects unverified emails.
-2. **Email mismatch between Keycloak and a pre-existing RomM user**: if RomM already has a local account `alice@example.com`, the first OIDC login for `alice@example.com` signs into that account. If the emails don't match exactly, RomM creates a *second* account. Fix: edit the user in RomM to set the correct email, then log in via OIDC.
+2. **Email mismatch between Keycloak and a pre-existing RomM user**: if RomM already has a local account `alice@example.com`, the first OIDC login for `alice@example.com` signs into that account. If the emails don't match exactly, RomM creates a _second_ account. Fix: edit the user in RomM to set the correct email, then log in via OIDC.
 
 ### `OAuthException: expired token` on callback
 

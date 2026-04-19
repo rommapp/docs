@@ -13,7 +13,7 @@ Mount the database file to persistent storage:
 
 ```yaml
 volumes:
-  - /path/to/database:/romm/database
+    - /path/to/database:/romm/database
 ```
 
 This only applies to SQLite. MariaDB / MySQL / Postgres users persist via the DB container's own volume (`mysql_data:/var/lib/mysql` and similar), not via a `/romm/database` mount.

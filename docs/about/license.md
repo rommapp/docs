@@ -13,7 +13,7 @@ In short, AGPL says:
 
 - **You can** use RomM privately, commercially, or at any scale.
 - **You can** modify the source code however you want.
-- **You must** make your modifications available under AGPL-3.0 if you distribute them *or* run them as a network-accessible service for others.
+- **You must** make your modifications available under AGPL-3.0 if you distribute them _or_ run them as a network-accessible service for others.
 - **You must** preserve copyright and license notices.
 
 The "network service" clause is the key AGPL twist: if you host a modified RomM and other people use it over the network, you owe them the source. This prevents the "hosted SaaS fork without upstream contributions" failure mode that's common with plain GPL.
@@ -26,14 +26,14 @@ Full license text: [rommapp/romm/blob/master/LICENSE](https://github.com/rommapp
 
 The RomM umbrella hosts several projects under different licenses:
 
-| Project | License |
-| --- | --- |
-| [rommapp/romm](https://github.com/rommapp/romm) | AGPL-3.0 |
-| [rommapp/argosy-launcher](https://github.com/rommapp/argosy-launcher) | GPL-3.0 |
-| [rommapp/grout](https://github.com/rommapp/grout) | MIT |
-| [rommapp/playnite-plugin](https://github.com/rommapp/playnite-plugin) | GPL-3.0 |
-| [rommapp/muos-app](https://github.com/rommapp/muos-app) | check repo |
-| [rommapp/docs](https://github.com/rommapp/docs) (what you're reading) | CC0 |
+| Project                                                               | License    |
+| --------------------------------------------------------------------- | ---------- |
+| [rommapp/romm](https://github.com/rommapp/romm)                       | AGPL-3.0   |
+| [rommapp/argosy-launcher](https://github.com/rommapp/argosy-launcher) | GPL-3.0    |
+| [rommapp/grout](https://github.com/rommapp/grout)                     | MIT        |
+| [rommapp/playnite-plugin](https://github.com/rommapp/playnite-plugin) | GPL-3.0    |
+| [rommapp/muos-app](https://github.com/rommapp/muos-app)               | check repo |
+| [rommapp/docs](https://github.com/rommapp/docs) (what you're reading) | CC0        |
 
 Companion repos use more permissive licenses (GPL-3.0 or MIT) because they're smaller, more-replaceable, and don't host the library. The AGPL network-service clause doesn't offer the same protection benefits there.
 

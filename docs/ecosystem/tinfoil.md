@@ -67,6 +67,7 @@ The bracketed `[0100000000010000]` is the title ID. Without it, Tinfoil shows th
 
 ![TitleID example](../resources/tinfoil/titleid.jpg)
 
+<!-- prettier-ignore -->
 !!! info "Improvement coming"
     5.0 improves RomM's title-ID handling: it auto-detects title IDs from filenames that have them and feeds Tinfoil regardless of whether your filename format is standard. The guidance above still applies for older RomM releases.
 

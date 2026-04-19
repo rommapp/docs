@@ -81,7 +81,7 @@ Dropdowns that cross-reference metadata on the visible set:
 - **Genre / Franchise / Collections / Company / Age Rating / Region / Language**: metadata dimensions.
 - **Status**: personal play status (Never Played, Backlogged, Playing, Complete, Hidden).
 
-Filters narrow down *what you're currently viewing*. Search first, filter second, and the filter dropdowns only show values present in the search results.
+Filters narrow down _what you're currently viewing_. Search first, filter second, and the filter dropdowns only show values present in the search results.
 
 ## Search
 
@@ -156,11 +156,11 @@ Which tabs appear depends on your metadata providers:
 
 ## Keyboard shortcuts
 
-| Key | Action |
-| --- | --- |
-| `/` | Focus search. |
-| `g h` | Go home. |
-| `g s` | Open Search page. |
+| Key   | Action                       |
+| ----- | ---------------------------- |
+| `/`   | Focus search.                |
+| `g h` | Go home.                     |
+| `g s` | Open Search page.            |
 | `Esc` | Close open drawer or dialog. |
 
 Full shortcut list is on the [Account & Profile](account-and-profile.md) page.

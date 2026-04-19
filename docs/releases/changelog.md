@@ -17,16 +17,13 @@ For migration-grade detail on a major version, go straight to that version's gui
 
 [Upgrading to 5.0](upgrading-to-5.0.md) · [GitHub Release](https://github.com/rommapp/romm/releases/tag/5.0.0)
 
-
 ## 4.x
-
 
 [Upgrading to 4.0](upgrading-to-4.0.md) · [GitHub Release](https://github.com/rommapp/romm/releases/tag/4.0.0)
 
 ## 3.0
 
 [Upgrading to 3.0](upgrading-to-3.0.md) · [GitHub Release](https://github.com/rommapp/romm/releases/tag/3.0.0)
-
 
 ## Want release pings?
 

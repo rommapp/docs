@@ -9,6 +9,7 @@ description: Play EmulatorJS games with friends in real time: hosting, joining, 
 
 Best for 2-player co-op and turn-based games. Not ideal for twitchy fighting games (frame-level input isn't rollback-based).
 
+<!-- prettier-ignore -->
 !!! note "Netplay is a v5.0 feature"
     If you're on an older RomM (4.x), Netplay was disabled with known issues. 5.0 brings it back as a supported feature.
 
@@ -54,19 +55,19 @@ The operator wires ICE servers in `config.yml`:
 
 ```yaml
 emulatorjs:
-  netplay:
-    enabled: true
-    ice_servers:
-      # Google's free public STUN, no account needed
-      - urls: "stun:stun.l.google.com:19302"
-      - urls: "stun:stun1.l.google.com:19302"
-      # OpenRelay free TURN (rate-limited)
-      - urls: "turn:openrelay.metered.ca:80"
-        username: "openrelayproject"
-        credential: "openrelayproject"
-      - urls: "turn:openrelay.metered.ca:443"
-        username: "openrelayproject"
-        credential: "openrelayproject"
+    netplay:
+        enabled: true
+        ice_servers:
+            # Google's free public STUN, no account needed
+            - urls: "stun:stun.l.google.com:19302"
+            - urls: "stun:stun1.l.google.com:19302"
+            # OpenRelay free TURN (rate-limited)
+            - urls: "turn:openrelay.metered.ca:80"
+              username: "openrelayproject"
+              credential: "openrelayproject"
+            - urls: "turn:openrelay.metered.ca:443"
+              username: "openrelayproject"
+              credential: "openrelayproject"
 ```
 
 For production Netplay, operators should get a dedicated TURN account (free tier at [Metered](https://www.metered.ca/stun-turn), or self-host [coturn](https://github.com/coturn/coturn)).

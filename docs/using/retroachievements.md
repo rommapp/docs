@@ -79,7 +79,7 @@ Some tips:
 ## Privacy
 
 - Your RA API key is stored server-side (per-user), encrypted at rest.
-- RomM only calls RA using your key for *your* data, never shares across users.
+- RomM only calls RA using your key for _your_ data, never shares across users.
 - Admins can see which users have RA linked but not the API keys themselves.
 
 To unlink: Profile → RetroAchievements → **Unlink** → confirm. Key is deleted. Progression data stays cached until the next sync pass.

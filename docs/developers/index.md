@@ -41,12 +41,12 @@ Looking for end-user or operator content? See [Using RomM](../using/index.md) or
 
 ## Quick orientation
 
-| I want to… | Start here |
-| --- | --- |
-| Call the REST API from a script | [API Authentication](api-authentication.md) + [API Reference](api-reference.md) |
-| Generate a client library | [Consuming OpenAPI](openapi.md) |
-| Sync saves from a handheld | [Device Sync Protocol](../ecosystem/device-sync-protocol.md) |
-| Listen to scan events | [WebSockets](websockets.md) |
-| Fix a bug in RomM | [Development Setup](development-setup.md) + [Contributing](contributing.md) |
-| Translate the app | [Translations (i18n)](i18n.md) |
-| Understand how it's put together | [Architecture](architecture.md) |
+| I want to…                       | Start here                                                                      |
+| -------------------------------- | ------------------------------------------------------------------------------- |
+| Call the REST API from a script  | [API Authentication](api-authentication.md) + [API Reference](api-reference.md) |
+| Generate a client library        | [Consuming OpenAPI](openapi.md)                                                 |
+| Sync saves from a handheld       | [Device Sync Protocol](../ecosystem/device-sync-protocol.md)                    |
+| Listen to scan events            | [WebSockets](websockets.md)                                                     |
+| Fix a bug in RomM                | [Development Setup](development-setup.md) + [Contributing](contributing.md)     |
+| Translate the app                | [Translations (i18n)](i18n.md)                                                  |
+| Understand how it's put together | [Architecture](architecture.md)                                                 |

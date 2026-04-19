@@ -157,6 +157,7 @@ trunk check     # report what it can't
 
 Trunk runs as a pre-commit hook automatically after install. Alternative install methods are in [the Trunk docs](https://docs.trunk.io/check/usage#install-the-cli).
 
+<!-- prettier-ignore -->
 !!! warning "CI blocks un-linted PRs"
     Trunk's check runs on every PR. If it fails, your PR can't merge. Same rules as the maintainers.
 
@@ -184,13 +185,13 @@ uv run pytest -k scan            # match by name
 
 ## Useful dev URLs
 
-| URL | Purpose |
-| --- | --- |
-| `http://localhost:3000` | Main UI |
-| `http://localhost:3000/api/docs` | Swagger UI: try endpoints live |
-| `http://localhost:3000/api/redoc` | ReDoc-rendered API reference |
-| `http://localhost:3000/openapi.json` | OpenAPI spec: source of truth for client generators |
-| `http://localhost:3000/api/heartbeat` | Health + config snapshot |
+| URL                                   | Purpose                                             |
+| ------------------------------------- | --------------------------------------------------- |
+| `http://localhost:3000`               | Main UI                                             |
+| `http://localhost:3000/api/docs`      | Swagger UI: try endpoints live                      |
+| `http://localhost:3000/api/redoc`     | ReDoc-rendered API reference                        |
+| `http://localhost:3000/openapi.json`  | OpenAPI spec: source of truth for client generators |
+| `http://localhost:3000/api/heartbeat` | Health + config snapshot                            |
 
 ## Architecture at a glance
 

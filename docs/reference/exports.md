@@ -15,11 +15,11 @@ ES-DE, Batocera, and compatibles look for a `gamelist.xml` in each platform fold
 
 ```yaml
 scan:
-  gamelist:
-    export: true
-    media:
-      thumbnail: box2d      # which media type to use as thumbnail
-      image: screenshot     # which as full image
+    gamelist:
+        export: true
+        media:
+            thumbnail: box2d # which media type to use as thumbnail
+            image: screenshot # which as full image
 ```
 
 With `export: true`, every scan writes a `gamelist.xml` into the platform folder, and downloads the selected media into sibling folders (`covers/`, `screenshots/`, etc.) that ES-DE expects.
@@ -73,7 +73,7 @@ Once RomM has generated `gamelist.xml` and populated `covers/` + `screenshots/`,
 - `MediaDirectory`: point it at the ROM folder (same path ES-DE uses for `ROMDirectory`), so ES-DE looks for media in-place rather than in its own library.
 - `LegacyGamelistFileLocation`: makes ES-DE write updates back to the same `gamelist.xml` RomM reads from, rather than its separate config dir.
 
-See also [Metadata Providers → gamelist.xml](../administration/metadata-providers.md) for the *import* direction (reading gamelist.xml into RomM).
+See also [Metadata Providers → gamelist.xml](../administration/metadata-providers.md) for the _import_ direction (reading gamelist.xml into RomM).
 
 ## Pegasus
 
@@ -83,8 +83,8 @@ See also [Metadata Providers → gamelist.xml](../administration/metadata-provid
 
 ```yaml
 scan:
-  pegasus:
-    export: true
+    pegasus:
+        export: true
 ```
 
 ### Format

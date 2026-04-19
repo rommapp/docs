@@ -97,13 +97,13 @@ In-browser emulation is CPU-heavy. Mobile tips:
 
 ## Known limitations by core
 
-| Core | Known issues |
-| --- | --- |
-| `ppsspp` (PSP) | Not supported in Console Mode. |
-| `dosbox-pure` (DOS) | Not supported in Console Mode. Some DOS quirks. See `disable_batch_bootup`. |
-| `mednafen_saturn` | Audio stutter on weak hardware. `yabause` is an alternative. |
-| `opera` (3DO) | Niche. Limited ROM compatibility. |
-| All Nintendo DS cores | Touchscreen emulation is imperfect on non-touch devices. |
+| Core                  | Known issues                                                                |
+| --------------------- | --------------------------------------------------------------------------- |
+| `ppsspp` (PSP)        | Not supported in Console Mode.                                              |
+| `dosbox-pure` (DOS)   | Not supported in Console Mode. Some DOS quirks. See `disable_batch_bootup`. |
+| `mednafen_saturn`     | Audio stutter on weak hardware. `yabause` is an alternative.                |
+| `opera` (3DO)         | Niche. Limited ROM compatibility.                                           |
+| All Nintendo DS cores | Touchscreen emulation is imperfect on non-touch devices.                    |
 
 ## Still stuck
 

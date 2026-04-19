@@ -20,7 +20,7 @@ To skip the wizard (e.g. when provisioning via automation and you'll create user
 
 ```yaml
 environment:
-  - DISABLE_SETUP_WIZARD=true
+    - DISABLE_SETUP_WIZARD=true
 ```
 
 You'll then need to create the first admin via the API or by injecting a row at deploy time, because the UI won't offer a setup flow.
@@ -35,12 +35,13 @@ The recommended way to add users, because it avoids you ever touching their pass
 
 Invite tokens are **single-use** and **time-limited**. Defaults:
 
-| Setting | Default | Env var |
-| --- | --- | --- |
-| Expiry | 30 days | `INVITE_TOKEN_DAYS` |
+| Setting | Default | Env var             |
+| ------- | ------- | ------------------- |
+| Expiry  | 30 days | `INVITE_TOKEN_DAYS` |
 
 Expired links return a clear error on the `/register` page. Generate a new one from the Users panel.
 
+<!-- prettier-ignore -->
 !!! tip "Invitations over HTTPS"
     Invite URLs include a signed token, so they're not useful to anyone without RomM's `ROMM_AUTH_SECRET_KEY`. Still, send them over a trusted channel, because once someone has a valid invite URL, they can claim the account.
 
@@ -50,7 +51,7 @@ Off by default. To let anyone with the `/register` URL create a Viewer account w
 
 ```yaml
 environment:
-  - ALLOW_PUBLIC_REGISTRATION=true
+    - ALLOW_PUBLIC_REGISTRATION=true
 ```
 
 When on, the login page grows a "Register" link and `/register` becomes an open endpoint.
@@ -66,12 +67,12 @@ Anyone who signs up this way is a Viewer. Promote them manually from **Administr
 
 ## Role assignment at sign-up
 
-| Sign-up method | Role assigned |
-| --- | --- |
-| First-user Setup Wizard | Admin (always) |
-| Invite link | Whatever role the admin picked when generating the link |
-| Public registration (`ALLOW_PUBLIC_REGISTRATION=true`) | Viewer |
-| OIDC first login | Default Viewer, or mapped from claims via `OIDC_CLAIM_ROLES` |
+| Sign-up method                                         | Role assigned                                                |
+| ------------------------------------------------------ | ------------------------------------------------------------ |
+| First-user Setup Wizard                                | Admin (always)                                               |
+| Invite link                                            | Whatever role the admin picked when generating the link      |
+| Public registration (`ALLOW_PUBLIC_REGISTRATION=true`) | Viewer                                                       |
+| OIDC first login                                       | Default Viewer, or mapped from claims via `OIDC_CLAIM_ROLES` |
 
 Changing a user's role afterwards is a normal admin action. See [Users & Roles](users-and-roles.md).
 

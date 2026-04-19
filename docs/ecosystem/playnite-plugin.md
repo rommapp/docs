@@ -55,6 +55,7 @@ Playnite: **Menu → Library → Configure Integrations → RomM**.
     - ✗ `https://romm.example.com/`
 - **Username + password**: Playnite stores these in plaintext. Use a **dedicated Viewer-role account** for Playnite, not your admin account.
 
+<!-- prettier-ignore -->
 !!! tip "Use a Client API Token instead"
     If your RomM version supports API tokens, create a Viewer-scoped [Client API Token](client-api-tokens.md) and use it instead of a password. Safer and easier to revoke.
 
@@ -62,14 +63,14 @@ Playnite: **Menu → Library → Configure Integrations → RomM**.
 
 One mapping per platform:
 
-| Field | Purpose | Example | Required |
-| --- | --- | --- | :---: |
-| Emulator | Which Playnite emulator to use | Dolphin | ✓ |
-| Emulator Profile | The profile within the emulator | Nintendo GameCube | ✓ |
-| Platform | The RomM platform slug | Nintendo GameCube | ✓ |
-| Destination Path | Where downloaded ROMs are stored | `C:\roms\gc` | ✓ |
-| Auto-extract | Unpack zipped ROMs after download | | |
-| Enabled | Whether this mapping is active | | |
+| Field            | Purpose                           | Example           | Required |
+| ---------------- | --------------------------------- | ----------------- | :------: |
+| Emulator         | Which Playnite emulator to use    | Dolphin           |    ✓     |
+| Emulator Profile | The profile within the emulator   | Nintendo GameCube |    ✓     |
+| Platform         | The RomM platform slug            | Nintendo GameCube |    ✓     |
+| Destination Path | Where downloaded ROMs are stored  | `C:\roms\gc`      |    ✓     |
+| Auto-extract     | Unpack zipped ROMs after download |                   |          |
+| Enabled          | Whether this mapping is active    |                   |          |
 
 Map every platform you want Playnite to see. Platforms without a mapping are skipped during import.
 

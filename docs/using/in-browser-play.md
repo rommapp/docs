@@ -16,38 +16,40 @@ Hit the **Play** button on any supported game, and the emulator loads full-scree
 
 [EmulatorJS](https://emulatorjs.org/) is a web-based emulator running [RetroArch](https://www.retroarch.com) via [Emscripten](https://emscripten.org/), so cores you know from RetroArch show up here.
 
+<!-- prettier-ignore -->
 !!! warning "Emulation is resource-intensive"
     Older or less-powerful devices may struggle, especially with demanding cores (Dreamcast, Saturn, PSP). Try a different browser or device before filing a bug.
 
+<!-- prettier-ignore -->
 !!! note "Some cores don't work in Console Mode"
     PSP (`ppsspp`) and MS-DOS (`dosbox-pure`) aren't supported in [Console Mode](console-mode.md). Use the main UI for those.
 
 ### Supported platforms
 
-| Platform | Cores |
-| --- | --- |
-| 3DO | `opera` |
-| Amiga | `puae` |
-| Arcade / MAME | `mame2003_plus`, `mame2003`, `fbneo` |
-| Atari 2600 / 5200 / 7800 / Jaguar / Lynx | Various: `stella2014`, `atari800`, `prosystem`, `virtualjaguar`, `handy` |
-| Commodore 64 | `vice_x64sc` |
-| ColecoVision | `gearcoleco` |
-| DOOM | `prboom` |
-| Game Boy / Color / Advance | `gambatte`, `mgba` |
-| MS-DOS | `dosbox-pure` |
-| Neo Geo Pocket / Color | `mednafen_ngp` |
-| Nintendo DS | `melonds`, `desmume` |
-| Nintendo 64 | `mupen64plus_next`, `parallel_n64` |
-| NES / Famicom | `fceumm`, `nestopia` |
-| PC-FX | `mednafen_pcfx` |
-| PlayStation | `mednafen_psx_hw`, `pcsx_rearmed` |
-| PSP | `ppsspp` |
-| Sega 32X / CD / Game Gear / Master System / Genesis | `picodrive`, `genesis_plus_gx` |
-| Sega Saturn | `mednafen_saturn`, `yabause` |
-| SNES / Super Famicom | `snes9x`, `bsnes` |
-| TurboGraphx-16 / PC Engine | `mednafen_pce` |
-| Virtual Boy | `mednafen_vb` |
-| WonderSwan / Color | `mednafen_wswan` |
+| Platform                                            | Cores                                                                    |
+| --------------------------------------------------- | ------------------------------------------------------------------------ |
+| 3DO                                                 | `opera`                                                                  |
+| Amiga                                               | `puae`                                                                   |
+| Arcade / MAME                                       | `mame2003_plus`, `mame2003`, `fbneo`                                     |
+| Atari 2600 / 5200 / 7800 / Jaguar / Lynx            | Various: `stella2014`, `atari800`, `prosystem`, `virtualjaguar`, `handy` |
+| Commodore 64                                        | `vice_x64sc`                                                             |
+| ColecoVision                                        | `gearcoleco`                                                             |
+| DOOM                                                | `prboom`                                                                 |
+| Game Boy / Color / Advance                          | `gambatte`, `mgba`                                                       |
+| MS-DOS                                              | `dosbox-pure`                                                            |
+| Neo Geo Pocket / Color                              | `mednafen_ngp`                                                           |
+| Nintendo DS                                         | `melonds`, `desmume`                                                     |
+| Nintendo 64                                         | `mupen64plus_next`, `parallel_n64`                                       |
+| NES / Famicom                                       | `fceumm`, `nestopia`                                                     |
+| PC-FX                                               | `mednafen_pcfx`                                                          |
+| PlayStation                                         | `mednafen_psx_hw`, `pcsx_rearmed`                                        |
+| PSP                                                 | `ppsspp`                                                                 |
+| Sega 32X / CD / Game Gear / Master System / Genesis | `picodrive`, `genesis_plus_gx`                                           |
+| Sega Saturn                                         | `mednafen_saturn`, `yabause`                                             |
+| SNES / Super Famicom                                | `snes9x`, `bsnes`                                                        |
+| TurboGraphx-16 / PC Engine                          | `mednafen_pce`                                                           |
+| Virtual Boy                                         | `mednafen_vb`                                                            |
+| WonderSwan / Color                                  | `mednafen_wswan`                                                         |
 
 Full up-to-date list: [EmulatorJS Systems docs](https://emulatorjs.org/docs/systems/).
 
@@ -55,6 +57,7 @@ Full up-to-date list: [EmulatorJS Systems docs](https://emulatorjs.org/docs/syst
 
 Some platforms need BIOS / firmware: PlayStation, Saturn, Sega CD, PSP, DS. Upload via [Firmware Management](../administration/firmware-management.md) or by dropping files in the right `bios/` folder and rescanning.
 
+<!-- prettier-ignore -->
 !!! note "Zip bundles for multi-file firmware"
     Some cores need several BIOS files. Create a **zip archive** containing all of them and upload that zip through the Firmware tab on the platform detail page. EmulatorJS picks it up as a single firmware bundle. See [EmulatorJS Systems docs](https://emulatorjs.org/docs/systems/) for the per-platform file list.
 
@@ -123,6 +126,7 @@ See [Netplay](netplay.md). One-page deep dive on hosting/joining, ICE servers, a
 
 [Ruffle](https://ruffle.rs/) is a Flash / Shockwave player in WebAssembly. Useful for preserving the Flash game era.
 
+<!-- prettier-ignore -->
 !!! important "Ruffle needs the right platform folder"
     Ruffle only plays games from platform folders named `flash` or `browser`. If your Flash games are elsewhere, either rename the folder or add a [platform binding](../reference/configuration-file.md#systemplatforms) in `config.yml`.
 

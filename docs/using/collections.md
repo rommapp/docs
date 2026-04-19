@@ -72,13 +72,13 @@ Deletion only removes the collection itself. The ROMs inside it stay in the libr
 
 ## Who can do what
 
-| Action | Viewer | Editor | Admin |
-| --- | :---: | :---: | :---: |
-| See public collections | ✓ | ✓ | ✓ |
-| Create own private collection | ✓ | ✓ | ✓ |
-| Edit own collection | ✓ | ✓ | ✓ |
-| Make a collection public | - | ✓ | ✓ |
-| See all users' collections (admin panel) | - | - | ✓ |
+| Action                                   | Viewer | Editor | Admin |
+| ---------------------------------------- | :----: | :----: | :---: |
+| See public collections                   |   ✓    |   ✓    |   ✓   |
+| Create own private collection            |   ✓    |   ✓    |   ✓   |
+| Edit own collection                      |   ✓    |   ✓    |   ✓   |
+| Make a collection public                 |   -    |   ✓    |   ✓   |
+| See all users' collections (admin panel) |   -    |   -    |   ✓   |
 
 Scope mapping and the full permission matrix in [Users & Roles](../administration/users-and-roles.md#scope-matrix).
 

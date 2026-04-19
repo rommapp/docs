@@ -55,13 +55,13 @@ Open the application's **Token Settings** tab → tick **User Info inside ID Tok
 
 ```yaml
 environment:
-  - OIDC_ENABLED=true
-  - OIDC_PROVIDER=zitadel
-  - OIDC_CLIENT_ID=<from Zitadel>
-  - OIDC_CLIENT_SECRET=<from Zitadel>
-  - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
-  - OIDC_SERVER_APPLICATION_URL=https://zitadel.example.com
-  - ROMM_BASE_URL=https://romm.example.com
+    - OIDC_ENABLED=true
+    - OIDC_PROVIDER=zitadel
+    - OIDC_CLIENT_ID=<from Zitadel>
+    - OIDC_CLIENT_SECRET=<from Zitadel>
+    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
+    - OIDC_SERVER_APPLICATION_URL=https://zitadel.example.com
+    - ROMM_BASE_URL=https://romm.example.com
 ```
 
 Zitadel's OIDC discovery URL is at `<OIDC_SERVER_APPLICATION_URL>/.well-known/openid-configuration`, handy for debugging.

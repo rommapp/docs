@@ -9,11 +9,11 @@ RomM is multi-user from the start. The first user created during Setup is always
 
 ## Roles
 
-| Role | Who it's for | Default scopes |
-| --- | --- | --- |
-| **Admin** | You, and anyone you fully trust. | All scopes, including user management and task execution. |
-| **Editor** | Household members who help curate the library. | Read everything, edit ROMs/platforms/collections, upload. No user management. |
-| **Viewer** | Guests, kids, anyone who should only play and track their own progress. | Read the library, manage their own saves/states/screenshots/profile. |
+| Role       | Who it's for                                                            | Default scopes                                                                |
+| ---------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| **Admin**  | You, and anyone you fully trust.                                        | All scopes, including user management and task execution.                     |
+| **Editor** | Household members who help curate the library.                          | Read everything, edit ROMs/platforms/collections, upload. No user management. |
+| **Viewer** | Guests, kids, anyone who should only play and track their own progress. | Read the library, manage their own saves/states/screenshots/profile.          |
 
 Roles are a convenience layer on top of **scopes**; see the scope matrix below for exactly what each role grants. You can't create custom roles in 5.0, so if you need finer-grained access, use the most restrictive role and rely on [Client API Tokens](../ecosystem/client-api-tokens.md) for per-app customisation.
 
@@ -21,27 +21,27 @@ Roles are a convenience layer on top of **scopes**; see the scope matrix below f
 
 RomM authorisation is scope-based. Every API call and UI action maps to one or more scopes, and OAuth tokens and OIDC sessions carry a subset of them. Nineteen scopes total, grouped by resource:
 
-| Scope | Purpose | Viewer | Editor | Admin |
-| --- | --- | :---: | :---: | :---: |
-| `me.read` | View own profile | ✓ | ✓ | ✓ |
-| `me.write` | Edit own profile | ✓ | ✓ | ✓ |
-| `roms.read` | Browse ROMs | ✓ | ✓ | ✓ |
-| `roms.user.read` | View own per-ROM data (rating, playtime, notes) | ✓ | ✓ | ✓ |
-| `roms.user.write` | Edit own per-ROM data | ✓ | ✓ | ✓ |
-| `platforms.read` | Browse platforms | ✓ | ✓ | ✓ |
-| `assets.read` | View own saves/states/screenshots | ✓ | ✓ | ✓ |
-| `assets.write` | Upload saves/states/screenshots | ✓ | ✓ | ✓ |
-| `collections.read` | Browse collections | ✓ | ✓ | ✓ |
-| `collections.write` | Create/edit collections | - | ✓ | ✓ |
-| `roms.write` | Edit ROM metadata | - | ✓ | ✓ |
-| `platforms.write` | Edit/create platforms | - | ✓ | ✓ |
-| `firmware.read` | List firmware | - | ✓ | ✓ |
-| `firmware.write` | Upload/delete firmware | - | ✓ | ✓ |
-| `devices.read` | View own paired devices | ✓ | ✓ | ✓ |
-| `devices.write` | Manage own paired devices | ✓ | ✓ | ✓ |
-| `users.read` | List all users | - | - | ✓ |
-| `users.write` | Create/edit/delete users | - | - | ✓ |
-| `tasks.run` | Trigger background tasks (scan, cleanup, etc.) | - | - | ✓ |
+| Scope               | Purpose                                         | Viewer | Editor | Admin |
+| ------------------- | ----------------------------------------------- | :----: | :----: | :---: |
+| `me.read`           | View own profile                                |   ✓    |   ✓    |   ✓   |
+| `me.write`          | Edit own profile                                |   ✓    |   ✓    |   ✓   |
+| `roms.read`         | Browse ROMs                                     |   ✓    |   ✓    |   ✓   |
+| `roms.user.read`    | View own per-ROM data (rating, playtime, notes) |   ✓    |   ✓    |   ✓   |
+| `roms.user.write`   | Edit own per-ROM data                           |   ✓    |   ✓    |   ✓   |
+| `platforms.read`    | Browse platforms                                |   ✓    |   ✓    |   ✓   |
+| `assets.read`       | View own saves/states/screenshots               |   ✓    |   ✓    |   ✓   |
+| `assets.write`      | Upload saves/states/screenshots                 |   ✓    |   ✓    |   ✓   |
+| `collections.read`  | Browse collections                              |   ✓    |   ✓    |   ✓   |
+| `collections.write` | Create/edit collections                         |   -    |   ✓    |   ✓   |
+| `roms.write`        | Edit ROM metadata                               |   -    |   ✓    |   ✓   |
+| `platforms.write`   | Edit/create platforms                           |   -    |   ✓    |   ✓   |
+| `firmware.read`     | List firmware                                   |   -    |   ✓    |   ✓   |
+| `firmware.write`    | Upload/delete firmware                          |   -    |   ✓    |   ✓   |
+| `devices.read`      | View own paired devices                         |   ✓    |   ✓    |   ✓   |
+| `devices.write`     | Manage own paired devices                       |   ✓    |   ✓    |   ✓   |
+| `users.read`        | List all users                                  |   -    |   -    |   ✓   |
+| `users.write`       | Create/edit/delete users                        |   -    |   -    |   ✓   |
+| `tasks.run`         | Trigger background tasks (scan, cleanup, etc.)  |   -    |   -    |   ✓   |
 
 ## Creating users
 

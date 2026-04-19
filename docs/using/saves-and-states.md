@@ -82,15 +82,15 @@ From the end-user side: once your device is paired and sync is running, saves ma
 
 Save files are usually format-interchangeable across cores for the same platform, but not always.
 
-| Platform | Format | Usually-compatible |
-| --- | --- | --- |
-| NES | `.sav` | Yes, across FCEUmm / Nestopia |
-| SNES | `.srm` | Yes, across SNES9x / bsnes |
-| Genesis / Mega Drive | `.srm` | Yes |
-| Game Boy / GBC / GBA | `.sav` | Yes, across Gambatte / mGBA |
-| N64 | `.srm`, `.eep`, `.fla` | Yes, but per-type: the right file must be uploaded |
-| PSX | `.srm` (memory card) | Yes, across Mednafen / PCSX cores |
-| Saturn / Dreamcast | Varies | Check core docs |
+| Platform             | Format                 | Usually-compatible                                 |
+| -------------------- | ---------------------- | -------------------------------------------------- |
+| NES                  | `.sav`                 | Yes, across FCEUmm / Nestopia                      |
+| SNES                 | `.srm`                 | Yes, across SNES9x / bsnes                         |
+| Genesis / Mega Drive | `.srm`                 | Yes                                                |
+| Game Boy / GBC / GBA | `.sav`                 | Yes, across Gambatte / mGBA                        |
+| N64                  | `.srm`, `.eep`, `.fla` | Yes, but per-type: the right file must be uploaded |
+| PSX                  | `.srm` (memory card)   | Yes, across Mednafen / PCSX cores                  |
+| Saturn / Dreamcast   | Varies                 | Check core docs                                    |
 
 If you're moving saves between RomM's EmulatorJS and a stand-alone emulator (RetroArch, Dolphin, PPSSPP), usually works for mainline cores.
 

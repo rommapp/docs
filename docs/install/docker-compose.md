@@ -22,21 +22,21 @@ The RomM stack has three parts:
 
 ### `romm`
 
-| Field | Value | Notes |
-| --- | --- | --- |
-| `image` | `rommapp/romm:latest` | Or `ghcr.io/rommapp/romm:latest`; pin to a specific tag (`5.0.0`) for production, and see [Image Variants](image-variants.md) for `slim` vs `full`. |
-| `ports` | `80:8080` | Container listens on `8080`; expose through a reverse proxy in production (see [Reverse Proxy](reverse-proxy.md)). |
-| `volumes` | see below | RomM writes to four distinct paths inside the container. |
-| `depends_on` | `romm-db` (healthy) | RomM exits on startup if the DB isn't reachable. |
+| Field        | Value                 | Notes                                                                                                                                               |
+| ------------ | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `image`      | `rommapp/romm:latest` | Or `ghcr.io/rommapp/romm:latest`; pin to a specific tag (`5.0.0`) for production, and see [Image Variants](image-variants.md) for `slim` vs `full`. |
+| `ports`      | `80:8080`             | Container listens on `8080`; expose through a reverse proxy in production (see [Reverse Proxy](reverse-proxy.md)).                                  |
+| `volumes`    | see below             | RomM writes to four distinct paths inside the container.                                                                                            |
+| `depends_on` | `romm-db` (healthy)   | RomM exits on startup if the DB isn't reachable.                                                                                                    |
 
 #### Volumes
 
-| Path inside container | Purpose | Backup priority |
-| --- | --- | --- |
-| `/romm/library` | Your ROM files, typically mounted **read-only**. | No: this is your source data, back it up separately. |
-| `/romm/assets` | User uploads: saves, states, uploaded screenshots. | **Critical**, back this up with your DB. |
-| `/romm/resources` | Metadata assets fetched from IGDB, ScreenScraper, etc. | Low, and can be re-downloaded on a rescan. |
-| `/romm/config` | Holds `config.yml`. | **Critical**, hand-tuned config, back it up. |
+| Path inside container | Purpose                                                | Backup priority                                      |
+| --------------------- | ------------------------------------------------------ | ---------------------------------------------------- |
+| `/romm/library`       | Your ROM files, typically mounted **read-only**.       | No: this is your source data, back it up separately. |
+| `/romm/assets`        | User uploads: saves, states, uploaded screenshots.     | **Critical**, back this up with your DB.             |
+| `/romm/resources`     | Metadata assets fetched from IGDB, ScreenScraper, etc. | Low, and can be re-downloaded on a rescan.           |
+| `/romm/config`        | Holds `config.yml`.                                    | **Critical**, hand-tuned config, back it up.         |
 
 See [Backup & Restore](backup-and-restore.md) for the full procedure.
 
@@ -44,21 +44,21 @@ See [Backup & Restore](backup-and-restore.md) for the full procedure.
 
 Minimal set: see the [Environment Variables reference](../reference/environment-variables.md) for the complete list.
 
-| Variable | What it does |
-| --- | --- |
-| `ROMM_AUTH_SECRET_KEY` | (Required) Generate the JWT signing secret with `openssl rand -hex 32`. |
-| `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWD` | Database connection. |
-| `ROMM_DB_DRIVER` | One of `mariadb` (default), `mysql`, or `postgresql`. |
-| `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWD` | Only set if you're using an external Redis/Valkey instance. |
-| Metadata provider creds | See [Metadata Providers](../administration/metadata-providers.md). |
+| Variable                                     | What it does                                                            |
+| -------------------------------------------- | ----------------------------------------------------------------------- |
+| `ROMM_AUTH_SECRET_KEY`                       | (Required) Generate the JWT signing secret with `openssl rand -hex 32`. |
+| `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWD` | Database connection.                                                    |
+| `ROMM_DB_DRIVER`                             | One of `mariadb` (default), `mysql`, or `postgresql`.                   |
+| `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWD`   | Only set if you're using an external Redis/Valkey instance.             |
+| Metadata provider creds                      | See [Metadata Providers](../administration/metadata-providers.md).      |
 
 ### `romm-db` (MariaDB)
 
-| Field | Value | Notes |
-| --- | --- | --- |
-| `image` | `mariadb:latest` | Pin to a major version (`mariadb:11`) for production. |
-| `volumes` | `mysql_data:/var/lib/mysql` | Back this up, since it's your entire catalogue. |
-| `healthcheck` | `healthcheck.sh --connect --innodb_initialized` | RomM waits for this. |
+| Field         | Value                                           | Notes                                                 |
+| ------------- | ----------------------------------------------- | ----------------------------------------------------- |
+| `image`       | `mariadb:latest`                                | Pin to a major version (`mariadb:11`) for production. |
+| `volumes`     | `mysql_data:/var/lib/mysql`                     | Back this up, since it's your entire catalogue.       |
+| `healthcheck` | `healthcheck.sh --connect --innodb_initialized` | RomM waits for this.                                  |
 
 The default compose file uses MariaDB because it requires no extra driver configuration. To use PostgreSQL, swap the image for `postgres:16`, set `ROMM_DB_DRIVER=postgresql`, and point `DB_PORT` at `5432`: see [Databases](databases.md) for the full swap.
 

@@ -9,6 +9,7 @@ RomM's Push-Pull Device Sync task can push saves/states to registered devices an
 
 The client side (a handheld running Grout, a SteamDeck running DeckRommSync, etc.) lives in [Integrations & Ecosystem](../ecosystem/index.md). The wire protocol (API-level sync negotiation, play-session ingest) lives in [Device Sync Protocol](../ecosystem/device-sync-protocol.md).
 
+<!-- prettier-ignore -->
 !!! note "Most companion apps don't need this"
     Argosy, Playnite, and most mobile/desktop clients sync via HTTPS + Client API Tokens. SSH sync is specifically for handhelds and similar devices where RomM pushes files to a filesystem the device exposes via SSH, with Grout on muOS / NextUI being the canonical case.
 
@@ -36,11 +37,11 @@ This produces `~/romm-sync-key` (private) and `~/romm-sync-key.pub` (public). Ke
 
 ```yaml
 services:
-  romm:
-    volumes:
-      - /home/you/romm-sync-key:/romm/.ssh/id_rsa:ro
-    environment:
-      - SSH_PRIVATE_KEY_PATH=/romm/.ssh/id_rsa
+    romm:
+        volumes:
+            - /home/you/romm-sync-key:/romm/.ssh/id_rsa:ro
+        environment:
+            - SSH_PRIVATE_KEY_PATH=/romm/.ssh/id_rsa
 ```
 
 Keep it read-only. RomM doesn't need to modify the key.

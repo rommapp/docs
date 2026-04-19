@@ -11,23 +11,23 @@ New in 5.0. Compare with:
 
 - [Collections](collections.md): you pick each ROM by hand.
 - [Smart Collections](smart-collections.md): you write rules, RomM populates.
-- **Virtual Collections**: RomM picks both the groupings *and* the contents.
+- **Virtual Collections**: RomM picks both the groupings _and_ the contents.
 
 ## What gets grouped
 
 Virtual collections are generated for several dimensions:
 
-| Dimension | Example collections |
-| --- | --- |
-| **Genre** | "Platformer", "RPG", "Shooter", "Puzzle", "Fighting" |
-| **Developer** | "Nintendo EAD", "Capcom", "Konami", "id Software" |
-| **Publisher** | "Nintendo", "Sega", "Sony" |
-| **Franchise** | "The Legend of Zelda", "Final Fantasy", "Mega Man" |
-| **Release Year** | "1995", "2003", etc. |
-| **Decade** | "1980s", "1990s", "2000s" |
-| **Age Rating** | "ESRB: E", "PEGI: 7+" |
-| **Region** | "USA", "Japan", "Europe" |
-| **Tags** | Any `[]`/`()` tag from filenames, see [Folder Structure → Naming convention](../getting-started/folder-structure.md#naming-convention) |
+| Dimension        | Example collections                                                                                                                    |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **Genre**        | "Platformer", "RPG", "Shooter", "Puzzle", "Fighting"                                                                                   |
+| **Developer**    | "Nintendo EAD", "Capcom", "Konami", "id Software"                                                                                      |
+| **Publisher**    | "Nintendo", "Sega", "Sony"                                                                                                             |
+| **Franchise**    | "The Legend of Zelda", "Final Fantasy", "Mega Man"                                                                                     |
+| **Release Year** | "1995", "2003", etc.                                                                                                                   |
+| **Decade**       | "1980s", "1990s", "2000s"                                                                                                              |
+| **Age Rating**   | "ESRB: E", "PEGI: 7+"                                                                                                                  |
+| **Region**       | "USA", "Japan", "Europe"                                                                                                               |
+| **Tags**         | Any `[]`/`()` tag from filenames, see [Folder Structure → Naming convention](../getting-started/folder-structure.md#naming-convention) |
 
 Collections with too few ROMs are suppressed, so you won't see a "Developer: Some Indie Studio" with one entry.
 
@@ -49,7 +49,7 @@ Virtual collections show up alongside regular and smart collections in:
 
 Open one like any collection: grid/list view, filters, play, download, etc.
 
-## What you *can't* do
+## What you _can't_ do
 
 Virtual collections are read-only. You can't:
 

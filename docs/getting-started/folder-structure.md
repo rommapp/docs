@@ -38,6 +38,7 @@ The path you mount into the RomM container as `/romm/library` depends on which s
 
 See the [reference Docker Compose](../install/docker-compose.md) for where `/romm/library` lives.
 
+<!-- prettier-ignore -->
 !!! tip "Platform folder names"
     The platform folder name has to match a known slug (`gbc`, `gba`, `ps`, `snes`, etc.). Full list in [Supported Platforms](../platforms/supported-platforms.md). If your existing folder names don't match (say, `super_nintendo/` instead of `snes/`), override the mapping via `system.platforms` in [`config.yml`](../reference/configuration-file.md).
 
@@ -149,6 +150,7 @@ Some games come as **folders** instead of single files, which could include mult
 </tr>
 </table>
 
+<!-- prettier-ignore -->
 !!! note "Starting from scratch?"
     RomM can also bootstrap an empty library. If you upload files through the web UI without any existing structure, RomM creates **Structure A** on your behalf.
 

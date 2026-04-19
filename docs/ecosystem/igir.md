@@ -5,7 +5,7 @@ description: Clean up and normalise your ROM collection with Igir before importi
 
 # Igir Collection Manager
 
-[Igir](https://igir.io/) is a zero-setup ROM collection manager: sorts, filters, extracts, archives, patches, and reports on collections of any size. Not a RomM companion per se, but more a pre-processing tool. Useful for cleaning up a library *before* importing into RomM, so RomM's scans have a better-named, better-organised starting point.
+[Igir](https://igir.io/) is a zero-setup ROM collection manager: sorts, filters, extracts, archives, patches, and reports on collections of any size. Not a RomM companion per se, but more a pre-processing tool. Useful for cleaning up a library _before_ importing into RomM, so RomM's scans have a better-named, better-organised starting point.
 
 **This is not an official RomM app.** Igir is a separate community project. We document integration here because it's a common workflow and produces a RomM-compatible layout directly.
 
@@ -157,9 +157,9 @@ Once `roms-verified/` looks right, mount it as RomM's library:
 
 ```yaml
 services:
-  romm:
-    volumes:
-      - /path/to/roms-verified:/romm/library/roms:ro
+    romm:
+        volumes:
+            - /path/to/roms-verified:/romm/library/roms:ro
 ```
 
 Read-only is safer: if you need Igir to re-clean, you work in the parallel `roms-unverified/` and re-promote to `roms-verified/`.

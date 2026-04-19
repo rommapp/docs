@@ -11,16 +11,16 @@ This page is a map of what's behind each link. The deep mechanics of each featur
 
 ## The drawer
 
-| Link | Who sees it | What's there |
-| --- | --- | --- |
-| **Profile** | Everyone | Change own username, email, password, avatar. Link a RetroAchievements account and sync achievements. |
-| **User Interface** | Everyone | Locale, theme (dark/light/auto), game card layout, home dashboard ribbons, collection display settings. |
-| **Library Management** | Editors + Admins | Platform bindings & version mappings, missing-ROMs tool, library folder settings. |
-| **Metadata Sources** | Admins | Credentials for the 13 metadata providers, scan priority. |
-| **Administration** | Admins | Users, Client API Tokens, Tasks. The main admin hub. |
-| **Client API Tokens** | Everyone (own tokens) | Each user's personal API tokens. Admins see a separate "all tokens" view under Administration. |
-| **Server Stats** | Admins | Numbers: platforms, games, saves, states, screenshots, disk usage. |
-| **About** | Everyone | RomM version, links to Discord / GitHub / docs. |
+| Link                   | Who sees it           | What's there                                                                                            |
+| ---------------------- | --------------------- | ------------------------------------------------------------------------------------------------------- |
+| **Profile**            | Everyone              | Change own username, email, password, avatar. Link a RetroAchievements account and sync achievements.   |
+| **User Interface**     | Everyone              | Locale, theme (dark/light/auto), game card layout, home dashboard ribbons, collection display settings. |
+| **Library Management** | Editors + Admins      | Platform bindings & version mappings, missing-ROMs tool, library folder settings.                       |
+| **Metadata Sources**   | Admins                | Credentials for the 13 metadata providers, scan priority.                                               |
+| **Administration**     | Admins                | Users, Client API Tokens, Tasks. The main admin hub.                                                    |
+| **Client API Tokens**  | Everyone (own tokens) | Each user's personal API tokens. Admins see a separate "all tokens" view under Administration.          |
+| **Server Stats**       | Admins                | Numbers: platforms, games, saves, states, screenshots, disk usage.                                      |
+| **About**              | Everyone              | RomM version, links to Discord / GitHub / docs.                                                         |
 
 ## Profile
 
@@ -94,26 +94,26 @@ Full details in [Server Stats](server-stats.md).
 
 A few useful ones wherever the drawer is open:
 
-| Key | Action |
-| --- | --- |
-| `Esc` | Close the drawer. |
-| `g h` | Go home. |
-| `g s` | Open the Search page. |
+| Key   | Action                                |
+| ----- | ------------------------------------- |
+| `Esc` | Close the drawer.                     |
+| `g h` | Go home.                              |
+| `g s` | Open the Search page.                 |
 | `g c` | Focus the Scan button in the sidebar. |
 
 Full shortcut reference is on the [Using RomM](../using/index.md) page.
 
 ## Role-based visibility cheat sheet
 
-| Section | Viewer | Editor | Admin |
-| --- | :---: | :---: | :---: |
-| Profile | ✓ | ✓ | ✓ |
-| User Interface | ✓ | ✓ | ✓ |
-| Client API Tokens (own) | ✓ | ✓ | ✓ |
-| About | ✓ | ✓ | ✓ |
-| Library Management | - | ✓ | ✓ |
-| Metadata Sources | - | - | ✓ |
-| Administration → Users | - | - | ✓ |
-| Administration → Tokens (all) | - | - | ✓ |
-| Administration → Tasks | - | - | ✓ |
-| Server Stats | - | - | ✓ |
+| Section                       | Viewer | Editor | Admin |
+| ----------------------------- | :----: | :----: | :---: |
+| Profile                       |   ✓    |   ✓    |   ✓   |
+| User Interface                |   ✓    |   ✓    |   ✓   |
+| Client API Tokens (own)       |   ✓    |   ✓    |   ✓   |
+| About                         |   ✓    |   ✓    |   ✓   |
+| Library Management            |   -    |   ✓    |   ✓   |
+| Metadata Sources              |   -    |   -    |   ✓   |
+| Administration → Users        |   -    |   -    |   ✓   |
+| Administration → Tokens (all) |   -    |   -    |   ✓   |
+| Administration → Tasks        |   -    |   -    |   ✓   |
+| Server Stats                  |   -    |   -    |   ✓   |

@@ -59,8 +59,8 @@ Access requires a Twitch account and a phone number for 2FA. Up-to-date instruct
 Set `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` from the values Twitch generates.
 
 ??? info "Screenshots"
-    ![IGDB Creation](../resources/metadata_providers/1-igdb.png)
-    ![IGDB Secret](../resources/metadata_providers/2-igdb.png)
+![IGDB Creation](../resources/metadata_providers/1-igdb.png)
+![IGDB Secret](../resources/metadata_providers/2-igdb.png)
 
 ### ScreenScraper
 
@@ -72,6 +72,7 @@ Set `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` from the values Twitch generates.
 
 Metadata, cover art, and screenshots. [Create an account](https://www.mobygames.com/user/register/), visit your profile, and follow the **API** link to request a key. Set `MOBYGAMES_API_KEY`.
 
+<!-- prettier-ignore -->
 !!! important "MobyGames API is paid"
     Access to the MobyGames API is a [paid, non-commercial-licensed feature](https://www.mobygames.com/info/api/#non-commercial). RomM will continue to support it, but we recommend ScreenScraper as a free alternative.
 
@@ -90,8 +91,8 @@ Each RomM user also links their own RA username in their profile to sync persona
 The RA database is cached locally. Refresh frequency is controlled by `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS` (default: 30).
 
 ??? info "Screenshots"
-    ![RA API key](../resources/metadata_providers/1-ra.png)
-    ![RA details](../resources/metadata_providers/2-ra.png)
+![RA API key](../resources/metadata_providers/1-ra.png)
+![RA details](../resources/metadata_providers/2-ra.png)
 
 ### Hasheous
 
@@ -107,9 +108,9 @@ The [LaunchBox Games Database](https://gamesdb.launchbox-app.com/) is a communit
 
 ```yaml
 environment:
-  - LAUNCHBOX_API_ENABLED=true
-  - ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true
-  - SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON=0 5 * * *  # default: 5am daily
+    - LAUNCHBOX_API_ENABLED=true
+    - ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true
+    - SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON=0 5 * * * # default: 5am daily
 ```
 
 Run at least one LaunchBox update (manually from the Scan page, or wait for the cron) before using it as a scan source, because RomM won't match against an empty local DB.
@@ -137,14 +138,14 @@ Expected layout:
 ```yaml
 library/
 └─ roms/
-    └─ gba/
-        ├─ game_1.gba
-        ├─ game_2.gba
-        ├─ gamelist.xml
-        ├─ 3dboxes/
-        ├─ covers/
-        ├─ screenshots/
-        └─ ...
+└─ gba/
+├─ game_1.gba
+├─ game_2.gba
+├─ gamelist.xml
+├─ 3dboxes/
+├─ covers/
+├─ screenshots/
+└─ ...
 ```
 
 #### ES-DE settings
@@ -169,14 +170,14 @@ Libretro's retro core metadata is used internally for platform mapping and fallb
 
 RomM honours inline tags in ROM filenames to force a match against a specific provider ID:
 
-| Tag | Provider |
-| --- | --- |
-| `(igdb-xxxx)` | [IGDB](https://www.igdb.com/) |
-| `(moby-xxxx)` | [MobyGames](https://www.mobygames.com/) |
-| `(ra-xxxx)` | [RetroAchievements](https://retroachievements.org/) |
-| `(ssfr-xxxx)` | [ScreenScraper](https://screenscraper.fr/) |
-| `(launchbox-xxxx)` | [LaunchBox](https://gamesdb.launchbox-app.com/) |
-| `(hltb-xxxx)` | [HowLongToBeat](https://howlongtobeat.com/) |
+| Tag                | Provider                                            |
+| ------------------ | --------------------------------------------------- |
+| `(igdb-xxxx)`      | [IGDB](https://www.igdb.com/)                       |
+| `(moby-xxxx)`      | [MobyGames](https://www.mobygames.com/)             |
+| `(ra-xxxx)`        | [RetroAchievements](https://retroachievements.org/) |
+| `(ssfr-xxxx)`      | [ScreenScraper](https://screenscraper.fr/)          |
+| `(launchbox-xxxx)` | [LaunchBox](https://gamesdb.launchbox-app.com/)     |
+| `(hltb-xxxx)`      | [HowLongToBeat](https://howlongtobeat.com/)         |
 
 RomM will **not** rename your files to add these. They're opt-in, and renaming would conflict with other tooling that walks the filesystem.
 
@@ -186,28 +187,28 @@ When multiple providers return different values for the same field, the winner i
 
 ```yaml
 scan:
-  priority:
-    metadata:
-      - igdb
-      - moby
-      - ss
-      - ra
-      - launchbox
-      - gamelist
-      - hasheous
-      - flashpoint
-      - hltb
-    artwork:
-      - igdb
-      - moby
-      - ss
-      - ra
-      - launchbox
-      - libretro
-      - gamelist
-      - hasheous
-      - flashpoint
-      - hltb
+    priority:
+        metadata:
+            - igdb
+            - moby
+            - ss
+            - ra
+            - launchbox
+            - gamelist
+            - hasheous
+            - flashpoint
+            - hltb
+        artwork:
+            - igdb
+            - moby
+            - ss
+            - ra
+            - launchbox
+            - libretro
+            - gamelist
+            - hasheous
+            - flashpoint
+            - hltb
 ```
 
 Reorder these lists to taste. For example, put `ss` first if you prefer ScreenScraper boxart, or move `hltb` up if you care about completion times more than descriptions.

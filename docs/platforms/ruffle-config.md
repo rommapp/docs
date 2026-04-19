@@ -11,7 +11,7 @@ description: Operator-level setup for the Ruffle Flash / Shockwave player.
 
 ```yaml
 environment:
-  - ENABLE_RUFFLE=true     # default
+    - ENABLE_RUFFLE=true # default
 ```
 
 Set `false` to hide the Ruffle Play button globally. Useful on the slim image (Ruffle isn't bundled) or when you have no Flash content.
@@ -30,8 +30,8 @@ Just rename the folder to `flash/` and rescan.
 
 ```yaml
 system:
-  platforms:
-    web-games: "flash"    # your-folder: canonical-slug
+    platforms:
+        web-games: "flash" # your-folder: canonical-slug
 ```
 
 Now `web-games/` is treated as the `flash` platform. See [Configuration File → `system.platforms`](../reference/configuration-file.md#systemplatforms).
@@ -60,7 +60,7 @@ Metadata coverage for Flash games comes from the [Flashpoint](../administration/
 
 ```yaml
 environment:
-  - FLASHPOINT_API_ENABLED=true
+    - FLASHPOINT_API_ENABLED=true
 ```
 
 Then run an **Unmatched** scan on your `flash` platform. Titles, descriptions, cover art, tags: all populated if the game exists in Flashpoint's ~180,000-entry database.

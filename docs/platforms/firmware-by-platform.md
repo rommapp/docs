@@ -7,28 +7,29 @@ description: Per-platform firmware/BIOS requirements for in-browser play.
 
 This page lists the firmware RomM's EmulatorJS cores need for each platform. For the admin-side workflow (uploading, managing, bundling multi-file firmware), see [Firmware Management](../administration/firmware-management.md).
 
+<!-- prettier-ignore -->
 !!! note "Legality is your problem"
     RomM does not ship firmware. Legality of obtaining firmware varies by jurisdiction and by whether you own the hardware. The project can't help you acquire BIOS files.
 
 ## Platforms that need firmware
 
-| Platform | Folder slug | Required files | Notes |
-| --- | --- | --- | --- |
-| **PlayStation (PSX)** | `ps` | `scph1001.bin` (US), `scph5501.bin` (US), `scph5502.bin` (EU), `scph7502.bin` (JP) | At least one region BIOS required. |
-| **Saturn** | `saturn` | `saturn_bios.bin`, optional `mpr-17933.bin` (EU) | Bundle both in a zip. |
-| **Sega CD / Mega CD** | `segacd` | `bios_CD_U.bin` (US), `bios_CD_E.bin` (EU), `bios_CD_J.bin` (JP) | Region depends on your games. |
-| **Game Boy Advance** | `gba` | `gba_bios.bin` | Optional. Games run without it, but accurate emulation needs it. |
-| **Nintendo DS** | `nds` | `bios7.bin`, `bios9.bin`, `firmware.bin` | All three are needed. |
-| **Atari Lynx** | `lynx` | `lynxboot.img` | |
-| **Neo Geo Pocket / Color** | `ngp` / `ngpc` | `neopop.rom` | Bundle as zip. |
-| **Amiga** | `amiga` | Kickstart ROMs (various) | `puae` core. Kickstart 1.2, 1.3, 3.1 depending on title. Bundle as zip. |
-| **ColecoVision** | `colecovision` | `coleco.rom` | |
-| **Intellivision** | `intellivision` | `exec.bin`, `grom.bin` | Bundle both. |
-| **3DO** | `3do` | `panafz10.bin` (or similar region BIOS) | |
-| **PC Engine CD / TurboGrafx-CD** | `pcecd` / `tg16cd` | `syscard3.pce` | |
-| **Dreamcast** | `dc` | `dc_boot.bin`, `dc_flash.bin` | EmulatorJS Dreamcast support is limited, so results vary. |
-| **Atari 5200** | `atari5200` | `5200.rom` | |
-| **Atari 7800** | `atari7800` | `7800 BIOS (U).rom` | |
+| Platform                         | Folder slug        | Required files                                                                     | Notes                                                                   |
+| -------------------------------- | ------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **PlayStation (PSX)**            | `ps`               | `scph1001.bin` (US), `scph5501.bin` (US), `scph5502.bin` (EU), `scph7502.bin` (JP) | At least one region BIOS required.                                      |
+| **Saturn**                       | `saturn`           | `saturn_bios.bin`, optional `mpr-17933.bin` (EU)                                   | Bundle both in a zip.                                                   |
+| **Sega CD / Mega CD**            | `segacd`           | `bios_CD_U.bin` (US), `bios_CD_E.bin` (EU), `bios_CD_J.bin` (JP)                   | Region depends on your games.                                           |
+| **Game Boy Advance**             | `gba`              | `gba_bios.bin`                                                                     | Optional. Games run without it, but accurate emulation needs it.        |
+| **Nintendo DS**                  | `nds`              | `bios7.bin`, `bios9.bin`, `firmware.bin`                                           | All three are needed.                                                   |
+| **Atari Lynx**                   | `lynx`             | `lynxboot.img`                                                                     |                                                                         |
+| **Neo Geo Pocket / Color**       | `ngp` / `ngpc`     | `neopop.rom`                                                                       | Bundle as zip.                                                          |
+| **Amiga**                        | `amiga`            | Kickstart ROMs (various)                                                           | `puae` core. Kickstart 1.2, 1.3, 3.1 depending on title. Bundle as zip. |
+| **ColecoVision**                 | `colecovision`     | `coleco.rom`                                                                       |                                                                         |
+| **Intellivision**                | `intellivision`    | `exec.bin`, `grom.bin`                                                             | Bundle both.                                                            |
+| **3DO**                          | `3do`              | `panafz10.bin` (or similar region BIOS)                                            |                                                                         |
+| **PC Engine CD / TurboGrafx-CD** | `pcecd` / `tg16cd` | `syscard3.pce`                                                                     |                                                                         |
+| **Dreamcast**                    | `dc`               | `dc_boot.bin`, `dc_flash.bin`                                                      | EmulatorJS Dreamcast support is limited, so results vary.               |
+| **Atari 5200**                   | `atari5200`        | `5200.rom`                                                                         |                                                                         |
+| **Atari 7800**                   | `atari7800`        | `7800 BIOS (U).rom`                                                                |                                                                         |
 
 For cores + platforms not in this table (most Nintendo consoles such as NES, SNES, N64, plus Sega Genesis, Atari 2600, Game Boy, most home computers), **no firmware is needed**.
 

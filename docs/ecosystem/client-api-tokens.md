@@ -100,11 +100,11 @@ Response:
 
 ```json
 {
-  "id": 42,
-  "name": "Grout on RG35XX",
-  "token": "rmm_abcdef0123456789abcdef0123456789abcdef01",
-  "scopes": ["roms.read", "platforms.read", "assets.read", "assets.write"],
-  "expires_at": null
+    "id": 42,
+    "name": "Grout on RG35XX",
+    "token": "rmm_abcdef0123456789abcdef0123456789abcdef01",
+    "scopes": ["roms.read", "platforms.read", "assets.read", "assets.write"],
+    "expires_at": null
 }
 ```
 
@@ -145,7 +145,7 @@ DELETE /api/client-tokens/{id}/admin  # revoke any user's token
 
 ## Scoping tokens properly
 
-A token can only hold scopes the owning user *also* holds. If the user is an Editor, their token can hold any Editor scope, but not `users.write` (which is Admin-only).
+A token can only hold scopes the owning user _also_ holds. If the user is an Editor, their token can hold any Editor scope, but not `users.write` (which is Admin-only).
 
 Useful narrow scope-sets:
 

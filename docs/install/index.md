@@ -9,13 +9,13 @@ RomM is distributed as a Docker image. Every supported deployment runs the same 
 
 ## Pick your path
 
-| If you're on… | Start here |
-| --- | --- |
-| **Linux server / NAS** | [The canonical reference setup](docker-compose.md) |
-| **Unraid** | [Community Apps template or DCM](unraid.md) |
-| **Synology** |[Container Manager + DSM-specific notes](synology.md) |
-| **TrueNAS** | [App Catalog or YAML install](truenas.md) |
-| **Kubernetes** | [Manifest examples](kubernetes.md) |
+| If you're on…          | Start here                                            |
+| ---------------------- | ----------------------------------------------------- |
+| **Linux server / NAS** | [The canonical reference setup](docker-compose.md)    |
+| **Unraid**             | [Community Apps template or DCM](unraid.md)           |
+| **Synology**           | [Container Manager + DSM-specific notes](synology.md) |
+| **TrueNAS**            | [App Catalog or YAML install](truenas.md)             |
+| **Kubernetes**         | [Manifest examples](kubernetes.md)                    |
 
 If none of those match, start with [Docker Compose](docker-compose.md) and adapt.
 

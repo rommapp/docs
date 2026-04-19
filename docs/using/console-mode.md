@@ -33,17 +33,17 @@ Standard gamepad API. Xbox, PS, 8BitDo, Steam Controller, Switch Pro: anything t
 
 Default bindings (most platforms, configurable):
 
-| Button | Action |
-| --- | --- |
-| D-pad / left stick | Move focus |
-| A (bottom) | Activate |
-| B (right) | Back / cancel |
-| X (top) | Play |
-| Y (left) | Details / context menu |
-| LB / RB | Switch tabs or scroll by page |
-| LT / RT | Jump to start / end of grid |
-| Start | Main menu |
-| Select / Back | Filters |
+| Button             | Action                        |
+| ------------------ | ----------------------------- |
+| D-pad / left stick | Move focus                    |
+| A (bottom)         | Activate                      |
+| B (right)          | Back / cancel                 |
+| X (top)            | Play                          |
+| Y (left)           | Details / context menu        |
+| LB / RB            | Switch tabs or scroll by page |
+| LT / RT            | Jump to start / end of grid   |
+| Start              | Main menu                     |
+| Select / Back      | Filters                       |
 
 Button labels follow the Xbox convention regardless of actual controller: "A" is always the bottom face button.
 
@@ -51,13 +51,13 @@ Button labels follow the Xbox convention regardless of actual controller: "A" is
 
 If you're browsing `/console` without a gamepad for some reason:
 
-| Key | Action |
-| --- | --- |
-| Arrow keys | Move focus |
-| Enter / Space | Activate |
-| Escape | Back |
-| `/` | Search |
-| `f` | Filters |
+| Key           | Action     |
+| ------------- | ---------- |
+| Arrow keys    | Move focus |
+| Enter / Space | Activate   |
+| Escape        | Back       |
+| `/`           | Search     |
+| `f`           | Filters    |
 
 ### Touch
 
@@ -76,7 +76,6 @@ Subtle SFX play on focus, activate, and back. Turn off in **Settings → Console
 ### Bigger hit targets
 
 Cards and buttons are sized for 10-foot viewing. Grids show fewer items per row than the main UI.
-
 
 ### Simpler information density
 

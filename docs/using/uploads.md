@@ -7,15 +7,15 @@ description: Upload ROMs, firmware, saves, states, and screenshots into RomM fro
 
 ## What you can upload
 
-| Type | Permission | Where | Details |
-| --- | --- | --- | --- |
-| **ROMs** | Admin, Editor | **Upload** in menu bar, **Upload ROM** on platform detail, ROM detail → Upload menu | Goes to the correct platform folder in `/romm/library`. |
-| **Firmware / BIOS** | Admin, Editor | Platform detail → Firmware button → Upload | See [Firmware Management](../administration/firmware-management.md). |
-| **Saves** | Self (own games) | Game detail → Game Data tab → Upload Save | Per-ROM, per-user. |
-| **States** | Self (own games) | Game detail → Game Data tab → Upload State | Per-ROM, per-user. Optional screenshot attached. |
-| **Screenshots** | Self (own games) | Game detail → Screenshots tab → Upload | Per-ROM, per-user. |
-| **Manuals** | Admin, Editor | Game detail → Manual tab → Upload (when empty) | PDF, becomes the Manual tab content. |
-| **Cover art** | Admin, Editor | Game detail → Edit → Upload cover | Replaces the provider-fetched cover. |
+| Type                | Permission       | Where                                                                               | Details                                                              |
+| ------------------- | ---------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| **ROMs**            | Admin, Editor    | **Upload** in menu bar, **Upload ROM** on platform detail, ROM detail → Upload menu | Goes to the correct platform folder in `/romm/library`.              |
+| **Firmware / BIOS** | Admin, Editor    | Platform detail → Firmware button → Upload                                          | See [Firmware Management](../administration/firmware-management.md). |
+| **Saves**           | Self (own games) | Game detail → Game Data tab → Upload Save                                           | Per-ROM, per-user.                                                   |
+| **States**          | Self (own games) | Game detail → Game Data tab → Upload State                                          | Per-ROM, per-user. Optional screenshot attached.                     |
+| **Screenshots**     | Self (own games) | Game detail → Screenshots tab → Upload                                              | Per-ROM, per-user.                                                   |
+| **Manuals**         | Admin, Editor    | Game detail → Manual tab → Upload (when empty)                                      | PDF, becomes the Manual tab content.                                 |
+| **Cover art**       | Admin, Editor    | Game detail → Edit → Upload cover                                                   | Replaces the provider-fetched cover.                                 |
 
 ## ROM upload
 
@@ -97,12 +97,12 @@ Admin / Editor. Game detail → Context menu (…) → **Edit** → **Upload cov
 
 ## Permissions summary
 
-| Action | Viewer | Editor | Admin |
-| --- | :---: | :---: | :---: |
-| Upload save/state/screenshot for own account | ✓ | ✓ | ✓ |
-| Upload ROMs | - | ✓ | ✓ |
-| Upload firmware | - | ✓ | ✓ |
-| Upload manual / cover art | - | ✓ | ✓ |
+| Action                                       | Viewer | Editor | Admin |
+| -------------------------------------------- | :----: | :----: | :---: |
+| Upload save/state/screenshot for own account |   ✓    |   ✓    |   ✓   |
+| Upload ROMs                                  |   -    |   ✓    |   ✓   |
+| Upload firmware                              |   -    |   ✓    |   ✓   |
+| Upload manual / cover art                    |   -    |   ✓    |   ✓   |
 
 Full scope matrix in [Users & Roles](../administration/users-and-roles.md#scope-matrix).
 

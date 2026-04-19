@@ -29,8 +29,8 @@ Common mount-path mistakes:
 - /server/media/games:/romm/library
 
 # CORRECT: mounts the parent of roms/
-- /server/media/library:/romm/library      # if library/ contains roms/
-- /server/media/games/roms:/romm/library/roms  # if you want to be explicit
+- /server/media/library:/romm/library # if library/ contains roms/
+- /server/media/games/roms:/romm/library/roms # if you want to be explicit
 ```
 
 ## Platform folder isn't detected
@@ -46,8 +46,8 @@ Two fixes:
 
     ```yaml
     system:
-      platforms:
-        n64dd: "64dd"      # your-folder-name: canonical-slug
+        platforms:
+            n64dd: "64dd" # your-folder-name: canonical-slug
     ```
 
 Full list of supported slugs: [Supported Platforms](../platforms/supported-platforms.md).
