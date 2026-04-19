@@ -71,9 +71,9 @@ Authorization: Bearer <token-with-tasks.run>
 
 Full details in the [API Reference](../developers/api-reference.md). Useful for cron runs driven from outside RomM (e.g. an Ansible playbook).
 
-### Via Redis Queue directly
+### Via RQ directly
 
-Advanced. Connect to Redis, inspect the `rq` queues, enqueue a job manually. Only do this if you know what you're doing and have a reason the API doesn't serve.
+Advanced. Connect to Valkey, inspect the `rq` queues, enqueue a job manually. Only do this if you know what you're doing and have a reason the API doesn't serve.
 
 ## What each task does
 

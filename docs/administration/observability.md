@@ -63,7 +63,7 @@ Returns:
 - Scheduled-task schedule summary.
 - Watcher status.
 
-Wire this to your uptime monitor. A failure here is real: the process is down or the DB/Redis is unreachable.
+Wire this to your uptime monitor. A failure here is real: the process is down or the DB/Valkey is unreachable.
 
 ```bash
 # Basic uptime check

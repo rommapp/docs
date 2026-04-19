@@ -13,7 +13,7 @@ Quick reference for the ports + URL paths a RomM instance exposes.
 | --- | --- | --- | --- |
 | `8080` | HTTP | nginx: the front door. Serves everything. | Yes, publish this. |
 | `5000` | HTTP | gunicorn: FastAPI backend. Internal only. | No. nginx proxies here. |
-| `6379` | TCP | Redis. Internal only (unless you externalise). | No. |
+| `6379` | TCP | Valkey. Internal only (unless you externalise). | No. |
 
 Only **`8080`** should be reachable from outside the container in production. Typical compose `ports:`:
 
@@ -90,7 +90,7 @@ Inside the container:
 | `/romm/assets` | User uploads (saves, states, screenshots). | **Critical.** |
 | `/romm/resources` | Provider-fetched cover art, screenshots. | Low priority (rebuildable). |
 | `/romm/config` | `config.yml`. | **Critical.** |
-| `/redis-data` | Redis persistence for the in-container Redis. | Low priority. |
+| `/redis-data` | Persistence for the in-container Valkey. | Low priority. |
 
 See [Install & Deploy → Docker Compose](../install/docker-compose.md) for the full volume spec.
 

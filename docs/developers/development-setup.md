@@ -107,7 +107,7 @@ uv sync --all-extras --dev
 
 ### 4. Start supporting services
 
-MariaDB and Redis come up via the dev compose file:
+MariaDB and Valkey come up via the dev compose file:
 
 ```sh
 docker compose up -d

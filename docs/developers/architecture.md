@@ -57,7 +57,7 @@ A running RomM container hosts several cooperating processes:
 │  └──────┘                                               │
 │                                                         │
 │  ┌────────┐            ┌────────┐                       │
-│  │ RQ     │←──────────→│ Redis  │                       │
+│  │ RQ     │←──────────→│ Valkey │                       │
 │  │ workers│   tasks    │ (embedded or external)          │
 │  └────────┘            └────────┘                       │
 └─────────────────────────────────────────────────────────┘
@@ -67,9 +67,9 @@ A running RomM container hosts several cooperating processes:
 
 - **nginx:** listens on `8080`. Serves static assets (the SPA bundle, EmulatorJS core files, Ruffle, cover images). Proxies API + WebSocket traffic to gunicorn. Streams large downloads via `mod_zip`.
 - **gunicorn:** the Python WSGI server, running the FastAPI app. Multiple worker processes. `WEB_SERVER_CONCURRENCY` tunes count.
-- **FastAPI backend:** routes, handlers, DB access via SQLAlchemy, Redis for sessions + cache + queue.
-- **RQ workers:** separate process(es) that pop jobs off Redis queues and run them. Scans, metadata syncs, cleanup tasks.
-- **Redis / Valkey:** in-container by default (full image), externalisable.
+- **FastAPI backend:** routes, handlers, DB access via SQLAlchemy, Valkey for sessions + cache + queue.
+- **RQ workers:** separate process(es) that pop jobs off Valkey queues and run them. Scans, metadata syncs, cleanup tasks.
+- **Valkey:** in-container by default (full image), externalisable (Redis-compatible).
 - **MariaDB / Postgres / MySQL / SQLite:** always external (or a separate container).
 
 ## Request lifecycle
@@ -135,11 +135,11 @@ RQ has three priority queues:
 - **default:** scheduled nightlies, sync operations.
 - **low:** cleanup, image conversion. Run when the system's idle.
 
-All queues share the same worker pool. Jobs are Redis-backed, so restarting RomM doesn't lose in-flight work (appendonly needs to be on, see [Redis or Valkey](../install/redis-or-valkey.md)).
+All queues share the same worker pool. Jobs are persisted to Valkey, so restarting RomM doesn't lose in-flight work (appendonly needs to be on, see [Redis or Valkey](../install/redis-or-valkey.md)).
 
 ## Auth
 
-Session state in Redis. Passwords bcrypt-hashed in the DB. JWT for OAuth2 bearer tokens.
+Session state in Valkey. Passwords bcrypt-hashed in the DB. JWT for OAuth2 bearer tokens.
 
 OIDC handled via `authlib` on the backend. Session cookies issued after successful OIDC callback. From there, it's a regular session.
 

@@ -48,7 +48,7 @@ Useful for: "which platform is eating my disk?" and "which platform has the wors
 ## What the numbers don't include
 
 - **Disk usage for the database itself**: MariaDB / Postgres data volume isn't reported here. Use `docker system df -v` or your volume backend's native tooling.
-- **Redis memory**: same. Monitor Redis separately if you're tight on RAM.
+- **Valkey memory**: same. Monitor Valkey separately if you're tight on RAM.
 - **Per-user storage breakdown**: not exposed in 5.0.
 
 ## Using stats for capacity planning

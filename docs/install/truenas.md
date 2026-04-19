@@ -34,7 +34,7 @@ Step through the installation UI. You'll be asked for the same set of env vars a
 
 ### 3. Install
 
-Save. TrueNAS provisions the container + DB + Redis, runs migrations, and exposes the web UI on the port you configured. If it won't boot, jump to [Troubleshooting](#troubleshooting).
+Save. TrueNAS provisions the container + DB + Valkey, runs migrations, and exposes the web UI on the port you configured. If it won't boot, jump to [Troubleshooting](#troubleshooting).
 
 ## Option B: Install via YAML
 
@@ -71,7 +71,7 @@ Save. Same troubleshooting applies, see below.
 
 If you're seeing permission errors on paths *inside* the RomM container (not on TrueNAS datasets), try temporarily running the container as root (`user: 0`) to unblock yourself, fix the offending permissions via shell, and switch back to a non-root user.
 
-In at least one reported setup, creating a user/group in TrueNAS with UID/GID `1000:1000` and the auxiliary `apps` group was needed to get RomM talking to its embedded Redis cleanly.
+In at least one reported setup, creating a user/group in TrueNAS with UID/GID `1000:1000` and the auxiliary `apps` group was needed to get RomM talking to its embedded Valkey cleanly.
 
 ### Other issues
 
