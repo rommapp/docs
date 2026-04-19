@@ -78,6 +78,6 @@ Changing a user's role afterwards is a normal admin action. See [Users & Roles](
 
 ## Password reset
 
-If you've configured an email transport (future work, not part of 5.0 GA), users can self-serve a password reset via **Forgot password?** on the login page. Until then, admins reset passwords manually: **Administration → Users → Edit → New password**.
+Admins can reset passwords manually in **Administration → Users → Edit → New password**. A temporary password will be printed to the container's logs.
 
 See [Authentication](authentication.md) for the session and token side of the auth model.

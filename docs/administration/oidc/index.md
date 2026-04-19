@@ -1,15 +1,15 @@
 ---
 title: OIDC Setup
-description: Wire RomM up to an OpenID Connect provider for SSO and centralised user management.
+description: Wire up to an OpenID Connect provider for SSO and centralised user management
 ---
 
 # OIDC Setup
 
-OpenID Connect (OIDC) lets users sign in to RomM through an external identity provider: Authelia, Authentik, Keycloak, PocketID, Zitadel, Okta, Auth0, or anything standards-compliant. Benefits: single sign-on across your homelab, no RomM-specific password to manage, centralised MFA, and on 5.0 you can map OIDC groups/claims to RomM roles.
+OpenID Connect (OIDC) lets users sign in to RomM through an external identity provider: Authelia, Authentik, Keycloak, PocketID, Zitadel, Okta, Auth0, or anything standards-compliant. Single sign-on across your homelab, no RomM-specific password to manage, centralised MFA, and map OIDC groups/claims to RomM roles.
 
 <!-- prettier-ignore -->
 !!! note "OIDC is optional"
-    RomM has its own user system and works fine without OIDC. Enable OIDC when you already run an IdP and want RomM to follow suit.
+    RomM has its own user system and works fine without OIDC. Enable OIDC when you already run an IdP and want RomM to follow suit, or when you want to unify user management across multiple apps.
 
 ## How it works
 
@@ -18,19 +18,18 @@ OpenID Connect (OIDC) lets users sign in to RomM through an external identity pr
 3. They authenticate (password, passkey, MFA, whatever your provider enforces).
 4. Provider redirects back to `{ROMM_BASE_URL}/api/oauth/openid` with an authorisation code.
 5. RomM exchanges the code for an ID token, reads the user's email and role claims, and either creates a matching RomM user on the fly or logs an existing one in.
-6. From there it's a normal RomM session: same cookies, same scope model.
 
 ## Provider guides
 
-Pick your provider and follow the step-by-step. They all end with the same set of env vars on the RomM side. The guides just differ on how to register RomM as an application and where to find the client ID/secret.
+Pick your provider and follow the step-by-step instructions. They all end with the same set of env vars on the RomM side; the guides just differ on how to register RomM as an application and where to find the client ID/secret.
 
-- [Authelia](authelia.md): lightweight self-hosted IdP, great for homelabs.
-- [Authentik](authentik.md): full-featured open-source IdP with MFA and fancy flows.
-- [Keycloak](keycloak.md): the heavyweight standard, feature-complete.
-- [PocketID](pocketid.md): passkey-only, minimalist.
-- [Zitadel](zitadel.md): enterprise-grade open source with SAML + OIDC.
+- [Authelia](authelia.md)
+- [Authentik](authentik.md)
+- [Keycloak](keycloak.md)
+- [PocketID](pocketid.md)
+- [Zitadel](zitadel.md)
 
-Not listed? Any standards-compliant OIDC provider works: Okta, Auth0, Google Workspace, Microsoft Entra, etc. Use one of the above as a template and consult your provider's docs for the registration side.
+Not listed? Most standards-compliant OIDC providers work: Okta, Auth0, Google Workspace, Microsoft Entra, etc. Use one of the above as a template and consult your provider's docs for the registration side.
 
 ## Minimum RomM config
 
@@ -47,9 +46,9 @@ environment:
     - ROMM_BASE_URL=https://romm.example.com # must match your reverse-proxy URL
 ```
 
-`OIDC_REDIRECT_URI` must exactly match what you register at the provider: same scheme, host, path, no trailing slash.
+`OIDC_REDIRECT_URI` must exactly match what you register at the provider (same scheme, host, path, no trailing slash).
 
-## Role mapping (5.0)
+## Role mapping
 
 By default, new OIDC users are provisioned as **Viewers**. To let your IdP assign roles based on group membership, set:
 
@@ -67,7 +66,7 @@ Roles are re-evaluated on **every login**, so demoting someone on the IdP side t
 
 ## Autologin
 
-Bypass the RomM login page entirely. Redirects straight to the IdP:
+To bypass the RomM login page entirely and redirect straight to the IdP:
 
 ```yaml
 environment:
@@ -90,11 +89,11 @@ environment:
     - OIDC_END_SESSION_ENDPOINT=https://auth.example.com/application/o/end-session/
 ```
 
-The endpoint URL is provider-specific. The per-provider guides list it.
+The endpoint URL is provider-specific, check the per-provider guides or your IdP's docs.
 
 ## Username source
 
-By default the local part of the email (the bit before `@`) becomes the RomM username. Override with:
+By default the local part of the email (the bit before `@`) becomes the RomM username, but you can override it with:
 
 ```yaml
 environment:
@@ -104,12 +103,12 @@ environment:
 ## Important notes
 
 - **Email must match** between OIDC and any existing RomM account, otherwise OIDC creates a new account alongside the old one.
-- **HTTPS is required** in production: OIDC will refuse to redirect to a plain-HTTP `ROMM_BASE_URL`.
-- **Clock skew**: large drift between the RomM host and IdP will cause ID-token validation to fail. Run NTP.
+- **HTTPS is required** in production, as OIDC will refuse to redirect to a plain-HTTP `ROMM_BASE_URL`.
+- Large drift between the RomM host and IdP will lead to **clock skew** and cause ID-token validation to fail.
 
 ## Troubleshooting
 
 Common failures and fixes live in [Authentication Troubleshooting](../../troubleshooting/authentication.md). Two of the usual suspects:
 
-- `redirect_uri_mismatch`: `OIDC_REDIRECT_URI` differs from what's registered at the provider. Even a trailing slash matters.
+- `redirect_uri_mismatch`: `OIDC_REDIRECT_URI` differs from what's registered at the provider. Even a trailing slash can matter!
 - User created but stuck at Viewer: check `OIDC_CLAIM_ROLES` points at a claim that actually exists in the token, and the group names match exactly (case-sensitive).

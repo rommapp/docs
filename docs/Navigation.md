@@ -119,6 +119,7 @@ search:
 - Release Notes & Migration
     - [Overview](releases/index.md)
     - [Upgrading to 5.0](releases/upgrading-to-5.0.md)
+    - [Upgrading to 4.0](releases/upgrading-to-4.0.md)
     - [Upgrading to 3.0](releases/upgrading-to-3.0.md)
     - [Changelog](releases/changelog.md)
 - About

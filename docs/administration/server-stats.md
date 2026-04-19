@@ -46,12 +46,6 @@ Useful for: "which platform is eating my disk?" and "which platform has the wors
 !!! note "Per-platform stats are opt-in"
     Computing per-platform stats walks the whole DB and costs real time on big libraries. The main stats load fast, and per-platform expansion loads on demand.
 
-## What the numbers don't include
-
-- **Disk usage for the database itself**: MariaDB / Postgres data volume isn't reported here. Use `docker system df -v` or your volume backend's native tooling.
-- **Valkey memory**: same. Monitor Valkey separately if you're tight on RAM.
-- **Per-user storage breakdown**: not exposed in 5.0.
-
 ## Using stats for capacity planning
 
 Rule-of-thumb sizes:

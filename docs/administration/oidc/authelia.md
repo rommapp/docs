@@ -1,17 +1,15 @@
 ---
 title: OIDC with Authelia
-description: Wire RomM's SSO to Authelia: claims policy, client registration, RomM env vars.
+description: Wire up SSO to Authelia
 ---
 
 # OIDC with Authelia
 
-[Authelia](https://www.authelia.com/) is a lightweight open-source authentication and authorisation server with two-factor auth and SSO. Good fit for homelabs that already proxy through a reverse proxy.
-
-Before starting, read the [OIDC Setup overview](index.md). It covers the RomM-side settings common to every provider.
+[Authelia](https://www.authelia.com/) is a lightweight open-source authentication and authorisation server with two-factor auth and SSO. Before starting, read the [OIDC Setup overview](index.md), as it covers the RomM-side settings common to every provider.
 
 ## 1. Prerequisites
 
-Authelia installed and running, with its OIDC provider enabled. Upstream guides:
+Authelia installed and running, with its OIDC provider enabled:
 
 - [Authelia getting started](https://www.authelia.com/integration/prologue/get-started/)
 - [OIDC provider configuration](https://www.authelia.com/configuration/identity-providers/openid-connect/provider/)
@@ -63,7 +61,7 @@ identity_providers:
               token_endpoint_auth_method: "client_secret_basic"
 ```
 
-Generating IDs and secrets: see [Authelia's FAQ](https://www.authelia.com/integration/openid-connect/frequently-asked-questions/#how-do-i-generate-a-client-identifier-or-client-secret). Full client schema: [Authelia clients reference](https://www.authelia.com/configuration/identity-providers/openid-connect/clients/).
+To generate IDs and secrets, see [Authelia's FAQ](https://www.authelia.com/integration/openid-connect/frequently-asked-questions/#how-do-i-generate-a-client-identifier-or-client-secret). The full client schema is available in the [Authelia clients reference](https://www.authelia.com/configuration/identity-providers/openid-connect/clients/).
 
 ## 4. Configure RomM
 
@@ -80,9 +78,7 @@ environment:
     - ROMM_BASE_URL=https://romm.example.com
 ```
 
-`OIDC_REDIRECT_URI` must match what you put in `redirect_uris` exactly: scheme, host, path, no trailing slash.
-
-For role mapping from Authelia groups, see [OIDC Setup → Role mapping](index.md#role-mapping-50).
+`OIDC_REDIRECT_URI` must match what you put in `redirect_uris` exactly (scheme, host, path, no trailing slash). For role mapping from Authelia groups, see [OIDC Setup → Role mapping](index.md#role-mapping).
 
 ## 5. Set your email on RomM
 
@@ -92,7 +88,7 @@ In RomM → **Profile** → set your email to exactly the same address Authelia 
 
 ## 6. Test
 
-Restart RomM and open `/login`. There should be a **Login with OIDC** button alongside the username/password form. Click it → you're bounced to Authelia → authenticate → you're bounced back and signed into RomM.
+Restart RomM, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Authelia → authenticate → bounced back and signed into RomM!
 
 ![Login with OIDC](../../resources/authelia/2-romm-login.png)
 
