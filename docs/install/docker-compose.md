@@ -9,9 +9,8 @@ The canonical way to run RomM is with Docker Compose. This page describes the fu
 
 The RomM stack has three parts:
 
-1. **`romm`**: the application container (FastAPI backend, Vue frontend, nginx, and an embedded Redis/Valkey worker).
+1. **`romm`**: the application container with Valkey embedded.
 2. **A database**: MariaDB by default, but MySQL and PostgreSQL are also supported. See [Databases](databases.md) for details and driver-specific notes.
-3. **Redis or Valkey**: required for background tasks, session storage, and queue coordination. In the default `full-image` this runs inside the RomM container, but for production you'll typically split it out. See [Redis or Valkey](redis-or-valkey.md).
 
 ## Reference `docker-compose.yml`
 
@@ -69,7 +68,6 @@ The quick-start compose file is functional but not production-ready. Before expo
 
 - **Pin image tags.** `rommapp/romm:latest` moves, so use `rommapp/romm:5.0.0` (or whatever release you're on).
 - **Use a reverse proxy with HTTPS.** The built-in nginx listens on `8080` and terminates plain HTTP. Put Traefik, Caddy, or nginx in front with TLS. See [Reverse Proxy](reverse-proxy.md).
-- **Split out Redis/Valkey.** The `full-image` embeds Redis, so for production run a dedicated container and set `REDIS_HOST`. See [Redis or Valkey](redis-or-valkey.md).
 - **Set a non-default `MARIADB_ROOT_PASSWORD`.** And don't reuse it for `MARIADB_PASSWORD`.
 - **Mount the library read-only** unless you need RomM to write into it: `- /path/to/library:/romm/library:ro`.
 - **Use Docker secrets for credentials** if your orchestrator supports them. RomM recognises `ROMM_AUTH_SECRET_KEY_FILE` for loading the secret from a file mount.
