@@ -44,9 +44,8 @@ jobs:
 
             - name: Refresh generated snippets
               run: |
-                  uv run python docs/scripts/gen_env_vars.py
-                  uv run python docs/scripts/gen_platforms.py
-                  uv run python docs/scripts/gen_scheduled_tasks.py
+                  uv run python -m scripts.gen_env_vars
+                  uv run python -m scripts.gen_scheduled_tasks
 
             - name: Set Git user
               run: |

@@ -2,18 +2,19 @@
 
 from __future__ import annotations
 
-import sys
 import urllib.request
+import tomllib
 from pathlib import Path
 
-if sys.version_info >= (3, 11):
-    import tomllib
-else:
-    import tomli as tomllib
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPTS_DIR.parent
+DOCS_DIR = REPO_ROOT / "docs"
+SNIPPETS_DIR = DOCS_DIR / "resources" / "snippets"
 SOURCES_FILE = SCRIPTS_DIR / "sources.toml"
-SNIPPETS_DIR = SCRIPTS_DIR.parent / "resources" / "snippets"
+MKDOCS_YML = REPO_ROOT / "mkdocs.yml"
+SITE_DIR = REPO_ROOT / "site"
+ENV_FILE = REPO_ROOT / ".env"
 
 
 def load_sources() -> dict:

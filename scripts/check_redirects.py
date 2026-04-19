@@ -4,19 +4,16 @@ Fails CI if any redirect target file does not exist after `mkdocs build`.
 
 Run manually:
     uv run mkdocs build
-    uv run python docs/scripts/check_redirects.py
+    uv run python -m scripts.check_redirects
 """
 
 from __future__ import annotations
 
 import sys
-from pathlib import Path
 
 import yaml
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-MKDOCS_YML = REPO_ROOT / "mkdocs.yml"
-SITE_DIR = REPO_ROOT / "site"
+from scripts._sources import MKDOCS_YML, SITE_DIR
 
 
 class _LooseLoader(yaml.SafeLoader):

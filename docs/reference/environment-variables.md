@@ -7,7 +7,7 @@ description: Every environment variable RomM reads, grouped by what it controls.
 
 Everything RomM does that's not in [`config.yml`](configuration-file.md) is driven by env vars. Set them on the `romm` service in your compose file, as Unraid / Synology / TrueNAS container env vars, or on your Kubernetes deployment.
 
-This page is the **authoritative lookup**: every var RomM reads. The table is generated directly from [`rommapp/romm`'s `env.template`][src] at the SHA pinned in [`docs/scripts/sources.toml`](https://github.com/rommapp/docs/blob/master/docs/scripts/sources.toml). When RomM adds an env var, the next docs bump re-runs the generator and this page updates.
+This page is the **authoritative lookup**: every var RomM reads. The table is generated directly from [`rommapp/romm`'s `env.template`][src] at the SHA pinned in [`scripts/sources.toml`](https://github.com/rommapp/docs/blob/master/scripts/sources.toml). When RomM adds an env var, the next docs bump re-runs the generator and this page updates.
 
 [src]: https://github.com/rommapp/romm/blob/master/env.template
 
