@@ -154,6 +154,91 @@ library/
         └─ etc...
 ```
 
+<!-- prettier-ignore -->
+```xml
+<?xml version="1.0"?>
+<gameList>
+	<game id="12345">
+        <!-- Path of the rom file -->
+		<path>./game.gba</path>
+
+        <!-- Recommended properties -->
+		<name>Game Title</name>
+		<desc>A fun game to play</desc>
+		<lang>en</lang>
+		<region>USA</region>
+
+        <!-- Additional properties -->
+        <rating>0.8</rating>
+        <releasedate>19990615T000000</releasedate>
+        <developer>Developer Inc.</developer>
+        <publisher>Publisher Co.</publisher>
+        <family>Game Series</family>
+        <genre>Action</genre>
+        <players>1-2</players>
+        <md5>f1234567890abcdef1234567890abcde</md5>
+
+        <!-- Media properties -->
+        <image>./images/game.png</image>
+        <cover>./covers/game.png</cover>
+        <backcover>./backcovers/game.png</backcover>
+        <box3d>./3dboxes/game.png</box3d>
+        <fanart>./fanart/game.png</fanart>
+        <manual>./manuals/game.pdf</manual>
+        <marquee>./marquees/game.png</marquee>
+        <miximage>./miximages/game.png</miximage>
+        <physicalmedia>./physicalmedia/game.png</physicalmedia>
+        <screenshot>./screenshots/game.png</screenshot>
+        <title_screen>./titlescreens/game.png</title_screen>
+        <thumbnail>./thumbnails/game.png</thumbnail>
+        <video>./videos/game.mp4</video>
+	</game>
+	<game id="54321">
+        ...
+	</game>
+    ...
+</gameList>
+```
+
+#### ES-DE metadata
+
+Here are the text properties that will be read from `gamelist.xml`.
+
+| Property Name | Description                      |
+| ------------- | -------------------------------- |
+| name          | Game title                       |
+| desc          | Game description or synopsis     |
+| lang          | Game language (en, es, it, etc.) |
+| region        | Game region (us, eu, jp, etc.)   |
+| rating        | Game rating score                |
+| releasedate   | Game release date                |
+| developer     | Developer company                |
+| publisher     | Publisher company                |
+| family        | Game franchise or series         |
+| genre         | Game category or type            |
+| players       | Number of players supported      |
+| md5           | ROM file hash identifier         |
+
+#### ES-DE media
+
+RomM has two ways of mapping media files: first it looks at `gamelist.xml` for properties, and it falls back to looking at nested folders for images that have the same name as the ROM.
+
+| Property Name | Folder Name   | Description                            |
+| ------------- | ------------- | -------------------------------------- |
+| image         | images        | General game image                     |
+| cover         | covers        | Front cover artwork                    |
+| backcover     | backcovers    | Back cover artwork                     |
+| box3d         | 3dboxes       | 3D box artwork                         |
+| fanart        | fanart        | Fan-made artwork                       |
+| manual        | manuals       | Game instruction manual                |
+| marquee       | marquees      | Arcade game marquee or header          |
+| miximage      | miximages     | Composite or mixed artwork             |
+| physicalmedia | physicalmedia | Physical media (cartridge, disc, etc.) |
+| screenshot    | screenshots   | In-game screenshot                     |
+| title_screen  | titlescreens  | Game title screen                      |
+| thumbnail     | thumbnails    | Small preview image                    |
+| video         | videos        | Gameplay video or trailer              |
+
 #### ES-DE settings
 
 Here are the settings you need to change so RomM can read your artwork and gamelist.xml files from the same folder that holds your ROMs.
