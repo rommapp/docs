@@ -53,19 +53,19 @@ Yes. AGPL doesn't restrict private or commercial use.
 
 ### Can I fork RomM and relicense my fork?
 
-No. AGPL is a strong copyleft, so forks remain AGPL. You can add your own changes under AGPL, but can't relicense the original code.
+No: AGPL is a strong copyleft, so forks remain AGPL, and while you can add your own changes under AGPL you can't relicense the original code.
 
 ### Can I charge money for RomM-as-a-service?
 
-Yes, but you owe your users the source. You can't run a modified closed-source hosted RomM for paying customers.
+Yes, but you owe your users the source, so you can't run a modified closed-source hosted RomM for paying customers.
 
 ### Can I sell ROMs through RomM?
 
-RomM doesn't care. Legality of doing so is governed by copyright law, not AGPL.
+RomM doesn't care: legality of doing so is governed by copyright law, not AGPL.
 
 ### Is there a commercial / dual-license option?
 
-No. AGPL-only. If that's a blocker, RomM isn't the right choice.
+No, AGPL-only, and if that's a blocker then RomM isn't the right choice.
 
 ## Contributions
 

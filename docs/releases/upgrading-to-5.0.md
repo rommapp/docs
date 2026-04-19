@@ -76,7 +76,7 @@ rsync -a /path/to/assets/ /backup/romm/assets-pre-5.0/
 rsync -a /path/to/config/ /backup/romm/config-pre-5.0/
 ```
 
-Don't skip this. "It's a minor upgrade" isn't a thing for a major version.
+Don't skip this: "it's a minor upgrade" isn't a thing for a major version.
 
 ### 4. Pin the current version
 
@@ -130,10 +130,10 @@ docker compose logs -f romm
 
 What to watch for:
 
-- **Alembic migrations running:** lines prefixed `INFO [alembic.runtime.migration]`. Takes anywhere from seconds (small libraries) to a couple minutes (very large ones).
-- **`Application startup complete.`** RomM is healthy.
-- **`Watcher started.`** Filesystem watcher up (if enabled).
-- **ERROR lines:** bad. Go to [Rollback](#rollback).
+- **Alembic migrations running:** lines prefixed `INFO [alembic.runtime.migration]`, taking anywhere from seconds (small libraries) to a couple minutes (very large ones).
+- **`Application startup complete.`**: RomM is healthy.
+- **`Watcher started.`**: filesystem watcher is up (if enabled).
+- **ERROR lines:** bad news, go to [Rollback](#rollback).
 
 ### 4. Smoke-test
 
@@ -246,7 +246,7 @@ Open a bug report on [GitHub](https://github.com/rommapp/romm/issues) with:
 
 ### Migrations hang
 
-Watch `docker logs -f romm`. If Alembic is still running, it's still running. Large DBs take a while. If it's been more than 10 minutes with no progress, something's wrong. Check for:
+Watch `docker logs -f romm`: if Alembic is still running, it's still running, and large DBs take a while. If it's been more than 10 minutes with no progress, something's wrong. Check for:
 
 - DB connection issues (`docker logs romm-db`).
 - Out-of-memory kills (`dmesg | grep -i oom`).
@@ -266,7 +266,7 @@ See [OIDC Setup → Role mapping](../administration/oidc/index.md#role-mapping-5
 
 ### Scheduled tasks stop firing
 
-5.0 renamed several cron env vars. Check [Environment Variables](../reference/environment-variables.md) and update your env to the new names, otherwise the old cron expressions are ignored and tasks run on defaults (or not at all, if you previously disabled them).
+5.0 renamed several cron env vars, so check [Environment Variables](../reference/environment-variables.md) and update your env to the new names: otherwise the old cron expressions are ignored and tasks run on defaults (or not at all, if you previously disabled them).
 
 ## After the upgrade
 

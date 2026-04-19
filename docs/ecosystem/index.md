@@ -30,7 +30,7 @@ See the [full feeds reference](../reference/feeds.md) for URL formats, auth requ
 
 ## Community apps
 
-Maintained by individuals in the community, not the RomM team. Support quality varies.
+Maintained by individuals in the community, not the RomM team, so support quality varies.
 
 See **[Community Apps](community-apps.md)** for the full list with status flags (active / maintenance-mode / abandoned) and links.
 
@@ -62,10 +62,10 @@ For developers building something new on top of RomM:
 
 Not a RomM companion, but useful alongside:
 
-- **[Igir Collection Manager](igir.md)**: ROM sorting/verifying tool. Cleans up library layout before importing into RomM.
+- **[Igir Collection Manager](igir.md)**: ROM sorting/verifying tool that cleans up library layout before importing into RomM.
 
 ## Contributing a companion app
 
 Built something RomM-adjacent? Open a PR on [rommapp/docs](https://github.com/rommapp/docs) adding it to [Community Apps](community-apps.md), or drop a link in the [Discord](https://discord.gg/romm) `#community-projects` channel.
 
-We list active, maintained projects. No gate on code quality, but we do flag abandoned projects so users know what's current.
+We list active, maintained projects, with no gate on code quality, but we do flag abandoned projects so users know what's current.

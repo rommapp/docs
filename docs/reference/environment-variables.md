@@ -47,17 +47,17 @@ You'll always set these:
 
 | Variable | Purpose |
 | --- | --- |
-| `ROMM_AUTH_SECRET_KEY` | JWT signing key. Generate with `openssl rand -hex 32`. **Never rotate lightly**: breaks all sessions. |
+| `ROMM_AUTH_SECRET_KEY` | JWT signing key generated with `openssl rand -hex 32`. **Never rotate lightly**, as it breaks all sessions. |
 | `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWD` | Database connection. |
-| `ROMM_DB_DRIVER` | `mariadb` (default), `mysql`, `postgresql`, or `sqlite`. See [Databases](../install/databases.md). |
+| `ROMM_DB_DRIVER` | One of `mariadb` (default), `mysql`, `postgresql`, or `sqlite`: see [Databases](../install/databases.md). |
 
 For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../administration/metadata-providers.md). For OIDC, see [OIDC Setup](../administration/oidc/index.md).
 
 ## When env vars are read
 
-- **Startup.** Most vars are consumed once at container start. Change requires `docker compose up -d` to apply.
-- **Per-request.** A handful of feature toggles (`KIOSK_MODE`, `DISABLE_USERPASS_LOGIN`) are re-checked per request. Still, restart is safest to avoid partial-state caching.
-- **Never at runtime.** There's no reload-config endpoint.
+- **Startup:** most vars are consumed once at container start, so changes need a `docker compose up -d` to apply.
+- **Per-request:** a handful of feature toggles (`KIOSK_MODE`, `DISABLE_USERPASS_LOGIN`) are re-checked per request, but a restart is safest to avoid partial-state caching.
+- **Never at runtime:** there's no reload-config endpoint.
 
 ## Full reference
 

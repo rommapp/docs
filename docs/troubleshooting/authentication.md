@@ -16,9 +16,9 @@ Fix: [clear cookies](https://support.google.com/accounts/answer/32050) for the R
 
 ## `Forbidden (403) CSRF verification failed`
 
-CSRF protection is on by default. A mismatched or missing `csrftoken` cookie causes this.
+CSRF protection is on by default, so a mismatched or missing `csrftoken` cookie causes this.
 
-1. Reload the page. RomM sets a fresh CSRF cookie on GET requests, which should fix it on the next POST.
+1. Reload the page: RomM sets a fresh CSRF cookie on GET requests, which should fix it on the next POST.
 2. Still broken? Clear cookies for the RomM host and hard-reload (`CMD+SHIFT+R` / `CTRL+F5`).
 3. Known to happen on Chrome specifically, and rare on Firefox/Safari.
 
@@ -26,11 +26,11 @@ If you're behind a reverse proxy and CSRF keeps failing, the proxy is probably s
 
 ## `400 Bad Request` on the WebSocket endpoint
 
-Your reverse proxy is stripping the WebSocket upgrade. RomM uses Socket.IO for live updates (scan progress, Netplay).
+Your reverse proxy is stripping the WebSocket upgrade, and RomM uses Socket.IO for live updates (scan progress, Netplay).
 
 Fixes per proxy:
 
-- **Nginx / NPM**: enable WebSockets Support. The [Reverse Proxy](../install/reverse-proxy.md) snippets already do this.
+- **Nginx / NPM**: enable WebSockets Support (the [Reverse Proxy](../install/reverse-proxy.md) snippets already do this).
 - **Traefik**: add `proxy_set_header Upgrade $http_upgrade` (or use the Traefik middleware equivalent).
 - **Caddy**: WebSockets work out of the box with `reverse_proxy`.
 - **Cloudflare**: enable **WebSockets** under Network settings.
@@ -65,10 +65,10 @@ The `OIDC_REDIRECT_URI` in RomM's env doesn't **exactly** match what's registere
 
 Check for:
 
-- **Trailing slashes.** `/api/oauth/openid` vs `/api/oauth/openid/` are different to the IdP.
-- **Scheme.** `http://` vs `https://`.
-- **Host.** `romm.example.com` vs `www.romm.example.com` vs the bare IP.
-- **Port.** Implied `80` / `443` on HTTPS vs an explicit port.
+- **Trailing slashes**: `/api/oauth/openid` vs `/api/oauth/openid/` are different to the IdP.
+- **Scheme**: `http://` vs `https://`.
+- **Host**: `romm.example.com` vs `www.romm.example.com` vs the bare IP.
+- **Port**: implied `80` / `443` on HTTPS vs an explicit port.
 
 Fix: make them identical on both sides.
 
@@ -77,10 +77,10 @@ Fix: make them identical on both sides.
 You configured `OIDC_CLAIM_ROLES` but RomM isn't honouring it.
 
 1. **Is the claim actually in the token?** Decode your IdP's ID token at [jwt.io](https://jwt.io) and verify the claim name (e.g. `groups`, `realm_access.roles`) is present and non-empty.
-2. **Does the value match?** `OIDC_ROLE_ADMIN=romm-admin` will only match if the claim contains exactly the string `romm-admin`. Case-sensitive.
+2. **Does the value match?** `OIDC_ROLE_ADMIN=romm-admin` will only match if the claim contains exactly the string `romm-admin`, and it's case-sensitive.
 3. **Is the claim mapper on the IdP side configured to include the claim?** On Keycloak, for example, you need a Client Scope with a Group Membership mapper added to the client.
 
-Roles are re-evaluated on every login, and there's no cache to bust. Log out and back in after fixing.
+Roles are re-evaluated on every login, with no cache to bust, so log out and back in after fixing.
 
 ### "Email is missing from token" (Zitadel-specific)
 
@@ -90,7 +90,7 @@ See [OIDC with Zitadel → Enable claims](../administration/oidc/zitadel.md) for
 
 ### Authentik 2025.10: login succeeds but RomM rejects the user
 
-Authentik 2025.10 changed the default `email_verified` claim from `true` to `false`. RomM requires a verified email, so the claim must arrive as `true`.
+Authentik 2025.10 changed the default `email_verified` claim from `true` to `false`, but RomM requires a verified email so the claim must arrive as `true`.
 
 Fix: add the property mapping documented in [OIDC with Authentik → Create a property mapping](../administration/oidc/authentik.md#2-create-a-property-mapping-authentik-202510).
 
@@ -98,12 +98,12 @@ Fix: add the property mapping documented in [OIDC with Authentik → Create a pr
 
 Two possibilities:
 
-1. **Email not verified in Keycloak.** Admin Console → Users → open the user → **Email Verified**: on. RomM rejects unverified emails.
-2. **Email mismatch between Keycloak and a pre-existing RomM user.** If RomM already has a local account `alice@example.com`, the first OIDC login for `alice@example.com` signs into that account. If the emails don't match exactly, RomM creates a *second* account. Fix: edit the user in RomM to set the correct email, then log in via OIDC.
+1. **Email not verified in Keycloak**: Admin Console → Users → open the user → **Email Verified**: on. RomM rejects unverified emails.
+2. **Email mismatch between Keycloak and a pre-existing RomM user**: if RomM already has a local account `alice@example.com`, the first OIDC login for `alice@example.com` signs into that account. If the emails don't match exactly, RomM creates a *second* account. Fix: edit the user in RomM to set the correct email, then log in via OIDC.
 
 ### `OAuthException: expired token` on callback
 
-Your RomM host and the IdP have significant clock drift. Run NTP on both.
+Your RomM host and the IdP have significant clock drift, so run NTP on both.
 
 ### Autologin loops forever
 
@@ -120,5 +120,5 @@ If `bypass_autologin` doesn't work in your version, shell into the container and
 ## Still stuck
 
 - Check the container logs: `docker logs romm 2>&1 | grep -iE 'auth|oidc|oauth'`.
-- Cross-reference your IdP's audit logs. They often show exactly why a login was rejected on their side.
+- Cross-reference your IdP's audit logs, which often show exactly why a login was rejected on their side.
 - Ask on [Discord](https://discord.gg/romm) `#help` with the IdP name and the exact error text.

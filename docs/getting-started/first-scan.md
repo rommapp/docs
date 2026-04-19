@@ -27,7 +27,7 @@ The page switches to a live feed of the scan's progress. You can leave and come 
 - Per-platform **accordion panels** show counts update live: total found, matched, unmatched.
 - You can click a **matched ROM** while the scan is still running to see what metadata RomM pulled, with no need to wait for the full run.
 
-First scans on big libraries take a while. Expect ~4 seconds per ROM with a fast network to IGDB/ScreenScraper, and hashing (which runs unless you disabled it) adds IO time proportional to file size.
+First scans on big libraries take a while: expect ~4 seconds per ROM with a fast network to IGDB/ScreenScraper, and hashing (which runs unless you disabled it) adds IO time proportional to file size.
 
 ## What "matched" means
 
@@ -38,14 +38,14 @@ For each ROM the scanner:
 3. **Writes the DB entry** with title, cover, description, release date, and anything else the winning provider returned.
 4. **Merges overlay data** from other providers: RetroAchievements progression, HowLongToBeat completion times, SteamGridDB alternate covers if you've asked.
 
-An **unmatched** ROM means no provider recognised it. Common causes:
+An **unmatched** ROM means no provider recognised it, with common causes:
 
 - Filename is too generic (`game.gba`).
 - Bad rip, intro/patch applied, or a regional variant no provider has indexed.
 - Platform folder misnamed: the scanner queries providers scoped to the detected platform, so wrong platform equals no results.
 - Metadata provider credentials wrong or rate-limited: check the scan log for errors or the metadata provider status page in the admin dashboard.
 
-Most of these are fixable. See [Scanning Troubleshooting](../troubleshooting/scanning.md).
+Most of these are fixable: see [Scanning Troubleshooting](../troubleshooting/scanning.md).
 
 ## When the scan finishes
 
@@ -66,9 +66,9 @@ From here, typical next steps:
 
 If you're adding ROMs later and don't want a full rescan:
 
-- **New Platforms**: only scans folders RomM hasn't seen before. Fast.
-- **Quick**: skips ROMs already catalogued. Good default for "I added a few games".
-- **Unmatched**: re-runs matching against ROMs without a provider ID. Good after adding a metadata provider.
+- **New Platforms**: only scans folders RomM hasn't seen before, and it's fast.
+- **Quick**: skips ROMs already catalogued, a good default for "I added a few games".
+- **Unmatched**: re-runs matching against ROMs without a provider ID, ideal after adding a metadata provider.
 
 All six scan modes are documented in [Scanning & Watcher](../administration/scanning-and-watcher.md#scan-modes).
 

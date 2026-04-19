@@ -12,8 +12,8 @@ Authentication flows RomM supports:
 - **Username + password** (default): local account, bcrypt-hashed, stored in the DB.
 - **OIDC**: single sign-on via an external IdP. See [OIDC Setup](oidc/index.md).
 - **Client API Tokens**: long-lived per-user tokens for companion apps and scripts.
-- **Device pairing**: short codes for bootstrapping a token onto a handheld. Covered in [Client API Tokens](../ecosystem/client-api-tokens.md).
-- **Kiosk mode**: unauthenticated read-only access. Toggle for public demos / shared terminals.
+- **Device pairing**: short codes for bootstrapping a token onto a handheld, covered in [Client API Tokens](../ecosystem/client-api-tokens.md).
+- **Kiosk mode**: unauthenticated read-only access, handy for public demos and shared terminals.
 
 ## Session config
 
@@ -30,7 +30,7 @@ Sessions are cookie-based and stored in Redis. Relevant env vars:
 
 ## Local (username + password)
 
-The default. Accounts are created via [invitations, registration, or the Setup Wizard](invitations-and-registration.md). Passwords are bcrypt-hashed, and RomM does not log or store plaintext passwords at any point.
+The default: accounts are created via [invitations, registration, or the Setup Wizard](invitations-and-registration.md), and passwords are bcrypt-hashed. RomM does not log or store plaintext passwords at any point.
 
 **Disable local password login entirely** (force OIDC-only):
 
@@ -48,7 +48,7 @@ Until email-based self-serve reset lands, admins set passwords manually:
 
 **Administration → Users → Edit → New password → Save.**
 
-The next login on that account will use the new password. Existing sessions for that user remain valid until they expire. Revoke them explicitly by deleting all of the user's Client API Tokens if that's a concern.
+The next login on that account will use the new password, but existing sessions for that user remain valid until they expire. If that's a concern, revoke them explicitly by deleting all of the user's Client API Tokens.
 
 ### Self-serve password reset
 
@@ -81,7 +81,7 @@ Create from **Administration → Client API Tokens**. Each token:
 - Has an optional expiry (no expiry = never expires until manually revoked).
 - Can be "paired" to a device via a short code (covered in [Client API Tokens](../ecosystem/client-api-tokens.md)).
 
-Each user gets up to 25 active tokens. Revoke from the same page. The API side ("how do I send this thing in a request?") lives in [API Authentication](../developers/api-authentication.md).
+Each user gets up to 25 active tokens, revokable from the same page. The API side ("how do I send this thing in a request?") lives in [API Authentication](../developers/api-authentication.md).
 
 ## Kiosk mode
 
@@ -119,4 +119,4 @@ To fully cut a user off:
 2. Delete all their Client API Tokens (**Administration → Client API Tokens**, filter by user).
 3. Delete the user.
 
-Steps 1 + 2 together ensure any in-flight session and any token-based companion app lose access immediately. Step 3 removes the account.
+Steps 1 + 2 together ensure any in-flight session and any token-based companion app lose access immediately, and step 3 removes the account.

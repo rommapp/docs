@@ -5,7 +5,7 @@ description: Official Android launcher for RomM, browse and launch your library 
 
 # Argosy Launcher
 
-**Argosy Launcher** is RomM's first-party Android app. Browse your library, download ROMs on the fly, launch into RetroArch or your emulator of choice.
+**Argosy Launcher** is RomM's first-party Android app: browse your library, download ROMs on the fly, and launch into RetroArch or your emulator of choice.
 
 - **Repo:** [rommapp/argosy-launcher](https://github.com/rommapp/argosy-launcher)
 - **Language:** Kotlin
@@ -29,16 +29,16 @@ description: Official Android launcher for RomM, browse and launch your library 
 
 ### Via F-Droid / Play Store
 
-Not currently on either. APK sideloading is the path for now.
+Not currently on either, so APK sideloading is the path for now.
 
 ## First-time setup
 
 1. Launch Argosy.
-2. Enter your RomM URL (e.g. `https://romm.example.com`). Needs HTTPS in production.
+2. Enter your RomM URL (e.g. `https://romm.example.com`), which needs HTTPS in production.
 3. Choose **Pair Device**.
 4. Argosy shows a pairing URL or QR code: open it on a device that's already signed into RomM.
-5. On that device: RomM shows a confirmation dialog. Enter the 8-digit code Argosy displayed.
-6. Accept. Argosy receives a Client API Token bound to your RomM account.
+5. On that device, RomM shows a confirmation dialog; enter the 8-digit code Argosy displayed.
+6. Accept, and Argosy receives a Client API Token bound to your RomM account.
 
 From here, Argosy lists your library. Full pairing-flow details in [Client API Tokens](client-api-tokens.md).
 
@@ -46,11 +46,11 @@ From here, Argosy lists your library. Full pairing-flow details in [Client API T
 
 ### Browse
 
-The main view mirrors RomM's platform-and-collection layout. Tap a platform to see its games. Search works the same as the RomM web UI.
+The main view mirrors RomM's platform-and-collection layout: tap a platform to see its games, and search works the same as the RomM web UI.
 
 ### Download and launch
 
-Tap a game → **Download**. Argosy pulls the ROM to device storage. Once downloaded, **Play** launches it with your configured emulator.
+Tap a game → **Download** and Argosy pulls the ROM to device storage. Once downloaded, **Play** launches it with your configured emulator.
 
 ### Emulator configuration
 
@@ -68,7 +68,7 @@ Argosy → Settings → Sync. Two modes:
 - **On session end**: uploads saves back to RomM when you exit the emulator.
 - **Manual**: you tap Upload when you want.
 
-Saves show up in RomM's **Game Data** tab on the game, same as in-browser saves. See [Saves & States](../using/saves-and-states.md).
+Saves show up in RomM's **Game Data** tab on the game, same as in-browser saves: see [Saves & States](../using/saves-and-states.md).
 
 ## Permissions
 
@@ -78,14 +78,14 @@ Argosy needs:
 - **Network**: to talk to your RomM instance.
 - **Optional: Notifications**: download-complete and sync-complete pings.
 
-No other permissions. The app doesn't request contacts, camera, location, or anything else.
+No other permissions: the app doesn't request contacts, camera, location, or anything else.
 
 ## Troubleshooting
 
-- **Can't connect to RomM.** Check the URL (including `https://`), and that the RomM instance is reachable from your mobile network. Cellular might be blocked, so try Wi-Fi first.
-- **Token invalid.** Pair again. Tokens can expire or be revoked on the RomM side.
-- **Emulator won't launch.** Make sure the emulator app is installed and Argosy has permission to open it. Some emulators require an intent-filter setup.
-- **Downloads fail partway.** Usually network, and Argosy resumes on retry.
+- **Can't connect to RomM**: check the URL (including `https://`) and that the RomM instance is reachable from your mobile network. Cellular might be blocked, so try Wi-Fi first.
+- **Token invalid**: pair again, since tokens can expire or be revoked on the RomM side.
+- **Emulator won't launch**: make sure the emulator app is installed and Argosy has permission to open it; some emulators require an intent-filter setup.
+- **Downloads fail partway**: usually network, and Argosy resumes on retry.
 
 Full sync-specific debugging in [Device Sync Troubleshooting](../troubleshooting/sync.md).
 

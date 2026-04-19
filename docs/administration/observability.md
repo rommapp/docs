@@ -85,7 +85,7 @@ Useful when a scan is matching poorly and you want to know whether a provider is
 
 ## Sentry
 
-Opt-in error tracking. Nothing is sent without a DSN.
+Opt-in error tracking: nothing is sent without a DSN.
 
 ```yaml
 environment:
@@ -100,7 +100,7 @@ What's sent:
 
 What's not sent: ROM filenames, user credentials, metadata provider API keys. RomM filters sensitive parameters before reporting.
 
-Suitable for self-hosted Sentry or [sentry.io](https://sentry.io/). Drop the DSN to stop reporting.
+Suitable for self-hosted Sentry or [sentry.io](https://sentry.io/); drop the DSN to stop reporting.
 
 ## OpenTelemetry
 

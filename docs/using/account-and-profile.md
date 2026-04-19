@@ -26,7 +26,7 @@ OIDC users don't have local passwords, because authentication is via the IdP. Pa
 
 ### Avatar
 
-Upload a PNG / JPEG / WebP. Displayed next to your name across the UI.
+Upload a PNG / JPEG / WebP, and it shows next to your name across the UI.
 
 ### Preferred username in OIDC
 
@@ -36,19 +36,19 @@ If you're an OIDC user and want RomM to show your `preferred_username` from the 
 
 Long-lived API tokens for companion apps, scripts, and integrations. Each token is scoped to a subset of your user's scopes, and optionally expires.
 
-See the full spec in [Client API Tokens](../ecosystem/client-api-tokens.md). This section is the "how I create one from the UI" version.
+See the full spec in [Client API Tokens](../ecosystem/client-api-tokens.md); this section is just the "how I create one from the UI" version.
 
 ### Creating a token
 
 1. **Profile → Client API Tokens → + New Token**.
 2. Pick:
     - **Name**: descriptive (e.g. "Grout on my RG35XX").
-    - **Scopes**: which permissions to include. Default is read-only. Tick write scopes deliberately.
-    - **Expiry**: optional. Blank = never expires.
+    - **Scopes**: which permissions to include. Default is read-only, so tick write scopes deliberately.
+    - **Expiry**: optional, blank = never expires.
 3. **Create**.
-4. The token appears **once**. Copy it immediately, because you can't retrieve it later.
+4. The token appears **once**, so copy it immediately because you can't retrieve it later.
 
-Token format: `rmm_` + 40 hex chars. Treat it like a password.
+Token format: `rmm_` + 40 hex chars, and you should treat it like a password.
 
 ### Pairing to a device
 
@@ -65,12 +65,12 @@ Full flow in [Client API Tokens](../ecosystem/client-api-tokens.md).
 
 ### Limits
 
-- **25 active tokens per user.** Delete old ones to free slots.
-- **Tokens carry a subset of your scopes.** If an admin demotes you to Viewer, any token you hold with admin scopes stops working. Tokens don't escalate privileges beyond the owning user's current role.
+- **25 active tokens per user**, so delete old ones to free slots.
+- **Tokens carry a subset of your scopes**, so if an admin demotes you to Viewer, any token you hold with admin scopes stops working. Tokens don't escalate privileges beyond the owning user's current role.
 
 ### Revoking
 
-**Profile → Client API Tokens → [token] → Revoke.** Takes effect immediately. The companion app loses access on its next API call.
+**Profile → Client API Tokens → [token] → Revoke** takes effect immediately, and the companion app loses access on its next API call.
 
 ## Keyboard shortcuts
 

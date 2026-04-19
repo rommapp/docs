@@ -7,17 +7,17 @@ description: Answers to the questions users most often ask about RomM.
 
 ## What is RomM?
 
-A self-hosted ROM manager + player. Scan your library, get metadata, browse a clean UI, play in the browser, sync to handhelds, run it on your own hardware.
+A self-hosted ROM manager + player: scan your library, pull metadata, browse a clean UI, play in the browser, sync to handhelds, and run it all on your own hardware.
 
 See [Introduction](../index.md) for the full pitch.
 
 ## Is it free?
 
-Yes. [AGPL-3.0](license.md). Core always will be free, and other repos in the umbrella use permissive licenses. No tracking, no upsells.
+Yes, under [AGPL-3.0](license.md). The core will always be free, other repos in the umbrella use permissive licenses, and there's no tracking or upsells.
 
 ## How does it compare to [X other manager]?
 
-Not a direct comparison page. Short version: RomM emphasises self-hosted + multi-user + in-browser-play + companion-app ecosystem. If those matter, try RomM. If you just want a local Windows app that scans a folder, tools like LaunchBox may fit better.
+Not a direct comparison page, but the short version: RomM emphasises self-hosted + multi-user + in-browser-play + companion-app ecosystem. If those matter, try RomM; if you just want a local Windows app that scans a folder, tools like LaunchBox may fit better.
 
 ## Do I need metadata API keys?
 
@@ -27,7 +27,7 @@ Recommended: IGDB + ScreenScraper. See [Metadata Providers](../administration/me
 
 ## Is RomM legal?
 
-The software is legal. What you put in it depends on your jurisdiction. We don't ship ROMs or firmware, don't help you find them, and can't give legal advice. General rule: dumping games you own is usually fine, distributing copies is usually not.
+The software is legal, but what you put in it depends on your jurisdiction. We don't ship ROMs or firmware, don't help you find them, and can't give legal advice. General rule: dumping games you own is usually fine, distributing copies is usually not.
 
 ## Can I run RomM on [X]?
 
@@ -116,7 +116,7 @@ For public roadmap-ish information, watch the GitHub Projects board and `#announ
 
 ## What happened to SQLite?
 
-Dropped in 3.0 for stability reasons. Use MariaDB, MySQL, or Postgres instead. See [Databases](../install/databases.md).
+Dropped in 3.0 for stability reasons: use MariaDB, MySQL, or Postgres instead. See [Databases](../install/databases.md).
 
 ## I found a bug.
 

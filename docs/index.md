@@ -75,7 +75,7 @@ RomM (ROM Manager) lets you scan, enrich, organise, and play your game collectio
 
 ## Philosophy
 
-RomM is built for its users, not for shareholders. Self-hosted, open-source, no tracking, no upsells. The core app is licensed under [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/). Other projects in the umbrella use permissive licenses ([GPLv3](https://choosealicense.com/licenses/gpl-3.0/) for software, [CC0](https://choosealicense.com/licenses/cc0-1.0/) for documentation).
+RomM is built for its users, not for shareholders: self-hosted, open-source, no tracking, no upsells. The core app is licensed under [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/), and other projects in the umbrella use permissive licenses ([GPLv3](https://choosealicense.com/licenses/gpl-3.0/) for software, [CC0](https://choosealicense.com/licenses/cc0-1.0/) for documentation).
 
 **RomM is and will always be free and open-source software.**
 
@@ -87,4 +87,4 @@ RomM is built for its users, not for shareholders. Self-hosted, open-source, no 
     </a>
 </div>
 
-Join us on Discord to ask questions, share your setup, request features, or help other users. Code, issues, and releases live on [GitHub](https://github.com/rommapp/romm).
+Join us on Discord to ask questions, share your setup, request features, or help other users; code, issues, and releases live on [GitHub](https://github.com/rommapp/romm).

@@ -11,7 +11,7 @@ The library is the heart of RomM. This page covers the day-to-day UI: the dashbo
 
 ## Dashboard
 
-Home screen. Several **ribbons** of content:
+Home screen, with several **ribbons** of content:
 
 - **Recently Added**: a carousel of the latest ROMs RomM has indexed.
 - **Continue Playing**: games with an active play session. See [Play Sessions](../getting-started/concepts.md#play-session).
@@ -22,7 +22,7 @@ Each ribbon can be hidden or shown from **Profile → User Interface**, handy if
 
 ## Menu bar
 
-Visible everywhere. Shortcuts to:
+Visible everywhere, with shortcuts to:
 
 - **Search**: global search across every ROM, metadata field, and tag.
 - **Platforms**: drawer listing every platform as a link.
@@ -34,7 +34,7 @@ Visible everywhere. Shortcuts to:
 
 ## Grid/list toggle
 
-Every gallery (platform view, collection view, search results) has a grid-vs-list toggle in the top right. Grid is the default: card thumbnails at scale. List is denser: one row per ROM, sortable columns for title, release date, rating, playtime, region.
+Every gallery (platform view, collection view, search results) has a grid-vs-list toggle in the top right. Grid is the default (card thumbnails at scale), while list is denser: one row per ROM with sortable columns for title, release date, rating, playtime, and region.
 
 ## Game cards
 

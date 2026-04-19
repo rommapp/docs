@@ -15,7 +15,7 @@ RomM is multi-user from the start. The first user created during Setup is always
 | **Editor** | Household members who help curate the library. | Read everything, edit ROMs/platforms/collections, upload. No user management. |
 | **Viewer** | Guests, kids, anyone who should only play and track their own progress. | Read the library, manage their own saves/states/screenshots/profile. |
 
-Roles are a convenience layer on top of **scopes**. See the scope matrix below for exactly what each role grants. You can't create custom roles in 5.0. If you need finer-grained access, use the role that's most restrictive and rely on [Client API Tokens](../ecosystem/client-api-tokens.md) for per-app customisation.
+Roles are a convenience layer on top of **scopes**; see the scope matrix below for exactly what each role grants. You can't create custom roles in 5.0, so if you need finer-grained access, use the most restrictive role and rely on [Client API Tokens](../ecosystem/client-api-tokens.md) for per-app customisation.
 
 ## Scope matrix
 
@@ -49,27 +49,27 @@ Two ways:
 
 ### Admin adds directly
 
-**Administration → Users → Add.** Set username, email, password, and role. The account is usable immediately.
+**Administration → Users → Add.** Set username, email, password, and role, and the account is usable immediately.
 
 ### Invite link
 
 Better when you don't want to handle someone else's password.
 
 1. **Administration → Users → Invite.** Pick a role, and RomM generates a single-use invite link.
-2. Send the link. The recipient opens it, picks their own username and password, and is logged in.
-3. Invite links expire. The default is 30 days, configurable via [`INVITE_TOKEN_DAYS`](../reference/environment-variables.md).
+2. Send the link, and the recipient opens it, picks their own username and password, and is logged in.
+3. Invite links expire: the default is 30 days, configurable via [`INVITE_TOKEN_DAYS`](../reference/environment-variables.md).
 
 ### Public self-registration
 
-Off by default. To let anyone with the URL register their own Viewer account, set `ALLOW_PUBLIC_REGISTRATION=true`. Only enable this if your instance is behind auth at the reverse-proxy layer (Authelia, etc.) or you genuinely want open registration. Once on, anyone who reaches `/register` can create an account.
+Off by default. To let anyone with the URL register their own Viewer account, set `ALLOW_PUBLIC_REGISTRATION=true`. Only enable this if your instance is behind auth at the reverse-proxy layer (Authelia, etc.) or you genuinely want open registration: once on, anyone who reaches `/register` can create an account.
 
 ### OIDC
 
-If you've wired up OIDC, new identities can be provisioned on first login. Role mapping from OIDC claims is covered in [OIDC Setup](oidc/index.md). Look for `OIDC_CLAIM_ROLES` and the per-role env vars.
+If you've wired up OIDC, new identities can be provisioned on first login. Role mapping from OIDC claims is covered in [OIDC Setup](oidc/index.md): look for `OIDC_CLAIM_ROLES` and the per-role env vars.
 
 ## Editing and deleting users
 
-- **Change role**: Admin → Users → Edit → Role dropdown. Takes effect on next login.
+- **Change role**: Admin → Users → Edit → Role dropdown, taking effect on next login.
 - **Reset password**: Admin → Users → Edit → New password. For self-service, the user can use the "Forgot password" flow from the login page if email is configured.
 - **Delete**: Admin → Users → red delete icon → confirm. RomM won't let you delete the last admin or delete yourself while signed in.
 

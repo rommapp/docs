@@ -7,21 +7,21 @@ description: How to run DOS games in RomM via dosbox-pure, homebrew, shareware d
 
 # MS-DOS
 
-DOS games run in RomM via [`dosbox-pure`](https://github.com/schellingb/dosbox-pure), the EmulatorJS integration. Create a DOS platform (folder named `dos`) and drop your games in.
+DOS games run in RomM via [`dosbox-pure`](https://github.com/schellingb/dosbox-pure), the EmulatorJS integration: create a DOS platform (folder named `dos`) and drop your games in.
 
 !!! tip "Upload games as `.zip`"
-    `dosbox-pure` knows how to unzip and auto-mount zipped DOS games. Much easier than packaging a raw folder.
+    `dosbox-pure` knows how to unzip and auto-mount zipped DOS games, which is much easier than packaging a raw folder.
 
 !!! info "Save states work"
-    Once you've got a game running, save state and resume from there. You only need to do the boot dance once per game.
+    Once you've got a game running, save state and resume from there, so you only need to do the boot dance once per game.
 
 ## Game categories
 
-DOS games come in three flavours, each needs a different approach:
+DOS games come in three flavours, each needing a different approach:
 
-- **Homebrew:** indie / modern DOS games. Just an `.exe`, and usually Just Works once mounted.
-- **Shareware demos:** what most "free DOS games" sites distribute. Same as homebrew: all files in one folder.
-- **Retail:** need the original CD mounted alongside the installed game files. More work, and every game is different.
+- **Homebrew:** indie / modern DOS games, just an `.exe` that usually Just Works once mounted.
+- **Shareware demos:** what most "free DOS games" sites distribute, same as homebrew with all files in one folder.
+- **Retail:** need the original CD mounted alongside the installed game files, which means more work and every game is different.
 
 ## The manual way (commandline)
 
@@ -34,13 +34,13 @@ dir                     # find the .EXE
 filename.exe            # launch
 ```
 
-Works for homebrew and shareware. Retail games usually fail here because they want a CD mounted somewhere.
+Works for homebrew and shareware, but retail games usually fail here because they want a CD mounted somewhere.
 
 ## The automatic way (`.conf` autoload)
 
 `dosbox-pure` looks for a `.conf` file matching the `.exe` name before booting. If found, it reads the config, mounts whatever's specified, and runs the `[autoexec]` block.
 
-Once you have a working `.conf`, click Play → game boots straight into DOS → `[autoexec]` runs → you're in the game. No typing.
+Once you have a working `.conf`, click Play → game boots straight into DOS → `[autoexec]` runs → you're in the game, with no typing.
 
 ### Homebrew / demo example: DOOM shareware
 
@@ -118,7 +118,7 @@ Walkthrough of `[autoexec]`:
 
 3. Zip up the folder (including `DOOM.conf`).
 4. Upload to RomM under the `dos` platform.
-5. Click Play. Game boots.
+5. Click Play, and the game boots.
 
 Blank screen after boot? Something's off in `[autoexec]`, usually a path or mount issue.
 
@@ -164,33 +164,33 @@ Retail games need the game CD image mounted alongside the install directory.
 4. Zip, upload, play.
 
 !!! info "GOG DOS re-releases don't work"
-    GOG's DOS games ship with custom wrappers (DOSBox Staging, ScummVM scripts, etc.) that don't translate to `dosbox-pure`. 100% failure rate observed. For GOG titles, extract the underlying game files and build a `.conf` yourself.
+    GOG's DOS games ship with custom wrappers (DOSBox Staging, ScummVM scripts, etc.) that don't translate to `dosbox-pure`: 100% failure rate observed. For GOG titles, extract the underlying game files and build a `.conf` yourself.
 
 ### Retail troubleshooting
 
 If the game lands on a blank DOS prompt:
 
-1. **Remove the final `.exe` line from `[autoexec]`.** Drops you at a prompt after mounting. Check manually:
+1. **Remove the final `.exe` line from `[autoexec]`**, which drops you at a prompt after mounting, then check manually:
     - Is the game directory mounted correctly?
     - `type DEFAULT.cfg` (or whatever the game's config is named): the install path should line up with what you mounted.
-2. **Check drive paths.** Many retail DOS games hard-code `D:\` as the CD. If you mount the CD as `E:`, the game won't find it.
-3. **Debug with native `dosbox-pure`.** Run the same zip in [RetroArch](https://retroarch.com/) with the `dosbox-pure` core. If it works there, it should work in RomM. If it doesn't, the `.conf` is the problem.
+2. **Check drive paths**: many retail DOS games hard-code `D:\` as the CD, so if you mount the CD as `E:` the game won't find it.
+3. **Debug with native `dosbox-pure`**: run the same zip in [RetroArch](https://retroarch.com/) with the `dosbox-pure` core. If it works there it should work in RomM, and if it doesn't the `.conf` is the problem.
 
 ## Config file deep dive
 
-The DOOM example above is minimal. The full config can include dozens more options (sound card tweaks, CPU cycles, joysticks, IPX networking). The `dosbox-pure` wiki is the authoritative reference for every option.
+The DOOM example above is minimal: the full config can include dozens more options (sound card tweaks, CPU cycles, joysticks, IPX networking), and the `dosbox-pure` wiki is the authoritative reference for every option.
 
 ## Netplay on DOS
 
-Not supported: `dosbox-pure` works with EmulatorJS Netplay intermittently, not reliably. Stick to single-player for DOS.
+Not supported: `dosbox-pure` works with EmulatorJS Netplay intermittently rather than reliably, so stick to single-player for DOS.
 
 ## Known issues
 
-- **Mouse lag.** Enable `autolock=true` in `[sdl]`.
-- **Wrong resolution / aspect.** Tweak `[render] aspect=` and `windowresolution=`.
-- **Audio crackle.** Lower `rate=22050` to `rate=11025` or raise the mixer blocksize.
-- **Game runs too fast.** Most auto-cycle issues. Set `cycles=fixed 4000` (or another number) explicitly.
-- **Keyboard doesn't work for certain keys.** `usescancodes=false` sometimes fixes it.
+- **Mouse lag**: enable `autolock=true` in `[sdl]`.
+- **Wrong resolution / aspect**: tweak `[render] aspect=` and `windowresolution=`.
+- **Audio crackle**: lower `rate=22050` to `rate=11025` or raise the mixer blocksize.
+- **Game runs too fast**: most auto-cycle issues, so set `cycles=fixed 4000` (or another number) explicitly.
+- **Keyboard doesn't work for certain keys**: `usescancodes=false` sometimes fixes it.
 
 ## Dosemu / Exodos alternatives
 
