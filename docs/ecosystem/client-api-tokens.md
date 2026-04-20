@@ -40,7 +40,7 @@ From the RomM UI: **Profile → Client API Tokens → + New Token**.
 
 The token is shown **exactly once**. Copy it now. If you lose it, revoke and regenerate, because you can't get it back.
 
-## Device pairing (short-code flow)
+## Device pairing
 
 Typing a 44-character token into a handheld thumbstick isn't realistic. Instead:
 

@@ -34,7 +34,7 @@ Required scopes:
 
 ## Registering a device
 
-After [pairing](client-api-tokens.md#device-pairing-short-code-flow), the device registers itself:
+After [pairing](client-api-tokens.md#device-pairing), the device registers itself:
 
 ```http
 POST /api/devices
