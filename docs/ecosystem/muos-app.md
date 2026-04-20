@@ -21,8 +21,8 @@ description: Official RomM app for muOS and EmulationStation handhelds, fetch ga
 
 This page covers the **muOS App**: a lightweight client focused on game fetching. For the fuller push/pull sync experience (saves back to RomM, play-session reporting), use [Grout](grout.md) instead. They're two different clients for the same family of devices.
 
-- **muOS App**: lightweight, pulls ROMs, no save sync.
-- **Grout**: full sync, ROMs + saves + states + play sessions.
+- **muOS App**: lightweight, pulls ROMs, no save sync
+- **Grout**: full sync, ROMs + saves + states + play sessions
 
 Pick based on what you need.
 
@@ -65,7 +65,7 @@ The handheld has to reach your RomM instance over Wi-Fi.
 
 Simplest setup:
 
-- **Same LAN.** Handheld and RomM server on the same SSID. `HOST` = server IP + port.
+- **Same LAN.** Handheld and RomM server on the same SSID. `HOST` = server IP + port
 - **Plain HTTP works** on a trusted LAN, and no reverse proxy is needed.
 
 More-involved setups:
@@ -82,8 +82,8 @@ Downloaded games appear in the device's usual ROM folder for the platform, so mu
 ## What it doesn't do (yet)
 
 - **Save sync.** This app is pull-only. For bidirectional sync, use [Grout](grout.md).
-- **Play session tracking.** Not ingested into RomM.
-- **Firmware download.** Not in scope.
+- **Play session tracking.** Not ingested into RomM
+- **Firmware download.** Not in scope
 
 If you need these, Grout is the app.
 
@@ -95,7 +95,7 @@ If you need these, Grout is the app.
 
 ## See also
 
-- [Grout](grout.md): the fuller sync client for the same device family.
-- [Client API Tokens](client-api-tokens.md): safer auth than plaintext credentials in `.env`.
-- [Mobile & TV](../using/mobile-and-tv.md): handheld usage patterns.
-- [rommapp/muos-app](https://github.com/rommapp/muos-app): source, issues, releases.
+- [Grout](grout.md): the fuller sync client for the same device family
+- [Client API Tokens](client-api-tokens.md): safer auth than plaintext credentials in `.env`
+- [Mobile & TV](../using/mobile-and-tv.md): handheld usage patterns
+- [rommapp/muos-app](https://github.com/rommapp/muos-app): source, issues, releases

@@ -92,6 +92,6 @@ For 4.x → 5.0 specifically, read [Upgrading to 5.0](../releases/upgrading-to-5
 
 ## It's not listed here
 
-- [Discord](https://discord.gg/romm) `#help`: active, friendly, fast.
-- [GitHub Issues](https://github.com/rommapp/romm/issues): for reproducible bugs.
+- [Discord](https://discord.gg/romm) `#help`: active, friendly, fast
+- [GitHub Issues](https://github.com/rommapp/romm/issues): for reproducible bugs
 - Include your RomM version, deployment method, logs (secrets redacted), and exact repro steps.

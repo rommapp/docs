@@ -55,7 +55,7 @@ Authorization: Bearer <token>
 Content-Type: application/json
 
 {
-  "platforms": ["snes", "nes"]   // optional; empty = all
+  "platforms": ["snes", "nes"]   // empty = all
 }
 ```
 
@@ -128,8 +128,8 @@ Not in 5.0. If you want another format (LaunchBox, Attract-Mode, etc.), open an 
 Exports don't auto-rerun on every metadata edit. Triggers:
 
 - **Next scan**: exports are part of scan completion when enabled.
-- **Manual trigger** via the API above.
-- **Admin → Tasks → Export** (if surfaced in your build).
+- **Manual trigger** via the API above
+- **Admin → Tasks → Export** (if surfaced in your build)
 
 For tight sync between RomM edits and the external frontend, run the export via cron or after major edits.
 
@@ -145,4 +145,4 @@ Both export formats include some IDs (`igdb_id`, `moby_id`, etc.). If you rematc
 
 - [Configuration File → `scan.gamelist`](../reference/configuration-file.md#scangamelistexport-new-in-50)
 - [Configuration File → `scan.pegasus`](../reference/configuration-file.md#scanpegasusexport-new-in-50)
-- [Metadata Providers → gamelist.xml importer](../administration/metadata-providers.md): reverse direction.
+- [Metadata Providers → gamelist.xml importer](../administration/metadata-providers.md): reverse direction

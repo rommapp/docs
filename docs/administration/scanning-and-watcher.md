@@ -19,10 +19,10 @@ Every scan picks one mode. Modes differ in what they touch, so use the most-targ
 
 | Mode              | What it does                                                               | When to use                                                                                    |
 | ----------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| **New Platforms** | Only scans platform folders not already in the DB.                         | After mounting a new ROM set; it's fast.                                                       |
+| **New Platforms** | Only scans platform folders not already in the DB.                         | After mounting a new ROM set (very fast).                                                      |
 | **Quick**         | Skips files that already exist in the DB, with no metadata refresh.        | Default for scheduled runs and the watcher.                                                    |
 | **Unmatched**     | Re-runs metadata matching against ROMs currently missing external IDs.     | After adding a new metadata provider, or when some titles didn't match on the first scan.      |
-| **Update**        | Re-fetches metadata for all already-matched ROMs.                          | When metadata providers have meaningfully changed (e.g. IGDB restructured); rare.              |
+| **Update**        | Re-fetches metadata for all already-matched ROMs.                          | When metadata providers have meaningfully changed (e.g. IGDB restructured).                    |
 | **Hashes**        | Recalculates CRC/MD5/SHA1 hashes.                                          | After upgrading from a version that didn't hash (pre-4.4) or when you suspect file corruption. |
 | **Complete**      | Full rescan, recalculating hashes and re-fetching metadata for everything. | Rarely, since it takes a long time.                                                            |
 
@@ -32,11 +32,11 @@ You can further scope a scan to specific **platforms** and specific **metadata p
 
 **Scan button in the sidebar.** The Scan page shows:
 
-- Platform checkboxes (select which to scan, leave empty to scan all).
-- Metadata provider toggles (overrides the default priority for this one scan).
-- Advanced options: skip hashing (helpful on low-power hosts), target a LaunchBox refresh.
-- A live log of everything the scanner is doing.
-- Per-platform progress panels with matched / unmatched / missing counts.
+- Platform checkboxes (select which to scan, leave empty to scan all)
+- Metadata provider toggles (overrides the default priority for this one scan)
+- Advanced options: skip hashing (helpful on low-power hosts), target a LaunchBox refresh
+- A live log of everything the scanner is doing
+- Per-platform progress panels with matched / unmatched / missing counts
 
 A running scan survives browser refreshes, and the log streams over Socket.IO. Multiple admins opening the page see the same scan state.
 
@@ -67,12 +67,12 @@ environment:
 
 Behaviour:
 
-- Watches `/romm/library` (and everything under it) recursively.
+- Watches `/romm/library` (and everything under it) recursively
 - Debounces bursts of events: the delay (default 10 seconds) lets a large `cp` or `rsync` settle before scanning.
-- Batches scans intelligently: many events → a single consolidated scan, not one scan per file.
-- Ignores content modifications and metadata-only changes, caring only about files appearing or disappearing (not `chmod`).
-- Skips OS noise (`.DS_Store`, `Thumbs.db`, `.tmp`, etc.).
-- If a whole new platform folder appears, switches to a **New Platforms** scan to pick it up cleanly.
+- Batches scans intelligently: many events → a single consolidated scan, not one scan per file
+- Ignores content modifications and metadata-only changes, caring only about files appearing or disappearing (not `chmod`)
+- Skips OS noise (`.DS_Store`, `Thumbs.db`, `.tmp`, etc.)
+- If a whole new platform folder appears, switches to a **New Platforms** scan to pick it up cleanly
 
 ### When **not** to enable the watcher
 
@@ -127,7 +127,7 @@ When a metadata provider returns multiple regional variants (Japanese cover, US 
 
 ## Metadata source priority
 
-Who wins when two providers disagree is covered in [Metadata Providers](metadata-providers.md#priority-and-conflict-resolution); short version: `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`.
+Who wins when two providers disagree is covered in [Metadata Providers](metadata-providers.md#priority-and-conflict-resolution), though the short version is: `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`.
 
 ## Troubleshooting
 

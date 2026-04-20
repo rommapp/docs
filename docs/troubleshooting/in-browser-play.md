@@ -29,10 +29,10 @@ The platform needs BIOS files RomM doesn't have. See [Firmware Management](../ad
 
 Specific examples:
 
-- PlayStation → `scph1001.bin` (or region equivalents).
-- Game Boy Advance → `gba_bios.bin`.
-- Saturn → `saturn_bios.bin` + CD BIOS.
-- Nintendo DS → `firmware.bin` + `bios7.bin` + `bios9.bin`.
+- PlayStation → `scph1001.bin` (or region equivalents)
+- Game Boy Advance → `gba_bios.bin`
+- Saturn → `saturn_bios.bin` + CD BIOS
+- Nintendo DS → `firmware.bin` + `bios7.bin` + `bios9.bin`
 
 Not sure which files? Error message usually names them. Or check [EmulatorJS Systems docs](https://emulatorjs.org/docs/systems/).
 
@@ -43,7 +43,7 @@ Multi-file firmware: zip them together and upload as a single `firmware.zip`. Em
 - **Browser needs focus.** Click the emulator canvas once. Some cores need a button press to enumerate gamepads.
 - **Gamepad not detected.** Chrome sometimes requires a button press on the page before it registers a gamepad. Press something on the pad.
 - **Conflicting gamepad.** You have two gamepads plugged in and EmulatorJS is talking to the wrong one. Unplug the extras.
-- **Keyboard mapping overrides.** In-game Menu → **Controls** → **Reset to Defaults**.
+- **Keyboard mapping overrides.** In-game Menu → **Controls** → **Reset to Defaults**
 
 ## Audio stutters / desyncs
 
@@ -62,7 +62,7 @@ Multi-file firmware: zip them together and upload as a single `firmware.zip`. Em
 Different cores use different hotkeys:
 
 - **PC keyboard**: often F1, F9, or `~` (tilde). Some cores use ESC.
-- **Gamepad**: usually Select + Start simultaneously.
+- **Gamepad**: usually Select + Start simultaneously
 
 Rebind via Profile → User Interface (the operator-side overrides live in [`emulatorjs.controls`](../reference/configuration-file.md#emulatorjscontrols) in `config.yml`).
 
@@ -78,7 +78,7 @@ See the [MS-DOS platform guide](../platforms/ms-dos.md) for deeper DOS-specific 
 
 - **"File not Flash"**: confirm the file extension is `.swf`. Ruffle only handles Flash SWF.
 - **Wrong platform folder.** Ruffle only plays from `flash/` or `browser/` folders. See [Ruffle setup](../using/in-browser-play.md#ruffle).
-- **AS3 game crashes**: Ruffle's ActionScript 3 support is in progress. Some games won't work cleanly yet. [Ruffle compatibility list](https://ruffle.rs/#compatibility).
+- **AS3 game crashes**: Ruffle's ActionScript 3 support is in progress. Some games won't work cleanly yet. [Ruffle compatibility list](https://ruffle.rs/#compatibility)
 
 ## Performance on mobile
 
@@ -107,8 +107,8 @@ In-browser emulation is CPU-heavy. Mobile tips:
 
 ## Still stuck
 
-- `docker logs romm | grep -i emulator`: server-side clues.
-- Browser devtools Console: client-side clues.
+- `docker logs romm | grep -i emulator`: server-side clues
+- Browser devtools Console: client-side clues
 - [Discord](https://discord.gg/romm) `#help`: include the ROM file, the core you tried, the exact error.
 
 For Netplay-specific issues: [Netplay Troubleshooting](netplay.md).

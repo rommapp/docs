@@ -29,7 +29,7 @@ Required scopes:
 | ---------------------------- | ------------------------------------------------------------- |
 | `/devices/*`                 | `devices.read`, `devices.write`                               |
 | `/sync/*`                    | `assets.read`, `assets.write`, `devices.write`                |
-| `/play-sessions/*`           | `me.read`, `me.write` (read own); `users.read` (read others') |
+| `/play-sessions/*`           | `me.read`, `me.write` (read own), `users.read` (read others') |
 | `/assets/*` (save/state I/O) | `assets.read`, `assets.write`                                 |
 
 ## Registering a device
@@ -151,7 +151,7 @@ RomM returns a set of **operations** the device should execute:
     - `keep_both`: rename and keep both copies.
     - `server_wins` / `device_wins`: overwrite the other.
     - Default is `keep_both`.
-- **`noop`**: nothing to do because hashes match.
+- **`noop`**: nothing to do because hashes match
 
 ### Execution
 
@@ -239,8 +239,8 @@ Currently polling-only. Companion apps check `/api/sync/negotiate` periodically 
 
 ## See also
 
-- [Client API Tokens](client-api-tokens.md): auth + pairing.
-- [API Authentication](../developers/api-authentication.md): general auth primer.
-- [API Reference](../developers/api-reference.md): full endpoint catalogue.
-- [SSH Sync](../administration/ssh-sync.md): alternative transport for handhelds.
-- [Argosy](argosy.md), [Grout](grout.md): reference client implementations.
+- [Client API Tokens](client-api-tokens.md): auth + pairing
+- [API Authentication](../developers/api-authentication.md): general auth primer
+- [API Reference](../developers/api-reference.md): full endpoint catalogue
+- [SSH Sync](../administration/ssh-sync.md): alternative transport for handhelds
+- [Argosy](argosy.md), [Grout](grout.md): reference client implementations

@@ -21,15 +21,15 @@ rommapp/romm
 
 Key sub-directories:
 
-- `backend/routers/`: FastAPI route definitions, one file per resource group.
-- `backend/handlers/`: business logic (scan engine, metadata providers, auth).
-- `backend/tasks/`: RQ job definitions (scheduled + manual + watcher tasks).
-- `backend/config/`: Pydantic config schemas for `config.yml`.
-- `backend/alembic/`: DB migrations.
-- `backend/romm_test/`: test suite.
-- `frontend/src/views/`: top-level Vue pages.
-- `frontend/src/console/`: Console Mode SPA (separate entry).
-- `frontend/src/stores/`: Pinia state stores.
+- `backend/routers/`: FastAPI route definitions, one file per resource group
+- `backend/handlers/`: business logic (scan engine, metadata providers, auth)
+- `backend/tasks/`: RQ job definitions (scheduled + manual + watcher tasks)
+- `backend/config/`: Pydantic config schemas for `config.yml`
+- `backend/alembic/`: DB migrations
+- `backend/romm_test/`: test suite
+- `frontend/src/views/`: top-level Vue pages
+- `frontend/src/console/`: Console Mode SPA (separate entry)
+- `frontend/src/stores/`: Pinia state stores
 
 ## Runtime topology
 
@@ -67,10 +67,10 @@ A running RomM container hosts several cooperating processes:
 
 - **nginx:** listens on `8080`. Serves static assets (the SPA bundle, EmulatorJS core files, Ruffle, cover images). Proxies API + WebSocket traffic to gunicorn. Streams large downloads via `mod_zip`.
 - **gunicorn:** the Python WSGI server, running the FastAPI app. Multiple worker processes. `WEB_SERVER_CONCURRENCY` tunes count.
-- **FastAPI backend:** routes, handlers, DB access via SQLAlchemy, Valkey for sessions + cache + queue.
-- **RQ workers:** separate process(es) that pop jobs off Valkey queues and run them. Scans, metadata syncs, cleanup tasks.
-- **Valkey:** in-container by default (full image), externalisable (Redis-compatible).
-- **MariaDB / Postgres / MySQL / SQLite:** always external (or a separate container).
+- **FastAPI backend:** routes, handlers, DB access via SQLAlchemy, Valkey for sessions + cache + queue
+- **RQ workers:** separate process(es) that pop jobs off Valkey queues and run them. Scans, metadata syncs, cleanup tasks
+- **Valkey:** in-container by default (full image), externalisable (Redis-compatible)
+- **MariaDB / Postgres / MySQL / SQLite:** always external (or a separate container)
 
 ## Request lifecycle
 
@@ -110,12 +110,12 @@ Large uploads go through the chunked-upload flow for a reason: gunicorn's per-re
 
 ### Main UI (`frontend/src/`)
 
-- **Vue 3 + Composition API**.
-- **Vuetify 3** for UI components.
-- **Vite** for build + dev server with HMR.
-- **Pinia** for state management: one store per resource family (auth, roms, platforms, collections, etc.).
-- **vue-i18n** for localisation. Translations in `src/locales/<locale>/`.
-- **socket.io-client** for live updates.
+- **Vue 3 + Composition API**
+- **Vuetify 3** for UI components
+- **Vite** for build + dev server with HMR
+- **Pinia** for state management: one store per resource family (auth, roms, platforms, collections, etc.)
+- **vue-i18n** for localisation. Translations in `src/locales/<locale>/`
+- **socket.io-client** for live updates
 
 Router in `src/plugins/router.ts`. Top-level views in `src/views/`.
 
@@ -123,16 +123,16 @@ Router in `src/plugins/router.ts`. Top-level views in `src/views/`.
 
 Separate SPA, compiled as a second bundle. Entry point at `/console`. Built with the same Vue + Pinia + i18n stack but:
 
-- Own router with `/console` namespace.
-- Own component library tuned for gamepad navigation (bigger targets, spatial focus, SFX).
-- Own theme in `src/console/styles/`.
+- Own router with `/console` namespace
+- Own component library tuned for gamepad navigation (bigger targets, spatial focus, SFX)
+- Own theme in `src/console/styles/`
 
 ## Background work
 
 RQ has three priority queues:
 
-- **high:** user-triggered scans, manual tasks. Get fast.
-- **default:** scheduled nightlies, sync operations.
+- **high:** user-triggered scans, manual tasks. Get fast
+- **default:** scheduled nightlies, sync operations
 - **low:** cleanup, image conversion. Run when the system's idle.
 
 All queues share the same worker pool. Jobs are persisted to Valkey, so restarting RomM doesn't lose in-flight work (appendonly needs to be on, see [Redis or Valkey](../install/redis-or-valkey.md)).
@@ -147,18 +147,18 @@ Client API Tokens are stored as hash-only in the DB (we never store the plaintex
 
 ## Observability
 
-- **Sentry** (opt-in): unhandled exceptions.
-- **OpenTelemetry** (opt-in): traces, metrics, logs via OTLP.
-- **`/api/heartbeat`:** aggregated health snapshot.
+- **Sentry** (opt-in): unhandled exceptions
+- **OpenTelemetry** (opt-in): traces, metrics, logs via OTLP
+- **`/api/heartbeat`:** aggregated health snapshot
 
 See [Observability](../administration/observability.md).
 
 ## Why these choices
 
-- **FastAPI**: modern, async, auto-OpenAPI. Good fit for the API-shape of the app.
-- **Vue + Vuetify**: fast, componenty, looks decent out of the box.
-- **MariaDB** as default: solid, familiar, works everywhere.
-- **RQ** not Celery: simpler, Redis-native, less operational overhead. Works fine at RomM's scale.
+- **FastAPI**: modern, async, auto-OpenAPI. Good fit for the API-shape of the app
+- **Vue + Vuetify**: fast, componenty, looks decent out of the box
+- **MariaDB** as default: solid, familiar, works everywhere
+- **RQ** not Celery: simpler, Redis-native, less operational overhead. Works fine at RomM's scale
 - **Socket.IO**: pragmatic. Raw WebSocket would be leaner but SIO's client ecosystem is worth the overhead.
 
 ## Contributing
@@ -169,7 +169,7 @@ For large changes, read the relevant handler in `backend/handlers/` first. The p
 
 ## See also
 
-- [Development Setup](development-setup.md): get a local env running.
-- [API Reference](api-reference.md): what the backend exposes.
-- [WebSockets](websockets.md): Socket.IO endpoints in detail.
-- [Configuration File](../reference/configuration-file.md): `config.yml` schema.
+- [Development Setup](development-setup.md): get a local env running
+- [API Reference](api-reference.md): what the backend exposes
+- [WebSockets](websockets.md): Socket.IO endpoints in detail
+- [Configuration File](../reference/configuration-file.md): `config.yml` schema

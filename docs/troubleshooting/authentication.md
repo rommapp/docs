@@ -66,9 +66,9 @@ The `OIDC_REDIRECT_URI` in RomM's env doesn't **exactly** match what's registere
 Check for:
 
 - **Trailing slashes**: `/api/oauth/openid` vs `/api/oauth/openid/` are different to the IdP.
-- **Scheme**: `http://` vs `https://`.
-- **Host**: `romm.example.com` vs `www.romm.example.com` vs the bare IP.
-- **Port**: implied `80` / `443` on HTTPS vs an explicit port.
+- **Scheme**: `http://` vs `https://`
+- **Host**: `romm.example.com` vs `www.romm.example.com` vs the bare IP
+- **Port**: implied `80` / `443` on HTTPS vs an explicit port
 
 Fix: make them identical on both sides.
 

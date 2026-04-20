@@ -13,15 +13,15 @@ RomM releases on a loose cadence, not scheduled, driven by readiness:
 
 - **Patch (`5.0.1`, `5.0.2`):** bug fixes. Cut as needed, typically 1-4 per month.
 - **Minor (`5.1.0`, `5.2.0`):** additive features. Cut when a cohesive batch of features is stable.
-- **Major (`6.0.0`):** breaking changes. Planned well in advance, announced in the Discord + on GitHub.
+- **Major (`6.0.0`):** breaking changes. Planned well in advance, announced in the Discord + on GitHub
 
 ## Version numbering
 
 [SemVer](https://semver.org/) for breaking-change semantics:
 
-- **MAJOR:** backwards-incompatible schema change, env var rename, or API-contract break.
-- **MINOR:** new feature, backwards-compatible.
-- **PATCH:** bug fix only.
+- **MAJOR:** backwards-incompatible schema change, env var rename, or API-contract break
+- **MINOR:** new feature, backwards-compatible
+- **PATCH:** bug fix only
 
 Alembic migrations run on every startup, and migrations are backwards-compatible within a major version.
 
@@ -29,16 +29,16 @@ Alembic migrations run on every startup, and migrations are backwards-compatible
 
 ### 1. Merge pending PRs
 
-- All release-milestoned PRs merged into `master`.
-- CI green on `master`.
-- Linter green: `trunk check --all`.
-- Tests green: `uv run pytest`.
+- All release-milestoned PRs merged into `master`
+- CI green on `master`
+- Linter green: `trunk check --all`
+- Tests green: `uv run pytest`
 
 ### 2. Update version numbers
 
-- `pyproject.toml` → `version = "X.Y.Z"`.
-- `frontend/package.json` → `"version": "X.Y.Z"`.
-- Any hardcoded version strings (`backend/__init__.py`, etc.). `rg '__version__'` or `rg '5\.0\.0'` to find them.
+- `pyproject.toml` → `version = "X.Y.Z"`
+- `frontend/package.json` → `"version": "X.Y.Z"`
+- Any hardcoded version strings (`backend/__init__.py`, etc.). `rg '__version__'` or `rg '5\.0\.0'` to find them
 
 ### 3. Update `env.template` if needed
 
@@ -111,7 +111,7 @@ docker push rommapp/romm:5
 ## Announcements
 
 - **Discord `#announcements`:** post a short summary with a link to the GitHub Release.
-- **Reddit** (r/selfhosted, etc.): optional, for major versions.
+- **Reddit** (r/selfhosted, etc.): optional, for major versions
 - **Docs site version switcher:** publish a new `mike`-managed version of the docs. See [Docs versioning](#docs-versioning).
 
 ## Docs versioning
@@ -162,6 +162,6 @@ For major versions:
 
 ## See also
 
-- [Release Notes & Migration](../releases/index.md): user-facing side.
-- [Upgrading to 5.0](../releases/upgrading-to-5.0.md): reference migration guide style.
-- [Contributing](contributing.md): general contribution process.
+- [Release Notes & Migration](../releases/index.md): user-facing side
+- [Upgrading to 5.0](../releases/upgrading-to-5.0.md): reference migration guide style
+- [Contributing](contributing.md): general contribution process

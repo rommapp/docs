@@ -75,9 +75,9 @@ If you're building something that integrates with RomM and would like to use / r
 
 The logo assets live at [rommapp/romm/tree/master/frontend/assets/](https://github.com/rommapp/romm/tree/master/frontend/assets/):
 
-- `isotipo.svg` / `isotipo.png`: the mark (circular logo).
-- `logotipo.svg` / `logotipo.png`: the wordmark.
-- `social_preview.png`: GitHub social preview.
+- `isotipo.svg` / `isotipo.png`: the mark (circular logo)
+- `logotipo.svg` / `logotipo.png`: the wordmark
+- `social_preview.png`: GitHub social preview
 
 ## Questions
 

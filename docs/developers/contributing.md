@@ -38,14 +38,14 @@ Failing to disclose is rude to the humans reviewing your PR. Don't do it.
 ### Code
 
 - **Features:** open an issue first for anything non-trivial.
-- **Bug fixes:** happy to take these without pre-discussion if they're small and focused.
+- **Bug fixes:** happy to take these without pre-discussion if they're small and focused
 - **Refactors:** open an issue first. Refactors without a clear user-facing win are usually rejected.
 
 ### Documentation
 
 You're on the docs site right now. If something's wrong, unclear, or missing:
 
-- PRs welcome against [rommapp/docs](https://github.com/rommapp/docs).
+- PRs welcome against [rommapp/docs](https://github.com/rommapp/docs)
 - Small fixes (typos, broken links) don't need an issue first.
 - Bigger changes (restructuring, adding a new section): open an issue first or ping in Discord.
 
@@ -67,10 +67,10 @@ See [Translations (i18n)](i18n.md) for the full translator workflow.
 
 [Open an issue](https://github.com/rommapp/romm/issues) with:
 
-- What happened, what you expected.
-- Exact reproduction steps.
-- RomM version and how you deployed it (Docker tag, Unraid, K8s, etc.).
-- Relevant logs (`docker logs romm`, redact any secrets).
+- What happened, what you expected
+- Exact reproduction steps
+- RomM version and how you deployed it (Docker tag, Unraid, K8s, etc.)
+- Relevant logs (`docker logs romm`, redact any secrets)
 
 The bug report template prompts for all of this.
 

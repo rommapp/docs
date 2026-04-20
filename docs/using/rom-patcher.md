@@ -36,8 +36,8 @@ Menu bar → **Patcher** icon (a wrench). Admins and Editors can also reach it f
 3. **Pick the target platform**: usually auto-detected from the ROM.
 4. **Choose output**:
     - **Download patched ROM**: saves a file locally. RomM keeps neither the original nor the result.
-    - **Save to library**: adds the patched ROM as a new entry in your library, alongside the original.
-    - Optional **filename**: customise the output name. Defaults to `<original> [patched].<ext>`.
+    - **Save to library**: adds the patched ROM as a new entry in your library, alongside the original
+    - Optional **filename**: customise the output name. Defaults to `<original> [patched].<ext>`
 5. **Apply**.
 
 Everything runs client-side in the browser. The ROM never gets uploaded to the RomM server during patching (if you picked Download), so nothing leaves your machine.

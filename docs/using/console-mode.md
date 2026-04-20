@@ -19,7 +19,7 @@ New in 5.0. If you're on a desktop with a keyboard and mouse, you probably don't
 
 Three ways:
 
-1. **Menu bar → Console icon** (looks like a small controller).
+1. **Menu bar → Console icon** (looks like a small controller)
 2. Type `/console` after your RomM URL: `https://romm.example.com/console`.
 3. Set the default view to Console Mode in **Profile → User Interface → Default view**. This signs you in straight into `/console` every time.
 
@@ -93,19 +93,19 @@ Console Mode uses its own color palette: higher contrast, bigger typography. It 
 
 Most of the main UI's features are available in Console Mode:
 
-- ✓ Browse library, platforms, collections.
-- ✓ Search and filters.
-- ✓ Play (launches [In-Browser Play](in-browser-play.md) or shows a download prompt if the platform isn't browser-playable).
-- ✓ Saves and states: upload, select, delete.
-- ✓ Smart and virtual collections.
-- ✓ RetroAchievements progression display.
+- ✓ Browse library, platforms, collections
+- ✓ Search and filters
+- ✓ Play (launches [In-Browser Play](in-browser-play.md) or shows a download prompt if the platform isn't browser-playable)
+- ✓ Saves and states: upload, select, delete
+- ✓ Smart and virtual collections
+- ✓ RetroAchievements progression display
 
 Not yet in Console Mode (still use the main UI):
 
-- ROM editing (match, edit metadata).
-- Scanning.
-- Administration (users, tasks, stats).
-- ROM Patcher.
+- ROM editing (match, edit metadata)
+- Scanning
+- Administration (users, tasks, stats)
+- ROM Patcher
 
 ## Configuring
 
@@ -147,8 +147,8 @@ For multi-disc games, Console Mode asks which disc to boot before launching. For
 
 Running on muOS / Batocera / Knulli / a Steam Deck? Consider:
 
-- **[Grout](../ecosystem/grout.md)**: official handheld companion that syncs saves/states to/from the device.
-- **[Argosy Launcher](../ecosystem/argosy.md)**: Android handhelds that can run a browser but want a native-feeling app.
+- **[Grout](../ecosystem/grout.md)**: official handheld companion that syncs saves/states to/from the device
+- **[Argosy Launcher](../ecosystem/argosy.md)**: Android handhelds that can run a browser but want a native-feeling app
 
 Both use [Client API Tokens](../ecosystem/client-api-tokens.md) for auth.
 

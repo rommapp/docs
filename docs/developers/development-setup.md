@@ -197,10 +197,10 @@ uv run pytest -k scan            # match by name
 
 If you're new to the codebase, read [Architecture](architecture.md) for a high-level walkthrough, then come back here. The short version:
 
-- `backend/`: FastAPI, SQLAlchemy, Alembic, RQ workers.
-- `frontend/`: Vue 3 + Vuetify + Pinia + Vite. Separate `/console` SPA for TV/gamepad mode.
-- `docker/`: nginx config (with `mod_zip`), entrypoint scripts, multi-stage Dockerfiles.
-- `examples/`: reference compose files.
+- `backend/`: FastAPI, SQLAlchemy, Alembic, RQ workers
+- `frontend/`: Vue 3 + Vuetify + Pinia + Vite. Separate `/console` SPA for TV/gamepad mode
+- `docker/`: nginx config (with `mod_zip`), entrypoint scripts, multi-stage Dockerfiles
+- `examples/`: reference compose files
 
 ## Getting stuck
 

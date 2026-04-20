@@ -128,6 +128,6 @@ Not the most common pattern. Most deployments use a subdomain (`romm.example.com
 
 ## See also
 
-- [Reverse Proxy](../install/reverse-proxy.md): passthrough recipes per proxy.
-- [Environment Variables](environment-variables.md): including `ROMM_PORT`, `ROMM_BASE_PATH`, `ROMM_BASE_URL`.
-- [Architecture](../developers/architecture.md): how the port layout fits into the bigger picture.
+- [Reverse Proxy](../install/reverse-proxy.md): passthrough recipes per proxy
+- [Environment Variables](environment-variables.md): including `ROMM_PORT`, `ROMM_BASE_PATH`, `ROMM_BASE_URL`
+- [Architecture](../developers/architecture.md): how the port layout fits into the bigger picture

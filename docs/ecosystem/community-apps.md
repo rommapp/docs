@@ -9,10 +9,10 @@ Apps listed here are **community-maintained**. The RomM team doesn't build or of
 
 First-party alternatives (built by the RomM team):
 
-- [Argosy Launcher](argosy.md) (Android).
-- [Grout](grout.md) (Linux handhelds).
-- [Playnite Plugin](playnite-plugin.md) (Windows).
-- [muOS App](muos-app.md) (muOS handhelds).
+- [Argosy Launcher](argosy.md) (Android)
+- [Grout](grout.md) (Linux handhelds)
+- [Playnite Plugin](playnite-plugin.md) (Windows)
+- [muOS App](muos-app.md) (muOS handhelds)
 
 ## Mobile
 
@@ -121,11 +121,11 @@ Push a Syncthing-managed library to RomM automatically.
 
 Built something? Open a PR on [rommapp/docs](https://github.com/rommapp/docs) adding your project to this list with:
 
-- Name, short description.
-- Author GitHub handle.
-- Platform(s).
-- Repo link.
-- Status (Active / Maintenance-mode / Abandoned).
+- Name, short description
+- Author GitHub handle
+- Platform(s)
+- Repo link
+- Status (Active / Maintenance-mode / Abandoned)
 
 We'll merge if the project's real, has a working repo, and isn't obviously broken.
 

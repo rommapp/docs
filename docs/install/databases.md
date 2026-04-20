@@ -24,7 +24,7 @@ This is what the [reference Compose](docker-compose.md) sets up. No extra config
 services:
     romm:
         environment:
-            - ROMM_DB_DRIVER=mariadb # optional; this is the default
+            - ROMM_DB_DRIVER=mariadb # this is the default
             - DB_HOST=romm-db
             - DB_PORT=3306
             - DB_NAME=romm
@@ -129,7 +129,7 @@ Exact keys depend on the driver. See SQLAlchemy / the driver's docs.
 ## Which should I pick?
 
 - **Sticking with defaults?** MariaDB. That's what the reference compose uses and what the team tests against.
-- **Already run Postgres?** Postgres. No reason to add a second DB engine.
+- **Already run Postgres?** Postgres. No reason to add a second DB engine
 - **Single-user laptop demo?** SQLite is fine but upgrade before adding anyone else.
 - **External managed DB?** Any of MariaDB / MySQL / Postgres. Point `DB_HOST` at it and configure TLS via `DB_QUERY_JSON`.
 

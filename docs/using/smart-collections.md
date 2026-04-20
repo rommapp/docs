@@ -24,38 +24,38 @@ A smart collection is one or more **conditions** joined by **all** (AND) or **an
 
 Each condition has three parts:
 
-1. **Field**: what you're matching on.
-2. **Operator**: comparison (equals, contains, greater-than, etc.).
-3. **Value**: the thing you're comparing against.
+1. **Field**: what you're matching on
+2. **Operator**: comparison (equals, contains, greater-than, etc.)
+3. **Value**: the thing you're comparing against
 
 ## Supported fields
 
 ### Metadata
 
-- **Platform**: platform slug.
-- **Title**: game title (case-insensitive substring match with `contains`).
-- **Genre**: IGDB genre tag.
-- **Franchise**: game franchise (Mario, Final Fantasy, etc.).
-- **Developer**: company that made the game.
-- **Publisher**: company that released it.
-- **Release Year**: year.
-- **Age Rating**: ESRB / PEGI rating.
-- **Region**: game region (USA, Japan, Europe, World, etc.).
-- **Language**: game language.
-- **Rating**: IGDB / ScreenScraper critic score.
+- **Platform**: platform slug
+- **Title**: game title (case-insensitive substring match with `contains`)
+- **Genre**: IGDB genre tag
+- **Franchise**: game franchise (Mario, Final Fantasy, etc.)
+- **Developer**: company that made the game
+- **Publisher**: company that released it
+- **Release Year**: year
+- **Age Rating**: ESRB / PEGI rating
+- **Region**: game region (USA, Japan, Europe, World, etc.)
+- **Language**: game language
+- **Rating**: IGDB / ScreenScraper critic score
 
 ### Personal data
 
-- **Personal Rating**: your per-game rating.
-- **Status**: Never Played / Backlogged / Playing / Complete / Hidden.
-- **Playtime**: accumulated play time (minutes).
-- **Favourites**: whether you've favourited it.
-- **Has Achievements**: whether the game has [RetroAchievements](retroachievements.md).
+- **Personal Rating**: your per-game rating
+- **Status**: Never Played / Backlogged / Playing / Complete / Hidden
+- **Playtime**: accumulated play time (minutes)
+- **Favourites**: whether you've favourited it
+- **Has Achievements**: whether the game has [RetroAchievements](retroachievements.md)
 
 ### Flags
 
-- **Matched**: has a provider ID.
-- **Playable in browser**: supports EmulatorJS / Ruffle.
+- **Matched**: has a provider ID
+- **Playable in browser**: supports EmulatorJS / Ruffle
 - **Has Firmware**: required firmware exists in the library.
 - **Duplicate**: the same game appears twice.
 
@@ -138,7 +138,7 @@ Same as standard collections: removes the definition. ROMs stay in the library.
 ## Limitations
 
 - **No nested smart collections**: a smart collection can't reference another collection as a source. Compose rules directly.
-- **Performance**: very complex rule sets (many conditions, many nested groups) on huge libraries can slow down the gallery load. Usually imperceptible but mentioned here for completeness.
+- **Performance**: very complex rule sets (many conditions, many nested groups) on huge libraries can slow down the gallery load. Usually imperceptible but mentioned here for completeness
 - **Timezone**: "Release Year" uses UTC, not the user's timezone. Edge-case edge-of-year games might fall on the "wrong" side.
 
 ## API

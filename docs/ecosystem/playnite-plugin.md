@@ -20,10 +20,10 @@ description: Import your RomM library into Playnite on Windows.
 
 ## What it does
 
-- Queries the RomM API to pull your library metadata.
-- Creates Playnite library entries for every RomM game.
-- Downloads a ROM on demand when you click **Install** in Playnite.
-- Launches via your configured emulator (Playnite's existing emulator config).
+- Queries the RomM API to pull your library metadata
+- Creates Playnite library entries for every RomM game
+- Downloads a ROM on demand when you click **Install** in Playnite
+- Launches via your configured emulator (Playnite's existing emulator config)
 
 ## Installing
 
@@ -31,8 +31,8 @@ Four paths, pick whichever's easiest:
 
 - **A.** Paste this URL into a browser to launch Playnite and install automatically:
   `playnite://playnite/installaddon/RomM_9700aa21-447d-41b4-a989-acd38f407d9f`
-- **B.** [Playnite add-ons website](https://playnite.link/addons.html#RomM_9700aa21-447d-41b4-a989-acd38f407d9f) → Install.
-- **C.** From inside Playnite: **Menu → Add-ons → Browse → Libraries**, search `RomM`, Install.
+- **B.** [Playnite add-ons website](https://playnite.link/addons.html#RomM_9700aa21-447d-41b4-a989-acd38f407d9f) → Install
+- **C.** From inside Playnite: **Menu → Add-ons → Browse → Libraries**, search `RomM`, Install
 - **D.** Download the `.pext` file from [GitHub Releases](https://github.com/rommapp/playnite-plugin/releases/latest) and drop it onto Playnite.
 
 ## Setup
@@ -111,6 +111,6 @@ For automatic refresh: use Playnite's scheduled-library-refresh add-on, or manua
 
 ## See also
 
-- [Client API Tokens](client-api-tokens.md): recommended auth method.
-- [rommapp/playnite-plugin](https://github.com/rommapp/playnite-plugin): source, issues, releases.
-- [Playnite docs](https://playnite.link/docs/): Playnite basics if you're new to it.
+- [Client API Tokens](client-api-tokens.md): recommended auth method
+- [rommapp/playnite-plugin](https://github.com/rommapp/playnite-plugin): source, issues, releases
+- [Playnite docs](https://playnite.link/docs/): Playnite basics if you're new to it

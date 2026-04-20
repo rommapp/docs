@@ -84,7 +84,7 @@ Same mechanic: just use a filename matching an existing platform's slug and your
 
 - **Metadata provider coverage.** Providers are IGDB-slug-driven. A genuinely unknown platform won't have IGDB / ScreenScraper / MobyGames data.
 - **EmulatorJS support.** The platform has to match a known EmulatorJS core. See [Supported Platforms → EmulatorJS column](supported-platforms.md).
-- **RetroAchievements.** Hash-based but restricted to RA-supported platforms.
+- **RetroAchievements.** Hash-based but restricted to RA-supported platforms
 
 For the niche platform case, you'll likely rely on filename-only matching (no provider) and browsing the library like a straight file system.
 
@@ -92,10 +92,10 @@ For the niche platform case, you'll likely rely on filename-only matching (no pr
 
 If you've added a custom platform that should be supported natively by RomM (e.g. a widely-used platform that's missing) open an issue on [rommapp/romm](https://github.com/rommapp/romm/issues) with:
 
-- Platform name.
-- IGDB platform URL (if it exists on IGDB).
-- Typical file extensions.
-- Suggested canonical slug.
+- Platform name
+- IGDB platform URL (if it exists on IGDB)
+- Typical file extensions
+- Suggested canonical slug
 
 The team adds platforms fairly aggressively if they see community demand.
 

@@ -16,8 +16,8 @@ Both are **per-user per-ROM** and stored under `/romm/assets/<user>/<rom>/`. The
 
 Game detail page → **Game Data** tab. Separate sub-tabs for:
 
-- **Saves**: all save files for this ROM, with date and emulator.
-- **States**: all states, with thumbnail (if one was captured).
+- **Saves**: all save files for this ROM, with date and emulator
+- **States**: all states, with thumbnail (if one was captured)
 
 ## Uploading a save
 
@@ -38,7 +38,7 @@ Same flow under **Upload State**. Optional screenshot attachment. RomM autogener
 
 In-game Menu in EmulatorJS:
 
-- **Save**: writes in-game save data back to RomM. Same as the native console's save-to-cartridge flow.
+- **Save**: writes in-game save data back to RomM. Same as the native console's save-to-cartridge flow
 - **Save State** / **Load State**: creates a full memory snapshot, or restores from one. RomM uploads the snapshot automatically.
 
 There's no "forgot to upload" step. Everything persists as soon as you do it in-emulator.
@@ -47,8 +47,8 @@ There's no "forgot to upload" step. Everything persists as soon as you do it in-
 
 If a ROM has multiple saves or states, the pre-launch picker appears before the emulator loads:
 
-- **Save file** dropdown: which save to load on boot.
-- **State** dropdown: optional, loads immediately after boot.
+- **Save file** dropdown: which save to load on boot
+- **State** dropdown: optional, loads immediately after boot
 
 [Console Mode](console-mode.md) surfaces the same picker on a larger gamepad-friendly dialog.
 
@@ -70,9 +70,9 @@ For bulk cleanup (e.g. "delete every state for games I've beaten"), use the mult
 
 Saves and states can sync to/from registered devices (Grout on muOS, DeckRommSync on a Deck, etc.). Covered in depth in the ecosystem section:
 
-- [Device Sync Protocol](../ecosystem/device-sync-protocol.md): wire-level reference.
-- [SSH Sync](../administration/ssh-sync.md): operator-side config.
-- [Argosy Launcher](../ecosystem/argosy.md) / [Grout](../ecosystem/grout.md): per-app setup.
+- [Device Sync Protocol](../ecosystem/device-sync-protocol.md): wire-level reference
+- [SSH Sync](../administration/ssh-sync.md): operator-side config
+- [Argosy Launcher](../ecosystem/argosy.md) / [Grout](../ecosystem/grout.md): per-app setup
 
 From the end-user side: once your device is paired and sync is running, saves made on the device appear in RomM within a couple of sync cycles (default: 15 minutes). Conflicts (same ROM saved on two devices between syncs) surface as two separate save entries, so pick which to keep.
 
@@ -82,15 +82,15 @@ From the end-user side: once your device is paired and sync is running, saves ma
 
 Save files are usually format-interchangeable across cores for the same platform but not always.
 
-| Platform             | Format                 | Usually-compatible                                 |
-| -------------------- | ---------------------- | -------------------------------------------------- |
-| NES                  | `.sav`                 | Yes, across FCEUmm / Nestopia                      |
-| SNES                 | `.srm`                 | Yes, across SNES9x / bsnes                         |
-| Genesis / Mega Drive | `.srm`                 | Yes                                                |
-| Game Boy / GBC / GBA | `.sav`                 | Yes, across Gambatte / mGBA                        |
+| Platform             | Format                 | Usually-compatible                                |
+| -------------------- | ---------------------- | ------------------------------------------------- |
+| NES                  | `.sav`                 | Yes, across FCEUmm / Nestopia                     |
+| SNES                 | `.srm`                 | Yes, across SNES9x / bsnes                        |
+| Genesis / Mega Drive | `.srm`                 | Yes                                               |
+| Game Boy / GBC / GBA | `.sav`                 | Yes, across Gambatte / mGBA                       |
 | N64                  | `.srm`, `.eep`, `.fla` | Yes but per-type: the right file must be uploaded |
-| PSX                  | `.srm` (memory card)   | Yes, across Mednafen / PCSX cores                  |
-| Saturn / Dreamcast   | Varies                 | Check core docs                                    |
+| PSX                  | `.srm` (memory card)   | Yes, across Mednafen / PCSX cores                 |
+| Saturn / Dreamcast   | Varies                 | Check core docs                                   |
 
 If you're moving saves between RomM's EmulatorJS and a stand-alone emulator (RetroArch, Dolphin, PPSSPP), usually works for mainline cores.
 

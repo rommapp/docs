@@ -87,4 +87,4 @@ RomM is built for its users, not for shareholders: self-hosted, open-source, no 
     </a>
 </div>
 
-Join us on Discord to ask questions, share your setup, request features, or help other users; code, issues, and releases live on [GitHub](https://github.com/rommapp/romm).
+Join us on Discord to ask questions, share your setup, request features, or help other users. Code, issues, and releases live on [GitHub](https://github.com/rommapp/romm).

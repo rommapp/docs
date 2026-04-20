@@ -40,8 +40,8 @@ cp -r roms/ roms-unverified/
 
 DAT files are hash-referenced catalogues Igir matches against.
 
-- **Cartridge systems:** [No-Intro daily](https://datomatic.no-intro.org/index.php?page=download&op=daily), full DAT compilation.
-- **Optical systems (PS1, Saturn, etc.):** [Redump](http://redump.org/downloads/), per-platform DAT files.
+- **Cartridge systems:** [No-Intro daily](https://datomatic.no-intro.org/index.php?page=download&op=daily), full DAT compilation
+- **Optical systems (PS1, Saturn, etc.):** [Redump](http://redump.org/downloads/), per-platform DAT files
 
 Drop the DAT files into `dats/`. You can use a subset if you only care about specific platforms.
 
@@ -96,9 +96,9 @@ chmod +x igir-romm-cleanup.sh
 
 Output:
 
-- `roms-verified/{platform-slug}/{Proper Game Name}.rom`: identified ROMs in RomM layout.
-- `roms-unverified/`: whatever Igir didn't identify, still available for manual review.
-- `report.csv` (or similar): what matched, what didn't.
+- `roms-verified/{platform-slug}/{Proper Game Name}.rom`: identified ROMs in RomM layout
+- `roms-unverified/`: whatever Igir didn't identify, still available for manual review
+- `report.csv` (or similar): what matched, what didn't
 
 ## Manually migrate leftovers
 
@@ -168,6 +168,6 @@ Run a scan from RomM. Everything should match cleanly against providers.
 
 ## See also
 
-- [Igir docs](https://igir.io/): the upstream reference.
-- [Folder Structure](../getting-started/folder-structure.md): what RomM expects on-disk.
-- [Metadata Providers](../administration/metadata-providers.md): how RomM matches after Igir's done its work.
+- [Igir docs](https://igir.io/): the upstream reference
+- [Folder Structure](../getting-started/folder-structure.md): what RomM expects on-disk
+- [Metadata Providers](../administration/metadata-providers.md): how RomM matches after Igir's done its work

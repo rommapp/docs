@@ -13,14 +13,14 @@ RomM expects your library to be organised in one of two layouts. It tries **Stru
 
 Both layouts separate ROMs from BIOS files. They differ on whether the split lives at the top of the tree or inside each platform.
 
-- **Structure A (recommended)**: one top-level `roms/`, one top-level `bios/`, platforms nested inside each.
+- **Structure A (recommended)**: one top-level `roms/`, one top-level `bios/`, platforms nested inside each
 
     ```text
     /roms/{platform}/
     /bios/{platform}/
     ```
 
-- **Structure B (fallback)**: one folder per platform at the top, `roms/` and `bios/` inside each.
+- **Structure B (fallback)**: one folder per platform at the top, `roms/` and `bios/` inside each
 
     ```text
     /{platform}/roms/
@@ -163,8 +163,8 @@ The on-disk layout is only half the story. Per-library exclusions, custom platfo
 Filenames are parsed for region, language, revision, and arbitrary tags. Both `[]` and `()` delimiters work.
 
 - **Region / language**: both ISO-like codes and full names. Add a custom region or language by prefixing with `reg` / `reg-` (e.g. `reg MyOwnLang` or `reg-MyOwnLang`).
-- **Revision**: prefix with `rev` / `rev-`. Example: `rev v1`, `rev-1`.
-- **Arbitrary tags**: anything else in brackets is imported verbatim. Example: `tetris [1.0001](HACK)[!].gba`.
+- **Revision**: prefix with `rev` / `rev-`. Example: `rev v1`, `rev-1`
+- **Arbitrary tags**: anything else in brackets is imported verbatim. Example: `tetris [1.0001](HACK)[!].gba`
 
 RomM also honours inline tags like `(igdb-1234)` in filenames to force a match to a specific provider entry, covered in [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames).
 

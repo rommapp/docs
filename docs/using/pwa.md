@@ -11,9 +11,9 @@ New in 5.0.
 
 ## Why install?
 
-- **Looks and feels native**: icon on your home screen, fullscreen by default.
+- **Looks and feels native**: icon on your home screen, fullscreen by default
 - **Faster startup**: the service worker caches the shell.
-- **Mobile-friendly**: no browser address bar eating vertical space.
+- **Mobile-friendly**: no browser address bar eating vertical space
 - **Offline-ish**: you can open the app without a network, though anything that actually fetches data still needs the server.
 
 ## Install on Android
@@ -43,7 +43,7 @@ The icon appears on your home screen. Launching opens RomM in a standalone Safar
 
 iOS limitations:
 
-- No push notifications.
+- No push notifications
 - Service worker caching is more aggressive / unpredictable than on Android.
 - The browser UI is fully gone, leaving only gesture-based navigation.
 
@@ -75,7 +75,7 @@ Same standalone window treatment as Chrome.
 
 - **Android**: long-press the icon → **Uninstall** (or **Remove from Home screen**).
 - **iOS**: long-press → **Remove App**.
-- **Desktop**: inside the installed PWA window → three-dot menu → **Uninstall RomM**.
+- **Desktop**: inside the installed PWA window → three-dot menu → **Uninstall RomM**
 
 Uninstalling just removes the shortcut and cached shell. Nothing server-side is touched.
 
@@ -101,7 +101,7 @@ If a stale shell is causing issues (e.g. seeing old UI after an upgrade), force-
 PWA + [Console Mode](console-mode.md) is a powerful combo:
 
 - Install the PWA on a TV-attached Android box, then set default view to `/console`.
-- Launching the app goes straight to a gamepad-friendly library. Feels like a console.
+- Launching the app goes straight to a gamepad-friendly library. Feels like a console
 
 ## Troubleshooting
 

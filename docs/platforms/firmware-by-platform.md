@@ -18,7 +18,7 @@ This page lists the firmware RomM's EmulatorJS cores need for each platform. For
 | **PlayStation (PSX)**            | `ps`               | `scph1001.bin` (US), `scph5501.bin` (US), `scph5502.bin` (EU), `scph7502.bin` (JP) | At least one region BIOS required.                                      |
 | **Saturn**                       | `saturn`           | `saturn_bios.bin`, optional `mpr-17933.bin` (EU)                                   | Bundle both in a zip.                                                   |
 | **Sega CD / Mega CD**            | `segacd`           | `bios_CD_U.bin` (US), `bios_CD_E.bin` (EU), `bios_CD_J.bin` (JP)                   | Region depends on your games.                                           |
-| **Game Boy Advance**             | `gba`              | `gba_bios.bin`                                                                     | Optional. Games run without it but accurate emulation needs it.        |
+| **Game Boy Advance**             | `gba`              | `gba_bios.bin`                                                                     | Optional. Games run without it but accurate emulation needs it.         |
 | **Nintendo DS**                  | `nds`              | `bios7.bin`, `bios9.bin`, `firmware.bin`                                           | All three are needed.                                                   |
 | **Atari Lynx**                   | `lynx`             | `lynxboot.img`                                                                     |                                                                         |
 | **Neo Geo Pocket / Color**       | `ngp` / `ngpc`     | `neopop.rom`                                                                       | Bundle as zip.                                                          |
@@ -64,7 +64,7 @@ If you're not sure what name a core expects, check the [upstream EmulatorJS syst
 
 Your options (jurisdiction-dependent):
 
-- **Dump from real hardware you own.** The cleanest answer.
+- **Dump from real hardware you own.** The cleanest answer
 - **Community archives.** Not linked here. The RomM project doesn't host these and doesn't recommend specific sources.
 - **Official emulator bundles.** Some modern emulators ship with (or include a button to download) BIOS files. If you bought one, it's yours to use.
 
@@ -81,7 +81,7 @@ Known-good hashes for common BIOS files are documented on [No-Intro](https://dat
 
 ## See also
 
-- [Firmware Management](../administration/firmware-management.md): admin-side upload and lifecycle.
-- [Supported Platforms](supported-platforms.md): catalogue with firmware-required flag.
-- [In-Browser Play Troubleshooting → "Firmware required"](../troubleshooting/in-browser-play.md#firmware-required): diagnostic.
-- [EmulatorJS systems reference](https://emulatorjs.org/docs/systems/): upstream firmware requirements per core.
+- [Firmware Management](../administration/firmware-management.md): admin-side upload and lifecycle
+- [Supported Platforms](supported-platforms.md): catalogue with firmware-required flag
+- [In-Browser Play Troubleshooting → "Firmware required"](../troubleshooting/in-browser-play.md#firmware-required): diagnostic
+- [EmulatorJS systems reference](https://emulatorjs.org/docs/systems/): upstream firmware requirements per core

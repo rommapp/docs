@@ -21,7 +21,7 @@ Yes! Licensed under [AGPL-3.0](license.md), the core will always be free. Other 
 
 ## How does it compare to [X other manager]?
 
-RomM emphasises self-hosted + multi-user + in-browser-play + the companion-app ecosystem. If those matter, try RomM; if you just want a local Windows app that scans a folder, tools like LaunchBox may fit better.
+RomM emphasises self-hosted + multi-user + in-browser-play + the companion-app ecosystem. Try RomM if those matter, but if you just want a local Windows app that scans a folder, tools like LaunchBox may fit better.
 
 ## Do I need metadata API keys?
 
@@ -51,8 +51,8 @@ Not supported:
 
 ## How much RAM / CPU does it need?
 
-- **Minimum** (small library, 1 user): 512 MB RAM, any modest CPU.
-- **Comfortable** (thousands of ROMs, a few users, occasional scans): 2 GB RAM, 2 cores.
+- **Minimum** (small library, 1 user): 512 MB RAM, any modest CPU
+- **Comfortable** (thousands of ROMs, a few users, occasional scans): 2 GB RAM, 2 cores
 
 Heaviest CPU usage is during scans, as hashing and network-bound metadata calls may cause spikes.
 
@@ -81,7 +81,7 @@ Full troubleshooting steps can be found in [Scanning Troubleshooting](../trouble
 
 ## My scan finds platforms but no games inside them.
 
-This is almost always a mount-depth issue. RomM expects the *parent* of your `roms/` folder mounted to `/romm/library`, not the `roms/` folder itself. If your files live at `/opt/romm/library/roms/gbc/game.gbc`, mount `/opt/romm/library` to `/romm/library`, then re-scan.
+This is almost always a mount-depth issue. RomM expects the _parent_ of your `roms/` folder mounted to `/romm/library`, not the `roms/` folder itself. If your files live at `/opt/romm/library/roms/gbc/game.gbc`, mount `/opt/romm/library` to `/romm/library`, then re-scan.
 
 See [Folder Structure](../getting-started/folder-structure.md) and [Scanning Troubleshooting](../troubleshooting/scanning.md) for the full layout and common mount mistakes.
 
@@ -138,9 +138,9 @@ Absolutely, just set `KIOSK_MODE=true` in your environment variables and anonymo
 
 You need internet for:
 
-- First-time scan with metadata providers (they're online APIs).
-- Pulling the Docker image on install or upgrade.
-- OIDC login (if you use a cloud IdP).
+- First-time scan with metadata providers (they're online APIs)
+- Pulling the Docker image on install or upgrade
+- OIDC login (if you use a cloud IdP)
 
 After the initial setup, browsing and playing can work offline. In-browser play downloads the emulator bundle on first launch, then caches it.
 

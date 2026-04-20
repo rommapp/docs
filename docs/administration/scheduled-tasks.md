@@ -7,10 +7,10 @@ description: What RomM runs in the background, how to reschedule it, and how to 
 
 RomM runs background work through **RQ** (Redis Queue). Tasks fall into four categories:
 
-- **Scheduled**: cron-driven, run on their own.
-- **Watcher**: triggered by filesystem events.
-- **Manual**: admin-triggered from the UI or API.
-- **Enqueued**: side effects of user actions (a scan started from the Scan page, a metadata refresh on a ROM edit). Not listed here.
+- **Scheduled**: cron-driven, run on their own
+- **Watcher**: triggered by filesystem events
+- **Manual**: admin-triggered from the UI or API
+- **Enqueued**: side effects of user actions (a scan started from the Scan page, a metadata refresh on a ROM edit). Not listed here
 
 For the lookup-only reference (every task, its cron default, its env var), see [Scheduled Tasks Reference](../reference/scheduled-tasks.md). This page is the narrative: what each one is for, when to worry, and how to tune.
 
@@ -28,10 +28,10 @@ minute  hour  day-of-month  month  day-of-week
 
 Examples:
 
-- `0 3 * * *`: 3 AM daily.
-- `0 */6 * * *`: every 6 hours, on the hour.
-- `*/30 * * * *`: every 30 minutes.
-- `0 2 * * 0`: 2 AM every Sunday.
+- `0 3 * * *`: 3 AM daily
+- `0 */6 * * *`: every 6 hours, on the hour
+- `*/30 * * * *`: every 30 minutes
+- `0 2 * * 0`: 2 AM every Sunday
 
 Set the env var, restart the container. Alembic runs on every start, and the scheduler picks up the new schedule the moment RomM comes back up.
 
@@ -52,15 +52,15 @@ Three paths:
 
 **Administration → Tasks** shows every task with a Run button. Admins (anyone with `tasks.run` scope) can trigger:
 
-- Folder Scan (launches the Scan page with the task pre-started).
-- Cleanup Missing ROMs.
-- Cleanup Orphaned Resources.
-- LaunchBox Metadata Sync.
-- Switch titleDB Fetch.
-- Image Conversion.
-- RetroAchievements Sync.
-- Netplay Cleanup.
-- Push-Pull Device Sync.
+- Folder Scan (launches the Scan page with the task pre-started)
+- Cleanup Missing ROMs
+- Cleanup Orphaned Resources
+- LaunchBox Metadata Sync
+- Switch titleDB Fetch
+- Image Conversion
+- RetroAchievements Sync
+- Netplay Cleanup
+- Push-Pull Device Sync
 
 ### From the API
 

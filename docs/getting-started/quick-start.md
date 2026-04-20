@@ -11,8 +11,8 @@ This guide gets a RomM instance up and running with the default stack (MariaDB +
 
 You'll need:
 
-- [Docker](https://docs.docker.com/get-docker/) and Docker Compose installed on the host.
-- Your ROM files organised in the expected [folder structure](folder-structure.md).
+- [Docker](https://docs.docker.com/get-docker/) and Docker Compose installed on the host
+- Your ROM files organised in the expected [folder structure](folder-structure.md)
 - API credentials for at least one [metadata provider](../administration/metadata-providers.md). Hasheous + IGDB + SteamGridDB + Retroachievements is the recommended pairing. RomM will run without any provider configured but matching quality will suffer.
 
 <!-- prettier-ignore -->

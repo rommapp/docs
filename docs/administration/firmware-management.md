@@ -9,8 +9,8 @@ Many emulated platforms require BIOS or firmware to boot: PlayStation (SCPH1001)
 
 Firmware is **not** ROM. Keep the two separate:
 
-- `/romm/library/roms/`: games you own dumps of.
-- `/romm/library/bios/` (Structure A) or `/romm/library/{platform}/bios/` (Structure B): system firmware.
+- `/romm/library/roms/`: games you own dumps of
+- `/romm/library/bios/` (Structure A) or `/romm/library/{platform}/bios/` (Structure B): system firmware
 
 Legality varies by jurisdiction. RomM does not ship firmware and the project cannot help you obtain it.
 
@@ -67,10 +67,10 @@ File naming matters: emulators look for specific filenames. Double-check against
 
 Firmware has a standard REST surface under `/api/firmware/`:
 
-- `GET /api/firmware`: list (optional `?platform_id=` filter).
-- `POST /api/firmware`: upload.
-- `GET /api/firmware/{id}/content/{filename}`: download.
-- `POST /api/firmware/delete`: bulk delete.
+- `GET /api/firmware`: list (optional `?platform_id=` filter)
+- `POST /api/firmware`: upload
+- `GET /api/firmware/{id}/content/{filename}`: download
+- `POST /api/firmware/delete`: bulk delete
 
 Requires `firmware.read` / `firmware.write` scopes. See the [API Reference](../developers/api-reference.md).
 

@@ -13,7 +13,7 @@ RomM's current stable is [`5.0.0`](changelog.md). Read [Upgrading to 5.0](upgrad
 
 RomM follows **SemVer** for breaking changes and **CalVer-ish** for cadence: major versions are planned milestones, not scheduled.
 
-- **Patch releases** (`5.0.1`, `5.0.2`): bug fixes only. Safe to pull automatically. No migration.
+- **Patch releases** (`5.0.1`, `5.0.2`): bug fixes only. Safe to pull automatically. No migration
 - **Minor releases** (`5.1.0`, `5.2.0`): additive features. Schema may migrate automatically via Alembic but no action required beyond reading the release notes.
 - **Major releases** (`5.0.0`, `6.0.0`): breaking changes. Read the migration guide before upgrading.
 
@@ -34,7 +34,7 @@ Registries: Docker Hub (`rommapp/romm`) and GitHub Container Registry (`ghcr.io/
 The docs site is versioned via [mike](https://github.com/jimporter/mike). Every major RomM release gets its own docs tree, accessible from the version switcher top-left:
 
 - `docs.romm.app/latest/` → 5.x (this is what you're reading).
-- `docs.romm.app/4.8/` → frozen 4.x docs.
+- `docs.romm.app/4.8/` → frozen 4.x docs
 - Older majors may remain accessible for a while. See the support window below.
 
 ## Support window
@@ -52,14 +52,14 @@ Older frozen docs are retained for 12 months after the major's support window en
 
 ## Migration guides
 
-- **[Upgrading to 5.0](upgrading-to-5.0.md):** 4.x → 5.0. Required reading.
-- **[Upgrading to 3.0](upgrading-to-3.0.md):** 2.x → 3.0. SQLite drop, auth requirement, Redis built-in, config folder mount. Historical but kept for 2.x migrators.
+- **[Upgrading to 5.0](upgrading-to-5.0.md):** 4.x → 5.0. Required reading
+- **[Upgrading to 3.0](upgrading-to-3.0.md):** 2.x → 3.0. SQLite drop, auth requirement, Redis built-in, config folder mount. Historical but kept for 2.x migrators
 
 ## Where releases are announced
 
-- [GitHub Releases](https://github.com/rommapp/romm/releases): authoritative changelog, tag-by-tag.
-- [Discord](https://discord.gg/romm) `#announcements`: release pings.
-- [Changelog](changelog.md): human-readable per-release summary.
+- [GitHub Releases](https://github.com/rommapp/romm/releases): authoritative changelog, tag-by-tag
+- [Discord](https://discord.gg/romm) `#announcements`: release pings
+- [Changelog](changelog.md): human-readable per-release summary
 
 ## Upgrade protocol
 

@@ -67,19 +67,19 @@ If you want your session back, the host recreates the room and other players rej
 
 Netplay switches EmulatorJS to nightly-CDN assets. Sometimes the nightly is temporarily broken.
 
-- **Temporary**: usually self-heals within a day.
+- **Temporary**: usually self-heals within a day
 - **Workaround**: operator can disable Netplay (`emulatorjs.netplay.enabled: false`) to go back to stable local assets.
 
 See [In-Browser Play → Netplay](../using/netplay.md#known-caveat-nightly-cdn).
 
 ## Still stuck
 
-- `docker logs romm | grep -i netplay`: server-side log.
-- Browser devtools Console: client-side log.
+- `docker logs romm | grep -i netplay`: server-side log
+- Browser devtools Console: client-side log
 - `chrome://webrtc-internals`: live ICE / WebRTC stats on Chrome. Shows exactly where ICE is failing.
-- [Discord](https://discord.gg/romm) `#help` with both sides' error text.
+- [Discord](https://discord.gg/romm) `#help` with both sides' error text
 
 ## See also
 
-- [Using → Netplay](../using/netplay.md): how Netplay works and how to configure it.
-- [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay-new-in-50): full config schema.
+- [Using → Netplay](../using/netplay.md): how Netplay works and how to configure it
+- [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay-new-in-50): full config schema

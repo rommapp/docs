@@ -11,8 +11,8 @@ New in RomM 5.0. Earlier versions didn't have fpkgi feeds.
 
 ## Prerequisites
 
-- **PS4 or PS5** with fpkgi installed (requires CFW / jailbreak, and setup is out of scope here).
-- **RomM reachable from the console over Wi-Fi.** LAN simplest.
+- **PS4 or PS5** with fpkgi installed (requires CFW / jailbreak, and setup is out of scope here)
+- **RomM reachable from the console over Wi-Fi.** LAN simplest
 - Games stored as `.pkg` files. fpkgi, like pkgj, only handles the Sony installer format.
 
 ## Feed URL
@@ -23,8 +23,8 @@ New in RomM 5.0. Earlier versions didn't have fpkgi feeds.
 
 Where `{platform_slug}` is:
 
-- `ps4` for PlayStation 4 content.
-- `ps5` for PlayStation 5 content.
+- `ps4` for PlayStation 4 content
+- `ps5` for PlayStation 5 content
 
 Example:
 
@@ -59,10 +59,10 @@ PS4 `.pkg` files specifically, not `.iso`, not compressed. RomM filters to `.pkg
 
 - **Feed is empty.** No `.pkg` files on the `ps4` / `ps5` platform. Check your library.
 - **Downloads fail with 401.** Auth config mismatch. See Authentication section above.
-- **Downloads succeed but install fails.** `.pkg` is for a different firmware version. Not a RomM problem.
+- **Downloads succeed but install fails.** `.pkg` is for a different firmware version. Not a RomM problem
 
 ## See also
 
-- [Feeds reference](../reference/feeds.md): all feed endpoints.
-- [pkgj](pkgj.md): PS Vita / PSP equivalent.
-- [fpkgi upstream](https://github.com/CyberYoshi64/fpkgi): installer homebrew.
+- [Feeds reference](../reference/feeds.md): all feed endpoints
+- [pkgj](pkgj.md): PS Vita / PSP equivalent
+- [fpkgi upstream](https://github.com/CyberYoshi64/fpkgi): installer homebrew

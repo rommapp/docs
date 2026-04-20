@@ -39,7 +39,7 @@ The same security caveats apply. See [Tinfoil prerequisites](tinfoil.md#prerequi
 Why would you use WebRcade over RomM's built-in player?
 
 - **Preset/curated lists.** WebRcade maintains a catalogue of vetted content that's searchable inside the app.
-- **Different UI.** More console-like, less library-like.
+- **Different UI.** More console-like, less library-like
 - **Per-game launch from WebRcade feeds.** You can mix-and-match RomM content with WebRcade's own catalogue in one frontend.
 
 When to stay with RomM's player:
@@ -58,6 +58,6 @@ Totally reasonable to run both: WebRcade as a launcher UI pointed at RomM for th
 
 ## See also
 
-- [Feeds reference](../reference/feeds.md): all feed endpoints.
-- [In-Browser Play](../using/in-browser-play.md): RomM's built-in player.
-- [WebRcade](https://www.webrcade.com/): upstream frontend.
+- [Feeds reference](../reference/feeds.md): all feed endpoints
+- [In-Browser Play](../using/in-browser-play.md): RomM's built-in player
+- [WebRcade](https://www.webrcade.com/): upstream frontend

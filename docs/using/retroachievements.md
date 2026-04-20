@@ -31,11 +31,11 @@ From this point on, RomM auto-syncs every user's progression via the nightly Ret
 
 Per-game breakdown:
 
-- Total achievements authored.
-- How many you've unlocked.
-- Points earned / total points available.
-- Hardcore vs softcore totals (if applicable).
-- List of specific achievements with icons and descriptions.
+- Total achievements authored
+- How many you've unlocked
+- Points earned / total points available
+- Hardcore vs softcore totals (if applicable)
+- List of specific achievements with icons and descriptions
 
 ### Game cards
 
@@ -55,7 +55,7 @@ A small badge appears on games where RA achievements exist, regardless of whethe
 RetroAchievements distinguishes two play modes:
 
 - **Softcore**: save states allowed. Achievements still count.
-- **Hardcore**: no save states. More points per achievement, flagged separately.
+- **Hardcore**: no save states. More points per achievement, flagged separately
 
 RomM doesn't enforce hardcore. You toggle it per-game in RetroAchievements-capable cores. Loading a save state during a hardcore run will silently drop hardcore crediting on the RA server side. You'll still see the achievement but marked as softcore.
 

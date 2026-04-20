@@ -76,9 +76,9 @@ RomM stands on an enormous amount of open-source work. In rough order of "how vi
 
 ### Docs stack
 
-- [MkDocs](https://www.mkdocs.org/) + [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/): what you're reading.
-- [mike](https://github.com/jimporter/mike): docs versioning.
-- [asciinema](https://asciinema.org/): terminal recordings.
+- [MkDocs](https://www.mkdocs.org/) + [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/): what you're reading
+- [mike](https://github.com/jimporter/mike): docs versioning
+- [asciinema](https://asciinema.org/): terminal recordings
 
 ## Missing?
 
@@ -86,5 +86,5 @@ Open a PR against this page. Credit is cheap, and we want to give it where it's 
 
 ## See also
 
-- [License](license.md): the legal bit.
-- [Contributing](../developers/contributing.md): if you want to be on this list.
+- [License](license.md): the legal bit
+- [Contributing](../developers/contributing.md): if you want to be on this list

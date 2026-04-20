@@ -21,8 +21,8 @@ DOS games run in RomM via [`dosbox-pure`](https://github.com/schellingb/dosbox-p
 
 DOS games come in three flavours, each needing a different approach:
 
-- **Homebrew:** indie / modern DOS games, just an `.exe` that usually Just Works once mounted.
-- **Shareware demos:** what most "free DOS games" sites distribute, same as homebrew with all files in one folder.
+- **Homebrew:** indie / modern DOS games, just an `.exe` that usually Just Works once mounted
+- **Shareware demos:** what most "free DOS games" sites distribute, same as homebrew with all files in one folder
 - **Retail:** need the original CD mounted alongside the installed game files, which means more work and every game is different.
 
 ## The manual way (commandline)
@@ -157,9 +157,9 @@ Retail games need the game CD image mounted alongside the install directory.
 
     Key lines:
 
-    - `Mount C ".."`: game files as `C:`.
-    - `imgmount d DUNGEO~8.CUE -t iso -fs iso`: CD image as `D:`.
-    - `cd ..`: back to `C:\` where `KEEPER.exe` lives.
+    - `Mount C ".."`: game files as `C:`
+    - `imgmount d DUNGEO~8.CUE -t iso -fs iso`: CD image as `D:`
+    - `cd ..`: back to `C:\` where `KEEPER.exe` lives
     - `KEEPER.exe`: run.
 
     (File names in DOS are 8.3: `DUNGEON8.CUE` becomes `DUNGEO~8.CUE`.)
@@ -202,6 +202,6 @@ Dosemu (Linux native) and Exodos (Windows frontend) are separate DOS tools, not 
 
 ## See also
 
-- [In-Browser Play](../using/in-browser-play.md): general EmulatorJS behaviour.
-- [EmulatorJS Configuration](emulatorjs-config.md): operator-level tuning, including `disable_batch_bootup` for DOS-specific issues.
-- [dosbox-pure docs](https://github.com/schellingb/dosbox-pure): upstream reference for every config option.
+- [In-Browser Play](../using/in-browser-play.md): general EmulatorJS behaviour
+- [EmulatorJS Configuration](emulatorjs-config.md): operator-level tuning, including `disable_batch_bootup` for DOS-specific issues
+- [dosbox-pure docs](https://github.com/schellingb/dosbox-pure): upstream reference for every config option

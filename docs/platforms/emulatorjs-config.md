@@ -31,7 +31,7 @@ Logs every available option for each core to the browser console when a game lau
 
 ```yaml
 emulatorjs:
-    cache_limit: 52428800 # 50 MB per ROM; null = unlimited
+    cache_limit: 52428800 # 50 MB per ROM
 ```
 
 Each ROM's cache (core files, BIOS, settings) is capped. `null` removes the cap: useful for large PSP / Saturn libraries on hosts with plenty of disk.
@@ -45,7 +45,7 @@ emulatorjs:
 ```
 
 - **`disable_batch_bootup`**: skips the `autorun.bat` step when `dosbox-pure` loads. Try this if DOS games hang on boot. See [MS-DOS](ms-dos.md).
-- **`disable_auto_unload`**: keeps the emulator running when the user navigates away. Default off (browsers unload the emulator on page change).
+- **`disable_auto_unload`**: keeps the emulator running when the user navigates away. Default off (browsers unload the emulator on page change)
 
 ## Netplay
 
@@ -122,11 +122,11 @@ emulatorjs:
 
 The structure:
 
-- Top level = core name.
-- Second level = player number (`0`, `1`, `2`, `3`).
+- Top level = core name
+- Second level = player number (`0`, `1`, `2`, `3`)
 - Third level = button slot (core-specific, and 0 is usually the first face button).
-- `value` = keyboard key.
-- `value2` = gamepad button.
+- `value` = keyboard key
+- `value2` = gamepad button
 
 Slot indexes and what they map to vary per core. See [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/control-mapping/).
 
@@ -165,8 +165,8 @@ Per-user overrides take precedence. A config.yml setting is the fallback.
 
 For frontend parity:
 
-- [`config.batocera-retrobat.yml`](https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml): Batocera / RetroBat control + setting layouts.
-- [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml): ES-DE layout.
+- [`config.batocera-retrobat.yml`](https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml): Batocera / RetroBat control + setting layouts
+- [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml): ES-DE layout
 
 ## Troubleshooting
 
@@ -176,6 +176,6 @@ For frontend parity:
 
 ## See also
 
-- [In-Browser Play](../using/in-browser-play.md): end-user-facing.
-- [Configuration File → `emulatorjs`](../reference/configuration-file.md#emulatorjs): full schema.
-- [EmulatorJS docs](https://emulatorjs.org/docs/): upstream reference.
+- [In-Browser Play](../using/in-browser-play.md): end-user-facing
+- [Configuration File → `emulatorjs`](../reference/configuration-file.md#emulatorjs): full schema
+- [EmulatorJS docs](https://emulatorjs.org/docs/): upstream reference

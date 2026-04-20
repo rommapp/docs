@@ -36,15 +36,15 @@ If you're an OIDC user and want RomM to show your `preferred_username` from the 
 
 Long-lived API tokens for companion apps, scripts, and integrations. Each token is scoped to a subset of your user's scopes, and optionally expires.
 
-See the full spec in [Client API Tokens](../ecosystem/client-api-tokens.md); this section is just the "how I create one from the UI" version.
+See the full spec in [Client API Tokens](../ecosystem/client-api-tokens.md), as this section is just the "how I create one from the UI" version.
 
 ### Creating a token
 
 1. **Profile → Client API Tokens → + New Token**.
 2. Pick:
-    - **Name**: descriptive (e.g. "Grout on my RG35XX").
+    - **Name**: descriptive (e.g. "Grout on my RG35XX")
     - **Scopes**: which permissions to include. Default is read-only, so tick write scopes deliberately.
-    - **Expiry**: optional, blank = never expires.
+    - **Expiry**: optional, blank = never expires
 3. **Create**.
 4. The token appears **once**, so copy it immediately because you can't retrieve it later.
 
@@ -140,12 +140,12 @@ If you signed in via OIDC:
 
 Lives on a separate page (**Profile → User Interface**), not here. Covers:
 
-- [Language](languages.md): 19 locales.
-- Theme (Dark / Light / Auto).
-- Home dashboard ribbons.
-- Collection types (toggle [virtual collections](virtual-collections.md) dimensions).
-- Game card layout (cover style, 3D tilt, density).
-- Full-screen on launch.
+- [Language](languages.md): 19 locales
+- Theme (Dark / Light / Auto)
+- Home dashboard ribbons
+- Collection types (toggle [virtual collections](virtual-collections.md) dimensions)
+- Game card layout (cover style, 3D tilt, density)
+- Full-screen on launch
 
 See those pages for detail.
 

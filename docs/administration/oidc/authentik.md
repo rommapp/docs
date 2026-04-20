@@ -68,7 +68,7 @@ Click **Create**.
 
 - **Name**: `RomM`
 - **Slug**: `romm`
-- **Provider**: the `RomM OIDC Provider` you just made.
+- **Provider**: the `RomM OIDC Provider` you just made
 
 ![New application](../../resources/authentik/6-new-application.png)
 

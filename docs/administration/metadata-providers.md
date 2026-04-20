@@ -13,7 +13,7 @@ Configure providers either via env vars (below) or interactively in **Administra
 
 ### ⭐ The Chef's Choice: Hasheous + IGDB + SteamGridDB + RetroAchievements
 
-- Covers 135+ popular systems.
+- Covers 135+ popular systems
 - **Hasheous** does hash-based matching and proxies IGDB data (titles, descriptions, artwork).
 - **IGDB** adds related games, screenshots, and broader metadata.
 - **SteamGridDB** provides high-quality alternative cover art (opt-in per game via the "search cover" button).
@@ -24,7 +24,7 @@ Configure providers either via env vars (below) or interactively in **Administra
 
 ### ⭐ The French Connection: ScreenScraper + RetroAchievements
 
-- Covers 125+ popular systems.
+- Covers 125+ popular systems
 - **ScreenScraper** provides titles, descriptions, cover art (2D + optional 3D + CD), screenshots, manuals. Also supports hash-based matching since RomM 4.4.
 - **RetroAchievements** overlays achievement progress.
 - **Pick this if you want to avoid anything Twitch/Amazon-owned.**
@@ -33,14 +33,14 @@ Configure providers either via env vars (below) or interactively in **Administra
 
 ### The Twitch Fanboy: IGDB + PlayMatch
 
-- Covers the 200+ systems IGDB knows about.
-- IGDB-only metadata with PlayMatch's community-hosted hash-matching service bolted on for unmatched files.
+- Covers the 200+ systems IGDB knows about
+- IGDB-only metadata with PlayMatch's community-hosted hash-matching service bolted on for unmatched files
 - **Use if you specifically want a single-provider solution backed by IGDB.**
 
 ### The Quick Starter: Hasheous only
 
-- Hash-based matching, fast scans, no API keys required.
-- Proxies titles/descriptions/artwork from IGDB.
+- Hash-based matching, fast scans, no API keys required
+- Proxies titles/descriptions/artwork from IGDB
 - **For users who want to avoid the IGDB/Twitch registration dance.**
 
 ## Setup instructions

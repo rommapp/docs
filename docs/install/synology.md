@@ -16,9 +16,9 @@ Follow those if they match your setup. The walkthrough below is the fallback for
 
 ## Prerequisites
 
-- A Synology NAS with Container Manager (DSM 7.2+) or the legacy Docker package.
-- SSH or a task that lets you run shell commands on the NAS.
-- Basic comfort with Docker Compose.
+- A Synology NAS with Container Manager (DSM 7.2+) or the legacy Docker package
+- SSH or a task that lets you run shell commands on the NAS
+- Basic comfort with Docker Compose
 
 ## 1. Create folders
 

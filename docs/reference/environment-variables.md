@@ -37,9 +37,9 @@ services:
 
 Don't embed `ROMM_AUTH_SECRET_KEY`, DB passwords, or provider API keys directly in a committed compose file. Use:
 
-- A `.env` that's `.gitignore`d.
-- Docker secrets (`ROMM_AUTH_SECRET_KEY_FILE` reads from a [mounted file](https://docs.docker.com/compose/how-to/use-secrets/)).
-- Your orchestrator's secret store (K8s Secrets, HashiCorp Vault, AWS Secrets Manager).
+- A `.env` that's `.gitignore`d
+- Docker secrets (`ROMM_AUTH_SECRET_KEY_FILE` reads from a [mounted file](https://docs.docker.com/compose/how-to/use-secrets/))
+- Your orchestrator's secret store (K8s Secrets, HashiCorp Vault, AWS Secrets Manager)
 
 ## Essential variables
 
@@ -65,7 +65,7 @@ For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../a
 
 ## See also
 
-- [Configuration File](configuration-file.md): everything that lives in `config.yml` rather than env vars.
-- [Scheduled Tasks](scheduled-tasks.md): cron-controlling env vars in context.
-- [Authentication](../administration/authentication.md): auth-related env vars in narrative form.
-- [Metadata Providers](../administration/metadata-providers.md): per-provider credential env vars.
+- [Configuration File](configuration-file.md): everything that lives in `config.yml` rather than env vars
+- [Scheduled Tasks](scheduled-tasks.md): cron-controlling env vars in context
+- [Authentication](../administration/authentication.md): auth-related env vars in narrative form
+- [Metadata Providers](../administration/metadata-providers.md): per-provider credential env vars

@@ -8,7 +8,7 @@ description: Play games directly in your browser with EmulatorJS and Ruffle: con
 RomM ships with two in-browser emulators:
 
 - **EmulatorJS**: RetroArch cores compiled to WebAssembly. Covers NES, SNES, Genesis, N64, PSX, PSP, Saturn, and 30+ other platforms.
-- **Ruffle**: Flash / Shockwave emulator for browser games.
+- **Ruffle**: Flash / Shockwave emulator for browser games
 
 Hit the **Play** button on any supported game, and the emulator loads full-screen in a new page. Same UI on desktop, mobile, and Console Mode.
 
@@ -85,7 +85,7 @@ RomM integrates with EmulatorJS so save-files and save-states are loaded and sav
 
 - **Before launch**: if multiple saves exist, RomM asks which to load.
 - **During play**: any in-emulator save (SRAM flush) or state creation is written straight back to RomM's storage.
-- **After quit**: everything is already persisted. No manual download.
+- **After quit**: everything is already persisted. No manual download
 
 Full details: [Saves & States](saves-and-states.md).
 
@@ -99,8 +99,8 @@ During play: in-game Menu → **Screenshot**. Saved to your personal screenshot 
 
 ### Fullscreen
 
-- **F11**: browser fullscreen.
-- In-game Menu → **Fullscreen** button: same thing.
+- **F11**: browser fullscreen
+- In-game Menu → **Fullscreen** button: same thing
 
 ### Multi-disc games
 
@@ -148,7 +148,7 @@ If you enable the [Flashpoint](../administration/metadata-providers.md#flashpoin
 
 ## Troubleshooting
 
-- **Game won't boot**: check firmware is uploaded for platforms that need it. `docker logs romm | grep -i emulator` for server-side hints.
+- **Game won't boot**: check firmware is uploaded for platforms that need it. `docker logs romm | grep -i emulator` for server-side hints
 - **Black screen, no audio**: core is incompatible with your browser. Try a different browser (Chrome / Firefox are most tested) or a different core via in-game Menu → **Core**.
 - **Controls do nothing**: browser needs focus. Click once on the emulator canvas. Some cores need a button press to enumerate gamepads.
 - **Netplay "failed to start game"**: see [Netplay troubleshooting](../troubleshooting/netplay.md).

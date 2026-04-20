@@ -68,9 +68,9 @@ Generated clients handle auth, request shaping, and response parsing. Drop in, i
 
 All three import OpenAPI directly:
 
-- **Postman:** File → Import → paste `openapi.json` URL.
-- **Insomnia:** Create → Import From → URL.
-- **Bruno:** Import Collection → OpenAPI.
+- **Postman:** File → Import → paste `openapi.json` URL
+- **Insomnia:** Create → Import From → URL
+- **Bruno:** Import Collection → OpenAPI
 
 Useful for manual API exploration during development.
 
@@ -78,9 +78,9 @@ Useful for manual API exploration during development.
 
 If you're building something that calls RomM, consider validating requests against the spec before sending. Schema-driven validation catches bugs early:
 
-- **Python:** [`openapi-core`](https://github.com/python-openapi/openapi-core).
-- **Node.js:** [`openapi-backend`](https://github.com/anttiviljami/openapi-backend) or `ajv`-based approaches.
-- **Go:** [`kin-openapi`](https://github.com/getkin/kin-openapi).
+- **Python:** [`openapi-core`](https://github.com/python-openapi/openapi-core)
+- **Node.js:** [`openapi-backend`](https://github.com/anttiviljami/openapi-backend) or `ajv`-based approaches
+- **Go:** [`kin-openapi`](https://github.com/getkin/kin-openapi)
 
 ## Spec quirks
 
@@ -96,6 +96,6 @@ Not currently in the spec. Event-driven integration is via [WebSockets](websocke
 
 ## See also
 
-- [API Reference](api-reference.md): the pre-rendered version of the spec for browsing.
-- [API Authentication](api-authentication.md): required auth for most endpoints.
-- [OpenAPI Initiative](https://www.openapis.org/): upstream specification.
+- [API Reference](api-reference.md): the pre-rendered version of the spec for browsing
+- [API Authentication](api-authentication.md): required auth for most endpoints
+- [OpenAPI Initiative](https://www.openapis.org/): upstream specification

@@ -13,22 +13,22 @@ RomM is a web app. Anything with a modern browser can use it: phones, tablets, h
 
 Install RomM as a [Progressive Web App](pwa.md): feels native, launches from the home screen, no app store. Recommended for most mobile users.
 
-- Good for: browsing, managing your library, downloading ROMs, in-browser play on devices with enough horsepower.
-- Limited by: no push notifications (yet), no OS-level file pickers for ROM uploads (use the web UI instead), Safari quirks on iOS.
+- Good for: browsing, managing your library, downloading ROMs, in-browser play on devices with enough horsepower
+- Limited by: no push notifications (yet), no OS-level file pickers for ROM uploads (use the web UI instead), Safari quirks on iOS
 
 ### Option B: a native app
 
 [Community-maintained mobile apps](../ecosystem/community-apps.md) exist:
 
-- **Argosy Launcher** (Android): official first-party. ROM syncing and launching.
-- **romm-ios-app** / **romm-mobile**: community iOS and Android clients.
+- **Argosy Launcher** (Android): official first-party. ROM syncing and launching
+- **romm-ios-app** / **romm-mobile**: community iOS and Android clients
 
 Native apps give you proper file pickers, OS notifications, and nicer integration with device-level emulators (RetroArch mobile, Delta on iOS, etc.).
 
 ### Browser choice
 
 - **Android**: Chrome, Firefox, or Samsung Internet. Chrome has best PWA support.
-- **iOS**: Safari (the only way to install as PWA on iOS).
+- **iOS**: Safari (the only way to install as PWA on iOS)
 
 ### Touch vs mouse
 
@@ -64,9 +64,9 @@ Handhelds running custom firmware (muOS, Batocera, Knulli, ArkOS, JELOS, ROCKNIX
 
 Recommended companions:
 
-- **[Grout](../ecosystem/grout.md)**: first-party. muOS and NextUI handhelds.
-- **[DeckRommSync](../ecosystem/community-apps.md)**: Steam Deck (SteamOS).
-- **[SwitchRomM](../ecosystem/community-apps.md)**: Nintendo Switch (homebrew).
+- **[Grout](../ecosystem/grout.md)**: first-party. muOS and NextUI handhelds
+- **[DeckRommSync](../ecosystem/community-apps.md)**: Steam Deck (SteamOS)
+- **[SwitchRomM](../ecosystem/community-apps.md)**: Nintendo Switch (homebrew)
 
 All of these use [Client API Tokens](../ecosystem/client-api-tokens.md) for auth and the [Device Sync Protocol](../ecosystem/device-sync-protocol.md) for the actual data transfer.
 
@@ -109,7 +109,7 @@ If you host RomM on a home server and want to reach it from cellular:
 
 ## See also
 
-- [Install as PWA](pwa.md).
-- [Console Mode](console-mode.md).
-- [Integrations & Ecosystem](../ecosystem/index.md): every companion app RomM supports.
-- [Community Apps](../ecosystem/community-apps.md): the full list with platform / status flags.
+- [Install as PWA](pwa.md)
+- [Console Mode](console-mode.md)
+- [Integrations & Ecosystem](../ecosystem/index.md): every companion app RomM supports
+- [Community Apps](../ecosystem/community-apps.md): the full list with platform / status flags

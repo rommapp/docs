@@ -34,9 +34,9 @@ Authorization: Bearer rmm_abcdef...
 
 From the RomM UI: **Profile → Client API Tokens → + New Token**.
 
-- **Name**: descriptive (e.g. "Grout on RG35XX").
+- **Name**: descriptive (e.g. "Grout on RG35XX")
 - **Scopes**: tick which scopes to include. Default: read-only. Think about it, and don't give every token `users.write`.
-- **Expiry**: optional, blank = never expires until revoked.
+- **Expiry**: optional, blank = never expires until revoked
 
 The token is shown **exactly once**. Copy it now. If you lose it, revoke and regenerate, because you can't get it back.
 
@@ -149,10 +149,10 @@ A token can only hold scopes the owning user _also_ holds. If the user is an Edi
 
 Useful narrow scope-sets:
 
-- **Library-only read**: `roms.read`, `platforms.read`, `collections.read`, `devices.read` (e.g. for a browse-only app).
+- **Library-only read**: `roms.read`, `platforms.read`, `collections.read`, `devices.read` (e.g. for a browse-only app)
 - **Read + sync saves**: add `assets.read`, `assets.write`, `me.read`, `me.write`, `devices.write`.
-- **Playnite / external launcher**: `roms.read`, `platforms.read`, `collections.read` (it only needs to browse and download).
-- **Grout / handheld companion**: library-read + assets read/write + device management.
+- **Playnite / external launcher**: `roms.read`, `platforms.read`, `collections.read` (it only needs to browse and download)
+- **Grout / handheld companion**: library-read + assets read/write + device management
 
 The UI's scope-selection step defaults to read-only. Only tick write scopes you actually need.
 
@@ -174,6 +174,6 @@ If the user is deleted, all their tokens are revoked immediately.
 
 ## See also
 
-- [Device Sync Protocol](device-sync-protocol.md): how the synced content flows after pairing.
-- [API Authentication](../developers/api-authentication.md): all RomM auth modes side-by-side.
-- [Users & Roles → scope matrix](../administration/users-and-roles.md#scope-matrix): the 19-scope taxonomy.
+- [Device Sync Protocol](device-sync-protocol.md): how the synced content flows after pairing
+- [API Authentication](../developers/api-authentication.md): all RomM auth modes side-by-side
+- [Users & Roles → scope matrix](../administration/users-and-roles.md#scope-matrix): the 19-scope taxonomy

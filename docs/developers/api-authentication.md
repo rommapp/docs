@@ -7,12 +7,12 @@ description: How to authenticate to the RomM REST API. Session cookies, Basic, O
 
 RomM's REST API accepts four authentication modes. Pick the one that matches your client:
 
-| Mode                 | Who it's for                                             | How the credential is carried                          |
-| -------------------- | -------------------------------------------------------- | ------------------------------------------------------ |
-| **Session cookie**   | Browser UI                                               | `Cookie: session=…` after `POST /api/auth/login`       |
-| **HTTP Basic**       | Quick scripts, curl one-liners                           | `Authorization: Basic <base64(user:pass)>`             |
-| **OAuth2 Bearer**    | Automation, CI, third-party apps                         | `Authorization: Bearer <jwt>`                          |
-| **Client API Token** | Companion apps (Argosy, Grout, Playnite, custom scripts) | `Authorization: Bearer rmm_<token>`                    |
+| Mode                 | Who it's for                                             | How the credential is carried                         |
+| -------------------- | -------------------------------------------------------- | ----------------------------------------------------- |
+| **Session cookie**   | Browser UI                                               | `Cookie: session=…` after `POST /api/auth/login`      |
+| **HTTP Basic**       | Quick scripts, curl one-liners                           | `Authorization: Basic <base64(user:pass)>`            |
+| **OAuth2 Bearer**    | Automation, CI, third-party apps                         | `Authorization: Bearer <jwt>`                         |
+| **Client API Token** | Companion apps (Argosy, Grout, Playnite, custom scripts) | `Authorization: Bearer rmm_<token>`                   |
 | **OIDC session**     | Users who sign in via SSO                                | Same as session cookie but issued after OIDC callback |
 
 All of them resolve to the same scope model. See the [scope matrix in Users & Roles](../administration/users-and-roles.md#scope-matrix). A request is allowed if the active identity holds all scopes the endpoint requires.
@@ -130,7 +130,7 @@ A token that holds `users.write` also implicitly grants lesser scopes like `user
 | HTTP               | Meaning                                                                 |
 | ------------------ | ----------------------------------------------------------------------- |
 | `401 Unauthorized` | No credential, expired credential, bad credential.                      |
-| `403 Forbidden`    | Authenticated but the identity lacks a required scope.                 |
+| `403 Forbidden`    | Authenticated but the identity lacks a required scope.                  |
 | `404 Not Found`    | The resource doesn't exist, or, for privacy, the identity can't see it. |
 
 When debugging a 403, check:

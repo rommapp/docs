@@ -59,7 +59,7 @@ When on, the login page grows a "Register" link and `/register` becomes an open 
 Appropriate for:
 
 - Instances behind auth at the reverse-proxy layer (Authelia, Cloudflare Access, an IP allowlist). RomM's registration is just paperwork once the proxy has already authenticated the visitor.
-- Truly public or group-shared instances where you genuinely want open signup.
+- Truly public or group-shared instances where you genuinely want open signup
 
 Inappropriate for everything else. **If RomM is exposed to the internet with no upstream auth, leave this off**: it's the single fastest way to fill your DB with spam accounts.
 

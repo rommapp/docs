@@ -7,7 +7,7 @@ description: Diagnose push-pull sync, Client API Token pairing, and companion-ap
 
 Device Sync covers two distinct things:
 
-- **API sync** (HTTPS, token-auth): used by most companion apps. Argosy, Playnite, RommBrowser, mobile apps.
+- **API sync** (HTTPS, token-auth): used by most companion apps. Argosy, Playnite, RommBrowser, mobile apps
 - **SSH sync** (push-pull task): used by handhelds. Grout on muOS, DeckRommSync on Deck, etc.
 
 Troubleshooting paths differ.
@@ -23,7 +23,7 @@ Troubleshooting paths differ.
 
 ### App can't reach RomM
 
-- **URL wrong.** Double-check what you entered in the app config. `https://romm.example.com`, not `https://romm.example.com/api` (the app appends the API path).
+- **URL wrong.** Double-check what you entered in the app config. `https://romm.example.com`, not `https://romm.example.com/api` (the app appends the API path)
 - **TLS cert issues.** Self-signed certs cause problems. Use a proper cert (Let's Encrypt through your reverse proxy) or configure the app to skip cert validation (not recommended).
 - **Firewall.** From the device, `curl https://romm.example.com/api/heartbeat`. Should return JSON. If not, network path is blocked.
 
@@ -94,7 +94,7 @@ And verify the Docker bind mount isn't forcing different perms (ro is fine but m
 Play sessions from a companion app (time-played tracking, Continue Playing ribbon):
 
 - **Not appearing in RomM**: app isn't POSTing to `/api/play-sessions`. Check app's logs.
-- **Duplicate sessions**: app is re-posting on sync. Known edge case for some companion apps, usually harmless.
+- **Duplicate sessions**: app is re-posting on sync. Known edge case for some companion apps, usually harmless
 - **Times look wrong**: timezone mismatch between device and RomM. RomM stores UTC, and display converts to user TZ.
 
 ## Devices panel says "offline"
@@ -103,7 +103,7 @@ RomM sees no heartbeat from the device. Either:
 
 - Device is genuinely off.
 - Device's companion app has stopped phoning home. Check the app's logs / relaunch it.
-- RomM last-seen threshold elapsed. Devices show online for 1 hour after last heartbeat. After that, offline.
+- RomM last-seen threshold elapsed. Devices show online for 1 hour after last heartbeat. After that, offline
 
 ## Smart collection / filter isn't updating after sync
 
@@ -113,14 +113,14 @@ Admins can force a re-eval via Administration → Tasks → Refresh Smart Collec
 
 ## Still stuck
 
-- **API sync**: `docker logs romm | grep -iE 'sync|device|token'`.
-- **SSH sync**: `docker logs romm | grep -iE 'push_pull|ssh'`.
+- **API sync**: `docker logs romm | grep -iE 'sync|device|token'`
+- **SSH sync**: `docker logs romm | grep -iE 'push_pull|ssh'`
 - Device-side logs from the companion app. Each app differs.
 - [Discord](https://discord.gg/romm) `#help`: include the app name, its version, and the RomM log lines.
 
 ## See also
 
-- [Client API Tokens](../ecosystem/client-api-tokens.md): token + pairing flow reference.
-- [Device Sync Protocol](../ecosystem/device-sync-protocol.md): wire-level protocol details.
-- [SSH Sync](../administration/ssh-sync.md): server-side SSH sync config.
-- [Companion apps](../ecosystem/community-apps.md): list of integrations and their status.
+- [Client API Tokens](../ecosystem/client-api-tokens.md): token + pairing flow reference
+- [Device Sync Protocol](../ecosystem/device-sync-protocol.md): wire-level protocol details
+- [SSH Sync](../administration/ssh-sync.md): server-side SSH sync config
+- [Companion apps](../ecosystem/community-apps.md): list of integrations and their status

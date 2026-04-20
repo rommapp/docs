@@ -15,7 +15,7 @@ The client side (a handheld running Grout, a SteamDeck running DeckRommSync, etc
 
 ## When you need SSH sync
 
-- A handheld running custom firmware exposing SSH (muOS, NextUI, Batocera, etc.).
+- A handheld running custom firmware exposing SSH (muOS, NextUI, Batocera, etc.)
 - You want RomM to automatically copy saves/states to the device and pull them back when a session ends.
 - Your sync runs on a schedule, not on-demand.
 
@@ -68,10 +68,10 @@ Copy the **public** key (`~/romm-sync-key.pub` from step 1 above) to the device'
 
 Device registration is done through a companion app (typically Grout itself) using the [Client API Token pairing flow](../ecosystem/client-api-tokens.md). Once registered, RomM knows:
 
-- Device name + type.
-- Hostname / IP.
-- SSH port (default `22`).
-- Target paths on the device for saves, states, and any other synced assets.
+- Device name + type
+- Hostname / IP
+- SSH port (default `22`)
+- Target paths on the device for saves, states, and any other synced assets
 
 ### 3. Test the connection
 

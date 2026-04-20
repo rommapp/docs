@@ -7,8 +7,8 @@ description: Install RomM on Unraid via the Community Apps template or the Docke
 
 Two supported install paths on Unraid. Pick one:
 
-- **[Community Apps template](#community-apps-template)**: simplest. Install RomM and MariaDB as separate CA templates. Good for users who already manage containers one-at-a-time.
-- **[Docker Compose Manager](#docker-compose-manager)**: closer to the upstream reference setup. Drops the standard `docker-compose.yml` in and uses the Compose plugin to manage it. Recommended if you're comfortable editing Compose files and want parity with other deployments.
+- **[Community Apps template](#community-apps-template)**: simplest. Install RomM and MariaDB as separate CA templates. Good for users who already manage containers one-at-a-time
+- **[Docker Compose Manager](#docker-compose-manager)**: closer to the upstream reference setup. Drops the standard `docker-compose.yml` in and uses the Compose plugin to manage it. Recommended if you're comfortable editing Compose files and want parity with other deployments
 
 Both end up with the same running stack.
 
@@ -22,7 +22,7 @@ Both end up with the same running stack.
 
 ### Prerequisites
 
-- [Community Apps plugin](https://forums.unraid.net/topic/38582-plug-in-community-applications/) installed.
+- [Community Apps plugin](https://forums.unraid.net/topic/38582-plug-in-community-applications/) installed
 - A custom Docker bridge network so RomM and MariaDB can talk to each other by container name. Skip this and you'll hit DNS issues that look like everything else.
 
     ```sh
@@ -68,8 +68,8 @@ Apply, head back to the **Docker** tab, and you should see both containers runni
 
 ### Prerequisites
 
-- [Community Apps plugin](https://forums.unraid.net/topic/38582-plug-in-community-applications/).
-- [Docker Compose Manager plugin](https://forums.unraid.net/topic/114415-plugin-docker-compose-manager/) from CA.
+- [Community Apps plugin](https://forums.unraid.net/topic/38582-plug-in-community-applications/)
+- [Docker Compose Manager plugin](https://forums.unraid.net/topic/114415-plugin-docker-compose-manager/) from CA
 
     ![Docker Compose Addon](../resources/unraid/docker-compose.png)
 

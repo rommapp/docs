@@ -38,9 +38,9 @@ Now `web-games/` is treated as the `flash` platform. See [Configuration File →
 
 ## Supported content
 
-- **Flash (SWF):** 2D games, most work cleanly. AS1/AS2 excellent, and AS3 still maturing in Ruffle.
+- **Flash (SWF):** 2D games, most work cleanly. AS1/AS2 excellent, and AS3 still maturing in Ruffle
 - **Shockwave (DCR):** partial support. Complex 3D Shockwave games often fail.
-- **FLV / F4V:** Flash video, playable but not game-like.
+- **FLV / F4V:** Flash video, playable but not game-like
 
 [Ruffle compatibility database](https://ruffle.rs/#compatibility) has per-title status if you want to check a specific game.
 
@@ -69,8 +69,8 @@ Then run an **Unmatched** scan on your `flash` platform. Titles, descriptions, c
 
 Flash was designed around mouse + keyboard. Ruffle passes input through natively:
 
-- **Mouse:** full support.
-- **Keyboard:** full support.
+- **Mouse:** full support
+- **Keyboard:** full support
 - **Gamepad: not supported.** Flash games using XInput or similar don't work.
 
 On a handheld / Console Mode, Flash games are generally unplayable unless you've got a touchscreen + keyboard or a mouse.
@@ -82,8 +82,8 @@ Ruffle is bundled in the full RomM image. Updates to Ruffle land when RomM updat
 ## Not in 5.0 yet
 
 - **Per-game config overrides.** Ruffle supports some game-specific options upstream but RomM doesn't surface them yet.
-- **Networking.** Flash games that hit remote servers typically fail (those servers are dead). No proxy / emulated backend for networked Flash games.
-- **Control remapping.** Straight passthrough only.
+- **Networking.** Flash games that hit remote servers typically fail (those servers are dead). No proxy / emulated backend for networked Flash games
+- **Control remapping.** Straight passthrough only
 
 ## Troubleshooting
 
@@ -95,5 +95,5 @@ See [In-Browser Play Troubleshooting → Ruffle](../troubleshooting/in-browser-p
 
 ## See also
 
-- [In-Browser Play → Ruffle](../using/in-browser-play.md#ruffle): end-user side.
-- [Metadata Providers → Flashpoint](../administration/metadata-providers.md#flashpoint): where Flash metadata comes from.
+- [In-Browser Play → Ruffle](../using/in-browser-play.md#ruffle): end-user side
+- [Metadata Providers → Flashpoint](../administration/metadata-providers.md#flashpoint): where Flash metadata comes from

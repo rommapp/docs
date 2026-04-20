@@ -126,6 +126,6 @@ Or disable hashing on the Scan page to cut memory use by ~80% (you lose RetroAch
 
 ## Still stuck
 
-- Full install reference: [Kubernetes](../install/kubernetes.md).
-- [Discord](https://discord.gg/romm) `#kubernetes` channel.
+- Full install reference: [Kubernetes](../install/kubernetes.md)
+- [Discord](https://discord.gg/romm) `#kubernetes` channel
 - Include your ingress controller, storage class, and the exact error from `kubectl logs` when asking for help.

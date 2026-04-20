@@ -14,15 +14,15 @@ description: Official Linux handheld companion for muOS and NextUI, sync ROMs an
 
 ## What it does
 
-- Connects to your RomM instance using a [Client API Token](client-api-tokens.md).
-- **Pulls** ROMs from RomM to the handheld's SD card, organised into muOS / NextUI's expected folder layout.
-- **Pushes** saves and states back to RomM when you finish a session.
-- **Schedules** sync runs: on idle, on session end, or on a cron.
-- Works fully offline between syncs, so the handheld doesn't need RomM to play.
+- Connects to your RomM instance using a [Client API Token](client-api-tokens.md)
+- **Pulls** ROMs from RomM to the handheld's SD card, organised into muOS / NextUI's expected folder layout
+- **Pushes** saves and states back to RomM when you finish a session
+- **Schedules** sync runs: on idle, on session end, or on a cron
+- Works fully offline between syncs, so the handheld doesn't need RomM to play
 
 ## Why Grout (and not Argosy)?
 
-- **[Argosy](argosy.md)** is Android-native. Good for Android handhelds (Retroid Pocket running Android, phones).
+- **[Argosy](argosy.md)** is Android-native. Good for Android handhelds (Retroid Pocket running Android, phones)
 - **Grout** is for non-Android Linux handhelds. muOS and NextUI are Linux, not Android. Argosy's APK won't install.
 
 Same underlying protocol but different client for different OS.
@@ -68,24 +68,24 @@ Bulk select for multi-file downloads, useful for pulling a whole collection at o
 
 Grout → Settings → Sync:
 
-- **Pull** cadence: how often to check RomM for new ROMs (default: manual, and can be set to every N minutes when on Wi-Fi).
-- **Push** cadence: how often to upload saves (default: on session end).
-- **Full sync**: manual. Triggers a full bidirectional sync right now.
+- **Pull** cadence: how often to check RomM for new ROMs (default: manual, and can be set to every N minutes when on Wi-Fi)
+- **Push** cadence: how often to upload saves (default: on session end)
+- **Full sync**: manual. Triggers a full bidirectional sync right now
 
 ### What pushes back to RomM
 
 - **Save files.** Once a session ends, Grout uploads any changed saves to RomM.
-- **Save states.** Same, if enabled in settings.
-- **Play session records.** Start/end times for the **Continue Playing** ribbon and per-ROM playtime on RomM.
+- **Save states.** Same, if enabled in settings
+- **Play session records.** Start/end times for the **Continue Playing** ribbon and per-ROM playtime on RomM
 
 ## Permissions and access
 
 Grout uses your Client API Token for all API calls. Token scopes:
 
-- `roms.read`, `platforms.read`, `collections.read`: to browse.
-- `assets.read`, `assets.write`: to sync saves.
-- `devices.read`, `devices.write`: to register as a device.
-- `firmware.read`: if you're syncing firmware too.
+- `roms.read`, `platforms.read`, `collections.read`: to browse
+- `assets.read`, `assets.write`: to sync saves
+- `devices.read`, `devices.write`: to register as a device
+- `firmware.read`: if you're syncing firmware too
 
 Scope the token narrowly when creating: default scopes are fine for most users but an admin shouldn't hand Grout `users.write` just because the token-creation page offers it.
 
@@ -104,7 +104,7 @@ More in [Device Sync Troubleshooting](../troubleshooting/sync.md).
 
 ## See also
 
-- [Client API Tokens](client-api-tokens.md): token and pairing flow reference.
-- [Device Sync Protocol](device-sync-protocol.md): wire-level protocol.
-- [SSH Sync](../administration/ssh-sync.md): operator-side SSH config.
-- [rommapp/grout](https://github.com/rommapp/grout): source, issues, releases.
+- [Client API Tokens](client-api-tokens.md): token and pairing flow reference
+- [Device Sync Protocol](device-sync-protocol.md): wire-level protocol
+- [SSH Sync](../administration/ssh-sync.md): operator-side SSH config
+- [rommapp/grout](https://github.com/rommapp/grout): source, issues, releases

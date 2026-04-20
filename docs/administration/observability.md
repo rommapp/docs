@@ -7,10 +7,10 @@ description: Logs, Sentry error tracking, OpenTelemetry, and the /heartbeat endp
 
 Four ways to know what RomM is doing:
 
-- **Container logs**: always available, the first stop.
-- **`/api/heartbeat`**: health + config summary for uptime monitors.
-- **Sentry**: opt-in error tracking with stack traces.
-- **OpenTelemetry**: opt-in distributed tracing + metrics.
+- **Container logs**: always available, the first stop
+- **`/api/heartbeat`**: health + config summary for uptime monitors
+- **Sentry**: opt-in error tracking with stack traces
+- **OpenTelemetry**: opt-in distributed tracing + metrics
 
 ## Logs
 
@@ -55,13 +55,13 @@ GET /api/heartbeat
 
 Returns:
 
-- RomM version.
-- Whether the Setup Wizard is still pending.
-- Which metadata providers are enabled.
-- Which platforms have data.
-- OIDC config (redacted credentials).
-- Scheduled-task schedule summary.
-- Watcher status.
+- RomM version
+- Whether the Setup Wizard is still pending
+- Which metadata providers are enabled
+- Which platforms have data
+- OIDC config (redacted credentials)
+- Scheduled-task schedule summary
+- Watcher status
 
 Wire this to your uptime monitor. A failure here is real: the process is down or the DB/Valkey is unreachable.
 
@@ -94,13 +94,13 @@ environment:
 
 What's sent:
 
-- Stack traces for unhandled exceptions.
-- Per-request timing on slow endpoints.
-- Redacted URL parameters (secrets stripped).
+- Stack traces for unhandled exceptions
+- Per-request timing on slow endpoints
+- Redacted URL parameters (secrets stripped)
 
 What's not sent: ROM filenames, user credentials, metadata provider API keys. RomM filters sensitive parameters before reporting.
 
-Suitable for self-hosted Sentry or [sentry.io](https://sentry.io/); drop the DSN to stop reporting.
+Suitable for self-hosted Sentry or [sentry.io](https://sentry.io/).
 
 ## OpenTelemetry
 
@@ -116,13 +116,13 @@ environment:
 
 Standard [OTEL env vars](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) apply. RomM emits:
 
-- **Traces**: HTTP request spans, DB query spans, RQ job spans.
-- **Metrics**: request counts, durations, queue depth, scan progress.
-- **Logs**: structured log correlation with trace IDs.
+- **Traces**: HTTP request spans, DB query spans, RQ job spans
+- **Metrics**: request counts, durations, queue depth, scan progress
+- **Logs**: structured log correlation with trace IDs
 
 Exporters:
 
-- OTLP gRPC (default, port `4317`).
+- OTLP gRPC (default, port `4317`)
 - OTLP HTTP (port `4318`): set `OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf`.
 
 Send to an OpenTelemetry Collector, then fan out to Tempo / Jaeger / Honeycomb / Datadog / Grafana Cloud / whatever you run.
@@ -148,11 +148,11 @@ Returns an array of every scheduled / manual / watcher task with current status 
 
 For a homelab instance:
 
-- Default `INFO` logs into the container logs → forwarded to Loki / Promtail / whatever you already run.
-- `/api/heartbeat` hit every 60 seconds from Uptime Kuma / Gatus.
+- Default `INFO` logs into the container logs → forwarded to Loki / Promtail / whatever you already run
+- `/api/heartbeat` hit every 60 seconds from Uptime Kuma / Gatus
 
 For a serious deployment:
 
-- Above, plus Sentry DSN configured.
-- Plus OpenTelemetry to the collector you already have.
-- Alert on: heartbeat failure, task stuck > 1 h, `ERROR`-level log spikes.
+- Above, plus Sentry DSN configured
+- Plus OpenTelemetry to the collector you already have
+- Alert on: heartbeat failure, task stuck > 1 h, `ERROR`-level log spikes

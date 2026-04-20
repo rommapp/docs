@@ -41,7 +41,7 @@ For each ROM the scanner:
 An **unmatched** ROM means no provider recognised it, with common causes:
 
 - Filename is too generic (`game.gba`).
-- Bad rip, intro/patch applied, or a regional variant no provider has indexed.
+- Bad rip, intro/patch applied, or a regional variant no provider has indexed
 - Platform folder misnamed: the scanner queries providers scoped to the detected platform, so wrong platform equals no results.
 - Metadata provider credentials wrong or rate-limited: check the scan log for errors or the metadata provider status page in the admin dashboard.
 
@@ -51,16 +51,16 @@ Most of these are fixable: see [Scanning Troubleshooting](../troubleshooting/sca
 
 Click the **RomM logo** (top-left) to go home. You should see:
 
-- Platform cards for each folder it scanned.
-- A **Recently Added** carousel on the dashboard.
-- A **Continue Playing** section (empty until you play something).
+- Platform cards for each folder it scanned
+- A **Recently Added** carousel on the dashboard
+- A **Continue Playing** section (empty until you play something)
 
 From here, typical next steps:
 
 - **Browse**: click a platform card, flip through the grid.
 - **Fix unmatched ROMs**: rename or re-tag, then re-run an **Unmatched** scan to pick them up. See [Scanning & Watcher](../administration/scanning-and-watcher.md#scan-modes).
 - **Tweak priorities**: if ScreenScraper's covers are nicer than IGDB's for your library, reorder `scan.priority.artwork` in [`config.yml`](../reference/configuration-file.md).
-- **Add more users**: [Invitations & Registration](../administration/invitations-and-registration.md).
+- **Add more users**: [Invitations & Registration](../administration/invitations-and-registration.md)
 
 ## Skip to a targeted scan
 
@@ -77,7 +77,7 @@ All six scan modes are documented in [Scanning & Watcher](../administration/scan
 Don't want to keep clicking Scan?
 
 - **Scheduled scans** run nightly by default. Tune with `SCAN_INTERVAL_CRON`.
-- **The filesystem watcher** can auto-scan when files appear or disappear. Enable with `WATCHER_ENABLED=true`. Details and tradeoffs in [Scanning & Watcher](../administration/scanning-and-watcher.md).
+- **The filesystem watcher** can auto-scan when files appear or disappear. Enable with `WATCHER_ENABLED=true`. Details and tradeoffs in [Scanning & Watcher](../administration/scanning-and-watcher.md)
 
 ## It's working: what next?
 

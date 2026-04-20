@@ -33,15 +33,15 @@ Two more ship as work-in-progress with partial coverage. Check the language drop
 
 ## What gets translated
 
-- All UI strings: menus buttons, labels, tooltips, dialogs.
-- Error messages and notifications.
-- Help text and inline instructions.
+- All UI strings: menus buttons, labels, tooltips, dialogs
+- Error messages and notifications
+- Help text and inline instructions
 
 Not translated:
 
 - **Game metadata**: titles, descriptions, genres come from metadata providers. English is usually the source language. IGDB has some localisation but coverage is uneven.
-- **Your own content**: collection names, notes, user-uploaded media.
-- **Docs site** (what you're reading): English only in 5.0.
+- **Your own content**: collection names, notes, user-uploaded media
+- **Docs site** (what you're reading): English only in 5.0
 
 ## Missing strings
 
@@ -89,6 +89,6 @@ The docs site is currently English-only. Localising docs is a much bigger commit
 
 ## Related
 
-- [User Interface settings](account-and-profile.md): full list of personal UI preferences.
+- [User Interface settings](account-and-profile.md): full list of personal UI preferences
 - [Console Mode](console-mode.md): same locale selection applies.
-- [Developers → Translations (i18n)](../developers/i18n.md): contributor guide.
+- [Developers → Translations (i18n)](../developers/i18n.md): contributor guide

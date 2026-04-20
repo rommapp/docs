@@ -22,12 +22,12 @@ The RomM stack has three parts:
 
 ### `romm`
 
-| Field        | Value                 | Notes                                                                                                                                               |
-| ------------ | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `image`      | `rommapp/romm:latest` | Or `ghcr.io/rommapp/romm:latest`; pin to a specific tag (`5.0.0`) for production, and see [Image Variants](image-variants.md) for `slim` vs `full`. |
-| `ports`      | `80:8080`             | Container listens on `8080`; expose through a reverse proxy in production (see [Reverse Proxy](reverse-proxy.md)).                                  |
-| `volumes`    | see below             | RomM writes to four distinct paths inside the container.                                                                                            |
-| `depends_on` | `romm-db` (healthy)   | RomM exits on startup if the DB isn't reachable.                                                                                                    |
+| Field        | Value                 | Notes                                                                                                                                           |
+| ------------ | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `image`      | `rommapp/romm:latest` | Or `ghcr.io/rommapp/romm:latest`. Ideally, pin it to a specific tag (`5.0.0`) and see [Image Variants](image-variants.md) for `slim` vs `full`. |
+| `ports`      | `80:8080`             | Container listens on `8080`                                                                                                                     |
+| `volumes`    | see below             | RomM writes to four distinct paths inside the container.                                                                                        |
+| `depends_on` | `romm-db` (healthy)   | RomM exits on startup if the DB isn't reachable.                                                                                                |
 
 #### Volumes
 
@@ -71,7 +71,7 @@ The quick-start compose file is functional but not production-ready. Before expo
 - **Set a non-default `MARIADB_ROOT_PASSWORD`**, and don't reuse it for `MARIADB_PASSWORD`.
 - **Mount the library read-only** unless you need RomM to write into it: `- /path/to/library:/romm/library:ro`.
 - **Use Docker secrets for credentials** if your orchestrator supports them: RomM recognises `ROMM_AUTH_SECRET_KEY_FILE` for loading the secret from a file mount.
-- **Enable backups**: at minimum, daily `mysqldump` + rsync of `/romm/assets` and `/romm/config` (see [Backup & Restore](backup-and-restore.md)).
+- **Enable backups**: at minimum, daily `mysqldump` + rsync of `/romm/assets` and `/romm/config` (see [Backup & Restore](backup-and-restore.md))
 
 ## Updating
 

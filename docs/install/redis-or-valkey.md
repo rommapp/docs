@@ -7,10 +7,10 @@ description: Why RomM needs Redis, how it's run, and when to split it out.
 
 RomM needs a Redis-protocol server. It's used for:
 
-- **Session storage**: login sessions, CSRF tokens.
+- **Session storage**: login sessions, CSRF tokens
 - **Background task queue**: scans, metadata syncs, sync operations run through RQ (Redis Queue).
-- **Cache**: metadata lookups, heartbeat data, paired-device tokens, rate-limit counters.
-- **Socket.IO**: multi-instance pubsub for live updates (only relevant if you're running more than one RomM container).
+- **Cache**: metadata lookups, heartbeat data, paired-device tokens, rate-limit counters
+- **Socket.IO**: multi-instance pubsub for live updates (only relevant if you're running more than one RomM container)
 
 Both **Redis** and **Valkey** (the open-source Redis fork maintained by the Linux Foundation after Redis Inc.'s license change) are supported. They're interchangeable: Valkey is a drop-in wire-compatible replacement. Pick either.
 
@@ -24,9 +24,9 @@ The default `full-image` container runs a Redis server inside itself. Zero confi
 
 Better for:
 
-- Any production instance you care about.
-- Multiple RomM replicas sharing state.
-- Homelabs that already run a Redis box and want consistency.
+- Any production instance you care about
+- Multiple RomM replicas sharing state
+- Homelabs that already run a Redis box and want consistency
 
 ```yaml
 services:
@@ -111,8 +111,8 @@ docker exec romm redis-cli -h "$REDIS_HOST" -p "$REDIS_PORT" -a "$REDIS_PASSWD" 
 
 If you see `PONG` from the RomM container, you're good. If not, check:
 
-- That the DNS name in `REDIS_HOST` resolves from the RomM container (use `docker exec romm getent hosts romm-redis`).
+- That the DNS name in `REDIS_HOST` resolves from the RomM container (use `docker exec romm getent hosts romm-redis`)
 - That the password is correct. `redis-cli -a` will say `NOAUTH` if wrong.
-- That `REDIS_SSL=true` matches whether the server actually requires TLS.
+- That `REDIS_SSL=true` matches whether the server actually requires TLS
 
 Debugging further: see the Redis line in `docker logs romm` at startup, where RomM logs the connection target.

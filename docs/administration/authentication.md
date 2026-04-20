@@ -9,11 +9,11 @@ This page is the **operator-side** authentication reference: knobs you turn on t
 
 Authentication flows RomM supports:
 
-- **Username + password** (default): local account, bcrypt-hashed, stored in the DB.
+- **Username + password** (default): local account, bcrypt-hashed, stored in the DB
 - **OIDC**: single sign-on via an external IdP. See [OIDC Setup](oidc/index.md).
-- **Client API Tokens**: long-lived per-user tokens for companion apps and scripts.
-- **Device pairing**: short codes for bootstrapping a token onto a handheld, covered in [Client API Tokens](../ecosystem/client-api-tokens.md).
-- **Kiosk mode**: unauthenticated read-only access, handy for public demos and shared terminals.
+- **Client API Tokens**: long-lived per-user tokens for companion apps and scripts
+- **Device pairing**: short codes for bootstrapping a token onto a handheld, covered in [Client API Tokens](../ecosystem/client-api-tokens.md)
+- **Kiosk mode**: unauthenticated read-only access, handy for public demos and shared terminals
 
 ## Session config
 
@@ -73,10 +73,10 @@ For anything long-lived (a companion app, a cron job, a script) use **Client API
 
 Create from **Administration → Client API Tokens**. Each token:
 
-- Belongs to a specific user.
-- Carries a **subset** of that user's scopes (you choose which at creation time).
-- Has an optional expiry (no expiry = never expires until manually revoked).
-- Can be "paired" to a device via a short code (covered in [Client API Tokens](../ecosystem/client-api-tokens.md)).
+- Belongs to a specific user
+- Carries a **subset** of that user's scopes (you choose which at creation time)
+- Has an optional expiry (no expiry = never expires until manually revoked)
+- Can be "paired" to a device via a short code (covered in [Client API Tokens](../ecosystem/client-api-tokens.md))
 
 Each user gets up to 25 active tokens, revokable from the same page. The API side ("how do I send this thing in a request?") lives in [API Authentication](../developers/api-authentication.md).
 
@@ -91,9 +91,9 @@ environment:
 
 Appropriate for:
 
-- Shared-terminal demos.
-- Public-facing "display" instances (e.g. a wall-mounted browse-only catalogue).
-- `demo.romm.app`.
+- Shared-terminal demos
+- Public-facing "display" instances (e.g. a wall-mounted browse-only catalogue)
+- `demo.romm.app`
 
 Authenticated users (when you do sign in) still see their full role. Kiosk only affects anonymous traffic.
 

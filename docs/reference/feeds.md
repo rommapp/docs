@@ -77,10 +77,10 @@ Each feed's exact schema matches what its client expects. Don't call feeds by ac
 
 Most feeds filter by file extension automatically:
 
-- **Tinfoil** → `.nsp`, `.xci`, `.nsz`, `.xcz`.
-- **pkgi** / **fpkgi** → `.pkg`.
-- **Kekatsu** → `.nds`.
-- **WebRcade** → any extension the WebRcade emulator supports.
+- **Tinfoil** → `.nsp`, `.xci`, `.nsz`, `.xcz`
+- **pkgi** / **fpkgi** → `.pkg`
+- **Kekatsu** → `.nds`
+- **WebRcade** → any extension the WebRcade emulator supports
 
 Games not matching the expected extension are silently skipped, not reported as missing.
 
@@ -104,6 +104,6 @@ If you want RomM to expose a feed format it doesn't currently support:
 
 ## See also
 
-- [Ecosystem](../ecosystem/index.md): per-client setup guides.
-- [Authentication](../administration/authentication.md): auth options affecting feeds.
-- [API Reference](../developers/api-reference.md): full endpoint catalogue.
+- [Ecosystem](../ecosystem/index.md): per-client setup guides
+- [Authentication](../administration/authentication.md): auth options affecting feeds
+- [API Reference](../developers/api-reference.md): full endpoint catalogue

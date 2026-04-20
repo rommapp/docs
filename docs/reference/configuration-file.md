@@ -406,12 +406,12 @@ Everything above is also available from the Library Management page in the web U
 
 RomM also ships two pre-built config.yml variants for people coming from existing frontends. Copy them wholesale rather than writing one from scratch:
 
-- [`config.batocera-retrobat.yml`](https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml): Batocera / RetroBat layouts.
-- [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml): ES-DE layout.
+- [`config.batocera-retrobat.yml`](https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml): Batocera / RetroBat layouts
+- [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml): ES-DE layout
 
 ## Related
 
-- [Folder Structure](../getting-started/folder-structure.md): how the filesystem shape interacts with `config.yml`.
-- [Metadata Providers](../administration/metadata-providers.md): per-provider detail for the `scan.priority.*` slugs.
-- [Scanning & Watcher](../administration/scanning-and-watcher.md): how `exclude.*` interacts with scan runs.
-- [Environment Variables](environment-variables.md): env-var overrides for some of the same knobs.
+- [Folder Structure](../getting-started/folder-structure.md): how the filesystem shape interacts with `config.yml`
+- [Metadata Providers](../administration/metadata-providers.md): per-provider detail for the `scan.priority.*` slugs
+- [Scanning & Watcher](../administration/scanning-and-watcher.md): how `exclude.*` interacts with scan runs
+- [Environment Variables](environment-variables.md): env-var overrides for some of the same knobs

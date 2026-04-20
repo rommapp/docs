@@ -35,10 +35,10 @@ A breakdown of disk usage by directory:
 
 Under the summary, an expandable table sorted by either ROM count or disk usage. Click a platform to drill into:
 
-- Matched / unmatched count.
-- Region distribution (how many games tagged USA, Japan, Europe, World, etc.).
-- Language distribution.
-- Metadata coverage: how many games have each field populated (cover, description, release date, rating).
+- Matched / unmatched count
+- Region distribution (how many games tagged USA, Japan, Europe, World, etc.)
+- Language distribution
+- Metadata coverage: how many games have each field populated (cover, description, release date, rating)
 
 Useful for: "which platform is eating my disk?" and "which platform has the worst match rate?"
 

@@ -93,8 +93,8 @@ When you run multiple RomM replicas behind a load balancer, a WS-originated even
 
 Required config when running multi-replica:
 
-- `REDIS_HOST` + `REDIS_PORT` shared across replicas.
-- Load balancer with **sticky sessions** (client IP or cookie hash).
+- `REDIS_HOST` + `REDIS_PORT` shared across replicas
+- Load balancer with **sticky sessions** (client IP or cookie hash)
 
 Without sticky sessions, Socket.IO's handshake polling phase can bounce between replicas and fail. See [Socket.IO multi-server docs](https://socket.io/docs/v4/using-multiple-nodes/) for context.
 
@@ -104,9 +104,9 @@ Every reverse-proxy setup must forward the WebSocket upgrade. See [Reverse Proxy
 
 Common breakages:
 
-- Nginx without `proxy_set_header Upgrade $http_upgrade` / `Connection "upgrade"`.
-- Cloudflare with WebSockets off in Network settings.
-- Traefik without the default passthrough middlewares.
+- Nginx without `proxy_set_header Upgrade $http_upgrade` / `Connection "upgrade"`
+- Cloudflare with WebSockets off in Network settings
+- Traefik without the default passthrough middlewares
 
 Symptom of a broken WS: HTTP 400 responses on the upgrade, and the browser console full of `WebSocket connection failed`. See [Authentication Troubleshooting → WebSockets](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint).
 
@@ -143,6 +143,6 @@ sio.wait()
 
 ## See also
 
-- [API Authentication](api-authentication.md): general auth primer.
+- [API Authentication](api-authentication.md): general auth primer
 - [Reverse Proxy](../install/reverse-proxy.md): every recipe needs WebSocket passthrough.
-- [Netplay](../using/netplay.md): end-user-facing side of the `/netplay` endpoint.
+- [Netplay](../using/netplay.md): end-user-facing side of the `/netplay` endpoint

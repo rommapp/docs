@@ -43,8 +43,8 @@ Disabling a dimension hides all its collections from your drawer and dashboard. 
 
 Virtual collections show up alongside regular and smart collections in:
 
-- The **Collections** drawer.
-- The dashboard's **Collections** ribbon (if enabled).
+- The **Collections** drawer
+- The dashboard's **Collections** ribbon (if enabled)
 - The filter panel under "Collection", so you can filter any gallery by virtual collection membership.
 
 Open one like any collection: grid/list view, filters, play, download, etc.
@@ -75,9 +75,9 @@ Almost always metadata. A game missing from "Virtual Collection: RPG" probably d
 
 Genre coverage varies by metadata provider:
 
-- **IGDB**: rich genre data.
-- **ScreenScraper**: ok genre data, with some provider-specific labels.
-- **Hasheous / PlayMatch** (hash-only): no genre data, because they proxy IGDB.
+- **IGDB**: rich genre data
+- **ScreenScraper**: ok genre data, with some provider-specific labels
+- **Hasheous / PlayMatch** (hash-only): no genre data, because they proxy IGDB
 
 If your library is heavily ScreenScraper-matched and you want rich genres, add IGDB and run an **Unmatched** or **Update Metadata** scan. See [Metadata Providers](../administration/metadata-providers.md).
 

@@ -13,10 +13,10 @@ There's no official Helm chart for RomM in 5.0. This page walks through a produc
 
 ## What you need
 
-- A cluster running Kubernetes 1.27+.
-- Persistent storage for the DB, cache, and RomM's assets/resources/config (block or RWX, see below).
-- An Ingress controller (nginx-ingress, Traefik, etc.) for external access.
-- cert-manager or equivalent for HTTPS.
+- A cluster running Kubernetes 1.27+
+- Persistent storage for the DB, cache, and RomM's assets/resources/config (block or RWX, see below)
+- An Ingress controller (nginx-ingress, Traefik, etc.) for external access
+- cert-manager or equivalent for HTTPS
 
 ## Required quirk: `enableServiceLinks: false`
 

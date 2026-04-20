@@ -11,33 +11,33 @@ Looking for end-user or operator content? See [Using RomM](../using/index.md) or
 
 ## Working with the API
 
-- **[API Reference](api-reference.md):** every REST endpoint. OpenAPI-driven.
-- **[API Authentication](api-authentication.md):** all five auth modes (session, Basic, OAuth2, Client API Token, OIDC).
-- **[Consuming OpenAPI](openapi.md):** codegen, Postman imports, schema validation.
-- **[WebSockets](websockets.md):** Socket.IO endpoints for live updates and Netplay.
+- **[API Reference](api-reference.md):** every REST endpoint. OpenAPI-driven
+- **[API Authentication](api-authentication.md):** all five auth modes (session, Basic, OAuth2, Client API Token, OIDC)
+- **[Consuming OpenAPI](openapi.md):** codegen, Postman imports, schema validation
+- **[WebSockets](websockets.md):** Socket.IO endpoints for live updates and Netplay
 
 ## Building companion apps
 
-- **[Client API Tokens](../ecosystem/client-api-tokens.md):** how companion apps authenticate, including the device-pairing flow.
-- **[Device Sync Protocol](../ecosystem/device-sync-protocol.md):** wire-level reference for save/state/play-session sync.
-- **[Argosy](../ecosystem/argosy.md), [Grout](../ecosystem/grout.md):** reference implementations.
+- **[Client API Tokens](../ecosystem/client-api-tokens.md):** how companion apps authenticate, including the device-pairing flow
+- **[Device Sync Protocol](../ecosystem/device-sync-protocol.md):** wire-level reference for save/state/play-session sync
+- **[Argosy](../ecosystem/argosy.md), [Grout](../ecosystem/grout.md):** reference implementations
 
 ## Contributing to RomM itself
 
-- **[Development Setup](development-setup.md):** get a local environment running.
-- **[Architecture](architecture.md):** high-level walkthrough of the codebase.
-- **[Contributing](contributing.md):** process, style, AI-assistance disclosure.
-- **[Translations (i18n)](i18n.md):** add or improve a locale.
-- **[Releasing](releasing.md):** maintainer-only, how releases are cut.
+- **[Development Setup](development-setup.md):** get a local environment running
+- **[Architecture](architecture.md):** high-level walkthrough of the codebase
+- **[Contributing](contributing.md):** process, style, AI-assistance disclosure
+- **[Translations (i18n)](i18n.md):** add or improve a locale
+- **[Releasing](releasing.md):** maintainer-only, how releases are cut
 
 ## Reference
 
-- **[Environment Variables](../reference/environment-variables.md):** every env var.
-- **[Configuration File](../reference/configuration-file.md):** `config.yml` schema.
-- **[Scheduled Tasks](../reference/scheduled-tasks.md):** background job reference.
-- **[Exports](../reference/exports.md):** gamelist.xml / Pegasus export formats.
-- **[Feeds](../reference/feeds.md):** every URL-feed endpoint (Tinfoil, pkgj, WebRcade, etc.).
-- **[Glossary](../reference/glossary.md):** canonical terminology.
+- **[Environment Variables](../reference/environment-variables.md):** every env var
+- **[Configuration File](../reference/configuration-file.md):** `config.yml` schema
+- **[Scheduled Tasks](../reference/scheduled-tasks.md):** background job reference
+- **[Exports](../reference/exports.md):** gamelist.xml / Pegasus export formats
+- **[Feeds](../reference/feeds.md):** every URL-feed endpoint (Tinfoil, pkgj, WebRcade, etc.)
+- **[Glossary](../reference/glossary.md):** canonical terminology
 
 ## Quick orientation
 

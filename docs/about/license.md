@@ -75,6 +75,6 @@ Full contributor terms: [Contributing → Licensing](../developers/contributing.
 
 ## See also
 
-- [Credits](credits.md): the humans and projects behind RomM.
-- [AGPL-3.0 overview](https://choosealicense.com/licenses/agpl-3.0/): plain-language explainer.
-- Full license text: [LICENSE](https://github.com/rommapp/romm/blob/master/LICENSE).
+- [Credits](credits.md): the humans and projects behind RomM
+- [AGPL-3.0 overview](https://choosealicense.com/licenses/agpl-3.0/): plain-language explainer
+- Full license text: [LICENSE](https://github.com/rommapp/romm/blob/master/LICENSE)
