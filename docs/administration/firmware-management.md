@@ -12,7 +12,6 @@ Firmware is **not** ROM. Keep the two separate:
 - `/romm/library/roms/`: game ROMs, homebrew, demos, etc.
 - `/romm/library/bios/`: system firmware
 
-
 <!-- prettier-ignore -->
 !!! important "Legality varies by jurisdiction"
 RomM does not ship games or firmware, and the team cannot help you obtain BIOS files. Always check your local laws and the emulator's documentation for guidance on what you can legally use.
