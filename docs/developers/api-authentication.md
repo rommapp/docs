@@ -81,7 +81,7 @@ grant_type=password&username=alice&password=s3cret&scope=roms.read%20roms.write
 
 Access tokens are HS256-signed JWTs valid for ~15 minutes. Send them as:
 
-```
+```http
 Authorization: Bearer eyJhbGciOi...
 ```
 

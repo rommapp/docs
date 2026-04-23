@@ -35,7 +35,7 @@ Key sub-directories:
 
 A running RomM container hosts several cooperating processes:
 
-```
+```ascii
 ┌─────────────────────────────────────────────────────────┐
 │ docker container                                        │
 │                                                         │

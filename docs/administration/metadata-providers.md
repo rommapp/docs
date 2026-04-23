@@ -1,185 +1,279 @@
----
-title: Metadata Providers
-description: Configure the thirteen metadata sources RomM supports: IGDB, ScreenScraper, MobyGames, RetroAchievements, SteamGridDB, Hasheous, PlayMatch, LaunchBox, TheGamesDB, Flashpoint, HowLongToBeat, gamelist.xml, Libretro.
----
+<!-- trunk-ignore-all(markdownlint/MD001) -->
+<!-- trunk-ignore-all(markdownlint/MD041) -->
 
-# Metadata Providers
-
-RomM pulls game metadata (titles, descriptions, cover art, screenshots, manuals, achievement data, completion times) from up to **thirteen** providers. You don't need all of them. This page covers the recommended combinations and per-provider setup.
-
-Configure providers either via env vars (below) or interactively in **Administration → Metadata Sources** in the UI. Scan priority (which provider wins when two disagree) is set in [`config.yml`](../reference/configuration-file.md). See `scan.priority.metadata` and `scan.priority.artwork`.
+RomM supports multiple metadata providers to enrich your game library with titles, descriptions, cover art, and achievements. You don't need all providers, so this guide covers [popular combos](#popular-combos) and [setup instructions](#setup-instructions).
 
 ## Popular combos
 
-### ⭐ The Chef's Choice: Hasheous + IGDB + SteamGridDB + RetroAchievements
+Here are some combinations you can use based on your needs:
 
-- Covers 135+ popular systems
-- **Hasheous** does hash-based matching and proxies IGDB data (titles, descriptions, artwork).
-- **IGDB** adds related games, screenshots, and broader metadata.
-- **SteamGridDB** provides high-quality alternative cover art (opt-in per game via the "search cover" button).
-- **RetroAchievements** overlays achievement progress.
-- **Recommended default for most users.**
+#### ⭐ The French Connection: [ScreenScraper](#screenscraper) + [Retroachievements](#retroachievements)
 
-![Hasheous + IGDB + SteamGridDB + RetroAchievements](../resources/metadata_providers/2dcovers.png)
+- Supports 125+ popular systems
+- ScreenScraper provides titles, descriptions, cover art, screenshots and manuals
+    - Also supports hash-based matching (as of `v4.4`)
+    - With the option for 3D boxes and CD/cartridge covers
+- Retroachievements provides achievement progress
+- **Use this if you want to avoid Twitch/Amazon products**
 
-### ⭐ The French Connection: ScreenScraper + RetroAchievements
+![ScreenScraper + Retroachievements](../resources/metadata_providers/3dboxes.png)
 
-- Covers 125+ popular systems
-- **ScreenScraper** provides titles, descriptions, cover art (2D + optional 3D + CD), screenshots, manuals. Also supports hash-based matching since RomM 4.4.
-- **RetroAchievements** overlays achievement progress.
-- **Pick this if you want to avoid anything Twitch/Amazon-owned.**
+#### ⭐ The Chef's Choice: [Hasheous](#hasheous) + [IGDB](#igdb) + [SteamGridDB](#steamgriddb) + [Retroachievements](#retroachievements)
 
-![ScreenScraper + RetroAchievements](../resources/metadata_providers/3dboxes.png)
+- Supports 135+. popular systems
+- Hasheous provides hash-based matching and proxies IGDB data (titles, descriptions and artwork)
+- IGDB adds additional metadata like related games and screenshots
+- SteamGridDB provides high-quality alternative cover art
+- Retroachievements provides achievement progress
+- **This is the recommended setup for most users**
 
-### The Twitch Fanboy: IGDB + PlayMatch
+![Hasheous + IGDB + SteamGridDB + Retroachievements](../resources/metadata_providers/2dcovers.png)
 
-- Covers the 200+ systems IGDB knows about
-- IGDB-only metadata with PlayMatch's community-hosted hash-matching service bolted on for unmatched files
-- **Use if you specifically want a single-provider solution backed by IGDB.**
+#### The Twitch Fanboy: [IGDB](#igdb) + [PlayMatch](#playmatch)
 
-### The Quick Starter: Hasheous only
+- Supports the 200+ systems available on IGDB
+- Provides titles, descriptions, cover art and related games from IGDB
+- PlayMatch adds hash-based matching for unmatched files
+- **Use this if you want a single-provider solution**
 
-- Hash-based matching, fast scans, no API keys required
-- Proxies titles/descriptions/artwork from IGDB
-- **For users who want to avoid the IGDB/Twitch registration dance.**
+#### The Quick Starter: [Hasheous](#hasheous)
+
+- Hash-based matching only ⚠️
+- Proxies titles, descriptions and cover art from IGDB
+- Incredibly fast scan times
+- **For users who want to avoid API keys**
 
 ## Setup instructions
 
 ### IGDB
 
-[IGDB](https://www.igdb.com/) (Internet Game Database) is a popular metadata source with coverage for 200+ systems: titles, descriptions, screenshots, related games, and more.
+[IGDB](https://www.igdb.com/) (Internet Game Database) is a popular metadata provider that offers metadata, cover art, screenshots, related games and more.
 
-Access requires a Twitch account and a phone number for 2FA. Up-to-date instructions live in the [IGDB API docs](https://api-docs.igdb.com/#account-creation). When registering your application in the Twitch Developer Portal:
+To access the IGDB API you'll need a Twitch account and a valid phone number for 2FA verification. Up-to-date instructions are available in the [IGDB API documentation](https://api-docs.igdb.com/#account-creation). When registering your application in the Twitch Developer Portal, fill out the form like so:
 
-- **Name**: something unique, because picking an existing name fails silently. Use `romm-<random hex>`.
-- **OAuth Redirect URLs**: `localhost`
-- **Category**: Application Integration
-- **Client Type**: Confidential
+- Name: Something **unique or random** like `romm-3fca6fd7f94dea4a05d029f654c0c44b` or `KVV8NDXMSRFJ2MRNPNRSL7GQT`
+- OAuth Redirect URLs: `localhost`
+- Category: `Application Integration`
+- Client Type: `Confidential`
 
-Set `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` from the values Twitch generates.
+<!-- prettier-ignore -->
+!!! important
+    The name you pick has to be unique! Picking an existing name will fail silently, with no error messages. We recommend using `romm-<random hash>`, like `romm-3fca6fd7f94dea4a05d029f654c0c44b`
 
-??? info "Screenshots"
-![IGDB Creation](../resources/metadata_providers/1-igdb.png)
-![IGDB Secret](../resources/metadata_providers/2-igdb.png)
+Note the client ID and secret that appear on screen, and use them to set `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` in your environment variables.
+
+<!-- prettier-ignore -->
+??? Screenshots
+    ![IGDB Creation](../resources/metadata_providers/1-igdb.png)
+    ![IGDB Secret](../resources/metadata_providers/2-igdb.png)
 
 ### ScreenScraper
 
-[ScreenScraper.fr](https://screenscraper.fr/) is a French provider with wide coverage and good artwork (2D, 3D, CD/cartridge).
+[ScreenScraper.fr](https://screenscraper.fr/) is a French provider that offers metadata, cover art, screenshots and manuals, along with the option for 3D boxes and CD/cartridge cover art. It supports a wide range of systems and is a great alternative to IGDB.
 
-[Register](https://www.screenscraper.fr/membreinscription.php), then set `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD`.
+To access the ScreenScraper API, create a [ScreenScraper](https://www.screenscraper.fr/membreinscription.php) account and copy the **user** and **password** you just created to `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD` respectively.
 
 ### MobyGames
 
-Metadata, cover art, and screenshots. [Create an account](https://www.mobygames.com/user/register/), visit your profile, and follow the **API** link to request a key. Set `MOBYGAMES_API_KEY`.
+MobyGames is a metadata provider that offers metadata, cover art and screenshots.
+
+To access the MobyGames API, [create a MobyGames account](https://www.mobygames.com/user/register/) and then visit your profile page. Click the **API** link under your user name to sign up for an API key. Copy the key shown and use it to set `MOBYGAMES_API_KEY`.
 
 <!-- prettier-ignore -->
-!!! important "MobyGames API is paid"
-    Access to the MobyGames API is a [paid, non-commercial-licensed feature](https://www.mobygames.com/info/api/#non-commercial). RomM will continue to support it but we recommend ScreenScraper as a free alternative.
-
-### SteamGridDB
-
-[SteamGridDB](https://www.steamgriddb.com/) serves custom cover art for games and collections. It's not used by the scanner directly. It surfaces in the **Search Cover** button when you manually edit a game's artwork.
-
-Log in with a [Steam account](https://store.steampowered.com/join), go to your [API tab](https://www.steamgriddb.com/profile/preferences/api), and set `STEAMGRIDDB_API_KEY`.
-
-### RetroAchievements
-
-[RetroAchievements](https://retroachievements.org/) provides achievement data and hash matching. Generate a web API key from your RA [settings page](https://retroachievements.org/settings) and set `RETROACHIEVEMENTS_API_KEY`. Run an **Unmatched** scan on the platforms you want matched.
-
-Each RomM user also links their own RA username in their profile to sync personal progression. A new **Achievements** tab appears on the **Personal** data panel once linked.
-
-The RA database is cached locally. Refresh frequency is controlled by `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS` (default: 30).
-
-??? info "Screenshots"
-![RA API key](../resources/metadata_providers/1-ra.png)
-![RA details](../resources/metadata_providers/2-ra.png)
-
-### Hasheous
-
-[Hasheous](https://hasheous.org/) is free and open-source, does hash-based matching, and proxies IGDB data (no IGDB creds required on your side). Flag with `HASHEOUS_API_ENABLED=true`.
-
-### PlayMatch
-
-[PlayMatch](https://github.com/RetroRealm/playmatch) is a community-hosted hash-matching service. Pair it with IGDB for better matching on unmatched files. Flag with `PLAYMATCH_API_ENABLED=true`.
+!!! important
+    Access to the MobyGames API is a [paid feature](https://www.mobygames.com/info/api/#non-commercial). While we will continue to support it, we recommend using [ScreenScraper](#screenscraper) instead, as it is free to use.
 
 ### LaunchBox
 
-The [LaunchBox Games Database](https://gamesdb.launchbox-app.com/) is a community-driven catalogue. RomM downloads the full database locally and matches on exact filenames, just like the LaunchBox desktop app.
+The [LaunchBox](https://gamesdb.launchbox-app.com/) Games Database is a community-driven database that provides metadata, cover art, and screenshots. Like the Launchbox desktop application, RomM downloads the entire database locally and matches games based on their exact filenames.
 
-```yaml
-environment:
-    - LAUNCHBOX_API_ENABLED=true
-    - ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true
-    - SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON=0 5 * * * # default: 5am daily
-```
+To enable LaunchBox, set `LAUNCHBOX_API_ENABLED=true` and `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` in your environment variables. You can customize scheduled updates of the database by setting the frequency on the cron job with `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON` (defaults to 5:00 AM every day).
 
-Run at least one LaunchBox update (manually from the Scan page, or wait for the cron) before using it as a scan source, because RomM won't match against an empty local DB.
+You must run a LaunchBox metadata update (either manually, or scheduled via cron) to generate a local `.xml` file with Launchbox metadata before using it as a metadata provider. The server will parse the local `.xml` file when trying to match a ROM and fetch metadata from this source.
 
-### TheGamesDB
+### Hasheous
 
-[TheGamesDB](https://thegamesdb.net/) is a free community database that doesn't require credentials. Flag with `TGDB_API_ENABLED=true`.
+[Hasheous](https://hasheous.org/) is a free, open-source metadata provider that uses file hashes to match games. It proxies IGDB data for titles, descriptions, and cover art, and can provide Retroachievements IDs for matched games.
+
+Simply set `HASHEOUS_API_ENABLED=true` in your environment variables, and future scans will start using the [Hasheous API](https://hasheous.org/swagger/index.html).
+
+### PlayMatch
+
+[PlayMatch](https://github.com/RetroRealm/playmatch) is a hash-based matching service used in conjunction with IGDB to provide better matching for games, hosted by a member of our community.
+
+To enable PlayMatch, set `PLAYMATCH_API_ENABLED=true` in your environment variables.
+
+### SteamGridDB
+
+SteamGridDB provides custom cover art for games or collections. It's not accessed through the scanner but from the "search cover" button when manually editing a game.
+
+To access the SteamGridDB API, you need to login to their [website](https://www.steamgriddb.com/) with a [Steam account](https://store.steampowered.com/join). Once logged in, go to your [API tab under the preferences page](https://www.steamgriddb.com/profile/preferences/api). Copy the key shown and use it to set `STEAMGRIDDB_API_KEY`.
+
+### RetroAchievements
+
+RomM is able to display your achievements from [RetroAchievements](https://retroachievements.org/). To sync it with your RomM instance, you need to generate an API key from your RetroAchievements account in your [settings](https://retroachievements.org/settings).
+
+Copy the key shown and use it to set `RETROACHIEVEMENTS_API_KEY` and perform a `UNMATCHED` scan targeting the platform you want to match with RetroAchievements.
+
+After that, each user needs to set their own username in their profile and sync it with RetroAchievements. A new `Achievements` tab will appear in the `Personal` tab in the game details.
+
+To avoid unnecessary API calls, a cached file with the RA database is stored in RomM. Refresh time for that cache file can be changed with the environment variable `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS`.
+
+<!-- prettier-ignore -->
+??? Screenshots
+    ![RA API key](../resources/metadata_providers/1-ra.png)
+    ![RA details](../resources/metadata_providers/2-ra.png)
 
 ### Flashpoint
 
-The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) covers 180,000+ Flash and browser-based games, the thing Ruffle is for. Flag with `FLASHPOINT_API_ENABLED=true`. Run an **Unmatched** scan to update existing platforms.
+The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) is a project that enables metadata for 180,000+ flash and browser-based games. Enable this metadata source with the `FLASHPOINT_API_ENABLED=true` environment variable. If you are adding this provider to an existing RomM setup, perform a `UNMATCHED` scan with Flashpoint selected to update an existing platform.
 
 ### HowLongToBeat
 
-[HowLongToBeat](https://howlongtobeat.com/) adds game completion times (Main, Main + Extras, Completionist) to supported games. Flag with `HLTB_API_ENABLED=true`.
+The [HowLongToBeat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` environment variable. If you are adding this provider to an existing RomM setup, perform a `UNMATCHED` scan with HowLongToBeat selected to update an existing platform.
 
-A new **Time to Beat** tab appears on matched games' detail pages.
+Game completion times will be added to a new tab on the details page for supported matched games.
 
-### gamelist.xml (ES-DE / Batocera)
+### ES-DE gamelist.xml
 
-If you came from EmulationStation / ES-DE / Batocera, you already have `gamelist.xml` files with metadata and media. RomM can parse these as a metadata source.
+EmulationStation, and it's modern successor ES-DE, use a custom XML format to store game metadata. RomM can parse this format and import the assets as cover art and screenshots. You'll need to store the gamelist.xml file and any related assets under the platform folder:
 
-Expected layout:
-
+<!-- prettier-ignore -->
 ```yaml
 library/
 └─ roms/
-└─ gba/
-├─ game_1.gba
-├─ game_2.gba
-├─ gamelist.xml
-├─ 3dboxes/
-├─ covers/
-├─ screenshots/
-└─ ...
+    └─ gba/
+        ├─ game_1.gba
+        ├─ game_2.gba
+        ├─ gamelist.xml
+        ├─ 3dboxes/
+        │  ├─ game_1.png
+        │  └─ game_2.png
+        ├─ covers/
+        ├─ screenshots/
+        └─ etc...
 ```
+
+<!-- prettier-ignore -->
+```xml
+<?xml version="1.0"?>
+<gameList>
+	<game id="12345">
+        <!-- Path of the rom file -->
+		<path>./game.gba</path>
+
+        <!-- Recommended properties -->
+		<name>Game Title</name>
+		<desc>A fun game to play</desc>
+		<lang>en</lang>
+		<region>USA</region>
+
+        <!-- Additional properties -->
+        <rating>0.8</rating>
+        <releasedate>19990615T000000</releasedate>
+        <developer>Developer Inc.</developer>
+        <publisher>Publisher Co.</publisher>
+        <family>Game Series</family>
+        <genre>Action</genre>
+        <players>1-2</players>
+        <md5>f1234567890abcdef1234567890abcde</md5>
+
+        <!-- Media properties -->
+        <image>./images/game.png</image>
+        <cover>./covers/game.png</cover>
+        <backcover>./backcovers/game.png</backcover>
+        <box3d>./3dboxes/game.png</box3d>
+        <fanart>./fanart/game.png</fanart>
+        <manual>./manuals/game.pdf</manual>
+        <marquee>./marquees/game.png</marquee>
+        <miximage>./miximages/game.png</miximage>
+        <physicalmedia>./physicalmedia/game.png</physicalmedia>
+        <screenshot>./screenshots/game.png</screenshot>
+        <title_screen>./titlescreens/game.png</title_screen>
+        <thumbnail>./thumbnails/game.png</thumbnail>
+        <video>./videos/game.mp4</video>
+	</game>
+	<game id="54321">
+        ...
+	</game>
+    ...
+</gameList>
+```
+
+#### ES-DE metadata
+
+Here are the text properties that will be read from `gamelist.xml`.
+
+| Property Name | Description                      |
+| ------------- | -------------------------------- |
+| name          | Game title                       |
+| desc          | Game description or synopsis     |
+| lang          | Game language (en, es, it, etc.) |
+| region        | Game region (us, eu, jp, etc.)   |
+| rating        | Game rating score                |
+| releasedate   | Game release date                |
+| developer     | Developer company                |
+| publisher     | Publisher company                |
+| family        | Game franchise or series         |
+| genre         | Game category or type            |
+| players       | Number of players supported      |
+| md5           | ROM file hash identifier         |
+
+#### ES-DE media
+
+RomM has two ways of mapping media files: first it looks at `gamelist.xml` for properties, and it falls back to looking at nested folders for images that have the same name as the ROM.
+
+| Property Name | Folder Name   | Description                            |
+| ------------- | ------------- | -------------------------------------- |
+| image         | images        | General game image                     |
+| cover         | covers        | Front cover artwork                    |
+| backcover     | backcovers    | Back cover artwork                     |
+| box3d         | 3dboxes       | 3D box artwork                         |
+| fanart        | fanart        | Fan-made artwork                       |
+| manual        | manuals       | Game instruction manual                |
+| marquee       | marquees      | Arcade game marquee or header          |
+| miximage      | miximages     | Composite or mixed artwork             |
+| physicalmedia | physicalmedia | Physical media (cartridge, disc, etc.) |
+| screenshot    | screenshots   | In-game screenshot                     |
+| title_screen  | titlescreens  | Game title screen                      |
+| thumbnail     | thumbnails    | Small preview image                    |
+| video         | videos        | Gameplay video or trailer              |
 
 #### ES-DE settings
 
-Two edits in the ES-DE settings file so ES-DE writes its metadata and media into the RomM-expected location:
+Here are the settings you need to change so RomM can read your artwork and gamelist.xml files from the same folder that holds your ROMs.
 
-- Linux/macOS: `~/ES-DE/settings/es_settings.xml`
-- Windows: `C:\Program Files\ES-DE\settings\es_settings.xml`
+1. Open the ES-DE settings file:
+
+    - Linux / macOS: `~/ES-DE/settings/es_settings.xml`
+    - Windows: `C:\Program Files\ES-DE\settings\es_settings.xml`
+
+2. Make these two edits (add the lines if they don’t exist):
 
 ```xml
 <string name="MediaDirectory" value="/path/to/ROMs/folder" />
 <bool name="LegacyGamelistFileLocation" value="true" />
 ```
 
-`MediaDirectory` puts artwork next to ROMs, and `LegacyGamelistFileLocation` writes `gamelist.xml` next to ROMs instead of in the ES-DE config folder. If you already have scraped assets, move the contents of `~/ES-DE/downloaded_media/` and `~/ES-DE/gamelists/` into the ROM folders.
+- `MediaDirectory="/path/to/ROMs/folder"` download artwork into the same directory that contains the ROMs (should match `ROMDirectory`)
+- `LegacyGamelistFileLocation="true"` forces gamelist.xml to be written next to the ROMs instead of inside the ES-DE config folder
 
-### Libretro
+3. If you already have scraped artwork, copy/move the systems from `~/ES-DE/downloaded_media/` and `~/ES-DE/gamelists/` into your ROMs folder
 
-Libretro's retro core metadata is used internally for platform mapping and fallback artwork: no env flag, no credentials. Nothing to configure. RomM uses it automatically when it knows the libretro core for a platform.
+After a restart, ES-DE will place new artwork and the updated gamelist.xml directly in `roms/<system>/`, which is the layout RomM expects.
 
-## Metadata tags in filenames
+## Metadata Tags in Filenames
 
-RomM honours inline tags in ROM filenames to force a match against a specific provider ID:
+Scans will now parse custom metadata tags in the filename that match specific patterns, and use them to fetch game metadata for the specified ID. The supported tags are:
 
-| Tag                | Provider                                            |
-| ------------------ | --------------------------------------------------- |
-| `(igdb-xxxx)`      | [IGDB](https://www.igdb.com/)                       |
-| `(moby-xxxx)`      | [MobyGames](https://www.mobygames.com/)             |
-| `(ra-xxxx)`        | [RetroAchievements](https://retroachievements.org/) |
-| `(ssfr-xxxx)`      | [ScreenScraper](https://screenscraper.fr/)          |
-| `(launchbox-xxxx)` | [LaunchBox](https://gamesdb.launchbox-app.com/)     |
-| `(hltb-xxxx)`      | [HowLongToBeat](https://howlongtobeat.com/)         |
+(igdb-xxxx) for [IGDB](https://www.igdb.com/)
+(moby-xxxx) for [MobyGames](https://www.mobygames.com/)
+(ra-xxxx) for [RetroAchievements](https://retroachievements.org/)
+(ssfr-xxxx) for [ScreenScraper](https://screenscraper.fr/)
+(launchbox-xxxx) for [Launchbox](https://gamesdb.launchbox-app.com/)
+(hltb-xxxx) for [HowLongToBeat](https://howlongtobeat.com/)
 
-RomM will **not** rename your files to add these. They're opt-in, and renaming would conflict with other tooling that walks the filesystem.
+Filenames will not be renamed by RomM to add tags, as they are a non-standard formatting system and could create conflicts with other software.
 
 ## Priority and conflict resolution
 
@@ -213,4 +307,4 @@ scan:
 
 Reorder these lists to taste. For example, put `ss` first if you prefer ScreenScraper boxart, or move `hltb` up if you care about completion times more than descriptions.
 
-See the full [Configuration File reference](../reference/configuration-file.md) for everything `scan.priority` can do.
+See the full [Configuration File reference](../reference/configuration-file.md) for everything `scan.priority` can do

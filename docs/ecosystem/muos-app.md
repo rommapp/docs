@@ -46,9 +46,7 @@ Installation uses muOS's [Archive Manager](https://muos.dev/installation/archive
 
 <!-- prettier-ignore -->
 !!! tip "Use a dedicated account or token"
-    The username/password lives in plaintext on the SD card. Use a dedicated Viewer-role account for the handheld, not your admin credentials.
-
-    Once RomM's 5.0 Client API Token flow is wired into the muOS app (planned), prefer pairing via token instead of password.
+    The username/password lives in plaintext on the SD card. Use a dedicated Viewer-role account for the handheld, not your admin credentials. Once RomM's 5.0 Client API Token flow is wired into the muOS app (planned), prefer pairing via token instead of password.
 
 ## Installing: EmulationStation (via PortMaster)
 

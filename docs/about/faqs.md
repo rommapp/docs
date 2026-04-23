@@ -79,7 +79,7 @@ Most common reasons:
 
 Full troubleshooting steps can be found in [Scanning Troubleshooting](../troubleshooting/scanning.md).
 
-## My scan finds platforms but no games inside them.
+## My scan finds platforms but no games inside them
 
 This is almost always a mount-depth issue. RomM expects the _parent_ of your `roms/` folder mounted to `/romm/library`, not the `roms/` folder itself. If your files live at `/opt/romm/library/roms/gbc/game.gbc`, mount `/opt/romm/library` to `/romm/library`, then re-scan.
 
@@ -162,7 +162,7 @@ We don't give ETAs on individual features. Open (or upvote) an issue at [rommapp
 
 Dropped in 3.0 for stability reasons; use MariaDB, MySQL, or Postgres instead. See [Databases](../install/databases.md).
 
-## I found a bug, or I need help.
+## I found a bug, or I need help
 
 For bugs, open an issue at [rommapp/romm](https://github.com/rommapp/romm/issues). For questions, ask in `#romm-support` on [Discord](https://discord.gg/romm). Either way, include:
 

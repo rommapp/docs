@@ -1,9 +1,7 @@
 ---
 title: Library
-description: Browse your RomM library: dashboard, cards, filters, search, and the platform/game views.
+description: Browse your RomM library
 ---
-
-<!-- trunk-ignore-all(markdownlint/MD033) -->
 
 # Library
 

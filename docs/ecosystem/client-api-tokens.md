@@ -46,7 +46,7 @@ Typing a 44-character token into a handheld thumbstick isn't realistic. Instead:
 
 ### Flow
 
-```
+```ascii
 ┌───────────┐                                 ┌───────────┐
 │  Device   │                                 │   RomM    │
 └─────┬─────┘                                 └─────┬─────┘

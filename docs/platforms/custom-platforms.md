@@ -3,6 +3,8 @@ title: Custom Platforms
 description: Add platforms RomM doesn't natively support, plus custom platform icons.
 ---
 
+<!-- trunk-ignore-all(markdownlint/MD033) -->
+
 # Custom Platforms
 
 RomM ships with support for ~400 platforms. If yours isn't in [the list](supported-platforms.md), you can still load it as a custom platform. RomM just won't have metadata-provider coverage for it.

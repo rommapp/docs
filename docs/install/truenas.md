@@ -15,13 +15,13 @@ This guide covers **TrueNAS SCALE**. TrueNAS CORE isn't supported because its Fr
 
 ## Option A: App Catalog (recommended)
 
-### 1. Open the RomM app
+1. Open the RomM app
 
 **Apps** (left nav) → **Discover Apps** → search `RomM` → **Install**.
 
 ![RomM app](../resources/truenas/appstore.png)
 
-### 2. Fill in the install form
+2. Fill in the install form
 
 Step through the installation UI. You'll be asked for the same set of env vars as [Quick Start](../getting-started/quick-start.md), and most defaults work. Things to look at:
 
@@ -32,7 +32,7 @@ Step through the installation UI. You'll be asked for the same set of env vars a
 
 ![RomM Library Example](../resources/truenas/app-config.png)
 
-### 3. Install
+3. Install
 
 Save. TrueNAS provisions the container + DB + Valkey, runs migrations, and exposes the web UI on the port you configured. If it won't boot, jump to [Troubleshooting](#troubleshooting).
 
@@ -40,22 +40,23 @@ Save. TrueNAS provisions the container + DB + Valkey, runs migrations, and expos
 
 Use this path when the App Catalog has a bug, or when you want more flexibility than the install UI exposes.
 
-### 1. Open the YAML install
+1. Open the YAML install
 
 **Apps** → **Discover Apps** → **Install via YAML**.
 
 ![Install via YAML](../resources/truenas/install-via-yaml.png)
 
-### 2. Paste the compose file
+2. Paste the compose file
 
 Fill in the empty values with credentials you created in [Quick Start](../getting-started/quick-start.md).
 
+<!-- prettier-ignore -->
 ???+ example "docker-compose.yml"
-`yaml
-    --8<-- "truenas.docker-compose.yml"
-   `
+    `yaml
+        --8<-- "truenas.docker-compose.yml"
+    `
 
-### 3. Install
+3. Install
 
 Save. Same troubleshooting applies, see below.
 

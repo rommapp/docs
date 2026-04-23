@@ -130,9 +130,7 @@ See [Netplay](netplay.md). One-page deep dive on hosting/joining, ICE servers, a
 !!! important "Ruffle needs the right platform folder"
     Ruffle only plays games from platform folders named `flash` or `browser`. If your Flash games are elsewhere, either rename the folder or add a [platform binding](../reference/configuration-file.md#systemplatforms) in `config.yml`.
 
-### Controls
-
-Flash games were typically designed for mouse + keyboard, and Ruffle passes input through as-is. No controller mapping, so gamepad-only users will struggle with most Flash titles.
+No controller mapping, so gamepad-only users will struggle with most Flash titles.
 
 ### Saves
 

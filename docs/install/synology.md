@@ -74,10 +74,12 @@ Recommended before the first scan. Full walkthrough in [Metadata Providers](../a
 
 The Synology-flavoured compose file: MariaDB on port `3309` externally (to avoid colliding with Synology's built-in MariaDB), UID/GID customisation, simplified healthcheck:
 
+<!-- prettier-ignore -->
 ???+ example "docker-compose.yml"
-`yaml
+
+<!-- `yaml
     --8<-- "synology.docker-compose.yml"
-   `
+   ` -->
 
 Replace placeholder UIDs, GIDs, passwords, API keys, and `ROMM_AUTH_SECRET_KEY` with your own before starting.
 

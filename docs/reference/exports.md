@@ -11,7 +11,7 @@ RomM can emit your library metadata in formats other frontends expect. Useful wh
 
 ES-DE, Batocera, and compatibles look for a `gamelist.xml` in each platform folder. RomM can generate these automatically.
 
-### Enable via `config.yml`
+**Enable via `config.yml`**
 
 ```yaml
 scan:
@@ -23,8 +23,6 @@ scan:
 ```
 
 With `export: true`, every scan writes a `gamelist.xml` into the platform folder, and downloads the selected media into sibling folders (`covers/`, `screenshots/`, etc.) that ES-DE expects.
-
-### Format
 
 Standard ES-DE / EmulationStation format:
 
@@ -45,7 +43,7 @@ Standard ES-DE / EmulationStation format:
 </gameList>
 ```
 
-### API
+### API endpoint
 
 Trigger an export on demand:
 
@@ -79,15 +77,13 @@ See also [Metadata Providers → gamelist.xml](../administration/metadata-provid
 
 [Pegasus](https://pegasus-frontend.org/) is an alternative gaming frontend with its own metadata format. RomM can emit a `metadata.pegasus.txt` per platform.
 
-### Enable via `config.yml`
+**Enable via `config.yml`**
 
 ```yaml
 scan:
     pegasus:
         export: true
 ```
-
-### Format
 
 Human-readable text format:
 
@@ -107,7 +103,7 @@ assets.box: ./covers/Super Metroid.png
 assets.screenshot: ./screenshots/Super Metroid.png
 ```
 
-### API
+### API request
 
 ```http
 POST /api/export/pegasus

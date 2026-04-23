@@ -13,7 +13,7 @@ If you're contributing, also read [Contributing](contributing.md).
 
 Simplest. One command brings up the whole stack.
 
-### 1. Clone + mock the library
+1. Clone + mock the library
 
 Get the code and create the minimal fixtures RomM expects at runtime:
 
@@ -53,7 +53,7 @@ That's it. RomM is on `http://localhost:3000`. Source mounts are live: edit back
 
 Faster iteration cycles than Docker if you're touching Python a lot.
 
-### 1. Clone + mock the library
+1. Clone + mock the library
 
 Same as Docker Option 1.
 
@@ -69,7 +69,7 @@ touch    romm_mock/config/config.yml
 cp env.template .env
 ```
 
-### 2. System dependencies
+2. System dependencies
 
 ```sh
 # Debian / Ubuntu
@@ -78,7 +78,7 @@ sudo apt install libmariadb3 libmariadb-dev libpq-dev
 
 Adjust for your distro. The key libraries are the MariaDB connector and libpq for Postgres.
 
-#### RAHasher (optional)
+### RAHasher (optional)
 
 Only needed if you're working on RetroAchievements hash calculation. **Not supported on macOS, skip.**
 
@@ -93,7 +93,7 @@ sudo cp ./bin64/RAHasher /usr/bin/RAHasher
 cd ..
 ```
 
-### 3. Python environment
+3. Python environment
 
 RomM uses [uv](https://docs.astral.sh/uv/getting-started/installation/):
 
@@ -105,7 +105,7 @@ source .venv/bin/activate
 uv sync --all-extras --dev
 ```
 
-### 4. Start supporting services
+4. Start supporting services
 
 MariaDB and Valkey come up via the dev compose file:
 
@@ -113,7 +113,7 @@ MariaDB and Valkey come up via the dev compose file:
 docker compose up -d
 ```
 
-### 5. Run the backend
+5. Run the backend
 
 Alembic migrations run automatically on start.
 
@@ -122,7 +122,7 @@ cd backend
 uv run python3 main.py
 ```
 
-### 6. Frontend
+6. Frontend
 
 In a second terminal:
 

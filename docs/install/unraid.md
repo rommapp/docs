@@ -20,7 +20,7 @@ Both end up with the same running stack.
 
 ## Community Apps template
 
-### Prerequisites
+### Prerequisites for CA
 
 - [Community Apps plugin](https://forums.unraid.net/topic/38582-plug-in-community-applications/) installed
 - A custom Docker bridge network so RomM and MariaDB can talk to each other by container name. Skip this and you'll hit DNS issues that look like everything else.
@@ -66,7 +66,7 @@ Apply, head back to the **Docker** tab, and you should see both containers runni
 
 ## Docker Compose Manager
 
-### Prerequisites
+### Prerequisites for DCM
 
 - [Community Apps plugin](https://forums.unraid.net/topic/38582-plug-in-community-applications/)
 - [Docker Compose Manager plugin](https://forums.unraid.net/topic/114415-plugin-docker-compose-manager/) from CA

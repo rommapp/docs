@@ -1,7 +1,9 @@
 ---
 title: Quick Start
-description: Get a RomM 5.0 instance running in about fifteen minutes using Docker Compose.
+description: Get a RomM instance running in about fifteen minutes
 ---
+
+<!-- trunk-ignore-all(markdownlint/MD033) -->
 
 # Quick Start
 
@@ -23,10 +25,11 @@ You'll need:
 
 Start from the reference file shipped in the RomM repo. A known-good, minimally-edited version is included below. Save it as `docker-compose.yml` in an empty directory on your host.
 
+<!-- prettier-ignore -->
 ???+ example "docker-compose.yml"
-`yaml
-    --8<-- "quick-start.docker-compose.yml"
-   `
+    `yaml
+        --8<-- "quick-start.docker-compose.yml"
+    `
 
 You'll want to edit the following values before launching:
 

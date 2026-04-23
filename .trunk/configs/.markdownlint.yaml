@@ -1,2 +1,7 @@
 # Prettier friendly markdownlint config (all formatting rules disabled)
 extends: markdownlint/style/prettier
+
+# MkDocs pages set the page title via frontmatter and repeat it as a body H1.
+# Stop MD025 from counting the frontmatter title as a heading.
+MD025:
+    front_matter_title: ""

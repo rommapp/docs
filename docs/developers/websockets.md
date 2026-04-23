@@ -3,6 +3,8 @@ title: WebSockets
 description: RomM's two Socket.IO endpoints for live updates and Netplay coordination.
 ---
 
+<!-- trunk-ignore-all(markdownlint/MD024) -->
+
 # WebSockets
 
 RomM uses **Socket.IO** for real-time communication. Two endpoints:
@@ -36,10 +38,6 @@ const socket = io("https://romm.example.com", {
 If auth fails, the connection is closed with an error event.
 
 ## `/ws/socket.io`: general events
-
-### Namespaces
-
-Default namespace. No sub-namespacing in 5.0.
 
 ### Server → client events
 
