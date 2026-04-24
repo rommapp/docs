@@ -33,7 +33,7 @@ ERROR:    [RomM][ra_handler][2026-04-18 11:48:55]    Invalid RetroAchievements A
 WARNING:  [RomM][config_manager][2026-04-18 12:01:12] config.yml not found, using defaults
 ```
 
-Useful grep commands:
+Some useful grep commands:
 
 ```sh
 docker logs romm 2>&1 | grep ERROR
@@ -45,23 +45,13 @@ Deployment-specific log commands are in [Miscellaneous Troubleshooting → Viewi
 
 ## `/api/heartbeat`
 
-A single-request health + config endpoint. Safe to hit anonymously (though some fields only appear for authenticated callers).
+A single-request endpoint to fetch health and config information. Works when not logged in, though some fields only appear for authenticated callers.
 
 ```http
 GET /api/heartbeat
 ```
 
-Returns:
-
-- RomM version
-- Whether the Setup Wizard is still pending
-- Which metadata providers are enabled
-- Which platforms have data
-- OIDC config (redacted credentials)
-- Scheduled-task schedule summary
-- Watcher status
-
-Wire this to your uptime monitor. A failure here is real: the process is down or the DB/Valkey is unreachable.
+Wire this to your uptime monitor. A failure here means that the process is down or the DB/Valkey is unreachable.
 
 ```bash
 # Basic uptime check
@@ -73,17 +63,14 @@ curl -fsS https://romm.example.com/api/heartbeat > /dev/null \
 Per-metadata-provider health:
 
 ```http
-GET /api/heartbeat/metadata/igdb
-GET /api/heartbeat/metadata/ss
-GET /api/heartbeat/metadata/ra
-...
+GET /api/heartbeat/metadata/[igdb/ss/ra/...]
 ```
 
 Useful when a scan is matching poorly and you want to know whether a provider is down on their side or misconfigured on yours.
 
 ## Sentry
 
-Opt-in error tracking: nothing is sent without a DSN.
+Opt-in error tracking:
 
 ```yaml
 environment:
@@ -98,11 +85,9 @@ What's sent:
 
 What's not sent: ROM filenames, user credentials, metadata provider API keys. RomM filters sensitive parameters before reporting.
 
-Suitable for self-hosted Sentry or [sentry.io](https://sentry.io/).
-
 ## OpenTelemetry
 
-Opt-in distributed tracing and metrics. Useful if you run RomM alongside other services and want unified observability.
+If you're already using OpenTelemetry with your other apps and want unified observability:
 
 ```yaml
 environment:
@@ -123,7 +108,7 @@ Exporters:
 - OTLP gRPC (default, port `4317`)
 - OTLP HTTP (port `4318`): set `OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf`.
 
-Send to an OpenTelemetry Collector, then fan out to Tempo / Jaeger / Honeycomb / Datadog / Grafana Cloud / whatever you run.
+Send to an OpenTelemetry Collector, then fan out to Tempo/Jaeger/Honeycomb/Datadog/Grafana/whatever you run.
 
 ## Task status
 
@@ -138,19 +123,11 @@ Returns an array of every scheduled / manual / watcher task with current status 
 
 ## Anti-patterns
 
-- **Don't parse unstructured log lines** for metrics. Use OTEL or `/api/tasks/status`.
-- **Don't log at DEBUG in production.** The volume is real and scans will drown in it.
-- **Don't scrape HTML pages for health checks.** `/api/heartbeat` is the contract. HTML changes between versions, the API endpoint is stable.
+- **Don't parse unstructured log lines** for metrics (use OTEL instead)
+- **Don't log at DEBUG in production** as the volume is real and scans will drown in it
+- **Don't scrape HTML pages for health checks**; HTML changes between versions while the API endpoint is stable
 
 ## Minimum recommended stack
 
-For a homelab instance:
-
-- Default `INFO` logs into the container logs → forwarded to Loki / Promtail / whatever you already run
-- `/api/heartbeat` hit every 60 seconds from Uptime Kuma / Gatus
-
-For a serious deployment:
-
-- Above, plus Sentry DSN configured
-- Plus OpenTelemetry to the collector you already have
-- Alert on: heartbeat failure, task stuck > 1 h, `ERROR`-level log spikes
+- Default `INFO` logs into the container logs → forwarded to Loki/Promtail/whatever you already run
+- `/api/heartbeat` hit every 60 seconds from Uptime Kuma/Gatus
