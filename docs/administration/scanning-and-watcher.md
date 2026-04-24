@@ -1,15 +1,15 @@
 ---
 title: Scanning & Watcher
-description: How RomM scans your library, the six scan modes, and the filesystem watcher.
+description: Scanning your library, scan modes, and the filesystem watche
 ---
 
 # Scanning & Watcher
 
 RomM keeps its catalogue in sync with your filesystem through three mechanisms:
 
-1. **Manual scans** you trigger from the Scan page.
-2. **Scheduled scans** (default: nightly) run by the task runner.
-3. **The filesystem watcher**: live reaction to files landing in or leaving your library.
+1. **Manual scans** you trigger from the Scan page
+2. **Scheduled scans** (default: nightly) run by the task runner
+3. **The filesystem watcher** reacting to files landing in or leaving your library
 
 All three share the same scan engine and the same set of **scan modes**.
 
@@ -23,7 +23,7 @@ Every scan picks one mode. Modes differ in what they touch, so use the most-targ
 | **Quick**         | Skips files that already exist in the DB, with no metadata refresh.        | Default for scheduled runs and the watcher.                                                    |
 | **Unmatched**     | Re-runs metadata matching against ROMs currently missing external IDs.     | After adding a new metadata provider, or when some titles didn't match on the first scan.      |
 | **Update**        | Re-fetches metadata for all already-matched ROMs.                          | When metadata providers have meaningfully changed (e.g. IGDB restructured).                    |
-| **Hashes**        | Recalculates CRC/MD5/SHA1 hashes.                                          | After upgrading from a version that didn't hash (pre-4.4) or when you suspect file corruption. |
+| **Hashes**        | Recalculates CRC/MD5/SHA1 hashes.                                          | After upgrading from a version that didn't hash or when you suspect file corruption. |
 | **Complete**      | Full rescan, recalculating hashes and re-fetching metadata for everything. | Rarely, since it takes a long time.                                                            |
 
 You can further scope a scan to specific **platforms** and specific **metadata providers**, useful when only one provider has changed (e.g. just enabled Hasheous → Unmatched scan, Hasheous selected, on all platforms).
@@ -34,11 +34,11 @@ You can further scope a scan to specific **platforms** and specific **metadata p
 
 - Platform checkboxes (select which to scan, leave empty to scan all)
 - Metadata provider toggles (overrides the default priority for this one scan)
-- Advanced options: skip hashing (helpful on low-power hosts), target a LaunchBox refresh
+- skip hashing (helpful on low-power hosts)
 - A live log of everything the scanner is doing
 - Per-platform progress panels with matched / unmatched / missing counts
 
-A running scan survives browser refreshes, and the log streams over Socket.IO. Multiple admins opening the page see the same scan state.
+A running scan survives browser refreshes, and the log streams over a websocket. Multiple users opening the scan page can see the same scan state.
 
 ## Scheduled scans
 
@@ -48,21 +48,19 @@ Configured via env vars (full table in the [Scheduled Tasks reference](../refere
 | -------------------- | ----------- | ------------------------------------------------------------------------------------------------- |
 | `SCAN_INTERVAL_CRON` | `0 0 * * *` | Cron expression for the scheduled library scan. Runs a **Quick** scan by default.                 |
 | `SCAN_TIMEOUT_HOURS` | `1`         | Hard cap: scans that exceed this are killed and logged.                                           |
-| `SCAN_WORKERS`       | _auto_      | Concurrent worker processes for scanning; leave as auto unless you're tuning.                     |
-| `SEVEN_ZIP_TIMEOUT`  | _unset_     | Per-archive timeout for `.7z` extraction during scan; raise if scanning huge compressed ROM sets. |
+| `SCAN_WORKERS`       | `1`      | Concurrent worker processes for scanning; leave as auto unless you're tuning.                     |
+| `SEVEN_ZIP_TIMEOUT`  | `60`     | Per-archive timeout for `.7z` extraction during scan; raise if scanning huge compressed ROM sets. |
 
 To disable scheduled scans entirely, either unset the cron or set it to something unreachable (`SCAN_INTERVAL_CRON=0 0 31 2 *`).
 
 ## Filesystem watcher
 
-The watcher tails your library folder and schedules scans in response to file events (files added, moved, or deleted). It's off by default on some deployments, so enable with:
+The watcher tails your library folder and schedules scans in response to file events (files added, moved, or deleted). It's off by default, so enable it with:
 
 ```yaml
 environment:
-    - WATCHER_ENABLED=true
-    - RESCAN_ON_FILESYSTEM_CHANGE=true
+    - ENABLE_RESCAN_ON_FILESYSTEM_CHANGE=true
     - RESCAN_ON_FILESYSTEM_CHANGE_DELAY=10 # seconds before acting on an event
-    - WATCH_EXTENSIONS_ONLY=false # true to ignore events on non-ROM extensions
 ```
 
 Behaviour:
@@ -77,7 +75,7 @@ Behaviour:
 ### When **not** to enable the watcher
 
 - **Slow / high-latency filesystems** (SMB mounts, rclone mounts, anything not local disk): the watcher reacts to every event, flaky mounts generate a lot of them, so use scheduled scans instead.
-- **Libraries under active write load from other tools** (e.g. a ROM manager constantly tagging files): the watcher will re-scan on every change, at best noisy and at worst a scan loop.
+- **Libraries under active write load from other tools** (e.g. IGIR constantly tagging files): the watcher will re-scan on every change, at best noisy and at worst a scan loop.
 
 ### Watcher vs scheduled scan
 
@@ -89,7 +87,7 @@ Behaviour:
 | Catches renames              | Yes                     | Yes                      |
 | Survives a container restart | Yes, re-arms on startup | Yes                      |
 
-Run both: the watcher handles day-to-day additions, and the scheduled scan is a safety net.
+You can run both, where the watcher handles day-to-day additions, and the scheduled scan is a safety net.
 
 ## What gets excluded
 
@@ -123,11 +121,11 @@ scan:
         language: [en, fr]
 ```
 
-When a metadata provider returns multiple regional variants (Japanese cover, US cover, European cover…), RomM picks according to this order. Same for localised titles.
+When a metadata provider returns multiple regional variants (Japanese cover, US cover, European cover…), we pick according to this order, and the same goes for localised titles.
 
 ## Metadata source priority
 
-Who wins when two providers disagree is covered in [Metadata Providers](metadata-providers.md#priority-and-conflict-resolution), though the short version is: `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`.
+Who wins when two providers disagree is covered in [Metadata Providers](metadata-providers.md#priority-and-conflict-resolution), though the short version is `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`.
 
 ## Troubleshooting
 
