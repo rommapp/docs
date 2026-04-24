@@ -27,26 +27,26 @@ Alembic migrations run on every startup, and migrations are backwards-compatible
 
 ## Pre-release checklist
 
-### 1. Merge pending PRs
+1. Merge pending PRs
 
 - All release-milestoned PRs merged into `master`
 - CI green on `master`
 - Linter green: `trunk check --all`
 - Tests green: `uv run pytest`
 
-### 2. Update version numbers
+2. Update version numbers
 
 - `pyproject.toml` → `version = "X.Y.Z"`
 - `frontend/package.json` → `"version": "X.Y.Z"`
 - Any hardcoded version strings (`backend/__init__.py`, etc.). `rg '__version__'` or `rg '5\.0\.0'` to find them
 
-### 3. Update `env.template` if needed
+3. Update `env.template` if needed
 
 If the release adds / renames / removes env vars, `env.template` is the canonical reference. Add/rename/remove lines with inline comments. Keep alphabetical order per section.
 
 The docs site auto-generates [Environment Variables](../reference/environment-variables.md) from `env.template` on every release. Skip this step and the docs drift.
 
-### 4. Update changelog
+4. Update changelog
 
 `CHANGELOG.md` at repo root (if present): add a new section for the new version:
 
@@ -69,7 +69,7 @@ The docs site auto-generates [Environment Variables](../reference/environment-va
 
 Link to the PRs / issues. This feeds into the GitHub Release notes.
 
-### 5. Tag and push
+5. Tag and push
 
 ```sh
 git checkout master
@@ -80,7 +80,7 @@ git push origin 5.0.0
 
 The tag triggers the Docker build workflow: `rommapp/romm:5.0.0` (full) and `rommapp/romm:5.0.0-slim` are built and published to Docker Hub + GHCR.
 
-### 6. Publish the GitHub Release
+6. Publish the GitHub Release
 
 From the GitHub UI or `gh` CLI:
 
@@ -93,7 +93,7 @@ gh release create 5.0.0 \
 
 Release notes come from the `CHANGELOG.md` entry. For major releases, add a migration-guide link to the top of the notes.
 
-### 7. Move the `latest` and major tags
+7. Move the `latest` and major tags
 
 The Docker workflow handles `5.0.0` and `5.0.0-slim` automatically. For `:latest` and `:5`:
 

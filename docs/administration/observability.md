@@ -1,20 +1,18 @@
 ---
 title: Observability
-description: Logs, Sentry error tracking, OpenTelemetry, and the /heartbeat endpoint.
+description: Logs, error tracking and telemetry
 ---
 
 # Observability
 
-Four ways to know what RomM is doing:
+It's often handy to know waht RomM is doing under the hood, especially when debugging a scan or task. RomM's observability stack includes:
 
 - **Container logs**: always available, the first stop
-- **`/api/heartbeat`**: health + config summary for uptime monitors
+- **`/api/heartbeat`** endpoint: health + config summary for uptime monitors
 - **Sentry**: opt-in error tracking with stack traces
 - **OpenTelemetry**: opt-in distributed tracing + metrics
 
 ## Logs
-
-### Log levels
 
 ```yaml
 environment:
@@ -23,7 +21,7 @@ environment:
     - NO_COLOR=1 # 1 to disable colour entirely
 ```
 
-`INFO` is the default and sane for production. Drop to `DEBUG` only while debugging a specific issue, because RomM is chatty on DEBUG.
+`INFO` is the default and the sane choice for production. Drop to `DEBUG` only while debugging a specific issue, because RomM is chatty on `DEBUG`.
 
 ### Reading logs
 
@@ -35,7 +33,7 @@ ERROR:    [RomM][ra_handler][2026-04-18 11:48:55]    Invalid RetroAchievements A
 WARNING:  [RomM][config_manager][2026-04-18 12:01:12] config.yml not found, using defaults
 ```
 
-Useful greps:
+Useful grep commands:
 
 ```sh
 docker logs romm 2>&1 | grep ERROR

@@ -32,7 +32,7 @@ Both end up with the same running stack.
 
     ![console output](https://github.com/user-attachments/assets/bac31998-1911-4085-b115-8dd93d519b8b)
 
-### 1. Install MariaDB
+1. Install MariaDB
 
 From **Apps** → search `mariadb`. Only the [official `mariadb`](https://hub.docker.com/_/mariadb) and [linuxserver/docker-mariadb](https://github.com/linuxserver/docker-mariadb/pkgs/container/mariadb) templates are supported. **Prefer the official one.**
 
@@ -46,7 +46,7 @@ Fill in the env vars. Names and sensible defaults live in the [reference `docker
 !!! warning "Network type"
     MariaDB's network type **must** be set to `Custom: romm`. Otherwise RomM can't resolve its hostname.
 
-### 2. Install RomM
+2. Install RomM
 
 From **Apps**, search `romm`, install the app labelled **OFFICIAL** (maintained by the RomM team, always current).
 
@@ -56,7 +56,7 @@ Fill in env vars, ports, and paths per the [reference compose](docker-compose.md
 
 ![RomM docker tab](https://github.com/user-attachments/assets/4c4210c2-ed00-4790-a945-65cbe33620b0)
 
-### 3. Done
+3. Done
 
 Apply, head back to the **Docker** tab, and you should see both containers running. Access RomM at the IP:port highlighted below.
 
@@ -77,7 +77,7 @@ After installing, a **Compose** section appears under the Docker Containers list
 
 ![Docker Compose Section](../resources/unraid/unraid-start.png)
 
-### 1. Add the stack
+1. Add the stack
 
 **Add New Stack** → name it **RomM** → OK.
 
@@ -97,7 +97,7 @@ Save after each edit.
 !!! warning "Folder structure"
     Make sure your library matches one of the [supported folder layouts](../getting-started/folder-structure.md) before scanning. Unraid users often forget this step.
 
-### 2. Bring it up
+2. Bring it up
 
 Click **Compose Up**.
 

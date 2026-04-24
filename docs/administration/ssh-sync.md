@@ -23,7 +23,7 @@ If none of that applies, you don't need this page. HTTPS + Client API Tokens is 
 
 ## Configuring the server
 
-### 1. Provision an SSH key for RomM
+1. Provision an SSH key for RomM
 
 Generate a dedicated key on the host that runs the RomM container:
 
@@ -33,7 +33,7 @@ ssh-keygen -t ed25519 -f ~/romm-sync-key -N "" -C "romm-sync"
 
 This produces `~/romm-sync-key` (private) and `~/romm-sync-key.pub` (public). Keep the private key readable only by you: `chmod 600 ~/romm-sync-key`.
 
-### 2. Mount the key into the RomM container
+2. Mount the key into the RomM container
 
 ```yaml
 services:
@@ -48,7 +48,7 @@ Keep it read-only. RomM doesn't need to modify the key.
 
 `SSH_PRIVATE_KEY_PATH` can point anywhere inside the container, conventionally `/romm/.ssh/id_rsa`.
 
-### 3. Restart RomM
+3. Restart RomM
 
 ```sh
 docker compose up -d
@@ -60,11 +60,11 @@ The Push-Pull Device Sync task will now use that key for outbound SSH connection
 
 For each handheld / device you want to sync:
 
-### 1. Authorise the RomM key
+1. Authorise the RomM key
 
 Copy the **public** key (`~/romm-sync-key.pub` from step 1 above) to the device's `~/.ssh/authorized_keys`. Exactly how depends on the device: Grout on muOS has a helper, others expose a filesystem you can `ssh-copy-id` into.
 
-### 2. Register the device in RomM
+2. Register the device in RomM
 
 Device registration is done through a companion app (typically Grout itself) using the [Client API Token pairing flow](../ecosystem/client-api-tokens.md). Once registered, RomM knows:
 
@@ -73,7 +73,7 @@ Device registration is done through a companion app (typically Grout itself) usi
 - SSH port (default `22`)
 - Target paths on the device for saves, states, and any other synced assets
 
-### 3. Test the connection
+3. Test the connection
 
 From the RomM container, confirm SSH works:
 

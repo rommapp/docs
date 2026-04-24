@@ -37,13 +37,13 @@ Four paths, pick whichever's easiest:
 
 ## Setup
 
-### 1. Configure at least one emulator in Playnite
+1. Configure at least one emulator in Playnite
 
 The plugin needs to know how to launch a game. **If no emulators are configured, setup can't finish.**
 
 Playnite: **Menu → Library → Configure Emulators → Add emulator**. Add whatever emulators cover your ROMs (Dolphin, RetroArch, Duckstation, etc.). Built-in presets are fine for most common emulators.
 
-### 2. Configure the plugin
+2. Configure the plugin
 
 Playnite: **Menu → Library → Configure Integrations → RomM**.
 

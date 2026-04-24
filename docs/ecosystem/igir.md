@@ -30,13 +30,13 @@ Igir works on a copy of your ROMs (never in place) to let you iterate on its con
 └── igir-romm-cleanup.sh  # the script below
 ```
 
-### 1. Make a working copy
+1. Make a working copy
 
 ```sh
 cp -r roms/ roms-unverified/
 ```
 
-### 2. Download DAT files
+2. Download DAT files
 
 DAT files are hash-referenced catalogues Igir matches against.
 

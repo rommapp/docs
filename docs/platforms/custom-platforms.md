@@ -47,7 +47,7 @@ If your platform isn't in [the built-in icons list](https://github.com/rommapp/r
 
 To load your own:
 
-### 1. Mount the platform icons directory
+1. Mount the platform icons directory
 
 Bind-mount a host directory onto the container's icon path:
 
@@ -58,11 +58,11 @@ services:
             - /path/to/your/icons:/var/www/html/assets/platforms
 ```
 
-### 2. Seed it with the official icons
+2. Seed it with the official icons
 
 RomM's built-in icons live at [`frontend/assets/platforms`](https://github.com/rommapp/romm/tree/master/frontend/assets/platforms). Download them all and drop into your mounted directory, otherwise built-in platforms lose their icons too (because your mount overrides the whole directory).
 
-### 3. Add your custom `.ico` files
+3. Add your custom `.ico` files
 
 The filename has to **match the IGDB platform slug**. Examples:
 
@@ -74,7 +74,7 @@ The filename has to **match the IGDB platform slug**. Examples:
 
 Find the slug in the URL of the platform's IGDB page, e.g. [igdb.com/platforms/acpc](https://www.igdb.com/platforms/acpc) → slug is `acpc`.
 
-### 4. Restart RomM
+4. Restart RomM
 
 `docker compose up -d` picks up the new icon mount.
 

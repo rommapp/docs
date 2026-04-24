@@ -163,7 +163,7 @@ Trunk runs as a pre-commit hook automatically after install. Alternative install
 
 ## Tests
 
-### One-time: create the test DB + user
+### Create the test DB + user (onet-time)
 
 ```sh
 docker exec -i romm-db-dev mariadb -uroot -p<root-password> < backend/romm_test/setup.sql
