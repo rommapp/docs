@@ -7,7 +7,7 @@ description: Wire-level reference for RomM's save/state/play-session sync protoc
 
 This page documents the **wire-level protocol** RomM uses for bidirectional sync between itself and companion apps. If you're building a companion app, this is your reference.
 
-End users: this is under the hood. You don't need to read it. See [Saves & States](../using/saves-and-states.md) and [SSH Sync](../administration/ssh-sync.md) for operator/user views.
+End users: this is under the hood. You don't need to read it. See [Saves & States](../using/saves-and-states.md) and [SSH Sync](ssh-sync.md) for operator/user views.
 
 ## The three primitives
 
@@ -221,7 +221,7 @@ Send up to 100 per request.
 
 ## SSH-based sync (alternative)
 
-For handhelds where the RomM server connects over SSH instead of the device polling HTTPS, see [SSH Sync](../administration/ssh-sync.md). The RomM-side push-pull task reads the device's filesystem over SSH rather than going through API calls. Same data, different transport.
+For handhelds where the RomM server connects over SSH instead of the device polling HTTPS, see [SSH Sync](ssh-sync.md). The RomM-side push-pull task reads the device's filesystem over SSH rather than going through API calls. Same data, different transport.
 
 Companion apps generally prefer the API model. SSH-based sync exists mostly for cases where the device can't run a TLS client reliably.
 
@@ -242,5 +242,5 @@ Currently polling-only. Companion apps check `/api/sync/negotiate` periodically 
 - [Client API Tokens](client-api-tokens.md): auth + pairing
 - [API Authentication](../developers/api-authentication.md): general auth primer
 - [API Reference](../developers/api-reference.md): full endpoint catalogue
-- [SSH Sync](../administration/ssh-sync.md): alternative transport for handhelds
+- [SSH Sync](ssh-sync.md): alternative transport for handhelds
 - [Argosy](argosy.md), [Grout](grout.md): reference client implementations

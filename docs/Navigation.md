@@ -41,7 +41,6 @@ search:
     - [Server Stats](administration/server-stats.md)
     - [Observability](administration/observability.md)
     - [Firmware Management](administration/firmware-management.md)
-    - [SSH Sync](administration/ssh-sync.md)
     - [Administration Page](administration/administration-page.md)
 - Using RomM
     - [Overview](using/index.md)
@@ -85,6 +84,7 @@ search:
     - For developers
         - [Device Sync Protocol](ecosystem/device-sync-protocol.md)
         - [Client API Tokens](ecosystem/client-api-tokens.md)
+        - [SSH Sync](ecosystem/ssh-sync.md)
     - [Community Apps](ecosystem/community-apps.md)
     - [Igir Collection Manager](ecosystem/igir.md)
 - API & Development

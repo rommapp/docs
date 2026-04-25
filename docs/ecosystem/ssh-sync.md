@@ -1,13 +1,13 @@
 ---
 title: SSH Sync
-description: Configure SSH key-based push/pull sync to handhelds and other devices.
+description: Configure SSH key-based push/pull sync
 ---
 
 # SSH Sync
 
 RomM's Push-Pull Device Sync task can push saves/states to registered devices and pull them back after a session, over SSH, using a key that RomM holds. This page covers the server-side setup.
 
-The client side (a handheld running Grout, a SteamDeck running DeckRommSync, etc.) lives in [Integrations & Ecosystem](../ecosystem/index.md). The wire protocol (API-level sync negotiation, play-session ingest) lives in [Device Sync Protocol](../ecosystem/device-sync-protocol.md).
+The client side (a handheld running Grout, a SteamDeck running DeckRommSync, etc.) lives in [Integrations & Ecosystem](index.md). The wire protocol (API-level sync negotiation, play-session ingest) lives in [Device Sync Protocol](device-sync-protocol.md).
 
 <!-- prettier-ignore -->
 !!! note "Most companion apps don't need this"
@@ -66,7 +66,7 @@ Copy the **public** key (`~/romm-sync-key.pub` from step 1 above) to the device'
 
 2. Register the device in RomM
 
-Device registration is done through a companion app (typically Grout itself) using the [Client API Token pairing flow](../ecosystem/client-api-tokens.md). Once registered, RomM knows:
+Device registration is done through a companion app (typically Grout itself) using the [Client API Token pairing flow](client-api-tokens.md). Once registered, RomM knows:
 
 - Device name + type
 - Hostname / IP
@@ -93,7 +93,7 @@ The **Push-Pull Device Sync** scheduled task (default: every 15 minutes) does, f
 4. Downloads (pull) anything newer on the device.
 5. Updates play session records if the device reports any.
 
-Tune the schedule via `PUSH_PULL_SYNC_INTERVAL_CRON`. See [Scheduled Tasks](scheduled-tasks.md).
+Tune the schedule via `PUSH_PULL_SYNC_INTERVAL_CRON`. See [Scheduled Tasks](../administration/scheduled-tasks.md).
 
 Disable sync for a specific device by deregistering it from **Administration → Devices**, or disable the task entirely by unsetting / neutering `PUSH_PULL_SYNC_INTERVAL_CRON`.
 
@@ -101,7 +101,7 @@ Disable sync for a specific device by deregistering it from **Administration →
 
 - **`Permission denied (publickey)`**: authorised key isn't set up on the device, or the private key inside the container can't be read (check the file permissions and bind-mount flags).
 - **`Host key verification failed`**: the device's host key changed (after a reinstall, typically). Shell into the container and remove the offending line from `~/.ssh/known_hosts`.
-- **Sync silently doesn't run**: check `GET /api/tasks/status` for the Push-Pull task's state. "failed" points you at the error, and "never ran" means the cron isn't firing (see [Scheduled Tasks](scheduled-tasks.md)).
+- **Sync silently doesn't run**: check `GET /api/tasks/status` for the Push-Pull task's state. "failed" points you at the error, and "never ran" means the cron isn't firing (see [Scheduled Tasks](../administration/scheduled-tasks.md)).
 - **Connection times out**: the device is offline or the network path is blocked. Confirm reachability from the RomM container: `docker exec romm ping <device-ip>`.
 
 More at [Device Sync Troubleshooting](../troubleshooting/sync.md).

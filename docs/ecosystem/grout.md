@@ -91,7 +91,7 @@ Scope the token narrowly when creating: default scopes are fine for most users b
 
 ## SSH sync (operator-side)
 
-If you want Grout to pull from RomM over SSH rather than HTTPS (e.g. on a trusted LAN with no reverse proxy) see [SSH Sync](../administration/ssh-sync.md) for the server-side config. Grout supports both modes, selectable in Settings → Connection.
+If you want Grout to pull from RomM over SSH rather than HTTPS (e.g. on a trusted LAN with no reverse proxy) see [SSH Sync](ssh-sync.md) for the server-side config. Grout supports both modes, selectable in Settings → Connection.
 
 ## Troubleshooting
 
@@ -106,5 +106,5 @@ More in [Device Sync Troubleshooting](../troubleshooting/sync.md).
 
 - [Client API Tokens](client-api-tokens.md): token and pairing flow reference
 - [Device Sync Protocol](device-sync-protocol.md): wire-level protocol
-- [SSH Sync](../administration/ssh-sync.md): operator-side SSH config
+- [SSH Sync](ssh-sync.md): operator-side SSH config
 - [rommapp/grout](https://github.com/rommapp/grout): source, issues, releases

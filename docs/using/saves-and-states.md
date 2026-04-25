@@ -71,7 +71,7 @@ For bulk cleanup (e.g. "delete every state for games I've beaten"), use the mult
 Saves and states can sync to/from registered devices (Grout on muOS, DeckRommSync on a Deck, etc.). Covered in depth in the ecosystem section:
 
 - [Device Sync Protocol](../ecosystem/device-sync-protocol.md): wire-level reference
-- [SSH Sync](../administration/ssh-sync.md): operator-side config
+- [SSH Sync](../ecosystem/ssh-sync.md): operator-side config
 - [Argosy Launcher](../ecosystem/argosy.md) / [Grout](../ecosystem/grout.md): per-app setup
 
 From the end-user side: once your device is paired and sync is running, saves made on the device appear in RomM within a couple of sync cycles (default: 15 minutes). Conflicts (same ROM saved on two devices between syncs) surface as two separate save entries, so pick which to keep.

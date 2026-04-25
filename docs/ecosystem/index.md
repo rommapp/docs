@@ -54,6 +54,7 @@ For developers building something new on top of RomM:
 
 - **[Client API Tokens](client-api-tokens.md)**: how to authenticate your app, how the device-pairing flow works
 - **[Device Sync Protocol](device-sync-protocol.md)**: wire-level reference for save/state/play-session sync
+- **[SSH Sync](ssh-sync.md)**: server-side SSH config for push/pull sync to handhelds
 - **[API Reference](../developers/api-reference.md)**: every REST endpoint
 - **[WebSockets](../developers/websockets.md)**: live-update channels and Netplay coordination
 - **[Consuming OpenAPI](../developers/openapi.md)**: codegen patterns
