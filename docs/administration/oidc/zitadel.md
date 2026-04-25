@@ -33,8 +33,8 @@ On the project's **General** tab, under **Applications**, click **New**. Tick **
 - **Grant Types**: `Authorization Code`
 - **Response Types**: `Code`
 - **Authentication Method**: `Basic`
-- **Redirect URIs**: `https://romm.example.com/api/oauth/openid`
-- **Post Logout URIs**: `https://romm.example.com/`
+- **Redirect URIs**: `https://demo.romm.app/api/oauth/openid`
+- **Post Logout URIs**: `https://demo.romm.app/`
 
 Click **Create**. The **client secret is shown once**, copy it now!
 
@@ -50,9 +50,9 @@ environment:
     - OIDC_PROVIDER=zitadel
     - OIDC_CLIENT_ID=<from Zitadel>
     - OIDC_CLIENT_SECRET=<from Zitadel>
-    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
+    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
     - OIDC_SERVER_APPLICATION_URL=https://zitadel.example.com
-    - ROMM_BASE_URL=https://romm.example.com
+    - ROMM_BASE_URL=https://demo.romm.app
 ```
 
 Zitadel's OIDC discovery URL is at `<OIDC_SERVER_APPLICATION_URL>/.well-known/openid-configuration`, which is handy for debugging.

@@ -124,7 +124,7 @@ environment:
 
 nginx inside the container rewrites paths internally, and your reverse proxy forwards the full path.
 
-Not the most common pattern. Most deployments use a subdomain (`romm.example.com`) rather than a path.
+Not the most common pattern. Most deployments use a subdomain (`demo.romm.app`) rather than a path.
 
 ## See also
 

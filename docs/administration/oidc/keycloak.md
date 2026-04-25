@@ -25,9 +25,9 @@ In the Admin Console, select your realm → **Clients** → **Create client**.
     - Leave only **Standard flow** enabled
     - Click **Next**
 5. Set URLs:
-    - **Root URL**: `https://romm.example.com`
-    - **Valid Redirect URIs**: `https://romm.example.com/api/oauth/openid`
-    - **Web origins**: `https://romm.example.com`
+    - **Root URL**: `https://demo.romm.app`
+    - **Valid Redirect URIs**: `https://demo.romm.app/api/oauth/openid`
+    - **Web origins**: `https://demo.romm.app`
 6. Save, then head to the **Credentials** tab and copy the **Client Secret**.
 
 ## 3. Configure RomM
@@ -38,9 +38,9 @@ environment:
     - OIDC_PROVIDER=keycloak
     - OIDC_CLIENT_ID=romm
     - OIDC_CLIENT_SECRET=<from Keycloak Credentials tab>
-    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
+    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
     - OIDC_SERVER_APPLICATION_URL=https://keycloak.example.com/realms/<realm-name>
-    - ROMM_BASE_URL=https://romm.example.com
+    - ROMM_BASE_URL=https://demo.romm.app
 ```
 
 `OIDC_SERVER_APPLICATION_URL` must include the realm (`.../realms/<realm-name>`), not just the Keycloak root.

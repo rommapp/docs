@@ -62,7 +62,7 @@ environment:
     - OIDC_CLIENT_ID=...
     - OIDC_CLIENT_SECRET=...
     - OIDC_SERVER_APPLICATION_URL=https://auth.example.com
-    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
+    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
 ```
 
 When OIDC is configured, the login page shows an "OIDC" button. Set `OIDC_AUTOLOGIN=true` to redirect straight to the IdP without the user having to click it.

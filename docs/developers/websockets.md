@@ -27,7 +27,7 @@ If you're writing a non-browser client in a language that has a Socket.IO librar
 Socket.IO connections inherit the HTTP session: if your `Cookie` header carries a RomM session cookie, the WS connection is authenticated as that user. Programmatic clients should pass the session or token via the handshake `auth` field:
 
 ```javascript
-const socket = io("https://romm.example.com", {
+const socket = io("https://demo.romm.app", {
     path: "/ws/socket.io",
     auth: {
         token: "rmm_...",
@@ -126,7 +126,7 @@ def scan_log(data):
     print(f"[{data['level']}] {data['message']}")
 
 sio.connect(
-    "https://romm.example.com",
+    "https://demo.romm.app",
     socketio_path="/ws/socket.io",
     auth={"token": "rmm_..."},
 )

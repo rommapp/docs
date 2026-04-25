@@ -5,7 +5,7 @@ description: Use RomM's OpenAPI spec for code generation, Postman imports, and A
 
 # Consuming OpenAPI
 
-RomM ships its entire REST API as an OpenAPI 3.0 specification. That's the source of truth: every endpoint, every request/response schema, every parameter. Use it to generate clients, drive test suites, or import into tools.
+RomM ships its entire API as an OpenAPI 3.0 specification. That's the source of truth: every endpoint, every request/response schema, every parameter. Use it to generate clients, drive test suites, or import into tools.
 
 ## Where to find the spec
 
@@ -29,7 +29,7 @@ Both are auto-generated from the same `openapi.json`. Swagger UI has a "Try it o
 The spec is versioned alongside RomM. Every release tag includes a matching `openapi.json` in the release artifacts on GitHub. Snapshot the spec at a specific version if your client needs reproducible builds:
 
 ```sh
-curl https://romm.example.com/openapi.json > openapi-5.0.0.json
+curl https://demo.romm.app/openapi.json > openapi-5.0.0.json
 ```
 
 ## Rendered API reference
@@ -42,7 +42,7 @@ RomM's docs site embeds a rendered version of the spec at [API Reference](api-re
 
 ```sh
 npx @openapitools/openapi-generator-cli generate \
-  -i https://romm.example.com/openapi.json \
+  -i https://demo.romm.app/openapi.json \
   -g python \
   -o ./romm-client-python
 ```
@@ -51,7 +51,7 @@ For TypeScript:
 
 ```sh
 npx @openapitools/openapi-generator-cli generate \
-  -i https://romm.example.com/openapi.json \
+  -i https://demo.romm.app/openapi.json \
   -g typescript-axios \
   -o ./romm-client-ts
 ```

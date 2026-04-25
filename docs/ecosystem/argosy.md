@@ -34,7 +34,7 @@ Not currently on either, so APK sideloading is the path for now.
 ## First-time setup
 
 1. Launch Argosy.
-2. Enter your RomM URL (e.g. `https://romm.example.com`), which needs HTTPS in production.
+2. Enter your RomM URL (e.g. `https://demo.romm.app`), which needs HTTPS in production.
 3. Choose **Pair Device**.
 4. Argosy shows a pairing URL or QR code: open it on a device that's already signed into RomM.
 5. Enter the 8-digit code Argosy displayed on that RomM page.

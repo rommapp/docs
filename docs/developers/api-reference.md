@@ -1,11 +1,11 @@
 ---
 title: API Reference
-description: Catalogue of RomM's REST API. Authoritative interactive docs live on each instance.
+description: Catalogue of RomM's API. Authoritative interactive docs live on each instance.
 ---
 
 # API Reference
 
-RomM's REST API is documented via **OpenAPI 3.0**. The spec is the source of truth. This page catalogues what's there but every running RomM instance serves its own interactive browser with live "try it out" functionality.
+RomM's API is documented via **OpenAPI 3.0**. The spec is the source of truth. This page catalogues what's there but every running RomM instance serves its own interactive browser with live "try it out" functionality.
 
 ## Interactive docs
 

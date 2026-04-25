@@ -50,9 +50,9 @@ Playnite: **Menu → Library → Configure Integrations → RomM**.
 #### Authentication
 
 - **Host URL**: your RomM URL, including scheme, no trailing slash. Examples:
-    - ✓ `https://romm.example.com`
-    - ✗ `romm.example.com`
-    - ✗ `https://romm.example.com/`
+    - ✓ `https://demo.romm.app`
+    - ✗ `demo.romm.app`
+    - ✗ `https://demo.romm.app/`
 - **Username + password**: Playnite stores these in plaintext. Use a **dedicated Viewer-role account** for Playnite, not your admin account.
 
 <!-- prettier-ignore -->

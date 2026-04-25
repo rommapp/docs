@@ -19,7 +19,7 @@ In PocketID admin:
 2. Go to **OIDC Client** → **Add OIDC Client**.
 3. Fill in:
     - **Name**: `RomM`
-    - **Callback URLs**: `https://romm.example.com/api/oauth/openid`
+    - **Callback URLs**: `https://demo.romm.app/api/oauth/openid`
 4. **Save**. Stay on this page as the client secret only displays **once**.
 5. Copy both the Client ID and Client Secret now.
 
@@ -31,9 +31,9 @@ environment:
     - OIDC_PROVIDER=pocket-id
     - OIDC_CLIENT_ID=<from PocketID>
     - OIDC_CLIENT_SECRET=<from PocketID>
-    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
+    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
     - OIDC_SERVER_APPLICATION_URL=https://id.example.com
-    - ROMM_BASE_URL=https://romm.example.com
+    - ROMM_BASE_URL=https://demo.romm.app
 ```
 
 `OIDC_SERVER_APPLICATION_URL` is the root URL of your PocketID instance.

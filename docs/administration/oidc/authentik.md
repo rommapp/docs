@@ -52,7 +52,7 @@ Configure:
 
 - **Name**: `RomM OIDC Provider`
 - **Authorization flow**: implicit consent
-- **Redirect URIs**: `https://romm.example.com/api/oauth/openid`
+- **Redirect URIs**: `https://demo.romm.app/api/oauth/openid`
 
 Copy the generated **Client ID** and **Client Secret**. You'll use them as `OIDC_CLIENT_ID` / `OIDC_CLIENT_SECRET` on the RomM side.
 
@@ -82,9 +82,9 @@ environment:
     - OIDC_PROVIDER=authentik
     - OIDC_CLIENT_ID=<from Authentik>
     - OIDC_CLIENT_SECRET=<from Authentik>
-    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
+    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
     - OIDC_SERVER_APPLICATION_URL=https://auth.example.com/application/o/romm
-    - ROMM_BASE_URL=https://romm.example.com
+    - ROMM_BASE_URL=https://demo.romm.app
 ```
 
 Note that `OIDC_SERVER_APPLICATION_URL` points at the per-application URL (`/application/o/<slug>`), not the Authentik root.

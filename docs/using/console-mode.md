@@ -20,7 +20,7 @@ New in 5.0. If you're on a desktop with a keyboard and mouse, you probably don't
 Three ways:
 
 1. **Menu bar → Console icon** (looks like a small controller)
-2. Type `/console` after your RomM URL: `https://romm.example.com/console`.
+2. Type `/console` after your RomM URL: `https://demo.romm.app/console`.
 3. Set the default view to Console Mode in **Profile → User Interface → Default view**. This signs you in straight into `/console` every time.
 
 Bookmarking `/console` on your TV browser is the most common pattern.

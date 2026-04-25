@@ -50,7 +50,7 @@ identity_providers:
               grant_types:
                   - authorization_code
               redirect_uris:
-                  - "https://romm.example.com/api/oauth/openid"
+                  - "https://demo.romm.app/api/oauth/openid"
               claims_policy: "with_email" # must match the policy name above
               scopes:
                   - openid
@@ -73,9 +73,9 @@ environment:
     - OIDC_PROVIDER=authelia
     - OIDC_CLIENT_ID=<the client_id you picked>
     - OIDC_CLIENT_SECRET=<the plaintext client secret>
-    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
+    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
     - OIDC_SERVER_APPLICATION_URL=https://auth.example.com
-    - ROMM_BASE_URL=https://romm.example.com
+    - ROMM_BASE_URL=https://demo.romm.app
 ```
 
 `OIDC_REDIRECT_URI` must match what you put in `redirect_uris` exactly (scheme, host, path, no trailing slash). For role mapping from Authelia groups, see [OIDC Setup → Role mapping](index.md#role-mapping).

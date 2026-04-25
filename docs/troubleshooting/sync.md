@@ -23,9 +23,9 @@ Troubleshooting paths differ.
 
 ### App can't reach RomM
 
-- **URL wrong.** Double-check what you entered in the app config. `https://romm.example.com`, not `https://romm.example.com/api` (the app appends the API path)
+- **URL wrong.** Double-check what you entered in the app config. `https://demo.romm.app`, not `https://demo.romm.app/api` (the app appends the API path)
 - **TLS cert issues.** Self-signed certs cause problems. Use a proper cert (Let's Encrypt through your reverse proxy) or configure the app to skip cert validation (not recommended).
-- **Firewall.** From the device, `curl https://romm.example.com/api/heartbeat`. Should return JSON. If not, network path is blocked.
+- **Firewall.** From the device, `curl https://demo.romm.app/api/heartbeat`. Should return JSON. If not, network path is blocked.
 
 ### Pairing code doesn't work
 

@@ -187,7 +187,7 @@ spec:
                             }
                       - {
                             name: ROMM_BASE_URL,
-                            value: "https://romm.example.com",
+                            value: "https://demo.romm.app",
                         }
                       - { name: HASHEOUS_API_ENABLED, value: "true" }
                       # ... other metadata provider vars from the secret
@@ -292,10 +292,10 @@ metadata:
 spec:
     ingressClassName: nginx
     tls:
-        - hosts: [romm.example.com]
+        - hosts: [demo.romm.app]
           secretName: romm-tls
     rules:
-        - host: romm.example.com
+        - host: demo.romm.app
           http:
               paths:
                   - path: /

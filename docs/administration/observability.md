@@ -55,7 +55,7 @@ Wire this to your uptime monitor. A failure here means that the process is down 
 
 ```bash
 # Basic uptime check
-curl -fsS https://romm.example.com/api/heartbeat > /dev/null \
+curl -fsS https://demo.romm.app/api/heartbeat > /dev/null \
   && echo "up" \
   || echo "down"
 ```

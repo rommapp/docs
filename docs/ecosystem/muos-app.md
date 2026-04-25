@@ -68,7 +68,7 @@ Simplest setup:
 
 More-involved setups:
 
-- **Reverse proxy with TLS.** `HOST=https://romm.example.com`. HTTPS works but introduces cert-validation risk on handhelds (some fail strict TLS).
+- **Reverse proxy with TLS.** `HOST=https://demo.romm.app`. HTTPS works but introduces cert-validation risk on handhelds (some fail strict TLS).
 - **Remote access via VPN.** Install Tailscale or similar on the handheld (if supported). This lets the handheld reach RomM from outside the LAN.
 
 ## Using the app

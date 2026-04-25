@@ -51,7 +51,7 @@ Most feeds return JSON: Tinfoil, fpkgi, WebRcade.
   "success": true,
   "files": [
     {
-      "url": "https://romm.example.com/api/roms/1234/content/mario.nsp",
+      "url": "https://demo.romm.app/api/roms/1234/content/mario.nsp",
       "title": "Super Mario Odyssey",
       "size": 4500000000,
       "titleid": "0100000000010000",
@@ -66,7 +66,7 @@ Most feeds return JSON: Tinfoil, fpkgi, WebRcade.
 pkgi uses CSV per upstream's format: one line per game:
 
 ```csv
-psvita,PCSA00003,Unknown,Game,1.0,https://romm.example.com/...,md5=...,52428800
+psvita,PCSA00003,Unknown,Game,1.0,https://demo.romm.app/...,md5=...,52428800
 ```
 
 ### Format per feed

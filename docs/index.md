@@ -59,7 +59,7 @@ RomM (ROM Manager) lets you scan, enrich, organise, and play your game collectio
 
     ***
 
-    REST API reference, WebSockets, device sync protocol, client tokens.
+    API reference, WebSockets, device sync protocol, client tokens.
 
     [Developers →](developers/index.md)
 

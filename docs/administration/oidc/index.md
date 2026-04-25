@@ -42,8 +42,8 @@ environment:
     - OIDC_CLIENT_ID=<from your provider>
     - OIDC_CLIENT_SECRET=<from your provider>
     - OIDC_SERVER_APPLICATION_URL=https://auth.example.com
-    - OIDC_REDIRECT_URI=https://romm.example.com/api/oauth/openid
-    - ROMM_BASE_URL=https://romm.example.com # must match your reverse-proxy URL
+    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
+    - ROMM_BASE_URL=https://demo.romm.app # must match your reverse-proxy URL
 ```
 
 `OIDC_REDIRECT_URI` must exactly match what you register at the provider (same scheme, host, path, no trailing slash).

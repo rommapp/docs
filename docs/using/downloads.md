@@ -73,7 +73,7 @@ For authenticated programmatic use, a [Client API Token](account-and-profile.md)
 ```bash
 curl -H "Authorization: Bearer rmm_..." \
      -o mario.sfc \
-     https://romm.example.com/api/roms/123/content/mario.sfc
+     https://demo.romm.app/api/roms/123/content/mario.sfc
 ```
 
 ## Streaming to an emulator

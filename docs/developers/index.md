@@ -11,7 +11,7 @@ Looking for end-user or operator content? See [Using RomM](../using/index.md) or
 
 ## Working with the API
 
-- **[API Reference](api-reference.md):** every REST endpoint. OpenAPI-driven
+- **[API Reference](api-reference.md):** every API endpoint. OpenAPI-driven
 - **[API Authentication](api-authentication.md):** all five auth modes (session, Basic, OAuth2, Client API Token, OIDC)
 - **[Consuming OpenAPI](openapi.md):** codegen, Postman imports, schema validation
 - **[WebSockets](websockets.md):** Socket.IO endpoints for live updates and Netplay
@@ -42,7 +42,7 @@ Looking for end-user or operator content? See [Using RomM](../using/index.md) or
 
 | I want to…                       | Start here                                                                      |
 | -------------------------------- | ------------------------------------------------------------------------------- |
-| Call the REST API from a script  | [API Authentication](api-authentication.md) + [API Reference](api-reference.md) |
+| Call the API from a script  | [API Authentication](api-authentication.md) + [API Reference](api-reference.md) |
 | Generate a client library        | [Consuming OpenAPI](openapi.md)                                                 |
 | Sync saves from a handheld       | [Device Sync Protocol](../ecosystem/device-sync-protocol.md)                    |
 | Listen to scan events            | [WebSockets](websockets.md)                                                     |
