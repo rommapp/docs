@@ -34,7 +34,6 @@ Looking for end-user or operator content? See [Using RomM](../using/index.md) or
 
 - **[Environment Variables](../reference/environment-variables.md):** every env var
 - **[Configuration File](../reference/configuration-file.md):** `config.yml` schema
-- **[Scheduled Tasks](../reference/scheduled-tasks.md):** background job reference
 - **[Exports](../reference/exports.md):** gamelist.xml / Pegasus export formats
 - **[Feeds](../reference/feeds.md):** every URL-feed endpoint (Tinfoil, pkgj, WebRcade, etc.)
 - **[Glossary](../reference/glossary.md):** canonical terminology

@@ -101,7 +101,6 @@ search:
 - Reference
     - [Environment Variables](reference/environment-variables.md)
     - [Configuration File](reference/configuration-file.md)
-    - [Scheduled Tasks](reference/scheduled-tasks.md)
     - [Exports](reference/exports.md)
     - [Feeds](reference/feeds.md)
     - [Ports & Endpoints](reference/ports-and-endpoints.md)

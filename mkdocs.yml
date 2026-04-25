@@ -104,7 +104,7 @@ plugins:
               # Tools → Ecosystem
               Tools/Igir-Collection-Manager.md: ecosystem/igir.md
               # Maintenance
-              Maintenance/Scheduled-Tasks.md: reference/scheduled-tasks.md
+              Maintenance/Scheduled-Tasks.md: administration/scheduled-tasks.md
               Maintenance/Migrating-to-new-machine.md: install/backup-and-restore.md
               Maintenance/Upgrading-to-3.0.md: releases/upgrading-to-3.0.md
               # Integrations → Ecosystem

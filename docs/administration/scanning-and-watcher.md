@@ -42,7 +42,7 @@ A running scan survives browser refreshes, and the log streams over a websocket.
 
 ## Scheduled scans
 
-Configured via env vars (full table in the [Scheduled Tasks reference](../reference/scheduled-tasks.md)):
+Configured via env vars (full table in [Scheduled Tasks](scheduled-tasks.md)):
 
 | Variable             | Default     | Purpose                                                                                           |
 | -------------------- | ----------- | ------------------------------------------------------------------------------------------------- |

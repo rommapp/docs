@@ -66,6 +66,6 @@ For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../a
 ## See also
 
 - [Configuration File](configuration-file.md): everything that lives in `config.yml` rather than env vars
-- [Scheduled Tasks](scheduled-tasks.md): cron-controlling env vars in context
+- [Scheduled Tasks](../administration/scheduled-tasks.md): cron-controlling env vars in context
 - [Authentication](../administration/authentication.md): auth-related env vars in narrative form
 - [Metadata Providers](../administration/metadata-providers.md): per-provider credential env vars
