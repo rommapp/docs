@@ -1,11 +1,11 @@
 ---
 title: Server Stats
-description: Read the Server Stats admin page and know what the numbers mean.
+description: "The numbers Mason! What do they mean?"
 ---
 
 # Server Stats
 
-**Administration → Server Stats.** Admin-only page that reports what's on disk and in the catalogue. Useful for capacity planning, spotting a runaway platform, and verifying a scan actually persisted data.
+**Administration → Server Stats** is an admin-only page that reports what's on disk and in the catalogue.
 
 ## What's shown
 
@@ -18,45 +18,18 @@ description: Read the Server Stats admin page and know what the numbers mean.
 | **Saves**       | User save files across all users.                                                 |
 | **States**      | Emulator save states across all users.                                            |
 | **Screenshots** | User-uploaded screenshots. Provider-fetched screenshots aren't counted here.      |
-| **Firmware**    | Uploaded BIOS / firmware files.                                                   |
-
-### Storage footprint
-
-A breakdown of disk usage by directory:
-
-| Bucket        | Maps to           | Grows when                                                                                |
-| ------------- | ----------------- | ----------------------------------------------------------------------------------------- |
-| **Library**   | `/romm/library`   | You add ROMs. Controlled by you, not RomM.                                                |
-| **Resources** | `/romm/resources` | Scans fetch cover art, screenshots, manuals. Safe to purge, can be rebuilt from a rescan. |
-| **Assets**    | `/romm/assets`    | Users upload saves, states, screenshots. **Back this up.**                                |
-| **Config**    | `/romm/config`    | Rarely: you or admins edit `config.yml`.                                                  |
+| **Size on disk** | Total disk usage of all ROMs, saves, states, and screenshots.                    |
 
 ### Per-platform breakdown
 
-Under the summary, an expandable table sorted by either ROM count or disk usage. Click a platform to drill into:
+Under the summary, it's a table sorted by name, size or game count. For each platform, you can see:
 
-- Matched / unmatched count
+- Game count
+- Size on disk (in bytes and by percentage of total)
 - Region distribution (how many games tagged USA, Japan, Europe, World, etc.)
-- Language distribution
-- Metadata coverage: how many games have each field populated (cover, description, release date, rating)
+- Metadata coverage (how many games have metadata from each provider)
 
-Useful for: "which platform is eating my disk?" and "which platform has the worst match rate?"
-
-<!-- prettier-ignore -->
-!!! note "Per-platform stats are opt-in"
-    Computing per-platform stats walks the whole DB and costs real time on big libraries. The main stats load fast, and per-platform expansion loads on demand.
-
-## Using stats for capacity planning
-
-Rule-of-thumb sizes:
-
-| Ratio               | Typical value                                                                                    |
-| ------------------- | ------------------------------------------------------------------------------------------------ |
-| Resources / Library | 2-5% on average, higher if you've enabled many metadata providers or run Image Conversion often. |
-| Assets / Library    | <1% unless you have lots of heavy PSP/PS3 saves.                                                 |
-| DB size / Games     | ~10-50 KB per ROM row, depending on metadata richness.                                           |
-
-If **Resources** is ballooning, run the [Cleanup Orphaned Resources](scheduled-tasks.md#cleanup-orphaned-resources-manual) task. If **Assets** is growing unexpectedly, a user is probably uploading save states for long-form JRPGs. That's fine, just plan for it.
+When you want to know "which platform is eating my disk?" or "which platform has the worst match rate?"
 
 ## API
 
@@ -72,8 +45,8 @@ Wire to your monitoring stack via the API rather than scraping the HTML page. Se
 
 ## Troubleshooting
 
-- **Numbers look stale**: stats are computed on page load, not cached. Reload. If still stale, the DB connection is degraded. Check `docker logs romm 2>&1 | grep -i database`.
-- **Disk sizes look wrong**: RomM reports what it sees in `/romm/*`. If your compose mounts a path that's smaller than the host dataset (e.g. you mounted a sub-directory), RomM only sees that subset.
-- **"Platform stats couldn't load"**: the DB query timed out. On very large libraries this happens. Retry, or raise `SCAN_TIMEOUT_HOURS` (yes, it also gates the stats query).
+- **Numbers look stale**: stats are computed on page load, not cached
+- **Disk sizes look wrong**: if your compose mounts a path that's smaller than the host dataset (e.g. you mounted a sub-directory), it will only sees that subset
+- **"Platform stats couldn't load"**: the DB query timed out on a very large library
 
-For anything else: [Troubleshooting](../troubleshooting/index.md).
+For anything else, see [Troubleshooting](../troubleshooting/index.md).
