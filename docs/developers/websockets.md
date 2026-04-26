@@ -91,7 +91,7 @@ When you run multiple RomM replicas behind a load balancer, an event originating
 
 Required when running multi-replica:
 
-- `REDIS_HOST` + `REDIS_PORT` shared across replicas (Valkey works fine — it's Redis-compatible)
+- `REDIS_HOST` + `REDIS_PORT` shared across replicas (Valkey works fine, since it's Redis-compatible)
 - A load balancer with **sticky sessions** (client-IP or cookie-hash routing)
 
 Without sticky sessions, Socket.IO's handshake polling phase can bounce between replicas and fail. The [Socket.IO multi-server docs](https://socket.io/docs/v4/using-multiple-nodes/) cover the underlying mechanics.
@@ -106,7 +106,7 @@ Common breakages:
 - Cloudflare with WebSockets disabled in Network settings
 - Traefik without the default passthrough middlewares
 
-A broken WS typically shows up as HTTP 400 on the upgrade request plus a flood of `WebSocket connection failed` errors in the browser console — [Authentication Troubleshooting → WebSockets](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint) covers the diagnosis.
+A broken WS typically shows up as HTTP 400 on the upgrade request plus a flood of `WebSocket connection failed` errors in the browser console. [Authentication Troubleshooting → WebSockets](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint) covers the diagnosis.
 
 ## Writing a Python client
 
@@ -135,6 +135,6 @@ sio.wait()
 
 ## Limitations
 
-- **Not every backend action emits an event.** Only the ones listed in the tables above — if you need a specific event for an integration, open an issue.
+- **Not every backend action emits an event.** Only the ones listed in the tables above. If you need a specific event for an integration, open an issue.
 - **No room-based user presence yet.** "Who else is online" isn't exposed today.
 - **Netplay is peer-to-peer after the initial handshake.** RomM only brokers the room, so the actual gameplay data never touches RomM's servers.

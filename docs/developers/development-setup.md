@@ -50,7 +50,7 @@ docker compose build    # add --no-cache to force a clean rebuild
 docker compose up -d
 ```
 
-That's it — RomM is up at `http://localhost:3000`, and the source mounts are live so backend changes reflect on the next request and frontend changes are HMR-instant.
+That's it. RomM is up at `http://localhost:3000`, and the source mounts are live so backend changes reflect on the next request and frontend changes are HMR-instant.
 
 ## Option 2: Manual
 
@@ -83,7 +83,7 @@ Adjust for your distro. The MariaDB connector and libpq are the two non-negotiab
 
 ### 3. RAHasher (optional)
 
-Only needed if you're working on RetroAchievements hash calculation. **Not supported on macOS — skip it.**
+Only needed if you're working on RetroAchievements hash calculation. **Not supported on macOS, skip it.**
 
 ```sh
 git clone --recursive https://github.com/RetroAchievements/RALibretro.git
@@ -162,7 +162,7 @@ Trunk runs as a pre-commit hook automatically after install. Other install paths
 
 <!-- prettier-ignore -->
 !!! warning "CI blocks un-linted PRs"
-    Trunk's check runs on every PR. If it fails, your PR can't merge. Same rules as the maintainers — no exceptions.
+    Trunk's check runs on every PR. If it fails, your PR can't merge. Same rules as the maintainers, no exceptions.
 
 ## Tests
 
@@ -200,10 +200,10 @@ uv run pytest -k scan            # match by name
 
 If you're new to the codebase, [Architecture](architecture.md) is the proper walkthrough. The short version:
 
-- `backend/` — FastAPI, SQLAlchemy, Alembic migrations, and the RQ workers
-- `frontend/` — Vue 3 with Vuetify, Pinia, and Vite, plus a separate `/console` SPA for TV and gamepad mode
-- `docker/` — nginx config (with `mod_zip`), entrypoint scripts, and the multi-stage Dockerfiles
-- `examples/` — reference compose files you can crib from
+- `backend/`: FastAPI, SQLAlchemy, Alembic migrations, and the RQ workers
+- `frontend/`: Vue 3 with Vuetify, Pinia, and Vite, plus a separate `/console` SPA for TV and gamepad mode
+- `docker/`: nginx config (with `mod_zip`), entrypoint scripts, and the multi-stage Dockerfiles
+- `examples/`: reference compose files you can crib from
 
 ## Getting unstuck
 

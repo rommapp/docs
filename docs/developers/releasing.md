@@ -103,7 +103,7 @@ docker push rommapp/romm:latest
 docker push rommapp/romm:5
 ```
 
-Normally automated in the release workflow — manual fallback above.
+Normally automated in the release workflow. The above is the manual fallback.
 
 ## Announcements
 
@@ -130,13 +130,13 @@ If a regression ships in a release: cherry-pick the fix into a `5.0.x` branch, b
 
 ### Triage Day-1 issues aggressively
 
-Expect a spike in issues immediately after a release. Breakage reports need immediate attention while nice-to-haves can wait — sort by impact rather than by who shouted loudest.
+Expect a spike in issues immediately after a release. Breakage reports need immediate attention while nice-to-haves can wait, so sort by impact rather than by who shouted loudest.
 
 ## Security releases
 
 For security fixes:
 
-1. Don't disclose in the commit message — use "fix" generically
+1. Don't disclose in the commit message. Use "fix" generically.
 2. Cut the release
 3. **After** the release is live, publish a GitHub Security Advisory with the CVE, timeline, and affected versions
 4. Announce in Discord with a short summary and an "update now" recommendation

@@ -53,7 +53,7 @@ uv run mkdocs serve
 
 ### Translations
 
-Drop a new folder under `frontend/src/locales/` using the existing language files as a template, translate the strings, and open a PR. Partial translations are merged — an 80%-translated locale is better than nothing. Full workflow in [Translations (i18n)](i18n.md).
+Drop a new folder under `frontend/src/locales/` using the existing language files as a template, translate the strings, and open a PR. Partial translations are merged, since an 80%-translated locale is better than nothing. Full workflow in [Translations (i18n)](i18n.md).
 
 ### Bug reports
 
@@ -108,7 +108,7 @@ The bug report template prompts for all of this.
 - **Tests pass and new behaviour gets new tests.** `uv run pytest` must be green, and any new behaviour needs coverage.
 - **Docs updated when behaviour changes.** Even a one-line update beats stale docs sitting around for the next person.
 - **Clear title and description.** "Fix bug" isn't a title, but "Fix scan skipping multi-disc PS1 games when first disc is a .chd" is.
-- **Tight scope.** One concern per PR — small drive-by refactors are fine, scorched-earth rewrites aren't.
+- **Tight scope.** One concern per PR. Small drive-by refactors are fine, scorched-earth rewrites aren't.
 
 ## Code style
 
@@ -122,6 +122,6 @@ Match the surrounding code. If you use VS Code (or a compatible editor), these e
 
 ## Licensing
 
-By contributing, you agree your contributions are licensed under the project's [LICENSE](https://github.com/rommapp/romm/blob/master/LICENSE) — AGPL-3.0 for the core app.
+By contributing, you agree your contributions are licensed under the project's [LICENSE](https://github.com/rommapp/romm/blob/master/LICENSE), which is AGPL-3.0 for the core app.
 
 Thanks for helping make RomM better.

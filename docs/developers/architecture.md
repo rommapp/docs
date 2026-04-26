@@ -61,77 +61,57 @@ A running RomM container hosts several cooperating processes:
 
 Every request runs the middleware stack in order, CORS → CSRF → authentication → Valkey-backed session → context vars (aiohttp + httpx clients), before FastAPI dispatches to the endpoint. Handlers do the actual work and Pydantic schemas serialise the response.
 
-Three flows are worth knowing:
-
-- **Reads** (`GET /api/roms`) are the simple case: endpoint → `db_roms_handler` → SQLAlchemy → response schema.
-- **Uploads** (`POST /api/roms/upload/*`) are chunked, because gunicorn's per-request memory ceiling makes single-shot multi-GB uploads unworkable. `init` allocates an upload session held in Valkey for 24 h, `chunk` pushes up to 64 MB per call, and `complete` assembles, hashes, moves the file under `/romm/library`, writes the DB row, and emits `rom:created` over Socket.IO.
-- **Scans** are enqueued as RQ jobs. The worker walks platform folders, parses filenames, hashes files, queries metadata providers in priority order, downloads artwork, and upserts. Progress streams over Socket.IO. Six modes — `NEW_PLATFORMS`, `QUICK`, `UPDATE`, `UNMATCHED`, `COMPLETE`, `HASHES`. Operator-side detail in [Scanning & Watcher](../administration/scanning-and-watcher.md).
-
 ## Backend
 
 ### Layers
 
-The backend follows a fairly conventional layering. Endpoints handle request validation and response serialisation, while the actual business logic lives in handlers organised by concern: `handler/database/` for per-entity CRUD, `handler/metadata/` for provider-specific normalisation, `handler/filesystem/` for I/O, and `handler/auth/` for the multi-method auth backend. Models are SQLAlchemy ORM, and adapters wrap the external APIs. All told, the codebase exposes around 175 HTTP routes and 11 Socket.IO handlers across 24 routers.
-
-### Database
-
-`roms` is the central entity, linking to `platforms` (M:1), `rom_files` (1:M), `roms_metadata` (1:1, aggregated provider data), `rom_user` (per-user, per-ROM tracking), `rom_notes`, and `sibling_roms` (self-ref M:M for alternate versions). Saves, states, and screenshots FK to both `roms` and `users`. `device_save_sync` tracks per-device sync state.
-
-Three collection flavours coexist — manually curated `collections` (M:M to ROMs), dynamic `smart_collections` with cached IDs, and read-only `virtual_collections` (a database view excluded from migrations). User-side: [Smart Collections](../using/smart-collections.md), [Virtual Collections](../using/virtual-collections.md).
-
-Migrations live in `backend/alembic/versions/` and run on every container start. They support SQLite batch mode plus DB-specific SQL where MariaDB, MySQL, and PostgreSQL diverge.
+The backend follows a fairly conventional layering. Endpoints handle request validation and response serialisation, while the actual business logic lives in handlers organised by concern: `handler/database/` for per-entity CRUD, `handler/metadata/` for provider-specific normalisation, `handler/filesystem/` for I/O, and `handler/auth/` for the multi-method auth backend. Models are SQLAlchemy ORM, and adapters wrap the external APIs.
 
 ### Authentication
 
-`HybridAuthBackend` walks methods in order — session cookie (looked up in Valkey), HTTP Basic (bcrypt), OAuth2 Bearer JWT (HS256), Client API Token (`rmm_...`, SHA-256 lookup), OIDC, kiosk mode if enabled. Token plaintext is never stored: we hash on creation and compare hashes on every request. Full client-side reference: [API Authentication](api-authentication.md).
+`HybridAuthBackend` walks methods in order of session cookie (looked up in Valkey), HTTP Basic (bcrypt), OAuth2 Bearer JWT (HS256), Client API Token (`rmm_...`, SHA-256 lookup), OIDC, kiosk mode if enabled. Token plaintext is never stored as we hash on creation and compare hashes on every request.
 
 ### Metadata providers
 
-Each provider has a handler under `handler/metadata/` that normalises responses into a common shape. Priority is configurable in `config.yml` (`scan.priority.metadata`). First match wins per field, with manual overrides on top.
+Each provider has a handler under `handler/metadata/` that normalises responses into a common shape. Priority is configurable in `config.yml` (`scan.priority.metadata`), where first match wins per field, with manual overrides on top.
 
-Static fixtures (MAME, ScummVM, PS1/PS2/PSP serial maps, known BIOS hashes) load into Valkey at startup so lookups don't hit disk.
-
-Hashing is platform-aware: CHD v5 pulls its SHA1 straight from the file header, PICO-8 cartridges (`.p8.png`) get a special-cased extractor, and the RetroAchievements per-platform algorithm runs through `rahasher.py`. Switch and PS3/4/5 skip hashing entirely, since those ROMs aren't reasonably hashable in the first place.
+Hashing can be platform-aware: `.chd` files pull their SHA1 values straight from the file header, PICO-8 cartridges (`.p8.png`) get a special-cased extractor, and the RetroAchievements per-platform algorithm runs through `rahasher.py`. Switch and PS3/4/5 skip hashing entirely, since those ROMs aren't reasonably hashable in the first place and have no TOSEC/No-Intro entries.
 
 ### Configuration
 
-Configuration sits at two layers — env vars (100+ of them, all listed in `env.template`) for infrastructure concerns, and YAML (`config.yml`) for everything to do with the library, scanning, and emulator behaviour. The YAML side is read, validated, and written back through the singleton `ConfigManager`. The schema reference lives in [Configuration File](../reference/configuration-file.md).
+Environment variables (100+ of them, all listed in `env.template`) cover infrastructure concerns, while `config.yml` covers everything to do with the library, scanning, and emulator behaviour. The config is read, validated, and written back through the singleton `ConfigManager`.
+
+### Background jobs
+
+RQ workers run scheduled jobs (rescans, Switch TitleDB refresh, LaunchBox refresh, image-to-WebP conversion, RA progress sync, netplay cleanup) and manual tasks (`cleanup_missing_roms`, `cleanup_orphaned_resources`, `sync_folder_scan`). Each scheduled task is gated by an `ENABLE_SCHEDULED_*` env var and tunable via the matching `*_CRON`. Operator-side detail in [Scheduled Tasks](../administration/scheduled-tasks.md).
 
 ## Frontend
 
 ### Stack
 
-The frontend is a Vue 3 SPA written in TypeScript (with `noImplicitAny`) using the Composition API and `<script setup>` syntax, bundled by Vite which gives HMR in development. The UI layer is Vuetify 3 (Material Design) topped with Tailwind CSS 4 for utility classes, and state lives in 18 Pinia stores. Vue Router covers 36 named routes across three layouts, while vue-i18n supplies translations for 17 language packs. Live updates flow through `socket.io-client` for scan progress and netplay, and Mitt sits in the middle as a loose event bus with 80+ event types — handy for triggering dialogs from anywhere in the component tree without having to thread refs through props.
+The frontend is a Vue 3 SPA written in TypeScriptusing the Composition API and `<script setup>` syntax, bundled by Vite which gives HMR in development. The UI layer is Vuetify 3 (Material Design) topped with Tailwind CSS 4 for utility classes, and state lives in Pinia stores. Vue Router covers named routes across three layouts, while vue-i18n supplies translations for language packs. Live updates flow through `socket.io-client` for scan progress and netplay, and Mitt sits in the middle as a loose event bus, which is handy for triggering dialogs from anywhere in the component tree without having to thread refs through props.
 
 ### Generated types
 
 TypeScript interfaces in `src/__generated__/` are produced from the backend OpenAPI spec by running `npm run generate`, and the stores and API services consume them directly, giving you type-safe end-to-end communication. Re-run the generator after any backend route or schema change so the frontend types stay in sync.
 
-### API client
-
-The Axios instance carries a 2-minute timeout, a request interceptor that injects the CSRF token from the `romm_csrftoken` cookie, and a response interceptor that on 403 clears the session and redirects to `/login`. An opt-in browser-cache layer wraps API calls with a stale-while-revalidate pattern.
-
 ### Persistence
 
-UI preferences live in localStorage and sync to `user.ui_settings` on the backend through the `useUISettings` composable, so a user's settings follow them across devices and browsers. Session data sits in Pinia in memory, and the Browser Cache API holds API responses when the opt-in cache layer is enabled.
+UI preferences live in localStorage and sync to `user.ui_settings` on the backend through the `useUISettings` composable, so a user's settings follow them across devices and browsers. Session data sits in Pinia in memory, and the Browser Cache API holds API responses when the _experimental_ opt-in cache layer is enabled.
 
 ### Layouts
 
 Three layouts cover the routes:
 
-- **Auth** (public) — setup, login, password reset, register
-- **Main** (authenticated) — home, gallery, game details, scan, patcher, settings, admin
-- **Console** (authenticated, gamepad/TV) — `/console/*`
+- **Auth** (public): setup, login, password reset, register
+- **Main** (authenticated): home, gallery, game details, scan, patcher, settings, admin
+- **Console** (authenticated, gamepad/TV): `/console/*`
 
 Permission-protected routes follow the scope model from [Users & Roles](../administration/users-and-roles.md): `/scan` and `/library-management` require `platforms.write`, `/client-api-tokens` requires `me.write`, and `/administration` requires `users.write`.
 
 ### Console Mode
 
-A second SPA bundle aimed at TVs and gamepads, all kept under `frontend/src/console/`. The input system is a stack-based bus with grid-based spatial navigation, gamepad polling runs in `requestAnimationFrame`, and the sound effects are synthesised on the fly through the Web Audio API rather than shipped as audio assets.
-
-## Background jobs
-
-RQ workers run scheduled jobs (rescans, Switch TitleDB refresh, LaunchBox refresh, image-to-WebP conversion, RA progress sync, netplay cleanup) and manual tasks (`cleanup_missing_roms`, `cleanup_orphaned_resources`, `sync_folder_scan`). Each scheduled task is gated by an `ENABLE_SCHEDULED_*` env var and tunable via the matching `*_CRON`. Operator-side detail in [Scheduled Tasks](../administration/scheduled-tasks.md).
+A second SPA bundle aimed at TVs and gamepads is kept under `frontend/src/console/`. The input system is a stack-based bus with grid-based spatial navigation, gamepad polling runs in `requestAnimationFrame`, and the sound effects are synthesised on the fly through the Web Audio API rather than shipped as audio assets.
 
 ## Real-time
 
