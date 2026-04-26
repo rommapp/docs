@@ -1,9 +1,11 @@
 ---
 title: Architecture
-description: High-level walkthrough of the RomM codebase: backend, frontend, nginx, workers.
+description: High-level walkthrough of the RomM codebase
 ---
 
-A walkthrough of how RomM is put together, aimed at first-time contributors. The authoritative deep-dives live alongside the code at [`docs/BACKEND_ARCHITECTURE.md`](https://github.com/rommapp/romm/blob/main/docs/BACKEND_ARCHITECTURE.md) and [`docs/FRONTEND_ARCHITECTURE.md`](https://github.com/rommapp/romm/blob/main/docs/FRONTEND_ARCHITECTURE.md) in the main repo.
+# Architecture
+
+What you need to know to find your way around `rommapp/romm` before you start changing things. The exhaustive deep-dives live alongside the code at [`docs/BACKEND_ARCHITECTURE.md`](https://github.com/rommapp/romm/blob/main/docs/BACKEND_ARCHITECTURE.md) and [`docs/FRONTEND_ARCHITECTURE.md`](https://github.com/rommapp/romm/blob/main/docs/FRONTEND_ARCHITECTURE.md). This page is the orientation pass.
 
 ## Repo layout
 
@@ -16,7 +18,7 @@ rommapp/romm
 │   ├── models/           # SQLAlchemy ORM
 │   ├── tasks/            # RQ jobs: scheduled/ and manual/
 │   ├── alembic/          # 80+ DB migrations
-│   └── config/           # Env vars + YAML config manager
+│   └── config/           # Env vars + YAML config.json manager
 ├── frontend/             # Vue 3 + Vuetify SPA (main UI + console mode)
 │   └── src/
 │       ├── views/        # Page-level components
@@ -31,6 +33,8 @@ rommapp/romm
 
 ## Runtime topology
 
+A running RomM container hosts several cooperating processes:
+
 ```ascii
 ┌─────────────────────────────────────────────────────────┐
 │ docker container                                        │
@@ -40,7 +44,7 @@ rommapp/romm
 │  │ :8080 │          │  :5000   │          │ backend  │──┐
 │  └───┬───┘          └──────────┘          └──────────┘  │ SQL
 │      │   static files (SPA, EmulatorJS, Ruffle)         ↓
-│      │   X-Accel-Redirect for downloads          ┌──────────┐
+│      │                                           ┌──────────┐
 │      │                                           │ MariaDB  │
 │      ↓                                           │ (or PG / │
 │  /library /assets /resources                     │  MySQL)  │
@@ -53,55 +57,85 @@ rommapp/romm
 └─────────────────────────────────────────────────────────┘
 ```
 
-- **nginx** serves the SPA bundle, EmulatorJS, Ruffle, and cover art. Proxies API + WebSocket traffic to gunicorn. Streams downloads via `mod_zip` and `X-Accel-Redirect`.
-- **gunicorn** runs the FastAPI app under multiple workers (`WEB_SERVER_CONCURRENCY`).
-- **FastAPI backend** on Python 3.13+, SQLAlchemy 2.0, `python-socketio`. Talks to the DB, the Valkey cache, and 10+ external metadata providers.
-- **RQ workers** pop jobs off three priority queues (`high_prio_queue`, `default_queue`, `low_prio_queue`) backed by Valkey.
-- **Valkey** (Redis-compatible) is in-container by default, externalisable. See [Embedded vs External Valkey](../install/redis-or-valkey.md).
-- **Database** is always external. MariaDB 10.5+ default. MySQL 8.0+ and PostgreSQL also supported.
-- **Filesystem watcher** (optional) enqueues rescans on library changes via `watchfiles`.
-
 ## Request lifecycle
 
-The middleware stack runs in front of every route — CORS → CSRF → authentication → Valkey-backed session → context vars (aiohttp + httpx clients) — then FastAPI dispatches to an endpoint that calls into a handler.
+Every request runs the middleware stack in order, CORS → CSRF → authentication → Valkey-backed session → context vars (aiohttp + httpx clients), before FastAPI dispatches to the endpoint. Handlers do the actual work and Pydantic schemas serialise the response.
 
-A few flows worth knowing:
+Three flows are worth knowing:
 
-- **Reads** (`GET /api/roms`) hit `endpoints/roms/__init__.py`, which calls `db_roms_handler` for the SQLAlchemy query and returns a Pydantic schema.
-- **Uploads** (`POST /api/roms/upload/*`) are chunked. `init` returns an upload session ID held in Valkey for 24 h. `chunk` pushes up to 64 MB at a time. `complete` assembles, hashes, moves under `/romm/library`, writes the DB row, and emits `rom:created` over Socket.IO.
-- **Scans** are enqueued as RQ jobs. The worker walks platform folders, parses filenames, hashes files, queries metadata providers in priority order (IGDB → Moby → SS → LaunchBox → Hasheous → RA → Flashpoint → HLTB → TGDB), downloads artwork, and upserts. Progress streams over Socket.IO. Six modes — `NEW_PLATFORMS`, `QUICK`, `UPDATE`, `UNMATCHED`, `COMPLETE`, `HASHES`.
+- **Reads** (`GET /api/roms`) are the simple case: endpoint → `db_roms_handler` → SQLAlchemy → response schema.
+- **Uploads** (`POST /api/roms/upload/*`) are chunked, because gunicorn's per-request memory ceiling makes single-shot multi-GB uploads unworkable. `init` allocates an upload session held in Valkey for 24 h, `chunk` pushes up to 64 MB per call, and `complete` assembles, hashes, moves the file under `/romm/library`, writes the DB row, and emits `rom:created` over Socket.IO.
+- **Scans** are enqueued as RQ jobs. The worker walks platform folders, parses filenames, hashes files, queries metadata providers in priority order, downloads artwork, and upserts. Progress streams over Socket.IO. Six modes — `NEW_PLATFORMS`, `QUICK`, `UPDATE`, `UNMATCHED`, `COMPLETE`, `HASHES`. Operator-side detail in [Scanning & Watcher](../administration/scanning-and-watcher.md).
 
 ## Backend
 
-**Layers.** Endpoints validate and serialise. Handlers hold the business logic, split by concern under `handler/database/`, `handler/metadata/`, `handler/filesystem/`, and `handler/auth/`. Models are SQLAlchemy. Adapters wrap external APIs. Roughly 175 HTTP routes and 11 Socket.IO handlers across 24 routers.
+### Layers
 
-**Database.** `roms` is the central entity, linking to `platforms`, `rom_files`, `roms_metadata` (aggregated provider data), `rom_user` (per-user tracking), `rom_notes`, and `sibling_roms` (M:M self-ref for alternate versions). Saves, states, and screenshots FK to both `roms` and `users`. Three collection flavours — manual `collections`, dynamic `smart_collections` (filter-criteria with cached IDs), and read-only `virtual_collections` (a database view, excluded from migrations).
+The backend follows a fairly conventional layering. Endpoints handle request validation and response serialisation, while the actual business logic lives in handlers organised by concern: `handler/database/` for per-entity CRUD, `handler/metadata/` for provider-specific normalisation, `handler/filesystem/` for I/O, and `handler/auth/` for the multi-method auth backend. Models are SQLAlchemy ORM, and adapters wrap the external APIs. All told, the codebase exposes around 175 HTTP routes and 11 Socket.IO handlers across 24 routers.
 
-**Auth.** `HybridAuthBackend` walks the methods in order — session cookie, HTTP Basic, OAuth2 Bearer JWT, Client API Token (`rmm_...`, SHA-256 lookup), OIDC, kiosk mode. Token plaintext is never stored. See [API Authentication](api-authentication.md).
+### Database
 
-**Metadata.** Each provider has a handler under `handler/metadata/` that normalises responses into a common shape. Priority is configurable in `config.yml`. Static fixtures (MAME, ScummVM, PS1/PS2/PSP serial maps, known BIOS hashes) load into Valkey at startup. Hashing is platform-aware — CHD v5, PICO-8, and the RetroAchievements per-platform algorithm all get special handling. Switch and PS3/4/5 skip hashing.
+`roms` is the central entity, linking to `platforms` (M:1), `rom_files` (1:M), `roms_metadata` (1:1, aggregated provider data), `rom_user` (per-user, per-ROM tracking), `rom_notes`, and `sibling_roms` (self-ref M:M for alternate versions). Saves, states, and screenshots FK to both `roms` and `users`. `device_save_sync` tracks per-device sync state.
 
-**Configuration.** Env vars (100+, see `env.template`) for infrastructure, plus YAML (`config.yml`) for library/scan/emulator behaviour. `ConfigManager` is a singleton. See [Configuration File](../reference/configuration-file.md).
+Three collection flavours coexist — manually curated `collections` (M:M to ROMs), dynamic `smart_collections` with cached IDs, and read-only `virtual_collections` (a database view excluded from migrations). User-side: [Smart Collections](../using/smart-collections.md), [Virtual Collections](../using/virtual-collections.md).
+
+Migrations live in `backend/alembic/versions/` and run on every container start. They support SQLite batch mode plus DB-specific SQL where MariaDB, MySQL, and PostgreSQL diverge.
+
+### Authentication
+
+`HybridAuthBackend` walks methods in order — session cookie (looked up in Valkey), HTTP Basic (bcrypt), OAuth2 Bearer JWT (HS256), Client API Token (`rmm_...`, SHA-256 lookup), OIDC, kiosk mode if enabled. Token plaintext is never stored: we hash on creation and compare hashes on every request. Full client-side reference: [API Authentication](api-authentication.md).
+
+### Metadata providers
+
+Each provider has a handler under `handler/metadata/` that normalises responses into a common shape. Priority is configurable in `config.yml` (`scan.priority.metadata`). First match wins per field, with manual overrides on top.
+
+Static fixtures (MAME, ScummVM, PS1/PS2/PSP serial maps, known BIOS hashes) load into Valkey at startup so lookups don't hit disk.
+
+Hashing is platform-aware: CHD v5 pulls its SHA1 straight from the file header, PICO-8 cartridges (`.p8.png`) get a special-cased extractor, and the RetroAchievements per-platform algorithm runs through `rahasher.py`. Switch and PS3/4/5 skip hashing entirely, since those ROMs aren't reasonably hashable in the first place.
+
+### Configuration
+
+Configuration sits at two layers — env vars (100+ of them, all listed in `env.template`) for infrastructure concerns, and YAML (`config.yml`) for everything to do with the library, scanning, and emulator behaviour. The YAML side is read, validated, and written back through the singleton `ConfigManager`. The schema reference lives in [Configuration File](../reference/configuration-file.md).
 
 ## Frontend
 
-Vue 3 + Composition API + TypeScript, built with Vite. UI is Vuetify 3 plus Tailwind CSS 4. State lives in 18 Pinia stores (auth, ROMs, platforms, collections, gallery filters, scan progress, etc.). Vue Router covers 36 named routes across three layouts — Auth (public), Main (authenticated), and Console (gamepad/TV). Translations via vue-i18n in 17 locales. Mitt is used as a loose event bus to trigger dialogs from anywhere.
+### Stack
 
-TypeScript types in `src/__generated__/` are generated from the backend OpenAPI spec via `npm run generate`, giving type-safe end-to-end communication.
+The frontend is a Vue 3 SPA written in TypeScript (with `noImplicitAny`) using the Composition API and `<script setup>` syntax, bundled by Vite which gives HMR in development. The UI layer is Vuetify 3 (Material Design) topped with Tailwind CSS 4 for utility classes, and state lives in 18 Pinia stores. Vue Router covers 36 named routes across three layouts, while vue-i18n supplies translations for 17 language packs. Live updates flow through `socket.io-client` for scan progress and netplay, and Mitt sits in the middle as a loose event bus with 80+ event types — handy for triggering dialogs from anywhere in the component tree without having to thread refs through props.
 
-The Axios instance carries a 2-minute timeout, injects the CSRF token from the `romm_csrftoken` cookie, and on 403 clears the session and redirects to `/login`. UI preferences persist to localStorage and sync to `user.ui_settings` on the backend.
+### Generated types
 
-**Console Mode** is a second SPA bundle for TV and gamepad. Stack-based input bus, grid-based spatial navigation, gamepad polling in `requestAnimationFrame`, and SFX synthesised via the Web Audio API.
+TypeScript interfaces in `src/__generated__/` are produced from the backend OpenAPI spec by running `npm run generate`, and the stores and API services consume them directly, giving you type-safe end-to-end communication. Re-run the generator after any backend route or schema change so the frontend types stay in sync.
+
+### API client
+
+The Axios instance carries a 2-minute timeout, a request interceptor that injects the CSRF token from the `romm_csrftoken` cookie, and a response interceptor that on 403 clears the session and redirects to `/login`. An opt-in browser-cache layer wraps API calls with a stale-while-revalidate pattern.
+
+### Persistence
+
+UI preferences live in localStorage and sync to `user.ui_settings` on the backend through the `useUISettings` composable, so a user's settings follow them across devices and browsers. Session data sits in Pinia in memory, and the Browser Cache API holds API responses when the opt-in cache layer is enabled.
+
+### Layouts
+
+Three layouts cover the routes:
+
+- **Auth** (public) — setup, login, password reset, register
+- **Main** (authenticated) — home, gallery, game details, scan, patcher, settings, admin
+- **Console** (authenticated, gamepad/TV) — `/console/*`
+
+Permission-protected routes follow the scope model from [Users & Roles](../administration/users-and-roles.md): `/scan` and `/library-management` require `platforms.write`, `/client-api-tokens` requires `me.write`, and `/administration` requires `users.write`.
+
+### Console Mode
+
+A second SPA bundle aimed at TVs and gamepads, all kept under `frontend/src/console/`. The input system is a stack-based bus with grid-based spatial navigation, gamepad polling runs in `requestAnimationFrame`, and the sound effects are synthesised on the fly through the Web Audio API rather than shipped as audio assets.
 
 ## Background jobs
 
-RQ workers run scheduled jobs (rescans, Switch TitleDB refresh, LaunchBox refresh, image-to-WebP conversion, RA progress sync, netplay cleanup) and manual tasks (`cleanup_missing_roms`, `cleanup_orphaned_resources`, `sync_folder_scan`). Each scheduled task is gated by an `ENABLE_SCHEDULED_*` env var.
-
-Jobs persist to Valkey, so restarts don't lose in-flight work — but only if `appendonly` is on.
+RQ workers run scheduled jobs (rescans, Switch TitleDB refresh, LaunchBox refresh, image-to-WebP conversion, RA progress sync, netplay cleanup) and manual tasks (`cleanup_missing_roms`, `cleanup_orphaned_resources`, `sync_folder_scan`). Each scheduled task is gated by an `ENABLE_SCHEDULED_*` env var and tunable via the matching `*_CRON`. Operator-side detail in [Scheduled Tasks](../administration/scheduled-tasks.md).
 
 ## Real-time
 
-Two Socket.IO servers, both Valkey-backed for horizontal scaling — `/ws` for scan progress and notifications, `/netplay` for netplay rooms. See [WebSockets](websockets.md).
+Two Socket.IO servers run side by side, both Valkey-backed so they horizontally scale across multiple replicas. `/ws` carries scan progress (`scan:update_stats`, `scan:log`, `scan:stop`) and general notifications, while `/netplay` handles room creation, joining, and peer message relay. The wire-level reference is in [WebSockets](websockets.md).
 
 ## Filesystem layout
 
@@ -113,19 +147,12 @@ Two Socket.IO servers, both Valkey-backed for horizontal scaling — `/ws` for s
 └── config/config.yml            # YAML configuration
 ```
 
+Production serves files via nginx `X-Accel-Redirect`. Dev mode (`DEV_MODE=true`) falls back to FastAPI's `FileResponse`, slower but no nginx in the loop.
+
 ## Observability
 
-Sentry (opt-in via `SENTRY_DSN`) captures unhandled exceptions. OpenTelemetry (opt-in) ships traces, metrics, and logs over OTLP. `GET /api/heartbeat` returns an aggregated health snapshot, safe to scrape from uptime monitors. See [Observability](../administration/observability.md).
+Sentry (opt-in via `SENTRY_DSN`) captures unhandled exceptions, tagged with `romm@{version}`. OpenTelemetry (opt-in) ships traces, metrics, and logs over OTLP. `GET /api/heartbeat` returns an aggregated health snapshot, safe to scrape from uptime monitors. Setup details in [Observability](../administration/observability.md).
 
-## Contributing
+## Where to start
 
-See [Contributing](contributing.md) for process and style. For non-trivial backend changes, read the relevant handler in `backend/handler/` first.
-
-## See also
-
-- [Development Setup](development-setup.md): get a local env running
-- [API Reference](api-reference.md): what the backend exposes
-- [API Authentication](api-authentication.md): auth modes in detail
-- [WebSockets](websockets.md): Socket.IO endpoints
-- [Configuration File](../reference/configuration-file.md): `config.yml` schema
-- [Embedded vs External Valkey](../install/redis-or-valkey.md): cache + queue store
+If you're picking up your first issue, the patterns to mimic live in `backend/handler/` for backend work and in `frontend/src/components/` plus the relevant Pinia store for frontend work. Match the surrounding style. The hardest part of contributing isn't writing the change, it's threading it through the existing layers cleanly. See [Contributing](contributing.md) for process and [Development Setup](development-setup.md) to get a local env running.

@@ -1,44 +1,44 @@
 ---
 title: Consuming OpenAPI
-description: Use RomM's OpenAPI spec for code generation, Postman imports, and API exploration.
+description: Use RomM's OpenAPI spec for code generation, Postman imports, and validation
 ---
 
 # Consuming OpenAPI
 
-RomM ships its entire API as an OpenAPI 3.0 specification. That's the source of truth: every endpoint, every request/response schema, every parameter. Use it to generate clients, drive test suites, or import into tools.
+RomM ships its entire API as an OpenAPI 3.0 spec. That's the source of truth: every endpoint, every request and response schema, every parameter. Use it to generate clients, drive test suites, or import into tools.
 
-## Where to find the spec
+## Where the spec lives
 
-Every RomM instance serves:
+Every RomM instance serves it:
 
 ```text
 {romm_url}/openapi.json
 ```
 
-No authentication required: the spec itself is public, though calling most of the endpoints it describes requires auth.
+No authentication required. The spec itself is public, though calling most of the endpoints it describes requires auth (see [API Authentication](api-authentication.md)).
 
-Human-readable versions:
+Human-readable renderings:
 
-- **Swagger UI** at `{romm_url}/api/docs`
-- **ReDoc** at `{romm_url}/api/redoc`
+- **Swagger UI** at `{romm_url}/api/docs` with a "Try it out" button for live testing
+- **ReDoc** at `{romm_url}/api/redoc` with a cleaner reading layout
 
-Both are auto-generated from the same `openapi.json`. Swagger UI has a "Try it out" feature for live testing, and ReDoc has a cleaner reading layout.
+Both are auto-generated from the same `openapi.json`.
 
 ## Versioning
 
-The spec is versioned alongside RomM. Every release tag includes a matching `openapi.json` in the release artifacts on GitHub. Snapshot the spec at a specific version if your client needs reproducible builds:
+The spec is versioned alongside RomM itself. Every release tag includes a matching `openapi.json` in the GitHub release artifacts. Snapshot the spec at a specific version when your client needs reproducible builds:
 
 ```sh
 curl https://demo.romm.app/openapi.json > openapi-5.0.0.json
 ```
 
-## Rendered API reference
-
-RomM's docs site embeds a rendered version of the spec at [API Reference](api-reference.md). It's built at docs-publish time from a pinned `openapi-v5.json` snapshot. If the live docs are behind the latest API, check the [API Reference](api-reference.md) page for the version it was built against.
+The docs site embeds a rendered version of the spec at [API Reference](api-reference.md), built at docs-publish time from a pinned snapshot. If the rendered docs lag behind the live API, fetch the live spec from your instance directly.
 
 ## Generating client libraries
 
-[`openapi-generator-cli`](https://openapi-generator.tech/) generates clients in 30+ languages. Example for a Python client:
+[`openapi-generator-cli`](https://openapi-generator.tech/) generates clients in 30+ languages.
+
+Python:
 
 ```sh
 npx @openapitools/openapi-generator-cli generate \
@@ -47,7 +47,7 @@ npx @openapitools/openapi-generator-cli generate \
   -o ./romm-client-python
 ```
 
-For TypeScript:
+TypeScript:
 
 ```sh
 npx @openapitools/openapi-generator-cli generate \
@@ -56,46 +56,40 @@ npx @openapitools/openapi-generator-cli generate \
   -o ./romm-client-ts
 ```
 
-Generated clients handle auth, request shaping, and response parsing. Drop in, import, call. Quality varies by generator target but Python and TypeScript are the best-tested.
+Generated clients handle auth, request shaping, and response parsing for you. Quality varies by generator target, but Python and TypeScript are the best-tested in practice since that's what RomM itself uses internally.
 
-### Tips
+Three rules for staying sane:
 
-- **Pin the spec**, don't fetch live. Builds should be reproducible.
-- **Regenerate on new RomM releases.** Breaking changes are rare but possible.
-- **Patch if needed.** Generated clients sometimes need tweaks (upstream generator bugs, our spec's rough edges, etc.). Keep a patch file.
+- **Pin the spec, don't fetch live.** Builds should be reproducible.
+- **Regenerate on every RomM release** that bumps the major or minor version. Patch releases are spec-stable.
+- **Keep a patch file** if your generator output needs tweaks. Generators have rough edges, and so does the spec.
 
-## Postman / Insomnia / Bruno
+## Postman, Insomnia, Bruno
 
 All three import OpenAPI directly:
 
-- **Postman:** File → Import → paste `openapi.json` URL
-- **Insomnia:** Create → Import From → URL
-- **Bruno:** Import Collection → OpenAPI
+- **Postman**: File → Import → paste the `openapi.json` URL
+- **Insomnia**: Create → Import From → URL
+- **Bruno**: Import Collection → OpenAPI
 
 Useful for manual API exploration during development.
 
-## Validating requests
+## Validating requests against the spec
 
-If you're building something that calls RomM, consider validating requests against the spec before sending. Schema-driven validation catches bugs early:
+If you're building something that calls RomM, schema-driven validation catches bugs before they hit the wire:
 
-- **Python:** [`openapi-core`](https://github.com/python-openapi/openapi-core)
-- **Node.js:** [`openapi-backend`](https://github.com/anttiviljami/openapi-backend) or `ajv`-based approaches
-- **Go:** [`kin-openapi`](https://github.com/getkin/kin-openapi)
+- **Python**: [`openapi-core`](https://github.com/python-openapi/openapi-core)
+- **Node.js**: [`openapi-backend`](https://github.com/anttiviljami/openapi-backend) or any `ajv`-based approach
+- **Go**: [`kin-openapi`](https://github.com/getkin/kin-openapi)
 
 ## Spec quirks
 
-A few known quirks to work around:
+A few known rough edges to be aware of:
 
-- **Some `additionalProperties` are loose.** RomM's spec lets some responses include fields not in the schema (debug hooks, feature-flag-gated fields). Don't treat the spec as an exact response guarantee. Treat it as "everything here is always present, more may follow".
-- **Socket.IO isn't in the OpenAPI spec.** WebSocket endpoints are documented separately in [WebSockets](websockets.md).
-- **Pagination defaults vary per endpoint.** Some paginate, some don't. Check the spec per endpoint.
+- **Some `additionalProperties` are loose.** Certain responses include fields that aren't declared in the schema (debug hooks, feature-flag-gated fields), so treat the spec as "everything here is always present, more may follow" rather than an exact response guarantee.
+- **Socket.IO isn't in the spec.** WebSocket endpoints are documented separately in [WebSockets](websockets.md).
+- **Pagination defaults vary per endpoint.** Some endpoints paginate by default and some don't, so check the spec for each one before assuming.
 
 ## Webhooks & events
 
-Not currently in the spec. Event-driven integration is via [WebSockets](websockets.md) only.
-
-## See also
-
-- [API Reference](api-reference.md): the pre-rendered version of the spec for browsing
-- [API Authentication](api-authentication.md): required auth for most endpoints
-- [OpenAPI Initiative](https://www.openapis.org/): upstream specification
+Not currently in the spec. Event-driven integration is via Socket.IO only. See [WebSockets](websockets.md).
