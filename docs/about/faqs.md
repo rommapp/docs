@@ -120,9 +120,9 @@ See [Invitations & Registration](../administration/invitations-and-registration.
 
 Yes, several first-party apps (all in beta or actively developed):
 
-- **[Argosy](../ecosystem/argosy.md)**: Android launcher for your RomM library
-- **[Grout](../ecosystem/grout.md)**: companion for Linux-based handhelds (muOS / NextUI and friends)
-- **[Playnite Plugin](../ecosystem/playnite-plugin.md)** for Windows desktop
+- **[Argosy](../ecosystem/first-party-apps.md#argosy-launcher)**: Android launcher for your RomM library
+- **[Grout](../ecosystem/first-party-apps.md#grout)**: companion for Linux-based handhelds (muOS / NextUI and friends)
+- **[Playnite Plugin](../ecosystem/first-party-apps.md#playnite-plugin)** for Windows desktop
 
 iOS and other platforms are covered by [Community Apps](../ecosystem/community-apps.md). Full directory: [Ecosystem](../ecosystem/index.md).
 

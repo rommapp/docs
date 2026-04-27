@@ -243,4 +243,4 @@ Currently polling-only. Companion apps check `/api/sync/negotiate` periodically 
 - [API Authentication](../developers/api-authentication.md): general auth primer
 - [API Reference](../developers/api-reference.md): full endpoint catalogue
 - [SSH Sync](ssh-sync.md): alternative transport for handhelds
-- [Argosy](argosy.md), [Grout](grout.md): reference client implementations
+- [Argosy](first-party-apps.md#argosy-launcher), [Grout](first-party-apps.md#grout): reference client implementations

@@ -15,7 +15,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **API token**: see Client API Token.
 
-**Argosy**: RomM's first-party Android launcher app. See [Argosy](../ecosystem/argosy.md).
+**Argosy**: RomM's first-party Android launcher app. See [Argosy](../ecosystem/first-party-apps.md#argosy-launcher).
 
 **Asset**: user-uploaded content attached to a ROM: save files, emulator states, screenshots. Stored under `/romm/assets/`. Per-user. [Saves & States](../using/saves-and-states.md).
 
@@ -47,7 +47,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **gamelist.xml**: ES-DE / Batocera-compatible metadata format. RomM can both import (as a metadata source) and export.
 
-**Grout**: RomM's first-party Linux handheld companion (muOS, NextUI). [Grout](../ecosystem/grout.md).
+**Grout**: RomM's first-party Linux handheld companion (muOS, NextUI). [Grout](../ecosystem/first-party-apps.md#grout).
 
 **Hasheous**: metadata provider doing hash-based matching (no API keys). [Metadata Providers → Hasheous](../administration/metadata-providers.md#hasheous).
 
@@ -57,7 +57,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **Invite link**: single-use URL that lets a new user register with a pre-assigned role. [Invitations & Registration](../administration/invitations-and-registration.md).
 
-**Kekatsu**: Nintendo DS multiboot loader that reads RomM's feed. [Kekatsu](../ecosystem/kekatsu.md).
+**Kekatsu**: Nintendo DS multiboot loader that reads RomM's feed. [Kekatsu](../ecosystem/feed-clients.md#kekatsu).
 
 **Kiosk mode**: `KIOSK_MODE=true` setting that turns every read endpoint into unauthenticated access. [Authentication → Kiosk mode](../administration/authentication.md#kiosk-mode).
 
@@ -71,7 +71,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **MobyGames**: paid metadata provider. [Metadata Providers → MobyGames](../administration/metadata-providers.md#mobygames).
 
-**muOS**: custom firmware for ARM handhelds. RomM has a muOS-specific app. [muOS App](../ecosystem/muos-app.md).
+**muOS**: custom firmware for ARM handhelds. Use [Grout](../ecosystem/first-party-apps.md#grout) to sync ROMs and saves with RomM.
 
 **Netplay**: multi-player EmulatorJS mode over WebRTC. [Netplay](../using/netplay.md).
 
@@ -81,13 +81,13 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **Personal tab**: the ROM detail page tab for per-user data (rating, status, notes, playtime).
 
-**pkgj**: PS Vita / PSP homebrew installer. Consumes RomM feeds. [pkgj](../ecosystem/pkgj.md).
+**pkgj**: PS Vita / PSP homebrew installer. Consumes RomM feeds. [pkgj](../ecosystem/feed-clients.md#pkgj).
 
 **Platform**: a gaming system (SNES, PSX, GBA, etc.). Each has a canonical slug. [Supported Platforms](../platforms/supported-platforms.md).
 
 **Play session**: timestamped record of someone playing a ROM.
 
-**Playnite Plugin**: RomM's Windows Playnite integration. [Playnite Plugin](../ecosystem/playnite-plugin.md).
+**Playnite Plugin**: RomM's Windows Playnite integration. [Playnite Plugin](../ecosystem/first-party-apps.md#playnite-plugin).
 
 **PWA**: Progressive Web App. Install RomM to your home screen. [Install as PWA](../using/pwa.md).
 
@@ -123,7 +123,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **TheGamesDB (TGDB)**: free community metadata provider. New in 5.0.
 
-**Tinfoil**: Nintendo Switch homebrew that installs from RomM's feed. [Tinfoil](../ecosystem/tinfoil.md).
+**Tinfoil**: Nintendo Switch homebrew that installs from RomM's feed. [Tinfoil](../ecosystem/feed-clients.md#tinfoil).
 
 **User**: an account. One of three roles (Viewer / Editor / Admin).
 
@@ -135,7 +135,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **Watcher**: filesystem watcher that triggers scans on file events. `WATCHER_ENABLED=true`. [Scanning & Watcher](../administration/scanning-and-watcher.md#filesystem-watcher).
 
-**WebRcade**: alternative browser frontend that consumes RomM's feed. [WebRcade](../ecosystem/webrcade.md).
+**WebRcade**: alternative browser frontend that consumes RomM's feed. [WebRcade](../ecosystem/feed-clients.md#webrcade).
 
 ---
 

@@ -32,7 +32,6 @@ The RomM umbrella hosts several projects under different licenses:
 | [rommapp/argosy-launcher](https://github.com/rommapp/argosy-launcher) | GPL-3.0    |
 | [rommapp/grout](https://github.com/rommapp/grout)                     | MIT        |
 | [rommapp/playnite-plugin](https://github.com/rommapp/playnite-plugin) | GPL-3.0    |
-| [rommapp/muos-app](https://github.com/rommapp/muos-app)               | check repo |
 | [rommapp/docs](https://github.com/rommapp/docs) (what you're reading) | CC0        |
 
 Companion repos use more permissive licenses (GPL-3.0 or MIT) because they're smaller, more-replaceable, and don't host the library. The AGPL network-service clause doesn't offer the same protection benefits there.

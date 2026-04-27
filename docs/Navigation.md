@@ -71,16 +71,9 @@ search:
 - Integrations & Ecosystem
     - [Overview](ecosystem/index.md)
     - First-party
-        - [Argosy Launcher](ecosystem/argosy.md)
-        - [Grout](ecosystem/grout.md)
-        - [Playnite Plugin](ecosystem/playnite-plugin.md)
-        - [muOS App](ecosystem/muos-app.md)
+        - [First-Party Apps](ecosystem/first-party-apps.md)
     - Feeds
-        - [Tinfoil](ecosystem/tinfoil.md)
-        - [pkgj](ecosystem/pkgj.md)
-        - [fpkgi](ecosystem/fpkgi.md)
-        - [Kekatsu](ecosystem/kekatsu.md)
-        - [WebRcade](ecosystem/webrcade.md)
+        - [Feed Clients](ecosystem/feed-clients.md)
     - For developers
         - [Device Sync Protocol](ecosystem/device-sync-protocol.md)
         - [Client API Tokens](ecosystem/client-api-tokens.md)

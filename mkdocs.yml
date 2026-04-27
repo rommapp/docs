@@ -108,10 +108,10 @@ plugins:
               Maintenance/Migrating-to-new-machine.md: install/backup-and-restore.md
               Maintenance/Upgrading-to-3.0.md: releases/upgrading-to-3.0.md
               # Integrations → Ecosystem
-              Integrations/Playnite-plugin.md: ecosystem/playnite-plugin.md
-              Integrations/muOS-app.md: ecosystem/muos-app.md
-              Integrations/Tinfoil-integration.md: ecosystem/tinfoil.md
-              Integrations/pkgj-integration.md: ecosystem/pkgj.md
+              Integrations/Playnite-plugin.md: ecosystem/first-party-apps.md
+              Integrations/muOS-app.md: ecosystem/first-party-apps.md#grout
+              Integrations/Tinfoil-integration.md: ecosystem/feed-clients.md#tinfoil
+              Integrations/pkgj-integration.md: ecosystem/feed-clients.md#pkgj
               # Troubleshooting (just casing change)
               Troubleshooting/Scanning-Issues.md: troubleshooting/scanning.md
               Troubleshooting/Authentication-Issues.md: troubleshooting/authentication.md

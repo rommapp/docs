@@ -13,15 +13,15 @@ Feeds are **read-only**. They expose download URLs back to RomM's own `/api/...`
 
 | Feed                     | URL                           | Purpose                                                                       |
 | ------------------------ | ----------------------------- | ----------------------------------------------------------------------------- |
-| **Tinfoil**              | `/api/feeds/tinfoil`          | Nintendo Switch `.nsp` / `.xci` installer. [Setup →](../ecosystem/tinfoil.md) |
-| **pkgi (PS Vita games)** | `/api/feeds/pkgi/psvita/game` | PS Vita `.pkg` installer. [Setup →](../ecosystem/pkgj.md)                     |
-| **pkgi (PS Vita DLCs)**  | `/api/feeds/pkgi/psvita/dlc`  | Same, DLC content.                                                            |
-| **pkgi (PSP games)**     | `/api/feeds/pkgi/psp/game`    | PSP `.pkg` installer.                                                         |
-| **pkgi (PSP DLCs)**      | `/api/feeds/pkgi/psp/dlc`     | Same, DLC content.                                                            |
-| **fpkgi (PS4)**          | `/api/feeds/fpkgi/ps4`        | PS4 `.pkg` installer. [Setup →](../ecosystem/fpkgi.md)                        |
-| **fpkgi (PS5)**          | `/api/feeds/fpkgi/ps5`        | PS5 `.pkg` installer.                                                         |
-| **Kekatsu (NDS)**        | `/api/feeds/kekatsu/nds`      | Nintendo DS multiboot loader. [Setup →](../ecosystem/kekatsu.md)              |
-| **WebRcade**             | `/api/feeds/webrcade`         | Browser-based retro frontend. [Setup →](../ecosystem/webrcade.md)             |
+| **Tinfoil**              | `/api/feeds/tinfoil`          | Nintendo Switch `.nsp` / `.xci` installer. [Setup →](../ecosystem/feed-clients.md#tinfoil) |
+| **pkgi (PS Vita games)** | `/api/feeds/pkgi/psvita/game` | PS Vita `.pkg` installer. [Setup →](../ecosystem/feed-clients.md#pkgj)                     |
+| **pkgi (PS Vita DLCs)**  | `/api/feeds/pkgi/psvita/dlc`  | Same, DLC content.                                                                         |
+| **pkgi (PSP games)**     | `/api/feeds/pkgi/psp/game`    | PSP `.pkg` installer.                                                                      |
+| **pkgi (PSP DLCs)**      | `/api/feeds/pkgi/psp/dlc`     | Same, DLC content.                                                                         |
+| **fpkgi (PS4)**          | `/api/feeds/fpkgi/ps4`        | PS4 `.pkg` installer. [Setup →](../ecosystem/feed-clients.md#fpkgi)                        |
+| **fpkgi (PS5)**          | `/api/feeds/fpkgi/ps5`        | PS5 `.pkg` installer.                                                                      |
+| **Kekatsu (NDS)**        | `/api/feeds/kekatsu/nds`      | Nintendo DS multiboot loader. [Setup →](../ecosystem/feed-clients.md#kekatsu)              |
+| **WebRcade**             | `/api/feeds/webrcade`         | Browser-based retro frontend. [Setup →](../ecosystem/feed-clients.md#webrcade)             |
 
 Plus legacy `pkgj` formats for individual platforms:
 

@@ -11,20 +11,19 @@ RomM has a sizeable ecosystem of companion apps and integration patterns. This h
 
 Maintained by the RomM team.
 
-- **[Argosy Launcher](argosy.md)**: Android launcher that browses and launches your RomM library on mobile
-- **[Grout](grout.md)**: Linux handheld companion for muOS / NextUI devices
-- **[Playnite Plugin](playnite-plugin.md)**: Windows desktop, imports your RomM library into [Playnite](https://playnite.link)
-- **[muOS App](muos-app.md)**: official app for muOS / EmulationStation handhelds to fetch games wirelessly
+- **[Argosy Launcher](first-party-apps.md#argosy-launcher)**: Android launcher that browses and launches your RomM library on mobile
+- **[Grout](first-party-apps.md#grout)**: Linux handheld companion for muOS / NextUI devices
+- **[Playnite Plugin](first-party-apps.md#playnite-plugin)**: Windows desktop, imports your RomM library into [Playnite](https://playnite.link)
 
 ## Feeds (for third-party apps)
 
 RomM exposes several URL feed endpoints for external homebrew / custom firmware apps that already know how to consume them.
 
-- **[Tinfoil](tinfoil.md)**: Nintendo Switch homebrew for installing `.nsp` / `.xci` from a URL
-- **[pkgj](pkgj.md)**: PS Vita and PSP homebrew installer
-- **[fpkgi](fpkgi.md)**: PS4 / PS5 installer
-- **[Kekatsu](kekatsu.md)**: Nintendo DS multiboot loader
-- **[WebRcade](webrcade.md)**: browser-based retro console frontend
+- **[Tinfoil](feed-clients.md#tinfoil)**: Nintendo Switch homebrew for installing `.nsp` / `.xci` from a URL
+- **[pkgj](feed-clients.md#pkgj)**: PS Vita and PSP homebrew installer
+- **[fpkgi](feed-clients.md#fpkgi)**: PS4 / PS5 installer
+- **[Kekatsu](feed-clients.md#kekatsu)**: Nintendo DS multiboot loader
+- **[WebRcade](feed-clients.md#webrcade)**: browser-based retro console frontend
 
 See the [full feeds reference](../reference/feeds.md) for URL formats, auth requirements, and filtering.
 

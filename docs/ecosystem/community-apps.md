@@ -9,10 +9,9 @@ Apps listed here are **community-maintained**. The RomM team doesn't build or of
 
 First-party alternatives (built by the RomM team):
 
-- [Argosy Launcher](argosy.md) (Android)
-- [Grout](grout.md) (Linux handhelds)
-- [Playnite Plugin](playnite-plugin.md) (Windows)
-- [muOS App](muos-app.md) (muOS handhelds)
+- [Argosy Launcher](first-party-apps.md#argosy-launcher) (Android)
+- [Grout](first-party-apps.md#grout) (Linux handhelds)
+- [Playnite Plugin](first-party-apps.md#playnite-plugin) (Windows)
 
 ## Mobile
 

@@ -63,11 +63,11 @@ See [Authentication → Download-endpoint auth bypass](../administration/authent
 
 | Path                     | Client                               | Auth                                                                |
 | ------------------------ | ------------------------------------ | ------------------------------------------------------------------- |
-| `/api/feeds/tinfoil`     | [Tinfoil](../ecosystem/tinfoil.md)   | Respects `DISABLE_DOWNLOAD_ENDPOINT_AUTH`, and can send basic auth. |
-| `/api/feeds/pkgi/...`    | [pkgj](../ecosystem/pkgj.md)         | Same.                                                               |
-| `/api/feeds/fpkgi/...`   | [fpkgi](../ecosystem/fpkgi.md)       | Same.                                                               |
-| `/api/feeds/kekatsu/...` | [Kekatsu](../ecosystem/kekatsu.md)   | Same.                                                               |
-| `/api/feeds/webrcade`    | [WebRcade](../ecosystem/webrcade.md) | Same.                                                               |
+| `/api/feeds/tinfoil`     | [Tinfoil](../ecosystem/feed-clients.md#tinfoil)   | Respects `DISABLE_DOWNLOAD_ENDPOINT_AUTH`, and can send basic auth. |
+| `/api/feeds/pkgi/...`    | [pkgj](../ecosystem/feed-clients.md#pkgj)         | Same.                                                               |
+| `/api/feeds/fpkgi/...`   | [fpkgi](../ecosystem/feed-clients.md#fpkgi)       | Same.                                                               |
+| `/api/feeds/kekatsu/...` | [Kekatsu](../ecosystem/feed-clients.md#kekatsu)   | Same.                                                               |
+| `/api/feeds/webrcade`    | [WebRcade](../ecosystem/feed-clients.md#webrcade) | Same.                                                               |
 
 Full catalogue in [Feeds](feeds.md).
 

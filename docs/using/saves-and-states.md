@@ -72,7 +72,7 @@ Saves and states can sync to/from registered devices (Grout on muOS, DeckRommSyn
 
 - [Device Sync Protocol](../ecosystem/device-sync-protocol.md): wire-level reference
 - [SSH Sync](../ecosystem/ssh-sync.md): operator-side config
-- [Argosy Launcher](../ecosystem/argosy.md) / [Grout](../ecosystem/grout.md): per-app setup
+- [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher) / [Grout](../ecosystem/first-party-apps.md#grout): per-app setup
 
 From the end-user side: once your device is paired and sync is running, saves made on the device appear in RomM within a couple of sync cycles (default: 15 minutes). Conflicts (same ROM saved on two devices between syncs) surface as two separate save entries, so pick which to keep.
 

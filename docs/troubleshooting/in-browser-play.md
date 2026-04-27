@@ -88,7 +88,7 @@ In-browser emulation is CPU-heavy. Mobile tips:
 - **Use Chrome on Android, Safari on iOS.** Other browsers are measurably slower for WASM.
 - **Close other tabs.**
 - **Try a lighter core.** `snes9x` over `bsnes`, `fceumm` over `nestopia`, etc.
-- **Consider a native app.** [Argosy Launcher](../ecosystem/argosy.md) on Android uses native emulators, which are orders of magnitude more efficient.
+- **Consider a native app.** [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher) on Android uses native emulators, which are orders of magnitude more efficient.
 
 ## Fullscreen oddities
 

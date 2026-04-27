@@ -64,7 +64,7 @@ Handhelds running custom firmware (muOS, Batocera, Knulli, ArkOS, JELOS, ROCKNIX
 
 Recommended companions:
 
-- **[Grout](../ecosystem/grout.md)**: first-party. muOS and NextUI handhelds
+- **[Grout](../ecosystem/first-party-apps.md#grout)**: first-party. muOS and NextUI handhelds
 - **[DeckRommSync](../ecosystem/community-apps.md)**: Steam Deck (SteamOS)
 - **[SwitchRomM](../ecosystem/community-apps.md)**: Nintendo Switch (homebrew)
 
