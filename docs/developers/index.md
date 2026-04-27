@@ -12,7 +12,7 @@ Everything you need to **build on top of RomM** (third-party apps, scripts, inte
 - **[API Reference](api-reference.md)**: every endpoint, OpenAPI-driven
 - **[API Authentication](api-authentication.md)**: all five auth modes (session, Basic, OAuth2, Client API Token, OIDC)
 - **[Consuming OpenAPI](openapi.md)**: codegen, Postman imports, schema validation
-- **[WebSockets](websockets.md)**: Socket.IO endpoints for live updates and Netplay
+- **[WebSockets](websockets.md)**: socket.io endpoints for live updates and Netplay
 
 ## Building companion apps
 

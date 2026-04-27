@@ -115,7 +115,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **Smart Collection**: rule-based auto-populating collection. [Smart Collections](../using/smart-collections.md).
 
-**Socket.IO**: RomM's WebSocket protocol. Two endpoints: `/ws` and `/netplay`. [WebSockets](../developers/websockets.md).
+**socket.io**: RomM's WebSocket protocol. Two endpoints: `/ws` and `/netplay`. [WebSockets](../developers/websockets.md).
 
 **SteamGridDB**: alternate cover art provider. [Metadata Providers → SteamGridDB](../administration/metadata-providers.md#steamgriddb).
 

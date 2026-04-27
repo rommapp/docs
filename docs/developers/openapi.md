@@ -34,5 +34,5 @@ The docs site embeds a rendered version of the spec at [API Reference](api-refer
 A few known rough edges to be aware of:
 
 - **Some `additionalProperties` are loose.** Certain responses include fields that aren't declared in the schema, so treat the spec as "everything here is always present, more may follow" rather than an exact response guarantee.
-- **Socket.IO isn't in the spec.** WebSocket endpoints are documented separately in [WebSockets](websockets.md).
+- **socket.io isn't in the spec.** WebSocket endpoints are documented separately in [WebSockets](websockets.md).
 - **Pagination defaults vary per endpoint.** Some endpoints paginate by default and some don't, so check the spec for each one before assuming.

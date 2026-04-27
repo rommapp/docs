@@ -69,7 +69,7 @@ RomM stands on an enormous amount of open-source work. In rough order of "how vi
 - [Vuetify](https://vuetifyjs.com/)
 - [Pinia](https://pinia.vuejs.org/)
 - [Vite](https://vitejs.dev/)
-- [Socket.IO](https://socket.io/)
+- [socket.io](https://socket.io/)
 - [vue-i18n](https://vue-i18n.intlify.dev/)
 - [rom-patcher-js](https://www.marcrobledo.com/RomPatcher.js/)
 - [vite-plugin-pwa](https://vite-pwa-org.netlify.app/)

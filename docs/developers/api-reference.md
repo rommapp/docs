@@ -20,7 +20,7 @@ For code generation, see [Consuming OpenAPI](openapi.md).
 
 ## WebSockets
 
-REST isn't the only surface. Two Socket.IO endpoints cover live-update and coordination use cases: [WebSockets](websockets.md).
+REST isn't the only surface. Two socket.io endpoints cover live-update and coordination use cases: [WebSockets](websockets.md).
 
 ## Versioning
 
@@ -34,6 +34,6 @@ RomM's API follows SemVer along with the rest of RomM:
 
 - [API Authentication](api-authentication.md): auth modes in detail
 - [Consuming OpenAPI](openapi.md): codegen + schema validation
-- [WebSockets](websockets.md): Socket.IO endpoints
+- [WebSockets](websockets.md): socket.io endpoints
 - [Client API Tokens](../ecosystem/client-api-tokens.md): recommended companion-app auth
 - [Device Sync Protocol](../ecosystem/device-sync-protocol.md): sync endpoints in depth

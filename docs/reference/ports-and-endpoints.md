@@ -78,7 +78,7 @@ Full catalogue in [Feeds](feeds.md).
 | `/ws/socket.io`      | General live updates (scans, tasks). |
 | `/netplay/socket.io` | Netplay session coordination.        |
 
-Both use Socket.IO, so the reverse proxy must pass through the upgrade. See [WebSockets](../developers/websockets.md) and [Reverse Proxy](../install/reverse-proxy.md).
+Both use socket.io, so the reverse proxy must pass through the upgrade. See [WebSockets](../developers/websockets.md) and [Reverse Proxy](../install/reverse-proxy.md).
 
 ## Volumes (not ports but relevant)
 

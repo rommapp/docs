@@ -12,7 +12,7 @@ What you need to know to find your way around `rommapp/romm` before you start ch
 ```text
 rommapp/romm
 ├── backend/              # Python FastAPI application
-│   ├── endpoints/        # Route handlers + Socket.IO under sockets/
+│   ├── endpoints/        # Route handlers + socket.io under sockets/
 │   ├── handler/          # Business logic: database/, metadata/, filesystem/, auth/
 │   ├── adapters/services/# External API clients (IGDB, Moby, SS, SGDB, RA, ...)
 │   ├── models/           # SQLAlchemy ORM
@@ -25,7 +25,7 @@ rommapp/romm
 │       ├── components/   # ~168 components, organised by feature
 │       ├── console/      # Console Mode SPA (own router, layout, input bus)
 │       ├── stores/       # 18 Pinia stores
-│       ├── services/     # Axios API modules + Socket.IO + browser cache
+│       ├── services/     # Axios API modules + socket.io + browser cache
 │       └── __generated__/# TS types generated from the backend OpenAPI spec
 ├── docker/               # nginx config, entrypoint, Dockerfiles
 └── examples/             # Reference docker-compose.yml and config.yml
@@ -115,7 +115,7 @@ A second SPA bundle aimed at TVs and gamepads is kept under `frontend/src/consol
 
 ## Real-time
 
-Two Socket.IO servers run side by side, both Valkey-backed so they horizontally scale across multiple replicas. `/ws` carries scan progress (`scan:update_stats`, `scan:log`, `scan:stop`) and general notifications, while `/netplay` handles room creation, joining, and peer message relay. The wire-level reference is in [WebSockets](websockets.md).
+Two socket.io servers run side by side, both Valkey-backed so they horizontally scale across multiple replicas. `/ws` carries scan progress (`scan:update_stats`, `scan:log`, `scan:stop`) and general notifications, while `/netplay` handles room creation, joining, and peer message relay. The wire-level reference is in [WebSockets](websockets.md).
 
 ## Filesystem layout
 

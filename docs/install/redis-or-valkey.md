@@ -10,7 +10,7 @@ RomM needs a Redis-protocol server. It's used for:
 - **Session storage**: login sessions, CSRF tokens
 - **Background task queue**: scans, metadata syncs, sync operations run through RQ (Redis Queue).
 - **Cache**: metadata lookups, heartbeat data, paired-device tokens, rate-limit counters
-- **Socket.IO**: multi-instance pubsub for live updates (only relevant if you're running more than one RomM container)
+- **socket.io**: multi-instance pubsub for live updates (only relevant if you're running more than one RomM container)
 
 Both **Redis** and **Valkey** (the open-source Redis fork maintained by the Linux Foundation after Redis Inc.'s license change) are supported. They're interchangeable: Valkey is a drop-in wire-compatible replacement. Pick either.
 

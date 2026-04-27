@@ -24,7 +24,7 @@ Full config: [Configuration File → `emulatorjs.netplay`](../reference/configur
 You created a room as host but other players don't see it.
 
 - **They need RomM accounts on your instance.** Netplay doesn't federate. A user with no account or on a different RomM can't see or join.
-- **WebSocket connection is broken.** Open devtools → Network → WS tab. If Socket.IO is disconnecting, see [Authentication Troubleshooting → WebSockets](authentication.md#400-bad-request-on-the-websocket-endpoint).
+- **WebSocket connection is broken.** Open devtools → Network → WS tab. If socket.io is disconnecting, see [Authentication Troubleshooting → WebSockets](authentication.md#400-bad-request-on-the-websocket-endpoint).
 - **Other player didn't open the Netplay panel.** They need to click the 🌐 icon on the emulator toolbar to see the room list.
 
 ## Joined but video never appears

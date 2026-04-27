@@ -26,7 +26,7 @@ If you're behind a reverse proxy and CSRF keeps failing, the proxy is probably s
 
 ## `400 Bad Request` on the WebSocket endpoint
 
-Your reverse proxy is stripping the WebSocket upgrade, and RomM uses Socket.IO for live updates (scan progress, Netplay).
+Your reverse proxy is stripping the WebSocket upgrade, and RomM uses socket.io for live updates (scan progress, Netplay).
 
 Fixes per proxy:
 
