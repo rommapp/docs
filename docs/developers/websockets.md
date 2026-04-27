@@ -1,6 +1,6 @@
 ---
 title: WebSockets
-description: RomM's two Socket.IO endpoints for live updates and Netplay coordination
+description: Socket.IO endpoints for live updates and Netplay coordination
 ---
 
 <!-- trunk-ignore-all(markdownlint/MD024) -->

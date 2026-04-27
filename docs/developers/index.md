@@ -26,7 +26,6 @@ Everything you need to **build on top of RomM** (third-party apps, scripts, inte
 - **[Architecture](architecture.md)**: high-level codebase walkthrough
 - **[Contributing](contributing.md)**: process, style, AI-assistance disclosure
 - **[Translations (i18n)](i18n.md)**: add or improve a locale
-- **[Releasing](releasing.md)**: maintainer-only, how releases are cut
 
 ## Reference
 

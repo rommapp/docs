@@ -97,7 +97,6 @@ search:
     - [Architecture](developers/architecture.md)
     - [Contributing](developers/contributing.md)
     - [Translations (i18n)](developers/i18n.md)
-    - [Releasing](developers/releasing.md)
 - Reference
     - [Environment Variables](reference/environment-variables.md)
     - [Configuration File](reference/configuration-file.md)
