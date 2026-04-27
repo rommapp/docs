@@ -159,7 +159,7 @@ library/
 <?xml version="1.0"?>
 <gameList>
 	<game id="12345">
-        <!-- Path of the rom file -->
+        <!-- Path of the ROM file -->
 		<path>./game.gba</path>
 
         <!-- Recommended properties -->

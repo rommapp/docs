@@ -2,7 +2,7 @@ site_name: RomM
 docs_dir: docs
 site_url: https://docs.romm.app/
 site_author: RomM Team
-site_description: Your beautiful, powerful, self-hosted rom manager
+site_description: Your beautiful, powerful, self-hosted ROM manager
 repo_url: https://github.com/rommapp/romm
 repo_name: rommapp/romm
 edit_uri: edit/main/docs/
@@ -54,7 +54,7 @@ plugins:
               color: "#ede5f8"
               logo: docs/assets/romm/romm-logo.png
               title: RomM Docs
-              description: Your beautiful, powerful, self-hosted rom manager
+              description: Your beautiful, powerful, self-hosted ROM manager
     - glightbox:
           skip_classes:
               - skip-lightbox

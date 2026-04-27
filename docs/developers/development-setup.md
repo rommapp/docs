@@ -3,208 +3,181 @@ title: Development Setup
 description: Run RomM locally for development
 ---
 
-# Development Setup
+# Setting up RomM for development
 
-There are two paths to a working dev environment, and which one suits you depends on how often you'll be touching Python:
+## Option 1: Using Docker
 
-- **Docker** (recommended): one command brings up the whole stack, and the result matches production closely.
-- **Manual**: edit Python directly on your host for faster iteration when you're elbow-deep in the backend.
+If you prefer to use Docker for development, you can set up RomM using the provided Docker Compose configuration. This method simplifies the setup process by encapsulating all dependencies within Docker containers.
 
-If you're planning to contribute changes back, also read [Contributing](contributing.md) before opening a PR.
+### Environment setup
 
-## Option 1: Docker
-
-The simplest path: everything runs in containers, and source mounts let you edit code without rebuilding the image.
-
-### 1. Clone and mock the library
-
-Get the code and create the minimal fixtures RomM expects at runtime:
+#### Create the mock structure with at least one ROM and empty config for manual testing
 
 ```sh
-git clone https://github.com/rommapp/romm.git
-cd romm
-
 mkdir -p romm_mock/library/roms/switch
-touch   romm_mock/library/roms/switch/metroid.xci
-mkdir -p romm_mock/resources romm_mock/assets romm_mock/config
-touch    romm_mock/config/config.yml
+touch romm_mock/library/roms/switch/metroid.xci
+mkdir -p romm_mock/resources
+mkdir -p romm_mock/assets
+mkdir -p romm_mock/config
+touch romm_mock/config/config.yml
 ```
 
-### 2. Configure `.env`
+#### Copy env.template to .env and fill the variables
 
 ```sh
 cp env.template .env
 ```
-
-Edit `.env` for dev defaults:
 
 ```dotenv
 ROMM_BASE_PATH=/app/romm
 DEV_MODE=true
 ```
 
-### 3. Build and bring up
+#### Build the image
 
 ```sh
-docker compose build    # add --no-cache to force a clean rebuild
+docker compose build  # or `docker compose build --no-cache` to rebuild from scratch
+```
+
+#### Spin up the Docker containers
+
+```sh
 docker compose up -d
 ```
 
-That's it. RomM is up at `http://localhost:3000`, and the source mounts are live so backend changes reflect on the next request and frontend changes are HMR-instant.
+And you're done! You can access the app at `http://localhost:3000`. Any changes made to the code will be automatically reflected in the app thanks to the volume mounts.
 
-## Option 2: Manual
+## Option 2: Manual setup
 
-Faster iteration than Docker when you're spending most of your time in the Python code, since you skip the container layer.
+### Environment setup
 
-### 1. Clone and mock the library
-
-Same as Docker step 1:
+#### - Create the mock structure with at least one ROM and empty config for manual testing
 
 ```sh
-git clone https://github.com/rommapp/romm.git
-cd romm
-
 mkdir -p romm_mock/library/roms/switch
-touch   romm_mock/library/roms/switch/metroid.xci
-mkdir -p romm_mock/resources romm_mock/assets romm_mock/config
-touch    romm_mock/config/config.yml
+touch romm_mock/library/roms/switch/metroid.xci
+mkdir -p romm_mock/resources
+mkdir -p romm_mock/assets
+mkdir -p romm_mock/config
+touch romm_mock/config/config.yml
+```
 
+#### - Copy env.template to .env and fill the variables
+
+```sh
 cp env.template .env
 ```
 
-### 2. System dependencies
+#### - Install system dependencies
 
 ```sh
-# Debian / Ubuntu
+# https://mariadb.com/docs/skysql-previous-release/connect/programming-languages/c/install/#Installation_via_Package_Repository_(Linux):
 sudo apt install libmariadb3 libmariadb-dev libpq-dev
-```
 
-Adjust for your distro. The MariaDB connector and libpq are the two non-negotiables.
-
-### 3. RAHasher (optional)
-
-Only needed if you're working on RetroAchievements hash calculation. **Not supported on macOS, skip it.**
-
-```sh
+# Build and configure RAHasher (optional)
+# This is only required to calculate RA hashes
+# Users on macOS can skip this step as RAHasher is not supported
 git clone --recursive https://github.com/RetroAchievements/RALibretro.git
-cd RALibretro
-git checkout 1.8.0
+cd ./RALibretro
+git checkout 1.8.3
 git submodule update --init --recursive
-sed -i '22a #include <ctime>' ./src/Util.h
 make HAVE_CHD=1 -f ./Makefile.RAHasher
-sudo cp ./bin64/RAHasher /usr/bin/RAHasher
-cd ..
+cp ./bin64/RAHasher /usr/bin/RAHasher
 ```
 
-### 4. Python environment
+#### - Install python dependencies
 
-RomM uses [uv](https://docs.astral.sh/uv/getting-started/installation/):
+You'll need uv installed
+
+<https://docs.astral.sh/uv/getting-started/installation/>
 
 ```sh
 curl -LsSf https://astral.sh/uv/install.sh | sh
+```
 
+Then create the virtual environment and install the dependencies using uv:
+
+```sh
 uv venv
 source .venv/bin/activate
 uv sync --all-extras --dev
 ```
 
-### 5. Start supporting services
-
-MariaDB and Valkey come up via the dev compose file:
+#### - Spin up the database and other services
 
 ```sh
 docker compose up -d
 ```
 
-### 6. Run the backend
+#### - Run the backend
 
-Alembic migrations run automatically on start.
+_Migrations will be run automatically when running the backend._
 
 ```sh
 cd backend
 uv run python3 main.py
 ```
 
-### 7. Frontend
+### Setting up the frontend
 
-In a second terminal:
+#### - Install node.js dependencies
 
 ```sh
 cd frontend
-# needs Node.js 24+ and npm >= 9
+# npm version >= 9 needed
 npm install
 ```
 
-Symlink the mock `resources/` and `assets/` into the frontend's serving tree so uploaded-media URLs resolve during dev:
+#### - Create symlink to library and resources
 
 ```sh
-mkdir -p assets/romm
-ln -s ../../romm_mock/resources assets/romm/resources
-ln -s ../../romm_mock/assets    assets/romm/assets
+mkdir assets/romm
+ln -s ../romm_mock/resources assets/romm/resources
+ln -s ../romm_mock/assets assets/romm/assets
+```
 
+#### - Run the frontend
+
+```sh
 npm run dev
 ```
 
-The frontend runs at `http://localhost:3000` and proxies API calls through to the backend, so you only have one URL to remember.
+## Setting up the linter
 
-## Linting
+We use [Trunk](https://trunk.io) for linting, which combines multiple linters and formatters with sensible defaults and a single configuration file. You'll need to install the Trunk CLI to use it.
 
-RomM uses [Trunk](https://trunk.io) as a meta-linter, wrapping ruff, prettier, eslint, markdownlint, and a few others under one config.
+### - Install the Trunk CLI
 
 ```sh
 curl https://get.trunk.io -fsSL | bash
-
-trunk fmt       # auto-fix what it can
-trunk check     # report what it can't
 ```
 
-Trunk runs as a pre-commit hook automatically after install. Other install paths are in [the Trunk docs](https://docs.trunk.io/check/usage#install-the-cli).
-
-<!-- prettier-ignore -->
-!!! warning "CI blocks un-linted PRs"
-    Trunk's check runs on every PR. If it fails, your PR can't merge. Same rules as the maintainers, no exceptions.
-
-## Tests
-
-### One-time test DB setup
+Alternative installation methods can be found [in their docs](https://docs.trunk.io/check/usage#install-the-cli). On commit, the linter will run automatically. To run it manually, use the following commands:
 
 ```sh
-docker exec -i romm-db-dev mariadb -uroot -p<root-password> < backend/romm_test/setup.sql
+trunk fmt
+trunk check
 ```
 
-The password is whatever you set for `MARIADB_ROOT_PASSWORD` in `.env`.
+**Failing to install and run the linter will result in a failed CI check, which won't allow us to merge your PR.**
 
-### Running tests
+## Test setup
 
-Migrations run automatically before tests.
+### - Create the test user and database with root user
+
+```sh
+docker exec -i romm-db-dev mariadb -uroot -p<root password> < backend/romm_test/setup.sql
+```
+
+### - Run tests
+
+_Migrations will be run automatically when running the tests._
 
 ```sh
 cd backend
-uv run pytest                    # all tests
-uv run pytest path/to/file.py    # one file
-uv run pytest -vv                # verbose
-uv run pytest -k scan            # match by name
+# path or test file can be passed as argument to test only a subset
+uv run pytest [path/file]
+# or run the following command to run all tests
+# the -vv switch increases the verbosity of the output, providing more detailed information during test execution.
+uv run pytest -vv
 ```
-
-## Useful dev URLs
-
-| URL                                   | Purpose                                            |
-| ------------------------------------- | -------------------------------------------------- |
-| `http://localhost:3000`               | Main UI                                            |
-| `http://localhost:3000/api/docs`      | Swagger UI: try endpoints live                     |
-| `http://localhost:3000/api/redoc`     | ReDoc-rendered API reference                       |
-| `http://localhost:3000/openapi.json`  | OpenAPI spec: source of truth for client generators|
-| `http://localhost:3000/api/heartbeat` | Health + config snapshot                           |
-
-## Architecture at a glance
-
-If you're new to the codebase, [Architecture](architecture.md) is the proper walkthrough. The short version:
-
-- `backend/`: FastAPI, SQLAlchemy, Alembic migrations, and the RQ workers
-- `frontend/`: Vue 3 with Vuetify, Pinia, and Vite, plus a separate `/console` SPA for TV and gamepad mode
-- `docker/`: nginx config (with `mod_zip`), entrypoint scripts, and the multi-stage Dockerfiles
-- `examples/`: reference compose files you can crib from
-
-## Getting unstuck
-
-The `#dev` channel on the [RomM Discord](https://discord.gg/romm) is the fastest path to unblock yourself. For reproducible bugs with clear repro steps, file an issue at [rommapp/romm](https://github.com/rommapp/romm/issues) instead.
