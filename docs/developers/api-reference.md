@@ -16,7 +16,7 @@ The raw spec:
 {romm_url}/openapi.json
 ```
 
-For code generation, Postman imports, and schema-validation libraries, see [Consuming OpenAPI](openapi.md).
+For code generation, see [Consuming OpenAPI](openapi.md).
 
 ## WebSockets
 

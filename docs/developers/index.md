@@ -5,9 +5,7 @@ description: Build on top of RomM or contribute to it
 
 # API & Development
 
-Everything you need to **build on top of RomM** (third-party apps, scripts, integrations) or **contribute to it** (code, translations, docs).
-
-End-user content lives in [Using RomM](../using/index.md). Operator content lives in [Administration](../administration/index.md).
+Everything you need to **build on top of RomM** (third-party apps, scripts, integrations) or **contribute to it** (code, translations, docs). End-user content lives in [Using RomM](../using/index.md). Operator content lives in [Administration](../administration/index.md).
 
 ## Calling the API
 
@@ -37,15 +35,3 @@ End-user content lives in [Using RomM](../using/index.md). Operator content live
 - **[Exports](../reference/exports.md)**: gamelist.xml / Pegasus export formats
 - **[Feeds](../reference/feeds.md)**: every URL-feed endpoint (Tinfoil, pkgj, WebRcade, etc.)
 - **[Glossary](../reference/glossary.md)**: canonical terminology
-
-## Quick orientation
-
-| I want to…                       | Start here                                                                      |
-| -------------------------------- | ------------------------------------------------------------------------------- |
-| Call the API from a script       | [API Authentication](api-authentication.md) + [API Reference](api-reference.md) |
-| Generate a client library        | [Consuming OpenAPI](openapi.md)                                                 |
-| Sync saves from a handheld       | [Device Sync Protocol](../ecosystem/device-sync-protocol.md)                    |
-| Listen for scan events           | [WebSockets](websockets.md)                                                     |
-| Fix a bug in RomM                | [Development Setup](development-setup.md) + [Contributing](contributing.md)     |
-| Translate the app                | [Translations (i18n)](i18n.md)                                                  |
-| Understand how it's put together | [Architecture](architecture.md)                                                 |
