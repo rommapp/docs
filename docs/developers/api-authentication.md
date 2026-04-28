@@ -98,7 +98,7 @@ Request only the scopes you need and RomM will issue a token with the intersecti
 
 For anything long-lived (a running companion app, a cron job, a CI integration), use **Client API Tokens** instead of OAuth2. They're issued per-user from **Administration → Client API Tokens**, carry a subset of the user's scopes, and don't expire unless you set an expiry.
 
-Token format: `rmm_` + 40 hex chars. Use it as a bearer:
+Token format: `rmm_` + 64 hex chars. Use it as a bearer:
 
 ```bash
 curl -H "Authorization: Bearer rmm_abcdef0123456789..." \
