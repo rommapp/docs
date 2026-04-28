@@ -104,9 +104,7 @@ environment:
     - DISABLE_DOWNLOAD_ENDPOINT_AUTH=true
 ```
 
-Skips auth on `GET /api/roms/{id}/content/…` and the firmware download endpoint. Exists so third-party apps that can't carry a bearer header (like dumb emulators loading a ROM by URL) can still pull files.
-
-**Only enable this when the public internet can't reach RomM directly**, i.e. there's auth or an IP allowlist at the reverse-proxy layer. Otherwise you've just made your library world-downloadable.
+Skips auth on `GET /api/roms/{id}/content/…` and the firmware download endpoint. Exists so third-party apps that can't carry a bearer header (like dumb emulators loading a ROM by URL) can still pull files. **Only enable this when the public internet can't reach RomM directly**, i.e. there's auth or an IP allowlist at the reverse-proxy layer. Otherwise you've just made your library world-downloadable.
 
 ## Revoking access
 

@@ -67,7 +67,6 @@ See [Authentication → Download-endpoint auth bypass](../administration/authent
 | `/api/feeds/pkgi/...`    | [pkgj](../ecosystem/feed-clients.md#pkgj)         | Same.                                                               |
 | `/api/feeds/fpkgi/...`   | [fpkgi](../ecosystem/feed-clients.md#fpkgi)       | Same.                                                               |
 | `/api/feeds/kekatsu/...` | [Kekatsu](../ecosystem/feed-clients.md#kekatsu)   | Same.                                                               |
-| `/api/feeds/webrcade`    | [WebRcade](../ecosystem/feed-clients.md#webrcade) | Same.                                                               |
 
 Full catalogue in [Feeds](feeds.md).
 

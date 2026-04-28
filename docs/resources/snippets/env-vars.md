@@ -43,7 +43,7 @@
 | `OAUTH_REFRESH_TOKEN_EXPIRE_SECONDS` | `604800`  |          | Refresh token lifetime in seconds                          |
 | `SESSION_MAX_AGE_SECONDS`            | `1209600` |          | Maximum age of a session in seconds                        |
 | `INVITE_TOKEN_EXPIRY_SECONDS`        | `600`     |          | Invite token lifetime in seconds                           |
-| `DISABLE_DOWNLOAD_ENDPOINT_AUTH`     | `false`   |          | Disable auth on the download endpoint for WebRcade/Tinfoil |
+| `DISABLE_DOWNLOAD_ENDPOINT_AUTH`     | `false`   |          | Disable auth on the download endpoint for Tinfoil          |
 | `DISABLE_CSRF_PROTECTION`            | `false`   |          | Disable CSRF protection (not recommended)                  |
 | `DISABLE_USERPASS_LOGIN`             | `false`   |          | Disable username/password login when using OIDC            |
 | `DISABLE_SETUP_WIZARD`               | `false`   |          | Skip the first-boot setup wizard                           |

@@ -23,7 +23,6 @@ RomM exposes several URL feed endpoints for external homebrew / custom firmware 
 - **[pkgj](feed-clients.md#pkgj)**: PS Vita and PSP homebrew installer
 - **[fpkgi](feed-clients.md#fpkgi)**: PS4 / PS5 installer
 - **[Kekatsu](feed-clients.md#kekatsu)**: Nintendo DS multiboot loader
-- **[WebRcade](feed-clients.md#webrcade)**: browser-based retro console frontend
 
 See the [full feeds reference](../reference/feeds.md) for URL formats, auth requirements, and filtering.
 

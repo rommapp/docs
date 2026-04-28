@@ -135,8 +135,6 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **Watcher**: filesystem watcher that triggers scans on file events. `WATCHER_ENABLED=true`. [Scanning & Watcher](../administration/scanning-and-watcher.md#filesystem-watcher).
 
-**WebRcade**: alternative browser frontend that consumes RomM's feed. [WebRcade](../ecosystem/feed-clients.md#webrcade).
-
 ---
 
 Missing a term? Open a PR against this page.

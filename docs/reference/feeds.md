@@ -21,7 +21,6 @@ Feeds are **read-only**. They expose download URLs back to RomM's own `/api/...`
 | **fpkgi (PS4)**          | `/api/feeds/fpkgi/ps4`        | PS4 `.pkg` installer. [Setup →](../ecosystem/feed-clients.md#fpkgi)                        |
 | **fpkgi (PS5)**          | `/api/feeds/fpkgi/ps5`        | PS5 `.pkg` installer.                                                                      |
 | **Kekatsu (NDS)**        | `/api/feeds/kekatsu/nds`      | Nintendo DS multiboot loader. [Setup →](../ecosystem/feed-clients.md#kekatsu)              |
-| **WebRcade**             | `/api/feeds/webrcade`         | Browser-based retro frontend. [Setup →](../ecosystem/feed-clients.md#webrcade)             |
 
 Plus legacy `pkgj` formats for individual platforms:
 
@@ -44,7 +43,7 @@ See [Authentication → Download-endpoint auth bypass](../administration/authent
 
 ### JSON feeds
 
-Most feeds return JSON: Tinfoil, fpkgi, WebRcade.
+Most feeds return JSON: Tinfoil, fpkgi.
 
 ```json
 {
@@ -71,7 +70,7 @@ psvita,PCSA00003,Unknown,Game,1.0,https://demo.romm.app/...,md5=...,52428800
 
 ### Format per feed
 
-Each feed's exact schema matches what its client expects. Don't call feeds by accident from other tools. Tinfoil can't parse WebRcade JSON, and vice versa.
+Each feed's exact schema matches what its client expects. Don't call feeds by accident from other tools. Tinfoil can't parse pkgi CSV, and vice versa.
 
 ## Filtering
 
@@ -80,7 +79,6 @@ Most feeds filter by file extension automatically:
 - **Tinfoil** → `.nsp`, `.xci`, `.nsz`, `.xcz`
 - **pkgi** / **fpkgi** → `.pkg`
 - **Kekatsu** → `.nds`
-- **WebRcade** → any extension the WebRcade emulator supports
 
 Games not matching the expected extension are silently skipped, not reported as missing.
 
