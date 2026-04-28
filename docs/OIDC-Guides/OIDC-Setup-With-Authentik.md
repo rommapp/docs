@@ -57,6 +57,7 @@ A provider in Authentik acts as the bridge between RomM and Authentik.
     - **Name**: Assign a unique name to the provider (e.g., "RomM OIDC Provider").
     - **Authorization flow**: Select **implicit consent**.
     - **Redirect URIs**: Add your RomM instance's URL + `/api/oauth/openid` (e.g., `http://romm.host.local/api/oauth/openid`).
+    - **Scopes**: Under "Advanced protocol settings", move the property mapping you created above from "Available Scopes" to "Selected Scopes". You'll also need to make sure any existing mappings of `email` or `email_verified` are disabled. Authentik has an `email` mapping by default, so make sure to check for this and remove it if it's present.
 5. **Copy the Client ID and Secret**:
     - You'll need these to set `OIDC_CLIENT_ID` and `OIDC_CLIENT_SECRET` in your RomM instance.
       ![Provider settings](../resources/authentik/4-provider-secrets.png)
