@@ -1,19 +1,19 @@
 ---
 title: Integrations & Ecosystem
-description: Companion apps, feeds, and protocol references for building on top of RomM.
+description: Companion apps, feeds, and protocol references
 ---
 
 # Integrations & Ecosystem
 
-RomM has a sizeable ecosystem of companion apps and integration patterns. This hub indexes everything: first-party and community.
+RomM has a sizeable ecosystem of companion apps and integration patterns.
 
 ## First-party apps
 
-Maintained by the RomM team.
+Maintained by the team:
 
-- **[Argosy Launcher](first-party-apps.md#argosy-launcher)**: Android launcher that browses and launches your RomM library on mobile
+- **[Argosy Launcher](first-party-apps.md#argosy-launcher)**: Android launcher that browses and launches your library on mobile
 - **[Grout](first-party-apps.md#grout)**: Linux handheld companion for muOS / NextUI devices
-- **[Playnite Plugin](first-party-apps.md#playnite-plugin)**: Windows desktop, imports your RomM library into [Playnite](https://playnite.link)
+- **[Playnite Plugin](first-party-apps.md#playnite-plugin)**: Windows desktop, imports your library into [Playnite](https://playnite.link)
 
 ## Feeds (for third-party apps)
 
@@ -21,16 +21,15 @@ RomM exposes several URL feed endpoints for external homebrew / custom firmware 
 
 - **[Tinfoil](feed-clients.md#tinfoil)**: Nintendo Switch homebrew for installing `.nsp` / `.xci` from a URL
 - **[pkgj](feed-clients.md#pkgj)**: PS Vita and PSP homebrew installer
+- **[pkgi](feed-clients.md#pkgi)**: PS3 / PS Vita / PSP installer (older CSV format)
 - **[fpkgi](feed-clients.md#fpkgi)**: PS4 / PS5 installer
 - **[Kekatsu](feed-clients.md#kekatsu)**: Nintendo DS multiboot loader
 
-See the [full feeds reference](../reference/feeds.md) for URL formats, auth requirements, and filtering.
-
 ## Community apps
 
-Maintained by individuals in the community, not the RomM team, so support quality varies.
+Maintained by individuals in the community, not the team, so support quality varies.
 
-See the **[Community section in the RomM README](https://github.com/rommapp/romm/#community)** for the full list with status flags (active / maintenance-mode / abandoned) and links.
+See the **[Community section in the README](https://github.com/rommapp/romm/#community)** for the full list with status flags (active / maintenance-mode / abandoned) and links.
 
 Highlights:
 
@@ -44,7 +43,6 @@ Highlights:
 - **RetroArch Sync**
 - **romm-comm** (Discord bot)
 - **GGRequestz** (game request tracker)
-- **Syncthing Sync**
 
 ## Build your own
 
@@ -59,12 +57,12 @@ For developers building something new on top of RomM:
 
 ## External tooling
 
-Not a RomM companion but useful alongside:
+Not a companion app but useful:
 
-- **[Igir Collection Manager](igir.md)**: ROM sorting/verifying tool that cleans up library layout before importing into RomM
+- **[Igir Collection Manager](igir.md)**: ROM sorting/verifying tool that cleans up library layout
 
 ## Contributing a companion app
 
-Built something RomM-adjacent? Open a PR on [rommapp/romm](https://github.com/rommapp/romm) adding it to the [Community section in the README](https://github.com/rommapp/romm/#community), or drop a link in the [Discord](https://discord.gg/romm) `#community-projects` channel.
+Built something adjacent? Open a PR on [rommapp/romm](https://github.com/rommapp/romm) adding it to the [Community section in the README](https://github.com/rommapp/romm/#community), or drop a link in the [Discord](https://discord.gg/romm) `#community-projects` channel.
 
-We list active, maintained projects, with no gate on code quality but we do flag abandoned projects so users know what's current.
+We list active, maintained projects, with no gate on code quality, but we do flag abandoned projects so users know what's current.

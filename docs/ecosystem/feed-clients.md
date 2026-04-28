@@ -7,18 +7,19 @@ description: URL feeds homebrew installers and frontends
 
 # Feed Clients
 
-RomM exposes URL feeds for several homebrew installers and frontends. Point the client at a feed URL and it browses (and installs from) your library over a network. This page collects setup instructions for each supported client, and the wire-level reference is [Feeds](../reference/feeds.md).
+RomM exposes URL feeds for several homebrew installers and frontends. Point the client at a feed URL and it browses (and installs from) your library over a network. This page collects setup instructions for each supported client.
 
 | Client                | Target hardware                  | File format     |
 | --------------------- | -------------------------------- | --------------- |
 | [Tinfoil](#tinfoil)   | Nintendo Switch (homebrew)       | `.nsp` / `.xci` |
 | [pkgj](#pkgj)         | PS Vita / PSP                    | `.pkg`          |
+| [pkgi](#pkgi)         | PS3 / PS Vita / PSP              | `.pkg`          |
 | [fpkgi](#fpkgi)       | PS4 / PS5 (CFW)                  | `.pkg`          |
 | [Kekatsu](#kekatsu)   | Nintendo DS                      | `.nds`          |
 
 ## Authentication applies to every feed
 
-All RomM feeds honour the same auth model. Two endpoints are involved on every install: the **feed** (the listing the client fetches) and the **download endpoint** (the per-ROM URLs the feed points at). Both default to requiring basic auth.
+Two endpoints are involved on every install: the **feed** (the listing the client fetches) and the **download endpoint** (the per-ROM URLs the feed points at). Both default to requiring basic auth.
 
 - **pkgj and fpkgi** send basic auth on both feed and download requests, so they work with the default `DISABLE_DOWNLOAD_ENDPOINT_AUTH=false`.
 - **Tinfoil** authenticates the feed fetch but does *not* propagate credentials to the download URLs returned in the feed. So the download endpoint has to be opened with `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`. **Only enable this when RomM isn't directly exposed to the public internet** (see [Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass) for the full security discussion).
@@ -71,7 +72,7 @@ On reopen, you should see a custom message of the day: `RomM Switch Library`. If
 - **New Games** tab in Tinfoil: browseable list of your Switch ROMs
 - **File Browser**: pick a file to install directly.
 
-Tinfoil downloads the `.nsp` / `.xci`, installs to eMMC or SD, and cleans up, just like any homebrew installer.
+Tinfoil downloads the file (RomM serves `.nsp`, `.xci`, `.nsz`, `.xcz`, and `.nro`), installs to eMMC or SD, and cleans up, just like any homebrew installer.
 
 ### Filename requirements
 
@@ -139,15 +140,70 @@ The bracketed `[0100000000010000]` is the title ID. Without it, Tinfoil shows th
 
 ### Using pkgj
     
-Once configured, pkgj shows your RomM PS Vita / PSP library. Select a title → install!
+Once configured, pkgj shows your RomM PS Vita / PSP library. Select a title and install!
 
 ### File format requirements
 
-**RomM only lists `.pkg` files in pkgj feeds.** If your Vita or PSP games are in `.iso`, `.chd`, or other formats, they won't appear in pkgj, as it is designed around the Sony installer format and other formats aren't installable via the same mechanism. If you have non-`.pkg` files you want on the Vita, you'll need to convert them or use a different workflow (FTP through VitaShell, for example).
+**RomM lists `.pkg` files in pkgj feeds, plus compressed archives (`.zip`, `.7z`, etc.) for game entries. DLC stays `.pkg`-only.** If your Vita or PSP games are in `.iso`, `.chd`, or other uncompressed formats, they won't appear in pkgj. pkgj is designed around the Sony installer format and other formats aren't installable via the same mechanism. If you have non-`.pkg` files you want on the Vita, you'll need to convert them or use a different workflow (FTP through VitaShell, for example).
 
 ### Authentication notes
 
 Unlike Tinfoil, pkgj sends basic auth headers natively, so you don't have to turn off download auth to use it. Some users prefer disabling auth for a smoother first-time flow, and either path works.
+
+## pkgi
+
+**pkgi** is the older `.pkg` installer family, predating pkgj. Each platform has its own fork. Use pkgi if your client expects the classic CSV feed format. PS3 in particular has no pkgj equivalent, so pkgi is the only option there.
+
+| Platform | Client                                                  |
+| -------- | ------------------------------------------------------- |
+| PS3      | [pkgi-ps3](https://github.com/bucanero/pkgi-ps3)        |
+| PS Vita  | pkgi (predecessor of [pkgj](#pkgj))                     |
+| PSP      | [pkgi-psp](https://github.com/bucanero/pkgi-psp)        |
+
+For Vita and PSP, [pkgj](#pkgj) is the more common choice. Reach for pkgi only if your homebrew specifically expects the older format.
+
+### Feed URLs
+
+```text
+{romm_url}/api/feeds/pkgi/{platform}/{content_type}
+```
+
+Where:
+
+- `{platform}` ∈ `ps3`, `psvita`, `psp`
+- `{content_type}` for **PS3 / PSP** ∈ `game`, `dlc`, `demo`, `update`, `patch`. **Vita** accepts any `RomFileCategory` value (those five plus `hack`, `manual`, `mod`, `translation`, `prototype`, `cheat`).
+
+Examples:
+
+```text
+{romm_url}/api/feeds/pkgi/ps3/game
+{romm_url}/api/feeds/pkgi/ps3/dlc
+{romm_url}/api/feeds/pkgi/psp/game
+```
+
+Each URL returns a CSV in the format the matching pkgi client expects. The schema differs slightly between PS3/PSP (`contentid,type,name,description,rap,url,size,checksum`) and Vita (`contentid,flags,name,name2,zrif,url,size,checksum`).
+
+### Configuration
+
+Each pkgi fork has its own `config.txt` location and URL-key names. Consult the client's README. The pattern is the same regardless: drop a URL entry pointing at the RomM feed for each content type you want to browse, then refresh inside the client.
+
+For Vita and PSP, the layout is similar to [pkgj's config](#configuring-pkgj) above. Substitute the pkgi feed URLs for the pkgj ones.
+
+### File format requirements
+
+- `.pkg` files only. RomM filters by extension and skips everything else.
+- **PS3 and PSP:** if a `.rap` license file sits as a sibling in the same ROM, RomM includes its hash and download URL in the feed automatically. Without a matching `.rap`, the entry still appears but pkgi can't install it.
+- **PS Vita:** the `zRIF` column is left blank in the feed. You need to supply license keys separately (e.g. via NoNpDrm) for installs to succeed.
+
+### Authentication notes
+
+pkgi sends basic auth in its URL config like pkgj does. Either embed credentials in the URL or use `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` server-side.
+
+### Troubleshooting
+
+- **HTTP 400 on the feed URL.** `{content_type}` isn't valid for the platform. PS3 and PSP only accept `game`, `dlc`, `demo`, `update`, `patch`. Vita is permissive (see above).
+- **Feed is empty.** No `.pkg` files on the platform match the requested content type. Game listings also accept compressed archives, but only as top-level files within a ROM.
+- **Install fails on the client.** PS3/PSP need a matching `.rap` file in the same ROM (RomM picks it up automatically). Vita additionally needs a zRIF. The feed leaves it blank, so supply it through your client config.
 
 ## fpkgi
 
@@ -194,13 +250,13 @@ Consult [fpkgi's README](https://github.com/CyberYoshi64/fpkgi) for the current 
 
 The `/api/feeds/fpkgi/` endpoints support basic auth the same way `/api/feeds/pkgi/` does. Either set basic-auth credentials in fpkgi's config (if it supports them) or use `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` on the RomM server.
 
-### File format: must be `.pkg`
+### File format
 
-PS4 `.pkg` files specifically, not `.iso`, not compressed. RomM filters to `.pkg` when building the feed. Any other file types are invisible to fpkgi.
+fpkgi only installs `.pkg` (PS4 `.pkg` specifically, not `.iso` or compressed). RomM doesn't filter the feed by extension. Every ROM on the `ps4` / `ps5` platform appears in the listing, so non-`.pkg` entries show up too and will fail at install time. Curate the platform folder if you want to keep them out of the listing.
 
 ### Troubleshooting
 
-- **Feed is empty.** No `.pkg` files on the `ps4` / `ps5` platform. Check your library.
+- **Feed is empty.** No ROMs on the `ps4` / `ps5` platform. Check your library.
 - **Downloads fail with 401.** Auth config mismatch, see [Authentication](#authentication-applies-to-every-feed) above.
 - **Downloads succeed but install fails.** `.pkg` is for a different firmware version. Not a RomM problem
 
@@ -234,7 +290,7 @@ Exact config steps depend on your Kekatsu build but the shared concept is "point
 
 ### File format
 
-`.nds` only. DSi Ware / iQue / other formats aren't listed in the feed.
+Kekatsu only loads `.nds`. RomM doesn't filter the feed by extension. Every ROM on the requested platform appears in the listing, so DSi Ware / iQue / other formats show up too and won't load when selected. Curate the platform folder if you want to keep them out.
 
 ### Authentication notes
 
@@ -252,11 +308,10 @@ If none of this is appealing, Kekatsu-over-LAN isn't going to work. Fall back to
 
 ### Troubleshooting
 
-- **Feed is empty.** No `.nds` files on the `nds` platform
+- **Feed is empty.** No ROMs on the `nds` platform
 - **DS can't see the network.** See the legacy-Wi-Fi section above.
 - **Downloads fail.** Either network timeout (LAN latency over WEP is rough) or disk space. Retry one game at a time.
 
 ## See also
 
-- [Feeds reference](../reference/feeds.md): wire-level catalogue of every endpoint
 - [Authentication → Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass): the `DISABLE_DOWNLOAD_ENDPOINT_AUTH` caveat
