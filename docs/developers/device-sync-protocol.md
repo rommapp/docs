@@ -1,17 +1,17 @@
 ---
 title: Device Sync Protocol
-description: Wire-level reference for RomM's save/state/play-session sync, for companion-app developers.
+description: Wire-level reference for save/state/play-session sync
 ---
 
 # Device Sync Protocol
 
-Wire-level reference for the protocol RomM uses for bidirectional sync with companion apps. End-user view in [Saves & States](../using/saves-and-states.md). Operator-side SSH transport in [SSH Sync](../ecosystem/ssh-sync.md).
+This is a reference for the protocol RomM uses for bidirectional sync with companion apps. End-user view in [Saves & States](../using/saves-and-states.md), with operator-side SSH transport in [SSH Sync](../ecosystem/ssh-sync.md).
 
 ## Primitives
 
 - **Device**: a registered endpoint, bound to a [Client API Token](../ecosystem/client-api-tokens.md).
 - **Sync session**: one atomic bidirectional run (pull, push, conflict reconcile, play-session ingest).
-- **Play session**: per-ROM playtime record. Posted standalone or batched at sync end.
+- **Play session**: per-ROM playtime record, posted standalone or batched at sync end.
 
 ## Authentication
 
@@ -43,13 +43,11 @@ Content-Type: application/json
 }
 ```
 
-Response includes `id`, which the device caches for subsequent calls.
-
-`sync_mode`: `pull_only` (server → device), `push_only` (device → server), `push_pull` (bidirectional, default).
+Response includes `id`, which the device caches for subsequent calls. `sync_mode` can be `pull_only` (server → device), `push_only` (device → server), or `push_pull` (bidirectional, default).
 
 ## Sync negotiation
 
-Device sends what it has. RomM returns what to do.
+The device sends what it has and RomM returns what to do:
 
 ```http
 POST /api/sync/negotiate
@@ -105,22 +103,11 @@ POST /api/sync/sessions/{session_id}/complete
 
 Closes the session and ingests batched play sessions in one call.
 
-## Play sessions (standalone)
-
-Without a full sync run:
-
-```http
-POST /api/play-sessions
-[
-  { "rom_id": 1234, "start": "...", "end": "...", "device_id": 17 }
-]
-```
-
-Up to 100 per request.
-
 ## Rate limits and polling
 
-No strict limits in 5.0. Sync once per session, not per save. Don't poll `/api/sync/negotiate` tightly: Grout defaults to every 15 minutes on Wi-Fi. No push channel yet, so polling is the only model.
+- Sync once per session, not per save
+- Don't poll `/api/sync/negotiate` tightly
+- No push channel yet, so polling is the only model
 
 ## See also
 
