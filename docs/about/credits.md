@@ -22,7 +22,7 @@ RomM's 19 locales exist because individual community members took the time to tr
 
 ## Community apps
 
-Built by the community, not the RomM team. Full list in [Community Apps](../ecosystem/community-apps.md).
+Built by the community, not the RomM team. Full list in the [Community section in the RomM README](https://github.com/rommapp/romm/#community).
 
 ## Financial supporters
 

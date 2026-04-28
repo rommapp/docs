@@ -36,4 +36,4 @@ RomM's API follows SemVer along with the rest of RomM:
 - [Consuming OpenAPI](openapi.md): codegen + schema validation
 - [WebSockets](websockets.md): socket.io endpoints
 - [Client API Tokens](../ecosystem/client-api-tokens.md): recommended companion-app auth
-- [Device Sync Protocol](../ecosystem/device-sync-protocol.md): sync endpoints in depth
+- [Device Sync Protocol](device-sync-protocol.md): sync endpoints in depth

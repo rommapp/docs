@@ -31,7 +31,7 @@ See the [full feeds reference](../reference/feeds.md) for URL formats, auth requ
 
 Maintained by individuals in the community, not the RomM team, so support quality varies.
 
-See **[Community Apps](community-apps.md)** for the full list with status flags (active / maintenance-mode / abandoned) and links.
+See the **[Community section in the RomM README](https://github.com/rommapp/romm/#community)** for the full list with status flags (active / maintenance-mode / abandoned) and links.
 
 Highlights:
 
@@ -52,7 +52,7 @@ Highlights:
 For developers building something new on top of RomM:
 
 - **[Client API Tokens](client-api-tokens.md)**: how to authenticate your app, how the device-pairing flow works
-- **[Device Sync Protocol](device-sync-protocol.md)**: wire-level reference for save/state/play-session sync
+- **[Device Sync Protocol](../developers/device-sync-protocol.md)**: wire-level reference for save/state/play-session sync
 - **[SSH Sync](ssh-sync.md)**: server-side SSH config for push/pull sync to handhelds
 - **[API Reference](../developers/api-reference.md)**: every REST endpoint
 - **[WebSockets](../developers/websockets.md)**: live-update channels and Netplay coordination
@@ -66,6 +66,6 @@ Not a RomM companion but useful alongside:
 
 ## Contributing a companion app
 
-Built something RomM-adjacent? Open a PR on [rommapp/docs](https://github.com/rommapp/docs) adding it to [Community Apps](community-apps.md), or drop a link in the [Discord](https://discord.gg/romm) `#community-projects` channel.
+Built something RomM-adjacent? Open a PR on [rommapp/romm](https://github.com/rommapp/romm) adding it to the [Community section in the README](https://github.com/rommapp/romm/#community), or drop a link in the [Discord](https://discord.gg/romm) `#community-projects` channel.
 
 We list active, maintained projects, with no gate on code quality but we do flag abandoned projects so users know what's current.

@@ -18,7 +18,7 @@ Install RomM as a [Progressive Web App](pwa.md): feels native, launches from the
 
 ### Option B: a native app
 
-[Community-maintained mobile apps](../ecosystem/community-apps.md) exist:
+[Community-maintained mobile apps](https://github.com/rommapp/romm/#community) exist:
 
 - **Argosy Launcher** (Android): official first-party. ROM syncing and launching
 - **romm-ios-app** / **romm-mobile**: community iOS and Android clients
@@ -65,10 +65,10 @@ Handhelds running custom firmware (muOS, Batocera, Knulli, ArkOS, JELOS, ROCKNIX
 Recommended companions:
 
 - **[Grout](../ecosystem/first-party-apps.md#grout)**: first-party. muOS and NextUI handhelds
-- **[DeckRommSync](../ecosystem/community-apps.md)**: Steam Deck (SteamOS)
-- **[SwitchRomM](../ecosystem/community-apps.md)**: Nintendo Switch (homebrew)
+- **[DeckRommSync](https://github.com/rommapp/romm/#community)**: Steam Deck (SteamOS)
+- **[SwitchRomM](https://github.com/rommapp/romm/#community)**: Nintendo Switch (homebrew)
 
-All of these use [Client API Tokens](../ecosystem/client-api-tokens.md) for auth and the [Device Sync Protocol](../ecosystem/device-sync-protocol.md) for the actual data transfer.
+All of these use [Client API Tokens](../ecosystem/client-api-tokens.md) for auth and the [Device Sync Protocol](../developers/device-sync-protocol.md) for the actual data transfer.
 
 ## Steam Deck
 
@@ -80,7 +80,7 @@ Any browser works. Use the PWA install flow (same as desktop) for a dedicated la
 
 ### Via DeckRommSync
 
-Syncs ROMs and saves to the Deck's local library so RetroArch / EmuDeck picks them up natively. Set up once, then play without RomM in the loop. See [Community Apps](../ecosystem/community-apps.md).
+Syncs ROMs and saves to the Deck's local library so RetroArch / EmuDeck picks them up natively. Set up once, then play without RomM in the loop. See the [Community section in the RomM README](https://github.com/rommapp/romm/#community).
 
 Best combo: DeckRommSync for saves, plus the PWA for browsing / managing the library.
 
@@ -112,4 +112,4 @@ If you host RomM on a home server and want to reach it from cellular:
 - [Install as PWA](pwa.md)
 - [Console Mode](console-mode.md)
 - [Integrations & Ecosystem](../ecosystem/index.md): every companion app RomM supports
-- [Community Apps](../ecosystem/community-apps.md): the full list with platform / status flags
+- [Community section in the RomM README](https://github.com/rommapp/romm/#community): the full list with platform / status flags

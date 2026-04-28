@@ -70,7 +70,7 @@ For bulk cleanup (e.g. "delete every state for games I've beaten"), use the mult
 
 Saves and states can sync to/from registered devices (Grout on muOS, DeckRommSync on a Deck, etc.). Covered in depth in the ecosystem section:
 
-- [Device Sync Protocol](../ecosystem/device-sync-protocol.md): wire-level reference
+- [Device Sync Protocol](../developers/device-sync-protocol.md): wire-level reference
 - [SSH Sync](../ecosystem/ssh-sync.md): operator-side config
 - [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher) / [Grout](../ecosystem/first-party-apps.md#grout): per-app setup
 

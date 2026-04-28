@@ -7,7 +7,7 @@ description: Configure SSH key-based push/pull sync
 
 RomM's Push-Pull Device Sync task can push saves/states to registered devices and pull them back after a session, over SSH, using a key that RomM holds. This page covers the server-side setup.
 
-The client side (a handheld running Grout, a SteamDeck running DeckRommSync, etc.) lives in [Integrations & Ecosystem](index.md). The wire protocol (API-level sync negotiation, play-session ingest) lives in [Device Sync Protocol](device-sync-protocol.md).
+The client side (a handheld running Grout, a SteamDeck running DeckRommSync, etc.) lives in [Integrations & Ecosystem](index.md). The wire protocol (API-level sync negotiation, play-session ingest) lives in [Device Sync Protocol](../developers/device-sync-protocol.md).
 
 <!-- prettier-ignore -->
 !!! note "Most companion apps don't need this"

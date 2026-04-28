@@ -124,7 +124,7 @@ Yes, several first-party apps (all in beta or actively developed):
 - **[Grout](../ecosystem/first-party-apps.md#grout)**: companion for Linux-based handhelds (muOS / NextUI and friends)
 - **[Playnite Plugin](../ecosystem/first-party-apps.md#playnite-plugin)** for Windows desktop
 
-iOS and other platforms are covered by [Community Apps](../ecosystem/community-apps.md). Full directory: [Ecosystem](../ecosystem/index.md).
+iOS and other platforms are covered by community-maintained apps listed in the [Community section in the RomM README](https://github.com/rommapp/romm/#community). Full directory: [Ecosystem](../ecosystem/index.md).
 
 ## Can guests browse without an account?
 

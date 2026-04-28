@@ -31,7 +31,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **Console Mode**: separate `/console` UI optimised for TVs and gamepads. [Console Mode](../using/console-mode.md).
 
-**Device**: a registered endpoint that syncs with RomM. Tracked via [Device Sync Protocol](../ecosystem/device-sync-protocol.md).
+**Device**: a registered endpoint that syncs with RomM. Tracked via [Device Sync Protocol](../developers/device-sync-protocol.md).
 
 **Editor**: mid-tier user role. Edit content (ROMs, platforms, collections), upload but no user management. See [Users & Roles](../administration/users-and-roles.md).
 

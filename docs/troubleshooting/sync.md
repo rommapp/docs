@@ -121,6 +121,6 @@ Admins can force a re-eval via Administration → Tasks → Refresh Smart Collec
 ## See also
 
 - [Client API Tokens](../ecosystem/client-api-tokens.md): token + pairing flow reference
-- [Device Sync Protocol](../ecosystem/device-sync-protocol.md): wire-level protocol details
+- [Device Sync Protocol](../developers/device-sync-protocol.md): wire-level protocol details
 - [SSH Sync](../ecosystem/ssh-sync.md): server-side SSH sync config
-- [Companion apps](../ecosystem/community-apps.md): list of integrations and their status
+- [Companion apps](https://github.com/rommapp/romm/#community): list of community integrations

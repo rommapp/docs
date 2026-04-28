@@ -111,4 +111,4 @@ PWA + [Console Mode](console-mode.md) is a powerful combo:
 
 ## Want a native app instead?
 
-Community-made native apps are listed on [Ecosystem → Community Apps](../ecosystem/community-apps.md), including Argosy Launcher, RommBrowser, and more. PWA is the zero-install path. Native apps give you platform integration (notifications, deeper OS hooks) where it matters.
+Community-made native apps are listed in the [Community section in the RomM README](https://github.com/rommapp/romm/#community), including RommBrowser and more. PWA is the zero-install path. Native apps give you platform integration (notifications, deeper OS hooks) where it matters.

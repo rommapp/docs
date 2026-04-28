@@ -15,7 +15,7 @@ These are the clients the RomM team builds and supports directly. Pick the one t
 | [Grout](#grout)                     | muOS / NextUI Linux handhelds     | Bidirectional ROM, save, and state sync                     |
 | [Playnite Plugin](#playnite-plugin) | Windows ([Playnite](https://playnite.link)) | Imports your RomM library next to Steam, Epic, GOG, etc. |
 
-For third-party clients, see [Community Apps](community-apps.md).
+For third-party clients, see the [Community section in the RomM README](https://github.com/rommapp/romm/#community).
 
 ## Argosy Launcher
 
@@ -309,6 +309,6 @@ For automatic refresh: use Playnite's scheduled-library-refresh add-on, or manua
 ## See also
 
 - [Client API Tokens](client-api-tokens.md): the auth + pairing flow these clients use
-- [Device Sync Protocol](device-sync-protocol.md): wire-level sync protocol
+- [Device Sync Protocol](../developers/device-sync-protocol.md): wire-level sync protocol
 - [SSH Sync](ssh-sync.md): operator-side SSH config for Grout
-- [Community Apps](community-apps.md): third-party clients
+- [Community section in the RomM README](https://github.com/rommapp/romm/#community): third-party clients

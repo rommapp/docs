@@ -17,7 +17,7 @@ Everything you need to **build on top of RomM** (third-party apps, scripts, inte
 ## Building companion apps
 
 - **[Client API Tokens](../ecosystem/client-api-tokens.md)**: how companion apps authenticate, including the device-pairing flow
-- **[Device Sync Protocol](../ecosystem/device-sync-protocol.md)**: wire-level reference for save/state/play-session sync
+- **[Device Sync Protocol](device-sync-protocol.md)**: wire-level reference for save/state/play-session sync
 - **[Argosy](../ecosystem/first-party-apps.md#argosy-launcher), [Grout](../ecosystem/first-party-apps.md#grout)**: reference implementations to crib from
 
 ## Contributing to RomM itself

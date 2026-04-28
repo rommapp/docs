@@ -75,16 +75,15 @@ search:
     - Feeds
         - [Feed Clients](ecosystem/feed-clients.md)
     - For developers
-        - [Device Sync Protocol](ecosystem/device-sync-protocol.md)
         - [Client API Tokens](ecosystem/client-api-tokens.md)
         - [SSH Sync](ecosystem/ssh-sync.md)
-    - [Community Apps](ecosystem/community-apps.md)
     - [Igir Collection Manager](ecosystem/igir.md)
 - API & Development
     - [Overview](developers/index.md)
     - [API Reference](developers/api-reference.md)
     - [API Authentication](developers/api-authentication.md)
     - [WebSockets](developers/websockets.md)
+    - [Device Sync Protocol](developers/device-sync-protocol.md)
     - [Consuming OpenAPI](developers/openapi.md)
     - [Development Setup](developers/development-setup.md)
     - [Architecture](developers/architecture.md)

@@ -97,6 +97,6 @@ If the owning user's role drops below what the token needs, the token continues 
 
 ## See also
 
-- [Device Sync Protocol](device-sync-protocol.md): how the synced content flows after pairing
+- [Device Sync Protocol](../developers/device-sync-protocol.md): how the synced content flows after pairing
 - [API Authentication](../developers/api-authentication.md): all RomM auth modes side-by-side
 - [Users & Roles → scope matrix](../administration/users-and-roles.md#scope-matrix): the 19-scope taxonomy

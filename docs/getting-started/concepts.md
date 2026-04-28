@@ -60,7 +60,7 @@ A long-lived bearer token scoped to a user. Used by companion apps (Argosy, Grou
 
 ## Device
 
-A registered endpoint that syncs with RomM: a handheld running Grout, an Android phone running Argosy, a SteamDeck running DeckRommSync. Devices pull saves and states, and some push them back after a session. See [Device Sync Protocol](../ecosystem/device-sync-protocol.md).
+A registered endpoint that syncs with RomM: a handheld running Grout, an Android phone running Argosy, a SteamDeck running DeckRommSync. Devices pull saves and states, and some push them back after a session. See [Device Sync Protocol](../developers/device-sync-protocol.md).
 
 ## Play Session
 
