@@ -93,7 +93,6 @@ search:
     - [Environment Variables](reference/environment-variables.md)
     - [Configuration File](reference/configuration-file.md)
     - [Exports](reference/exports.md)
-    - [Ports & Endpoints](reference/ports-and-endpoints.md)
     - [Glossary](reference/glossary.md)
 - Troubleshooting
     - [Overview](troubleshooting/index.md)

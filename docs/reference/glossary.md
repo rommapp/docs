@@ -37,7 +37,7 @@ For the pedagogical version with reasoning and examples, see [Core Concepts](../
 
 **EmulatorJS**: the in-browser retro emulator RomM uses for most platforms. [In-Browser Play](../using/in-browser-play.md).
 
-**Feed**: a URL endpoint that exposes a filtered library view in a third-party tool's expected format. [Feeds reference](feeds.md).
+**Feed**: a URL endpoint that exposes a filtered library view in a third-party tool's expected format. [Feed clients](../ecosystem/feed-clients.md).
 
 **Firmware**: BIOS files some emulators need. Lives under `/romm/library/bios/` (or per-platform bios folders). [Firmware Management](../administration/firmware-management.md).
 
