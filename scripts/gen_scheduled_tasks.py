@@ -64,9 +64,9 @@ TASKS = [
     {
         "name": "Push-Pull Device Sync",
         "type": "Scheduled",
-        "default_cron": "*/15 * * * *",
-        "env_var": "PUSH_PULL_SYNC_INTERVAL_CRON",
-        "purpose": "Bidirectional save/state sync to registered devices.",
+        "default_cron": "-",
+        "env_var": "-",
+        "purpose": "Bidirectional save/state sync to registered devices (work in progress).",
     },
     {
         "name": "Cleanup Missing ROMs",

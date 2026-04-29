@@ -40,54 +40,14 @@ Full flow: [Client API Tokens](../developers/client-api-tokens.md).
 
 ### Saves aren't appearing after playing on the device
 
-- **Sync hasn't run yet.** The Push-Pull Device Sync task runs every 15 minutes by default. Check Administration → Tasks for last-run timestamp.
 - **App didn't upload.** Open the app's logs. Some apps upload on app-close rather than on every save.
 - **Wrong save location on device.** RomM reads from a specific path. If the app stored saves elsewhere, they won't sync. Check the device's save path configuration.
 
 ## SSH-based sync (handhelds)
 
-### Permission denied (publickey)
-
-RomM's SSH key isn't authorised on the device.
-
-1. Verify the **public** key (from `~/romm-sync-key.pub` on the host) is in the device's `~/.ssh/authorized_keys`.
-2. Check line breaks (CRLF vs LF issues bite here). The `authorized_keys` file should have one key per line, Unix line endings.
-3. Check file permissions on the device: `~/.ssh/` should be `700`, `~/.ssh/authorized_keys` should be `600`.
-
-See [SSH Sync → Configuring a device](../developers/ssh-sync.md#configuring-a-device).
-
-### Host key verification failed
-
-The device's SSH host key changed (usually after a reinstall / reflash).
-
-Fix from inside the RomM container:
-
-```sh
-docker exec romm ssh-keygen -R <device-ip>
-```
-
-Next sync cycle will accept the new host key.
-
-### Can't read SSH key in container
-
-```text
-Permissions 0644 for '/romm/.ssh/id_rsa' are too open
-```
-
-OpenSSH refuses to use keys with loose permissions. On the host:
-
-```sh
-chmod 600 /path/to/romm-sync-key
-```
-
-And verify the Docker bind mount isn't forcing different perms (ro is fine but mode-reset-via-mount-option is the usual culprit).
-
-### Sync task doesn't run
-
-- **`SSH_PRIVATE_KEY_PATH` not set.** Check the RomM container's env. If the path doesn't exist inside the container, sync quietly no-ops.
-- **No devices registered.** Administration → Devices. If empty, there's nothing to sync.
-- **Cron expression wrong.** Default `PUSH_PULL_SYNC_INTERVAL_CRON=*/15 * * * *`. Invalid cron silently doesn't run.
-- **Task failing silently.** `GET /api/tasks/status`: status shows per-task state. "failed" with a last-error is a direct pointer.
+<!-- prettier-ignore -->
+!!! warning "Coming soon"
+    SSH-based push/pull sync is a work in progress. Troubleshooting steps for it will be filled in once the feature stabilises. See [SSH Sync](../developers/ssh-sync.md).
 
 ## Play sessions
 
@@ -114,7 +74,6 @@ Admins can force a re-eval via Administration → Tasks → Refresh Smart Collec
 ## Still stuck
 
 - **API sync**: `docker logs romm | grep -iE 'sync|device|token'`
-- **SSH sync**: `docker logs romm | grep -iE 'push_pull|ssh'`
 - Device-side logs from the companion app. Each app differs.
 - [Discord](https://discord.gg/romm) `#help`: include the app name, its version, and the RomM log lines.
 

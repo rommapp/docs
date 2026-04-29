@@ -1,6 +1,6 @@
 ---
 title: WebSockets
-description: Endpoints for live updates and Netplay coordination
+description: Endpoints for live updates
 ---
 
 <!-- trunk-ignore-all(markdownlint/MD024) -->
@@ -14,15 +14,9 @@ RomM uses **socket.io** for real-time communication, with two endpoints serving 
 | `/ws/socket.io`      | Live updates (scan progress, task status, ROM mutations, admin notifications) |
 | `/netplay/socket.io` | Netplay session coordination (room discovery, join/leave, lifecycle)           |
 
-## Why socket.io not raw WebSocket?
-
-RomM inherited socket.io from the Vue frontend (which uses `socket.io-client`), and sticking with it avoids protocol drift, keeps things working in every browser, and gets us reconnection and message framing for free.
-
-If you're writing a non-browser client in a language with a socket.io library (`python-socketio`, `go-socket.io`, etc.), the protocol is straightforward. **Raw WebSocket without socket.io framing will not work**, because socket.io adds its own handshake and message envelope on top.
-
 ## Authentication
 
-socket.io connections inherit the HTTP session, so if your `Cookie` header carries a RomM session cookie, the WebSocket connection authenticates as that user. Programmatic clients pass the credential via the handshake `auth` field:
+socket.io connections inherit the HTTP session, so if your `Cookie` header carries a session cookie, the WebSocket connection authenticates as that user. Programmatic clients pass the credential via the handshake `auth` field:
 
 ```javascript
 const socket = io("https://demo.romm.app", {
