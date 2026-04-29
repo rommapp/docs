@@ -83,7 +83,7 @@ Response is a list of operations:
 | ---------- | ----------------------------------------------------------------------------------------------------------------- |
 | `upload`   | Device `POST`s the file to `destination`.                                                                         |
 | `download` | Device `GET`s `source` and writes to `dest_path`.                                                                 |
-| `conflict` | Both sides newer. `resolution` ∈ `keep_both` (default), `server_wins`, `device_wins`.                             |
+| `conflict` | Both sides newer, `resolution` must be one of `keep_both` (default), `server_wins`, `device_wins`.                             |
 | `noop`     | Hashes match, nothing to do.                                                                                      |
 
 Upload (`POST /api/saves`, multipart) and download (`GET /api/saves/{id}/content`) both require the bearer token.
