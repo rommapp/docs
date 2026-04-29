@@ -45,4 +45,4 @@ Admins: see [Administration](../administration/index.md) for operator tasks.
 
 ---
 
-Looking for something specific? Every page in this section is linked from the dashboard or the profile drawer. If you can't find a feature, check [Core Concepts](../getting-started/concepts.md), the vocabulary index.
+Looking for something specific? Every page in this section is linked from the dashboard or the profile drawer. If you can't find a feature, check [Glossary](../reference/glossary.md), the vocabulary index.

@@ -98,7 +98,7 @@ That's it, you're up and running! From here:
 
 - Add more users and lock down access: [Users & Roles](../administration/users-and-roles.md)
 - Put RomM behind a reverse proxy with HTTPS: [Reverse Proxy](../install/reverse-proxy.md)
-- Learn what all those settings mean: [Core Concepts](concepts.md)
+- Learn what all those settings mean: [Glossary](../reference/glossary.md)
 
 ## Alternative: upload ROMs through the UI
 

@@ -12,7 +12,7 @@ The library is the heart of RomM. This page covers the day-to-day UI: the dashbo
 Home screen, with several **ribbons** of content:
 
 - **Recently Added**: a carousel of the latest ROMs RomM has indexed
-- **Continue Playing**: games with an active play session. See [Play Sessions](../getting-started/concepts.md#play-session).
+- **Continue Playing**: games with an active play session. See [Play Sessions](../reference/glossary.md#play-session).
 - **Platforms**: every platform that has at least one ROM. Cards link into the [platform view](#platform-view).
 - **Collections**: your [collections](collections.md), [smart collections](smart-collections.md), and [virtual collections](virtual-collections.md)
 

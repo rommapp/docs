@@ -186,6 +186,6 @@ A small team of maintainers plus a chunk of active community contributors. Suppo
 
 ## See also
 
-- [Core Concepts](../getting-started/concepts.md) if the vocabulary is new
+- [Glossary](../reference/glossary.md) if the vocabulary is new
 - [Troubleshooting](../troubleshooting/index.md) if something's broken
 - [Release Notes](../releases/index.md) for version-specific questions

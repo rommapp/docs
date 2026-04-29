@@ -106,6 +106,8 @@ plugins:
               # Ecosystem → Developers (moved)
               ecosystem/client-api-tokens.md: developers/client-api-tokens.md
               ecosystem/ssh-sync.md: developers/ssh-sync.md
+              # Core Concepts merged into Glossary
+              getting-started/concepts.md: reference/glossary.md
               # Maintenance
               Maintenance/Scheduled-Tasks.md: administration/scheduled-tasks.md
               Maintenance/Migrating-to-new-machine.md: install/backup-and-restore.md

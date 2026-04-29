@@ -10,7 +10,6 @@ search:
     - [Quick Start](getting-started/quick-start.md)
     - [Folder Structure](getting-started/folder-structure.md)
     - [Your First Scan](getting-started/first-scan.md)
-    - [Core Concepts](getting-started/concepts.md)
 - Install & Deploy
     - [Overview](install/index.md)
     - [Docker Compose](install/docker-compose.md)
