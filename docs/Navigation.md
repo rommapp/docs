@@ -70,20 +70,17 @@ search:
     - [Firmware by Platform](platforms/firmware-by-platform.md)
 - Integrations & Ecosystem
     - [Overview](ecosystem/index.md)
-    - First-party
-        - [First-Party Apps](ecosystem/first-party-apps.md)
-    - Feeds
-        - [Feed Clients](ecosystem/feed-clients.md)
-    - For developers
-        - [Client API Tokens](ecosystem/client-api-tokens.md)
-        - [SSH Sync](ecosystem/ssh-sync.md)
+    - [First-Party Apps](ecosystem/first-party-apps.md)
+    - [Feed Clients](ecosystem/feed-clients.md)
     - [Igir Collection Manager](ecosystem/igir.md)
 - API & Development
     - [Overview](developers/index.md)
     - [API Reference](developers/api-reference.md)
     - [API Authentication](developers/api-authentication.md)
+    - [Client API Tokens](developers/client-api-tokens.md)
     - [WebSockets](developers/websockets.md)
     - [Device Sync Protocol](developers/device-sync-protocol.md)
+    - [SSH Sync](developers/ssh-sync.md)
     - [Consuming OpenAPI](developers/openapi.md)
     - [Development Setup](developers/development-setup.md)
     - [Architecture](developers/architecture.md)

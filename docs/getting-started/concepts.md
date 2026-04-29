@@ -56,7 +56,7 @@ Tokens and OIDC sessions carry subsets of scopes. Every endpoint requires specif
 
 ## Client API Token
 
-A long-lived bearer token scoped to a user. Used by companion apps (Argosy, Grout, Playnite, custom scripts) to authenticate. Each user gets up to 25 active tokens, and tokens can be paired to devices via a short code. See [Client API Tokens](../ecosystem/client-api-tokens.md).
+A long-lived bearer token scoped to a user. Used by companion apps (Argosy, Grout, Playnite, custom scripts) to authenticate. Each user gets up to 25 active tokens, and tokens can be paired to devices via a short code. See [Client API Tokens](../developers/client-api-tokens.md).
 
 ## Device
 

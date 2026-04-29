@@ -5,11 +5,11 @@ description: Wire-level reference for save/state/play-session sync
 
 # Device Sync Protocol
 
-This is a reference for the protocol RomM uses for bidirectional sync with companion apps. End-user view in [Saves & States](../using/saves-and-states.md), with operator-side SSH transport in [SSH Sync](../ecosystem/ssh-sync.md).
+This is a reference for the protocol RomM uses for bidirectional sync with companion apps. End-user view in [Saves & States](../using/saves-and-states.md), with operator-side SSH transport in [SSH Sync](ssh-sync.md).
 
 ## Primitives
 
-- **Device**: a registered endpoint, bound to a [Client API Token](../ecosystem/client-api-tokens.md).
+- **Device**: a registered endpoint, bound to a [Client API Token](client-api-tokens.md).
 - **Sync session**: one atomic bidirectional run (pull, push, conflict reconcile, play-session ingest).
 - **Play session**: per-ROM playtime record, posted standalone or batched at sync end.
 
@@ -26,7 +26,7 @@ Every call: `Authorization: Bearer rmm_...`. Required scopes:
 
 ## Registering a device
 
-After [pairing](../ecosystem/client-api-tokens.md#device-pairing):
+After [pairing](client-api-tokens.md#device-pairing):
 
 ```http
 POST /api/devices
@@ -111,8 +111,8 @@ Closes the session and ingests batched play sessions in one call.
 
 ## See also
 
-- [Client API Tokens](../ecosystem/client-api-tokens.md): auth and pairing
+- [Client API Tokens](client-api-tokens.md): auth and pairing
 - [API Authentication](api-authentication.md): general auth primer
 - [API Reference](api-reference.md): full endpoint catalogue
-- [SSH Sync](../ecosystem/ssh-sync.md): alternative transport
+- [SSH Sync](ssh-sync.md): alternative transport
 - [Argosy](../ecosystem/first-party-apps.md#argosy-launcher), [Grout](../ecosystem/first-party-apps.md#grout): reference client implementations

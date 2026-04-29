@@ -103,6 +103,9 @@ plugins:
               API-and-Development/Contributing.md: developers/contributing.md
               # Tools → Ecosystem
               Tools/Igir-Collection-Manager.md: ecosystem/igir.md
+              # Ecosystem → Developers (moved)
+              ecosystem/client-api-tokens.md: developers/client-api-tokens.md
+              ecosystem/ssh-sync.md: developers/ssh-sync.md
               # Maintenance
               Maintenance/Scheduled-Tasks.md: administration/scheduled-tasks.md
               Maintenance/Migrating-to-new-machine.md: install/backup-and-restore.md

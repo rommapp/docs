@@ -15,7 +15,7 @@ RomM is multi-user from the start. The first user created during Setup is always
 | **Editor** | Household members who help curate the library.                          | Read everything, edit ROMs/platforms/collections, upload, but no user management. |
 | **Viewer** | Guests, kids, anyone who should only play and track their own progress. | Read the library, manage their own saves/states/screenshots/profile.          |
 
-Roles are a convenience layer on top of **scopes** (see the scope matrix below for exactly what each role grants). You can't create custom roles (yet), so if you need finer-grained access, use the most restrictive role and rely on [Client API Tokens](../ecosystem/client-api-tokens.md) for per-app customisation.
+Roles are a convenience layer on top of **scopes** (see the scope matrix below for exactly what each role grants). You can't create custom roles (yet), so if you need finer-grained access, use the most restrictive role and rely on [Client API Tokens](../developers/client-api-tokens.md) for per-app customisation.
 
 ## Scope matrix
 
@@ -71,4 +71,4 @@ Deleting a user keeps their contributions (collections they made public, ROM met
 
 ## API tokens (advanced)
 
-Each user can issue up to 25 **Client API Tokens** from **Administration → Client API Tokens**. Tokens carry a subset of the user's scopes and are the right way to authenticate companion apps (Argosy, Grout, Playnite, custom scripts). The pairing flow for devices is covered in [Client API Tokens](../ecosystem/client-api-tokens.md), and the API side is in [API Authentication](../developers/api-authentication.md).
+Each user can issue up to 25 **Client API Tokens** from **Administration → Client API Tokens**. Tokens carry a subset of the user's scopes and are the right way to authenticate companion apps (Argosy, Grout, Playnite, custom scripts). The pairing flow for devices is covered in [Client API Tokens](../developers/client-api-tokens.md), and the API side is in [API Authentication](../developers/api-authentication.md).

@@ -36,7 +36,7 @@ The pairing flow: RomM generates a short code, device exchanges it for a full to
 - **Device can't reach RomM.** Pairing still requires network access from the device to RomM's API.
 - **User out of token slots.** 25-token max per user. Revoke an unused token first.
 
-Full flow: [Client API Tokens](../ecosystem/client-api-tokens.md).
+Full flow: [Client API Tokens](../developers/client-api-tokens.md).
 
 ### Saves aren't appearing after playing on the device
 
@@ -54,7 +54,7 @@ RomM's SSH key isn't authorised on the device.
 2. Check line breaks (CRLF vs LF issues bite here). The `authorized_keys` file should have one key per line, Unix line endings.
 3. Check file permissions on the device: `~/.ssh/` should be `700`, `~/.ssh/authorized_keys` should be `600`.
 
-See [SSH Sync → Configuring a device](../ecosystem/ssh-sync.md#configuring-a-device).
+See [SSH Sync → Configuring a device](../developers/ssh-sync.md#configuring-a-device).
 
 ### Host key verification failed
 
@@ -120,7 +120,7 @@ Admins can force a re-eval via Administration → Tasks → Refresh Smart Collec
 
 ## See also
 
-- [Client API Tokens](../ecosystem/client-api-tokens.md): token + pairing flow reference
+- [Client API Tokens](../developers/client-api-tokens.md): token + pairing flow reference
 - [Device Sync Protocol](../developers/device-sync-protocol.md): wire-level protocol details
-- [SSH Sync](../ecosystem/ssh-sync.md): server-side SSH sync config
+- [SSH Sync](../developers/ssh-sync.md): server-side SSH sync config
 - [Companion apps](https://github.com/rommapp/romm/#community): list of community integrations

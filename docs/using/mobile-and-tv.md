@@ -68,7 +68,7 @@ Recommended companions:
 - **[DeckRommSync](https://github.com/rommapp/romm/#community)**: Steam Deck (SteamOS)
 - **[SwitchRomM](https://github.com/rommapp/romm/#community)**: Nintendo Switch (homebrew)
 
-All of these use [Client API Tokens](../ecosystem/client-api-tokens.md) for auth and the [Device Sync Protocol](../developers/device-sync-protocol.md) for the actual data transfer.
+All of these use [Client API Tokens](../developers/client-api-tokens.md) for auth and the [Device Sync Protocol](../developers/device-sync-protocol.md) for the actual data transfer.
 
 ## Steam Deck
 

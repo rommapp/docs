@@ -1,6 +1,6 @@
 ---
 title: Platforms & Players
-description: Everything about the platforms RomM supports: catalogue, custom mappings, emulator tuning, firmware.
+description: Everything about the supported platforms
 ---
 
 # Platforms & Players

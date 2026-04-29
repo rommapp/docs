@@ -150,7 +150,7 @@ Running on muOS / Batocera / Knulli / a Steam Deck? Consider:
 - **[Grout](../ecosystem/first-party-apps.md#grout)**: official handheld companion that syncs saves/states to/from the device
 - **[Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher)**: Android handhelds that can run a browser but want a native-feeling app
 
-Both use [Client API Tokens](../ecosystem/client-api-tokens.md) for auth.
+Both use [Client API Tokens](../developers/client-api-tokens.md) for auth.
 
 ## Troubleshooting
 

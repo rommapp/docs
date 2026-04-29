@@ -36,7 +36,7 @@ If you're an OIDC user and want RomM to show your `preferred_username` from the 
 
 Long-lived API tokens for companion apps, scripts, and integrations. Each token is scoped to a subset of your user's scopes, and optionally expires.
 
-See the full spec in [Client API Tokens](../ecosystem/client-api-tokens.md), as this section is just the "how I create one from the UI" version.
+See the full spec in [Client API Tokens](../developers/client-api-tokens.md), as this section is just the "how I create one from the UI" version.
 
 ### Creating a token
 
@@ -60,7 +60,7 @@ For handheld apps like Grout, typing a 44-character token on a thumbstick isn't 
 4. The device exchanges the code for the full token via the pairing API.
 5. Done: token is on the device, you never typed it.
 
-Full flow in [Client API Tokens](../ecosystem/client-api-tokens.md).
+Full flow in [Client API Tokens](../developers/client-api-tokens.md).
 
 ### Limits
 

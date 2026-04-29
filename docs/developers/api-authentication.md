@@ -105,7 +105,7 @@ curl -H "Authorization: Bearer rmm_abcdef0123456789..." \
      https://demo.romm.app/api/roms
 ```
 
-Each user gets up to 25 active tokens. Tokens can be paired with a device via the [pairing flow](../ecosystem/client-api-tokens.md), useful when you don't want to type a long token on a handheld.
+Each user gets up to 25 active tokens. Tokens can be paired with a device via the [pairing flow](client-api-tokens.md), useful when you don't want to type a long token on a handheld.
 
 ## OIDC
 
