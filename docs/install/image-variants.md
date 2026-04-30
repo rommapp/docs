@@ -1,6 +1,6 @@
 ---
 title: Image Variants
-description: Choose between the slim and full RomM container images.
+description: Choose between the slim and full container images
 ---
 
 # Image Variants

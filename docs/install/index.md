@@ -1,6 +1,6 @@
 ---
 title: Install & Deploy
-description: On Docker Compose, Unraid, Synology, TrueNAS, or Kubernetes.
+description: On Docker Compose, Unraid, Synology, TrueNAS, or Kubernetes
 ---
 
 # Install & Deploy
@@ -15,15 +15,14 @@ RomM is distributed as a Docker image. Every supported deployment runs the same 
 | **Unraid**             | [Community Apps template or DCM](unraid.md)           |
 | **Synology**           | [Container Manager + DSM-specific notes](synology.md) |
 | **TrueNAS**            | [App Catalog or YAML install](truenas.md)             |
-| **Kubernetes**         | [Manifest examples](kubernetes.md)                    |
+| **Kubernetes**         | [Community charts and gotchas](kubernetes.md)         |
 
-If none of those match, start with [Docker Compose](../getting-started/quick-start.md) and adapt.
+If none of those match, start with [Docker Compose](../getting-started/quick-start.md) and adapt as needed.
 
 ## Foundational pieces
 
 Regardless of host platform, you'll make the same handful of decisions:
 
-- **[Image variant](image-variants.md)**: `full` (default, includes in-browser emulators) or `slim` (headless, smaller memory footprint)
 - **[Database](databases.md)**: MariaDB (default), MySQL or PostgreSQL
 - **[In-memory store](redis-or-valkey.md)**: required for sessions + task queue, embedded or external
 - **[Reverse proxy](reverse-proxy.md)**: Caddy, nginx, Traefik, or NPM. HTTPS is required for OIDC and PWA install.
