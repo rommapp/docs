@@ -1,13 +1,13 @@
 ---
 title: Quick Start
-description: Get a RomM instance running in about fifteen minutes
+description: Get your instance running in about fifteen minutes
 ---
 
 <!-- trunk-ignore-all(markdownlint/MD033) -->
 
 # Quick Start
 
-This guide gets a RomM instance up and running with the default stack (MariaDB + Valkey) using Docker Compose. If you're on Unraid, Synology, TrueNAS, or Kubernetes, start there instead: the [Install & Deploy](../install/index.md) section has platform-specific guides.
+This guide gets a RomM instance up and running with the default stack (MariaDB + Valkey) using Docker Compose. If you're on Unraid, Synology, TrueNAS, or Kubernetes, check out the [Install & Deploy](../install/index.md) section for platform-specific guides.
 
 ## Before you start
 
@@ -15,11 +15,11 @@ You'll need:
 
 - [Docker](https://docs.docker.com/get-docker/) and Docker Compose installed on the host
 - Your ROM files organised in the expected [folder structure](folder-structure.md)
-- API credentials for at least one [metadata provider](../administration/metadata-providers.md). Hasheous + IGDB + SteamGridDB + Retroachievements is the recommended pairing. It will run without any provider configured but matching quality will suffer.
+- API credentials for at least one [metadata provider](../administration/metadata-providers.md)
 
 <!-- prettier-ignore -->
 !!! warning "Metadata providers are recommended"
-    RomM works without a metadata API for basic use but setup problems and companion-app integrations (e.g. Playnite) can fail without them. Setting up **IGDB**, **SteamGridDB**, and **Retroachievements** API keys before your first scan is strongly recommended.
+    Scans work without a metadata API for basic use but setup problems and companion-app integrations (e.g. Playnite) can fail without them. Setting up **at least one** provider before your first scan is strongly recommended.
 
 ## 1. Write your `docker-compose.yml`
 
@@ -85,27 +85,7 @@ docker ps -f name=romm
 
 Open `http://<host>:80` in a browser. On first start, you'll be redirected to the **Setup Wizard**. Set an admin username and password (the first user created always gets the Admin role), then log in.
 
-## 4. Scan your library
+## Next steps
 
-The fastest way to populate it is to let it scan your mounted library:
-
-1. Click **Scan** in the sidebar.
-2. Pick the metadata providers you configured in step 1.
-3. Start the scan. You can open any matched game while the scan continues to see the pulled metadata.
-4. When the scan finishes, click the RomM logo to return home. You'll see your platforms and the most recently added games.
-
-That's it, you're up and running! From here:
-
-- Add more users and lock down access: [Users & Roles](../administration/users-and-roles.md)
-- Put your instance behind a reverse proxy with HTTPS: [Reverse Proxy](../install/reverse-proxy.md)
-- Learn what all those settings mean: [Glossary](../reference/glossary.md)
-
-## Alternative: upload ROMs through the UI
-
-If your library isn't mounted (yet) or you're just adding a handful of files, the upload dialog is fine for small batches. Not recommended for the initial import of a large collection, and it doesn't handle multi-file ROMs:
-
-1. Click **Upload** in the sidebar.
-2. Choose the target platform, click **+ ADD**, and select the files to upload.
-3. Click **Upload** and wait for the transfer to finish.
-
-<img src="https://raw.githubusercontent.com/rommapp/docs/refs/heads/main/docs/resources/quickstart/upload_roms.png" width="780" alt="upload dialog">
+- Populate the library by [scanning the mounted ROMs](first-scan.md)
+- [Upload](../using/uploads.md) a handful of files in through the web UI
