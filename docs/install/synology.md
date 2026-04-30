@@ -1,6 +1,6 @@
 ---
 title: Synology
-description: Install RomM on a Synology NAS via Container Manager / Docker.
+description: Install on a Synology NAS via Container Manager or Docker
 ---
 
 # Synology
@@ -12,7 +12,7 @@ description: Install RomM on a Synology NAS via Container Manager / Docker.
 - [How to Install RomM on Your Synology NAS (MariaDB)](https://mariushosting.com/how-to-install-romm-on-your-synology-nas/)
 - [How to Install RomM With PostgreSQL on Your Synology NAS](https://mariushosting.com/how-to-install-romm-with-postgresql-on-your-synology-nas/)
 
-Follow those if they match your setup. The walkthrough below is the fallback for everything else.
+The walkthrough below is the fallback for everything else.
 
 ## Prerequisites
 
@@ -68,11 +68,7 @@ Recommended before the first scan. Full walkthrough in [Metadata Providers](../a
 
 ## 5. Docker Compose
 
-<!-- prettier-ignore -->
-!!! info "MariaDB 10.7 note"
-    This guide pins MariaDB to **10.7** for stability on older DSM versions. MariaDB 11 works on DSM 7.2+, so bump the image tag if you like.
-
-The Synology-flavoured compose file: MariaDB on port `3309` externally (to avoid colliding with Synology's built-in MariaDB), UID/GID customisation, simplified healthcheck:
+The Synology-flavoured compose file: MariaDB on port `3309` externally (to avoid colliding with Synology's built-in MariaDB) and a simplified healthcheck:
 
 <!-- prettier-ignore -->
 ???+ example "docker-compose.yml"
@@ -81,7 +77,7 @@ The Synology-flavoured compose file: MariaDB on port `3309` externally (to avoid
     --8<-- "synology.docker-compose.yml"
    ` -->
 
-Replace placeholder UIDs, GIDs, passwords, API keys, and `ROMM_AUTH_SECRET_KEY` with your own before starting.
+Replace placeholder passwords, API keys, and `ROMM_AUTH_SECRET_KEY` with your own before starting.
 
 ## 6. Launch
 
