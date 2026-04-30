@@ -29,11 +29,11 @@ Troubleshooting paths differ.
 
 ### Pairing code doesn't work
 
-The pairing flow: RomM generates a short code, device exchanges it for a full token.
+The pairing flow: A short code is generated, device exchanges it for a full token.
 
 - **Code expired.** Codes are short-lived (5 minutes default). Generate a new one.
 - **Code already used.** Single-use. Generate a new one.
-- **Device can't reach RomM.** Pairing still requires network access from the device to RomM's API.
+- **Device can't reach RomM.** Pairing still requires network access from the device to the API.
 - **User out of token slots.** 25-token max per user. Revoke an unused token first.
 
 Full flow: [Client API Tokens](../developers/client-api-tokens.md).
@@ -41,7 +41,7 @@ Full flow: [Client API Tokens](../developers/client-api-tokens.md).
 ### Saves aren't appearing after playing on the device
 
 - **App didn't upload.** Open the app's logs. Some apps upload on app-close rather than on every save.
-- **Wrong save location on device.** RomM reads from a specific path. If the app stored saves elsewhere, they won't sync. Check the device's save path configuration.
+- **Wrong save location on device.** The save path is fixed. If the app stored saves elsewhere, they won't sync. Check the device's save path configuration.
 
 ## SSH-based sync (handhelds)
 
@@ -55,15 +55,15 @@ Play sessions from a companion app (time-played tracking, Continue Playing ribbo
 
 - **Not appearing in RomM**: app isn't POSTing to `/api/play-sessions`. Check app's logs.
 - **Duplicate sessions**: app is re-posting on sync. Known edge case for some companion apps, usually harmless
-- **Times look wrong**: timezone mismatch between device and RomM. RomM stores UTC, and display converts to user TZ.
+- **Times look wrong**: timezone mismatch between device and the server. UTC is stored server-side, and display converts to user TZ.
 
 ## Devices panel says "offline"
 
-RomM sees no heartbeat from the device. Either:
+Server sees no heartbeat from the device. Either:
 
 - Device is genuinely off.
 - Device's companion app has stopped phoning home. Check the app's logs / relaunch it.
-- RomM last-seen threshold elapsed. Devices show online for 1 hour after last heartbeat. After that, offline
+- Last-seen threshold elapsed. Devices show online for 1 hour after last heartbeat. After that, offline
 
 ## Smart collection / filter isn't updating after sync
 
@@ -75,7 +75,7 @@ Admins can force a re-eval via Administration → Tasks → Refresh Smart Collec
 
 - **API sync**: `docker logs romm | grep -iE 'sync|device|token'`
 - Device-side logs from the companion app. Each app differs.
-- [Discord](https://discord.gg/romm) `#help`: include the app name, its version, and the RomM log lines.
+- [Discord](https://discord.gg/romm) `#help`: include the app name, its version, and the log lines.
 
 ## See also
 

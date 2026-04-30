@@ -5,7 +5,7 @@ description: Protect your RomM install against data loss and move it between hos
 
 # Backup & Restore
 
-This page covers both routine backups and migrating RomM to a new host.
+This page covers both routine backups and migrating to a new host.
 
 ## What to back up
 
@@ -16,7 +16,7 @@ This page covers both routine backups and migrating RomM to a new host.
 | **`/romm/config`**                           | `config.yml` and any custom overrides                                                                   | **Critical**: rarely changes but small and painful to recreate.                                                              |
 | `/romm/resources`                            | Metadata images (covers, screenshots) fetched from IGDB/ScreenScraper/etc.                              | Low priority, and can be re-downloaded on a rescan. Including it speeds up recovery.                                         |
 | `/redis-data`                                | Task queue state                                                                                        | Low priority, in-flight tasks only, and lost tasks can be re-run.                                                            |
-| **`/romm/library`**                          | Your ROM files                                                                                          | Back this up **separately**. It's your source data and you should already have a backup strategy for it independent of RomM. |
+| **`/romm/library`**                          | Your ROM files                                                                                          | Back this up **separately**. It's your source data and you should already have a backup strategy for it.                     |
 
 ## Routine backup
 
@@ -70,13 +70,13 @@ rsync -a --delete /srv/romm/config/ "$DEST/config/"
 find "$DEST" -maxdepth 1 -name 'db-*.sql.gz' -mtime +14 -delete
 ```
 
-Offsite it however you already do (rclone to B2/S3, restic, borg, Proxmox Backup Server). RomM doesn't care.
+Offsite it however you already do (rclone to B2/S3, restic, borg, Proxmox Backup Server). The transport doesn't matter.
 
 ## Restore
 
 ### Into an empty install
 
-1. Start a fresh RomM stack with the same `ROMM_AUTH_SECRET_KEY` (if the secret changes, all sessions and invite links are invalidated). Point it at empty volumes.
+1. Start a fresh stack with the same `ROMM_AUTH_SECRET_KEY` (if the secret changes, all sessions and invite links are invalidated). Point it at empty volumes.
 2. Wait for the first-run setup to finish, then stop the stack: `docker compose stop`.
 3. Restore the DB:
     ```sh
@@ -85,13 +85,13 @@ Offsite it however you already do (rclone to B2/S3, restic, borg, Proxmox Backup
     docker exec -i romm-db psql --username=romm-user --dbname=romm < romm-db-2026-04-15.sql
     ```
 4. Restore `assets/` and `config/` to the mounted host paths.
-5. Restart: `docker compose start`. RomM will run any pending Alembic migrations automatically, so restoring a dump from an older version into a newer install is safe.
+5. Restart: `docker compose start`. Pending Alembic migrations run automatically, so restoring a dump from an older version into a newer install is safe.
 
 ### In place (oh no, something's broken)
 
 Same steps but skip step 1. Stop the stack, swap the DB dump back in, restart. Keep the dump you're about to overwrite: `mv current-broken.sql rollback.sql`.
 
-## Moving RomM to a new host
+## Moving to a new host
 
 Same mechanics as a restore. Two approaches:
 
@@ -144,7 +144,7 @@ Works but binds you to matching the old host's Docker layout. Use Option A unles
 
 ## Verifying a backup is actually restorable
 
-A backup you haven't restored is a hope, not a backup. Once a quarter, spin up a throwaway RomM stack from a recent backup:
+A backup you haven't restored is a hope, not a backup. Once a quarter, spin up a throwaway stack from a recent backup:
 
 ```sh
 # in a scratch directory
@@ -158,7 +158,7 @@ docker compose -f test-compose.yml down -v
 
 ## Upgrade pre-flight
 
-Before upgrading to a new RomM major version:
+Before upgrading to a new major version:
 
 1. Stop the stack: `docker compose stop`.
 2. Take a fresh DB dump (above).

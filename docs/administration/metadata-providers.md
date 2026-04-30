@@ -1,7 +1,7 @@
 <!-- trunk-ignore-all(markdownlint/MD001) -->
 <!-- trunk-ignore-all(markdownlint/MD041) -->
 
-RomM supports multiple metadata providers to enrich your game library with titles, descriptions, cover art, and achievements. You don't need all providers, so this guide covers [popular combos](#popular-combos) and [setup instructions](#setup-instructions).
+Multiple metadata providers are supported to enrich your game library with titles, descriptions, cover art, and achievements. You don't need all providers, so this guide covers [popular combos](#popular-combos) and [setup instructions](#setup-instructions).
 
 ## Popular combos
 
@@ -85,7 +85,7 @@ To access the MobyGames API, [create a MobyGames account](https://www.mobygames.
 
 ### LaunchBox
 
-The [LaunchBox](https://gamesdb.launchbox-app.com/) Games Database is a community-driven database that provides metadata, cover art, and screenshots. Like the Launchbox desktop application, RomM downloads the entire database locally and matches games based on their exact filenames.
+The [LaunchBox](https://gamesdb.launchbox-app.com/) Games Database is a community-driven database that provides metadata, cover art, and screenshots. Like the Launchbox desktop application, the entire database is downloaded locally and matches games based on their exact filenames.
 
 To enable LaunchBox, set `LAUNCHBOX_API_ENABLED=true` and `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` in your environment variables. You can customize scheduled updates of the database by setting the frequency on the cron job with `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON` (defaults to 5:00 AM every day).
 
@@ -111,13 +111,13 @@ To access the SteamGridDB API, you need to login to their [website](https://www.
 
 ### RetroAchievements
 
-RomM is able to display your achievements from [RetroAchievements](https://retroachievements.org/). To sync it with your RomM instance, you need to generate an API key from your RetroAchievements account in your [settings](https://retroachievements.org/settings).
+Achievements are displayed from [RetroAchievements](https://retroachievements.org/). To sync, you need to generate an API key from your RetroAchievements account in your [settings](https://retroachievements.org/settings).
 
 Copy the key shown and use it to set `RETROACHIEVEMENTS_API_KEY` and perform a `UNMATCHED` scan targeting the platform you want to match with RetroAchievements.
 
 After that, each user needs to set their own username in their profile and sync it with RetroAchievements. A new `Achievements` tab will appear in the `Personal` tab in the game details.
 
-To avoid unnecessary API calls, a cached file with the RA database is stored in RomM. Refresh time for that cache file can be changed with the environment variable `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS`.
+To avoid unnecessary API calls, a cached file with the RA database is stored locally. Refresh time for that cache file can be changed with the environment variable `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS`.
 
 <!-- prettier-ignore -->
 ??? Screenshots
@@ -126,17 +126,17 @@ To avoid unnecessary API calls, a cached file with the RA database is stored in 
 
 ### Flashpoint
 
-The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) is a project that enables metadata for 180,000+ flash and browser-based games. Enable this metadata source with the `FLASHPOINT_API_ENABLED=true` environment variable. If you are adding this provider to an existing RomM setup, perform a `UNMATCHED` scan with Flashpoint selected to update an existing platform.
+The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) is a project that enables metadata for 180,000+ flash and browser-based games. Enable this metadata source with the `FLASHPOINT_API_ENABLED=true` environment variable. If you are adding this provider to an existing setup, perform a `UNMATCHED` scan with Flashpoint selected to update an existing platform.
 
 ### HowLongToBeat
 
-The [HowLongToBeat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` environment variable. If you are adding this provider to an existing RomM setup, perform a `UNMATCHED` scan with HowLongToBeat selected to update an existing platform.
+The [HowLongToBeat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` environment variable. If you are adding this provider to an existing setup, perform a `UNMATCHED` scan with HowLongToBeat selected to update an existing platform.
 
 Game completion times will be added to a new tab on the details page for supported matched games.
 
 ### ES-DE gamelist.xml
 
-EmulationStation, and it's modern successor ES-DE, use a custom XML format to store game metadata. RomM can parse this format and import the assets as cover art and screenshots. You'll need to store the gamelist.xml file and any related assets under the platform folder:
+EmulationStation, and it's modern successor ES-DE, use a custom XML format to store game metadata. This format is parsed and imported the assets as cover art and screenshots. You'll need to store the gamelist.xml file and any related assets under the platform folder:
 
 <!-- prettier-ignore -->
 ```yaml
@@ -221,7 +221,7 @@ Here are the text properties that will be read from `gamelist.xml`.
 
 #### ES-DE media
 
-RomM has two ways of mapping media files: first it looks at `gamelist.xml` for properties, and it falls back to looking at nested folders for images that have the same name as the ROM.
+Two ways of mapping media files exist: first it looks at `gamelist.xml` for properties, and it falls back to looking at nested folders for images that have the same name as the ROM.
 
 | Property Name | Folder Name   | Description                            |
 | ------------- | ------------- | -------------------------------------- |
@@ -241,7 +241,7 @@ RomM has two ways of mapping media files: first it looks at `gamelist.xml` for p
 
 #### ES-DE settings
 
-Here are the settings you need to change so RomM can read your artwork and gamelist.xml files from the same folder that holds your ROMs.
+Here are the settings you need to change to read your artwork and gamelist.xml files from the same folder that holds your ROMs.
 
 1. Open the ES-DE settings file:
 
@@ -260,7 +260,7 @@ Here are the settings you need to change so RomM can read your artwork and gamel
 
 3. If you already have scraped artwork, copy/move the systems from `~/ES-DE/downloaded_media/` and `~/ES-DE/gamelists/` into your ROMs folder
 
-After a restart, ES-DE will place new artwork and the updated gamelist.xml directly in `roms/<system>/`, which is the layout RomM expects.
+After a restart, ES-DE will place new artwork and the updated gamelist.xml directly in `roms/<system>/`, which is the expected layout.
 
 ## Metadata Tags in Filenames
 
@@ -273,7 +273,7 @@ Scans will now parse custom metadata tags in the filename that match specific pa
 (launchbox-xxxx) for [Launchbox](https://gamesdb.launchbox-app.com/)
 (hltb-xxxx) for [HowLongToBeat](https://howlongtobeat.com/)
 
-Filenames will not be renamed by RomM to add tags, as they are a non-standard formatting system and could create conflicts with other software.
+Filenames will not be renamed to add tags, as they are a non-standard formatting system and could create conflicts with other software.
 
 ## Priority and conflict resolution
 

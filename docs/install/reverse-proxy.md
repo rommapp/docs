@@ -185,7 +185,7 @@ Without that line, large downloads (bulk ROM zips, multi-disc games) will fail o
 
 ## Set `ROMM_BASE_URL` behind HTTPS
 
-Once you're proxying through HTTPS, set `ROMM_BASE_URL` in the RomM container's environment so generated links (QR codes, invite links, OIDC redirects) use the public URL:
+Once you're proxying through HTTPS, set `ROMM_BASE_URL` in the container's environment so generated links (QR codes, invite links, OIDC redirects) use the public URL:
 
 ```yaml
 environment:

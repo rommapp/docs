@@ -5,7 +5,7 @@ description: The humans, projects, and services that make RomM possible.
 
 # Credits
 
-RomM exists because a lot of people contributed code, designs, translations, ideas, and, most importantly, running bug reports back to the project. Thanks to every one of them.
+This project exists because a lot of people contributed code, designs, translations, ideas, and, most importantly, running bug reports back to the project. Thanks to every one of them.
 
 ## Contributors
 
@@ -18,7 +18,7 @@ RomM exists because a lot of people contributed code, designs, translations, ide
 
 ## Translators
 
-RomM's 19 locales exist because individual community members took the time to translate the UI. See each locale folder's commit history at [rommapp/romm/tree/master/frontend/src/locales](https://github.com/rommapp/romm/tree/master/frontend/src/locales) for per-locale credit.
+The 19 locales exist because individual community members took the time to translate the UI. See each locale folder's commit history at [rommapp/romm/tree/master/frontend/src/locales](https://github.com/rommapp/romm/tree/master/frontend/src/locales) for per-locale credit.
 
 ## Community apps
 
@@ -30,7 +30,7 @@ Donors via [Open Collective](https://opencollective.com/romm) make continued dev
 
 ## Upstream projects
 
-RomM stands on an enormous amount of open-source work. In rough order of "how visible they are to users":
+This stack stands on an enormous amount of open-source work. In rough order of "how visible they are to users":
 
 ### In-browser emulation
 

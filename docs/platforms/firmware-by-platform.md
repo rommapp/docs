@@ -5,7 +5,7 @@ description: Per-platform firmware/BIOS requirements for in-browser play.
 
 # Firmware by Platform
 
-This page lists the firmware RomM's EmulatorJS cores need for each platform. For the admin-side workflow (uploading, managing, bundling multi-file firmware), see [Firmware Management](../administration/firmware-management.md).
+This page lists the firmware the EmulatorJS cores need for each platform. For the admin-side workflow (uploading, managing, bundling multi-file firmware), see [Firmware Management](../administration/firmware-management.md).
 
 <!-- prettier-ignore -->
 !!! note "Legality is your problem"

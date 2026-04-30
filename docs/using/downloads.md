@@ -9,9 +9,9 @@ description: Download ROMs from RomM to your local device
 
 The quick path: hover a game card → click **Download**. Or from the game detail page → **Download** button.
 
-RomM streams the file directly, with no temp file on disk, no copy, and no waiting for packaging, so large ROMs and multi-disc sets download just as quickly as small ones.
+The file streams directly, with no temp file on disk, no copy, and no waiting for packaging, so large ROMs and multi-disc sets download just as quickly as small ones.
 
-For multi-file games (folder-based), RomM streams a zip on the fly. See [Multi-file downloads](#multi-file-and-bulk-downloads-nginx-mod_zip) below.
+For multi-file games (folder-based), a stream of a zip on the fly. See [Multi-file downloads](#multi-file-and-bulk-downloads-nginx-mod_zip) below.
 
 ## Copy download link
 
@@ -31,17 +31,17 @@ The QR decodes to the same URL as Copy Link, and the same auth rules apply.
 
 ### Nintendo 3DS direct install
 
-The 3DS built-in QR scanner can install compatible `.cia` files directly from a URL. For supported Nintendo 3DS files, RomM's QR code becomes a one-tap install path:
+The 3DS built-in QR scanner can install compatible `.cia` files directly from a URL. For supported Nintendo 3DS files, the QR code becomes a one-tap install path:
 
-1. Open the ROM on RomM → context menu → **Show QR Code**.
+1. Open the ROM → context menu → **Show QR Code**.
 2. On the 3DS, launch FBI (or another CIA installer that accepts QR input).
 3. Select **Install from URL** → **Scan QR** → point at your screen.
 
-Same prerequisites as any Copy Link / QR download: the 3DS needs network access to your RomM instance, and the file has to be accessible (either authenticated with basic-auth support on the 3DS side, or `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` behind upstream auth).
+Same prerequisites as any Copy Link / QR download: the 3DS needs network access to your instance, and the file has to be accessible (either authenticated with basic-auth support on the 3DS side, or `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` behind upstream auth).
 
 ## Multi-file and bulk downloads (nginx `mod_zip`)
 
-RomM's nginx is built with `mod_zip`, which streams a zip archive over HTTP without ever materialising the file on disk. Two places this matters:
+The bundled nginx is built with `mod_zip`, which streams a zip archive over HTTP without ever materialising the file on disk. Two places this matters:
 
 ### Multi-disc / multi-file games
 
@@ -66,7 +66,7 @@ This makes ROM and firmware download URLs work unauthenticated.
 
 <!-- prettier-ignore -->
 !!! danger "Only enable this behind upstream auth"
-    This flag makes your library world-downloadable from whatever URL RomM lives at. Only set it when you have authentication at the reverse-proxy layer (Authelia, Cloudflare Access, an IP allowlist, a VPN).
+    This flag makes your library world-downloadable from whatever URL serves it. Only set it when you have authentication at the reverse-proxy layer (Authelia, Cloudflare Access, an IP allowlist, a VPN).
 
 For authenticated programmatic use, a [Client API Token](account-and-profile.md) is the cleaner answer:
 
@@ -82,7 +82,7 @@ Some emulators can take an HTTP URL directly. Point them at the same URL the Cop
 
 ## Download history
 
-Not tracked in 5.0: RomM doesn't log downloads for privacy reasons, so use your reverse proxy's access log if you need to audit.
+Not tracked in 5.0: Downloads aren.t logged for privacy reasons, so use your reverse proxy's access log if you need to audit.
 
 ## Troubleshooting
 

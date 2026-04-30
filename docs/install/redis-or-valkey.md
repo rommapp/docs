@@ -5,12 +5,12 @@ description: Why RomM needs Redis, how it's run, and when to split it out.
 
 # Redis or Valkey
 
-RomM needs a Redis-protocol server. It's used for:
+A Redis-protocol server is needed for:
 
 - **Session storage**: login sessions, CSRF tokens
 - **Background task queue**: scans, metadata syncs, sync operations run through RQ (Redis Queue).
 - **Cache**: metadata lookups, heartbeat data, paired-device tokens, rate-limit counters
-- **socket.io**: multi-instance pubsub for live updates (only relevant if you're running more than one RomM container)
+- **socket.io**: multi-instance pubsub for live updates (only relevant if you're running more than one container)
 
 Both **Redis** and **Valkey** (the open-source Redis fork maintained by the Linux Foundation after Redis Inc.'s license change) are supported. They're interchangeable: Valkey is a drop-in wire-compatible replacement. Pick either.
 
@@ -25,7 +25,7 @@ The default `full-image` container runs a Redis server inside itself. Zero confi
 Better for:
 
 - Any production instance you care about
-- Multiple RomM replicas sharing state
+- Multiple replicas sharing state
 - Homelabs that already run a Redis box and want consistency
 
 ```yaml
@@ -79,7 +79,7 @@ romm-redis:
 
 ## Option C: external managed Redis
 
-If you've got an AWS ElastiCache / Upstash / Redis Cloud instance, point RomM at it:
+If you've got an AWS ElastiCache / Upstash / Redis Cloud instance, point your stack at it:
 
 ```yaml
 environment:
@@ -88,19 +88,19 @@ environment:
     - REDIS_USERNAME=romm # omit if your Redis uses legacy auth
     - REDIS_PASSWORD=<managed-pw>
     - REDIS_SSL=true # for managed Redis, almost always yes
-    - REDIS_DB=0 # separate RomM from other apps on the same instance
+    - REDIS_DB=0 # keep this isolated from other apps on the same instance
 ```
 
 The full list of Redis env vars lives in [Environment Variables](../reference/environment-variables.md).
 
 ## Tuning
 
-RomM's Redis usage is light: sessions, a queue, a bit of cache. Defaults are fine for anything up to tens of thousands of ROMs and a few dozen users. Things to know:
+Redis usage is light: sessions, a queue, a bit of cache. Defaults are fine for anything up to tens of thousands of ROMs and a few dozen users. Things to know:
 
 - **`appendonly yes`** is strongly recommended (what the reference compose uses). Without it, a crash loses any task currently in the queue.
 - **RDB snapshotting** is fine on top. `save 60 1` gives you a minutely snapshot.
-- **Memory**: RomM doesn't hold large blobs in Redis. A 256 MB `maxmemory` is plenty for most instances.
-- **Key eviction**: leave `maxmemory-policy` alone (default: `noeviction`). RomM doesn't tolerate silent key loss: sessions would drop and running tasks would lose state.
+- **Memory**: large blobs aren't held in Redis. A 256 MB `maxmemory` is plenty for most instances.
+- **Key eviction**: leave `maxmemory-policy` alone (default: `noeviction`). Silent key loss isn't tolerated: sessions would drop and running tasks would lose state.
 
 ## Verifying it works
 
@@ -109,10 +109,10 @@ docker exec romm redis-cli -h "$REDIS_HOST" -p "$REDIS_PORT" -a "$REDIS_PASSWD" 
 # PONG
 ```
 
-If you see `PONG` from the RomM container, you're good. If not, check:
+If you see `PONG` from the container, you're good. If not, check:
 
-- That the DNS name in `REDIS_HOST` resolves from the RomM container (use `docker exec romm getent hosts romm-redis`)
+- That the DNS name in `REDIS_HOST` resolves from the container (use `docker exec romm getent hosts romm-redis`)
 - That the password is correct. `redis-cli -a` will say `NOAUTH` if wrong.
 - That `REDIS_SSL=true` matches whether the server actually requires TLS
 
-Debugging further: see the Redis line in `docker logs romm` at startup, where RomM logs the connection target.
+Debugging further: see the Redis line in `docker logs romm` at startup, where the connection target is logged.

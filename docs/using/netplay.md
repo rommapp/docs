@@ -11,13 +11,13 @@ Best for 2-player co-op and turn-based games. Not ideal for twitchy fighting gam
 
 <!-- prettier-ignore -->
 !!! note "Netplay is a v5.0 feature"
-    If you're on an older RomM (4.x), Netplay was disabled with known issues. 5.0 brings it back as a supported feature.
+    If you.re on an older release (4.x), Netplay was disabled with known issues. 5.0 brings it back as a supported feature.
 
 ## Prerequisites
 
 - EmulatorJS Netplay enabled in `config.yml` (operator-level)
 - ICE servers configured (STUN + TURN). Without them, Netplay only works when all players are on the same LAN.
-- All players need access to your RomM instance. Netplay doesn't proxy the ROM to people without RomM accounts.
+- All players need access to your instance. Netplay doesn.t proxy the ROM to people without accounts.
 
 See [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay-new-in-50) for the operator-side setup.
 
@@ -27,18 +27,18 @@ See [Configuration File → `emulatorjs.netplay`](../reference/configuration-fil
 2. Once loaded, click the 🌐 (globe) icon in the bottom toolbar.
 3. Enter your display name (shown to other players).
 4. **Create Room** → optional password.
-5. Players who can reach your RomM see the room in the Netplay list.
+5. Players who can reach your instance see the room in the Netplay list.
 
 You're Player 1. Up to three more players can join as Players 2–4 (core-dependent, some only support 2).
 
 ## Joining a room
 
 1. Open the same ROM (or any ROM, and open the 🌐 panel).
-2. **Available Rooms** lists active rooms on your RomM.
+2. **Available Rooms** lists active rooms on your instance.
 3. Join → enter password if required.
 4. Wait for the host to start. You'll see their game once the session's live.
 
-Other players must be on **your RomM**. Netplay doesn't federate across instances.
+Other players must be on **your instance**. Netplay doesn't federate across instances.
 
 ## Controls
 
@@ -76,7 +76,7 @@ For production Netplay, operators should get a dedicated TURN account (free tier
 
 - **Not all cores support Netplay.** SNES9x, Mupen64Plus, Mednafen PSX, Genesis Plus GX: generally yes. Cores like PPSSPP or dosbox-pure: no
 - **Frame-perfect fighting isn't realistic.** Netplay is for casual co-op, not tournament-level fighting games. Use something like [FightCade](https://www.fightcade.com/) for that.
-- **All players need RomM access.** There's no "join a friend's game without an account". Guests need at least a Viewer account on your instance.
+- **All players need an account.** There's no "join a friend's game without an account". Guests need at least a Viewer account on your instance.
 - **RTC over TURN uses real bandwidth.** Hosting a 4-player N64 session over TURN can saturate a modest uplink. Prefer STUN where possible.
 
 ## Known caveat: nightly CDN
@@ -87,16 +87,16 @@ When Netplay is enabled, EmulatorJS loads some assets (localisation, some cores)
 https://cdn.emulatorjs.org/nightly/...
 ```
 
-Occasional hiccups (404s, untranslated UI strings) happen when the nightly is out of sync with the stable bundle RomM ships. Usually self-heals on the next RomM image update. If you care about long-term stability and don't need Netplay, leave it off.
+Occasional hiccups (404s, untranslated UI strings) happen when the nightly is out of sync with the stable bundle that ships. Usually self-heals on the next image update. If you care about long-term stability and don't need Netplay, leave it off.
 
 ## Security
 
-Netplay room data is short-lived, with no persistent record on RomM beyond the [Netplay Cleanup scheduled task](../administration/scheduled-tasks.md) sweep. Passwords protect room access but aren't stored long-term.
+Netplay room data is short-lived, with no persistent record beyond the [Netplay Cleanup scheduled task](../administration/scheduled-tasks.md) sweep. Passwords protect room access but aren't stored long-term.
 
 ## Troubleshooting
 
 - **"Failed to start game"**: Netplay server-side config is broken. Operator: check `docker logs romm | grep -i netplay`. Usually a misconfigured ICE server URL
-- **Other players can't see my room**: either they're not on your RomM (shouldn't happen if they have accounts) or the WebSocket connection is broken. See [WebSocket Troubleshooting](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint).
+- **Other players can't see my room**: either they.re not on your instance (shouldn't happen if they have accounts) or the WebSocket connection is broken. See [WebSocket Troubleshooting](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint).
 - **Game plays fine locally but Netplay glitches**: network round-trip is too high. Test with Players on the same LAN first, then add TURN and re-test from outside.
 - **Audio desync**: known WebRTC issue. Try a different browser (Chrome is most-tested), or restart the session.
 

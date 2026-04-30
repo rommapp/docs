@@ -5,7 +5,7 @@ description: Add RomM to your phone or desktop home screen for an app-like exper
 
 # Install as PWA
 
-RomM ships as a **Progressive Web App**: a proper manifest, service worker, and icons. You can install it to your phone or desktop and launch it like a native app. Same RomM, no browser chrome.
+Ships as a **Progressive Web App**: a proper manifest, service worker, and icons. You can install it to your phone or desktop and launch it like a native app. Same app, no browser chrome.
 
 New in 5.0.
 
@@ -20,11 +20,11 @@ New in 5.0.
 
 ### Chrome
 
-1. Open your RomM URL in Chrome.
+1. Open your instance URL in Chrome.
 2. Tap the **three-dot menu** → **Install app** (or "Add to Home screen" on older Chrome).
 3. Confirm.
 
-An icon appears on your home screen. Launching opens RomM full-screen.
+An icon appears on your home screen. Launching opens it full-screen.
 
 ### Samsung Internet / Other Android browsers
 
@@ -34,12 +34,12 @@ Similar: look for "Add to Home screen" in the share / menu.
 
 iOS Safari is slightly different and has no true PWA parity (some APIs are missing) but the basic install flow works:
 
-1. Open your RomM URL in **Safari** (not Chrome, because on iOS, Chrome uses Safari's engine but doesn't expose the install flow).
+1. Open your instance URL in **Safari** (not Chrome, because on iOS, Chrome uses Safari's engine but doesn't expose the install flow).
 2. Tap the **Share** button (square with arrow).
 3. **Add to Home Screen**.
 4. Name it, tap **Add**.
 
-The icon appears on your home screen. Launching opens RomM in a standalone Safari view.
+The icon appears on your home screen. Launching opens it in a standalone Safari view.
 
 iOS limitations:
 
@@ -81,7 +81,7 @@ Uninstalling just removes the shortcut and cached shell. Nothing server-side is 
 
 ## Updating
 
-The service worker checks for new versions on launch. If RomM updates, the next time you open the PWA you get the latest shell. Browser-managed, no manual action.
+The service worker checks for new versions on launch. After an update, the next time you open the PWA you get the latest shell. Browser-managed, no manual action.
 
 If a stale shell is causing issues (e.g. seeing old UI after an upgrade), force-refresh:
 
@@ -91,8 +91,8 @@ If a stale shell is causing issues (e.g. seeing old UI after an upgrade), force-
 
 ## Limitations
 
-- **Requires HTTPS**: PWAs don't install from plain-HTTP hosts. Make sure your RomM is behind a reverse proxy with TLS. See [Reverse Proxy](../install/reverse-proxy.md).
-- **Icons**: RomM ships 192×192 and 512×512 manifest icons. Some devices pick a mid-size fallback that looks slightly blurry. Known limitation, we'll expand the icon set over time.
+- **Requires HTTPS**: PWAs don't install from plain-HTTP hosts. Make sure your instance is behind a reverse proxy with TLS. See [Reverse Proxy](../install/reverse-proxy.md).
+- **Icons**: 192×192 and 512×512 manifest icons ship by default. Some devices pick a mid-size fallback that looks slightly blurry. Known limitation, we'll expand the icon set over time.
 - **No push notifications yet**: the PWA manifest doesn't register a notification handler in 5.0. Scan completion, task failures, etc. don't notify you.
 - **Offline mode is partial**: opening the installed PWA offline shows the shell but you can't actually browse the library or play anything without the server reachable.
 
@@ -105,7 +105,7 @@ PWA + [Console Mode](console-mode.md) is a powerful combo:
 
 ## Troubleshooting
 
-- **No Install option in Chrome**: RomM isn't on HTTPS, or the manifest is missing/broken. Open devtools → Application → Manifest to diagnose.
+- **No Install option in Chrome**: your instance isn't on HTTPS, or the manifest is missing/broken. Open devtools → Application → Manifest to diagnose.
 - **Icon shows as a generic globe**: manifest icons aren't loading. Check the image URLs in devtools → Application → Manifest.
 - **App won't open offline**: expected, because only the shell caches, not data. Network access is required for everything useful.
 

@@ -11,7 +11,7 @@ description: Wire up SSO to Keycloak
 
 Keycloak installed and running via their [getting started guide](https://www.keycloak.org/getting-started).
 
-Log into the **Admin Console** and either create a new realm for RomM or reuse an existing one.
+Log into the **Admin Console** and either create a new realm for the app or reuse an existing one.
 
 ## 2. Add a client
 
@@ -30,7 +30,7 @@ In the Admin Console, select your realm → **Clients** → **Create client**.
     - **Web origins**: `https://demo.romm.app`
 6. Save, then head to the **Credentials** tab and copy the **Client Secret**.
 
-## 3. Configure RomM
+## 3. Configure
 
 ```yaml
 environment:
@@ -45,17 +45,17 @@ environment:
 
 `OIDC_SERVER_APPLICATION_URL` must include the realm (`.../realms/<realm-name>`), not just the Keycloak root.
 
-## 4. Set email on RomM + verify in Keycloak
+## 4. Set email + verify in Keycloak
 
-In RomM → **Profile** → set your email to the same address Keycloak has for you.
+In **Profile** → set your email to the same address Keycloak has for you.
 
-On the Keycloak side, go to **Admin Console → Users** and mark each RomM user's email as **verified**. Users with unverified emails will be rejected on login.
+On the Keycloak side, go to **Admin Console → Users** and mark each user.s email as **verified**. Users with unverified emails will be rejected on login.
 
 ## 5. Test
 
-Restart RomM, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Keycloak → authenticate → bounced back and signed into RomM!
+Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Keycloak → authenticate → bounced back and signed in!
 
-If a user already exists in RomM with a matching email, they're signed into that account. Otherwise RomM creates a new account with Viewer permissions.
+If a local user already exists with a matching email, they're signed into that account. Otherwise a new account is created with Viewer permissions.
 
 If it doesn't work, head to [Authentication Troubleshooting](../../troubleshooting/authentication.md).
 
@@ -74,7 +74,7 @@ environment:
 
 ## 7. (Optional) Role mapping
 
-By default, new OIDC users come in as Viewers. To map Keycloak roles/groups to RomM roles:
+By default, new OIDC users come in as Viewers. To map Keycloak roles/groups to local roles:
 
 ```yaml
 environment:

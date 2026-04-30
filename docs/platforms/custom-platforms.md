@@ -60,7 +60,7 @@ services:
 
 2. Seed it with the official icons
 
-RomM's built-in icons live at [`frontend/assets/platforms`](https://github.com/rommapp/romm/tree/master/frontend/assets/platforms). Download them all and drop into your mounted directory, otherwise built-in platforms lose their icons too (because your mount overrides the whole directory).
+The built-in icons live at [`frontend/assets/platforms`](https://github.com/rommapp/romm/tree/master/frontend/assets/platforms). Download them all and drop into your mounted directory, otherwise built-in platforms lose their icons too (because your mount overrides the whole directory).
 
 3. Add your custom `.ico` files
 

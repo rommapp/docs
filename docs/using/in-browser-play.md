@@ -84,7 +84,7 @@ Keyboard + gamepad can be used simultaneously for multi-player: player 2 on the 
 RomM integrates with EmulatorJS so save-files and save-states are loaded and saved automatically:
 
 - **Before launch**: if multiple saves exist, RomM asks which to load.
-- **During play**: any in-emulator save (SRAM flush) or state creation is written straight back to RomM's storage.
+- **During play**: any in-emulator save (SRAM flush) or state creation is written straight back to the storage.
 - **After quit**: everything is already persisted. No manual download
 
 Full details: [Saves & States](saves-and-states.md).
@@ -134,7 +134,7 @@ No controller mapping, so gamepad-only users will struggle with most Flash title
 
 ### Saves
 
-Ruffle writes Flash's local-storage to RomM's assets directory. Appears under the game's **Game Data** tab like emulator saves.
+Ruffle writes Flash's local-storage to the assets directory. Appears under the game's **Game Data** tab like emulator saves.
 
 ### Supported games
 

@@ -5,7 +5,7 @@ description: Logs, error tracking and telemetry
 
 # Observability
 
-It's often handy to know waht RomM is doing under the hood, especially when debugging a scan or task. RomM's observability stack includes:
+It.s often handy to know what.s happening under the hood, especially when debugging a scan or task. the observability stack includes:
 
 - **Container logs**: always available, the first stop
 - **`/api/heartbeat`** endpoint: health + config summary for uptime monitors
@@ -21,7 +21,7 @@ environment:
     - NO_COLOR=1 # 1 to disable colour entirely
 ```
 
-`INFO` is the default and the sane choice for production. Drop to `DEBUG` only while debugging a specific issue, because RomM is chatty on `DEBUG`.
+`INFO` is the default and the sane choice for production. Drop to `DEBUG` only while debugging a specific issue, because `DEBUG` is chatty.
 
 ### Reading logs
 
@@ -83,7 +83,7 @@ What's sent:
 - Per-request timing on slow endpoints
 - Redacted URL parameters (secrets stripped)
 
-What's not sent: ROM filenames, user credentials, metadata provider API keys. RomM filters sensitive parameters before reporting.
+What's not sent: ROM filenames, user credentials, metadata provider API keys. Sensitive parameters are filtered before reporting.
 
 ## OpenTelemetry
 
@@ -97,7 +97,7 @@ environment:
     - OTEL_RESOURCE_ATTRIBUTES=deployment.environment=prod
 ```
 
-Standard [OTEL env vars](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) apply. RomM emits:
+Standard [OTEL env vars](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) apply. The app emits:
 
 - **Traces**: HTTP request spans, DB query spans, RQ job spans
 - **Metrics**: request counts, durations, queue depth, scan progress

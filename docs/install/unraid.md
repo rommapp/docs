@@ -14,7 +14,7 @@ Both end up with the same running stack.
 
 <!-- prettier-ignore -->
 !!! warning "Back up `appdata` before updates"
-    Tearing down the RomM container wipes its resources directory (covers, screenshots, cached metadata). Mount `appdata` on a safe path or [back it up](backup-and-restore.md) before every upgrade.
+    Tearing down the container wipes its resources directory (covers, screenshots, cached metadata). Mount `appdata` on a safe path or [back it up](backup-and-restore.md) before every upgrade.
 
 ---
 
@@ -23,7 +23,7 @@ Both end up with the same running stack.
 ### Prerequisites for CA
 
 - [Community Apps plugin](https://forums.unraid.net/topic/38582-plug-in-community-applications/) installed
-- A custom Docker bridge network so RomM and MariaDB can talk to each other by container name. Skip this and you'll hit DNS issues that look like everything else.
+- A custom Docker bridge network so the app and MariaDB can talk to each other by container name. Skip this and you'll hit DNS issues that look like everything else.
 
     ```sh
     docker network create romm
@@ -44,7 +44,7 @@ Fill in the env vars. Names and sensible defaults live in the [reference `docker
 
 <!-- prettier-ignore -->
 !!! warning "Network type"
-    MariaDB's network type **must** be set to `Custom: romm`. Otherwise RomM can't resolve its hostname.
+    MariaDB's network type **must** be set to `Custom: romm`. Otherwise the app can.t resolve its hostname.
 
 2. Install RomM
 
@@ -58,7 +58,7 @@ Fill in env vars, ports, and paths per the [reference compose](docker-compose.md
 
 3. Done
 
-Apply, head back to the **Docker** tab, and you should see both containers running. Access RomM at the IP:port highlighted below.
+Apply, head back to the **Docker** tab, and you should see both containers running. Access the app at the IP:port highlighted below.
 
 ![RomM and MariaDB running](https://github.com/user-attachments/assets/cba26de1-d2c9-4fff-88d8-bc7701f0dd88)
 
@@ -103,7 +103,7 @@ Click **Compose Up**.
 
 ![Compose Up Working](../resources/unraid/docker-compose-loading.png)
 
-Copy `IP:Port` from the RomM container and open it in a browser. The first-run Setup Wizard should appear.
+Copy `IP:Port` from the container and open it in a browser. The first-run Setup Wizard should appear.
 
 ![Compose Up](../resources/unraid/docker-compose-up.png)
 

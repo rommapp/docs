@@ -13,7 +13,7 @@ See [Introduction](../index.md) for the full pitch, or [Quick Start](../getting-
 
 <!-- prettier-ignore -->
 !!! note "RomM is server software you run on a homelab box or NAS"
-    It is not a desktop app, and there's no `.exe` or `.appimage`. You'll need basic Linux + Docker skills to set it up. RomM also doesn't provide games or copyrighted material.
+    It is not a desktop app, and there's no `.exe` or `.appimage`. You'll need basic Linux + Docker skills to set it up. Games and copyrighted material aren't provided.
 
 ## Is it free?
 
@@ -21,11 +21,11 @@ Yes! Licensed under [AGPL-3.0](license.md), the core will always be free. Other 
 
 ## How does it compare to [X other manager]?
 
-RomM emphasises self-hosted + multi-user + in-browser-play + the companion-app ecosystem. Try RomM if those matter, but if you just want a local Windows app that scans a folder, tools like LaunchBox may fit better.
+The emphasis here is self-hosted + multi-user + in-browser-play + the companion-app ecosystem. If those matter, try it, but if you just want a local Windows app that scans a folder, tools like LaunchBox may fit better.
 
 ## Do I need metadata API keys?
 
-Not strictly. RomM runs without any but games won't match against a metadata source, so no covers, descriptions, or ratings.
+Not strictly. It runs without any but games won't match against a metadata source, so no covers, descriptions, or ratings.
 
 Hasheous + IGDB + SteamGridDB + RetroAchievements is the recommended set, though many users only run ScreenScraper + Retroachievements (see [Metadata Providers](../administration/metadata-providers.md) for the full list).
 
@@ -81,21 +81,21 @@ Full troubleshooting steps can be found in [Scanning Troubleshooting](../trouble
 
 ## My scan finds platforms but no games inside them
 
-This is almost always a mount-depth issue. RomM expects the _parent_ of your `roms/` folder mounted to `/romm/library`, not the `roms/` folder itself. If your files live at `/opt/romm/library/roms/gbc/game.gbc`, mount `/opt/romm/library` to `/romm/library`, then re-scan.
+This is almost always a mount-depth issue. The scanner expects the _parent_ of your `roms/` folder mounted to `/romm/library`, not the `roms/` folder itself. If your files live at `/opt/romm/library/roms/gbc/game.gbc`, mount `/opt/romm/library` to `/romm/library`, then re-scan.
 
 See [Folder Structure](../getting-started/folder-structure.md) and [Scanning Troubleshooting](../troubleshooting/scanning.md) for the full layout and common mount mistakes.
 
 ## Why is my metadata wrong or incomplete?
 
-RomM doesn't own the metadata, it only pulls from third parties like IGDB and ScreenScraper. If a field is missing or wrong, the fix has to happen upstream on the provider's site. Cross-check against another provider if one is consistently off for your library.
+Metadata isn't owned, only pulled from third parties like IGDB and ScreenScraper. If a field is missing or wrong, the fix has to happen upstream on the provider's site. Cross-check against another provider if one is consistently off for your library.
 
 ## Why am I getting a "Configuration file not Mounted!" error?
 
-RomM uses a `config.yml` in its `/config` folder at startup. If the mount/file is missing or the file is unreadable, it bails with this error. See [Configuration File](../reference/configuration-file.md) for the schema and an example you can drop in.
+A `config.yml` is read from `/config` at startup. If the mount/file is missing or unreadable, startup bails with this error. See [Configuration File](../reference/configuration-file.md) for the schema and an example you can drop in.
 
 ## Can I play PS3 or newer consoles in the browser?
 
-**No.** In-browser emulation handles 4th-gen and earlier systems well. Saturn, PS1, and N64 are hit-or-miss. PSP and newer are mostly unplayable. Browser play is a bonus, as RomM is a library manager first, and standalone emulators remain the right tool for modern systems. See [Supported Platforms](../platforms/supported-platforms.md) for the current list.
+**No.** In-browser emulation handles 4th-gen and earlier systems well. Saturn, PS1, and N64 are hit-or-miss. PSP and newer are mostly unplayable. Browser play is a bonus, as this is a library manager first, and standalone emulators remain the right tool for modern systems. See [Supported Platforms](../platforms/supported-platforms.md) for the current list.
 
 ## Why is browser emulation laggy or not loading?
 
@@ -111,7 +111,7 @@ Full troubleshooting steps can be found in [In-Browser Play](../troubleshooting/
 
 Add them as users via the invite flow, then either:
 
-- Expose RomM publicly behind a [Reverse Proxy](../install/reverse-proxy.md) with TLS.
+- Expose your instance publicly behind a [Reverse Proxy](../install/reverse-proxy.md) with TLS.
 - Keep it private and share access over a VPN or Tailscale.
 
 See [Invitations & Registration](../administration/invitations-and-registration.md) and [Mobile & TV → Self-hosting tips](../using/mobile-and-tv.md#self-hosting-tips).
@@ -120,7 +120,7 @@ See [Invitations & Registration](../administration/invitations-and-registration.
 
 Yes, several first-party apps (all in beta or actively developed):
 
-- **[Argosy](../ecosystem/first-party-apps.md#argosy-launcher)**: Android launcher for your RomM library
+- **[Argosy](../ecosystem/first-party-apps.md#argosy-launcher)**: Android launcher for your library
 - **[Grout](../ecosystem/first-party-apps.md#grout)**: companion for Linux-based handhelds (muOS / NextUI and friends)
 - **[Playnite Plugin](../ecosystem/first-party-apps.md#playnite-plugin)** for Windows desktop
 

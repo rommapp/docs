@@ -15,7 +15,7 @@ You'll need:
 
 - [Docker](https://docs.docker.com/get-docker/) and Docker Compose installed on the host
 - Your ROM files organised in the expected [folder structure](folder-structure.md)
-- API credentials for at least one [metadata provider](../administration/metadata-providers.md). Hasheous + IGDB + SteamGridDB + Retroachievements is the recommended pairing. RomM will run without any provider configured but matching quality will suffer.
+- API credentials for at least one [metadata provider](../administration/metadata-providers.md). Hasheous + IGDB + SteamGridDB + Retroachievements is the recommended pairing. It will run without any provider configured but matching quality will suffer.
 
 <!-- prettier-ignore -->
 !!! warning "Metadata providers are recommended"
@@ -23,7 +23,7 @@ You'll need:
 
 ## 1. Write your `docker-compose.yml`
 
-Start from the reference file shipped in the RomM repo. A known-good, minimally-edited version is included below. Save it as `docker-compose.yml` in an empty directory on your host.
+Start from the reference file shipped in the repo. A known-good, minimally-edited version is included below. Save it as `docker-compose.yml` in an empty directory on your host.
 
 <!-- prettier-ignore -->
 ???+ example "docker-compose.yml"
@@ -41,7 +41,7 @@ You'll want to edit the following values before launching:
 | `romm`    | `ROMM_AUTH_SECRET_KEY`    | Generate with `openssl rand -hex 32` and keep it secret.                                                               |
 | `romm`    | Metadata provider creds   | Fill in only the providers you've registered with (see [Metadata Providers](../administration/metadata-providers.md)). |
 | `romm`    | `/path/to/library` volume | Host path to the directory containing your `roms/` folder.                                                             |
-| `romm`    | `/path/to/assets` volume  | Host path where RomM will store saves, states, uploaded screenshots.                                                   |
+| `romm`    | `/path/to/assets` volume  | Host storage paths for saves, states and screenshots.                                                           |
 | `romm`    | `/path/to/config` volume  | Host path to a directory that will hold `config.yml`.                                                                  |
 
 Generate the auth secret now so you don't forget:
@@ -59,7 +59,7 @@ From the directory containing your `docker-compose.yml`:
 docker compose up -d
 ```
 
-On the first run Docker will pull `rommapp/romm:latest` and `mariadb:latest`, bring up the database, wait for the healthcheck, then start RomM. Verify everything is running:
+On the first run Docker will pull `rommapp/romm:latest` and `mariadb:latest`, bring up the database, wait for the healthcheck, then bring up the app. Verify everything is running:
 
 ```sh
 docker ps -f name=romm
@@ -83,21 +83,21 @@ docker ps -f name=romm
 
 ## 3. Create the admin user
 
-Open `http://<host>:80` in a browser. The first time RomM starts, you'll be redirected to the **Setup Wizard**. Set an admin username and password (the first user created always gets the Admin role), then log in.
+Open `http://<host>:80` in a browser. On first start, you'll be redirected to the **Setup Wizard**. Set an admin username and password (the first user created always gets the Admin role), then log in.
 
 ## 4. Scan your library
 
-The fastest way to populate RomM is to let it scan your mounted library:
+The fastest way to populate it is to let it scan your mounted library:
 
 1. Click **Scan** in the sidebar.
 2. Pick the metadata providers you configured in step 1.
-3. Start the scan. You can open any matched game while the scan continues to see the metadata RomM pulled.
+3. Start the scan. You can open any matched game while the scan continues to see the pulled metadata.
 4. When the scan finishes, click the RomM logo to return home. You'll see your platforms and the most recently added games.
 
 That's it, you're up and running! From here:
 
 - Add more users and lock down access: [Users & Roles](../administration/users-and-roles.md)
-- Put RomM behind a reverse proxy with HTTPS: [Reverse Proxy](../install/reverse-proxy.md)
+- Put your instance behind a reverse proxy with HTTPS: [Reverse Proxy](../install/reverse-proxy.md)
 - Learn what all those settings mean: [Glossary](../reference/glossary.md)
 
 ## Alternative: upload ROMs through the UI

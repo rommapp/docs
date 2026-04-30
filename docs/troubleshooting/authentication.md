@@ -18,7 +18,7 @@ Fix: [clear cookies](https://support.google.com/accounts/answer/32050) for the R
 
 CSRF protection is on by default, so a mismatched or missing `csrftoken` cookie causes this.
 
-1. Reload the page: RomM sets a fresh CSRF cookie on GET requests, which should fix it on the next POST.
+1. Reload the page: a fresh CSRF cookie is set on GET requests, which should fix it on the next POST.
 2. Still broken? Clear cookies for the RomM host and hard-reload (`CMD+SHIFT+R` / `CTRL+F5`).
 3. Known to happen on Chrome specifically, and rare on Firefox/Safari.
 
@@ -26,7 +26,7 @@ If you're behind a reverse proxy and CSRF keeps failing, the proxy is probably s
 
 ## `400 Bad Request` on the WebSocket endpoint
 
-Your reverse proxy is stripping the WebSocket upgrade, and RomM uses socket.io for live updates (scan progress, Netplay).
+Your reverse proxy is stripping the WebSocket upgrade, and live updates (scan progress, Netplay) use socket.io.
 
 Fixes per proxy:
 
@@ -42,7 +42,7 @@ IGDB creds are wrong or revoked on the Twitch side.
 1. Go to [dev.twitch.tv/console/apps](https://dev.twitch.tv/console/apps).
 2. Verify your RomM application still exists.
 3. Regenerate the Client Secret, and copy both Client ID and Client Secret.
-4. Update `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` in your RomM env.
+4. Update `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` in your env.
 5. `docker compose up -d` to pick up the new values.
 
 ## Password logins are disabled, OIDC is broken, I'm locked out
@@ -61,7 +61,7 @@ This is the reason [OIDC Setup](../administration/oidc/index.md) tells you to ve
 
 ### `redirect_uri_mismatch`
 
-The `OIDC_REDIRECT_URI` in RomM's env doesn't **exactly** match what's registered at the IdP.
+The `OIDC_REDIRECT_URI` in the env doesn't **exactly** match what's registered at the IdP.
 
 Check for:
 
@@ -74,7 +74,7 @@ Fix: make them identical on both sides.
 
 ### User is created but stays Viewer, even though they should be Admin
 
-You configured `OIDC_CLAIM_ROLES` but RomM isn't honouring it.
+You configured `OIDC_CLAIM_ROLES` but it's not being honoured.
 
 1. **Is the claim actually in the token?** Decode your IdP's ID token at [jwt.io](https://jwt.io) and verify the claim name (e.g. `groups`, `realm_access.roles`) is present and non-empty.
 2. **Does the value match?** `OIDC_ROLE_ADMIN=romm-admin` will only match if the claim contains exactly the string `romm-admin`, and it's case-sensitive.
@@ -88,18 +88,18 @@ On Zitadel, open the application → **Token Settings** → tick **User Info ins
 
 See [OIDC with Zitadel → Enable claims](../administration/oidc/zitadel.md) for the full walkthrough.
 
-### Authentik 2025.10: login succeeds but RomM rejects the user
+### Authentik 2025.10: login succeeds but the user is rejected
 
-Authentik 2025.10 changed the default `email_verified` claim from `true` to `false` but RomM requires a verified email so the claim must arrive as `true`.
+Authentik 2025.10 changed the default `email_verified` claim from `true` to `false` but a verified email is required so the claim must arrive as `true`.
 
 Fix: add the property mapping documented in [OIDC with Authentik → Create a property mapping](../administration/oidc/authentik.md#2-create-a-property-mapping-authentik-202510).
 
-### Keycloak: user created in RomM but can't log in
+### Keycloak: user created locally but can't log in
 
 Two possibilities:
 
-1. **Email not verified in Keycloak**: Admin Console → Users → open the user → **Email Verified**: on. RomM rejects unverified emails.
-2. **Email mismatch between Keycloak and a pre-existing RomM user**: if RomM already has a local account `alice@example.com`, the first OIDC login for `alice@example.com` signs into that account. If the emails don't match exactly, RomM creates a _second_ account. Fix: edit the user in RomM to set the correct email, then log in via OIDC.
+1. **Email not verified in Keycloak**: Admin Console → Users → open the user → **Email Verified**: on. Unverified emails are rejected.
+2. **Email mismatch between Keycloak and a pre-existing local user**: if a local account `alice@example.com` already exists, the first OIDC login for `alice@example.com` signs into that account. If the emails don't match exactly, a _second_ account is created. Fix: edit the local user to set the correct email, then log in via OIDC.
 
 ### `OAuthException: expired token` on callback
 
@@ -107,7 +107,7 @@ Your RomM host and the IdP have significant clock drift, so run NTP on both.
 
 ### Autologin loops forever
 
-You set `OIDC_AUTOLOGIN=true` and your IdP keeps bouncing you back to RomM, which bounces you back to the IdP.
+You set `OIDC_AUTOLOGIN=true` and your IdP keeps bouncing you back, which bounces you back to the IdP.
 
 Usually because something else in the chain (a CSRF check, a cookie domain mismatch, a reverse-proxy rewrite) is breaking the post-callback handoff. To escape:
 

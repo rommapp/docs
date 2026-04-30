@@ -5,7 +5,7 @@ description: Operator-level setup for the Ruffle Flash / Shockwave player.
 
 # Ruffle Configuration
 
-[Ruffle](https://ruffle.rs/) is RomM's Flash / Shockwave emulator. End-user details in [In-Browser Play → Ruffle](../using/in-browser-play.md#ruffle). This page is for operators.
+[Ruffle](https://ruffle.rs/) is the bundled Flash / Shockwave emulator. End-user details in [In-Browser Play → Ruffle](../using/in-browser-play.md#ruffle). This page is for operators.
 
 ## Enable / disable
 

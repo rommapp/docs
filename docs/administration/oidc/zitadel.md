@@ -42,7 +42,7 @@ Click **Create**. The **client secret is shown once**, copy it now!
 
 Without this, RomM throws "Email is missing from token" on login. Open the application's **Token Settings** tab → tick **User Info inside ID Token** → **Save**.
 
-## 5. Configure RomM
+## 5. Configure
 
 ```yaml
 environment:
@@ -59,12 +59,12 @@ Zitadel's OIDC discovery URL is at `<OIDC_SERVER_APPLICATION_URL>/.well-known/op
 
 For role mapping from Zitadel, see [OIDC Setup → Role mapping](index.md#role-mapping).
 
-## 6. Set email on RomM + Zitadel
+## 6. Set email + Zitadel
 
 In RomM → **Profile** → set your email to exactly the same address your Zitadel user has.
 
 ## 7. Test
 
-Restart RomM, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Zitadel → authenticate → bounced back and signed into RomM!
+Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Zitadel → authenticate → bounced back and signed in!
 
 If it doesn't work, head to [Authentication Troubleshooting](../../troubleshooting/authentication.md).

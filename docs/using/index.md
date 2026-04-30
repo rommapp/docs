@@ -1,6 +1,6 @@
 ---
 title: Using RomM
-description: End-user guide on how to browse, play, collect, patch, and share from the RomM UI.
+description: End-user guide on how to browse, play, collect, patch, and share from the UI.
 ---
 
 # Using RomM

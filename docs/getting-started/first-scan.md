@@ -5,15 +5,15 @@ description: Populate a fresh RomM install by scanning the library for the first
 
 # Your First Scan
 
-You've got RomM running ([Quick Start](quick-start.md)), your ROMs are laid out correctly ([Folder Structure](folder-structure.md)), and metadata credentials are configured ([Metadata Providers](../administration/metadata-providers.md)). Time to let RomM catalogue everything.
+You've got RomM running ([Quick Start](quick-start.md)), your ROMs are laid out correctly ([Folder Structure](folder-structure.md)), and metadata credentials are configured ([Metadata Providers](../administration/metadata-providers.md)). Time to catalogue everything.
 
 ## Before you hit scan
 
 A fifteen-second check that saves hours:
 
 - **Library is mounted**: on the host, `ls /path/to/library` should show your `roms/` (or per-platform) folders. If it doesn't, the mount is wrong.
-- **At least one metadata provider is configured**: RomM will scan without one but every game comes back "unmatched" and you'll have nothing useful to look at.
-- **The Setup Wizard is done**: if RomM is still showing the wizard, finish that first. The first user becomes an admin.
+- **At least one metadata provider is configured**: Scans run without one but every game comes back "unmatched" and you'll have nothing useful to look at.
+- **The Setup Wizard is done**: if the wizard is still showing, finish that first. The first user becomes an admin.
 
 ## Run the scan
 
@@ -25,7 +25,7 @@ A fifteen-second check that saves hours:
 The page switches to a live feed of the scan's progress. You can leave and come back later, or even close the browser and check back in an hour. During the scan:
 
 - Per-platform **accordion panels** show counts update live: total found, matched, unmatched.
-- You can click a **matched ROM** while the scan is still running to see what metadata RomM pulled, with no need to wait for the full run.
+- You can click a **matched ROM** while the scan is still running to see the pulled metadata, with no need to wait for the full run.
 
 First scans on big libraries take a while: expect ~4 seconds per ROM with a fast network to IGDB/ScreenScraper, and hashing (which runs unless you disabled it) adds IO time proportional to file size.
 
@@ -49,7 +49,7 @@ Most of these are fixable: see [Scanning Troubleshooting](../troubleshooting/sca
 
 ## When the scan finishes
 
-Click the **RomM logo** (top-left) to go home. You should see:
+Click the **logo** (top-left) to go home. You should see:
 
 - Platform cards for each folder it scanned
 - A **Recently Added** carousel on the dashboard
@@ -66,7 +66,7 @@ From here, typical next steps:
 
 If you're adding ROMs later and don't want a full rescan:
 
-- **New Platforms**: only scans folders RomM hasn't seen before, and it's fast.
+- **New Platforms**: only scans folders not seen before, and it's fast.
 - **Quick**: skips ROMs already catalogued, a good default for "I added a few games".
 - **Unmatched**: re-runs matching against ROMs without a provider ID, ideal after adding a metadata provider.
 

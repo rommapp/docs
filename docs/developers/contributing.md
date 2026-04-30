@@ -1,6 +1,6 @@
-# Contributing to RomM's documentation
+# Contributing to the documentation
 
-Thank you for considering contributing to RomM's documentation! This document outlines some guidelines to help you get started with your contributions.
+Thank you for considering contributing to the documentation! This document outlines some guidelines to help you get started with your contributions.
 
 **If you're looking to implement a large feature or make significant changes to the project, it's best to open an issue first AND join the Discord to discuss your ideas with the maintainers.**
 
@@ -77,8 +77,8 @@ If you encounter any bugs or have suggestions for improvements, please [create a
 
 ## Licensing
 
-By contributing to RomM's documentation, you agree that your contributions will be licensed under the project's [LICENSE](LICENSE).
+By contributing to the documentation, you agree that your contributions will be licensed under the project's [LICENSE](LICENSE).
 
 ---
 
-Thank you for contributing to RomM's documentation! Your help is greatly appreciated.
+Thank you for contributing to the documentation! Your help is greatly appreciated.

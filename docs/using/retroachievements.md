@@ -7,23 +7,23 @@ description: Link your RetroAchievements account, surface progression, and brows
 
 [RetroAchievements](https://retroachievements.org/) adds Xbox-style achievements to retro games. Thousands of classic titles have had achievement sets authored by the community, from NES through PSX and beyond.
 
-When RomM is wired up to RetroAchievements, each user's progression (achievements unlocked, percentage complete, hardcore flag) is surfaced per-game in the UI.
+When wired up to RetroAchievements, each user's progression (achievements unlocked, percentage complete, hardcore flag) is surfaced per-game in the UI.
 
 ## Prerequisites
 
-1. **RomM operator** has to enable the provider. See [Metadata Providers → RetroAchievements](../administration/metadata-providers.md#retroachievements). Check by looking for the achievement tab on any known-supported game. If it's absent, the provider isn't active.
+1. **The operator** has to enable the provider. See [Metadata Providers → RetroAchievements](../administration/metadata-providers.md#retroachievements). Check by looking for the achievement tab on any known-supported game. If it's absent, the provider isn't active.
 2. **You** need a [RetroAchievements account](https://retroachievements.org/) and your personal **API key**.
 
 ## Linking your account
 
 1. Go to your [RA settings page](https://retroachievements.org/settings).
 2. Scroll to **Web API Keys** → copy the generated key.
-3. In RomM → **Profile** → **RetroAchievements** section → paste:
+3. In **Profile** → **RetroAchievements** section → paste:
     - **Username**: your RA username (case-sensitive).
     - **API Key**: the key you just copied.
-4. **Sync now**: RomM pulls your progression data and populates the Achievements tab on matched games.
+4. **Sync now**: progression data is pulled and populates the Achievements tab on matched games.
 
-From this point on, RomM auto-syncs every user's progression via the nightly RetroAchievements Sync scheduled task. See [Scheduled Tasks](../administration/scheduled-tasks.md). No manual sync needed but you can force one from the Profile page whenever.
+From this point on, auto-sync runs every user's progression via the nightly RetroAchievements Sync scheduled task. See [Scheduled Tasks](../administration/scheduled-tasks.md). No manual sync needed but you can force one from the Profile page whenever.
 
 ## Where it shows up
 
@@ -57,7 +57,7 @@ RetroAchievements distinguishes two play modes:
 - **Softcore**: save states allowed. Achievements still count.
 - **Hardcore**: no save states. More points per achievement, flagged separately
 
-RomM doesn't enforce hardcore. You toggle it per-game in RetroAchievements-capable cores. Loading a save state during a hardcore run will silently drop hardcore crediting on the RA server side. You'll still see the achievement but marked as softcore.
+Hardcore isn.t enforced server-side. You toggle it per-game in RetroAchievements-capable cores. Loading a save state during a hardcore run will silently drop hardcore crediting on the RA server side. You'll still see the achievement but marked as softcore.
 
 If you care about hardcore, use the in-game save feature instead of save states. See [Saves & States → RetroAchievements and states](saves-and-states.md#retroachievements-and-states).
 
@@ -79,7 +79,7 @@ Some tips:
 ## Privacy
 
 - Your RA API key is stored server-side (per-user), encrypted at rest.
-- RomM only calls RA using your key for _your_ data, never shares across users.
+- Calls to RA only use your key for _your_ data, never shares across users.
 - Admins can see which users have RA linked but not the API keys themselves.
 
 To unlink: Profile → RetroAchievements → **Unlink** → confirm. Key is deleted. Progression data stays cached until the next sync pass.

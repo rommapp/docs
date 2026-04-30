@@ -14,7 +14,7 @@ description: Clean up and normalise your ROM collection
 - You have a messy collection with inconsistent naming, mixed formats, dumps from multiple sources.
 - You want to **match against No-Intro / Redump DAT files** to verify authenticity and standardise names.
 - You want to **filter** only retail releases, or strip out hacks, or keep only one region, etc.
-- You want to move / rename files to RomM's expected platform folder layout.
+- You want to move / rename files to the expected platform folder layout.
 
 ## Directory setup
 
@@ -136,7 +136,7 @@ The `.m3u` is a playlist RomM respects for launching multi-disc games.
 
 ## Importing
 
-Once `roms-verified/` looks right, mount it as RomM's library:
+Once `roms-verified/` looks right, mount it as the library:
 
 ```yaml
 services:

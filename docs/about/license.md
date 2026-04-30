@@ -40,7 +40,7 @@ Docs (this site) are CC0: do whatever you want with the content. Attribution app
 
 ## Third-party components
 
-RomM ships several third-party components with their own licenses: [EmulatorJS](https://emulatorjs.org/), [Ruffle](https://ruffle.rs/), Vue, FastAPI, and a long list of smaller dependencies. Their licenses apply to their respective code, and none of them override AGPL-3.0 on the RomM code itself.
+Several third-party components ship with their own licenses: [EmulatorJS](https://emulatorjs.org/), [Ruffle](https://ruffle.rs/), Vue, FastAPI, and a long list of smaller dependencies. Their licenses apply to their respective code, and none of them override AGPL-3.0 on the RomM code itself.
 
 Full list via `uv tree` in the backend and `npm ls` in the frontend. Redistribution respects each upstream's terms.
 
@@ -60,11 +60,11 @@ Yes but you owe your users the source, so you can't run a modified closed-source
 
 ### Can I sell ROMs through RomM?
 
-RomM doesn't care: legality of doing so is governed by copyright law, not AGPL.
+License-wise, doesn.t matter: legality of doing so is governed by copyright law, not AGPL.
 
 ### Is there a commercial / dual-license option?
 
-No, AGPL-only, and if that's a blocker then RomM isn't the right choice.
+No, AGPL-only, and if that's a blocker then this isn.t the right choice.
 
 ## Contributions
 

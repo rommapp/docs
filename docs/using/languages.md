@@ -1,11 +1,11 @@
 ---
 title: Languages
-description: Switch the RomM UI language, 19 locales supported in 5.0.
+description: Switch the UI language, 19 locales supported in 5.0.
 ---
 
 # Languages
 
-RomM's UI is translated into 19 locales. Pick yours from **Profile → User Interface → Language**. The change is immediate: no reload, no re-login.
+The UI is translated into 19 locales. Pick yours from **Profile → User Interface → Language**. The change is immediate: no reload, no re-login.
 
 ## Supported locales
 

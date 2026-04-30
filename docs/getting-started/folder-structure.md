@@ -31,7 +31,7 @@ The BIOS / firmware tree is **optional**: only platforms that require firmware f
 
 ### Mount point
 
-The path you mount into the RomM container as `/romm/library` depends on which structure you pick:
+The path you mount into the container as `/romm/library` depends on which structure you pick:
 
 - **Structure A**: mount the parent of the `roms/` folder.
 - **Structure B**: mount the parent of the platform folders.

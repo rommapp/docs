@@ -5,7 +5,7 @@ description: Deploy RomM on Kubernetes with manifest examples, required quirks, 
 
 # Kubernetes
 
-There's no official Helm chart for RomM in 5.0. This page walks through a production-grade manifest set and points at the community charts worth looking at.
+No official Helm chart in 5.0. This page walks through a production-grade manifest set and points at the community charts worth looking at.
 
 <!-- prettier-ignore -->
 !!! note "Community-maintained charts"
@@ -14,13 +14,13 @@ There's no official Helm chart for RomM in 5.0. This page walks through a produc
 ## What you need
 
 - A cluster running Kubernetes 1.27+
-- Persistent storage for the DB, cache, and RomM's assets/resources/config (block or RWX, see below)
+- Persistent storage for the DB, cache, and the assets/resources/config (block or RWX, see below)
 - An Ingress controller (nginx-ingress, Traefik, etc.) for external access
 - cert-manager or equivalent for HTTPS
 
 ## Required quirk: `enableServiceLinks: false`
 
-Kubernetes injects service addresses as environment variables into every pod (`HOSTNAME_PORT=tcp://<service-ip>:<port>`). nginx inside the RomM image picks these up and tries to bind to the service IP, producing:
+Kubernetes injects service addresses as environment variables into every pod (`HOSTNAME_PORT=tcp://<service-ip>:<port>`). nginx inside the container image picks these up and tries to bind to the service IP, producing:
 
 ```text
 invalid host in "tcp://<internal ip>:8080" of the "listen" directive in
@@ -41,7 +41,7 @@ spec:
             enableServiceLinks: false # ← required
 ```
 
-Without this, RomM crashloops on startup. This is the single most common Kubernetes gotcha. If you're here because of the error above, add the flag and move on.
+Without this, the app crashloops on startup. This is the single most common Kubernetes gotcha. If you're here because of the error above, add the flag and move on.
 
 ## Namespace
 
@@ -76,7 +76,7 @@ stringData:
 
 ## MariaDB
 
-A single-replica MariaDB is fine for most RomM deployments. Use a StatefulSet so the PVC survives pod restarts.
+A single-replica MariaDB is fine for most deployments. Use a StatefulSet so the PVC survives pod restarts.
 
 ```yaml
 apiVersion: apps/v1
@@ -273,7 +273,7 @@ spec:
     resources: { requests: { storage: 5Gi } }
 ```
 
-For shared library access (multiple RomM replicas, or CI jobs that bulk-import), use RWX on the library PVC (NFS, CephFS, Longhorn-RWX). Assets must also be RWX if you ever run more than one RomM replica.
+For shared library access (multiple replicas, or CI jobs that bulk-import), use RWX on the library PVC (NFS, CephFS, Longhorn-RWX). Assets must also be RWX if you ever run more than one replica.
 
 ## Ingress
 
@@ -310,9 +310,9 @@ spec:
 
 ## Scaling notes
 
-- **One RomM replica** is the simple path. The scan runs as a single worker, which prefers a single replica.
+- **One replica** is the simple path. The scan runs as a single worker, which prefers a single replica.
 - **Multiple replicas** work but you need RWX for `/romm/assets` and `/romm/resources` and an external Redis (set `REDIS_HOST` to a shared service). See [Redis or Valkey](redis-or-valkey.md).
-- **No HPA** (horizontal pod autoscaler) on RomM: CPU spikes during scans are normal and not a scaling signal.
+- **No HPA** (horizontal pod autoscaler) on the app: CPU spikes during scans are normal and not a scaling signal.
 
 ## Updating
 

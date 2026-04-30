@@ -7,7 +7,7 @@ description: RomM release cadence, versioning policy, docs versions, and per-maj
 
 ## Current version
 
-RomM's current stable is [`5.0.0`](changelog.md). Read [Upgrading to 5.0](upgrading-to-5.0.md) if you're coming from 4.x.
+The current stable is [`5.0.0`](changelog.md). Read [Upgrading to 5.0](upgrading-to-5.0.md) if you're coming from 4.x.
 
 ## Versioning
 

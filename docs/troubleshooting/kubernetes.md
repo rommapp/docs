@@ -7,9 +7,9 @@ description: Fix Kubernetes-specific RomM issues.
 
 ## `invalid host in "tcp://<ip>:8080" of the "listen" directive`
 
-The flagship K8s gotcha. Kubernetes auto-injects service addresses as env vars (`SERVICENAME_PORT=tcp://...`), which RomM's nginx then tries to bind to.
+The flagship K8s gotcha. Kubernetes auto-injects service addresses as env vars (`SERVICENAME_PORT=tcp://...`), which the nginx then tries to bind to.
 
-Fix: disable service-link env vars on the RomM pod.
+Fix: disable service-link env vars on the pod.
 
 ```yaml
 apiVersion: apps/v1
@@ -97,7 +97,7 @@ Fix: add an init container that waits, or a `readinessProbe` + generous `startup
 
 ## Scheduler tasks don't run
 
-RomM schedules tasks via RQ. If Redis is an external service and the RomM pod can't reach it, scheduled tasks silently don't fire.
+RomM schedules tasks via RQ. If Redis is an external service and the pod can't reach it, scheduled tasks silently don't fire.
 
 Check:
 

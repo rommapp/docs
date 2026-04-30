@@ -32,7 +32,7 @@ Native apps give you proper file pickers, OS notifications, and nicer integratio
 
 ### Touch vs mouse
 
-The main RomM UI handles touch gracefully. [Console Mode](console-mode.md) is gamepad-first but works with touch on handhelds that lack a gamepad.
+The main UI handles touch gracefully. [Console Mode](console-mode.md) is gamepad-first but works with touch on handhelds that lack a gamepad.
 
 ## TVs and set-top boxes
 
@@ -52,14 +52,14 @@ Now it looks and feels like a console UI, running on a web page. Launching a gam
 Most TVs and cheap Android boxes don't have the horsepower for heavy in-browser emulation (Saturn, Dreamcast, PSP). Two workarounds:
 
 1. **Lighter cores**: EmulatorJS works fine on most platforms up to 16-bit and N64 on modest hardware. Stick to older systems and it's great.
-2. **Native companion app**: install [RetroArch](https://retroarch.com/) or another emulator on the device, and sync ROMs/saves to it via a RomM companion app (Argosy, DeckRommSync, etc.). RomM's library management + your native emulator's playback.
+2. **Native companion app**: install [RetroArch](https://retroarch.com/) or another emulator on the device, and sync ROMs/saves to it via a companion app (Argosy, DeckRommSync, etc.). The library management + your native emulator's playback.
 
 ## Handhelds
 
-Handhelds running custom firmware (muOS, Batocera, Knulli, ArkOS, JELOS, ROCKNIX) aren't traditional RomM clients. They don't run browsers well, and you probably don't want to play in one anyway. The integration pattern is:
+Handhelds running custom firmware (muOS, Batocera, Knulli, ArkOS, JELOS, ROCKNIX) aren't traditional clients. They don't run browsers well, and you probably don't want to play in one anyway. The integration pattern is:
 
-1. **RomM hosts the library** on your home server.
-2. **A companion app on the handheld** syncs ROMs, saves, and states to/from RomM.
+1. **Library hosted** on your home server.
+2. **A companion app on the handheld** syncs ROMs, saves, and states bidirectionally.
 3. **The handheld plays games locally** using its native emulators (RetroArch et al.).
 
 Recommended companions:
@@ -72,7 +72,7 @@ All of these use [Client API Tokens](../developers/client-api-tokens.md) for aut
 
 ## Steam Deck
 
-Two ways to use RomM on a Deck:
+Two ways to use it on a Deck:
 
 ### Desktop mode
 
@@ -105,11 +105,11 @@ If you host RomM on a home server and want to reach it from cellular:
 
 - Put it behind a reverse proxy with TLS. See [Reverse Proxy](../install/reverse-proxy.md).
 - Use a VPN (Tailscale, WireGuard) instead of exposing to the internet. Handhelds with Tailscale setups "just work".
-- For public access without a VPN, put Cloudflare Access or similar zero-trust auth in front of RomM. Disable `ALLOW_PUBLIC_REGISTRATION` on RomM, because the edge auth handles gatekeeping.
+- For public access without a VPN, put Cloudflare Access or similar zero-trust auth in front. Disable `ALLOW_PUBLIC_REGISTRATION` because the edge auth handles gatekeeping.
 
 ## See also
 
 - [Install as PWA](pwa.md)
 - [Console Mode](console-mode.md)
-- [Integrations & Ecosystem](../ecosystem/index.md): every companion app RomM supports
+- [Integrations & Ecosystem](../ecosystem/index.md): every supported companion app
 - [Community section in the RomM README](https://github.com/rommapp/romm/#community): the full list with platform / status flags

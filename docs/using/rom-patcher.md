@@ -40,7 +40,7 @@ Menu bar → **Patcher** icon (a wrench). Admins and Editors can also reach it f
     - Optional **filename**: customise the output name. Defaults to `<original> [patched].<ext>`
 5. **Apply**.
 
-Everything runs client-side in the browser. The ROM never gets uploaded to the RomM server during patching (if you picked Download), so nothing leaves your machine.
+Everything runs client-side in the browser. The ROM never gets uploaded to the server during patching (if you picked Download), so nothing leaves your machine.
 
 ## Save to library
 

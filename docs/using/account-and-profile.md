@@ -15,12 +15,12 @@ Every user (Viewer, Editor, Admin) can manage their own profile. Admins can edit
 
 Editable from the profile page. Changing your email:
 
-- **OIDC users**: email is usually governed by the IdP. RomM lets you change it here but OIDC login will re-match on the IdP-supplied email at next login.
+- **OIDC users**: email is usually governed by the IdP. You can change it here but OIDC login will re-match on the IdP-supplied email at next login.
 - **Local users**: change freely. The new email is used for password reset (if email transport is configured, see [Authentication](../administration/authentication.md)).
 
 ### Password
 
-For local accounts: **Current password** + **New password** (twice). RomM uses bcrypt: no plaintext storage, no password recovery by the admin (admins reset by setting a new password but they can't see your old one).
+For local accounts: **Current password** + **New password** (twice). Bcrypt is used: no plaintext storage, no password recovery by the admin (admins reset by setting a new password but they can't see your old one).
 
 OIDC users don't have local passwords, because authentication is via the IdP. Password fields are hidden on the profile page.
 
@@ -30,7 +30,7 @@ Upload a PNG / JPEG / WebP, and it shows next to your name across the UI.
 
 ### Preferred username in OIDC
 
-If you're an OIDC user and want RomM to show your `preferred_username` from the token instead of your email local-part, the operator can set `OIDC_USERNAME_ATTRIBUTE=preferred_username`. See [OIDC Setup](../administration/oidc/index.md).
+If you're an OIDC user and want it to show your `preferred_username` from the token instead of your email local-part, the operator can set `OIDC_USERNAME_ATTRIBUTE=preferred_username`. See [OIDC Setup](../administration/oidc/index.md).
 
 ## Client API tokens
 
@@ -87,19 +87,19 @@ Available throughout the app:
 
 ## Accessibility
 
-RomM's main UI supports screen readers (VoiceOver, NVDA, JAWS, Orca). Every interactive element has proper ARIA labels, focus states are visible, and semantic heading structure is consistent.
+The main UI supports screen readers (VoiceOver, NVDA, JAWS, Orca). Every interactive element has proper ARIA labels, focus states are visible, and semantic heading structure is consistent.
 
 Other accessibility features:
 
 - **Keyboard-only navigation**: every user-facing action reachable without a mouse. Tab through interactive elements, and the shortcuts above get you around quickly.
 - **Dark / light / auto theme**: Profile → User Interface → Theme. Auto follows OS preference.
-- **Reduced motion**: RomM respects `prefers-reduced-motion` from your OS, so animations shorten or disable automatically.
+- **Reduced motion**: `prefers-reduced-motion` is respected from your OS, so animations shorten or disable automatically.
 - **19 locales**: see [Languages](languages.md).
 
 Gaps you should know about:
 
 - **[Console Mode](console-mode.md)** (the `/console` SPA) isn't currently screen-reader-friendly the way the main UI is. It's built around gamepad / spatial navigation. Stick with the main UI if you use assistive tech.
-- **In-browser play**: EmulatorJS is a third-party component and its accessibility is outside RomM's control.
+- **In-browser play**: EmulatorJS is a third-party component and its accessibility is outside our control.
 
 Known issue? Please file on [rommapp/romm](https://github.com/rommapp/romm/issues). Accessibility fixes get prioritised.
 
@@ -132,7 +132,7 @@ When deleted:
 
 If you signed in via OIDC:
 
-- Most fields are still editable on the RomM side. Email and role may be overwritten on next login based on IdP claims.
+- Most fields are still editable on the app side. Email and role may be overwritten on next login based on IdP claims.
 - **Logging out of RomM doesn't log out of the IdP** unless the operator has enabled `OIDC_RP_INITIATED_LOGOUT`. See [OIDC Setup](../administration/oidc/index.md).
 - Unlinking OIDC isn't currently supported from the profile page. If you want to convert to a local account, ask an admin to delete your OIDC-linked account, then re-register with a local email+password.
 
@@ -152,6 +152,6 @@ See those pages for detail.
 ## Troubleshooting
 
 - **"Current password incorrect"**: caps lock, or the password was changed by an admin. Ask them.
-- **Avatar upload silently fails**: file is too large. RomM accepts up to a few MB. Resize.
+- **Avatar upload silently fails**: file is too large. Avatar uploads cap at a few MB. Resize.
 - **Can't create API token**: you've hit the 25-token cap. Revoke old ones.
 - **OIDC login came back as Viewer when I'm an Admin**: role claim mapping is misconfigured or missing. See [OIDC Troubleshooting → Role mapping](../troubleshooting/authentication.md#user-is-created-but-stays-viewer-even-though-they-should-be-admin).

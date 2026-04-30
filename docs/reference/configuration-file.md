@@ -5,7 +5,7 @@ description: Full schema reference for config.yml
 
 # Configuration File
 
-RomM reads `config.yml` from `/romm/config/config.yml` inside the container. The whole file is optional: any section you omit falls back to RomM's defaults.
+RomM reads `config.yml` from `/romm/config/config.yml` inside the container. The whole file is optional: any section you omit falls back to the defaults.
 
 You can edit `config.yml` directly on disk **or** through **Administration → Library Management** in the UI, which is a two-way view of the same file.
 

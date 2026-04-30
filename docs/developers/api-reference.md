@@ -1,6 +1,6 @@
 ---
 title: API Reference
-description: Catalogue of RomM's API. Authoritative interactive docs live on each instance.
+description: Catalogue of the API. Authoritative interactive docs live on each instance.
 ---
 
 ## Interactive docs
@@ -24,7 +24,7 @@ REST isn't the only surface. Two socket.io endpoints cover live-update and coord
 
 ## Versioning
 
-RomM's API follows SemVer along with the rest of RomM:
+The API follows SemVer along with the rest of RomM:
 
 - **Breaking changes only in major versions.** Endpoint removal, required-parameter changes, incompatible response-schema shifts
 - **Minor versions add** endpoints, optional parameters, optional response fields.

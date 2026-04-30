@@ -5,19 +5,19 @@ description: Diagnose and fix library-scan problems.
 
 # Scanning Troubleshooting
 
-Most scan problems boil down to: library not mounted where RomM expects, folder structure wrong, or a metadata provider being unreachable.
+Most scan problems boil down to: library not mounted where expected, folder structure wrong, or a metadata provider being unreachable.
 
 ## Scan ends instantly / no platforms found
 
 Three common causes:
 
-1. **Library mounted in the wrong place**: RomM expects your library at `/romm/library` inside the container. Verify with `docker exec romm ls /romm/library`: you should see your `roms/` directory (Structure A) or platform folders (Structure B).
-2. **Permissions**: the RomM container has to read the files, so check from the host with `ls -lh /path/to/library`. If the RomM process can't see them, nothing scans.
-3. **Invalid folder structure**: review [Folder Structure](../getting-started/folder-structure.md). RomM tries Structure A first, so if it finds neither layout the scan completes in seconds with nothing found.
+1. **Library mounted in the wrong place**: The library is expected at `/romm/library` inside the container. Verify with `docker exec romm ls /romm/library`: you should see your `roms/` directory (Structure A) or platform folders (Structure B).
+2. **Permissions**: the container has to read the files, so check from the host with `ls -lh /path/to/library`. If the scanner can't see them, nothing scans.
+3. **Invalid folder structure**: review [Folder Structure](../getting-started/folder-structure.md). Structure A is tried first, so if it finds neither layout the scan completes in seconds with nothing found.
 
 ## "ROMs not found for platform X, check romm folder structure"
 
-Same root cause as the previous one: RomM needs a `roms/` directory somewhere, either `/romm/library/roms/{platform}/` (Structure A) or `/romm/library/{platform}/roms/` (Structure B).
+Same root cause as the previous one: A `roms/` directory is needed somewhere, either `/romm/library/roms/{platform}/` (Structure A) or `/romm/library/{platform}/roms/` (Structure B).
 
 Common mount-path mistakes:
 
@@ -35,7 +35,7 @@ Common mount-path mistakes:
 
 ## Platform folder isn't detected
 
-RomM matches your platform folder names against IGDB platform slugs, so if your folder is named differently, it won't match.
+Platform folder names are matched against IGDB platform slugs, so if your folder is named differently, it won't match.
 
 Example: Nintendo 64DD's IGDB slug is `64dd` ([igdb.com/platforms/64dd](https://www.igdb.com/platforms/64dd)), so the folder should be named `64dd/`. If your folder is `n64dd/` or `nintendo-64dd/`, it won't detect.
 

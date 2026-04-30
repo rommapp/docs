@@ -5,11 +5,11 @@ description: Export RomM metadata for use in other frontends: gamelist.xml and P
 
 # Exports
 
-RomM can emit your library metadata in formats other frontends expect. Useful when you run RomM as the library authority and a separate frontend (ES-DE, Batocera, Pegasus) as the actual launcher.
+Library metadata can be emitted in formats other frontends expect. Useful when this acts as the library authority and a separate frontend (ES-DE, Batocera, Pegasus) as the actual launcher.
 
 ## gamelist.xml (ES-DE / Batocera / RetroBAT)
 
-ES-DE, Batocera, and compatibles look for a `gamelist.xml` in each platform folder. RomM can generate these automatically.
+ES-DE, Batocera, and compatibles look for a `gamelist.xml` in each platform folder. These can be generated automatically.
 
 **Enable via `config.yml`**
 
@@ -61,7 +61,7 @@ Response includes where the files were written.
 
 ### Using with ES-DE
 
-Once RomM has generated `gamelist.xml` and populated `covers/` + `screenshots/`, point ES-DE at the library:
+Once `gamelist.xml` has been generated and populated `covers/` + `screenshots/`, point ES-DE at the library:
 
 ```xml
 <string name="MediaDirectory" value="/path/to/ROMs/folder" />
@@ -69,13 +69,13 @@ Once RomM has generated `gamelist.xml` and populated `covers/` + `screenshots/`,
 ```
 
 - `MediaDirectory`: point it at the ROM folder (same path ES-DE uses for `ROMDirectory`), so ES-DE looks for media in-place rather than in its own library.
-- `LegacyGamelistFileLocation`: makes ES-DE write updates back to the same `gamelist.xml` RomM reads from, rather than its separate config dir.
+- `LegacyGamelistFileLocation`: makes ES-DE write updates back to the same `gamelist.xml` read on import, rather than its separate config dir.
 
-See also [Metadata Providers → gamelist.xml](../administration/metadata-providers.md) for the _import_ direction (reading gamelist.xml into RomM).
+See also [Metadata Providers → gamelist.xml](../administration/metadata-providers.md) for the _import_ direction (reading gamelist.xml back in).
 
 ## Pegasus
 
-[Pegasus](https://pegasus-frontend.org/) is an alternative gaming frontend with its own metadata format. RomM can emit a `metadata.pegasus.txt` per platform.
+[Pegasus](https://pegasus-frontend.org/) is an alternative gaming frontend with its own metadata format. A `metadata.pegasus.txt` can be emitted per platform.
 
 **Enable via `config.yml`**
 
@@ -127,7 +127,7 @@ Exports don't auto-rerun on every metadata edit. Triggers:
 - **Manual trigger** via the API above
 - **Admin → Tasks → Export** (if surfaced in your build)
 
-For tight sync between RomM edits and the external frontend, run the export via cron or after major edits.
+For tight sync between local edits and the external frontend, run the export via cron or after major edits.
 
 ## Hash stability
 

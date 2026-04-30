@@ -26,8 +26,8 @@ The RomM stack has three parts:
 | ------------ | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `image`      | `rommapp/romm:latest` | Or `ghcr.io/rommapp/romm:latest`. Ideally, pin it to a specific tag (`5.0.0`) and see [Image Variants](image-variants.md) for `slim` vs `full`. |
 | `ports`      | `80:8080`             | Container listens on `8080`                                                                                                                     |
-| `volumes`    | see below             | RomM writes to four distinct paths inside the container.                                                                                        |
-| `depends_on` | `romm-db` (healthy)   | RomM exits on startup if the DB isn't reachable.                                                                                                |
+| `volumes`    | see below             | Writes to four distinct paths inside the container.                                                                                             |
+| `depends_on` | `romm-db` (healthy)   | Exits on startup if the DB isn't reachable.                                                                                                     |
 
 #### Volumes
 
@@ -58,7 +58,7 @@ Minimal set: see the [Environment Variables reference](../reference/environment-
 | ------------- | ----------------------------------------------- | ----------------------------------------------------- |
 | `image`       | `mariadb:latest`                                | Pin to a major version (`mariadb:11`) for production. |
 | `volumes`     | `mysql_data:/var/lib/mysql`                     | Back this up, since it's your entire catalogue.       |
-| `healthcheck` | `healthcheck.sh --connect --innodb_initialized` | RomM waits for this.                                  |
+| `healthcheck` | `healthcheck.sh --connect --innodb_initialized` | Required before app startup.                          |
 
 The default compose file uses MariaDB because it requires no extra driver configuration. To use PostgreSQL, swap the image for `postgres:16`, set `ROMM_DB_DRIVER=postgresql`, and point `DB_PORT` at `5432`: see [Databases](databases.md) for the full swap.
 

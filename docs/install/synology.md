@@ -22,7 +22,7 @@ Follow those if they match your setup. The walkthrough below is the fallback for
 
 ## 1. Create folders
 
-RomM wants its data split across a few well-known paths. Do this once, via SSH:
+Data is split across a few well-known paths. Do this once, via SSH:
 
 ### ROM library
 
@@ -31,7 +31,7 @@ mkdir -p /volume1/data/media/games/library/roms
 mkdir -p /volume1/data/media/games/library/bios
 ```
 
-The platform folder names inside `roms/` have to match RomM's conventions. See [Folder Structure](../getting-started/folder-structure.md).
+The platform folder names inside `roms/` have to match the expected naming. See [Folder Structure](../getting-started/folder-structure.md).
 
 ### User uploads + config
 
@@ -40,7 +40,7 @@ mkdir -p /volume1/data/media/games/assets
 mkdir -p /volume1/data/media/games/config
 ```
 
-### Docker volumes for RomM itself
+### Docker volumes for the app itself
 
 ```bash
 mkdir -p /volume1/docker/romm-project/
@@ -51,7 +51,7 @@ mkdir -p /volume1/docker/mariadb-romm
 
 ## 2. Create a bridge network
 
-RomM and MariaDB need to reach each other by container name. Create a Docker bridge named `rommbridge`: [guide here](https://drfrankenstein.co.uk/step-3-setting-up-a-docker-bridge-network-in-container-manager/).
+The app and MariaDB need to reach each other by container name. Create a Docker bridge named `rommbridge`: [guide here](https://drfrankenstein.co.uk/step-3-setting-up-a-docker-bridge-network-in-container-manager/).
 
 ## 3. Generate the auth secret
 
@@ -91,26 +91,26 @@ From the directory holding your compose file:
 sudo docker compose up -d
 ```
 
-**Be patient.** The first start takes a few minutes while MariaDB initialises, RomM runs migrations, and resources get seeded. Tail the logs:
+**Be patient.** The first start takes a few minutes while MariaDB initialises, migrations run, and resources get seeded. Tail the logs:
 
 ```bash
 sudo docker compose logs -f
 ```
 
-Once RomM reports it's listening, open `http://<nas-ip>:7676` in a browser. The Setup Wizard walks you through creating the first admin.
+Once startup reports it's listening, open `http://<nas-ip>:7676` in a browser. The Setup Wizard walks you through creating the first admin.
 
 ## Notes
 
 - **Permissions**: make sure the UID/GID in your compose file has read-write on every host path you mounted. Synology's default `docker` user is often `1024:100`, and the `apps` user is `568`. Pick one and be consistent.
-- **HTTPS**: put Synology's built-in reverse proxy (Control Panel → Login Portal → Advanced → Reverse Proxy) in front of RomM, or use the [Reverse Proxy](reverse-proxy.md) recipes.
-- **Back up `/volume1/docker/romm` and your DB volume** before upgrading RomM versions. See [Backup & Restore](backup-and-restore.md).
+- **HTTPS**: put Synology's built-in reverse proxy (Control Panel → Login Portal → Advanced → Reverse Proxy) in front, or use the [Reverse Proxy](reverse-proxy.md) recipes.
+- **Back up `/volume1/docker/romm` and your DB volume** before upgrading versions. See [Backup & Restore](backup-and-restore.md).
 
 ## Troubleshooting
 
 Common Synology gotchas:
 
-- **"Page not found" on first open**: DSM hit RomM before it finished first-run init. Wait for `docker compose logs -f` to calm down.
-- **Database connection errors**: check the MariaDB container is healthy (`docker ps` → status `healthy`), and that RomM's `DB_HOST` matches the MariaDB service name in compose.
+- **"Page not found" on first open**: DSM hit it before first-run init finished. Wait for `docker compose logs -f` to calm down.
+- **Database connection errors**: check the MariaDB container is healthy (`docker ps` → status `healthy`), and that `DB_HOST` matches the MariaDB service name in compose.
 - **Permission errors on assets/resources folders**: verify the UID/GID in the compose matches the owner of those host paths on the NAS (`ls -la /volume1/data/media/games/`).
 
 Synology-specific problems that come up often: [Synology Troubleshooting](../troubleshooting/synology.md).

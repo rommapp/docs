@@ -80,7 +80,7 @@ environment:
 
 `OIDC_REDIRECT_URI` must match what you put in `redirect_uris` exactly (scheme, host, path, no trailing slash). For role mapping from Authelia groups, see [OIDC Setup → Role mapping](index.md#role-mapping).
 
-## 5. Set your email on RomM
+## 5. Set your email
 
 In RomM → **Profile** → set your email to exactly the same address Authelia has for you. RomM matches OIDC users to existing accounts by email.
 
@@ -88,7 +88,7 @@ In RomM → **Profile** → set your email to exactly the same address Authelia 
 
 ## 6. Test
 
-Restart RomM, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Authelia → authenticate → bounced back and signed into RomM!
+Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Authelia → authenticate → bounced back and signed in!
 
 ![Login with OIDC](../../resources/authelia/2-romm-login.png)
 

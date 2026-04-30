@@ -29,7 +29,7 @@ Authorization: Bearer rmm_abcdef...
 
 ## Creating a token
 
-From the RomM UI: **Profile → Client API Tokens → + Create**.
+From the UI: **Profile → Client API Tokens → + Create**.
 
 - **Token name**: descriptive (e.g. "Grout on RG35XX")
 - **Expiration**: optional, blank = never expires until revoked
@@ -91,7 +91,7 @@ If the owning user's role drops below what the token needs, the token continues 
 ## Anti-patterns
 
 - **Sharing a token between users.** If two people need access, give them each an account and each creates their own token.
-- **Embedding a token in public source.** Obvious but worth saying, if you accidentally commit one, revoke immediately from the RomM UI.
+- **Embedding a token in public source.** Obvious but worth saying, if you accidentally commit one, revoke immediately from the UI.
 - **A single token for every app.** Name and scope per-app, so revoking one doesn't kill the others.
 - **Infinite-expiry tokens in untrusted locations.** If a device might be lost / handed off, set an expiry.
 

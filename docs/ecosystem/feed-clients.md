@@ -30,12 +30,12 @@ Two endpoints are involved on every install: the **feed** (the listing the clien
     <img src="../../resources/romm/integrations/tinfoil.svg" height="200px" width="200px" alt="RomM Tinfoil logo">
 </div>
 
-[Tinfoil](https://tinfoil.io) is Nintendo Switch homebrew for installing software from custom feed URLs. Point it at RomM's Tinfoil feed endpoint, and your Switch library becomes installable from the Switch itself over Wi-Fi.
+[Tinfoil](https://tinfoil.io) is Nintendo Switch homebrew for installing software from custom feed URLs. Point it at the Tinfoil feed endpoint, and your Switch library becomes installable from the Switch itself over Wi-Fi.
 
 ### Prerequisites
 
-- **`DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`** on your RomM instance, with a container restart applied. Tinfoil sends basic auth to the feed but not to the per-ROM download URLs the feed returns, so the download endpoint has to be open.
-- **Valid RomM credentials** for the user whose library you want exposed.
+- **`DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`** on your instance, with a container restart applied. Tinfoil sends basic auth to the feed but not to the per-ROM download URLs the feed returns, so the download endpoint has to be open.
+- **Valid credentials** for the user whose library you want exposed.
 - **Tinfoil installed on the Switch** by following Tinfoil's own docs.
 - **A Switch that can reach the server over the network.** Remote reachability requires reverse proxy + cert that the Switch accepts.
 
@@ -72,7 +72,7 @@ On reopen, you should see a custom message of the day: `RomM Switch Library`. If
 - **New Games** tab in Tinfoil: browseable list of your Switch ROMs
 - **File Browser**: pick a file to install directly.
 
-Tinfoil downloads the file (RomM serves `.nsp`, `.xci`, `.nsz`, `.xcz`, and `.nro`), installs to eMMC or SD, and cleans up, just like any homebrew installer.
+Tinfoil downloads the file (`.nsp`, `.xci`, `.nsz`, `.xcz`, and `.nro` are served), installs to eMMC or SD, and cleans up, just like any homebrew installer.
 
 ### Filename requirements
 
@@ -107,7 +107,7 @@ The bracketed `[0100000000010000]` is the title ID. Without it, Tinfoil shows th
 
 - **PS Vita** with [pkgj](https://github.com/blastrock/pkgj) installed
 - A way to edit files on the Vita ([VitaShell](https://github.com/TheOfficialFloW/VitaShell) works well)
-- **RomM reachable from the Vita** (HTTP or HTTPS both work)
+- **Reachable from the Vita** (HTTP or HTTPS both work)
 - Your games stored as `.pkg` files (it won't work with `.iso` or other formats)
 
 ### Feed URLs
@@ -141,11 +141,11 @@ The bracketed `[0100000000010000]` is the title ID. Without it, Tinfoil shows th
 
 ### Using pkgj
     
-Once configured, pkgj shows your RomM PS Vita / PSP library. Select a title and install!
+Once configured, pkgj shows your PS Vita / PSP library. Select a title and install!
 
 ### File format requirements
 
-**RomM lists `.pkg` files in pkgj feeds, plus compressed archives (`.zip`, `.7z`, etc.) for game entries. DLC stays `.pkg`-only.** If your Vita or PSP games are in `.iso`, `.chd`, or other uncompressed formats, they won't appear in pkgj. If you have non-`.pkg` files you want on the Vita, you'll need to convert them or use a different workflow (FTP through VitaShell, for example).
+**Listed in pkgj feeds: `.pkg` files plus compressed archives (`.zip`, `.7z`, etc.) for game entries. DLC stays `.pkg`-only.** If your Vita or PSP games are in `.iso`, `.chd`, or other uncompressed formats, they won't appear in pkgj. If you have non-`.pkg` files you want on the Vita, you'll need to convert them or use a different workflow (FTP through VitaShell, for example).
 
 ### Authentication notes
 
@@ -197,7 +197,7 @@ pkgi sends basic auth in its URL config like pkgj does. Either embed credentials
 
 - **HTTP 400 on the feed URL.** `{content_type}` isn't valid for the platform. PS3 and PSP only accept `game`, `dlc`, `demo`, `update`, `patch`. Vita is more permissive (see above).
 - **Feed is empty.** No `.pkg` files on the platform match the requested content type. Game listings also accept compressed archives, but only as top-level files within a ROM.
-- **Install fails on the client.** PS3/PSP need a matching `.rap` file in the same ROM (RomM picks it up automatically). Vita additionally needs a zRIF. The feed leaves it blank, so supply it through your client config.
+- **Install fails on the client.** PS3/PSP need a matching `.rap` file in the same ROM (picked up automatically). Vita additionally needs a zRIF. The feed leaves it blank, so supply it through your client config.
 
 ## fpkgi
 
@@ -207,7 +207,7 @@ pkgi sends basic auth in its URL config like pkgj does. Either embed credentials
 
 - Games stored as `.pkg` files!
 - **PS4 or PS5** with fpkgi installed (requires CFW / jailbreak, and setup is out of scope here)
-- **RomM reachable from the console over Wi-Fi.**
+- **Reachable from the console over Wi-Fi.**
 
 ### Feed URL
 
@@ -223,7 +223,7 @@ Example:
 https://demo.romm.app/api/feeds/fpkgi/ps4
 ```
 
-The feed returns JSON in the fpkgi-expected schema: titles, title IDs, content types, and URLs back to RomM for the actual downloads.
+The feed returns JSON in the fpkgi-expected schema: titles, title IDs, content types, and download URLs back to the server.
 
 ### Configuring fpkgi
 
@@ -237,7 +237,7 @@ Consult [fpkgi's README](https://github.com/CyberYoshi64/fpkgi) for the current 
 
 ### Authentication notes
 
-The `/api/feeds/fpkgi/` endpoints support basic auth the same way `/api/feeds/pkgi/` does. Either set basic-auth credentials in fpkgi's config (if it supports them) or use `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` on the RomM server.
+The `/api/feeds/fpkgi/` endpoints support basic auth the same way `/api/feeds/pkgi/` does. Either set basic-auth credentials in fpkgi's config (if it supports them) or use `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` on the server.
 
 ### File format
 
@@ -257,7 +257,7 @@ fpkgi only installs `.pkg` (PS4 `.pkg` specifically, not `.iso` or compressed), 
 
 - DS games in `.nds` format!
 - A Nintendo DS with Kekatsu installed (requires a flashcart or homebrew launcher)
-- **RomM reachable from the DS over Wi-Fi** (the DS's Wi-Fi is WEP / old WPA only)
+- **Reachable from the DS over Wi-Fi** (the DS's Wi-Fi is WEP / old WPA only)
 
 ### Feed URL
 

@@ -1,6 +1,6 @@
 ---
 title: API Authentication
-description: How to authenticate to the RomM API
+description: How to authenticate to the API
 ---
 
 # API Authentication

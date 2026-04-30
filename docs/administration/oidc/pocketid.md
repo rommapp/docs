@@ -38,7 +38,7 @@ environment:
 
 `OIDC_SERVER_APPLICATION_URL` is the root URL of your PocketID instance.
 
-## 4. Set your email on RomM
+## 4. Set your email
 
 RomM → **Profile** → set your email to exactly the same address PocketID has for you.
 
@@ -46,7 +46,7 @@ RomM → **Profile** → set your email to exactly the same address PocketID has
 
 ## 5. Test
 
-Restart RomM, navigate to `/login` and click the **Login with OIDC** button. You're redirected to PocketID → authenticate → bounced back and signed into RomM!
+Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to PocketID → authenticate → bounced back and signed in!
 
 ![Login with OIDC](../../resources/pocketid/2-romm-login.png)
 

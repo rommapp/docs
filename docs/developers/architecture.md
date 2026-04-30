@@ -1,6 +1,6 @@
 ---
 title: Architecture
-description: High-level walkthrough of the RomM codebase
+description: High-level walkthrough of the codebase
 ---
 
 # Architecture

@@ -27,7 +27,7 @@ RomM (ROM Manager) lets you scan, enrich, organise, and play your game collectio
 
     ***
 
-    15 minute Docker Compose walkthrough to a working RomM instance.
+    15 minute Docker Compose walkthrough to a working instance.
 
     [Quick Start →](getting-started/quick-start.md)
 
