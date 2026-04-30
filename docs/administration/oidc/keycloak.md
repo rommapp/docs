@@ -49,7 +49,7 @@ environment:
 
 In **Profile** → set your email to the same address Keycloak has for you.
 
-On the Keycloak side, go to **Admin Console → Users** and mark each user.s email as **verified**. Users with unverified emails will be rejected on login.
+On the Keycloak side, go to **Admin Console → Users** and mark each user's email as **verified**. Users with unverified emails will be rejected on login.
 
 ## 5. Test
 

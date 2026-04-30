@@ -25,7 +25,7 @@ Useful for importing from real hardware (Retrode / GB Operator / etc.) or from a
 
 1. Game detail → **Game Data** → **Upload Save**.
 2. Drop the file.
-3. Pick the emulator format if it can.t be inferred from the extension.
+3. Pick the emulator format if it can't be inferred from the extension.
 4. Save.
 
 The save is available to [in-browser play](in-browser-play.md) on the next launch.
@@ -102,7 +102,7 @@ Practical advice: stick to one core per platform if you use states heavily, or u
 
 ## RetroAchievements and states
 
-If you use [RetroAchievements](retroachievements.md) in hardcore mode, loading a save state **disables achievement tracking** for that session. This isn.t enforced locally but the RA server will stop crediting achievements. Use save files (the in-game save) instead of states if you care.
+If you use [RetroAchievements](retroachievements.md) in hardcore mode, loading a save state **disables achievement tracking** for that session. This isn't enforced locally but the RA server will stop crediting achievements. Use save files (the in-game save) instead of states if you care.
 
 ## Screenshots with states
 

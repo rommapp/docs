@@ -57,7 +57,7 @@ RetroAchievements distinguishes two play modes:
 - **Softcore**: save states allowed. Achievements still count.
 - **Hardcore**: no save states. More points per achievement, flagged separately
 
-Hardcore isn.t enforced server-side. You toggle it per-game in RetroAchievements-capable cores. Loading a save state during a hardcore run will silently drop hardcore crediting on the RA server side. You'll still see the achievement but marked as softcore.
+Hardcore isn't enforced server-side. You toggle it per-game in RetroAchievements-capable cores. Loading a save state during a hardcore run will silently drop hardcore crediting on the RA server side. You'll still see the achievement but marked as softcore.
 
 If you care about hardcore, use the in-game save feature instead of save states. See [Saves & States → RetroAchievements and states](saves-and-states.md#retroachievements-and-states).
 

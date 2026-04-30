@@ -1,14 +1,14 @@
 ---
 title: Unraid
-description: Install RomM on Unraid via the Community Apps template or the Docker Compose Manager plugin.
+description: Install Unraid via the Community Apps template or the DCM plugin
 ---
 
 # Unraid
 
 Two supported install paths on Unraid. Pick one:
 
-- **[Community Apps template](#community-apps-template)**: simplest. Install RomM and MariaDB as separate CA templates. Good for users who already manage containers one-at-a-time
-- **[Docker Compose Manager](#docker-compose-manager)**: closer to the upstream reference setup. Drops the standard `docker-compose.yml` in and uses the Compose plugin to manage it. Recommended if you're comfortable editing Compose files and want parity with other deployments
+- **[Community Apps template](#community-apps-template)**: Install RomM and MariaDB as separate CA templates. Good for users who already manage containers one-at-a-time
+- **[Docker Compose Manager](#docker-compose-manager)**: Drops the standard `docker-compose.yml` in and uses the Compose plugin to manage it. Recommended if you're comfortable editing Compose files and want parity with other deployments
 
 Both end up with the same running stack.
 
@@ -44,17 +44,17 @@ Fill in the env vars. Names and sensible defaults live in the [reference `docker
 
 <!-- prettier-ignore -->
 !!! warning "Network type"
-    MariaDB's network type **must** be set to `Custom: romm`. Otherwise the app can.t resolve its hostname.
+    MariaDB's network type **must** be set to `Custom: romm`. Otherwise the app can't resolve its hostname.
 
-2. Install RomM
+2. Installation
 
-From **Apps**, search `romm`, install the app labelled **OFFICIAL** (maintained by the RomM team, always current).
+From **Apps**, search `romm`, install the app labelled **OFFICIAL** (maintained by our team and always current).
 
-![RomM official app](https://github.com/user-attachments/assets/57c4d47a-8604-4e8d-b05a-84dd68dda124)
+![Official app](https://github.com/user-attachments/assets/57c4d47a-8604-4e8d-b05a-84dd68dda124)
 
 Fill in env vars, ports, and paths per the [reference compose](../getting-started/quick-start.md). Again, network type → `Custom: romm`.
 
-![RomM docker tab](https://github.com/user-attachments/assets/4c4210c2-ed00-4790-a945-65cbe33620b0)
+![Docker tab](https://github.com/user-attachments/assets/4c4210c2-ed00-4790-a945-65cbe33620b0)
 
 3. Done
 
@@ -113,20 +113,20 @@ Copy `IP:Port` from the container and open it in a browser. The first-run Setup 
 
 ## Video walkthroughs
 
-Community-made, still relevant for general Unraid/RomM debugging even if specific UI screens have drifted.
+Community-made, still relevant for general debugging even if specific UI screens have drifted.
 
 [DemonWarriorTech](https://www.youtube.com/@DemonWarriorTech): [How to Install RomM on Unraid (Beginner Friendly)](https://www.youtube.com/watch?v=Oo5obHNy2iw):
 
-[![RomM on Unraid, DemonWarriorTech](https://img.youtube.com/vi/Oo5obHNy2iw/0.jpg)](https://www.youtube.com/watch?v=Oo5obHNy2iw)
+[![Unraid, DemonWarriorTech](https://img.youtube.com/vi/Oo5obHNy2iw/0.jpg)](https://www.youtube.com/watch?v=Oo5obHNy2iw)
 
 [AlienTech42](https://www.youtube.com/@AlienTech42): [older install + debugging walkthrough](https://www.youtube.com/watch?v=ls5YcsFdwLQ). Install steps are out of date but the general-setup and debugging portions still hold.
 
-[![RomM on Unraid, AlienTech42](https://img.youtube.com/vi/ls5YcsFdwLQ/0.jpg)](https://www.youtube.com/watch?v=ls5YcsFdwLQ)
+[![Unraid, AlienTech42](https://img.youtube.com/vi/ls5YcsFdwLQ/0.jpg)](https://www.youtube.com/watch?v=ls5YcsFdwLQ)
 
 ## Unraid community support
 
-Dedicated [Unraid forums support thread](https://forums.unraid.net/topic/149738-support-eurotimmy-romm-rom-manager-by-zurdi15/): good for Unraid-specific questions that aren't in the RomM Discord's Unraid channel.
+The dedicated [Unraid forums support thread](https://forums.unraid.net/topic/149738-support-eurotimmy-romm-rom-manager-by-zurdi15/) is good for Unraid-specific questions that aren't in the Discord or docs.
 
 ## Shout-outs
 
-Thanks to @Smurre95 and @sfumat0 for documenting this process and getting RomM listed in Community Apps.
+Thanks to @Smurre95 and @sfumat0 for documenting this process and getting us listed in Community Apps!

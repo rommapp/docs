@@ -82,7 +82,7 @@ Some emulators can take an HTTP URL directly. Point them at the same URL the Cop
 
 ## Download history
 
-Not tracked in 5.0: Downloads aren.t logged for privacy reasons, so use your reverse proxy's access log if you need to audit.
+Not tracked in 5.0: Downloads aren't logged for privacy reasons, so use your reverse proxy's access log if you need to audit.
 
 ## Troubleshooting
 

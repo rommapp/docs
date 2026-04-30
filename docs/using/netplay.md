@@ -11,13 +11,13 @@ Best for 2-player co-op and turn-based games. Not ideal for twitchy fighting gam
 
 <!-- prettier-ignore -->
 !!! note "Netplay is a v5.0 feature"
-    If you.re on an older release (4.x), Netplay was disabled with known issues. 5.0 brings it back as a supported feature.
+    If you're on an older release (4.x), Netplay was disabled with known issues. 5.0 brings it back as a supported feature.
 
 ## Prerequisites
 
 - EmulatorJS Netplay enabled in `config.yml` (operator-level)
 - ICE servers configured (STUN + TURN). Without them, Netplay only works when all players are on the same LAN.
-- All players need access to your instance. Netplay doesn.t proxy the ROM to people without accounts.
+- All players need access to your instance. Netplay doesn't proxy the ROM to people without accounts.
 
 See [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay-new-in-50) for the operator-side setup.
 
@@ -96,7 +96,7 @@ Netplay room data is short-lived, with no persistent record beyond the [Netplay 
 ## Troubleshooting
 
 - **"Failed to start game"**: Netplay server-side config is broken. Operator: check `docker logs romm | grep -i netplay`. Usually a misconfigured ICE server URL
-- **Other players can't see my room**: either they.re not on your instance (shouldn't happen if they have accounts) or the WebSocket connection is broken. See [WebSocket Troubleshooting](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint).
+- **Other players can't see my room**: either they're not on your instance (shouldn't happen if they have accounts) or the WebSocket connection is broken. See [WebSocket Troubleshooting](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint).
 - **Game plays fine locally but Netplay glitches**: network round-trip is too high. Test with Players on the same LAN first, then add TURN and re-test from outside.
 - **Audio desync**: known WebRTC issue. Try a different browser (Chrome is most-tested), or restart the session.
 

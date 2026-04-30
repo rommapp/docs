@@ -5,7 +5,7 @@ description: Logs, error tracking and telemetry
 
 # Observability
 
-It.s often handy to know what.s happening under the hood, especially when debugging a scan or task. the observability stack includes:
+It's often handy to know what's happening under the hood, especially when debugging a scan or task. the observability stack includes:
 
 - **Container logs**: always available, the first stop
 - **`/api/heartbeat`** endpoint: health + config summary for uptime monitors

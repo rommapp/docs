@@ -62,7 +62,7 @@ For your own games. Useful for importing existing save files from another emulat
 3. Optionally attach a screenshot (a thumbnail for the save).
 4. Save.
 
-The file's stored under `/romm/assets/<user>/<rom>/saves/` and is available to your [in-browser play](in-browser-play.md) sessions. File contents aren.t rewritten. It's stored as-is.
+The file's stored under `/romm/assets/<user>/<rom>/saves/` and is available to your [in-browser play](in-browser-play.md) sessions. File contents aren't rewritten. It's stored as-is.
 
 See [Saves & States](saves-and-states.md) for more.
 
