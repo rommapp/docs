@@ -9,20 +9,20 @@ description: URL feeds homebrew installers and frontends
 
 RomM exposes URL feeds for several homebrew installers and frontends. Point the client at a feed URL and it browses (and installs from) your library over a network. This page collects setup instructions for each supported client.
 
-| Client                | Target hardware                  | File format     |
-| --------------------- | -------------------------------- | --------------- |
-| [Tinfoil](#tinfoil)   | Nintendo Switch (homebrew)       | `.nsp` / `.xci` |
-| [pkgj](#pkgj)         | PS Vita / PSP                    | `.pkg`          |
-| [pkgi](#pkgi)         | PS3 / PS Vita / PSP              | `.pkg`          |
-| [fpkgi](#fpkgi)       | PS4 / PS5 (CFW)                  | `.pkg`          |
-| [Kekatsu](#kekatsu)   | Nintendo DS                      | `.nds`          |
+| Client              | Target hardware            | File format     |
+| ------------------- | -------------------------- | --------------- |
+| [Tinfoil](#tinfoil) | Nintendo Switch (homebrew) | `.nsp` / `.xci` |
+| [pkgj](#pkgj)       | PS Vita / PSP              | `.pkg`          |
+| [pkgi](#pkgi)       | PS3 / PS Vita / PSP        | `.pkg`          |
+| [fpkgi](#fpkgi)     | PS4 / PS5 (CFW)            | `.pkg`          |
+| [Kekatsu](#kekatsu) | Nintendo DS                | `.nds`          |
 
 ## Authentication applies to every feed
 
 Two endpoints are involved on every install: the **feed** (the listing the client fetches) and the **download endpoint** (the per-ROM URLs the feed points at). Both default to requiring basic auth.
 
 - **pkgj and fpkgi** send basic auth on both feed and download requests, so they work with the default `DISABLE_DOWNLOAD_ENDPOINT_AUTH=false`.
-- **Tinfoil** authenticates the feed fetch but does *not* propagate credentials to the download URLs returned in the feed. So the download endpoint has to be opened with `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`. **Only enable this when RomM isn't directly exposed to the public internet** (see [Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass) for the full security discussion).
+- **Tinfoil** authenticates the feed fetch but does _not_ propagate credentials to the download URLs returned in the feed. So the download endpoint has to be opened with `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`. **Only enable this when RomM isn't directly exposed to the public internet** (see [Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass) for the full security discussion).
 
 ## Tinfoil
 
@@ -140,7 +140,7 @@ The bracketed `[0100000000010000]` is the title ID. Without it, Tinfoil shows th
 5. On the Vita: open pkgj → press `△` to open the menu → **Refresh**.
 
 ### Using pkgj
-    
+
 Once configured, pkgj shows your PS Vita / PSP library. Select a title and install!
 
 ### File format requirements

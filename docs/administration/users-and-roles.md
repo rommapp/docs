@@ -9,11 +9,11 @@ RomM is multi-user from the start. The first user created during Setup is always
 
 ## Roles
 
-| Role       | Who it's for                                                            | Default scopes                                                                |
-| ---------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| **Admin**  | You, and anyone you fully trust.                                        | All scopes, including user management and task execution.                     |
+| Role       | Who it's for                                                            | Default scopes                                                                    |
+| ---------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| **Admin**  | You, and anyone you fully trust.                                        | All scopes, including user management and task execution.                         |
 | **Editor** | Household members who help curate the library.                          | Read everything, edit ROMs/platforms/collections, upload, but no user management. |
-| **Viewer** | Guests, kids, anyone who should only play and track their own progress. | Read the library, manage their own saves/states/screenshots/profile.          |
+| **Viewer** | Guests, kids, anyone who should only play and track their own progress. | Read the library, manage their own saves/states/screenshots/profile.              |
 
 Roles are a convenience layer on top of **scopes** (see the scope matrix below for exactly what each role grants). You can't create custom roles (yet), so if you need finer-grained access, use the most restrictive role and rely on [Client API Tokens](../developers/client-api-tokens.md) for per-app customisation.
 

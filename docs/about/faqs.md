@@ -1,19 +1,17 @@
 ---
 title: FAQs
-description: Answers to the questions users most often ask about RomM.
+description: Answers to the questions users most often ask
 ---
 
 # FAQs
 
 ## What is RomM?
 
-A self-hosted ROM manager + player: scan your library, pull metadata, browse a clean UI, play in the browser, sync to handhelds, and run it all on your own hardware.
-
-See [Introduction](../index.md) for the full pitch, or [Quick Start](../getting-started/quick-start.md) to stand one up.
+RomM (ROM Manager) allows you to scan your library, pull metadata, browse a clean UI, play in the browser, sync to handhelds, and run it all on your own hardware.
 
 <!-- prettier-ignore -->
 !!! note "RomM is server software you run on a homelab box or NAS"
-    It is not a desktop app, and there's no `.exe` or `.appimage`. You'll need basic Linux + Docker skills to set it up. Games and copyrighted material aren't provided.
+    It is not a desktop app, and there's no `.exe` or `.appimage`. You'll need basic Linux + Docker skills to set it up. **Games and copyrighted material aren't provided.**
 
 ## Is it free?
 
@@ -25,9 +23,7 @@ The emphasis here is self-hosted + multi-user + in-browser-play + the companion-
 
 ## Do I need metadata API keys?
 
-Not strictly. It runs without any but games won't match against a metadata source, so no covers, descriptions, or ratings.
-
-Hasheous + IGDB + SteamGridDB + RetroAchievements is the recommended set, though many users only run ScreenScraper + Retroachievements (see [Metadata Providers](../administration/metadata-providers.md) for the full list).
+It runs without any but games won't match against a metadata source, so you won't get covers, descriptions, or ratings.
 
 ## Is RomM legal?
 
@@ -116,23 +112,13 @@ Add them as users via the invite flow, then either:
 
 See [Invitations & Registration](../administration/invitations-and-registration.md) and [Mobile & TV → Self-hosting tips](../using/mobile-and-tv.md#self-hosting-tips).
 
-## Are there mobile or handheld companion apps?
-
-Yes, several first-party apps (all in beta or actively developed):
-
-- **[Argosy](../ecosystem/first-party-apps.md#argosy-launcher)**: Android launcher for your library
-- **[Grout](../ecosystem/first-party-apps.md#grout)**: companion for Linux-based handhelds (muOS / NextUI and friends)
-- **[Playnite Plugin](../ecosystem/first-party-apps.md#playnite-plugin)** for Windows desktop
-
-iOS and other platforms are covered by community-maintained apps listed in the [Community section in the RomM README](https://github.com/rommapp/romm/#community). Full directory: [Ecosystem](../ecosystem/index.md).
-
 ## Can guests browse without an account?
 
 Absolutely, just set `KIOSK_MODE=true` in your environment variables and anonymous visitors get read-only access. See [Authentication → Kiosk mode](../administration/authentication.md#kiosk-mode).
 
 ## How do I back up?
 
-`mysqldump` the DB + rsync the `/romm/assets` and `/romm/config` volumes nightly. Full procedure + test-restore protocol in [Backup & Restore](../install/backup-and-restore.md).
+`mysqldump` the DB + rsync the `/romm/assets` and `/romm/config` volumes nightly. Full procedure and test-restore protocol in [Backup & Restore](../install/backup-and-restore.md).
 
 ## Can I use RomM without the internet?
 
@@ -160,7 +146,7 @@ We don't give ETAs on individual features. Open (or upvote) an issue at [rommapp
 
 ## What happened to SQLite?
 
-Dropped in 3.0 for stability reasons; use MariaDB, MySQL, or Postgres instead. See [Databases](../install/databases.md).
+Dropped in 3.0 for stability reasons, use MariaDB, MySQL, or Postgres instead. See [Databases](../install/databases.md).
 
 ## I found a bug, or I need help
 
@@ -174,7 +160,7 @@ For bugs, open an issue at [rommapp/romm](https://github.com/rommapp/romm/issues
 
 ## Who runs RomM?
 
-A small team of maintainers plus a chunk of active community contributors. Support the project via [Open Collective](https://opencollective.com/romm) if you'd like.
+A small team of maintainers plus a chunk of active community contributors. Support the project via [Open Collective](https://opencollective.com/romm) if you'd like!
 
 ## Where's can I find you?
 

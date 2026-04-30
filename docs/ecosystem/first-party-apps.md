@@ -9,10 +9,10 @@ description: Official clients for Android, Windows, and Linux handhelds.
 
 These are the only clients built and maintained by the team. Pick the one(s) that matches your device(s):
 
-| App                                | Platform                          |
-| ---------------------------------- | --------------------------------- |
-| [Argosy Launcher](#argosy-launcher) | Android (AYN Thor, Retroid, etc.)   |
-| [Grout](#grout)                     | Linux (muOS, MinUI, NextUI, etc.)     |
+| App                                 | Platform                                    |
+| ----------------------------------- | ------------------------------------------- |
+| [Argosy Launcher](#argosy-launcher) | Android (AYN Thor, Retroid, etc.)           |
+| [Grout](#grout)                     | Linux (muOS, MinUI, NextUI, etc.)           |
 | [Playnite Plugin](#playnite-plugin) | Windows ([Playnite](https://playnite.link)) |
 
 For third-party clients, see the [Community section in the README](https://github.com/rommapp/romm/#community).

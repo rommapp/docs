@@ -12,7 +12,7 @@ RomM uses **socket.io** for real-time communication, with two endpoints serving 
 | Endpoint             | Purpose                                                                       |
 | -------------------- | ----------------------------------------------------------------------------- |
 | `/ws/socket.io`      | Live updates (scan progress, task status, ROM mutations, admin notifications) |
-| `/netplay/socket.io` | Netplay session coordination (room discovery, join/leave, lifecycle)           |
+| `/netplay/socket.io` | Netplay session coordination (room discovery, join/leave, lifecycle)          |
 
 ## Authentication
 

@@ -1,6 +1,6 @@
 ---
 title: Brand Guidelines
-description: How to use the RomM name, logo, and colors.
+description: How to use the name, logo, and colors
 ---
 
 <!-- trunk-ignore-all(markdownlint/MD033) -->

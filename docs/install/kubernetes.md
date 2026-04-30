@@ -185,10 +185,7 @@ spec:
                                         key: ROMM_AUTH_SECRET_KEY,
                                     },
                             }
-                      - {
-                            name: ROMM_BASE_URL,
-                            value: "https://demo.romm.app",
-                        }
+                      - { name: ROMM_BASE_URL, value: "https://demo.romm.app" }
                       - { name: HASHEOUS_API_ENABLED, value: "true" }
                       # ... other metadata provider vars from the secret
                   envFrom:

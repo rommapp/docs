@@ -11,14 +11,14 @@ description: "The numbers Mason! What do they mean?"
 
 ### Top-line counts
 
-| Metric          | What it counts                                                                    |
-| --------------- | --------------------------------------------------------------------------------- |
-| **Platforms**   | Every platform RomM has seen at least one ROM for. Deleted platforms don't count. |
-| **Games**       | Total ROM entries. A multi-file game (folder with multiple files) counts as 1.    |
-| **Saves**       | User save files across all users.                                                 |
-| **States**      | Emulator save states across all users.                                            |
-| **Screenshots** | User-uploaded screenshots. Provider-fetched screenshots aren't counted here.      |
-| **Size on disk** | Total disk usage of all ROMs, saves, states, and screenshots.                    |
+| Metric           | What it counts                                                                    |
+| ---------------- | --------------------------------------------------------------------------------- |
+| **Platforms**    | Every platform RomM has seen at least one ROM for. Deleted platforms don't count. |
+| **Games**        | Total ROM entries. A multi-file game (folder with multiple files) counts as 1.    |
+| **Saves**        | User save files across all users.                                                 |
+| **States**       | Emulator save states across all users.                                            |
+| **Screenshots**  | User-uploaded screenshots. Provider-fetched screenshots aren't counted here.      |
+| **Size on disk** | Total disk usage of all ROMs, saves, states, and screenshots.                     |
 
 ### Per-platform breakdown
 

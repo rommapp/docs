@@ -41,7 +41,7 @@ You'll want to edit the following values before launching:
 | `romm`    | `ROMM_AUTH_SECRET_KEY`    | Generate with `openssl rand -hex 32` and keep it secret.                                                               |
 | `romm`    | Metadata provider creds   | Fill in only the providers you've registered with (see [Metadata Providers](../administration/metadata-providers.md)). |
 | `romm`    | `/path/to/library` volume | Host path to the directory containing your `roms/` folder.                                                             |
-| `romm`    | `/path/to/assets` volume  | Host storage paths for saves, states and screenshots.                                                           |
+| `romm`    | `/path/to/assets` volume  | Host storage paths for saves, states and screenshots.                                                                  |
 | `romm`    | `/path/to/config` volume  | Host path to a directory that will hold `config.yml`.                                                                  |
 
 Generate the auth secret now so you don't forget:

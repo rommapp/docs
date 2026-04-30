@@ -69,22 +69,38 @@ Response is a list of operations:
 
 ```json
 {
-  "session_id": "550e8400-e29b-41d4-a716-446655440000",
-  "operations": [
-    { "type": "upload",   "rom_id": 1234, "file": "mario.srm",   "destination": "/api/saves" },
-    { "type": "download", "rom_id": 5678, "file": "zelda.srm",   "source": "/api/saves/42/content", "dest_path": "/saves/zelda.srm" },
-    { "type": "conflict", "rom_id": 9999, "file": "tetris.srm",  "resolution": "keep_both" },
-    { "type": "noop",     "rom_id": 1111, "file": "goldeneye.srm" }
-  ]
+    "session_id": "550e8400-e29b-41d4-a716-446655440000",
+    "operations": [
+        {
+            "type": "upload",
+            "rom_id": 1234,
+            "file": "mario.srm",
+            "destination": "/api/saves"
+        },
+        {
+            "type": "download",
+            "rom_id": 5678,
+            "file": "zelda.srm",
+            "source": "/api/saves/42/content",
+            "dest_path": "/saves/zelda.srm"
+        },
+        {
+            "type": "conflict",
+            "rom_id": 9999,
+            "file": "tetris.srm",
+            "resolution": "keep_both"
+        },
+        { "type": "noop", "rom_id": 1111, "file": "goldeneye.srm" }
+    ]
 }
 ```
 
-| Op         | Meaning                                                                                                           |
-| ---------- | ----------------------------------------------------------------------------------------------------------------- |
-| `upload`   | Device `POST`s the file to `destination`.                                                                         |
-| `download` | Device `GET`s `source` and writes to `dest_path`.                                                                 |
-| `conflict` | Both sides newer, `resolution` must be one of `keep_both` (default), `server_wins`, `device_wins`.                             |
-| `noop`     | Hashes match, nothing to do.                                                                                      |
+| Op         | Meaning                                                                                            |
+| ---------- | -------------------------------------------------------------------------------------------------- |
+| `upload`   | Device `POST`s the file to `destination`.                                                          |
+| `download` | Device `GET`s `source` and writes to `dest_path`.                                                  |
+| `conflict` | Both sides newer, `resolution` must be one of `keep_both` (default), `server_wins`, `device_wins`. |
+| `noop`     | Hashes match, nothing to do.                                                                       |
 
 Upload (`POST /api/saves`, multipart) and download (`GET /api/saves/{id}/content`) both require the bearer token.
 

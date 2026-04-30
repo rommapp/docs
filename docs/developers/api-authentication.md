@@ -7,12 +7,12 @@ description: How to authenticate to the API
 
 The API accepts multiple authentication modes:
 
-| Mode                 | Who it's for                                             | How the credential is carried                         |
-| -------------------- | -------------------------------------------------------- | ----------------------------------------------------- |
-| **Session cookie**   | Browser UI                                               | `Cookie: session=…` after `POST /api/auth/login`      |
-| **HTTP Basic**       | Quick scripts, curl one-liners                           | `Authorization: Basic <base64(user:pass)>`            |
-| **OAuth2 Bearer**    | Automation, CI, third-party apps                         | `Authorization: Bearer <jwt>`                         |
-| **Client API Token** | Companion apps (Argosy, Grout, Playnite, custom scripts) | `Authorization: Bearer rmm_<token>`                   |
+| Mode                 | Who it's for                                             | How the credential is carried                    |
+| -------------------- | -------------------------------------------------------- | ------------------------------------------------ |
+| **Session cookie**   | Browser UI                                               | `Cookie: session=…` after `POST /api/auth/login` |
+| **HTTP Basic**       | Quick scripts, curl one-liners                           | `Authorization: Basic <base64(user:pass)>`       |
+| **OAuth2 Bearer**    | Automation, CI, third-party apps                         | `Authorization: Bearer <jwt>`                    |
+| **Client API Token** | Companion apps (Argosy, Grout, Playnite, custom scripts) | `Authorization: Bearer rmm_<token>`              |
 
 All of them resolve to the same scope model. See the [scope matrix in Users & Roles](../administration/users-and-roles.md#scope-matrix). A request is allowed if the active identity holds all scopes the endpoint requires.
 
@@ -73,7 +73,7 @@ grant_type=password&username=alice&password=s3cret&scope=roms.read%20roms.write
     "refresh_token": "eyJhbGciOi...",
     "token_type": "bearer",
     "expires": 1800,
-    "refresh_expires": 604800,
+    "refresh_expires": 604800
 }
 ```
 
