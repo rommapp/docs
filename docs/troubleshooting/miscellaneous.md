@@ -5,21 +5,6 @@ description: Catch-all for issues that don't fit the other troubleshooting pages
 
 # Miscellaneous Troubleshooting
 
-## Container restart drops everything (SQLite)
-
-You're using `ROMM_DB_DRIVER=sqlite` (or no `ROMM_DB_DRIVER` at all) and the DB isn't persisted across restarts.
-
-Mount the database file to persistent storage:
-
-```yaml
-volumes:
-    - /path/to/database:/romm/database
-```
-
-This only applies to SQLite. MariaDB / MySQL / Postgres users persist via the DB container's own volume (`mysql_data:/var/lib/mysql` and similar), not via a `/romm/database` mount.
-
-For anything multi-user or larger than a few hundred games, **don't use SQLite**. See [Databases](../install/databases.md).
-
 ## `Could not get twitch auth token: check client_id and client_secret`
 
 Your IGDB credentials are wrong or revoked. Full fix in [Authentication Troubleshooting → IGDB](authentication.md#error-could-not-get-twitch-auth-token-check-client_id-and-client_secret).
@@ -78,9 +63,8 @@ Static media is served from `/romm/resources` through nginx. If images 404:
 Most common causes, in order:
 
 1. **Hashing large files on spinning disks.** Check **Skip hash calculation** or move the library to SSD.
-2. **SQLite with many users.** Switch to MariaDB or Postgres. See [Databases](../install/databases.md).
-3. **Metadata provider rate limiting during scans.** Reduce `SCAN_WORKERS` or split scans by platform.
-4. **Container on underpowered hardware.** Check CPU/RAM headroom with `docker stats romm`. If RAM is pegged, raise container limits or disable `WATCHER_ENABLED`.
+2. **Metadata provider rate limiting during scans.** Reduce `SCAN_WORKERS` or split scans by platform.
+3. **Container on underpowered hardware.** Check CPU/RAM headroom with `docker stats romm`. If RAM is pegged, raise container limits or disable `WATCHER_ENABLED`.
 
 ## Upgrade broke something
 

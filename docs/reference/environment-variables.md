@@ -49,7 +49,7 @@ You'll always set these:
 | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | `ROMM_AUTH_SECRET_KEY`                       | JWT signing key generated with `openssl rand -hex 32`. **Never rotate lightly**, as it breaks all sessions. |
 | `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWD` | Database connection.                                                                                        |
-| `ROMM_DB_DRIVER`                             | One of `mariadb` (default), `mysql`, `postgresql`, or `sqlite`: see [Databases](../install/databases.md).   |
+| `ROMM_DB_DRIVER`                             | One of `mariadb` (default), `mysql`, or `postgresql`: see [Databases](../install/databases.md).             |
 
 For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../administration/metadata-providers.md). For OIDC, see [OIDC Setup](../administration/oidc/index.md).
 

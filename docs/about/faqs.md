@@ -144,10 +144,6 @@ Several possibilities, in rough order of likelihood:
 
 We don't give ETAs on individual features. Open (or upvote) an issue at [rommapp/romm](https://github.com/rommapp/romm/issues) to make the interest visible.
 
-## What happened to SQLite?
-
-Dropped in 3.0 for stability reasons, use MariaDB, MySQL, or Postgres instead. See [Databases](../install/databases.md).
-
 ## I found a bug, or I need help
 
 For bugs, open an issue at [rommapp/romm](https://github.com/rommapp/romm/issues). For questions, ask in `#romm-support` on [Discord](https://discord.gg/romm). Either way, include:
