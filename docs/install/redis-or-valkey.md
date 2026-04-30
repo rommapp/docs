@@ -1,32 +1,17 @@
 ---
 title: Redis or Valkey
-description: Why RomM needs Redis, how it's run, and when to split it out.
+description: Session storage, task queue, metadata caching and pubsub
 ---
 
-# Redis or Valkey
+# Redis / Valkey
 
-A Redis-protocol server is needed for:
+A Redis-protocol server is needed for session storage, the background task queue (RQ), metadata/heartbeat caching, and socket.io pubsub when running multiple replicas. Both **Redis** and **Valkey** (the open-source fork) are supported.
 
-- **Session storage**: login sessions, CSRF tokens
-- **Background task queue**: scans, metadata syncs, sync operations run through RQ (Redis Queue).
-- **Cache**: metadata lookups, heartbeat data, paired-device tokens, rate-limit counters
-- **socket.io**: multi-instance pubsub for live updates (only relevant if you're running more than one container)
+## Embedded
 
-Both **Redis** and **Valkey** (the open-source Redis fork maintained by the Linux Foundation after Redis Inc.'s license change) are supported. They're interchangeable: Valkey is a drop-in wire-compatible replacement. Pick either.
+The default `full-image` container runs an embedded Valkey instance, no `REDIS_*` env vars needed. Data is persisted to `/redis-data` inside the container. The reference compose mounts this to a Docker volume (`romm_redis_data`). Don't skip the volume, or you'll lose in-flight tasks on every `docker compose up -d`.
 
-## Option A: embedded (default)
-
-The default `full-image` container runs a Redis server inside itself. Zero config, fine for single-instance deployments. The `REDIS_HOST` / `REDIS_PORT` defaults (`localhost:6379`) point at the embedded instance, so leave them alone.
-
-**Data** is persisted to `/redis-data` inside the container. In the reference compose, that's mounted to a Docker volume (`romm_redis_data`) so queue state survives restarts. Don't skip the volume, because you'll lose in-flight tasks on every `docker compose up -d`.
-
-## Option B: external Redis container
-
-Better for:
-
-- Any production instance you care about
-- Multiple replicas sharing state
-- Homelabs that already run a Redis box and want consistency
+## External container
 
 ```yaml
 services:
@@ -40,79 +25,14 @@ services:
                 condition: service_healthy
 
     romm-redis:
-        image: redis:7-alpine
-        command:
-            [
-                "redis-server",
-                "--requirepass",
-                "<strong-password>",
-                "--appendonly",
-                "yes",
-            ]
+        image: valkey/valkey:7-alpine # or redis:7-alpine, identical command/volume
+        command: ["valkey-server", "--requirepass", "<strong-password>", "--appendonly", "yes"]
         volumes:
             - redis_data:/data
         healthcheck:
-            test: ["CMD", "redis-cli", "-a", "<strong-password>", "ping"]
+            test: ["CMD", "valkey-cli", "-a", "<strong-password>", "ping"]
             interval: 10s
-            timeout: 3s
-            retries: 5
 
 volumes:
     redis_data:
 ```
-
-### Valkey drop-in
-
-```yaml
-romm-redis:
-    image: valkey/valkey:7-alpine
-    command:
-        [
-            "valkey-server",
-            "--requirepass",
-            "<strong-password>",
-            "--appendonly",
-            "yes",
-        ]
-    # everything else the same
-```
-
-## Option C: external managed Redis
-
-If you've got an AWS ElastiCache / Upstash / Redis Cloud instance, point your stack at it:
-
-```yaml
-environment:
-    - REDIS_HOST=my-redis.cache.amazonaws.com
-    - REDIS_PORT=6379
-    - REDIS_USERNAME=romm # omit if your Redis uses legacy auth
-    - REDIS_PASSWORD=<managed-pw>
-    - REDIS_SSL=true # for managed Redis, almost always yes
-    - REDIS_DB=0 # keep this isolated from other apps on the same instance
-```
-
-The full list of Redis env vars lives in [Environment Variables](../reference/environment-variables.md).
-
-## Tuning
-
-Redis usage is light: sessions, a queue, a bit of cache. Defaults are fine for anything up to tens of thousands of ROMs and a few dozen users. Things to know:
-
-- **`appendonly yes`** is strongly recommended (what the reference compose uses). Without it, a crash loses any task currently in the queue.
-- **RDB snapshotting** is fine on top. `save 60 1` gives you a minutely snapshot.
-- **Memory**: large blobs aren't held in Redis. A 256 MB `maxmemory` is plenty for most instances.
-- **Key eviction**: leave `maxmemory-policy` alone (default: `noeviction`). Silent key loss isn't tolerated: sessions would drop and running tasks would lose state.
-
-## Verifying it works
-
-```sh
-docker exec romm redis-cli -h "$REDIS_HOST" -p "$REDIS_PORT" -a "$REDIS_PASSWD" ping
-# PONG
-```
-
-If you see `PONG` from the container, you're good. If not, check:
-
-- That the DNS name in `REDIS_HOST` resolves from the container (use `docker exec romm getent hosts romm-redis`)
-- That the password is correct. `redis-cli -a` will say `NOAUTH` if wrong.
-- That `REDIS_SSL=true` matches whether the server actually requires TLS
-
-Debugging further: see the Redis line in `docker logs romm` at startup, where the connection target is logged.
