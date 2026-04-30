@@ -1,21 +1,15 @@
 ---
 title: Reverse Proxy
-description: Put RomM behind Caddy, nginx, Traefik, or Nginx Proxy Manager with TLS.
+description: Caddy, nginx, Traefik, and Nginx Proxy Manager
 ---
 
 # Reverse Proxy
 
-The RomM container listens on plain HTTP on port `8080`. For anything beyond `localhost` you should put it behind a reverse proxy that terminates TLS and forwards to the container.
-
-<!-- prettier-ignore -->
-!!! tip "WebSockets are required"
-    RomM uses socket.io (both the general `/ws/socket.io` endpoint and the `/netplay/socket.io` endpoint) for live updates, scan progress, and Netplay. Every reverse-proxy recipe below keeps WebSocket support on, so don't strip it out.
-
-The examples here assume your RomM container is reachable at `romm:8080` (by container name on a Docker network) or `192.168.1.100:8080` (by IP on the LAN). Swap to whatever's right for your setup.
+The container listens on plain HTTP on port `8080`. For anything beyond `localhost` (e.g., a LAN or the internet) you should put it behind a reverse proxy that terminates TLS and forwards to the container. The examples here assume your container is reachable at `romm:8080` (by container name on a Docker network) or `192.168.1.100:8080` (by IP on the LAN).
 
 ## Caddy
 
-Dead-simple, auto-HTTPS via Let's Encrypt.
+Dead-simple, auto-HTTPS via Let's Encrypt:
 
 ```caddyfile
 romm.mysite.com {
@@ -171,7 +165,7 @@ Items marked ❗ are important. RomM won't work right without them.
 - **Email Address for Let's Encrypt**: your address
 - **I Agree to the TOS**: `on`
 
-### Advanced: custom nginx configuration ❗
+### Custom nginx configuration ❗
 
 ```nginx
 proxy_max_temp_file_size 0;
@@ -192,4 +186,4 @@ environment:
     - ROMM_BASE_URL=https://romm.mysite.com
 ```
 
-If you're also using OIDC, update `OIDC_REDIRECT_URI` to match. See [OIDC Setup](../administration/oidc/index.md).
+If you're also using OIDC, update `OIDC_REDIRECT_URI` to match (see [OIDC Setup](../administration/oidc/index.md)).

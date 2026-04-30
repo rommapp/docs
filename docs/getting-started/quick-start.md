@@ -83,7 +83,7 @@ docker ps -f name=romm
 
 ## 3. Create the admin user
 
-Open `http://<host>:80` in a browser. On first start, you'll be redirected to the **Setup Wizard**. Set an admin username and password (the first user created always gets the Admin role), then log in.
+Open `http://<host>:8080` in a browser. On first start, you'll be redirected to the **Setup Wizard**. Set an admin username and password (the first user created always gets the Admin role), then log in.
 
 ## Next steps
 
