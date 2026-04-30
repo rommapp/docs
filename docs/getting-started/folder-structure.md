@@ -1,17 +1,17 @@
 ---
 title: Folder Structure
-description: How to organise your ROM library on disk so RomM can scan and match it.
+description: How to organise your library on disk
 ---
 
 <!-- trunk-ignore-all(markdownlint/MD033) -->
 
 # Folder Structure
 
-RomM expects your library to be organised in one of two layouts. It tries **Structure A** first, and falls back to **Structure B** if A isn't found. This auto-detection is per-library (not per-platform), so you don't pick one up front. Just arrange files the way you prefer, and RomM figures it out.
+RomM expects your library to be organised in one of two layouts. It tries **Structure A** first, and falls back to **Structure B** if A isn't found. This auto-detection is per-library (not per-platform), so you don't pick one up front. Just arrange files the way you prefer, and it'll figure it out.
 
 ## The two layouts
 
-Both layouts separate ROMs from BIOS files. They differ on whether the split lives at the top of the tree or inside each platform.
+Both layouts separate ROMs from BIOS files, and they differ on whether the split lives at the top of the tree or inside each platform.
 
 - **Structure A (recommended)**: one top-level `roms/`, one top-level `bios/`, platforms nested inside each
 
@@ -27,7 +27,7 @@ Both layouts separate ROMs from BIOS files. They differ on whether the split liv
     /{platform}/bios/
     ```
 
-The BIOS / firmware tree is **optional**: only platforms that require firmware for emulation need it.
+As the BIOS / firmware tree is **optional**, only platforms that require firmware for emulation need it.
 
 ### Mount point
 
@@ -40,11 +40,11 @@ See the [reference Docker Compose](../install/docker-compose.md) for where `/rom
 
 <!-- prettier-ignore -->
 !!! tip "Platform folder names"
-    The platform folder name has to match a known slug (`gbc`, `gba`, `ps`, `snes`, etc.). Full list in [Supported Platforms](../platforms/supported-platforms.md). If your existing folder names don't match (say, `super_nintendo/` instead of `snes/`), override the mapping via `system.platforms` in [`config.yml`](../reference/configuration-file.md).
+    The platform folder name has to match a known slug from the full list in [Supported Platforms](../platforms/supported-platforms.md). If your existing folder names don't match (say, `super_nintendo/` instead of `snes/`), override the mapping via `system.platforms` in [`config.yml`](../reference/configuration-file.md).
 
 ## Multi-file games
 
-Some games come as **folders** instead of single files, which could include multiple disc, DLCs, manuals, or patches. RomM understands this layout and recognises these sub-folder names, surfacing them as tags in the UI: `dlc`, `hack`, `manual`, `mod`, `patch`, `update`, `demo`, `translation`, `prototype`.
+Some games come as **folders** instead of single files, which could include multiple disc, DLCs, manuals, or patches. These sub-folder names are recognised and surfaced as tags in the UI: `dlc`, `hack`, `manual`, `mod`, `patch`, `update`, `demo`, `translation`, `prototype`.
 
 ## Visual reference
 
@@ -152,23 +152,17 @@ Some games come as **folders** instead of single files, which could include mult
 
 <!-- prettier-ignore -->
 !!! note "Starting from scratch?"
-    RomM can also bootstrap an empty library. If you upload files through the web UI without any existing structure, RomM creates **Structure A** on your behalf.
-
-## Customising behaviour
-
-The on-disk layout is only half the story. Per-library exclusions, custom platform bindings, and metadata source priority all live in [`config.yml`](../reference/configuration-file.md). You can edit the file directly, or go through **Administration → Library Management** in the web UI. They're two views of the same data.
+    If you upload files through the web UI without any existing structure, it'll create **Structure A** on your behalf.
 
 ## Naming convention
 
-Filenames are parsed for region, language, revision, and arbitrary tags. Both `[]` and `()` delimiters work.
+Filenames are parsed for region, language, revision, and arbitrary tags, with both `[]` and `()` delimiters supported:
 
 - **Region / language**: both ISO-like codes and full names. Add a custom region or language by prefixing with `reg` / `reg-` (e.g. `reg MyOwnLang` or `reg-MyOwnLang`).
-- **Revision**: prefix with `rev` / `rev-`. Example: `rev v1`, `rev-1`
-- **Arbitrary tags**: anything else in brackets is imported verbatim. Example: `tetris [1.0001](HACK)[!].gba`
+- **Revision**: prefix with `rev` / `rev-` (e.g. `rev v1`, `rev-1`)
+- **Arbitrary tags**: anything else in brackets is imported verbatim (e.g. `tetris [1.0001](HACK)[!].gba`)
 
-RomM also honours inline tags like `(igdb-1234)` in filenames to force a match to a specific provider entry, covered in [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames).
-
-Tags are searchable in the search bar: typing `(USA)` returns every game tagged USA.
+Inline tags like `(igdb-1234)` in filenames can be used to force a match to a specific provider entry, covered in [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames).
 
 <div class="grid cards" markdown>
 
