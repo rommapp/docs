@@ -12,7 +12,6 @@ search:
     - [Your First Scan](getting-started/first-scan.md)
 - Install & Deploy
     - [Overview](install/index.md)
-    - [Docker Compose](install/docker-compose.md)
     - [Image Variants](install/image-variants.md)
     - [Databases](install/databases.md)
     - [Redis or Valkey](install/redis-or-valkey.md)

@@ -36,7 +36,7 @@ The path you mount into the container as `/romm/library` depends on which struct
 - **Structure A**: mount the parent of the `roms/` folder.
 - **Structure B**: mount the parent of the platform folders.
 
-See the [reference Docker Compose](../install/docker-compose.md) for where `/romm/library` lives.
+See the [reference Docker Compose](quick-start.md) for where `/romm/library` lives.
 
 <!-- prettier-ignore -->
 !!! tip "Platform folder names"

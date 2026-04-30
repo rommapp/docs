@@ -38,7 +38,7 @@ From **Apps** → search `mariadb`. Only the [official `mariadb`](https://hub.do
 
 ![community apps search results for MariaDB](https://github.com/user-attachments/assets/76f4b6ef-5b63-454f-9357-d2920b9afd0e)
 
-Fill in the env vars. Names and sensible defaults live in the [reference `docker-compose.yml`](docker-compose.md). Set the network to **Custom: romm**.
+Fill in the env vars. Names and sensible defaults live in the [reference `docker-compose.yml`](../getting-started/quick-start.md). Set the network to **Custom: romm**.
 
 ![MariaDB environment variables](https://github.com/user-attachments/assets/a11906c5-25b2-46f1-906b-451a9ee39dca)
 
@@ -52,7 +52,7 @@ From **Apps**, search `romm`, install the app labelled **OFFICIAL** (maintained 
 
 ![RomM official app](https://github.com/user-attachments/assets/57c4d47a-8604-4e8d-b05a-84dd68dda124)
 
-Fill in env vars, ports, and paths per the [reference compose](docker-compose.md). Again, network type → `Custom: romm`.
+Fill in env vars, ports, and paths per the [reference compose](../getting-started/quick-start.md). Again, network type → `Custom: romm`.
 
 ![RomM docker tab](https://github.com/user-attachments/assets/4c4210c2-ed00-4790-a945-65cbe33620b0)
 
@@ -85,7 +85,7 @@ Click the gear icon → **Edit Stack** → **Edit Compose**.
 
 ![Edit Stack](../resources/unraid/edit-stack.png)
 
-Paste the [reference `docker-compose.yml`](docker-compose.md) and fill in your env vars (API keys, MariaDB creds, metadata providers). You can keep secrets in a separate `.env` file: edit the environment file via the gear icon.
+Paste the [reference `docker-compose.yml`](../getting-started/quick-start.md) and fill in your env vars (API keys, MariaDB creds, metadata providers). You can keep secrets in a separate `.env` file: edit the environment file via the gear icon.
 
 ![Edit Compose](../resources/unraid/unraid-compose.png)
 

@@ -15,7 +15,7 @@ RomM uses SQLAlchemy + Alembic for persistence. Three drivers are supported, so 
 
 ## MariaDB (default)
 
-This is what the [reference Compose](docker-compose.md) sets up. No extra config beyond filling in the passwords.
+This is what the [reference Compose](../getting-started/quick-start.md) sets up. No extra config beyond filling in the passwords.
 
 ```yaml
 services:
