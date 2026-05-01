@@ -51,7 +51,7 @@ You'll always set these:
 | `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWD` | Database connection.                                                                                        |
 | `ROMM_DB_DRIVER`                             | One of `mariadb` (default), `mysql`, or `postgresql`: see [Databases](../install/databases.md).             |
 
-For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../administration/metadata-providers.md). For OIDC, see [OIDC Setup](../administration/oidc/index.md).
+For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../administration/metadata providers.md). For OIDC, see [OIDC Setup](../administration/oidc/index.md).
 
 ## When env vars are read
 
@@ -68,4 +68,4 @@ For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../a
 - [Configuration File](configuration-file.md): everything that lives in `config.yml` rather than env vars
 - [Scheduled Tasks](../administration/scheduled-tasks.md): cron-controlling env vars in context
 - [Authentication](../administration/authentication.md): auth-related env vars in narrative form
-- [Metadata Providers](../administration/metadata-providers.md): per-provider credential env vars
+- [Metadata Providers](../administration/metadata providers.md): per-provider credential env vars

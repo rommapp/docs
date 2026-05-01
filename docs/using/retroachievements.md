@@ -11,7 +11,7 @@ When wired up to RetroAchievements, each user's progression (achievements unlock
 
 ## Prerequisites
 
-1. **The operator** has to enable the provider. See [Metadata Providers → RetroAchievements](../administration/metadata-providers.md#retroachievements). Check by looking for the achievement tab on any known-supported game. If it's absent, the provider isn't active.
+1. **The operator** has to enable the provider. See [Metadata Providers → RetroAchievements](../administration/metadata providers.md#retroachievements). Check by looking for the achievement tab on any known-supported game. If it's absent, the provider isn't active.
 2. **You** need a [RetroAchievements account](https://retroachievements.org/) and your personal **API key**.
 
 ## Linking your account

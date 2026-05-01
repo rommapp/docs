@@ -25,7 +25,7 @@ RomM does not ship games or firmware, and the team cannot help you obtain BIOS f
 
 ## Platform-specific firmware
 
-Every emulator has its own requirements: which files it needs, specific hashes, naming conventions. The [Supported Platforms](../platforms/supported-platforms.md) table flags which platforms need firmware for EmulatorJS playback, and a dedicated [Firmware by Platform](../platforms/firmware-by-platform.md) page lists what's needed for the popular ones.
+Every emulator has its own requirements: which files it needs, specific hashes, naming conventions. The [Supported Platforms](../platforms/supported-platforms.md) table flags which platforms need firmware for EmulatorJS playback.
 
 Common examples:
 

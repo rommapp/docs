@@ -146,7 +146,7 @@ Which tabs appear depends on your metadata providers:
 - **Personal**: your data on this game: status (Never Played / Backlogged / Playing / Complete / Hidden), rating, difficulty, percent complete, and **playtime** (accumulated as you play via the [in-browser player](in-browser-play.md) or companion apps that post play sessions). Stored per-user
 - **Notes**: Markdown-formatted notes on the game. Per-user. Set a note to **public** to share with other users on the instance. You can have multiple notes per game (e.g. "walkthrough tips", "save states reference", "secret moves"). Edited via a Markdown editor with preview pane
 - **Manual**: PDF viewer if you have a manual for this game
-- **Time to Beat**: [HowLongToBeat](../administration/metadata-providers.md#howlongtobeat) data if enabled
+- **Time to Beat**: [HowLongToBeat](../administration/metadata providers.md#howlongtobeat) data if enabled
 - **Screenshots**: provider-fetched + user-uploaded screenshots
 - **Achievements**: [RetroAchievements](retroachievements.md) progression if you've linked your RA account
 - **Related Games**: similar titles from IGDB

@@ -15,7 +15,7 @@ You'll need:
 
 - [Docker](https://docs.docker.com/get-docker/) and Docker Compose installed on the host
 - Your ROM files organised in the expected [folder structure](folder-structure.md)
-- API credentials for at least one [metadata provider](../administration/metadata-providers.md)
+- API credentials for at least one [metadata provider](../administration/metadata providers.md)
 
 <!-- prettier-ignore -->
 !!! warning "Metadata providers are recommended"
@@ -39,7 +39,7 @@ You'll want to edit the following values before launching:
 | `romm-db` | `MARIADB_PASSWORD`        | A separate long, randomly generated password.                                                                          |
 | `romm`    | `DB_PASSWD`               | Must match `MARIADB_PASSWORD` above.                                                                                   |
 | `romm`    | `ROMM_AUTH_SECRET_KEY`    | Generate with `openssl rand -hex 32` and keep it secret.                                                               |
-| `romm`    | Metadata provider creds   | Fill in only the providers you've registered with (see [Metadata Providers](../administration/metadata-providers.md)). |
+| `romm`    | Metadata provider creds   | Fill in only the providers you've registered with (see [Metadata Providers](../administration/metadata providers.md)). |
 | `romm`    | `/path/to/library` volume | Host path to the directory containing your `roms/` folder.                                                             |
 | `romm`    | `/path/to/assets` volume  | Host storage paths for saves, states and screenshots.                                                                  |
 | `romm`    | `/path/to/config` volume  | Host path to a directory that will hold `config.yml`.                                                                  |

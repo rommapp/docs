@@ -29,7 +29,7 @@ Something's broken. Start with the symptom that best matches:
 
 ### In-browser play
 
-- EmulatorJS won't load / cores 404 → [In-Browser Play Troubleshooting](in-browser-play.md). Probably the slim image without `ENABLE_EMULATORJS` set
+- EmulatorJS won't load / cores 404 → [In-Browser Play Troubleshooting](in-browser-play.md). Probably the slim image (EmulatorJS isn't bundled there)
 - Netplay doesn't connect → [Netplay Troubleshooting](netplay.md). Almost always NAT / missing ICE servers
 
 ### Device sync

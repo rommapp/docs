@@ -7,7 +7,7 @@ description: Add custom unsupported platforms
 
 # Custom Platforms
 
-RomM ships with support for ~400 platforms. If yours isn't in [the list](supported-platforms.md), you can still load it as a custom platform, but we won't have metadata-provider coverage for it.
+RomM ships with support for ~400 platforms. If yours isn't in [the list](supported-platforms.md), you can still load it as a custom platform, but we won't have metadata provider coverage for it.
 
 ## Adding a custom platform
 
@@ -39,7 +39,7 @@ system:
         game-cube: "ngc"
 ```
 
-This gets you full metadata-provider support with your preferred folder name (see [Configuration File → `system.platforms`](../reference/configuration-file.md#systemplatforms)).
+This gets you full metadata provider support with your preferred folder name (see [Configuration File → `system.platforms`](../reference/configuration-file.md#systemplatforms)).
 
 ## Adding a custom platform icon
 

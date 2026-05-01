@@ -5,7 +5,7 @@ description: Populate a fresh install by scanning the library for the first time
 
 # Your First Scan
 
-You're up and running ([Quick Start](quick-start.md)), your ROMs are laid out correctly ([Folder Structure](folder-structure.md)), and metadata credentials are configured ([Metadata Providers](../administration/metadata-providers.md)). Time to catalogue everything!
+You're up and running ([Quick Start](quick-start.md)), your ROMs are laid out correctly ([Folder Structure](folder-structure.md)), and metadata credentials are configured ([Metadata Providers](../administration/metadata providers.md)). Time to catalogue everything!
 
 ## Before you hit scan
 

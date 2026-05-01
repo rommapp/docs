@@ -11,7 +11,7 @@ Symptom: Play button spins forever or shows an error immediately.
 
 Checks in order:
 
-1. **Is it the slim image?** `ENABLE_EMULATORJS=true` on the slim image doesn't magically include EmulatorJS. Either switch to `rommapp/romm:<version>` (full) or disable in-browser play. See [Image Variants](../install/image-variants.md).
+1. **Is it the slim image?** EmulatorJS isn't bundled on the slim image, and no env var changes that. Either switch to `rommapp/romm:<version>` (full) or set `DISABLE_EMULATOR_JS=true` to hide the Play button. See [Image Variants](../install/image-variants.md).
 2. **Browser console**: open devtools, look for 404s on `/assets/emulatorjs/...`. Indicates the EmulatorJS bundle didn't install correctly in the container. `docker logs romm` may show the entrypoint's install step failing.
 3. **Browser compatibility**: EmulatorJS uses SharedArrayBuffer. Needs a modern Chrome/Firefox/Safari and an HTTPS-served RomM (cross-origin isolation requires HTTPS). If you're still on plain HTTP for some reason, TLS it. See [Reverse Proxy](../install/reverse-proxy.md).
 
@@ -72,7 +72,7 @@ Rebind via Profile → User Interface (the operator-side overrides live in [`emu
 - **Sound card config wrong**: dosbox-pure tries to auto-detect but may need manual tweaking. In-game Menu → **Settings** → set Sound Blaster port.
 - **Game needs specific CPU speed**: some DOS games are CPU-bound. Slow down via dosbox-pure settings.
 
-See the [MS-DOS platform guide](../platforms/ms-dos.md) for deeper DOS-specific notes.
+See the [MS-DOS section](../using/in-browser-play.md#ms-dos) of In-Browser Play for deeper DOS-specific notes.
 
 ## Ruffle games
 

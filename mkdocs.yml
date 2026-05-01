@@ -71,7 +71,7 @@ plugins:
               Getting-Started/Quick-Start-Guide.md: getting-started/quick-start.md
               Getting-Started/Configuration-File.md: reference/configuration-file.md
               Getting-Started/Environment-Variables.md: reference/environment-variables.md
-              Getting-Started/Metadata-Providers.md: administration/metadata-providers.md
+              Getting-Started/Metadata-Providers.md: administration/metadata providers.md
               Getting-Started/OIDC-Setup.md: administration/oidc/index.md
               Getting-Started/Reverse-Proxy.md: install/reverse-proxy.md
               Getting-Started/Authentication.md: administration/authentication.md

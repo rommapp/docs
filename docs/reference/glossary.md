@@ -53,9 +53,9 @@ See [Collections](../using/collections.md).
 
 **Grout**: first-party Linux handheld companion (muOS, NextUI). See [Grout](../ecosystem/first-party-apps.md#grout).
 
-**Hasheous**: metadata provider doing hash-based matching (no API keys). See [Metadata Providers → Hasheous](../administration/metadata-providers.md#hasheous).
+**Hasheous**: metadata provider doing hash-based matching (no API keys). See [Metadata Providers → Hasheous](../administration/metadata providers.md#hasheous).
 
-**IGDB**: Internet Game Database. Primary metadata provider. See [Metadata Providers → IGDB](../administration/metadata-providers.md#igdb).
+**IGDB**: Internet Game Database. Primary metadata provider. See [Metadata Providers → IGDB](../administration/metadata providers.md#igdb).
 
 **Igir**: third-party ROM collection manager. Useful for cleaning libraries before importing into RomM. See [Igir](../ecosystem/igir.md).
 
@@ -69,11 +69,11 @@ See [Collections](../using/collections.md).
 
 **Library**: your ROM files on disk. Mounted (usually read-only) at `/romm/library` inside the container, with platforms as subdirectories. The catalogue is built from what's found there. See [Folder Structure](../getting-started/folder-structure.md).
 
-**Metadata provider**: external source of game data: IGDB, ScreenScraper, MobyGames, RetroAchievements, Hasheous, PlayMatch, LaunchBox, SteamGridDB, TheGamesDB, Flashpoint, HowLongToBeat, gamelist.xml, Libretro (13 total in 5.0). Queried during a scan, with results merged. Configured via env vars + priority in `config.yml`. See [Metadata Providers](../administration/metadata-providers.md).
+**Metadata provider**: external source of game data: IGDB, ScreenScraper, MobyGames, RetroAchievements, Hasheous, PlayMatch, LaunchBox, SteamGridDB, TheGamesDB, Flashpoint, HowLongToBeat, gamelist.xml, Libretro (13 total in 5.0). Queried during a scan, with results merged. Configured via env vars + priority in `config.yml`. See [Metadata Providers](../administration/metadata providers.md).
 
 **mike**: versioning tool for MkDocs used by the docs site.
 
-**MobyGames**: paid metadata provider. See [Metadata Providers → MobyGames](../administration/metadata-providers.md#mobygames).
+**MobyGames**: paid metadata provider. See [Metadata Providers → MobyGames](../administration/metadata providers.md#mobygames).
 
 **muOS**: custom firmware for ARM handhelds. Use [Grout](../ecosystem/first-party-apps.md#grout) to sync ROMs and saves with RomM.
 
@@ -113,7 +113,7 @@ See [Collections](../using/collections.md).
 
 **Scope**: fine-grained permission. 19 in total, grouped into roles. Tokens and OIDC sessions carry subsets of scopes. Every endpoint requires specific scopes. See the [scope matrix](../administration/users-and-roles.md#scope-matrix).
 
-**ScreenScraper**: metadata provider with good artwork. See [Metadata Providers → ScreenScraper](../administration/metadata-providers.md#screenscraper).
+**ScreenScraper**: metadata provider with good artwork. See [Metadata Providers → ScreenScraper](../administration/metadata providers.md#screenscraper).
 
 **Setup Wizard**: first-run flow that creates the admin user. Shown before any user exists.
 
@@ -123,7 +123,7 @@ See [Collections](../using/collections.md).
 
 **socket.io**: the WebSocket protocol. Two endpoints: `/ws` and `/netplay`. See [WebSockets](../developers/websockets.md).
 
-**SteamGridDB**: alternate cover art provider. See [Metadata Providers → SteamGridDB](../administration/metadata-providers.md#steamgriddb).
+**SteamGridDB**: alternate cover art provider. See [Metadata Providers → SteamGridDB](../administration/metadata providers.md#steamgriddb).
 
 **Task**: a unit of background work (scan, metadata sync, cleanup, device sync). Runs through RQ. Can be scheduled (cron), watcher-triggered, or manual. See [Scheduled Tasks](../administration/scheduled-tasks.md).
 

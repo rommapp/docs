@@ -1,6 +1,6 @@
 ---
 title: Supported Platforms
-description: Every platform RomM recognises, with metadata-provider coverage and in-browser-play flags.
+description: Every supported platform with metadata provider coverage
 ---
 
 # Supported Platforms
@@ -21,9 +21,9 @@ Your folder name has to match the **platform slug** in the table. If yours diffe
 
 - **Slug**: the folder name RomM expects. Matches the IGDB platform slug where possible.
 - **Name**: the human-readable platform name
-- **Providers**: which metadata providers have at least partial coverage. See [Metadata Providers](../administration/metadata-providers.md).
-- **EmulatorJS**: a playable in-browser core exists. See [EmulatorJS Configuration](emulatorjs-config.md).
-- **Firmware**: platform needs BIOS files for emulation. See [Firmware by Platform](firmware-by-platform.md).
+- **Providers**: which metadata providers have at least partial coverage. See [Metadata Providers](../administration/metadata providers.md).
+- **EmulatorJS**: a playable in-browser core exists. See [Configuration File → `emulatorjs`](../reference/configuration-file.md#emulatorjs) for operator-level tuning.
+- **Firmware**: platform needs BIOS files for emulation. See [Firmware Management](../administration/firmware-management.md).
 
 ## Platform not listed?
 
@@ -46,6 +46,6 @@ uv run python -m scripts.gen_platforms
 
 - [Folder Structure](../getting-started/folder-structure.md): how platform slugs map to on-disk folders
 - [Custom Platforms](custom-platforms.md): adding platforms outside the built-in list
-- [Metadata Providers](../administration/metadata-providers.md): provider coverage deep-dive
+- [Metadata Providers](../administration/metadata providers.md): provider coverage deep-dive
 - [In-Browser Play](../using/in-browser-play.md): EmulatorJS core catalogue
-- [Firmware by Platform](firmware-by-platform.md): per-platform BIOS requirements
+- [Firmware Management](../administration/firmware-management.md): how RomM stores and serves BIOS files

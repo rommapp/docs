@@ -164,7 +164,6 @@ A small team of maintainers plus a chunk of active community contributors. Suppo
 - **GitHub**: [rommapp/romm](https://github.com/rommapp/romm)
 - **Website**: [romm.app](https://romm.app/)
 - **Demo**: [demo.romm.app](https://demo.romm.app/)
-- **Docs**: here ([docs.romm.app](https://docs.romm.app/))
 
 ## See also
 

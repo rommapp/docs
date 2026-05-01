@@ -60,7 +60,7 @@ curl -fsS https://demo.romm.app/api/heartbeat > /dev/null \
   || echo "down"
 ```
 
-Per-metadata-provider health:
+Per-metadata provider health:
 
 ```http
 GET /api/heartbeat/metadata/[igdb/ss/ra/...]

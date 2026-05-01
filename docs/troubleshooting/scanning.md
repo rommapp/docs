@@ -105,14 +105,14 @@ Check the scan log for per-provider errors:
 - **RetroAchievements: "Invalid API key"** → regenerate at [retroachievements.org/settings](https://retroachievements.org/settings).
 - **Any provider: "Request timed out"** → transient, so re-run an **Unmatched** scan to retry only the failures.
 
-Full provider reference: [Metadata Providers](../administration/metadata-providers.md).
+Full provider reference: [Metadata Providers](../administration/metadata providers.md).
 
 ## Lots of ROMs are unmatched
 
 Options, in order of effort:
 
 1. **Add more providers**: a ROM IGDB doesn't know about might be in ScreenScraper, Hasheous, or LaunchBox, so enable one or more, then run an **Unmatched** scan.
-2. **Use filename tags**: if you already know the provider ID, rename the file to include `(igdb-1234)` or similar (see [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames)).
+2. **Use filename tags**: if you already know the provider ID, rename the file to include `(igdb-1234)` or similar (see [Metadata Providers → Filename tags](../administration/metadata providers.md#metadata-tags-in-filenames)).
 3. **Manually match**: open the ROM detail page, click the **Match** button, and search for the right title.
 
 ## Hash calculations are slow

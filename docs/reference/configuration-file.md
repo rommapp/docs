@@ -104,11 +104,11 @@ exclude:
 
 ## `system`
 
-Customise how RomM interprets your filesystem layout.
+Customise how your filesystem layout is interpreted, and how platforms are identified.
 
 ### `system.platforms`
 
-Map your folder names to RomM platform slugs. Left side = your folder name, right side = canonical slug (see [Supported Platforms](../platforms/supported-platforms.md) for the full list).
+Map your folder names to [supported platform](../platforms/supported-platforms.md) slugs.
 
 ```yaml
 system:
@@ -196,7 +196,7 @@ Values are the provider slugs. Full list:
 | `tgdb`       | TheGamesDB _(5.0)_        |
 | `libretro`   | Libretro metadata _(5.0)_ |
 
-See [Metadata Providers](../administration/metadata-providers.md) for context on each.
+See [Metadata Providers](../administration/metadata providers.md) for context on each.
 
 ### `scan.priority.artwork`
 
@@ -295,7 +295,7 @@ scan:
 
 ## `emulatorjs`
 
-Configure the in-browser EmulatorJS player.
+These keys tune the in-browser EmulatorJS player for every user on your instance. The end-user side lives in [In-Browser Play](../using/in-browser-play.md). To disable EmulatorJS altogether (on the slim image, or when running headless with companion apps), set `DISABLE_EMULATOR_JS=true` in your env vars.
 
 ### `emulatorjs.debug`
 
@@ -357,7 +357,7 @@ emulatorjs:
 
 <!-- prettier-ignore -->
 !!! note "Nightly CDN caveat"
-    With Netplay enabled, EmulatorJS loads some assets (localisations included) from its nightly CDN (`https://cdn.emulatorjs.org/nightly/...`). Occasional 404s or untranslated strings can appear when the nightly has a transient mismatch. Usually self-heals by the next RomM image update.
+    With Netplay enabled, EmulatorJS loads some assets (localisations included) from its nightly CDN (`https://cdn.emulatorjs.org/nightly/...`). Occasional 404s or untranslated strings can appear when the nightly has a transient mismatch, which usually self-heals by the next image update.
 
 ### `emulatorjs.settings`
 
@@ -374,7 +374,7 @@ emulatorjs:
             fps: show
 ```
 
-Core names must match the EmulatorJS core identifier exactly. See the `getSupportedEJSCores` utility in the frontend source for the full list, or leave the core out and use `default`.
+Core names must match the EmulatorJS core identifier exactly. To discover core names and per-core option keys, turn on `debug: true`, load a game in that core, open the browser console, filter for "option", and copy the keys you care about. Upstream reference is available in [EmulatorJS core options](https://emulatorjs.org/docs4devs/settings/).
 
 ### `emulatorjs.controls`
 
@@ -394,24 +394,40 @@ emulatorjs:
                     value2: BUTTON_2
 ```
 
-See the [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/control-mapping/) for the button-slot reference.
+See the [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/control-mapping/) for the button-slot reference. Users can override these defaults in-game via Menu → **Controls**, the config.yml setting only sets the starting point.
+
+#### Worked example: 2-player SNES
+
+```yaml
+emulatorjs:
+    settings:
+        snes9x:
+            snes9x_region: ntsc
+    controls:
+        snes9x:
+            0: # P1 on keyboard (WASD cluster)
+                0: { value: ",", value2: "BUTTON_2" } # B
+                1: { value: ".", value2: "BUTTON_3" } # A
+                2: { value: "l", value2: "BUTTON_1" } # Y
+                3: { value: "p", value2: "BUTTON_4" } # X
+            1: # P2 on arrows + numpad
+                0: { value: "/", value2: "BUTTON_2" }
+                1: { value: "'", value2: "BUTTON_3" }
+```
+
+### Operator-level vs per-user
+
+Most settings under `emulatorjs.settings` and `emulatorjs.controls` can be overridden by users in-game (Menu → Settings, Menu → Controls). Per-user values take precedence, the config.yml setting is the fallback.
+
+| Where the setting lives           | Who it affects       | Survives upgrades? |
+| --------------------------------- | -------------------- | ------------------ |
+| Operator: `config.yml` / env vars | Everyone, as default | Yes                |
+| Per-user: in-game Menu → Settings | Just that user       | Yes                |
+| Per-user: in-game Menu → Controls | Just that user       | Yes                |
 
 ---
-
-## Editing via the UI
-
-Everything above is also available from the Library Management page in the web UI, and edits there write back to the same `config.yml`. Either path works. They're not separate stores.
-
-## Per-file alternatives
-
-RomM also ships two pre-built config.yml variants for people coming from existing frontends. Copy them wholesale rather than writing one from scratch:
-
-- [`config.batocera-retrobat.yml`](https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml): Batocera / RetroBat layouts
-- [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml): ES-DE layout
 
 ## Related
 
 - [Folder Structure](../getting-started/folder-structure.md): how the filesystem shape interacts with `config.yml`
-- [Metadata Providers](../administration/metadata-providers.md): per-provider detail for the `scan.priority.*` slugs
-- [Scanning & Watcher](../administration/scanning-and-watcher.md): how `exclude.*` interacts with scan runs
-- [Environment Variables](environment-variables.md): env-var overrides for some of the same knobs
+- [Metadata Providers](../administration/metadata providers.md): per-provider detail for the `scan.priority.*` slugs

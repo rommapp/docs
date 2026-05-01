@@ -30,6 +30,6 @@ Regardless of host platform, you'll make the same handful of decisions:
 
 ## After you're up and running
 
-- **Configure metadata providers**: [Metadata Providers](../administration/metadata-providers.md)
+- **Configure metadata providers**: [Metadata Providers](../administration/metadata providers.md)
 - **Populate the library**: [Your First Scan](../getting-started/first-scan.md)
 - **Add users**: [Invitations & Registration](../administration/invitations-and-registration.md)
