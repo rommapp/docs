@@ -15,17 +15,17 @@ Both layouts separate ROMs from BIOS files, and they differ on whether the split
 
 - **Structure A (recommended)**: one top-level `roms/`, one top-level `bios/`, platforms nested inside each
 
-    ```text
-    /roms/{platform}/
-    /bios/{platform}/
-    ```
+```text
+/roms/{platform}/
+/bios/{platform}/
+```
 
 - **Structure B (fallback)**: one folder per platform at the top, `roms/` and `bios/` inside each
 
-    ```text
-    /{platform}/roms/
-    /{platform}/bios/
-    ```
+```text
+/{platform}/roms/
+/{platform}/bios/
+```
 
 As the BIOS / firmware tree is **optional**, only platforms that require firmware for emulation need it.
 

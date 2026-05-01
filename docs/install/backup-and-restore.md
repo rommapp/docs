@@ -79,11 +79,11 @@ Send it offsite however you already do (rclone to B2/S3, restic, borg). Rememer 
 1. Start a fresh stack with the same `ROMM_AUTH_SECRET_KEY` (if the secret changes, all sessions and invite links are invalidated).
 2. Wait for the first-run setup to finish, then stop the stack: `docker compose stop`.
 3. Restore the DB:
-    ```sh
-    docker exec -i romm-db mariadb --user=root --password=<root-pw> romm < romm-db-2026-04-15.sql
-    # or for Postgres:
-    docker exec -i romm-db psql --username=romm-user --dbname=romm < romm-db-2026-04-15.sql
-    ```
+  ```sh
+  docker exec -i romm-db mariadb --user=root --password=<root-pw> romm < romm-db-2026-04-15.sql
+  # or for Postgres:
+  docker exec -i romm-db psql --username=romm-user --dbname=romm < romm-db-2026-04-15.sql
+  ```
 4. Restore `assets/`, `config/` and `resources/` to the mounted host paths.
 5. Restart with `docker compose start`.
 

@@ -173,15 +173,15 @@ Retail games need the game CD image mounted alongside the install directory.
 ### Dungeon Keeper Gold example
 
 1. Organise files:
-    ```text
-    DungeonKeeper/
-      KEEPER.exe
-      KEEPER.cfg
-      ...
-      CD/
-        DUNGEON.CUE
-        DUNGEON.BIN
-    ```
+```text
+DungeonKeeper/
+    KEEPER.exe
+    KEEPER.cfg
+    ...
+    CD/
+    DUNGEON.CUE
+    DUNGEON.BIN
+```
 2. Read `KEEPER.cfg`, which tells you where the game expects the CD.
 3. Create `KEEPER.conf` matching the `.exe` name:
 

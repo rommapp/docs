@@ -27,12 +27,12 @@ In **Customization → Property Mappings → Create → Scope Mapping**:
 - **Scope name**: `email`
 - **Expression**:
 
-    ```py
-    return {
-        "email": user.email,
-        "email_verified": True,
-    }
-    ```
+```py
+return {
+    "email": user.email,
+    "email_verified": True,
+}
+```
 
 ![Property Mapping](../../resources/authentik/propperty-mapping.png)
 

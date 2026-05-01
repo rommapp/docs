@@ -126,15 +126,15 @@ The bracketed `[0100000000010000]` is the title ID. Without it, Tinfoil shows th
 2. Open `/pkgj/config.txt` on the Vita in a text editor.
 3. Append lines for each feed you have content for:
 
-    ```ini
-    url_games       {romm_url}/api/feeds/pkgj/psvita/games
-    url_dlcs        {romm_url}/api/feeds/pkgj/psvita/dlc
-    url_psp_games   {romm_url}/api/feeds/pkgj/psp/games
-    url_psp_dlcs    {romm_url}/api/feeds/pkgj/psp/dlc
-    url_psx_games   {romm_url}/api/feeds/pkgj/psx/games
-    ```
+```ini
+url_games       {romm_url}/api/feeds/pkgj/psvita/games
+url_dlcs        {romm_url}/api/feeds/pkgj/psvita/dlc
+url_psp_games   {romm_url}/api/feeds/pkgj/psp/games
+url_psp_dlcs    {romm_url}/api/feeds/pkgj/psp/dlc
+url_psx_games   {romm_url}/api/feeds/pkgj/psx/games
+```
 
-    Replace `{romm_url}` with your actual RomM URL (e.g. `https://demo.romm.app`).
+Replace `{romm_url}` with your actual RomM URL (e.g. `https://demo.romm.app`).
 
 4. Save and disconnect from VitaShell.
 5. On the Vita: open pkgj → press `△` to open the menu → **Refresh**.

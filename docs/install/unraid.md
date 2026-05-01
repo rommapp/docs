@@ -25,12 +25,12 @@ Both end up with the same running stack.
 - [Community Apps plugin](https://forums.unraid.net/topic/38582-plug-in-community-applications/) installed
 - A custom Docker bridge network so the app and MariaDB can talk to each other by container name. Skip this and you'll hit DNS issues that look like everything else.
 
-    ```sh
-    docker network create romm
-    docker network ls  # confirm `romm` is listed
-    ```
+```sh
+docker network create romm
+docker network ls  # confirm `romm` is listed
+```
 
-    ![console output](https://github.com/user-attachments/assets/bac31998-1911-4085-b115-8dd93d519b8b)
+![console output](https://github.com/user-attachments/assets/bac31998-1911-4085-b115-8dd93d519b8b)
 
 1. Install MariaDB
 

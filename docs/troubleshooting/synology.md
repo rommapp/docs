@@ -14,18 +14,18 @@ The usual Synology permission issue. Fix via SSH:
 3. **Find your UID/GID**: type `id` and note `uid=NNNN(user) gid=NNNN(group)`.
 4. **Fix permissions on every RomM host path**:
 
-    ```sh
-    sudo chown -R <user>:<group> /path/to/library
-    sudo chmod -R a=,a+rX,u+w,g+w /path/to/library
+```sh
+sudo chown -R <user>:<group> /path/to/library
+sudo chmod -R a=,a+rX,u+w,g+w /path/to/library
 
-    sudo chown -R <user>:<group> /path/to/assets
-    sudo chmod -R a=,a+rX,u+w,g+w /path/to/assets
+sudo chown -R <user>:<group> /path/to/assets
+sudo chmod -R a=,a+rX,u+w,g+w /path/to/assets
 
-    sudo chown -R <user>:<group> /path/to/config
-    sudo chmod -R a=,a+rX,u+w,g+w /path/to/config
-    ```
+sudo chown -R <user>:<group> /path/to/config
+sudo chmod -R a=,a+rX,u+w,g+w /path/to/config
+```
 
-    The paths are whatever you mounted into the container as `/romm/library`, `/romm/assets`, and `/romm/config`.
+The paths are whatever you mounted into the container as `/romm/library`, `/romm/assets`, and `/romm/config`.
 
 5. **Restart the containers**. `docker compose restart` or click Restart in Container Manager.
 
