@@ -41,7 +41,7 @@ GET /api/stats?include_platform_stats=true
 Authorization: Bearer <token>
 ```
 
-Wire to your monitoring stack via the API rather than scraping the HTML page. See the [API Reference](../developers/api-reference.md).
+Wire to your monitoring stack via the API rather than scraping the HTML page (see the [API Reference](../developers/api-reference.md)).
 
 ## Troubleshooting
 

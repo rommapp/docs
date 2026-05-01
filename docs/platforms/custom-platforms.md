@@ -1,13 +1,13 @@
 ---
 title: Custom Platforms
-description: Add platforms RomM doesn't natively support, plus custom platform icons.
+description: Add custom unsupported platforms
 ---
 
 <!-- trunk-ignore-all(markdownlint/MD033) -->
 
 # Custom Platforms
 
-RomM ships with support for ~400 platforms. If yours isn't in [the list](supported-platforms.md), you can still load it as a custom platform. RomM just won't have metadata-provider coverage for it.
+RomM ships with support for ~400 platforms. If yours isn't in [the list](supported-platforms.md), you can still load it as a custom platform, but we won't have metadata-provider coverage for it.
 
 ## Adding a custom platform
 
@@ -29,7 +29,7 @@ Then either run a **Quick Scan** (the platform is auto-discovered) or trigger a 
 
 ## Mapping to a canonical platform (preferred when possible)
 
-If your platform is one RomM supports but under a different slug, you don't need a custom platform. Just **remap**. Add to `config.yml`:
+If your platform is one RomM supports but under a different slug, you don't need a custom platform. Just **remap** it in your `config.yml`:
 
 ```yaml
 system:
@@ -39,7 +39,7 @@ system:
         game-cube: "ngc"
 ```
 
-This gets you full metadata-provider support with your preferred folder name. See [Configuration File → `system.platforms`](../reference/configuration-file.md#systemplatforms).
+This gets you full metadata-provider support with your preferred folder name (see [Configuration File → `system.platforms`](../reference/configuration-file.md#systemplatforms)).
 
 ## Adding a custom platform icon
 
@@ -64,42 +64,19 @@ The built-in icons live at [`frontend/assets/platforms`](https://github.com/romm
 
 3. Add your custom `.ico` files
 
-The filename has to **match the IGDB platform slug**. Examples:
+The filename has to **match the platform slug**. Examples:
 
-| Platform            | IGDB slug                      | Filename                  |
+| Platform            | Platform slug                  | Filename                  |
 | ------------------- | ------------------------------ | ------------------------- |
 | Amstrad CPC         | `acpc`                         | `acpc.ico`                |
-| Pocket Challenge V2 | `pocket-challenge-v2` (custom) | `pocket-challenge-v2.ico` |
+| My Homebrew Console | `my-homebrew-console` (custom) | `my-homebrew-console.ico` |
 | NES                 | `nes`                          | `nes.ico`                 |
-
-Find the slug in the URL of the platform's IGDB page, e.g. [igdb.com/platforms/acpc](https://www.igdb.com/platforms/acpc) → slug is `acpc`.
 
 4. Restart RomM
 
 `docker compose up -d` picks up the new icon mount.
 
-### Replacing an existing platform's icon
-
-Same mechanic: just use a filename matching an existing platform's slug and your file overrides the built-in.
-
-## What custom platforms don't get
-
-- **Metadata provider coverage.** Providers are IGDB-slug-driven. A genuinely unknown platform won't have IGDB / ScreenScraper / MobyGames data.
-- **EmulatorJS support.** The platform has to match a known EmulatorJS core. See [Supported Platforms → EmulatorJS column](supported-platforms.md).
-- **RetroAchievements.** Hash-based but restricted to RA-supported platforms
-
-For the niche platform case, you'll likely rely on filename-only matching (no provider) and browsing the library like a straight file system.
-
-## Contributing a platform
-
-If you've added a custom platform that should be supported natively by RomM (e.g. a widely-used platform that's missing) open an issue on [rommapp/romm](https://github.com/rommapp/romm/issues) with:
-
-- Platform name
-- IGDB platform URL (if it exists on IGDB)
-- Typical file extensions
-- Suggested canonical slug
-
-The team adds platforms fairly aggressively if they see community demand.
+To replace an existing platform's icon, use a filename matching an existing platform's slug and your file overrides the built-in.
 
 ## Screenshot
 
