@@ -5,9 +5,7 @@ description: Full schema reference for config.yml
 
 # Configuration File
 
-RomM reads `config.yml` from `/romm/config/config.yml` inside the container. The whole file is optional: any section you omit falls back to the defaults.
-
-You can edit `config.yml` directly on disk **or** through **Administration → Library Management** in the UI, which is a two-way view of the same file.
+RomM reads `config.yml` from `/romm/config/config.yml` inside the container. The whole file is optional: any section you omit falls back to the defaults. You can edit `config.yml` directly on disk **or** through **Administration → Library Management** in the UI, which is a two-way view of the same file.
 
 Start from the [`config.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.example.yml) upstream. Two larger fully-worked examples for frontend-integration scenarios:
 
@@ -141,7 +139,7 @@ filesystem:
     roms_folder: "my_roms"
 ```
 
-### `filesystem.firmware_folder` _(new in 5.0)_
+### `filesystem.firmware_folder`
 
 Override the default BIOS/firmware folder name (`bios`).
 
@@ -193,8 +191,8 @@ Values are the provider slugs. Full list:
 | `hasheous`   | Hasheous                  |
 | `flashpoint` | Flashpoint                |
 | `hltb`       | HowLongToBeat             |
-| `tgdb`       | TheGamesDB _(5.0)_        |
-| `libretro`   | Libretro metadata _(5.0)_ |
+| `tgdb`       | TheGamesDB        |
+| `libretro`   | Libretro metadata |
 
 See [Metadata Providers](../administration/metadata providers.md) for context on each.
 
@@ -211,7 +209,7 @@ scan:
             - "moby"
 ```
 
-### `scan.priority.region` _(enhanced in 5.0)_
+### `scan.priority.region`
 
 Preferred region for titles, cover art, and regional variants. ScreenScraper uses this directly, and other providers respect it where possible.
 
@@ -226,7 +224,7 @@ scan:
             - "jp"
 ```
 
-### `scan.priority.language` _(enhanced in 5.0)_
+### `scan.priority.language`
 
 Preferred localisation language.
 
@@ -268,7 +266,7 @@ scan:
         - bezel
 ```
 
-### `scan.gamelist.export` _(new in 5.0)_
+### `scan.gamelist.export`
 
 Generate a `gamelist.xml` in each platform folder, compatible with ES-DE / Batocera.
 
@@ -281,7 +279,7 @@ scan:
             image: screenshot
 ```
 
-### `scan.pegasus.export` _(new in 5.0)_
+### `scan.pegasus.export`
 
 Export metadata in Pegasus-frontend format (`metadata.pegasus.txt`).
 
@@ -335,7 +333,7 @@ emulatorjs:
     disable_auto_unload: true
 ```
 
-### `emulatorjs.netplay` _(new in 5.0)_
+### `emulatorjs.netplay`
 
 Toggle Netplay and configure STUN/TURN servers. Google's public STUN servers are fine for most setups. Run your own [coturn](https://github.com/coturn/coturn) or use [Metered's free tier](https://www.metered.ca/stun-turn) if you need TURN (symmetric NAT).
 
