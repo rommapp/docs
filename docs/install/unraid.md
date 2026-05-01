@@ -8,7 +8,7 @@ description: Install Unraid via the Community Apps template or the DCM plugin
 Two supported install paths on Unraid. Pick one:
 
 - **[Community Apps template](#community-apps-template)**: Install RomM and MariaDB as separate CA templates. Good for users who already manage containers one-at-a-time
-- **[Docker Compose Manager](#docker-compose-manager)**: Drops the standard `docker-compose.yml` in and uses the Compose plugin to manage it. Recommended if you're comfortable editing Compose files and want parity with other deployments
+- **[Docker Compose Manager](#docker-compose-manager)**: Drops the standard `docker-compose.yml` in and uses the Compose plugin to manage it, recommended if you're comfortable editing Compose files and want parity with other deployments
 
 Both end up with the same running stack.
 

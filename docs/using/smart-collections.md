@@ -151,4 +151,4 @@ PUT    /api/collections/smart/{id}      # update
 DELETE /api/collections/smart/{id}      # delete
 ```
 
-Rule schema is part of the POST body. See the [API Reference](../developers/api-reference.md) for the JSON structure. Requires `collections.read` / `collections.write`.
+Rule schema is part of the POST body. See the [API Reference](../developers/api-reference.md) for the JSON structure, which requires `collections.read` / `collections.write`.

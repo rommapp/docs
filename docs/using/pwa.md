@@ -5,7 +5,7 @@ description: Add RomM to your phone or desktop home screen for an app-like exper
 
 # Install as PWA
 
-Ships as a **Progressive Web App**: a proper manifest, service worker, and icons. You can install it to your phone or desktop and launch it like a native app. Same app, no browser chrome.
+Ships as a **Progressive Web App**: a proper manifest, service worker, and icons. You can install it to your phone or desktop and launch it like a native app, with no browser chrome.
 
 New in 5.0.
 

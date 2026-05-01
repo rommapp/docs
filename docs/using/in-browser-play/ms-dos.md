@@ -22,7 +22,7 @@ DOS games run via the `dosbox-pure` core (part of [EmulatorJS](emulatorjs.md)). 
 DOS games come in three flavours, each needing a different approach:
 
 - **Homebrew:** indie / modern DOS games, just an `.exe` that usually Just Works once mounted.
-- **Shareware demos:** what most "free DOS games" sites distribute. Same as homebrew with all files in one folder.
+- **Shareware demos:** what most "free DOS games" sites distribute, same as homebrew with all files in one folder.
 - **Retail:** need the original CD mounted alongside the installed game files. More work, and every game is different.
 
 The basic flow inside `dosbox-pure`: select `Commandline` from the initial loading screen, then:
@@ -34,13 +34,13 @@ dir                     # find the .EXE
 filename.exe            # launch
 ```
 
-Works for homebrew and shareware. Retail games usually fail here because they want a CD mounted somewhere.
+Works for homebrew and shareware, but retail games usually fail here because they want a CD mounted somewhere.
 
 ## Auto-config with `.conf` files
 
 <!-- prettier-ignore -->
 !!! warning "Not for the faint of heart"
-    Building working `.conf` files is trial-and-error. Plan for it.
+    Building working `.conf` files is trial-and-error, so plan for it.
 
 `dosbox-pure` looks for a `.conf` file matching the `.exe` name before booting. If found, it reads the config, mounts whatever's specified, and runs the `[autoexec]` block. Once you have a working `.conf`, click Play → game boots straight into DOS → `[autoexec]` runs → you're in the game, no typing.
 
@@ -158,9 +158,9 @@ The `[autoexec]` block does the work: mount the current folder as `C:`, switch t
 
 3. Zip up the folder (including `DOOM.conf`).
 4. Upload under the `dos` platform.
-5. Click Play. Game boots.
+5. Click Play, and the game boots.
 
-Blank screen after boot? Something's off in `[autoexec]`, usually a path or mount issue. See [Troubleshooting](#troubleshooting) below.
+A blank screen after boot usually points at a path or mount issue in `[autoexec]`. See [Troubleshooting](#troubleshooting) below.
 
 ## Retail games with CDs
 
@@ -168,7 +168,7 @@ Retail games need the game CD image mounted alongside the install directory.
 
 <!-- prettier-ignore -->
 !!! info "GOG DOS re-releases don't work"
-    GOG's DOS games ship with custom wrappers (DOSBox Staging, ScummVM scripts, etc.) that don't translate to `dosbox-pure`. 100% failure rate observed. For GOG titles, extract the underlying game files and build a `.conf` yourself.
+    GOG's DOS games ship with custom wrappers (DOSBox Staging, ScummVM scripts, etc.) that don't translate to `dosbox-pure`, with a 100% failure rate observed. For GOG titles, extract the underlying game files and build a `.conf` yourself.
 
 ### Dungeon Keeper Gold example
 
@@ -182,7 +182,7 @@ Retail games need the game CD image mounted alongside the install directory.
         DUNGEON.CUE
         DUNGEON.BIN
     ```
-2. Read `KEEPER.cfg`. It tells you where the game expects the CD.
+2. Read `KEEPER.cfg`, which tells you where the game expects the CD.
 3. Create `KEEPER.conf` matching the `.exe` name:
 
 <details>

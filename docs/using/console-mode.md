@@ -5,7 +5,7 @@ description: TV + gamepad UI for RomM. Spatial navigation, SFX, focus sounds, no
 
 # Console Mode
 
-**Console Mode** is a second UI for RomM, living at `/console`, designed for TV screens and gamepad input. Same instance, same data, completely different UX.
+**Console Mode** is a second UI for RomM, living at `/console`, designed for TV screens and gamepad input. It runs on the same instance with the same data, just a completely different UX.
 
 New in 5.0. If you're on a desktop with a keyboard and mouse, you probably don't need it. The main [Library](library.md) view is your home. But if you're on:
 

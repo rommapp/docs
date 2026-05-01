@@ -33,7 +33,7 @@ exclude:
 
 ### `exclude.roms.single_file.extensions`
 
-Drop files with these extensions before matching. Applies to files that aren't inside a multi-file folder.
+Drop files with these extensions before matching, only for files that aren't inside a multi-file folder.
 
 **Default:** `["db", "ini", "tmp", "bak", "lock", "log", "cache", "crdownload"]`
 
@@ -241,7 +241,7 @@ scan:
 
 ### `scan.media`
 
-Which media types to fetch during a scan. Applies primarily to ScreenScraper and the gamelist.xml importer.
+Which media types to fetch during a scan, primarily for ScreenScraper and the gamelist.xml importer.
 
 | Type           | Description                                  |
 | -------------- | -------------------------------------------- |
@@ -317,7 +317,7 @@ emulatorjs:
 
 ### `emulatorjs.disable_batch_bootup`
 
-DOS-specific. Skips the `autorun.bat` step. Try toggling if DOS games won't boot.
+DOS-specific knob that skips the `autorun.bat` step. Toggle if DOS games won't boot.
 
 ```yaml
 emulatorjs:

@@ -121,7 +121,7 @@ Two side buttons:
 
 ## Collection view
 
-Like the platform view but scoped to one collection. Same filters and grid/list toggle. The side drawer shows collection metadata (name, owner, visibility, game count) and, for collections you own, Edit and Delete buttons.
+Like the platform view but scoped to one collection, with the same filters and grid/list toggle. The side drawer shows collection metadata (name, owner, visibility, game count) and, for collections you own, Edit and Delete buttons.
 
 Three collection types: see [Collections](collections.md), [Smart Collections](smart-collections.md), [Virtual Collections](virtual-collections.md).
 
@@ -165,4 +165,4 @@ Full shortcut list is on the [Account & Profile](account-and-profile.md) page.
 
 ## Console mode alternative
 
-If you're on a TV / gamepad, there's a second UI designed for it: **Console Mode**. Same library, different navigation. See [Console Mode](console-mode.md).
+If you're on a TV / gamepad, there's a second UI designed for it: **Console Mode**, with the same library and different navigation. See [Console Mode](console-mode.md).

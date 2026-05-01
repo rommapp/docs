@@ -102,4 +102,4 @@ POST   /api/collections/{id}/roms      # add ROMs (body: array of ROM IDs)
 DELETE /api/collections/{id}/roms      # remove ROMs
 ```
 
-Full details in the [API Reference](../developers/api-reference.md). Requires `collections.read` / `collections.write` scopes.
+Full details in the [API Reference](../developers/api-reference.md), which requires `collections.read` / `collections.write` scopes.

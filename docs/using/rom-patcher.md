@@ -65,7 +65,7 @@ Many Japanese-only games have fan translations as IPS or BPS patches. Point the 
 
 ### ROM hacks and rebalances
 
-Kaizo Mario-type hacks, FF6 balance patches, etc. Same flow: the patched ROM gets its own entry, and your original stays intact.
+Kaizo Mario-type hacks, FF6 balance patches, etc., follow the same flow: the patched ROM gets its own entry, and your original stays intact.
 
 ### Regional fixes
 
@@ -85,7 +85,7 @@ The Patcher shows the pre-patch and post-patch hash (CRC32 + MD5) after apply. C
 ## Troubleshooting
 
 - **"Invalid patch format"**: wrong extension or corrupted file. Try re-downloading the patch.
-- **"Checksum mismatch"**: the patch was built against a different ROM revision than yours. Common with no-intro vs TOSEC dumps. Look up the patch author's expected source.
+- **"Checksum mismatch"**: the patch was built against a different ROM revision than yours, common with no-intro vs TOSEC dumps. Look up the patch author's expected source.
 - **Browser hangs on huge ROMs**: close other tabs, try Firefox, or patch outside the browser with `Floating IPS` or `BPS` CLI tools then upload the result.
 - **"Save to library" produces a broken ROM**: usually the patcher succeeded but the file was corrupted in transit. Retry. If it persists, patch externally and upload.
 

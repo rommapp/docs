@@ -11,7 +11,7 @@ RomM is a web app. Anything with a modern browser can use it: phones, tablets, h
 
 ### Option A: the PWA
 
-Install RomM as a [Progressive Web App](pwa.md): feels native, launches from the home screen, no app store. Recommended for most mobile users.
+Install RomM as a [Progressive Web App](pwa.md), the recommended path for most mobile users: feels native, launches from the home screen, no app store.
 
 - Good for: browsing, managing your library, downloading ROMs, in-browser play on devices with enough horsepower
 - Limited by: no push notifications (yet), no OS-level file pickers for ROM uploads (use the web UI instead), Safari quirks on iOS
