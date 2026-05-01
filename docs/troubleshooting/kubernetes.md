@@ -124,7 +124,7 @@ resources:
 
 Or disable hashing on the Scan page to cut memory use by ~80% (you lose RetroAchievements + Hasheous matching, see [Metadata Providers](../administration/metadata-providers.md)).
 
-## Still stuck
+## Still stuck?
 
 - Full install reference: [Kubernetes](../install/kubernetes.md)
 - [Discord](https://discord.gg/romm) `#kubernetes` channel

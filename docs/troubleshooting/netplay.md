@@ -72,7 +72,7 @@ Netplay switches EmulatorJS to nightly-CDN assets. Sometimes the nightly is temp
 
 See [In-Browser Play → Netplay](../using/netplay.md#known-caveat-nightly-cdn).
 
-## Still stuck
+## Still stuck?
 
 - `docker logs romm | grep -i netplay`: server-side log
 - Browser devtools Console: client-side log

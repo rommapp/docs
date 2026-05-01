@@ -63,6 +63,6 @@ Fix:
 2. Check your compose file. Any volumes declared as _named_ Docker volumes (as opposed to host bind mounts) might have been recreated empty.
 3. Prefer host bind mounts on Synology specifically: `/volume1/docker/romm/resources` instead of a named `romm_resources` volume. The [Synology install guide](../install/synology.md) uses this pattern.
 
-## Still stuck
+## Still stuck?
 
 DSM + RomM issues are best asked in the [RomM Discord](https://discord.gg/romm) `#synology` channel. Plenty of users there have seen the same issues and know the Synology quirks.

@@ -29,7 +29,7 @@ Something's broken. Start with the symptom that best matches:
 
 ### In-browser play
 
-- EmulatorJS won't load / cores 404 → [In-Browser Play Troubleshooting](in-browser-play.md). Probably the slim image (EmulatorJS isn't bundled there)
+- EmulatorJS won't load / cores 404 → [In-Browser Play Troubleshooting](in-browser-play.md). On the slim image, cores come from a CDN at runtime, so a 404 usually means outbound network is blocked.
 - Netplay doesn't connect → [Netplay Troubleshooting](netplay.md). Almost always NAT / missing ICE servers
 
 ### Device sync
@@ -42,7 +42,7 @@ Something's broken. Start with the symptom that best matches:
 - [Kubernetes Troubleshooting](kubernetes.md): the `enableServiceLinks` fix and related
 - [Miscellaneous Troubleshooting](miscellaneous.md): everything else
 
-## Still stuck
+## Still stuck?
 
 - [GitHub issues](https://github.com/rommapp/romm/issues): search first, then open if you've got a reproducible bug.
 - [Discord](https://discord.gg/romm): `#help` channel, staffed by community + maintainers

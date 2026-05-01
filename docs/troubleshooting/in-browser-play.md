@@ -1,6 +1,6 @@
 ---
 title: In-Browser Play Troubleshooting
-description: Diagnose EmulatorJS and Ruffle issues: cores not loading, BIOS missing, audio, performance.
+description: Diagnose EmulatorJS and Ruffle issues
 ---
 
 # In-Browser Play Troubleshooting
@@ -11,9 +11,9 @@ Symptom: Play button spins forever or shows an error immediately.
 
 Checks in order:
 
-1. **Is it the slim image?** EmulatorJS isn't bundled on the slim image, and no env var changes that. Either switch to `rommapp/romm:<version>` (full) or set `DISABLE_EMULATOR_JS=true` to hide the Play button. See [Image Variants](../install/image-variants.md).
-2. **Browser console**: open devtools, look for 404s on `/assets/emulatorjs/...`. Indicates the EmulatorJS bundle didn't install correctly in the container. `docker logs romm` may show the entrypoint's install step failing.
-3. **Browser compatibility**: EmulatorJS uses SharedArrayBuffer. Needs a modern Chrome/Firefox/Safari and an HTTPS-served RomM (cross-origin isolation requires HTTPS). If you're still on plain HTTP for some reason, TLS it. See [Reverse Proxy](../install/reverse-proxy.md).
+1. **On the slim image without internet?** The slim image fetches EmulatorJS cores from a CDN at runtime rather than bundling them, so without outbound network the container can't load games. Either switch to the full image (cores bundled) or open outbound access. See [Image Variants](../install/image-variants.md).
+2. **Browser console**: open devtools and look for 404s on `/assets/emulatorjs/...`, which indicate the EmulatorJS bundle didn't install correctly in the container. Check `docker logs romm` for entrypoint install-step failures.
+3. **Browser compatibility**: EmulatorJS uses SharedArrayBuffer, which needs a modern Chrome/Firefox/Safari and an HTTPS-served RomM (cross-origin isolation requires HTTPS). If you're still on plain HTTP, set up TLS first. See [Reverse Proxy](../install/reverse-proxy.md).
 
 ## Black screen, no audio
 
@@ -105,7 +105,7 @@ In-browser emulation is CPU-heavy. Mobile tips:
 | `opera` (3DO)         | Niche. Limited ROM compatibility.                                           |
 | All Nintendo DS cores | Touchscreen emulation is imperfect on non-touch devices.                    |
 
-## Still stuck
+## Still stuck?
 
 - `docker logs romm | grep -i emulator`: server-side clues
 - Browser devtools Console: client-side clues

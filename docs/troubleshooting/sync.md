@@ -71,7 +71,7 @@ Smart collections re-evaluate on ROM / metadata change. A pure save upload doesn
 
 Admins can force a re-eval via Administration → Tasks → Refresh Smart Collections.
 
-## Still stuck
+## Still stuck?
 
 - **API sync**: `docker logs romm | grep -iE 'sync|device|token'`
 - Device-side logs from the companion app. Each app differs.
