@@ -59,6 +59,7 @@ jobs:
                   git checkout main
 
             - name: Build the documentation
-              run: uv run mike deploy --push --update-aliases ${{ github.event.inputs.version }} latest
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  VERSION: ${{ github.event.inputs.version }}
+              run: uv run mike deploy --push --update-aliases $VERSION latest
