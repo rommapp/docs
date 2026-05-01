@@ -97,7 +97,6 @@ search:
     - [Device Sync](troubleshooting/sync.md)
     - [Synology](troubleshooting/synology.md)
     - [Kubernetes](troubleshooting/kubernetes.md)
-    - [Miscellaneous](troubleshooting/miscellaneous.md)
 - About
     - [FAQs](about/faqs.md)
     - [Brand Guidelines](about/brand-guidelines.md)

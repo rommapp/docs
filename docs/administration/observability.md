@@ -41,8 +41,6 @@ docker logs romm 2>&1 | grep -iE 'auth|oidc|oauth'
 docker logs romm 2>&1 | grep -iE 'scan_handler.*Identified'
 ```
 
-Deployment-specific log commands are in [Miscellaneous Troubleshooting → Viewing RomM logs](../troubleshooting/miscellaneous.md#viewing-romm-logs).
-
 ## `/api/heartbeat`
 
 A single-request endpoint to fetch health and config information. Works when not logged in, though some fields only appear for authenticated callers.

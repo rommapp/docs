@@ -40,7 +40,6 @@ If something's broken, start with the symptom that best matches:
 
 - [Synology Troubleshooting](synology.md): permission errors, DSM gotchas
 - [Kubernetes Troubleshooting](kubernetes.md): the `enableServiceLinks` fix and related
-- [Miscellaneous Troubleshooting](miscellaneous.md): everything else
 
 ## Still stuck?
 
