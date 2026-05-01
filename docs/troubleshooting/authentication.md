@@ -1,6 +1,6 @@
 ---
 title: Authentication Troubleshooting
-description: Fix login, session, CSRF, and OIDC issues.
+description: Fix login, session, CSRF, and OIDC issues
 ---
 
 # Authentication Troubleshooting
@@ -12,23 +12,21 @@ When auth is enabled (almost always), any endpoint that requires a session retur
 - You're not authenticated.
 - Your session is in a broken state (expired, signed with an old secret, missing CSRF).
 
-Fix: [clear cookies](https://support.google.com/accounts/answer/32050) for the RomM host and sign in again.
+Fix: [clear cookies](https://support.google.com/accounts/answer/32050) for the host and sign in again.
 
 ## `Forbidden (403) CSRF verification failed`
 
 CSRF protection is on by default, so a mismatched or missing `csrftoken` cookie causes this.
 
-1. Reload the page: a fresh CSRF cookie is set on GET requests, which should fix it on the next POST.
-2. Still broken? Clear cookies for the RomM host and hard-reload (`CMD+SHIFT+R` / `CTRL+F5`).
-3. Known to happen on Chrome specifically, and rare on Firefox/Safari.
+1. Reload the page, and a fresh CSRF cookie is set on GET requests, which should fix it on the next POST.
+2. Still broken? Clear cookies for the host and hard-reload (`CMD+SHIFT+R` / `CTRL+F5`).
+3. As a last resort, disable CSRF verification with `DISABLE_CSRF_PROTECTION=true` in your env, but **we strongly discourage this** as it opens you up to CSRF attacks.
 
 If you're behind a reverse proxy and CSRF keeps failing, the proxy is probably stripping the `csrftoken` cookie or the `X-CSRFToken` header. See the [Reverse Proxy recipes](../install/reverse-proxy.md). Every one of them forwards `Cookie` and all custom headers by default, so if yours doesn't, fix the proxy config.
 
 ## `400 Bad Request` on the WebSocket endpoint
 
-Your reverse proxy is stripping the WebSocket upgrade, and live updates (scan progress, Netplay) use socket.io.
-
-Fixes per proxy:
+Your reverse proxy is stripping the WebSocket upgrade, and live updates (scan progress, Netplay) use socket.io. Fixes for each proxy:
 
 - **Nginx / NPM**: enable WebSockets Support (the [Reverse Proxy](../install/reverse-proxy.md) snippets already do this).
 - **Traefik**: add `proxy_set_header Upgrade $http_upgrade` (or use the Traefik middleware equivalent).
@@ -40,7 +38,7 @@ Fixes per proxy:
 IGDB creds are wrong or revoked on the Twitch side.
 
 1. Go to [dev.twitch.tv/console/apps](https://dev.twitch.tv/console/apps).
-2. Verify your RomM application still exists.
+2. Verify your application still exists.
 3. Regenerate the Client Secret, and copy both Client ID and Client Secret.
 4. Update `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` in your env.
 5. `docker compose up -d` to pick up the new values.
@@ -51,9 +49,8 @@ You set `DISABLE_USERPASS_LOGIN=true` and now OIDC isn't working.
 
 1. Edit your compose / env to unset `DISABLE_USERPASS_LOGIN` (or set it to `false`).
 2. `docker compose up -d` to restart with the new config.
-3. Log in with your local admin.
-4. Fix OIDC. See below.
-5. Re-enable `DISABLE_USERPASS_LOGIN` only after confirming OIDC works end-to-end.
+3. Log in with your local admin and fix OIDC with the steps below.
+4. Re-enable `DISABLE_USERPASS_LOGIN` only after confirming OIDC works end-to-end.
 
 This is the reason [OIDC Setup](../administration/oidc/index.md) tells you to verify OIDC before turning off local login.
 
@@ -61,16 +58,12 @@ This is the reason [OIDC Setup](../administration/oidc/index.md) tells you to ve
 
 ### `redirect_uri_mismatch`
 
-The `OIDC_REDIRECT_URI` in the env doesn't **exactly** match what's registered at the IdP.
-
-Check for:
+The `OIDC_REDIRECT_URI` in the env doesn't **exactly** match what's registered at the IdP. Check for:
 
 - **Trailing slashes**: `/api/oauth/openid` vs `/api/oauth/openid/` are different to the IdP.
 - **Scheme**: `http://` vs `https://`
 - **Host**: `demo.romm.app` vs `www.demo.romm.app` vs the bare IP
 - **Port**: implied `80` / `443` on HTTPS vs an explicit port
-
-Fix: make them identical on both sides.
 
 ### User is created but stays Viewer, even though they should be Admin
 
@@ -80,7 +73,7 @@ You configured `OIDC_CLAIM_ROLES` but it's not being honoured.
 2. **Does the value match?** `OIDC_ROLE_ADMIN=romm-admin` will only match if the claim contains exactly the string `romm-admin`, and it's case-sensitive.
 3. **Is the claim mapper on the IdP side configured to include the claim?** On Keycloak, for example, you need a Client Scope with a Group Membership mapper added to the client.
 
-Roles are re-evaluated on every login, with no cache to bust, so log out and back in after fixing.
+Roles are re-evaluated on every login with no cache to bust, so log out and back in to test the fix.
 
 ### "Email is missing from token" (Zitadel-specific)
 
@@ -103,7 +96,7 @@ Two possibilities:
 
 ### `OAuthException: expired token` on callback
 
-Your RomM host and the IdP have significant clock drift, so run NTP on both.
+Your host and the IdP have significant clock drift, so run NTP on both.
 
 ### Autologin loops forever
 
@@ -117,7 +110,7 @@ Usually because something else in the chain (a CSRF check, a cookie domain misma
 
 If `bypass_autologin` doesn't work in your version, shell into the container and unset `OIDC_AUTOLOGIN` in the env, or edit your compose and restart.
 
-## Still stuck
+## Still stuck?
 
 - Check the container logs: `docker logs romm 2>&1 | grep -iE 'auth|oidc|oauth'`.
 - Cross-reference your IdP's audit logs, which often show exactly why a login was rejected on their side.
