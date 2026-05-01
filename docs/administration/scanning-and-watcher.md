@@ -125,7 +125,7 @@ When a metadata provider returns multiple regional variants (Japanese cover, US 
 
 ## Metadata source priority
 
-Who wins when two providers disagree is covered in [Metadata Providers](metadata providers.md#priority-and-conflict-resolution), though the short version is `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`.
+Who wins when two providers disagree is covered in [Metadata Providers](metadata-providers.md#priority-and-conflict-resolution), though the short version is `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`.
 
 ## Troubleshooting
 

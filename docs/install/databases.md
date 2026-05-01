@@ -91,7 +91,7 @@ services:
 
 ## Extra connection parameters
 
-`DB_QUERY_JSON` takes a JSON blob of extra parameters appended to the connection string. Useful for enabling TLS to an external DB, setting a connection timeout, or hitting a non-default port:
+`DB_QUERY_JSON` takes a JSON blob of extra parameters appended to the connection string, e.g. for enabling TLS to an external DB, a longer connection timeout, or a non-default port:
 
 ```yaml
 environment:

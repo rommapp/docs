@@ -33,7 +33,7 @@ search:
         - [Keycloak](administration/oidc/keycloak.md)
         - [PocketID](administration/oidc/pocketid.md)
         - [Zitadel](administration/oidc/zitadel.md)
-    - [Metadata Providers](administration/metadata providers.md)
+    - [Metadata Providers](administration/metadata-providers.md)
     - [Scanning & Watcher](administration/scanning-and-watcher.md)
     - [Scheduled Tasks](administration/scheduled-tasks.md)
     - [Server Stats](administration/server-stats.md)

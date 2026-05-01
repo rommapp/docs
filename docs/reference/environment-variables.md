@@ -51,7 +51,7 @@ You'll always set these:
 | `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWD` | Database connection                                                                             |
 | `ROMM_DB_DRIVER`                             | One of `mariadb` (default), `mysql`, or `postgresql` (see [Databases](../install/databases.md)) |
 
-For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../administration/metadata providers.md), and for OIDC, see [OIDC Setup](../administration/oidc/index.md).
+For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../administration/metadata-providers.md), and for OIDC, see [OIDC Setup](../administration/oidc/index.md).
 
 ## Full reference
 

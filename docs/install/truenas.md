@@ -27,7 +27,7 @@ You'll be asked for the same set of env vars as [Quick Start](../getting-started
 
 - **Database credentials**: TrueNAS will offer to provision MariaDB for you, just pick a strong password.
 - **`ROMM_AUTH_SECRET_KEY`**: generate via `openssl rand -hex 32` on any Linux box and paste the output.
-- **Metadata provider credentials**: fill in whatever you've registered for (see [Metadata Providers](../administration/metadata providers.md)).
+- **Metadata provider credentials**: fill in whatever you've registered for (see [Metadata Providers](../administration/metadata-providers.md)).
 - **Storage configurations**: point the **Library** and **Assets** volumes at datasets you control.
     - Make sure the UID/GID defined in the app config (default: `568`, the `apps` user) has ACL access to those datasets.
 

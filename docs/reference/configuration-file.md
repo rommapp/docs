@@ -72,7 +72,7 @@ exclude:
 
 ### `exclude.roms.multi_file.parts.names`
 
-Files **inside** a multi-file ROM folder to ignore. Useful for excluding `.nfo`, `._*` macOS attributes, etc. from multi-disc sets.
+Files **inside** a multi-file ROM folder to ignore (e.g. `.nfo`, `._*` macOS attributes, similar noise from multi-disc sets).
 
 **Default:** `[".DS_Store", ".localized", ".Trashes", ".stfolder", "@SynoResource", "gamelist.xml"]`
 
@@ -118,7 +118,7 @@ system:
 
 ### `system.versions`
 
-Associate a platform with its "main" IGDB version. Useful for platforms that have multiple IGDB entries you want collapsed into one (e.g. NAOMI → Arcade).
+Associate a platform with its "main" IGDB version, for platforms that have multiple IGDB entries you want collapsed into one (e.g. NAOMI → Arcade).
 
 ```yaml
 system:
@@ -194,7 +194,7 @@ Values are the provider slugs. Full list:
 | `tgdb`       | TheGamesDB            |
 | `libretro`   | Libretro metadata     |
 
-See [Metadata Providers](../administration/metadata providers.md) for context on each.
+See [Metadata Providers](../administration/metadata-providers.md) for context on each.
 
 ### `scan.priority.artwork`
 
@@ -428,4 +428,4 @@ Most settings under `emulatorjs.settings` and `emulatorjs.controls` can be overr
 ## Related
 
 - [Folder Structure](../getting-started/folder-structure.md): how the filesystem shape interacts with `config.yml`
-- [Metadata Providers](../administration/metadata providers.md): per-provider detail for the `scan.priority.*` slugs
+- [Metadata Providers](../administration/metadata-providers.md): per-provider detail for the `scan.priority.*` slugs

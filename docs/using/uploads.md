@@ -55,7 +55,7 @@ Uploaded ROMs are immediately visible in the platform view but aren't **matched*
 
 ## Save uploads
 
-For your own games. Useful for importing existing save files from another emulator or from the original console.
+For your own games, e.g. importing save files from another emulator or from the original console.
 
 1. Open the game → **Game Data** tab → **Upload Save**.
 2. Drag / browse the save file.

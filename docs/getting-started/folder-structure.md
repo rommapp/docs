@@ -162,7 +162,7 @@ Filenames are parsed for region, language, revision, and arbitrary tags, with bo
 - **Revision**: prefix with `rev` / `rev-` (e.g. `rev v1`, `rev-1`)
 - **Arbitrary tags**: anything else in brackets is imported verbatim (e.g. `tetris [1.0001](HACK)[!].gba`)
 
-Inline tags like `(igdb-1234)` in filenames can be used to force a match to a specific provider entry, covered in [Metadata Providers → Filename tags](../administration/metadata providers.md#metadata-tags-in-filenames).
+Inline tags like `(igdb-1234)` in filenames can be used to force a match to a specific provider entry, covered in [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames).
 
 <div class="grid cards" markdown>
 

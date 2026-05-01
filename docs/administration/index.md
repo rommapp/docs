@@ -20,7 +20,7 @@ The end-user equivalent (how to actually play the games, build collections, uplo
 
 ### Content & library
 
-- **[Metadata Providers](metadata providers.md)**: all providers, credentials, priority ordering
+- **[Metadata Providers](metadata-providers.md)**: all providers, credentials, priority ordering
 - **[Scanning & Watcher](scanning-and-watcher.md)**: how scans work, scan modes, filesystem watcher
 - **[Firmware Management](firmware-management.md)**: BIOS/firmware uploads for emulation
 

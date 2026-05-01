@@ -79,7 +79,7 @@ Genre coverage varies by metadata provider:
 - **ScreenScraper**: ok genre data, with some provider-specific labels
 - **Hasheous / PlayMatch** (hash-only): no genre data, because they proxy IGDB
 
-If your library is heavily ScreenScraper-matched and you want rich genres, add IGDB and run an **Unmatched** or **Update Metadata** scan. See [Metadata Providers](../administration/metadata providers.md).
+If your library is heavily ScreenScraper-matched and you want rich genres, add IGDB and run an **Unmatched** or **Update Metadata** scan. See [Metadata Providers](../administration/metadata-providers.md).
 
 ## API
 

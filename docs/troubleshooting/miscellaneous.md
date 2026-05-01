@@ -33,7 +33,7 @@ Logs are available from the GUI container view, or via SSH using the Docker comm
 
 ### What to grep for
 
-Most lines start with `INFO`, `WARNING`, or `ERROR`. Useful filters:
+Most lines start with `INFO`, `WARNING`, or `ERROR`. Common filters:
 
 ```sh
 docker logs romm 2>&1 | grep ERROR

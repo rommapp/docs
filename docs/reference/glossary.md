@@ -5,7 +5,7 @@ description: The vocabulary every page assumes you know
 
 # Glossary
 
-Every term the docs, UI, and API use consistently. Foundational concepts get a paragraph, lookups get a sentence. Almost every entry links out to its own page with full detail.
+Every term the docs, UI, and API use consistently, with foundational concepts getting a paragraph, lookups a single sentence, and almost every entry linking out to a dedicated page for full detail.
 
 ---
 
@@ -13,9 +13,7 @@ Every term the docs, UI, and API use consistently. Foundational concepts get a p
 
 **API token**: see Client API Token.
 
-**Argosy**: first-party Android launcher app. See [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher).
-
-**Asset**: user-uploaded content attached to a ROM, such as save files, emulator states, and screenshots. Assets live under `/romm/assets` (separate from the library) and are owned per-user. Saves and states can sync to registered devices. Not the same as a Resource. See [Saves & States](../using/saves-and-states.md).
+**Asset**: user-uploaded content attached to a ROM, such as save files, emulator states, and screenshots. Assets live under `/romm/assets` (separate from the library) and are owned per-user. Saves and states can sync to registered devices, and are not the same as a Resource. See [Saves & States](../using/saves-and-states.md).
 
 **Autologin**: OIDC feature that bypasses the login page and redirects straight to the IdP. Set via `OIDC_AUTOLOGIN=true`.
 
@@ -25,13 +23,7 @@ Every term the docs, UI, and API use consistently. Foundational concepts get a p
 
 **Client API Token**: long-lived bearer token scoped to a user. Used by companion apps (Argosy, Grout, Playnite, custom scripts) to authenticate. Each user gets up to 25 active tokens, and tokens can be paired to devices via a short code. See [Client API Tokens](../developers/client-api-tokens.md).
 
-**Collection**: a named grouping of ROMs. Three flavours:
-
-- **Standard**: a hand-curated list. You pick what's in it.
-- **Smart**: rule-based and auto-populating. Define a query ("all SNES games rated 4+ stars") and it stays in sync.
-- **Virtual**: auto-generated (by genre, developer, year, tag). Not user-editable but you can toggle on/off in UI settings.
-
-See [Collections](../using/collections.md).
+**Collection**: a named grouping of ROMs. See [Collections](../using/collections.md).
 
 **Console Mode**: separate `/console` UI optimised for gamepads and TV displays: spatial navigation, bigger hit targets, SFX, no mouse required. Same instance, same data. See [Console Mode](../using/console-mode.md).
 
@@ -51,31 +43,15 @@ See [Collections](../using/collections.md).
 
 **gamelist.xml**: ES-DE / Batocera-compatible metadata format. Importable as a metadata source and exportable.
 
-**Grout**: first-party Linux handheld companion (muOS, NextUI). See [Grout](../ecosystem/first-party-apps.md#grout).
-
-**Hasheous**: metadata provider doing hash-based matching (no API keys). See [Metadata Providers → Hasheous](../administration/metadata providers.md#hasheous).
-
-**IGDB**: Internet Game Database. Primary metadata provider. See [Metadata Providers → IGDB](../administration/metadata providers.md#igdb).
-
-**Igir**: third-party ROM collection manager. Useful for cleaning libraries before importing into RomM. See [Igir](../ecosystem/igir.md).
-
 **Invite link**: single-use URL that lets a new user register with a pre-assigned role. See [Invitations & Registration](../administration/invitations-and-registration.md).
 
 **Kekatsu**: Nintendo DS multiboot loader that reads RomM's feed. See [Kekatsu](../ecosystem/feed-clients.md#kekatsu).
 
-**Kiosk mode**: server-side setting (`KIOSK_MODE=true`) that turns every read endpoint into unauthenticated access. Anonymous visitors can browse but nobody can write. Useful for public demos and wall displays. See [Authentication → Kiosk mode](../administration/authentication.md#kiosk-mode).
-
-**LaunchBox**: metadata provider. Uses a local downloaded DB.
+**Kiosk mode**: server-side setting (`KIOSK_MODE=true`) that turns every read endpoint into unauthenticated access. Anonymous visitors can browse but nobody can write, which fits public demos and wall displays. See [Authentication → Kiosk mode](../administration/authentication.md#kiosk-mode).
 
 **Library**: your ROM files on disk. Mounted (usually read-only) at `/romm/library` inside the container, with platforms as subdirectories. The catalogue is built from what's found there. See [Folder Structure](../getting-started/folder-structure.md).
 
-**Metadata provider**: external source of game data: IGDB, ScreenScraper, MobyGames, RetroAchievements, Hasheous, PlayMatch, LaunchBox, SteamGridDB, TheGamesDB, Flashpoint, HowLongToBeat, gamelist.xml, Libretro (13 total in 5.0). Queried during a scan, with results merged. Configured via env vars + priority in `config.yml`. See [Metadata Providers](../administration/metadata providers.md).
-
-**mike**: versioning tool for MkDocs used by the docs site.
-
-**MobyGames**: paid metadata provider. See [Metadata Providers → MobyGames](../administration/metadata providers.md#mobygames).
-
-**muOS**: custom firmware for ARM handhelds. Use [Grout](../ecosystem/first-party-apps.md#grout) to sync ROMs and saves with RomM.
+**Metadata provider**: external source of game data, queried during a scan, with results merged. Configured via env vars + priority in `config.yml`. See [Metadata Providers](../administration/metadata-providers.md).
 
 **Netplay**: EmulatorJS's multiplayer mode. Two or more players share a session across the internet. Open rooms are tracked and brokered via WebSocket. Needs STUN/TURN (ICE servers) configured in `config.yml` for reliable NAT traversal. See [Netplay](../using/netplay.md).
 
@@ -85,27 +61,17 @@ See [Collections](../using/collections.md).
 
 **Personal tab**: the ROM detail page tab for per-user data (rating, status, notes, playtime).
 
-**pkgj**: PS Vita / PSP homebrew installer. Consumes RomM feeds. See [pkgj](../ecosystem/feed-clients.md#pkgj).
-
 **Platform**: a gaming system: SNES, PlayStation, Game Boy Advance, DOS, etc. ~400 platforms ship supported. Each has a **slug** (`snes`, `ps`, `gba`) that doubles as the folder name expected in your library. Override the folder-name → slug mapping via `config.yml`. See [Supported Platforms](../platforms/supported-platforms.md).
 
 **Play session**: a timestamped record of someone playing a ROM (start, end, duration, device). Used by the stats, the Continue Playing ribbon, and per-ROM playtime totals. Ingested automatically when playing in-browser, and companion apps push them via API.
-
-**Playnite Plugin**: first-party Windows Playnite integration. See [Playnite Plugin](../ecosystem/first-party-apps.md#playnite-plugin).
 
 **PWA**: Progressive Web App. Install RomM to your home screen. See [Install as PWA](../using/pwa.md).
 
 **Resource**: provider-fetched metadata image (cover art, screenshot, manual) stored under `/romm/resources`. **Machine-managed** and rebuildable from a rescan. Not the same as an Asset (`/romm/assets`), which is user-owned and not recoverable from the library.
 
-**RetroAchievements (RA)**: integrated achievements service. Per-user linking. See [RetroAchievements](../using/retroachievements.md).
-
 **ROM**: a single game entry. One filesystem file, one folder of files (multi-disc, patched, with DLC), or a manual DB entry. Each ROM belongs to exactly one platform. ROMs get metadata (cover, description, ratings, related games), user data (per-user rating, notes, playtime), and optional assets (saves, states, screenshots, firmware).
 
-**RomM**: this project. Pronounced "rom-em" (rhymes with "problem").
-
 **Role**: a convenience bundle of scopes. Three roles: Viewer, Editor, Admin. See [Users & Roles](../administration/users-and-roles.md).
-
-**RQ**: Redis Queue, the task-queue library used for background work.
 
 **Ruffle**: the bundled in-browser Flash / Shockwave emulator. See [In-Browser Play → Ruffle](../using/in-browser-play/ruffle.md).
 
@@ -113,21 +79,13 @@ See [Collections](../using/collections.md).
 
 **Scope**: fine-grained permission. 19 in total, grouped into roles. Tokens and OIDC sessions carry subsets of scopes. Every endpoint requires specific scopes. See the [scope matrix](../administration/users-and-roles.md#scope-matrix).
 
-**ScreenScraper**: metadata provider with good artwork. See [Metadata Providers → ScreenScraper](../administration/metadata providers.md#screenscraper).
-
 **Setup Wizard**: first-run flow that creates the admin user. Shown before any user exists.
-
-**Slim image**: smaller container variant without EmulatorJS or Ruffle. `rommapp/romm:X.Y.Z-slim`. See [Image Variants](../install/image-variants.md).
 
 **Smart Collection**: rule-based auto-populating collection. See [Smart Collections](../using/smart-collections.md).
 
 **socket.io**: the WebSocket protocol. Two endpoints: `/ws` and `/netplay`. See [WebSockets](../developers/websockets.md).
 
-**SteamGridDB**: alternate cover art provider. See [Metadata Providers → SteamGridDB](../administration/metadata providers.md#steamgriddb).
-
 **Task**: a unit of background work (scan, metadata sync, cleanup, device sync). Runs through RQ. Can be scheduled (cron), watcher-triggered, or manual. See [Scheduled Tasks](../administration/scheduled-tasks.md).
-
-**TheGamesDB (TGDB)**: free community metadata provider. New in 5.0.
 
 **Tinfoil**: Nintendo Switch homebrew that installs from RomM's feed. See [Tinfoil](../ecosystem/feed-clients.md#tinfoil).
 
