@@ -1,17 +1,17 @@
 ---
 title: Troubleshooting
-description: Diagnose common RomM issues by symptom.
+description: Diagnose common issues by symptom
 ---
 
 # Troubleshooting
 
-Something's broken. Start with the symptom that best matches:
+If something's broken, start with the symptom that best matches:
 
 ## By symptom
 
 ### RomM won't start
 
-- Container crashes immediately → check `docker logs romm`. If it's `invalid host in "tcp://..."`, you're on Kubernetes. See [Kubernetes Troubleshooting](kubernetes.md).
+- Container crashes immediately → check `docker logs romm`. If it's `invalid host in "tcp://..."` you're on Kubernetes, see [Kubernetes Troubleshooting](kubernetes.md).
 - Database connection errors → verify `DB_HOST` / `DB_PASSWD` match your DB container, and that the DB has finished initialising (first run takes longer than you'd think).
 - "Page not found" on first load → wait, because initial migrations and resource seeding take a minute.
 
@@ -29,8 +29,8 @@ Something's broken. Start with the symptom that best matches:
 
 ### In-browser play
 
-- EmulatorJS won't load / cores 404 → [In-Browser Play Troubleshooting](in-browser-play.md). On the slim image, cores come from a CDN at runtime, so a 404 usually means outbound network is blocked.
-- Netplay doesn't connect → [Netplay Troubleshooting](netplay.md). Almost always NAT / missing ICE servers
+- EmulatorJS won't load / 404 → [In-Browser Play Troubleshooting](in-browser-play.md) (on the slim image, cores come from a CDN at runtime, so a 404 usually means outbound networks are blocked).
+- Netplay doesn't connect → [Netplay Troubleshooting](netplay.md), almost always NAT or missing ICE servers
 
 ### Device sync
 
@@ -46,4 +46,3 @@ Something's broken. Start with the symptom that best matches:
 
 - [GitHub issues](https://github.com/rommapp/romm/issues): search first, then open if you've got a reproducible bug.
 - [Discord](https://discord.gg/romm): `#help` channel, staffed by community + maintainers
-- Logs to include when asking for help: `docker logs romm` (redact secrets), your RomM version (top of the About modal in the profile drawer), and the exact steps you took
