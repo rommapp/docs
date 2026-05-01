@@ -5,7 +5,7 @@ description: Play EmulatorJS games with friends in real time: hosting, joining, 
 
 # Netplay
 
-**Netplay** lets you play [in-browser](in-browser-play.md) with other users in real time: co-op, turn-based, or party games, shared across the internet. EmulatorJS emulates "two players on one couch with two controllers", streaming video from the host to everyone else.
+**Netplay** lets you play [in-browser](in-browser-play/emulatorjs.md) with other users in real time: co-op, turn-based, or party games, shared across the internet. EmulatorJS emulates "two players on one couch with two controllers", streaming video from the host to everyone else.
 
 Best for 2-player co-op and turn-based games. Not ideal for twitchy fighting games (frame-level input isn't rollback-based).
 

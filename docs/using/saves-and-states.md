@@ -28,7 +28,7 @@ Useful for importing from real hardware (Retrode / GB Operator / etc.) or from a
 3. Pick the emulator format if it can't be inferred from the extension.
 4. Save.
 
-The save is available to [in-browser play](in-browser-play.md) on the next launch.
+The save is available to [in-browser play](in-browser-play/emulatorjs.md) on the next launch.
 
 ## Uploading a state
 

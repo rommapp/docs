@@ -95,7 +95,7 @@ Most of the main UI's features are available in Console Mode:
 
 - ✓ Browse library, platforms, collections
 - ✓ Search and filters
-- ✓ Play (launches [In-Browser Play](in-browser-play.md) or shows a download prompt if the platform isn't browser-playable)
+- ✓ Play (launches [In-Browser Play](in-browser-play/emulatorjs.md) or shows a download prompt if the platform isn't browser-playable)
 - ✓ Saves and states: upload, select, delete
 - ✓ Smart and virtual collections
 - ✓ RetroAchievements progression display
@@ -129,7 +129,7 @@ Not yet in Console Mode (still use the main UI):
 
 Focus a game → press **A** (Play).
 
-If the platform supports [In-Browser Play](in-browser-play.md), the emulator loads full-screen. Controllers and keyboard pass through automatically.
+If the platform supports [In-Browser Play](in-browser-play/emulatorjs.md), the emulator loads full-screen. Controllers and keyboard pass through automatically.
 
 If not, Console Mode shows a **Download** prompt with a QR code for mobile sharing.
 

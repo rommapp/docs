@@ -47,5 +47,5 @@ uv run python -m scripts.gen_platforms
 - [Folder Structure](../getting-started/folder-structure.md): how platform slugs map to on-disk folders
 - [Custom Platforms](custom-platforms.md): adding platforms outside the built-in list
 - [Metadata Providers](../administration/metadata providers.md): provider coverage deep-dive
-- [In-Browser Play](../using/in-browser-play.md): EmulatorJS core catalogue
+- [In-Browser Play → EmulatorJS](../using/in-browser-play/emulatorjs.md): EmulatorJS core catalogue
 - [Firmware Management](../administration/firmware-management.md): how RomM stores and serves BIOS files

@@ -72,12 +72,12 @@ Rebind via Profile → User Interface (the operator-side overrides live in [`emu
 - **Sound card config wrong**: dosbox-pure tries to auto-detect but may need manual tweaking. In-game Menu → **Settings** → set Sound Blaster port.
 - **Game needs specific CPU speed**: some DOS games are CPU-bound. Slow down via dosbox-pure settings.
 
-See the [MS-DOS section](../using/in-browser-play.md#ms-dos) of In-Browser Play for deeper DOS-specific notes.
+See the [MS-DOS](../using/in-browser-play/ms-dos.md) page for deeper DOS-specific notes.
 
 ## Ruffle games
 
 - **"File not Flash"**: confirm the file extension is `.swf`. Ruffle only handles Flash SWF.
-- **Wrong platform folder.** Ruffle only plays from `flash/` or `browser/` folders. See [Ruffle setup](../using/in-browser-play.md#ruffle).
+- **Wrong platform folder.** Ruffle only plays from `flash/` or `browser/` folders. See [Ruffle setup](../using/in-browser-play/ruffle.md).
 - **AS3 game crashes**: Ruffle's ActionScript 3 support is in progress. Some games won't work cleanly yet. [Ruffle compatibility list](https://ruffle.rs/#compatibility)
 
 ## Performance on mobile

@@ -12,7 +12,7 @@ Admins: see [Administration](../administration/index.md) for operator tasks.
 ## Browse and play
 
 - **[Library](library.md)**: the main UI: home dashboard, platform and game cards, filters, the search bar
-- **[In-Browser Play](in-browser-play.md)**: EmulatorJS for retro consoles, Ruffle for Flash. Save states, cheats, fullscreen
+- **In-Browser Play**: [EmulatorJS](in-browser-play/emulatorjs.md) for retro consoles, [Ruffle](in-browser-play/ruffle.md) for Flash. Save states, cheats, fullscreen
 - **[Downloads](downloads.md)**: single, bulk, QR code, copy link
 - **[Uploads](uploads.md)**: drag-and-drop ROMs, firmware, saves, states, screenshots
 

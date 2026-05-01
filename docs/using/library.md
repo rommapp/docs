@@ -40,7 +40,7 @@ Every gallery (platform view, collection view, search results) has a grid-vs-lis
 
 Hovering over a game card exposes:
 
-- **Play**: launch in [EmulatorJS or Ruffle](in-browser-play.md), if the platform supports in-browser play
+- **Play**: launch in [EmulatorJS](in-browser-play/emulatorjs.md) or [Ruffle](in-browser-play/ruffle.md), if the platform supports in-browser play
 - **Download**: single-file download. See [Downloads](downloads.md) for bulk, QR, and copy-link options.
 - **Context menu (…)**: opens the card's action menu
 
@@ -143,7 +143,7 @@ Which tabs appear depends on your metadata providers:
 
 - **Details**: title, description, release date, genres, developer/publisher, regions, rating, matched providers. Filterable metadata surfaces here.
 - **Game Data**: save files, save states, screenshots. Per-user. Upload, download, and delete. See [Saves & States](saves-and-states.md).
-- **Personal**: your data on this game: status (Never Played / Backlogged / Playing / Complete / Hidden), rating, difficulty, percent complete, and **playtime** (accumulated as you play via the [in-browser player](in-browser-play.md) or companion apps that post play sessions). Stored per-user
+- **Personal**: your data on this game: status (Never Played / Backlogged / Playing / Complete / Hidden), rating, difficulty, percent complete, and **playtime** (accumulated as you play via the [in-browser player](in-browser-play/emulatorjs.md) or companion apps that post play sessions). Stored per-user
 - **Notes**: Markdown-formatted notes on the game. Per-user. Set a note to **public** to share with other users on the instance. You can have multiple notes per game (e.g. "walkthrough tips", "save states reference", "secret moves"). Edited via a Markdown editor with preview pane
 - **Manual**: PDF viewer if you have a manual for this game
 - **Time to Beat**: [HowLongToBeat](../administration/metadata providers.md#howlongtobeat) data if enabled

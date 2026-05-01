@@ -48,7 +48,10 @@ search:
     - [Virtual Collections](using/virtual-collections.md)
     - [Downloads](using/downloads.md)
     - [Uploads](using/uploads.md)
-    - [In-Browser Play](using/in-browser-play.md)
+    - In-Browser Play
+        - [EmulatorJS](using/in-browser-play/emulatorjs.md)
+        - [MS-DOS](using/in-browser-play/ms-dos.md)
+        - [Ruffle](using/in-browser-play/ruffle.md)
     - [Saves & States](using/saves-and-states.md)
     - [RetroAchievements](using/retroachievements.md)
     - [ROM Patcher](using/rom-patcher.md)

@@ -295,7 +295,7 @@ scan:
 
 ## `emulatorjs`
 
-These keys tune the in-browser EmulatorJS player for every user on your instance. The end-user side lives in [In-Browser Play](../using/in-browser-play.md). To disable EmulatorJS altogether (on the slim image, or when running headless with companion apps), set `DISABLE_EMULATOR_JS=true` in your env vars.
+These keys tune the in-browser EmulatorJS player for every user on your instance. The end-user side lives in [In-Browser Play → EmulatorJS](../using/in-browser-play/emulatorjs.md). To disable EmulatorJS altogether (on the slim image, or when running headless with companion apps), set `DISABLE_EMULATOR_JS=true` in your env vars.
 
 ### `emulatorjs.debug`
 

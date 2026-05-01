@@ -39,7 +39,7 @@ See [Collections](../using/collections.md).
 
 **Editor**: mid-tier user role. Edits content (ROMs, platforms, collections) and uploads, but no user management. See [Users & Roles](../administration/users-and-roles.md).
 
-**EmulatorJS**: the bundled in-browser retro emulator. Handles NES, SNES, N64, PSX, Saturn, and 20+ more cores. See [In-Browser Play](../using/in-browser-play.md).
+**EmulatorJS**: the bundled in-browser retro emulator. Handles NES, SNES, N64, PSX, Saturn, and 20+ more cores. See [In-Browser Play → EmulatorJS](../using/in-browser-play/emulatorjs.md).
 
 **Feed**: a URL endpoint that exposes a filtered library view in a third-party tool's expected format. See [Feed Clients](../ecosystem/feed-clients.md).
 
@@ -107,7 +107,7 @@ See [Collections](../using/collections.md).
 
 **RQ**: Redis Queue, the task-queue library used for background work.
 
-**Ruffle**: the bundled in-browser Flash / Shockwave emulator. See [In-Browser Play → Ruffle](../using/in-browser-play.md#ruffle).
+**Ruffle**: the bundled in-browser Flash / Shockwave emulator. See [In-Browser Play → Ruffle](../using/in-browser-play/ruffle.md).
 
 **Scan**: the process of walking the library, hashing files, calling metadata providers, and updating the DB. Scans run in six **modes** (New Platforms, Quick, Unmatched, Update, Hashes, Complete) and can be triggered manually, on a cron, or by the filesystem watcher. See [Scanning & Watcher](../administration/scanning-and-watcher.md).
 
