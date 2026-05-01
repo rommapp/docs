@@ -59,7 +59,7 @@ docker compose pull rommapp/romm
 docker compose up -d romm
 ```
 
-Always [read the release notes](../releases/index.md) before minor or major version upgrades!
+Read the [upstream release notes](https://github.com/rommapp/romm/releases) before minor or major version upgrades.
 
 ## Why can't I see a specific platform?
 
@@ -169,4 +169,3 @@ A small team of maintainers plus a chunk of active community contributors. Suppo
 
 - [Glossary](../reference/glossary.md) if the vocabulary is new
 - [Troubleshooting](../troubleshooting/index.md) if something's broken
-- [Release Notes](../releases/index.md) for version-specific questions

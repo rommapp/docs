@@ -72,8 +72,6 @@ Most common causes, in order:
 2. Restore your DB dump from [Backup & Restore](../install/backup-and-restore.md).
 3. Open a bug report with: old version, new version, the exact error or behaviour, and `docker logs romm` from the failed startup.
 
-For 4.x → 5.0 specifically, read [Upgrading to 5.0](../releases/upgrading-to-5.0.md). The migration guide covers every known breaking change.
-
 ## It's not listed here
 
 - [Discord](https://discord.gg/romm) `#help`: active, friendly, fast

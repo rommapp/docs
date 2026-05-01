@@ -31,14 +31,6 @@ RomM (ROM Manager) lets you scan, enrich, organise, and play your game collectio
 
     [Quick Start →](getting-started/quick-start.md)
 
-- :material-upload-outline: **I'm upgrading from 4.x**
-
-    ***
-
-    Breaking changes, migrations, and the pre-flight checklist for RomM 5.0.
-
-    [Upgrade guide →](releases/upgrading-to-5.0.md)
-
 - :material-cog-outline: **I'm running RomM for my family/friends**
 
     ***
