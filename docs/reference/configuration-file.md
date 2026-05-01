@@ -180,19 +180,19 @@ scan:
 
 Values are the provider slugs. Full list:
 
-| Slug         | Provider                  |
-| ------------ | ------------------------- |
-| `igdb`       | IGDB                      |
-| `moby`       | MobyGames                 |
-| `ss`         | ScreenScraper             |
-| `ra`         | RetroAchievements         |
-| `launchbox`  | LaunchBox                 |
-| `gamelist`   | gamelist.xml importer     |
-| `hasheous`   | Hasheous                  |
-| `flashpoint` | Flashpoint                |
-| `hltb`       | HowLongToBeat             |
-| `tgdb`       | TheGamesDB        |
-| `libretro`   | Libretro metadata |
+| Slug         | Provider              |
+| ------------ | --------------------- |
+| `igdb`       | IGDB                  |
+| `moby`       | MobyGames             |
+| `ss`         | ScreenScraper         |
+| `ra`         | RetroAchievements     |
+| `launchbox`  | LaunchBox             |
+| `gamelist`   | gamelist.xml importer |
+| `hasheous`   | Hasheous              |
+| `flashpoint` | Flashpoint            |
+| `hltb`       | HowLongToBeat         |
+| `tgdb`       | TheGamesDB            |
+| `libretro`   | Libretro metadata     |
 
 See [Metadata Providers](../administration/metadata providers.md) for context on each.
 

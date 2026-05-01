@@ -26,7 +26,14 @@ services:
 
     romm-redis:
         image: valkey/valkey:7-alpine # or redis:7-alpine, identical command/volume
-        command: ["valkey-server", "--requirepass", "<strong-password>", "--appendonly", "yes"]
+        command:
+            [
+                "valkey-server",
+                "--requirepass",
+                "<strong-password>",
+                "--appendonly",
+                "yes",
+            ]
         volumes:
             - redis_data:/data
         healthcheck:

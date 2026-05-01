@@ -11,7 +11,7 @@ RomM uses SQLAlchemy + Alembic for persistence. Three drivers are supported, so 
 | ---------------------------------- | ---------------- | ------------- | ------------ | ---------------------------------------------- |
 | **MariaDB** (default, recommended) | `mariadb`        | `mariadb:11`  | `3306`       | What the reference compose uses. Well-tested.  |
 | **MySQL**                          | `mysql`          | `mysql:8`     | `3306`       | Largely interchangeable with MariaDB for RomM. |
-| **PostgreSQL**                     | `postgresql`     | `postgres:16` | `5432`       | Use if you already run Postgres.    |
+| **PostgreSQL**                     | `postgresql`     | `postgres:16` | `5432`       | Use if you already run Postgres.               |
 
 ## MariaDB (default)
 

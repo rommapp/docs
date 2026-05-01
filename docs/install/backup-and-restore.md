@@ -14,7 +14,7 @@ This page covers routine backups and restoring from them.
 | **Database** (`mysql_data`, `pg_data`, etc.) | User accounts, ROM metadata, collections, ratings, play sessions, paired devices, saves/states metadata | **Critical**: back this up nightly.                                                                      |
 | **`/romm/assets`**                           | User uploads: save files, save states, user-uploaded screenshots, manuals, covers                       | **Critical**: back this up nightly.                                                                      |
 | **`/romm/config`**                           | `config.yml` and any custom overrides                                                                   | **Critical**: rarely changes but small and painful to recreate.                                          |
-| `/romm/resources`                            | Metadata images (covers, screenshots) fetched from IGDB/ScreenScraper/etc.                              | Medium priority, and can be re-downloaded on a rescan (including it speeds up recovery).                     |
+| `/romm/resources`                            | Metadata images (covers, screenshots) fetched from IGDB/ScreenScraper/etc.                              | Medium priority, and can be re-downloaded on a rescan (including it speeds up recovery).                 |
 | `/redis-data`                                | Task queue state                                                                                        | Low priority, in-flight tasks only, and lost tasks can be re-run.                                        |
 | **`/romm/library`**                          | Your ROM files                                                                                          | Back this up **separately**. It's your source data and you should already have a backup strategy for it. |
 
@@ -100,4 +100,3 @@ docker compose -f test-compose.yml up -d
 # log in, check that users/collections/saves are present
 docker compose -f test-compose.yml down -v
 ```
-
