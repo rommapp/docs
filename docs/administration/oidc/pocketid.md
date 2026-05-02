@@ -42,8 +42,6 @@ environment:
 
 RomM → **Profile** → set your email to exactly the same address PocketID has for you.
 
-![Set email](../../resources/pocketid/1-user-profile.png)
-
 ## 5. Test
 
 Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to PocketID → authenticate → bounced back and signed in!

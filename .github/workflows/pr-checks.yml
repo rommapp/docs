@@ -60,6 +60,8 @@ jobs:
             - name: Run lychee on changed files
               if: steps.changed.outputs.files != ''
               uses: lycheeverse/lychee-action@v2
+              env:
+                  FILES: ${{ steps.changed.outputs.files }}
               with:
-                  args: --no-progress --max-concurrency 4 ${{ steps.changed.outputs.files }}
+                  args: --no-progress --max-concurrency 4 $FILES
                   fail: true
