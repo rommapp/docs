@@ -1,6 +1,6 @@
 ---
 title: Virtual Collections
-description: Auto-generated groupings by genre, developer, year, tag
+description: Auto-generated groupings by genre, developer, year, etc.
 ---
 
 # Virtual Collections

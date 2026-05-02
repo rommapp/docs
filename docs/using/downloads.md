@@ -1,6 +1,6 @@
 ---
 title: Downloads
-description: Download ROMs from RomM to your local device
+description: Download ROMs to your local device
 ---
 
 # Downloads

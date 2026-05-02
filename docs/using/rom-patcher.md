@@ -1,6 +1,6 @@
 ---
 title: ROM Patcher
-description: Apply IPS, UPS, BPS, PPF, and other patch formats to a ROM in the browser.
+description: Apply IPS, UPS, BPS, PPF, and other patch formats in your browser
 ---
 
 # ROM Patcher

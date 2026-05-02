@@ -1,6 +1,6 @@
 ---
 title: Mobile & TV
-description: Use RomM on phones, tablets, TVs, handhelds, with recommended setups and companion apps.
+description: Use phones, tablets, TVs, and handhelds
 ---
 
 # Mobile & TV

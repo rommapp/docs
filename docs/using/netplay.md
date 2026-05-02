@@ -1,6 +1,6 @@
 ---
 title: Netplay
-description: Play EmulatorJS games with friends in real time
+description: Play games with friends in real time
 ---
 
 # Netplay

@@ -1,6 +1,6 @@
 ---
 title: Saves & States
-description: Manage save files and save-states across in-browser play and synced devices.
+description: Manage save files and save-states across in-browser play and synced devices
 ---
 
 # Saves & States

@@ -1,6 +1,6 @@
 ---
 title: RetroAchievements
-description: Link your RetroAchievements account, surface progression, and browse unlocks on your games.
+description: Link your account to surface progression and browse unlocks
 ---
 
 # RetroAchievements
