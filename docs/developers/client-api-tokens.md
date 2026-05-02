@@ -93,7 +93,7 @@ If the owning user's role drops below what the token needs, the token continues 
 - **Sharing a token between users.** If two people need access, give them each an account and each creates their own token.
 - **Embedding a token in public source.** Obvious but worth saying, if you accidentally commit one, revoke it immediately.
 - **A single token for every app.** Name and scope per-app, so revoking one doesn't kill the others.
-- **Infinite-expiry tokens in untrusted locations.** If a device might be lost / handed off, set an expiry.
+- **Infinite-expiry tokens in untrusted locations.** If a device might be lost/handed off, set an expiry.
 
 ## See also
 

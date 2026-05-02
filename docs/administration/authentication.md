@@ -107,4 +107,4 @@ To fully cut a user off, an admin needs to:
 1. Revoke all of the user's Client API Tokens.
 2. Disable or delete the user account.
 
-Disabling preserves the account row (useful for audit / future re-enable). Deletion removes the user record and personal data, with the caveats covered in [Users & Roles → Editing and deleting users](users-and-roles.md#editing-and-deleting-users).
+Disabling preserves the account row (useful for audit/future re-enable). Deletion removes the user record and personal data, with the caveats covered in [Users & Roles → Editing and deleting users](users-and-roles.md#editing-and-deleting-users).

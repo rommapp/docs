@@ -7,7 +7,7 @@ description: Diagnose and fix library-scan problems
 
 Most scan problems boil down to the library not being mounted where expected, an incorrect folder structure, or a metadata provider being temporarily unavailable.
 
-## Scan ends instantly / no platforms found
+## Scan ends instantly/no platforms found
 
 Three common causes:
 
@@ -87,4 +87,3 @@ Hashing large ROMs (PS1, Saturn, DC images) is IO-bound, with a few options:
 - **Skip hashing on small hosts**: set `filesystem.skip_hash_calculation: true` in `config.yml`, though you'll lose RetroAchievements and Hasheous matching since both depend on hashes.
 - **Use SSD/NVMe for the library** if you care about hash performance.
 - **Raise `SEVEN_ZIP_TIMEOUT`** if you're scanning many large `.7z` archives.
-

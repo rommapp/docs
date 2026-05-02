@@ -34,7 +34,7 @@ The software is legal but what you put in it depends on your jurisdiction. **We 
 Probably! Supported deployment paths:
 
 - Docker Compose (Linux, macOS, Windows with WSL2)
-- Unraid / Synology / TrueNAS SCALE
+- Unraid/Synology/TrueNAS SCALE
 - Kubernetes
 
 See [Install & Deploy](../install/index.md).
@@ -45,7 +45,7 @@ Not supported:
 - TrueNAS CORE (FreeBSD)
 - Windows without WSL
 
-## How much RAM / CPU does it need?
+## How much RAM/CPU does it need?
 
 - **Minimum** (small library, 1 user): 512 MB RAM, any modest CPU
 - **Comfortable** (thousands of ROMs, a few users, occasional scans): 2 GB RAM, 2 cores
@@ -110,7 +110,7 @@ Add them as users via the invite flow, then either:
 - Expose your instance publicly behind a [Reverse Proxy](../install/reverse-proxy.md) with TLS.
 - Keep it private and share access over a VPN or Tailscale.
 
-See [Invitations & Registration](../administration/invitations-and-registration.md) and [Mobile & TV → Self-hosting tips](../using/mobile-and-tv.md#self-hosting-tips).
+See [Invitations & Registration](../administration/invitations-and-registration.md).
 
 ## Can guests browse without an account?
 
@@ -149,7 +149,7 @@ We don't give ETAs on individual features. Open (or upvote) an issue at [rommapp
 For bugs, open an issue at [rommapp/romm](https://github.com/rommapp/romm/issues). For questions, ask in `#romm-support` on [Discord](https://discord.gg/romm). Either way, include:
 
 - RomM version
-- Deployment (Docker Compose / Unraid / K8s / etc.)
+- Deployment (Docker Compose/Unraid/K8s/etc.)
 - Your `docker-compose.yml` with credentials and API keys redacted
 - Container logs (`docker logs romm`)
 - Exact reproduction steps

@@ -31,5 +31,5 @@ Everything you need to **build on top of RomM** (third-party apps, scripts, inte
 
 - **[Environment Variables](../reference/environment-variables.md)**: every env var, grouped by area
 - **[Configuration File](../reference/configuration-file.md)**: `config.yml` schema
-- **[Exports](../reference/exports.md)**: gamelist.xml / Pegasus export formats
+- **[Exports](../reference/exports.md)**: gamelist.xml/Pegasus export formats
 - **[Glossary](../reference/glossary.md)**: canonical terminology

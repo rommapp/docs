@@ -3,7 +3,7 @@ title: Redis or Valkey
 description: Session storage, task queue, metadata caching and pubsub
 ---
 
-# Redis / Valkey
+# Redis/Valkey
 
 A Redis-protocol server is needed for session storage, the background task queue (RQ), metadata/heartbeat caching, and socket.io pubsub when running multiple replicas. Both **Redis** and **Valkey** (the open-source fork) are supported.
 

@@ -59,7 +59,7 @@ exclude:
 
 ### `exclude.roms.multi_file.names`
 
-Skip whole folders. Used for multi-disc / multi-file games you want invisible.
+Skip whole folders. Used for multi-disc/multi-file games you want invisible.
 
 **Default:** `["@eaDir", "__MACOSX", "$RECYCLE.BIN", ".Trash-*", ".stfolder", ".Spotlight-V100", ".fseventsd", ".DocumentRevisions-V100", "System Volume Information"]`
 
@@ -268,7 +268,7 @@ scan:
 
 ### `scan.gamelist.export`
 
-Generate a `gamelist.xml` in each platform folder, compatible with ES-DE / Batocera.
+Generate a `gamelist.xml` in each platform folder, compatible with ES-DE/Batocera.
 
 ```yaml
 scan:
@@ -419,7 +419,7 @@ Most settings under `emulatorjs.settings` and `emulatorjs.controls` can be overr
 
 | Where the setting lives           | Who it affects       | Survives upgrades? |
 | --------------------------------- | -------------------- | ------------------ |
-| Operator: `config.yml` / env vars | Everyone, as default | Yes                |
+| Operator: `config.yml`/env vars   | Everyone, as default | Yes                |
 | Per-user: in-game Menu → Settings | Just that user       | Yes                |
 | Per-user: in-game Menu → Controls | Just that user       | Yes                |
 

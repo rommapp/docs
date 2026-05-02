@@ -35,29 +35,29 @@ Operator setup (ICE servers, enable flag) lives in [Configuration File → `emul
 
 ## Supported systems
 
-| Platform                                            | Cores                                                                    |
-| --------------------------------------------------- | ------------------------------------------------------------------------ |
-| 3DO                                                 | `opera`                                                                  |
-| Amiga                                               | `puae`                                                                   |
-| Arcade / MAME                                       | `mame2003_plus`, `mame2003`, `fbneo`                                     |
-| Atari 2600 / 5200 / 7800 / Jaguar / Lynx            | Various: `stella2014`, `atari800`, `prosystem`, `virtualjaguar`, `handy` |
-| Commodore 64                                        | `vice_x64sc`                                                             |
-| ColecoVision                                        | `gearcoleco`                                                             |
-| DOOM                                                | `prboom`                                                                 |
-| Game Boy / Color / Advance                          | `gambatte`, `mgba`                                                       |
-| MS-DOS                                              | `dosbox-pure`                                                            |
-| Neo Geo Pocket / Color                              | `mednafen_ngp`                                                           |
-| Nintendo DS                                         | `melonds`, `desmume`                                                     |
-| Nintendo 64                                         | `mupen64plus_next`, `parallel_n64`                                       |
-| NES / Famicom                                       | `fceumm`, `nestopia`                                                     |
-| PC-FX                                               | `mednafen_pcfx`                                                          |
-| PlayStation                                         | `mednafen_psx_hw`, `pcsx_rearmed`                                        |
-| PSP                                                 | `ppsspp`                                                                 |
-| Sega 32X / CD / Game Gear / Master System / Genesis | `picodrive`, `genesis_plus_gx`                                           |
-| Sega Saturn                                         | `mednafen_saturn`, `yabause`                                             |
-| SNES / Super Famicom                                | `snes9x`, `bsnes`                                                        |
-| TurboGraphx-16 / PC Engine                          | `mednafen_pce`                                                           |
-| Virtual Boy                                         | `mednafen_vb`                                                            |
-| WonderSwan / Color                                  | `mednafen_wswan`                                                         |
+| Platform                                    | Cores                                                                    |
+| ------------------------------------------- | ------------------------------------------------------------------------ |
+| 3DO                                         | `opera`                                                                  |
+| Amiga                                       | `puae`                                                                   |
+| Arcade/MAME                                 | `mame2003_plus`, `mame2003`, `fbneo`                                     |
+| Atari 2600/5200/7800/Jaguar/Lynx            | Various: `stella2014`, `atari800`, `prosystem`, `virtualjaguar`, `handy` |
+| Commodore 64                                | `vice_x64sc`                                                             |
+| ColecoVision                                | `gearcoleco`                                                             |
+| DOOM                                        | `prboom`                                                                 |
+| Game Boy/Color/Advance                      | `gambatte`, `mgba`                                                       |
+| MS-DOS                                      | `dosbox-pure`                                                            |
+| Neo Geo Pocket/Color                        | `mednafen_ngp`                                                           |
+| Nintendo DS                                 | `melonds`, `desmume`                                                     |
+| Nintendo 64                                 | `mupen64plus_next`, `parallel_n64`                                       |
+| NES/Famicom                                 | `fceumm`, `nestopia`                                                     |
+| PC-FX                                       | `mednafen_pcfx`                                                          |
+| PlayStation                                 | `mednafen_psx_hw`, `pcsx_rearmed`                                        |
+| PSP                                         | `ppsspp`                                                                 |
+| Sega 32X/CD/Game Gear/Master System/Genesis | `picodrive`, `genesis_plus_gx`                                           |
+| Sega Saturn                                 | `mednafen_saturn`, `yabause`                                             |
+| SNES/Super Famicom                          | `snes9x`, `bsnes`                                                        |
+| TurboGraphx-16/PC Engine                    | `mednafen_pce`                                                           |
+| Virtual Boy                                 | `mednafen_vb`                                                            |
+| WonderSwan/Color                            | `mednafen_wswan`                                                         |
 
 Player UI features beyond the basics (cheats, in-emulator screenshots, multi-disc swap, hotkeys, fullscreen) are covered in the broader [EmulatorJS docs](https://emulatorjs.org/docs/).

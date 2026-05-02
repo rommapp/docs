@@ -36,7 +36,7 @@ For third-party clients, see the [Community section in the README](https://githu
 - Handles authentication via [Client API Tokens](../developers/client-api-tokens.md), paired over a short code so you don't type a 44-character string
 - Downloads ROMs on demand to your device's storage
 - Launches RetroArch (or another configured emulator) with the downloaded ROM
-- Syncs saves / states back to RomM when you finish a session (optional)
+- Syncs saves/states back to RomM when you finish a session (optional)
 
 ## Grout
 
@@ -54,7 +54,7 @@ For third-party clients, see the [Community section in the README](https://githu
 ### What it does
 
 - Connects to your instance using a [Client API Token](../developers/client-api-tokens.md)
-- **Pulls** ROMs from your instance to the handheld's SD card, organised into muOS / NextUI's expected folder layout
+- **Pulls** ROMs from your instance to the handheld's SD card, organised into muOS/NextUI's expected folder layout
 - **Pushes** saves and states back to your instance when you finish a session
 - **Schedules** sync runs: on idle, on session end, or on a cron
 - Works fully offline between syncs, so the handheld doesn't need your instance to play

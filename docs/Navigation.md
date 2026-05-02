@@ -55,7 +55,6 @@ search:
     - [ROM Patcher](using/rom-patcher.md)
     - [Netplay](using/netplay.md)
     - [Console Mode](using/console-mode.md)
-    - [Mobile & TV](using/mobile-and-tv.md)
     - [Account & Profile](using/account-and-profile.md)
     - [Languages](using/languages.md)
 - Platforms & Players

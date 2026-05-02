@@ -55,7 +55,7 @@ Configure:
 - **Redirect URIs**: `https://demo.romm.app/api/oauth/openid`
 - **Scopes**: Under "Advanced protocol settings", move the property mapping you created above from "Available Scopes" to "Selected Scopes". You'll also need to make sure any existing mappings of `email` or `email_verified` are disabled. Authentik has an `email` mapping by default, so make sure to check for this and remove it if it's present.
 
-Copy the generated **Client ID** and **Client Secret**. You'll use them as `OIDC_CLIENT_ID` / `OIDC_CLIENT_SECRET` on the app side.
+Copy the generated **Client ID** and **Client Secret**. You'll use them as `OIDC_CLIENT_ID`/`OIDC_CLIENT_SECRET` on the app side.
 
 ![Provider settings](../../resources/authentik/4-provider-secrets.png)
 

@@ -67,7 +67,7 @@ Save, and you're done!
 
 - Check you've filled in passwords and any required API keys (and UID/GID, if you're using the App Catalog form).
 - Make sure the TrueNAS dataset permissions allow the chosen UID/GID to read/write.
-- Watch the app's terminal / logs during startup for clues.
+- Watch the app's terminal/logs during startup for clues.
 
 ### Permission errors inside the container
 
@@ -75,6 +75,6 @@ If you're seeing permission errors on paths _inside_ the container (not on TrueN
 
 ### Other issues
 
-- [Scanning Troubleshooting](../troubleshooting/scanning.md) for matching / ingest problems
+- [Scanning Troubleshooting](../troubleshooting/scanning.md) for matching/ingest problems
 - [Authentication Troubleshooting](../troubleshooting/authentication.md) for login issues
 - The [Discord](https://discord.gg/P5HtHnhUDH) has a `#truenas` channel with active community troubleshooting.

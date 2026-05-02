@@ -11,17 +11,17 @@ New in 5.0. Powered by the `rom-patcher-js` library.
 
 ## Supported patch formats
 
-| Extension             | Purpose                                                      |
-| --------------------- | ------------------------------------------------------------ |
-| `.ips`                | International Patching System. Oldest + most common.         |
-| `.ups`                | Universal Patching System. Successor to IPS.                 |
-| `.bps`                | Binary Patch System. Modern, preferred for ROM hacks.        |
-| `.ppf`                | PlayStation Patch Format. For PSX / Saturn / Dreamcast ISOs. |
-| `.rup`                | Retroarch Universal Patch.                                   |
-| `.aps`                | GBA-focused patch format.                                    |
-| `.bdf`                | Binary diff format.                                          |
-| `.pmsr`               | Paper Mario Star Rod.                                        |
-| `.vcdiff` (`.xdelta`) | Generic binary diff.                                         |
+| Extension             | Purpose                                                  |
+| --------------------- | -------------------------------------------------------- |
+| `.ips`                | International Patching System. Oldest + most common.     |
+| `.ups`                | Universal Patching System. Successor to IPS.             |
+| `.bps`                | Binary Patch System. Modern, preferred for ROM hacks.    |
+| `.ppf`                | PlayStation Patch Format. For PSX/Saturn/Dreamcast ISOs. |
+| `.rup`                | Retroarch Universal Patch.                               |
+| `.aps`                | GBA-focused patch format.                                |
+| `.bdf`                | Binary diff format.                                      |
+| `.pmsr`               | Paper Mario Star Rod.                                    |
+| `.vcdiff` (`.xdelta`) | Generic binary diff.                                     |
 
 If your patch has an unusual extension, try renaming to one of the above. Many are just different framings of the same underlying algorithm.
 
@@ -32,7 +32,7 @@ Two output paths:
 - **Download patched ROM**: saves a file locally. RomM keeps neither the original nor the result. Everything runs client-side, so nothing leaves your machine.
 - **Save to library**: RomM receives the final patched file and stores it as a new ROM. Goes in the same platform folder as the original, with the patched filename. A subsequent scan picks it up, and a Quick scan is enough.
 
-Metadata isn't inherited, so the new ROM is **unmatched** until you run a scan. If the patch is listed on IGDB / ROMHacking.net as its own entry, matching may pick it up. Otherwise, match manually or tag with `(igdb-XXXX)` (see [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames)).
+Metadata isn't inherited, so the new ROM is **unmatched** until you run a scan. If the patch is listed on IGDB/ROMHacking.net as its own entry, matching may pick it up. Otherwise, match manually or tag with `(igdb-XXXX)` (see [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames)).
 
 ## Permissions
 
@@ -59,7 +59,7 @@ No-intro patches, region-free patches. Apply, download, and verify with the Hash
 
 ## Limits
 
-- **Browser memory**: huge ROMs (PSX / Saturn / PSP ISOs, > 1 GB) can struggle in browsers with low memory limits. Safari is the most restrictive but Firefox / Chrome handle bigger files.
+- **Browser memory**: huge ROMs (PSX/Saturn/PSP ISOs, > 1 GB) can struggle in browsers with low memory limits. Safari is the most restrictive but Firefox/Chrome handle bigger files.
 - **Multi-file ROMs**: the Patcher operates on a single file. For multi-disc games, patch each ISO separately.
 - **Encrypted ROMs**: if the patch was authored against a decrypted ROM (e.g. DS `.nds` vs raw cartridge), your source has to match.
 - **Save format changes**: patches that alter save-data layout will invalidate existing save files. Back them up before applying.

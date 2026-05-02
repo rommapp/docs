@@ -58,8 +58,8 @@ This stack stands on an enormous amount of open-source work. In rough order of "
 - [FastAPI](https://fastapi.tiangolo.com/) + [Starlette](https://www.starlette.io/)
 - [SQLAlchemy](https://www.sqlalchemy.org/) + [Alembic](https://alembic.sqlalchemy.org/)
 - [RQ](https://python-rq.org/)
-- [MariaDB](https://mariadb.org/) / [PostgreSQL](https://www.postgresql.org/) / [MySQL](https://www.mysql.com/)
-- [Redis](https://redis.io/) / [Valkey](https://valkey.io/)
+- [MariaDB](https://mariadb.org/)/[PostgreSQL](https://www.postgresql.org/)/[MySQL](https://www.mysql.com/)
+- [Redis](https://redis.io/)/[Valkey](https://valkey.io/)
 - [nginx](https://nginx.org/) with [`mod_zip`](https://github.com/evanmiller/mod_zip)
 - [uv](https://docs.astral.sh/uv/)
 

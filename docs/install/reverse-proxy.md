@@ -46,7 +46,7 @@ server {
   server_name romm.mysite.com;
   client_max_body_size 0;
 
-  location / {
+  location/{
     proxy_pass http://romm:8080;
     proxy_http_version 1.1;
     proxy_set_header Host $host;
@@ -77,7 +77,7 @@ server {
   ssl_certificate_key /etc/ssl/romm/privkey.pem;
   client_max_body_size 0;
 
-  location / {
+  location/{
     proxy_pass http://romm:8080;
     proxy_http_version 1.1;
     proxy_set_header Host $host;

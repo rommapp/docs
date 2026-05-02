@@ -38,7 +38,7 @@ Several third-party components ship with their own licenses: [EmulatorJS](https:
 
 ## FAQ
 
-### Can I use RomM at work / for my company's gaming night?
+### Can I use RomM at work/for my company's gaming night?
 
 Yes. AGPL doesn't restrict private or commercial use.
 
@@ -54,7 +54,7 @@ Yes, but you owe your users the source, so you can't run a modified closed-sourc
 
 No, as the sale of ROMs is not permitted in most jurisdictions.
 
-### Is there a commercial / dual-license option?
+### Is there a commercial/dual-license option?
 
 Please reach out to us if you're interested in commercial licensing. We may be open to dual-licensing arrangements for certain use cases!
 

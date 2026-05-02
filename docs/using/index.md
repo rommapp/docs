@@ -28,7 +28,6 @@ description: Browse, play, collect, patch, and share from the UI
 ## Special modes
 
 - **[Console Mode](console-mode.md)**
-- **[Mobile & TV](mobile-and-tv.md)**
 
 ## Tools
 
@@ -38,4 +37,3 @@ description: Browse, play, collect, patch, and share from the UI
 ## Settings
 
 - **[UI Languages](languages.md)**
-

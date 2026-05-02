@@ -14,8 +14,8 @@ description: Diagnose EmulatorJS and Ruffle issues
 ## Black screen or no audio
 
 - **Core incompatibility.** Some cores have issues with specific ROMs. Try a different core via in-game Menu → **Core**.
-- **ROM dump is bad.** A broken dump produces a black screen on most emulators. Try a known-good No-Intro / Redump version.
-- **Browser doesn't support WebGL.** Rare on modern browsers. Check `chrome://gpu` / `about:support` for WebGL status.
+- **ROM dump is bad.** A broken dump produces a black screen on most emulators. Try a known-good No-Intro/Redump version.
+- **Browser doesn't support WebGL.** Rare on modern browsers. Check `chrome://gpu`/`about:support` for WebGL status.
 
 ## "Firmware required"
 
@@ -30,7 +30,7 @@ Not sure which files you need? The error message usually names them, otherwise c
 - **Conflicting gamepad.** You have two gamepads plugged in and EmulatorJS is talking to the wrong one. Unplug the extras.
 - **Keyboard mapping overrides.** In-game Menu → **Controls** → **Reset to Defaults**
 
-## Audio stutters / desyncs
+## Audio stutters/desyncs
 
 - **Underpowered device.** Cheap TV boxes and old phones struggle. Try a lighter core (e.g. `snes9x` instead of `bsnes`), or accept the stutter.
 - **Tab is backgrounded.** Keep the play tab foregrounded as most browsers throttle background tabs.

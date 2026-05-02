@@ -12,7 +12,7 @@ If something's broken, start with the symptom that best matches:
 ### RomM won't start
 
 - Container crashes immediately → check `docker logs romm`. If it's `invalid host in "tcp://..."` you're on Kubernetes, see [Kubernetes Troubleshooting](kubernetes.md).
-- Database connection errors → verify `DB_HOST` / `DB_PASSWD` match your DB container, and that the DB has finished initialising (first run takes longer than you'd think).
+- Database connection errors → verify `DB_HOST`/`DB_PASSWD` match your DB container, and that the DB has finished initialising (first run takes longer than you'd think).
 - "Page not found" on first load → wait, because initial migrations and resource seeding take a minute.
 
 ### Login issues
@@ -29,7 +29,7 @@ If something's broken, start with the symptom that best matches:
 
 ### In-browser play
 
-- EmulatorJS won't load / 404 → [In-Browser Play Troubleshooting](in-browser-play.md) (on the slim image, cores come from a CDN at runtime, so a 404 usually means outbound networks are blocked).
+- EmulatorJS won't load/404 → [In-Browser Play Troubleshooting](in-browser-play.md) (on the slim image, cores come from a CDN at runtime, so a 404 usually means outbound networks are blocked).
 - Netplay doesn't connect → [Netplay Troubleshooting](netplay.md), almost always NAT or missing ICE servers
 
 ### Platform-specific

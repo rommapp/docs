@@ -45,7 +45,7 @@ Not translated:
 ### Add missing strings to an existing locale
 
 1. Fork [rommapp/romm](https://github.com/rommapp/romm).
-2. Under `frontend/src/locales/<your-locale>/`, open the JSON / YAML files.
+2. Under `frontend/src/locales/<your-locale>/`, open the JSON/YAML files.
 3. Add the missing keys (they're all present in `en_US` for reference).
 4. Open a PR.
 

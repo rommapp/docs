@@ -245,7 +245,7 @@ Here are the settings you need to change to read your artwork and gamelist.xml f
 
 1. Open the ES-DE settings file:
 
-    - Linux / macOS: `~/ES-DE/settings/es_settings.xml`
+    - Linux/macOS: `~/ES-DE/settings/es_settings.xml`
     - Windows: `C:\Program Files\ES-DE\settings\es_settings.xml`
 
 2. Make these two edits (add the lines if they don’t exist):

@@ -7,7 +7,7 @@ description: Export metadata for use in other frontend
 
 Library metadata can be emitted in formats other frontends expect, for setups where this is the library authority and a separate frontend (ES-DE, Batocera, Pegasus) is the actual launcher.
 
-## gamelist.xml (ES-DE / Batocera / RetroBAT)
+## gamelist.xml (ES-DE/Batocera/RetroBAT)
 
 ES-DE, Batocera, and compatibles look for a `gamelist.xml` in each platform folder, and these can be generated automatically.
 
@@ -24,7 +24,7 @@ scan:
 
 With `export: true`, every scan writes a `gamelist.xml` into the platform folder, and downloads the selected media into sibling folders (`covers/`, `screenshots/`, etc.) that ES-DE expects.
 
-Standard ES-DE / EmulationStation format:
+Standard ES-DE/EmulationStation format:
 
 ```xml
 <gameList>

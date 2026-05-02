@@ -27,7 +27,7 @@ Both layouts separate ROMs from BIOS files, and they differ on whether the split
 /{platform}/bios/
 ```
 
-As the BIOS / firmware tree is **optional**, only platforms that require firmware for emulation need it.
+As the BIOS/firmware tree is **optional**, only platforms that require firmware for emulation need it.
 
 ### Mount point
 
@@ -158,8 +158,8 @@ Some games come as **folders** instead of single files, which could include mult
 
 Filenames are parsed for region, language, revision, and arbitrary tags, with both `[]` and `()` delimiters supported:
 
-- **Region / language**: both ISO-like codes and full names. Add a custom region or language by prefixing with `reg` / `reg-` (e.g. `reg MyOwnLang` or `reg-MyOwnLang`).
-- **Revision**: prefix with `rev` / `rev-` (e.g. `rev v1`, `rev-1`)
+- **Region/language**: both ISO-like codes and full names. Add a custom region or language by prefixing with `reg`/`reg-` (e.g. `reg MyOwnLang` or `reg-MyOwnLang`).
+- **Revision**: prefix with `rev`/`rev-` (e.g. `rev v1`, `rev-1`)
 - **Arbitrary tags**: anything else in brackets is imported verbatim (e.g. `tetris [1.0001](HACK)[!].gba`)
 
 Inline tags like `(igdb-1234)` in filenames can be used to force a match to a specific provider entry, covered in [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames).

@@ -5,7 +5,7 @@ description: Upload, associate, and serve BIOS/firmware files for emulation.
 
 # Firmware Management
 
-Many emulated platforms require BIOS or firmware to boot, or to reach a certain level of stability. RomM tracks firmware files **per platform**, stores them on disk, and serves them to in-browser players (EmulatorJS / Ruffle) and companion apps that request them.
+Many emulated platforms require BIOS or firmware to boot, or to reach a certain level of stability. RomM tracks firmware files **per platform**, stores them on disk, and serves them to in-browser players (EmulatorJS/Ruffle) and companion apps that request them.
 
 Firmware is **not** ROM. Keep the two separate:
 

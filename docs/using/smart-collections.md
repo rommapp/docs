@@ -30,15 +30,15 @@ Each condition has three parts:
 - **Developer**: company that made the game
 - **Publisher**: company that released it
 - **Release Year**: year
-- **Age Rating**: ESRB / PEGI rating
+- **Age Rating**: ESRB/PEGI rating
 - **Region**: game region (USA, Japan, Europe, World, etc.)
 - **Language**: game language
-- **Rating**: IGDB / ScreenScraper critic score
+- **Rating**: IGDB/ScreenScraper critic score
 
 ### Personal data
 
 - **Personal Rating**: your per-game rating
-- **Status**: Never Played / Backlogged / Playing / Complete / Hidden
+- **Status**: Never Played/Backlogged/Playing/Complete/Hidden
 - **Playtime**: accumulated play time (minutes)
 - **Favourites**: whether you've favourited it
 - **Has Achievements**: whether the game has [RetroAchievements](retroachievements.md)
@@ -46,7 +46,7 @@ Each condition has three parts:
 ### Flags
 
 - **Matched**: has a provider ID
-- **Playable in browser**: supports EmulatorJS / Ruffle
+- **Playable in browser**: supports EmulatorJS/Ruffle
 - **Has Firmware**: required firmware exists in the library.
 - **Duplicate**: the same game appears twice.
 
@@ -54,14 +54,14 @@ Each condition has three parts:
 
 Available operators depend on the field type:
 
-| Operator                               | Works with                                           |
-| -------------------------------------- | ---------------------------------------------------- |
-| `equals`, `not equals`                 | Everything.                                          |
-| `contains`, `does not contain`         | Text fields.                                         |
-| `starts with`, `ends with`             | Text fields.                                         |
-| `is`, `is not`                         | Boolean / enum fields (Status, Matched, Favourites). |
-| `greater than`, `less than`, `between` | Numeric fields (Rating, Playtime, Release Year).     |
-| `in`, `not in`                         | Multi-value fields (Region, Language, Genre).        |
+| Operator                               | Works with                                         |
+| -------------------------------------- | -------------------------------------------------- |
+| `equals`, `not equals`                 | Everything.                                        |
+| `contains`, `does not contain`         | Text fields.                                       |
+| `starts with`, `ends with`             | Text fields.                                       |
+| `is`, `is not`                         | Boolean/enum fields (Status, Matched, Favourites). |
+| `greater than`, `less than`, `between` | Numeric fields (Rating, Playtime, Release Year).   |
+| `in`, `not in`                         | Multi-value fields (Region, Language, Genre).      |
 
 ## Examples
 
@@ -101,7 +101,7 @@ any of:
 
 `all of` and `any of` can nest into groups for more complex rules.
 
-## Public / private
+## Public/private
 
 Same visibility model as standard collections:
 
@@ -134,4 +134,4 @@ PUT    /api/collections/smart/{id}      # update
 DELETE /api/collections/smart/{id}      # delete
 ```
 
-Rule schema is part of the POST body. See the [API Reference](../developers/api-reference.md) for the JSON structure, which requires `collections.read` / `collections.write`.
+Rule schema is part of the POST body. See the [API Reference](../developers/api-reference.md) for the JSON structure, which requires `collections.read`/`collections.write`.

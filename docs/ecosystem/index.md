@@ -12,24 +12,24 @@ RomM has a sizeable ecosystem of companion apps and integration patterns.
 Maintained by the team:
 
 - **[Argosy Launcher](first-party-apps.md#argosy-launcher)**: Android launcher that browses and launches your library on mobile
-- **[Grout](first-party-apps.md#grout)**: Linux handheld companion for muOS / NextUI devices
+- **[Grout](first-party-apps.md#grout)**: Linux handheld companion for muOS/NextUI devices
 - **[Playnite Plugin](first-party-apps.md#playnite-plugin)**: Windows desktop, imports your library into [Playnite](https://playnite.link)
 
 ## Feeds (for third-party apps)
 
-RomM exposes several URL feed endpoints for external homebrew / custom firmware apps that already know how to consume them.
+RomM exposes several URL feed endpoints for external homebrew/custom firmware apps that already know how to consume them.
 
-- **[Tinfoil](feed-clients.md#tinfoil)**: Nintendo Switch homebrew for installing `.nsp` / `.xci` from a URL
+- **[Tinfoil](feed-clients.md#tinfoil)**: Nintendo Switch homebrew for installing `.nsp`/`.xci` from a URL
 - **[pkgj](feed-clients.md#pkgj)**: PS Vita and PSP homebrew installer
-- **[pkgi](feed-clients.md#pkgi)**: PS3 / PS Vita / PSP installer (older CSV format)
-- **[fpkgi](feed-clients.md#fpkgi)**: PS4 / PS5 installer
+- **[pkgi](feed-clients.md#pkgi)**: PS3/PS Vita/PSP installer (older CSV format)
+- **[fpkgi](feed-clients.md#fpkgi)**: PS4/PS5 installer
 - **[Kekatsu](feed-clients.md#kekatsu)**: Nintendo DS multiboot loader
 
 ## Community apps
 
 Maintained by individuals in the community, not the team, so support quality varies.
 
-See the **[Community section in the README](https://github.com/rommapp/romm/#community)** for the full list with status flags (active / maintenance-mode / abandoned) and links.
+See the **[Community section in the README](https://github.com/rommapp/romm/#community)** for the full list with status flags (active/maintenance-mode/abandoned) and links.
 
 Highlights:
 

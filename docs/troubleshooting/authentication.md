@@ -19,7 +19,7 @@ Fix: [clear cookies](https://support.google.com/accounts/answer/32050) for the h
 CSRF protection is on by default, so a mismatched or missing `csrftoken` cookie causes this.
 
 1. Reload the page, and a fresh CSRF cookie is set on GET requests, which should fix it on the next POST.
-2. Still broken? Clear cookies for the host and hard-reload (`CMD+SHIFT+R` / `CTRL+F5`).
+2. Still broken? Clear cookies for the host and hard-reload (`CMD+SHIFT+R`/`CTRL+F5`).
 3. As a last resort, disable CSRF verification with `DISABLE_CSRF_PROTECTION=true` in your env, but **we strongly discourage this** as it opens you up to CSRF attacks.
 
 If you're behind a reverse proxy and CSRF keeps failing, the proxy is probably stripping the `csrftoken` cookie or the `X-CSRFToken` header. See the [Reverse Proxy recipes](../install/reverse-proxy.md). Every one of them forwards `Cookie` and all custom headers by default, so if yours doesn't, fix the proxy config.
@@ -28,7 +28,7 @@ If you're behind a reverse proxy and CSRF keeps failing, the proxy is probably s
 
 Your reverse proxy is stripping the WebSocket upgrade, and live updates (scan progress, Netplay) use socket.io. Fixes for each proxy:
 
-- **Nginx / NPM**: enable WebSockets Support (the [Reverse Proxy](../install/reverse-proxy.md) snippets already do this).
+- **Nginx/NPM**: enable WebSockets Support (the [Reverse Proxy](../install/reverse-proxy.md) snippets already do this).
 - **Traefik**: add `proxy_set_header Upgrade $http_upgrade` (or use the Traefik middleware equivalent).
 - **Caddy**: WebSockets work out of the box with `reverse_proxy`.
 - **Cloudflare**: enable **WebSockets** under Network settings.
@@ -47,7 +47,7 @@ IGDB creds are wrong or revoked on the Twitch side.
 
 You set `DISABLE_USERPASS_LOGIN=true` and now OIDC isn't working.
 
-1. Edit your compose / env to unset `DISABLE_USERPASS_LOGIN` (or set it to `false`).
+1. Edit your compose/env to unset `DISABLE_USERPASS_LOGIN` (or set it to `false`).
 2. `docker compose up -d` to restart with the new config.
 3. Log in with your local admin and fix OIDC with the steps below.
 4. Re-enable `DISABLE_USERPASS_LOGIN` only after confirming OIDC works end-to-end.
@@ -63,7 +63,7 @@ The `OIDC_REDIRECT_URI` in the env doesn't **exactly** match what's registered a
 - **Trailing slashes**: `/api/oauth/openid` vs `/api/oauth/openid/` are different to the IdP.
 - **Scheme**: `http://` vs `https://`
 - **Host**: `demo.romm.app` vs `www.demo.romm.app` vs the bare IP
-- **Port**: implied `80` / `443` on HTTPS vs an explicit port
+- **Port**: implied `80`/`443` on HTTPS vs an explicit port
 
 ### User is created but stays Viewer, even though they should be Admin
 

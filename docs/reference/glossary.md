@@ -41,7 +41,7 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Game Data tab**: the ROM detail page tab for saves, states, and screenshots. User-specific.
 
-**gamelist.xml**: ES-DE / Batocera-compatible metadata format. Importable as a metadata source and exportable.
+**gamelist.xml**: ES-DE/Batocera-compatible metadata format. Importable as a metadata source and exportable.
 
 **Invite link**: single-use URL that lets a new user register with a pre-assigned role (see [Invitations & Registration](../administration/invitations-and-registration.md)).
 
@@ -73,7 +73,7 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Role**: a convenience bundle of scopes. Three roles: Viewer, Editor, Admin (see [Users & Roles](../administration/users-and-roles.md)).
 
-**Ruffle**: the bundled in-browser Flash / Shockwave emulator (see [In-Browser Play → Ruffle](../using/in-browser-play/ruffle.md)).
+**Ruffle**: the bundled in-browser Flash/Shockwave emulator (see [In-Browser Play → Ruffle](../using/in-browser-play/ruffle.md)).
 
 **Scan**: the process of walking the library, hashing files, calling metadata providers, and updating the DB. Scans run in six **modes** (New Platforms, Quick, Unmatched, Update, Hashes, Complete) and can be triggered manually, on a cron, or by the filesystem watcher (see [Scanning & Watcher](../administration/scanning-and-watcher.md)).
 
@@ -95,7 +95,7 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Viewer**: lowest user role. Read-only on library, own saves/states/profile (see [Users & Roles](../administration/users-and-roles.md)).
 
-**Virtual Collection**: auto-generated collection by genre / developer / year / tag. Read-only (see [Virtual Collections](../using/virtual-collections.md)).
+**Virtual Collection**: auto-generated collection by genre/developer/year/tag. Read-only (see [Virtual Collections](../using/virtual-collections.md)).
 
 **Watcher**: filesystem watcher that triggers scans on file events. `WATCHER_ENABLED=true` (see [Scanning & Watcher](../administration/scanning-and-watcher.md#filesystem-watcher)).
 

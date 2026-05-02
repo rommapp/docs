@@ -21,14 +21,14 @@ DOS games run via the `dosbox-pure` core (part of [EmulatorJS](emulatorjs.md)). 
 
 DOS games come in three flavours, each needing a different approach:
 
-- **Homebrew:** indie / modern DOS games, just an `.exe` that usually Just Works once mounted.
+- **Homebrew:** indie/modern DOS games, just an `.exe` that usually Just Works once mounted.
 - **Shareware demos:** what most "free DOS games" sites distribute, same as homebrew with all files in one folder.
 - **Retail:** need the original CD mounted alongside the installed game files. More work, and every game is different.
 
 The basic flow inside `dosbox-pure`: select `Commandline` from the initial loading screen, then:
 
 ```text
-mount A / -t floppy     # mount the game files
+mount A/-t floppy     # mount the game files
 A:                      # switch to that drive
 dir                     # find the .EXE
 filename.exe            # launch
@@ -173,6 +173,7 @@ Retail games need the game CD image mounted alongside the install directory.
 ### Dungeon Keeper Gold example
 
 1. Organise files:
+
 ```text
 DungeonKeeper/
     KEEPER.exe
@@ -182,6 +183,7 @@ DungeonKeeper/
     DUNGEON.CUE
     DUNGEON.BIN
 ```
+
 2. Read `KEEPER.cfg`, which tells you where the game expects the CD.
 3. Create `KEEPER.conf` matching the `.exe` name:
 

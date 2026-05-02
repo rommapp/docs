@@ -9,13 +9,13 @@ description: URL feeds homebrew installers and frontends
 
 RomM exposes URL feeds for several homebrew installers and frontends. Point the client at a feed URL and it browses (and installs from) your library over a network. This page collects setup instructions for each supported client.
 
-| Client              | Target hardware            | File format     |
-| ------------------- | -------------------------- | --------------- |
-| [Tinfoil](#tinfoil) | Nintendo Switch (homebrew) | `.nsp` / `.xci` |
-| [pkgj](#pkgj)       | PS Vita / PSP              | `.pkg`          |
-| [pkgi](#pkgi)       | PS3 / PS Vita / PSP        | `.pkg`          |
-| [fpkgi](#fpkgi)     | PS4 / PS5 (CFW)            | `.pkg`          |
-| [Kekatsu](#kekatsu) | Nintendo DS                | `.nds`          |
+| Client              | Target hardware            | File format   |
+| ------------------- | -------------------------- | ------------- |
+| [Tinfoil](#tinfoil) | Nintendo Switch (homebrew) | `.nsp`/`.xci` |
+| [pkgj](#pkgj)       | PS Vita/PSP                | `.pkg`        |
+| [pkgi](#pkgi)       | PS3/PS Vita/PSP            | `.pkg`        |
+| [fpkgi](#fpkgi)     | PS4/PS5 (CFW)              | `.pkg`        |
+| [Kekatsu](#kekatsu) | Nintendo DS                | `.nds`        |
 
 ## Authentication applies to every feed
 
@@ -141,7 +141,7 @@ Replace `{romm_url}` with your actual RomM URL (e.g. `https://demo.romm.app`).
 
 ### Using pkgj
 
-Once configured, pkgj shows your PS Vita / PSP library. Select a title and install!
+Once configured, pkgj shows your PS Vita/PSP library. Select a title and install!
 
 ### File format requirements
 
@@ -164,7 +164,7 @@ Unlike Tinfoil, pkgj sends basic auth headers natively, so you don't have to tur
 Where:
 
 - `{platform}` must be one of `ps3`, `psvita`, `psp`
-- `{content_type}` for **PS3 / PSP** must be one of `game`, `dlc`, `demo`, `update`, `patch`
+- `{content_type}` for **PS3/PSP** must be one of `game`, `dlc`, `demo`, `update`, `patch`
     - **Vita** also accepts `hack`, `manual`, `mod`, `translation`, `prototype`, and `cheat`
 
 Examples:
@@ -201,12 +201,12 @@ pkgi sends basic auth in its URL config like pkgj does. Either embed credentials
 
 ## fpkgi
 
-[fpkgi](https://github.com/CyberYoshi64/fpkgi) is PS4 / PS5 homebrew for installing `.pkg` packages from custom URL feeds. fpkgi-compatible feeds are exposed for its PS4 and PS5 libraries.
+[fpkgi](https://github.com/CyberYoshi64/fpkgi) is PS4/PS5 homebrew for installing `.pkg` packages from custom URL feeds. fpkgi-compatible feeds are exposed for its PS4 and PS5 libraries.
 
 ### Prerequisites
 
 - Games stored as `.pkg` files!
-- **PS4 or PS5** with fpkgi installed (requires CFW / jailbreak, and setup is out of scope here)
+- **PS4 or PS5** with fpkgi installed (requires CFW/jailbreak, and setup is out of scope here)
 - **Reachable from the console over Wi-Fi.**
 
 ### Feed URL
@@ -241,11 +241,11 @@ The `/api/feeds/fpkgi/` endpoints support basic auth the same way `/api/feeds/pk
 
 ### File format
 
-fpkgi only installs `.pkg` (PS4 `.pkg` specifically, not `.iso` or compressed), but the feed doesn't filter by extension. Every ROM on the `ps4` / `ps5` platform appears in the listing, so non-`.pkg` entries show up too and will fail at install time. Curate the platform folder if you want to keep them out of the listing.
+fpkgi only installs `.pkg` (PS4 `.pkg` specifically, not `.iso` or compressed), but the feed doesn't filter by extension. Every ROM on the `ps4`/`ps5` platform appears in the listing, so non-`.pkg` entries show up too and will fail at install time. Curate the platform folder if you want to keep them out of the listing.
 
 ### Troubleshooting
 
-- **Feed is empty.** No ROMs on the `ps4` / `ps5` platform. Check your library.
+- **Feed is empty.** No ROMs on the `ps4`/`ps5` platform. Check your library.
 - **Downloads fail with 401.** Auth config mismatch, see [Authentication](#authentication-applies-to-every-feed) above.
 - **Downloads succeed but install fails.** `.pkg` is for a different firmware version.
 
@@ -257,7 +257,7 @@ fpkgi only installs `.pkg` (PS4 `.pkg` specifically, not `.iso` or compressed), 
 
 - DS games in `.nds` format!
 - A Nintendo DS with Kekatsu installed (requires a flashcart or homebrew launcher)
-- **Reachable from the DS over Wi-Fi** (the DS's Wi-Fi is WEP / old WPA only)
+- **Reachable from the DS over Wi-Fi** (the DS's Wi-Fi is WEP/old WPA only)
 
 ### Feed URL
 
@@ -277,7 +277,7 @@ Exact config steps depend on your Kekatsu build but the shared concept is "point
 
 ### File format
 
-Kekatsu only loads `.nds`, but the feed doesn't filter by extension. Every ROM on the requested platform appears in the listing, so DSi Ware / iQue / other formats show up too and won't load when selected. Curate the platform folder if you want to keep them out.
+Kekatsu only loads `.nds`, but the feed doesn't filter by extension. Every ROM on the requested platform appears in the listing, so DSi Ware/iQue/other formats show up too and won't load when selected. Curate the platform folder if you want to keep them out.
 
 ### Authentication notes
 

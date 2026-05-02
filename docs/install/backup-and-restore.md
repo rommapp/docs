@@ -9,7 +9,7 @@ This page covers routine backups and restoring from them.
 
 ## What to back up
 
-| Path / volume                                | What's in it                                                                                            | Backup?                                                                                                  |
+| Path/volume                                  | What's in it                                                                                            | Backup?                                                                                                  |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | **Database** (`mysql_data`, `pg_data`, etc.) | User accounts, ROM metadata, collections, ratings, play sessions, paired devices, saves/states metadata | **Critical**: back this up nightly.                                                                      |
 | **`/romm/assets`**                           | User uploads: save files, save states, user-uploaded screenshots, manuals, covers                       | **Critical**: back this up nightly.                                                                      |
@@ -22,9 +22,9 @@ This page covers routine backups and restoring from them.
 
 <!-- prettier-ignore -->
 !!! warning "Always stop the stack or use consistent snapshots"
-    A live `cp -r` of the DB volume can copy an inconsistent state. Either bring the stack down briefly, or use `mysqldump` / `pg_dump` for a consistent logical dump.
+    A live `cp -r` of the DB volume can copy an inconsistent state. Either bring the stack down briefly, or use `mysqldump`/`pg_dump` for a consistent logical dump.
 
-### DB dump (MariaDB / MySQL)
+### DB dump (MariaDB/MySQL)
 
 ```sh
 docker exec romm-db mariadb-dump \
@@ -79,11 +79,13 @@ Send it offsite however you already do (rclone to B2/S3, restic, borg). Rememer 
 1. Start a fresh stack with the same `ROMM_AUTH_SECRET_KEY` (if the secret changes, all sessions and invite links are invalidated).
 2. Wait for the first-run setup to finish, then stop the stack: `docker compose stop`.
 3. Restore the DB:
-  ```sh
-  docker exec -i romm-db mariadb --user=root --password=<root-pw> romm < romm-db-2026-04-15.sql
-  # or for Postgres:
-  docker exec -i romm-db psql --username=romm-user --dbname=romm < romm-db-2026-04-15.sql
-  ```
+
+```sh
+docker exec -i romm-db mariadb --user=root --password=<root-pw> romm < romm-db-2026-04-15.sql
+# or for Postgres:
+docker exec -i romm-db psql --username=romm-user --dbname=romm < romm-db-2026-04-15.sql
+```
+
 4. Restore `assets/`, `config/` and `resources/` to the mounted host paths.
 5. Restart with `docker compose start`.
 

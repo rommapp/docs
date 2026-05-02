@@ -31,7 +31,7 @@ You created a room as host but other players don't see it.
 - **NAT traversal failed.** STUN couldn't hole-punch, and you have no TURN configured. Add a TURN server (see [Netplay → ICE servers](../using/netplay.md#ice-servers-the-nat-stuff)).
 - **Symmetric NAT on one end.** Corporate networks and some carrier-grade NAT can't be STUN-traversed, only TURN (relay) will work.
 
-## High lag / input delay
+## High lag/input delay
 
 Normal Netplay delay is 50–150 ms, for any number higher:
 
@@ -46,7 +46,7 @@ Different players' screens diverge over time (you do a move but they don't see i
 - **Browser tab backgrounded.** Browsers throttle, keep both tabs foregrounded.
 - **Core-specific bug.** Not all cores handle Netplay cleanly!
 
-## Audio crackle / cuts out on the client side
+## Audio crackle/cuts out on the client side
 
 WebRTC audio is known to be fragile:
 
@@ -60,7 +60,7 @@ When the host disconnects, the room is cleaned up (either immediately or by the 
 ## Still stuck?
 
 - Browser devtools Console: client-side log
-- `chrome://webrtc-internals`: live ICE / WebRTC stats on Chrome
+- `chrome://webrtc-internals`: live ICE/WebRTC stats on Chrome
 - [Discord](https://discord.gg/romm) `#romm-support` with both sides' error text
 
 ## See also

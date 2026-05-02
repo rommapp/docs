@@ -59,7 +59,7 @@ Genre coverage varies by metadata provider:
 
 - **IGDB**: rich genre data
 - **ScreenScraper**: ok genre data, with some provider-specific labels
-- **Hasheous / PlayMatch** (hash-only): no genre data, because they proxy IGDB
+- **Hasheous/PlayMatch** (hash-only): no genre data, because they proxy IGDB
 
 If your library is heavily ScreenScraper-matched and you want rich genres, add IGDB and run an **Unmatched** or **Update Metadata** scan (see [Metadata Providers](../administration/metadata-providers.md)).
 
@@ -73,6 +73,6 @@ GET  /api/collections/virtual?type=genre      # filter by dimension
 GET  /api/collections/virtual/{id}            # get one
 ```
 
-There's no POST / PUT / DELETE. RomM owns the lifecycle.
+There's no POST/PUT/DELETE. RomM owns the lifecycle.
 
 Requires `collections.read` scope. See the [API Reference](../developers/api-reference.md).

@@ -46,7 +46,7 @@ A running RomM container hosts several cooperating processes:
 │      │   static files (SPA, EmulatorJS, Ruffle)         ↓
 │      │                                           ┌──────────┐
 │      │                                           │ MariaDB  │
-│      ↓                                           │ (or PG / │
+│      ↓                                           │ (or PG/│
 │  /library /assets /resources                     │  MySQL)  │
 │  (host bind mounts)                              └──────────┘
 │                                                         │

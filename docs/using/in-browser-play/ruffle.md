@@ -5,7 +5,7 @@ description: Play Flash and Shockwave games in the browser
 
 # Ruffle
 
-[Ruffle](https://ruffle.rs/) is a Flash / Shockwave player built with WebAssembly and bundled with the full container image.
+[Ruffle](https://ruffle.rs/) is a Flash/Shockwave player built with WebAssembly and bundled with the full container image.
 
 <!-- prettier-ignore -->
 !!! important "Ruffle needs the right platform folder"

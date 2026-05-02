@@ -13,7 +13,7 @@ For multi-file games (folder-based), the bundled nginx is built with `mod_zip`, 
 
 ## Auth
 
-Download URLs require either a session cookie or a bearer token by default. Two patterns for programmatic / third-party use:
+Download URLs require either a session cookie or a bearer token by default. Two patterns for programmatic/third-party use:
 
 ### Client API tokens (preferred)
 

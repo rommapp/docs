@@ -7,15 +7,15 @@ description: Upload ROMs, firmware, saves, states, and screenshots into RomM
 
 ## What you can upload
 
-| Type                | Permission       | Details                                                              |
-| ------------------- | ---------------- | -------------------------------------------------------------------- |
-| **ROMs**            | Admin, Editor    | Goes to the correct platform folder in `/romm/library`.              |
-| **Firmware / BIOS** | Admin, Editor    | See [Firmware Management](../administration/firmware-management.md). |
-| **Saves**           | Self (own games) | Per-ROM, per-user.                                                   |
-| **States**          | Self (own games) | Per-ROM, per-user. Optional screenshot attached.                     |
-| **Screenshots**     | Self (own games) | Per-ROM, per-user.                                                   |
-| **Manuals**         | Admin, Editor    | PDF, becomes the Manual tab content.                                 |
-| **Cover art**       | Admin, Editor    | Replaces the provider-fetched cover.                                 |
+| Type              | Permission       | Details                                                              |
+| ----------------- | ---------------- | -------------------------------------------------------------------- |
+| **ROMs**          | Admin, Editor    | Goes to the correct platform folder in `/romm/library`.              |
+| **Firmware/BIOS** | Admin, Editor    | See [Firmware Management](../administration/firmware-management.md). |
+| **Saves**         | Self (own games) | Per-ROM, per-user.                                                   |
+| **States**        | Self (own games) | Per-ROM, per-user. Optional screenshot attached.                     |
+| **Screenshots**   | Self (own games) | Per-ROM, per-user.                                                   |
+| **Manuals**       | Admin, Editor    | PDF, becomes the Manual tab content.                                 |
+| **Cover art**     | Admin, Editor    | Replaces the provider-fetched cover.                                 |
 
 ## ROM uploads
 
@@ -55,15 +55,15 @@ Personal screenshot uploads attach to a ROM (not to a save/state). Supported for
 
 ## Firmware uploads
 
-Admin / Editor only (see [Firmware Management](../administration/firmware-management.md) for the full flow: two paths (drop in folder + scan, or UI upload), per-platform organisation, file naming requirements).
+Admin/Editor only (see [Firmware Management](../administration/firmware-management.md) for the full flow: two paths (drop in folder + scan, or UI upload), per-platform organisation, file naming requirements).
 
 ## Manual uploads
 
-Admin / Editor. Supported: PDF, rendered in the browser via the Manual tab.
+Admin/Editor. Supported: PDF, rendered in the browser via the Manual tab.
 
 ## Cover art uploads
 
-Admin / Editor. Overrides provider-fetched cover until reset, where the next metadata refresh repopulates from providers.
+Admin/Editor. Overrides provider-fetched cover until reset, where the next metadata refresh repopulates from providers.
 
 ## Permissions summary
 
@@ -72,13 +72,13 @@ Admin / Editor. Overrides provider-fetched cover until reset, where the next met
 | Upload save/state/screenshot for own account |   ✓    |   ✓    |   ✓   |
 | Upload ROMs                                  |   -    |   ✓    |   ✓   |
 | Upload firmware                              |   -    |   ✓    |   ✓   |
-| Upload manual / cover art                    |   -    |   ✓    |   ✓   |
+| Upload manual/cover art                      |   -    |   ✓    |   ✓   |
 
 Full scope matrix in [Users & Roles](../administration/users-and-roles.md#scope-matrix).
 
 ## Troubleshooting
 
-- **`413 Request Entity Too Large`**: your reverse proxy or ingress is capping body size (see [Reverse Proxy](../install/reverse-proxy.md) for the `client_max_body_size 0` / `proxy-body-size: "0"` fix).
+- **`413 Request Entity Too Large`**: your reverse proxy or ingress is capping body size (see [Reverse Proxy](../install/reverse-proxy.md) for the `client_max_body_size 0`/`proxy-body-size: "0"` fix).
 - **Upload progresses then fails at 99%**: the finalise step timed out. Usually reverse-proxy read timeout is too tight, so raise it.
 - **"File is not a valid ROM for this platform"**: the extension check rejected the file. Either it's the wrong platform, or the extension is obscure (see [Folder Structure → Naming](../getting-started/folder-structure.md#naming-convention)).
 - **Save upload silently doesn't appear in-emulator**: you uploaded to the wrong emulator core. Check [Saves & States → Emulator compatibility](saves-and-states.md) for the format → core matrix.

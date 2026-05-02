@@ -117,7 +117,7 @@ GET /api/tasks/status
 Authorization: Bearer <token-with-tasks.run>
 ```
 
-Returns an array of every scheduled / manual / watcher task with current status (`idle`, `queued`, `running`, `failed`) and last run time. Scrape this into your monitoring to alert on "Folder Scan hasn't run in 48 hours", which usually means RQ workers are dead.
+Returns an array of every scheduled/manual/watcher task with current status (`idle`, `queued`, `running`, `failed`) and last run time. Scrape this into your monitoring to alert on "Folder Scan hasn't run in 48 hours", which usually means RQ workers are dead.
 
 ## Anti-patterns
 

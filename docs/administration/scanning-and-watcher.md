@@ -66,7 +66,7 @@ Behaviour:
 
 ### When **not** to enable the watcher
 
-- **Slow / high-latency filesystems** (SMB mounts, rclone mounts, anything not local disk): the watcher reacts to every event, flaky mounts generate a lot of them, so use scheduled scans instead.
+- **Slow/high-latency filesystems** (SMB mounts, rclone mounts, anything not local disk): the watcher reacts to every event, flaky mounts generate a lot of them, so use scheduled scans instead.
 - **Libraries under active write load from other tools** (e.g. IGIR constantly tagging files): the watcher will re-scan on every change, at best noisy and at worst a scan loop.
 
 ### Watcher vs scheduled scan
