@@ -29,13 +29,13 @@ Authorization: Bearer rmm_abcdef...
 
 ## Creating a token
 
-From the UI: **Profile → Client API Tokens → + Create**.
+A token is created with three params:
 
 - **Token name**: descriptive (e.g. "Grout on RG35XX")
 - **Expiration**: optional, blank = never expires until revoked
-- **Permissions**: default: read-only, and don't give every token `users.write`.
+- **Permissions**: default to read-only, and don't grant every token `users.write`.
 
-The token is shown **exactly once**. Copy it now, cause if you lose it, you'll need to revoke and regenerate it, because you can't get it back.
+The token is shown **exactly once** at creation time. Copy it then, because if you lose it you'll need to revoke and regenerate.
 
 ## Device pairing
 
@@ -82,7 +82,7 @@ The companion app stores the token and uses it on every subsequent API call. Fro
 
 ## Scoping tokens properly
 
-A token can only hold scopes the owning user _also_ holds. If the user is an Editor, their token can hold any Editor scope but not `users.write` (which is Admin-only). The UI's scope-selection step defaults to read-only, only tick write scopes you actually need.
+A token can only hold scopes the owning user _also_ holds. If the user is an Editor, their token can hold any Editor scope but not `users.write` (which is Admin-only). Default to read-only, and only grant write scopes the app actually needs.
 
 ## What happens on user role change
 
@@ -91,7 +91,7 @@ If the owning user's role drops below what the token needs, the token continues 
 ## Anti-patterns
 
 - **Sharing a token between users.** If two people need access, give them each an account and each creates their own token.
-- **Embedding a token in public source.** Obvious but worth saying, if you accidentally commit one, revoke immediately from the UI.
+- **Embedding a token in public source.** Obvious but worth saying, if you accidentally commit one, revoke it immediately.
 - **A single token for every app.** Name and scope per-app, so revoking one doesn't kill the others.
 - **Infinite-expiry tokens in untrusted locations.** If a device might be lost / handed off, set an expiry.
 

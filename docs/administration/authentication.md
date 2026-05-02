@@ -41,15 +41,11 @@ environment:
 
 <!-- prettier-ignore -->
 !!! warning "Keep a way in"
-    Before setting `DISABLE_USERPASS_LOGIN=true`, confirm that at least one Admin account can sign in via OIDC and reach the Administration page. If OIDC breaks and you've already disabled local login, your only way in is editing the container env.
+    Before setting `DISABLE_USERPASS_LOGIN=true`, confirm that at least one Admin account can sign in via OIDC. If OIDC breaks and you've already disabled local login, your only way in is editing the container env.
 
 ### Admin-triggered password reset
 
-Until email-based self-serve reset lands, admins set passwords manually:
-
-**Administration → Users → Edit → New password → Save.**
-
-The next login on that account will use the new password but existing sessions for that user remain valid until they expire.
+Until email-based self-serve reset lands, admins set passwords manually for any user. The next login on that account will use the new password but existing sessions remain valid until they expire.
 
 ## OIDC
 
@@ -65,20 +61,18 @@ environment:
     - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
 ```
 
-When OIDC is configured, the login page shows an "OIDC" button. Set `OIDC_AUTOLOGIN=true` to redirect straight to the IdP without the user having to click it.
+When OIDC is configured, an OIDC sign-in option is offered alongside username/password. Set `OIDC_AUTOLOGIN=true` to redirect straight to the IdP without the user having to choose.
 
 ## Client API Tokens
 
-For anything long-lived (a companion app, a cron job, a script) use **Client API Tokens** instead of storing a password.
-
-Create from **Administration → Client API Tokens**. Each token:
+For anything long-lived (a companion app, a cron job, a script) use **Client API Tokens** instead of storing a password. Each token:
 
 - Belongs to a specific user
 - Carries a **subset** of that user's scopes (you choose which at creation time)
 - Has an optional expiry (no expiry = never expires until manually revoked)
 - Can be "paired" to a device via a short code
 
-Each user gets up to 25 active tokens, revokable from the same page. The API side ("how do I send this thing in a request?") lives in [API Authentication](../developers/api-authentication.md).
+Each user gets up to 25 active tokens. The API side ("how do I send this thing in a request?") lives in [API Authentication](../developers/api-authentication.md).
 
 ## Kiosk mode
 
@@ -108,8 +102,9 @@ Skips auth on `GET /api/roms/{id}/content/…` and the firmware download endpoin
 
 ## Revoking access
 
-To fully cut a user off:
+To fully cut a user off, an admin needs to:
 
-1. **Administration → Client API Tokens** → Delete active tokens for that user.
-2. **Administration → Users** → Disable the user.
-3. **Administration → Users → Edit** → Delete the user.
+1. Revoke all of the user's Client API Tokens.
+2. Disable or delete the user account.
+
+Disabling preserves the account row (useful for audit / future re-enable). Deletion removes the user record and personal data, with the caveats covered in [Users & Roles → Editing and deleting users](users-and-roles.md#editing-and-deleting-users).

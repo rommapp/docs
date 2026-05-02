@@ -39,7 +39,6 @@ search:
     - [Server Stats](administration/server-stats.md)
     - [Observability](administration/observability.md)
     - [Firmware Management](administration/firmware-management.md)
-    - [Administration Page](administration/administration-page.md)
 - Using RomM
     - [Overview](using/index.md)
     - [Collections](using/collections.md)

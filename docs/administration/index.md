@@ -29,7 +29,6 @@ The end-user equivalent (how to actually play the games, build collections, uplo
 - **[Scheduled Tasks](scheduled-tasks.md)**: what runs in the background and how to tune it
 - **[Server Stats](server-stats.md)**: the stats page and what its numbers mean
 - **[Observability](observability.md)**: logs, Sentry, OpenTelemetry, `/heartbeat`
-- **[Administration Page](administration-page.md)**: the in-app admin UI tour
 
 ### Configuration
 

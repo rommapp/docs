@@ -12,19 +12,17 @@ You're up and running ([Quick Start](quick-start.md)), your ROMs are laid out co
 A fifteen-second check that saves hours:
 
 - **Library is mounted**: on the host, `ls /path/to/library` should show your `roms/` (or per-platform) folders. If it doesn't, the mount is wrong.
-- **At least one metadata provider is configured**: Scans run without one but every game comes back "unmatched" and you'll have nothing useful to look at.
+- **At least one metadata provider is configured**: scans run without one but every game comes back "unmatched" and you'll have nothing useful to look at.
 
 ## Run the scan
 
-1. Click **Scan** in the sidebar.
-2. Select the metadata sources you want to hit.
-3. Set the mode to Quick Scan
-4. Click **SCAN**.
+Trigger a scan from the web UI:
 
-The page switches to a live feed of the scan's progress. You can leave and come back later, or even close the browser and check back in an hour. During the scan:
+- Pick which metadata sources to query
+- Use the **Quick** mode for the first run
+- Start the scan
 
-- Per-platform **accordion panels** show counts update live: total found, matched, unmatched.
-- You can click a **matched ROM** while the scan is still running to see the pulled metadata, with no need to wait for the full run.
+A running scan survives browser refreshes and you can leave and come back later. Per-platform progress shows counts updating live (total found, matched, unmatched), so you can dip in and inspect matched ROMs while the scan continues.
 
 First scans on big libraries take a while: expect ~4 seconds per ROM with a fast network to IGDB/ScreenScraper, and hashing (which runs unless you disabled it) adds IO time proportional to file size.
 
@@ -48,15 +46,10 @@ Most of these are fixable, see [Scanning Troubleshooting](../troubleshooting/sca
 
 ## When the scan finishes
 
-Click the **logo** (top-left) to go home. You should see:
+Your dashboard surfaces a card per scanned platform plus recently-added and continue-playing rows.
 
-- Platform cards for each folder it scanned
-- A **Recently Added** carousel on the dashboard
-- A **Continue Playing** section (empty until you play something)
+Typical next steps:
 
-From here, typical next steps:
-
-- **Browse**: click a platform card, flip through the grid.
 - **Fix unmatched ROMs**: rename or re-tag, then re-run an **Unmatched** scan to pick them up (see [Scanning & Watcher](../administration/scanning-and-watcher.md#scan-modes)).
 - **Tweak priorities**: if ScreenScraper's covers are nicer than IGDB's for your library, reorder `scan.priority.artwork` in [`config.yml`](../reference/configuration-file.md).
 

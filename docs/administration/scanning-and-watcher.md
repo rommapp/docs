@@ -7,7 +7,7 @@ description: Scanning your library, scan modes, and the filesystem watche
 
 RomM keeps its catalogue in sync with your filesystem through three mechanisms:
 
-1. **Manual scans** you trigger from the Scan page
+1. **Manual scans** you trigger through the web UI
 2. **Scheduled scans** (default: nightly) run by the task runner
 3. **The filesystem watcher** reacting to files landing in or leaving your library
 
@@ -30,15 +30,7 @@ You can further scope a scan to specific **platforms** and specific **metadata p
 
 ## Manual scans
 
-**Scan button in the sidebar.** The Scan page shows:
-
-- Platform checkboxes (select which to scan, leave empty to scan all)
-- Metadata provider toggles (overrides the default priority for this one scan)
-- skip hashing (helpful on low-power hosts)
-- A live log of everything the scanner is doing
-- Per-platform progress panels with matched / unmatched / missing counts
-
-A running scan survives browser refreshes, and the log streams over a websocket. Multiple users opening the scan page can see the same scan state.
+A manual scan can be scoped to specific platforms and a chosen subset of metadata providers, and hashing can be skipped (helpful on low-power hosts). A running scan survives browser refreshes, and the log streams over a websocket so multiple users can watch the same scan in progress.
 
 ## Scheduled scans
 

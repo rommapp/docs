@@ -45,30 +45,18 @@ RomM authorisation is scope-based. Every API call and UI action maps to one or m
 
 ## Creating users
 
-### Admin adds directly
+Three paths:
 
-**Administration → Users → Add.** Set username, email, password, and role, and the account is usable immediately.
-
-### Invite link
-
-Better when you don't want to handle someone else's password.
-
-1. **Administration → Users → Invite.** Pick a role, and RomM generates a single-use invite link.
-2. Send the link and the recipient opens it, picks their own username and password, and is logged in.
-3. Invite links expire after 600 seconds by default, configurable via [`INVITE_TOKEN_EXPIRY_SECONDS`](../reference/environment-variables.md).
-
-### OIDC
-
-If you've wired up OIDC, new identities can be provisioned on first login. Role mapping from OIDC claims is covered in [OIDC Setup](oidc/index.md).
+- **Admin adds directly**: set username, email, password, and role, and the account is usable immediately.
+- **Invite link**: better when you don't want to handle someone else's password. The admin generates a single-use link with a pre-assigned role, and the recipient picks their own credentials. Invite links expire after 600 seconds by default, configurable via [`INVITE_TOKEN_EXPIRY_SECONDS`](../reference/environment-variables.md).
+- **OIDC**: if you've wired up OIDC, new identities can be provisioned on first login. Role mapping from OIDC claims is covered in [OIDC Setup](oidc/index.md).
 
 ## Editing and deleting users
 
-- **Change role**: Admin → Users → Edit → Role dropdown, taking effect on next login.
-- **Reset password**: Admin → Users → Edit → New password.
-- **Delete**: Admin → Users → Delete → Confirm. Note that you can't delete the last admin or delete yourself while signed in.
+Admins can change any user's role, reset their password, or delete the account. Role changes take effect on next login. You can't delete the last admin or delete yourself while signed in.
 
-Deleting a user keeps their contributions (collections they made public, ROM metadata edits) but removes their personal data from the database (per-ROM ratings, saves, states, play sessions, paired devices, API tokens) but does not delete any files from disk.
+Deleting a user keeps their contributions (collections they made public, ROM metadata edits) but removes their personal data from the database (per-ROM ratings, saves, states, play sessions, paired devices, API tokens). It does not delete any files from disk.
 
 ## API tokens (advanced)
 
-Each user can issue up to 25 **Client API Tokens** from **Administration → Client API Tokens**. Tokens carry a subset of the user's scopes and are the right way to authenticate companion apps (Argosy, Grout, Playnite, custom scripts). The pairing flow for devices is covered in [Client API Tokens](../developers/client-api-tokens.md), and the API side is in [API Authentication](../developers/api-authentication.md).
+Each user can issue up to 25 **Client API Tokens**. Tokens carry a subset of the user's scopes and are the right way to authenticate companion apps (Argosy, Grout, Playnite, custom scripts). The pairing flow for devices is covered in [Client API Tokens](../developers/client-api-tokens.md), and the API side is in [API Authentication](../developers/api-authentication.md).
