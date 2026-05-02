@@ -5,7 +5,7 @@ description: UI translation
 
 # Languages
 
-The UI is translated into 19 locales. Pick yours per-user, with the choice stored server-side so it follows you across devices. If you're not signed in (Kiosk mode), the UI picks based on browser `Accept-Language` and falls back to `en_US`.
+Pick the language you want for the UI, with the choice stored server-side so it follows you across devices. If you're not signed in (Kiosk mode), the UI picks based on browser `Accept-Language` and falls back to `en_US`.
 
 ## Supported locales
 
@@ -29,8 +29,6 @@ The UI is translated into 19 locales. Pick yours per-user, with the choice store
 | `zh_CN` | Chinese (Simplified)             |
 | `zh_TW` | Chinese (Traditional)            |
 
-Two more ship as work-in-progress with partial coverage.
-
 ## What gets translated
 
 - All UI strings: menus buttons, labels, tooltips, dialogs
@@ -41,11 +39,6 @@ Not translated:
 
 - **Game metadata**: titles, descriptions, genres come from metadata providers. English is usually the source language. IGDB has some localisation but coverage is uneven.
 - **Your own content**: collection names, notes, user-uploaded media
-- **Docs site** (what you're reading): English only in 5.0
-
-## Missing strings
-
-If a translation is incomplete, you'll see the English fallback for untranslated strings. Better than showing a broken UI in a half-translated locale.
 
 ## Contributing a translation
 
@@ -53,7 +46,7 @@ If a translation is incomplete, you'll see the English fallback for untranslated
 
 1. Fork [rommapp/romm](https://github.com/rommapp/romm).
 2. Under `frontend/src/locales/<your-locale>/`, open the JSON / YAML files.
-3. Add the missing keys. They're all present in `en_US` for reference.
+3. Add the missing keys (they're all present in `en_US` for reference).
 4. Open a PR.
 
 ### Add a new locale
@@ -63,25 +56,4 @@ If a translation is incomplete, you'll see the English fallback for untranslated
 3. Register the locale in the `frontend/src/locales/index.ts` file (the filename may change, so follow the pattern in the repo).
 4. Open a PR.
 
-Partial translations are welcome. We'd rather have a 70%-translated locale up for people to improve than hold out for 100%.
-
 See [Translations (i18n)](../developers/i18n.md) for the full contributor walkthrough.
-
-## Locale-specific notes
-
-### Right-to-left (RTL)
-
-No RTL locales in 5.0. Arabic and Hebrew translations may land in a future release, since the UI needs some layout work before it can present them cleanly.
-
-### CJK typography
-
-CJK locales (Japanese, Korean, Chinese simplified/traditional) use the browser's default system font stack. Some game titles with rare glyphs may render inconsistently across OSes. That's a browser font issue, not a RomM one.
-
-## Docs i18n
-
-The docs site is currently English-only. Localising docs is a much bigger commitment than localising the app. To help, open an issue on [rommapp/docs](https://github.com/rommapp/docs).
-
-## Related
-
-- [Console Mode](console-mode.md): same locale selection applies.
-- [Developers → Translations (i18n)](../developers/i18n.md): contributor guide
