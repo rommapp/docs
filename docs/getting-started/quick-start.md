@@ -65,8 +65,8 @@ docker ps -f name=romm
 
 ```asciinema-player
     {
-        "file": "../resources/asciinema/quick-start-docker-compose.cast",
-        "title": "RomM docker compose install",
+        "file": "../../resources/asciinema/quick-start-docker-compose.cast",
+        "title": "Docker Compose install",
         "preload": true,
         "loop": true,
         "auto_play": true,

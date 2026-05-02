@@ -7,7 +7,7 @@ description: How to organise your library on disk
 
 # Folder Structure
 
-RomM expects your library to be organised in one of two layouts. It tries **Structure A** first, and falls back to **Structure B** if A isn't found. This auto-detection is per-library (not per-platform), so you don't pick one up front. Just arrange files the way you prefer, and it'll figure it out.
+RomM expects your library to be organised in one of two layouts. It tries **Structure A** first, and falls back to **Structure B** if A isn't found. This auto-detection is per-library (not per-platform), so if you don't pick one up front, just arrange files the way you prefer and it'll figure it out.
 
 ## The two layouts
 

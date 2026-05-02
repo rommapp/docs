@@ -55,14 +55,6 @@ RomM (ROM Manager) lets you scan, enrich, organise, and play your game collectio
 
     [Developers →](developers/index.md)
 
-- :material-book-open-outline: **Just looking something up**
-
-    ***
-
-    Environment variables, `config.yml`, scheduled tasks, glossary.
-
-    [Reference →](reference/environment-variables.md)
-
 </div>
 
 ## Philosophy
@@ -73,10 +65,10 @@ RomM is built for its users, not for shareholders: self-hosted, open-source, no 
 
 ## Community
 
+Join us on Discord to ask questions, share your setup, request features, or help other users. Code, issues, and releases live on [GitHub](https://github.com/rommapp/romm).
+
 <div style="text-align: center">
     <a href="https://discord.gg/romm" target="_blank">
         <img src="https://invidget.switchblade.xyz/romm" alt="Join our Discord" class="skip-lightbox">
     </a>
 </div>
-
-Join us on Discord to ask questions, share your setup, request features, or help other users. Code, issues, and releases live on [GitHub](https://github.com/rommapp/romm).
