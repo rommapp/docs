@@ -91,7 +91,7 @@ If a stale shell is causing issues (e.g. seeing old UI after an upgrade), force-
 
 ## Limitations
 
-- **Requires HTTPS**: PWAs don't install from plain-HTTP hosts. Make sure your instance is behind a reverse proxy with TLS. See [Reverse Proxy](../install/reverse-proxy.md).
+- **Requires HTTPS**: PWAs don't install from plain-HTTP hosts. Make sure your instance is behind a reverse proxy with TLS (see [Reverse Proxy](../install/reverse-proxy.md)).
 - **Icons**: 192×192 and 512×512 manifest icons ship by default. Some devices pick a mid-size fallback that looks slightly blurry. Known limitation, we'll expand the icon set over time.
 - **No push notifications yet**: the PWA manifest doesn't register a notification handler in 5.0. Scan completion, task failures, etc. don't notify you.
 - **Offline mode is partial**: opening the installed PWA offline shows the shell but you can't actually browse the library or play anything without the server reachable.

@@ -7,7 +7,7 @@ description: Manage your RomM account: profile, password, avatar, API tokens, de
 
 Your account controls: profile drawer → **Profile**.
 
-Every user (Viewer, Editor, Admin) can manage their own profile. Admins can edit _other_ users' profiles. See [Users & Roles](../administration/users-and-roles.md) for the admin side.
+Every user (Viewer, Editor, Admin) can manage their own profile. Admins can edit _other_ users' profiles (see [Users & Roles](../administration/users-and-roles.md) for the admin side).
 
 ## Profile basics
 
@@ -30,7 +30,7 @@ Upload a PNG / JPEG / WebP, and it shows next to your name across the UI.
 
 ### Preferred username in OIDC
 
-If you're an OIDC user and want it to show your `preferred_username` from the token instead of your email local-part, the operator can set `OIDC_USERNAME_ATTRIBUTE=preferred_username`. See [OIDC Setup](../administration/oidc/index.md).
+If you're an OIDC user and want it to show your `preferred_username` from the token instead of your email local-part, the operator can set `OIDC_USERNAME_ATTRIBUTE=preferred_username` (see [OIDC Setup](../administration/oidc/index.md)).
 
 ## Client API tokens
 
@@ -133,7 +133,7 @@ When deleted:
 If you signed in via OIDC:
 
 - Most fields are still editable on the app side. Email and role may be overwritten on next login based on IdP claims.
-- **Logging out of RomM doesn't log out of the IdP** unless the operator has enabled `OIDC_RP_INITIATED_LOGOUT`. See [OIDC Setup](../administration/oidc/index.md).
+- **Logging out of RomM doesn't log out of the IdP** unless the operator has enabled `OIDC_RP_INITIATED_LOGOUT` (see [OIDC Setup](../administration/oidc/index.md)).
 - Unlinking OIDC isn't currently supported from the profile page. If you want to convert to a local account, ask an admin to delete your OIDC-linked account, then re-register with a local email+password.
 
 ## Language and UI preferences
@@ -154,4 +154,4 @@ See those pages for detail.
 - **"Current password incorrect"**: caps lock, or the password was changed by an admin. Ask them.
 - **Avatar upload silently fails**: file is too large. Avatar uploads cap at a few MB. Resize.
 - **Can't create API token**: you've hit the 25-token cap. Revoke old ones.
-- **OIDC login came back as Viewer when I'm an Admin**: role claim mapping is misconfigured or missing. See [OIDC Troubleshooting → Role mapping](../troubleshooting/authentication.md#user-is-created-but-stays-viewer-even-though-they-should-be-admin).
+- **OIDC login came back as Viewer when I'm an Admin**: role claim mapping is misconfigured or missing (see [OIDC Troubleshooting → Role mapping](../troubleshooting/authentication.md#user-is-created-but-stays-viewer-even-though-they-should-be-admin)).

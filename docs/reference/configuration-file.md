@@ -24,7 +24,7 @@ Control what the scanner ignores.
 
 ### `exclude.platforms`
 
-Skip entire platform folders. Values are platform slugs, not folder names. See [`system.platforms`](#systemplatforms) if your folders are named differently.
+Skip entire platform folders. Values are platform slugs, not folder names (see [`system.platforms`](#systemplatforms) if your folders are named differently).
 
 ```yaml
 exclude:

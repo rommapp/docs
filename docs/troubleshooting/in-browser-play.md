@@ -7,9 +7,9 @@ description: Diagnose EmulatorJS and Ruffle issues
 
 ## EmulatorJS won't load at all
 
-- **On the slim image without internet?** The slim image fetches EmulatorJS cores from a CDN at runtime rather than bundling them, so without outbound network the container can't load games. Either switch to the full image (cores bundled) or open outbound access. See [Image Variants](../install/image-variants.md).
+- **On the slim image without internet?** The slim image fetches EmulatorJS cores from a CDN at runtime rather than bundling them, so without outbound network the container can't load games. Either switch to the full image (cores bundled) or open outbound access (see [Image Variants](../install/image-variants.md)).
 - Check the **browser console** and look for 404s on `/assets/emulatorjs/...`, which indicate the EmulatorJS bundle didn't install correctly in the container. Check `docker logs romm` for entrypoint install-step failures.
-- **Browser compatibility**: EmulatorJS uses SharedArrayBuffer, which needs a modern Chrome/Firefox/Safari and an HTTPS-served instance (cross-origin isolation requires HTTPS). If you're still on plain HTTP, set up TLS first. See [Reverse Proxy](../install/reverse-proxy.md).
+- **Browser compatibility**: EmulatorJS uses SharedArrayBuffer, which needs a modern Chrome/Firefox/Safari and an HTTPS-served instance (cross-origin isolation requires HTTPS). If you're still on plain HTTP, set up TLS first (see [Reverse Proxy](../install/reverse-proxy.md)).
 
 ## Black screen or no audio
 

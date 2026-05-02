@@ -17,7 +17,7 @@ description: Play retro games in your browser via the bundled EmulatorJS player
 
 <!-- prettier-ignore -->
 !!! note "Zip bundles for multi-file firmware"
-    Some cores need several BIOS files. Bundle them into a **zip archive** and upload via the Firmware tab on the platform detail page, and EmulatorJS picks it up as a single firmware bundle. See [Firmware Management](../../administration/firmware-management.md).
+    Some cores need several BIOS files. Bundle them into a **zip archive** and upload via the Firmware tab on the platform detail page, and EmulatorJS picks it up as a single firmware bundle (see [Firmware Management](../../administration/firmware-management.md)).
 
 ## Saves and states
 

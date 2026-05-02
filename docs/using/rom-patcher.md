@@ -46,7 +46,7 @@ Everything runs client-side in the browser. The ROM never gets uploaded to the s
 
 When you pick **Save to library** instead of Download, RomM receives the final patched file and stores it as a new ROM. Goes in the same platform folder as the original, with the patched filename. A subsequent scan picks it up, and a **Quick** scan is enough.
 
-Metadata isn't inherited, so the new ROM is **unmatched** until you run a scan. If the patch is listed on IGDB / ROMHacking.net as its own entry, matching may pick it up. Otherwise, match manually or tag with `(igdb-XXXX)`. See [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames).
+Metadata isn't inherited, so the new ROM is **unmatched** until you run a scan. If the patch is listed on IGDB / ROMHacking.net as its own entry, matching may pick it up. Otherwise, match manually or tag with `(igdb-XXXX)` (see [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames)).
 
 ## Permissions
 
@@ -91,4 +91,4 @@ The Patcher shows the pre-patch and post-patch hash (CRC32 + MD5) after apply. C
 
 ## API
 
-ROM patching is a client-side feature with no dedicated backend endpoints. When you "save to library", the patched file is uploaded via the standard chunked-upload flow (`POST /api/roms/upload/start` → `PUT /api/roms/upload/{id}` → `POST /api/roms/upload/{id}/complete`). See [Uploads → API](uploads.md#api).
+ROM patching is a client-side feature with no dedicated backend endpoints. When you "save to library", the patched file is uploaded via the standard chunked-upload flow (`POST /api/roms/upload/start` → `PUT /api/roms/upload/{id}` → `POST /api/roms/upload/{id}/complete`) (see [Uploads → API](uploads.md#api)).

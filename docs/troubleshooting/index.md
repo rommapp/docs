@@ -32,10 +32,6 @@ If something's broken, start with the symptom that best matches:
 - EmulatorJS won't load / 404 → [In-Browser Play Troubleshooting](in-browser-play.md) (on the slim image, cores come from a CDN at runtime, so a 404 usually means outbound networks are blocked).
 - Netplay doesn't connect → [Netplay Troubleshooting](netplay.md), almost always NAT or missing ICE servers
 
-### Device sync
-
-- Grout / Argosy / DeckRommSync not syncing → [Device Sync Troubleshooting](sync.md)
-
 ### Platform-specific
 
 - [Synology Troubleshooting](synology.md): permission errors, DSM gotchas

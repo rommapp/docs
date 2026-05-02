@@ -11,7 +11,7 @@ When wired up to RetroAchievements, each user's progression (achievements unlock
 
 ## Prerequisites
 
-1. **The operator** has to enable the provider. See [Metadata Providers → RetroAchievements](../administration/metadata-providers.md#retroachievements). Check by looking for the achievement tab on any known-supported game. If it's absent, the provider isn't active.
+1. **The operator** has to enable the provider (see [Metadata Providers → RetroAchievements](../administration/metadata-providers.md#retroachievements)). Check by looking for the achievement tab on any known-supported game. If it's absent, the provider isn't active.
 2. **You** need a [RetroAchievements account](https://retroachievements.org/) and your personal **API key**.
 
 ## Linking your account
@@ -23,7 +23,7 @@ When wired up to RetroAchievements, each user's progression (achievements unlock
     - **API Key**: the key you just copied.
 4. **Sync now**: progression data is pulled and populates the Achievements tab on matched games.
 
-From this point on, auto-sync runs every user's progression via the nightly RetroAchievements Sync scheduled task. See [Scheduled Tasks](../administration/scheduled-tasks.md). No manual sync needed but you can force one from the Profile page whenever.
+From this point on, auto-sync runs every user's progression via the nightly RetroAchievements Sync scheduled task (see [Scheduled Tasks](../administration/scheduled-tasks.md)). No manual sync needed but you can force one from the Profile page whenever.
 
 ## Where it shows up
 
@@ -59,7 +59,7 @@ RetroAchievements distinguishes two play modes:
 
 Hardcore isn't enforced server-side. You toggle it per-game in RetroAchievements-capable cores. Loading a save state during a hardcore run will silently drop hardcore crediting on the RA server side. You'll still see the achievement but marked as softcore.
 
-If you care about hardcore, use the in-game save feature instead of save states. See [Saves & States → RetroAchievements and states](saves-and-states.md#retroachievements-and-states).
+If you care about hardcore, use the in-game save feature instead of save states (see [Saves & States → RetroAchievements and states](saves-and-states.md#retroachievements-and-states)).
 
 ## Supported platforms
 
@@ -74,7 +74,7 @@ Whether a ROM has RA support depends on the **hash** matching RA's database. Has
 Some tips:
 
 - Prefer **No-Intro** / canonical dumps. Hacks, region-patched ROMs, or unusual dumps won't match.
-- If a game you know has RA support shows no achievements, the hash is probably off. Try a different ROM source, or re-run a Hashes scan. See [Scanning & Watcher](../administration/scanning-and-watcher.md#scan-modes).
+- If a game you know has RA support shows no achievements, the hash is probably off. Try a different ROM source, or re-run a Hashes scan (see [Scanning & Watcher](../administration/scanning-and-watcher.md#scan-modes)).
 
 ## Privacy
 

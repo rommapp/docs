@@ -103,7 +103,7 @@ On cellular? Set `DISABLE_DOWNLOAD_ENDPOINT_AUTH=false` (default: keep auth on) 
 
 If you host RomM on a home server and want to reach it from cellular:
 
-- Put it behind a reverse proxy with TLS. See [Reverse Proxy](../install/reverse-proxy.md).
+- Put it behind a reverse proxy with TLS (see [Reverse Proxy](../install/reverse-proxy.md)).
 - Use a VPN (Tailscale, WireGuard) instead of exposing to the internet. Handhelds with Tailscale setups "just work".
 - For public access without a VPN, put Cloudflare Access or similar zero-trust auth in front. Disable `ALLOW_PUBLIC_REGISTRATION` because the edge auth handles gatekeeping.
 

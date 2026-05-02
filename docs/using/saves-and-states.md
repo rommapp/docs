@@ -113,7 +113,7 @@ When you create a state via in-game Menu → Save State, EmulatorJS grabs a fram
 - **Save uploaded but the game doesn't see it**: wrong format for the core. Check the compatibility table above, then re-upload or switch cores.
 - **State loads a corrupted frame**: state was saved by a different build of the core. If the emulator bundle updated, old states may not load cleanly. Re-create or start a fresh save.
 - **Save disappears after play**: the emulator didn't flush on quit. Use in-game **Save and Quit** instead of just closing the browser.
-- **Can't upload, "file too large"**: reverse proxy limit. Raise `client_max_body_size` / `proxy-body-size`. See [Reverse Proxy](../install/reverse-proxy.md).
+- **Can't upload, "file too large"**: reverse proxy limit. Raise `client_max_body_size` / `proxy-body-size` (see [Reverse Proxy](../install/reverse-proxy.md)).
 
 More in [Troubleshooting](../troubleshooting/index.md).
 

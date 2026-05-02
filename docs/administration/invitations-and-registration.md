@@ -49,7 +49,7 @@ Expired links return a clear error on the `/register` page. Generate a new one f
 | Invite link             | Whatever role the admin picked when generating the link      |
 | OIDC first login        | Default Viewer, or mapped from claims via `OIDC_CLAIM_ROLES` |
 
-Changing a user's role afterwards is a normal admin action. See [Users & Roles](users-and-roles.md).
+Changing a user's role afterwards is a normal admin action (see [Users & Roles](users-and-roles.md)).
 
 ## Password reset
 

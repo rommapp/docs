@@ -11,7 +11,7 @@ The quick path: hover a game card → click **Download**. Or from the game detai
 
 The file streams directly, with no temp file on disk, no copy, and no waiting for packaging, so large ROMs and multi-disc sets download just as quickly as small ones.
 
-For multi-file games (folder-based), a stream of a zip on the fly. See [Multi-file downloads](#multi-file-and-bulk-downloads-nginx-mod_zip) below.
+For multi-file games (folder-based), a stream of a zip on the fly (see [Multi-file downloads](#multi-file-and-bulk-downloads-nginx-mod_zip) below).
 
 ## Copy download link
 
@@ -19,7 +19,7 @@ For cases where you want the URL, not the file right now: sending it to another 
 
 Context menu (…) on a game card → **Copy download link**, and the URL is on your clipboard.
 
-Anyone with access to the link and the server can download, though by default the link requires your session cookie or a bearer token. See [Third-party download auth](#third-party-download-auth) for the exception.
+Anyone with access to the link and the server can download, though by default the link requires your session cookie or a bearer token (see [Third-party download auth](#third-party-download-auth) for the exception).
 
 ## QR code
 
@@ -86,9 +86,9 @@ Not tracked in 5.0: Downloads aren't logged for privacy reasons, so use your rev
 
 ## Troubleshooting
 
-- **Download stalls at N%**: usually the reverse proxy buffering to disk. See [Reverse Proxy → Nginx Proxy Manager](../install/reverse-proxy.md#nginx-proxy-manager) for the `proxy_max_temp_file_size 0` fix.
+- **Download stalls at N%**: usually the reverse proxy buffering to disk (see [Reverse Proxy → Nginx Proxy Manager](../install/reverse-proxy.md#nginx-proxy-manager) for the `proxy_max_temp_file_size 0` fix).
 - **Multi-file zip download is corrupt**: disk may have filled up during streaming, or the nginx mod_zip build is broken. Check `docker logs romm | grep mod_zip`.
-- **Bulk download ends early**: reverse proxy is enforcing a request timeout. Raise `proxy_read_timeout`. See [Kubernetes Troubleshooting](../troubleshooting/kubernetes.md#websockets-disconnect-immediately) for nginx-ingress annotation pattern.
+- **Bulk download ends early**: reverse proxy is enforcing a request timeout. Raise `proxy_read_timeout` (see [Kubernetes Troubleshooting](../troubleshooting/kubernetes.md#websockets-disconnect-immediately) for nginx-ingress annotation pattern).
 
 ## API
 

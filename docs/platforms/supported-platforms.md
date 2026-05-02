@@ -11,7 +11,7 @@ RomM ships support for ~400 platforms. "Support" means:
 2. **At least one metadata provider** has coverage.
 3. **EmulatorJS** may have a playable core (flagged per platform in the table below).
 
-Your folder name has to match the **platform slug** in the table. If yours differs, use [`system.platforms`](../reference/configuration-file.md#systemplatforms) in `config.yml` to remap. See [Folder Structure](../getting-started/folder-structure.md).
+Your folder name has to match the **platform slug** in the table. If yours differs, use [`system.platforms`](../reference/configuration-file.md#systemplatforms) in `config.yml` to remap (see [Folder Structure](../getting-started/folder-structure.md)).
 
 ## Platform slugs + coverage
 
@@ -21,9 +21,9 @@ Your folder name has to match the **platform slug** in the table. If yours diffe
 
 - **Slug**: the folder name RomM expects. Matches the IGDB platform slug where possible.
 - **Name**: the human-readable platform name
-- **Providers**: which metadata providers have at least partial coverage. See [Metadata Providers](../administration/metadata-providers.md).
-- **EmulatorJS**: a playable in-browser core exists. See [Configuration File → `emulatorjs`](../reference/configuration-file.md#emulatorjs) for operator-level tuning.
-- **Firmware**: platform needs BIOS files for emulation. See [Firmware Management](../administration/firmware-management.md).
+- **Providers**: which metadata providers have at least partial coverage (see [Metadata Providers](../administration/metadata-providers.md)).
+- **EmulatorJS**: a playable in-browser core exists (see [Configuration File → `emulatorjs`](../reference/configuration-file.md#emulatorjs) for operator-level tuning).
+- **Firmware**: platform needs BIOS files for emulation (see [Firmware Management](../administration/firmware-management.md)).
 
 ## Platform not listed?
 

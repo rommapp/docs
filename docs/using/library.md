@@ -12,7 +12,7 @@ The library is the heart of RomM. This page covers the day-to-day UI: the dashbo
 Home screen, with several **ribbons** of content:
 
 - **Recently Added**: a carousel of the latest ROMs RomM has indexed
-- **Continue Playing**: games with an active play session. See [Play Sessions](../reference/glossary.md#play-session).
+- **Continue Playing**: games with an active play session (see [Play Sessions](../reference/glossary.md#play-session)).
 - **Platforms**: every platform that has at least one ROM. Cards link into the [platform view](#platform-view).
 - **Collections**: your [collections](collections.md), [smart collections](smart-collections.md), and [virtual collections](virtual-collections.md)
 
@@ -26,8 +26,8 @@ Visible everywhere, with shortcuts to:
 - **Platforms**: drawer listing every platform as a link
 - **Collections**: drawer listing every collection type
 - **Scan**: launches a scan. Permission-gated (Admin/Editor)
-- **Console Mode**: jumps to the `/console` TV/gamepad UI. See [Console Mode](console-mode.md).
-- **Upload**: permission-gated (Admin/Editor). See [Uploads](uploads.md).
+- **Console Mode**: jumps to the `/console` TV/gamepad UI (see [Console Mode](console-mode.md)).
+- **Upload**: permission-gated (Admin/Editor) (see [Uploads](uploads.md)).
 - **Profile**: profile drawer + admin panel
 
 ## Grid/list toggle
@@ -41,7 +41,7 @@ Every gallery (platform view, collection view, search results) has a grid-vs-lis
 Hovering over a game card exposes:
 
 - **Play**: launch in [EmulatorJS](in-browser-play/emulatorjs.md) or [Ruffle](in-browser-play/ruffle.md), if the platform supports in-browser play
-- **Download**: single-file download. See [Downloads](downloads.md) for bulk, QR, and copy-link options.
+- **Download**: single-file download (see [Downloads](downloads.md) for bulk, QR, and copy-link options).
 - **Context menu (…)**: opens the card's action menu
 
 Card context menu:
@@ -69,7 +69,7 @@ Every gallery has a Filters button in the top right. Filter combinations stack, 
 - **Show Playables**: only games with in-browser play support on this platform
 - **Show Missing**: DB entries whose files are gone
 - **Show Verified**: matched via Hasheous
-- **Show RetroAchievements**: games RetroAchievements has achievements for. See [RetroAchievements](retroachievements.md).
+- **Show RetroAchievements**: games RetroAchievements has achievements for (see [RetroAchievements](retroachievements.md)).
 
 ### Value filters
 
@@ -117,7 +117,7 @@ Clicking a platform card takes you to the platform view: every game on that plat
 Two side buttons:
 
 - **Platform drawer**: metadata for the platform itself: name, slug, category, generation, IGDB version, active providers, cover-art style setting. Admins see an **Upload** + **Scan** shortcut + a Danger Zone with "Delete Platform" (removes the DB entry, files on disk are not touched, and a rescan re-creates the platform).
-- **Firmware**: every firmware file registered against the platform, plus an upload button. See [Firmware Management](../administration/firmware-management.md).
+- **Firmware**: every firmware file registered against the platform, plus an upload button (see [Firmware Management](../administration/firmware-management.md)).
 
 ## Collection view
 
@@ -142,7 +142,7 @@ Click (or tap) a game. The game view has two halves:
 Which tabs appear depends on your metadata providers:
 
 - **Details**: title, description, release date, genres, developer/publisher, regions, rating, matched providers. Filterable metadata surfaces here.
-- **Game Data**: save files, save states, screenshots. Per-user. Upload, download, and delete. See [Saves & States](saves-and-states.md).
+- **Game Data**: save files, save states, screenshots. Per-user. Upload, download, and delete (see [Saves & States](saves-and-states.md)).
 - **Personal**: your data on this game: status (Never Played / Backlogged / Playing / Complete / Hidden), rating, difficulty, percent complete, and **playtime** (accumulated as you play via the [in-browser player](in-browser-play/emulatorjs.md) or companion apps that post play sessions). Stored per-user
 - **Notes**: Markdown-formatted notes on the game. Per-user. Set a note to **public** to share with other users on the instance. You can have multiple notes per game (e.g. "walkthrough tips", "save states reference", "secret moves"). Edited via a Markdown editor with preview pane
 - **Manual**: PDF viewer if you have a manual for this game
@@ -165,4 +165,4 @@ Full shortcut list is on the [Account & Profile](account-and-profile.md) page.
 
 ## Console mode alternative
 
-If you're on a TV / gamepad, there's a second UI designed for it: **Console Mode**, with the same library and different navigation. See [Console Mode](console-mode.md).
+If you're on a TV / gamepad, there's a second UI designed for it: **Console Mode**, with the same library and different navigation (see [Console Mode](console-mode.md)).

@@ -160,7 +160,7 @@ The `[autoexec]` block does the work: mount the current folder as `C:`, switch t
 4. Upload under the `dos` platform.
 5. Click Play, and the game boots.
 
-A blank screen after boot usually points at a path or mount issue in `[autoexec]`. See [Troubleshooting](#troubleshooting) below.
+A blank screen after boot usually points at a path or mount issue in `[autoexec]` (see [Troubleshooting](#troubleshooting) below).
 
 ## Retail games with CDs
 

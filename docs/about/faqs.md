@@ -87,11 +87,11 @@ Metadata isn't owned, only pulled from third parties like IGDB and ScreenScraper
 
 ## Why am I getting a "Configuration file not Mounted!" error?
 
-A `config.yml` is read from `/config` at startup. If the mount/file is missing or unreadable, startup bails with this error. See [Configuration File](../reference/configuration-file.md) for the schema and an example you can drop in.
+A `config.yml` is read from `/config` at startup. If the mount/file is missing or unreadable, startup bails with this error (see [Configuration File](../reference/configuration-file.md) for the schema and an example you can drop in).
 
 ## Can I play PS3 or newer consoles in the browser?
 
-**No.** In-browser emulation handles 4th-gen and earlier systems well. Saturn, PS1, and N64 are hit-or-miss. PSP and newer are mostly unplayable. Browser play is a bonus, as this is a library manager first, and standalone emulators remain the right tool for modern systems. See [Supported Platforms](../platforms/supported-platforms.md) for the current list.
+**No.** In-browser emulation handles 4th-gen and earlier systems well. Saturn, PS1, and N64 are hit-or-miss. PSP and newer are mostly unplayable. Browser play is a bonus, as this is a library manager first, and standalone emulators remain the right tool for modern systems (see [Supported Platforms](../platforms/supported-platforms.md) for the current list).
 
 ## Why is browser emulation laggy or not loading?
 
@@ -114,7 +114,7 @@ See [Invitations & Registration](../administration/invitations-and-registration.
 
 ## Can guests browse without an account?
 
-Absolutely, just set `KIOSK_MODE=true` in your environment variables and anonymous visitors get read-only access. See [Authentication → Kiosk mode](../administration/authentication.md#kiosk-mode).
+Absolutely, just set `KIOSK_MODE=true` in your environment variables and anonymous visitors get read-only access (see [Authentication → Kiosk mode](../administration/authentication.md#kiosk-mode)).
 
 ## How do I back up?
 

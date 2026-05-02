@@ -31,7 +31,7 @@ mkdir -p /volume1/data/media/games/library/roms
 mkdir -p /volume1/data/media/games/library/bios
 ```
 
-The platform folder names inside `roms/` have to match the expected naming. See [Folder Structure](../getting-started/folder-structure.md).
+The platform folder names inside `roms/` have to match the expected naming (see [Folder Structure](../getting-started/folder-structure.md)).
 
 ### User uploads + config
 
@@ -99,7 +99,7 @@ Once startup reports it's listening, open `http://<nas-ip>:7676` in a browser. T
 
 - **Permissions**: make sure the UID/GID in your compose file has read-write on every host path you mounted. Synology's default `docker` user is often `1024:100`, and the `apps` user is `568`. Pick one and be consistent.
 - **HTTPS**: put Synology's built-in reverse proxy (Control Panel → Login Portal → Advanced → Reverse Proxy) in front, or use the [Reverse Proxy](reverse-proxy.md) recipes.
-- **Back up `/volume1/docker/romm` and your DB volume** before upgrading versions. See [Backup & Restore](backup-and-restore.md).
+- **Back up `/volume1/docker/romm` and your DB volume** before upgrading versions (see [Backup & Restore](backup-and-restore.md)).
 
 ## Troubleshooting
 

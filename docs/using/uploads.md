@@ -79,11 +79,11 @@ Personal screenshot uploads attach to a ROM (not to a save/state). Great for bui
 
 Game detail → **Screenshots** tab → **Upload**.
 
-Supported formats: PNG, JPEG, WebP. Conversion to WebP runs on ingest via the Image Conversion task. See [Scheduled Tasks](../administration/scheduled-tasks.md).
+Supported formats: PNG, JPEG, WebP. Conversion to WebP runs on ingest via the Image Conversion task (see [Scheduled Tasks](../administration/scheduled-tasks.md)).
 
 ## Firmware uploads
 
-Admin / Editor only. See [Firmware Management](../administration/firmware-management.md) for the full flow: two paths (drop in folder + scan, or UI upload), per-platform organisation, file naming requirements.
+Admin / Editor only (see [Firmware Management](../administration/firmware-management.md) for the full flow: two paths (drop in folder + scan, or UI upload), per-platform organisation, file naming requirements).
 
 ## Manual uploads
 
@@ -108,9 +108,9 @@ Full scope matrix in [Users & Roles](../administration/users-and-roles.md#scope-
 
 ## Troubleshooting
 
-- **`413 Request Entity Too Large`**: your reverse proxy or ingress is capping body size. See [Reverse Proxy](../install/reverse-proxy.md) for the `client_max_body_size 0` / `proxy-body-size: "0"` fix.
+- **`413 Request Entity Too Large`**: your reverse proxy or ingress is capping body size (see [Reverse Proxy](../install/reverse-proxy.md) for the `client_max_body_size 0` / `proxy-body-size: "0"` fix).
 - **Upload progresses then fails at 99%**: the finalise step timed out. Usually reverse-proxy read timeout is too tight, so raise it.
-- **"File is not a valid ROM for this platform"**: the extension check rejected the file. Either it's the wrong platform, or the extension is obscure. See [Folder Structure → Naming](../getting-started/folder-structure.md#naming-convention).
+- **"File is not a valid ROM for this platform"**: the extension check rejected the file. Either it's the wrong platform, or the extension is obscure (see [Folder Structure → Naming](../getting-started/folder-structure.md#naming-convention)).
 - **Save upload silently doesn't appear in-emulator**: you uploaded to the wrong emulator core. Check [Saves & States → Emulator compatibility](saves-and-states.md) for the format → core matrix.
 
 ## API
@@ -127,4 +127,4 @@ POST   /api/screenshots                   # screenshot upload
 POST   /api/firmware                      # firmware upload
 ```
 
-Requires appropriate `*.write` scopes. See [API Reference](../developers/api-reference.md).
+Requires appropriate `*.write` scopes (see [API Reference](../developers/api-reference.md)).

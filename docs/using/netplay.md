@@ -96,7 +96,7 @@ Netplay room data is short-lived, with no persistent record beyond the [Netplay 
 ## Troubleshooting
 
 - **"Failed to start game"**: Netplay server-side config is broken. Operator: check `docker logs romm | grep -i netplay`. Usually a misconfigured ICE server URL
-- **Other players can't see my room**: either they're not on your instance (shouldn't happen if they have accounts) or the WebSocket connection is broken. See [WebSocket Troubleshooting](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint).
+- **Other players can't see my room**: either they're not on your instance (shouldn't happen if they have accounts) or the WebSocket connection is broken (see [WebSocket Troubleshooting](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint)).
 - **Game plays fine locally but Netplay glitches**: network round-trip is too high. Test with Players on the same LAN first, then add TURN and re-test from outside.
 - **Audio desync**: known WebRTC issue. Try a different browser (Chrome is most-tested), or restart the session.
 

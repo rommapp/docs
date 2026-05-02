@@ -57,7 +57,7 @@ Click the **logo** (top-left) to go home. You should see:
 From here, typical next steps:
 
 - **Browse**: click a platform card, flip through the grid.
-- **Fix unmatched ROMs**: rename or re-tag, then re-run an **Unmatched** scan to pick them up. See [Scanning & Watcher](../administration/scanning-and-watcher.md#scan-modes).
+- **Fix unmatched ROMs**: rename or re-tag, then re-run an **Unmatched** scan to pick them up (see [Scanning & Watcher](../administration/scanning-and-watcher.md#scan-modes)).
 - **Tweak priorities**: if ScreenScraper's covers are nicer than IGDB's for your library, reorder `scan.priority.artwork` in [`config.yml`](../reference/configuration-file.md).
 
 ## Skip to a targeted scan

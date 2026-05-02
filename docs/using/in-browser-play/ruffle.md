@@ -15,7 +15,7 @@ No controller mapping, so gamepad-only users will struggle with most Flash title
 
 ## Supported games
 
-Most 2D Flash games work, but 3D Shockwave and some advanced ActionScript titles may have rendering glitches. See [Ruffle compatibility](https://ruffle.rs/#compatibility) for per-title status.
+Most 2D Flash games work, but 3D Shockwave and some advanced ActionScript titles may have rendering glitches (see [Ruffle compatibility](https://ruffle.rs/#compatibility) for per-title status).
 
 ## Metadata
 

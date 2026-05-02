@@ -94,7 +94,6 @@ search:
     - [Authentication](troubleshooting/authentication.md)
     - [In-Browser Play](troubleshooting/in-browser-play.md)
     - [Netplay](troubleshooting/netplay.md)
-    - [Device Sync](troubleshooting/sync.md)
     - [Synology](troubleshooting/synology.md)
     - [Kubernetes](troubleshooting/kubernetes.md)
 - About
