@@ -49,7 +49,18 @@ def main() -> int:
     for src, dst in redirects.items():
         # mkdocs-redirects rewrites the source page to redirect to the target.
         # Targets are .md paths relative to docs_dir; resolve to built HTML.
-        html_path = SITE_DIR / dst.replace(".md", "/index.html")
+        # Strip any anchor fragment before checking the file exists.
+        target = dst.split("#", 1)[0]
+        if not target.endswith(".md"):
+            continue
+        stem = target[: -len(".md")]
+        # Under use_directory_urls=true (mkdocs default):
+        #   foo/index.md -> site/foo/index.html
+        #   foo/bar.md   -> site/foo/bar/index.html
+        if stem == "index" or stem.endswith("/index"):
+            html_path = SITE_DIR / f"{stem}.html"
+        else:
+            html_path = SITE_DIR / f"{stem}/index.html"
         if not html_path.exists():
             missing.append((src, dst))
 

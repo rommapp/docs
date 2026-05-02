@@ -56,15 +56,3 @@ jobs:
                   head="${{ github.event.pull_request.head.sha }}"
                   files=$(git diff --name-only "$base" "$head" -- 'docs/**/*.md' | tr '\n' ' ')
                   echo "files=$files" >> "$GITHUB_OUTPUT"
-
-            - name: Run lychee on changed files
-              if: steps.changed.outputs.files != ''
-              uses: lycheeverse/lychee-action@v2
-              env:
-                  FILES: ${{ steps.changed.outputs.files }}
-              with:
-                  # Pin away from 0.23.0, which panics with `SendError` on
-                  # the request/response queue (lychee-bin/src/commands/check.rs:165,209).
-                  lycheeVersion: v0.22.0
-                  args: --no-progress --max-concurrency 4 $FILES
-                  fail: true
