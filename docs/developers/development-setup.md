@@ -51,7 +51,7 @@ And you're done! You can access the app at `http://localhost:3000`. Any changes 
 
 ### Environment setup
 
-#### - Create the mock structure with at least one ROM and empty config for manual testing
+#### Create the mock structure with at least one ROM and empty config for manual testing
 
 ```sh
 mkdir -p romm_mock/library/roms/switch
@@ -62,13 +62,13 @@ mkdir -p romm_mock/config
 touch romm_mock/config/config.yml
 ```
 
-#### - Copy env.template to .env and fill the variables
+#### Copy env.template to .env and fill the variables
 
 ```sh
 cp env.template .env
 ```
 
-#### - Install system dependencies
+#### Install system dependencies
 
 ```sh
 # https://mariadb.com/docs/skysql-previous-release/connect/programming-languages/c/install/#Installation_via_Package_Repository_(Linux):
@@ -85,7 +85,7 @@ make HAVE_CHD=1 -f ./Makefile.RAHasher
 cp ./bin64/RAHasher /usr/bin/RAHasher
 ```
 
-#### - Install python dependencies
+#### Install python dependencies
 
 You'll need uv installed
 
@@ -103,13 +103,13 @@ source .venv/bin/activate
 uv sync --all-extras --dev
 ```
 
-#### - Spin up the database and other services
+#### Spin up the database and other services
 
 ```sh
 docker compose up -d
 ```
 
-#### - Run the backend
+#### Run the backend
 
 _Migrations will be run automatically when running the backend._
 
@@ -120,7 +120,7 @@ uv run python3 main.py
 
 ### Setting up the frontend
 
-#### - Install node.js dependencies
+#### Install node.js dependencies
 
 ```sh
 cd frontend
@@ -128,7 +128,7 @@ cd frontend
 npm install
 ```
 
-#### - Create symlink to library and resources
+#### Create symlink to library and resources
 
 ```sh
 mkdir assets/romm
@@ -136,7 +136,7 @@ ln -s ../romm_mock/resources assets/romm/resources
 ln -s ../romm_mock/assets assets/romm/assets
 ```
 
-#### - Run the frontend
+#### Run the frontend
 
 ```sh
 npm run dev
@@ -146,7 +146,7 @@ npm run dev
 
 We use [Trunk](https://trunk.io) for linting, which combines multiple linters and formatters with sensible defaults and a single configuration file. You'll need to install the Trunk CLI to use it.
 
-### - Install the Trunk CLI
+### Install the Trunk CLI
 
 ```sh
 curl https://get.trunk.io -fsSL | bash
@@ -163,13 +163,13 @@ trunk check
 
 ## Test setup
 
-### - Create the test user and database with root user
+### Create the test user and database with root user
 
 ```sh
 docker exec -i romm-db-dev mariadb -uroot -p<root password> < backend/romm_test/setup.sql
 ```
 
-### - Run tests
+### Run tests
 
 _Migrations will be run automatically when running the tests._
 

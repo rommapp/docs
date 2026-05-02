@@ -31,7 +31,7 @@ Pick the language you want for the UI, with the choice stored server-side so it 
 
 ## What gets translated
 
-- All UI strings: menus buttons, labels, tooltips, dialogs
+- All UI strings: menus, buttons, labels, tooltips, dialogs
 - Error messages and notifications
 - Help text and inline instructions
 

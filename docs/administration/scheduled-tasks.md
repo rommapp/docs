@@ -50,7 +50,7 @@ Authorization: Bearer <token-with-tasks.run>
 - **API**: `GET /api/tasks/status` for a JSON summary. Wire this to an uptime monitor if you want alerts.
 - **Logs**: `docker logs romm` → look for `rq.worker` lines.
 
-A task that's been "running" for hours is usually a scan that hit `SCAN_TIMEOUT_HOURS`, and the logs will say so. Tasks that fail leave a stack trace in the container logs, and the RQ `failed` queue retains the last few for inspection.
+A task that's been "running" for hours is usually a scan that hit `SCAN_TIMEOUT`, and the logs will say so. Tasks that fail leave a stack trace in the container logs, and the RQ `failed` queue retains the last few for inspection.
 
 ## Tuning for small hosts
 
@@ -58,5 +58,5 @@ On a Raspberry Pi or NAS with 2 GB of RAM and/or a single CPU core:
 
 - Raise the cron intervals (daily → weekly) for the nightlies
 - Set `SCAN_WORKERS=1` to avoid concurrent scan processes
-- Enable the watcher but raise `RESCAN_ON_FILESYSTEM_CHANGE_DELAY` to 60+ seconds
+- Enable the watcher but raise `RESCAN_ON_FILESYSTEM_CHANGE_DELAY` to 30+ minutes
 - Disable image conversion if you don't care about WebP (`ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP=false`).

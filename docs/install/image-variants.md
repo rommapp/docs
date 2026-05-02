@@ -5,7 +5,7 @@ description: Choose between the slim and full container images
 
 # Image Variants
 
-RomM publishes two production image variants. They're interchangeable at the config level, so pick based on whether you want bake-in EmulatorJS cores or fetch them from the CDN at runtime.
+RomM publishes two production image variants. They're interchangeable at the config level, so pick based on whether you want baked-in EmulatorJS cores or fetch them from the CDN at runtime.
 
 | Variant            | Tag                                           | Approx size | When to pick                                                                             |
 | ------------------ | --------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |

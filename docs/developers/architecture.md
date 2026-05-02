@@ -19,7 +19,7 @@ rommapp/romm
 │   ├── tasks/            # RQ jobs: scheduled/ and manual/
 │   ├── alembic/          # 80+ DB migrations
 │   └── config/           # Env vars + YAML config.json manager
-├── frontend/             # Vue 3 + Vuetify SPA (main UI + console mode)
+├── frontend/             # Vue 3 + Vuetify SPA (main UI + Console Mode)
 │   └── src/
 │       ├── views/        # Page-level components
 │       ├── components/   # ~168 components, organised by feature
@@ -135,4 +135,4 @@ Sentry (opt-in via `SENTRY_DSN`) captures unhandled exceptions, tagged with `rom
 
 ## Where to start
 
-If you're picking up your first issue, the patterns to mimic live in `backend/handler/` for backend work and in `frontend/src/components/` plus the relevant Pinia store for frontend work. Match the surrounding style. The hardest part of contributing isn't writing the change, it's threading it through the existing layers cleanly (see [Contributing](contributing.md) for process and [Development Setup](development-setup).md) to get a local env running.
+If you're picking up your first issue, the patterns to mimic live in `backend/handler/` for backend work and in `frontend/src/components/` plus the relevant Pinia store for frontend work. Match the surrounding style. The hardest part of contributing isn't writing the change, it's threading it through the existing layers cleanly (see [Contributing](contributing.md) for process and [Development Setup](development-setup.md) to get a local env running).

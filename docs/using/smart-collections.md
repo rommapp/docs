@@ -71,4 +71,4 @@ Smart collections refresh on add/remove/edit of ROMs, and on scan. No manual ref
 
 - **No top-level OR or nested groups.**
 - **No numeric review-score or playtime thresholds.**
-- **No nested smart collections**
+- **No nested smart collections.**

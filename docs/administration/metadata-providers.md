@@ -136,7 +136,7 @@ Game completion times will be added to a new tab on the details page for support
 
 ### ES-DE gamelist.xml
 
-EmulationStation, and it's modern successor ES-DE, use a custom XML format to store game metadata. This format is parsed and imported the assets as cover art and screenshots. You'll need to store the gamelist.xml file and any related assets under the platform folder:
+EmulationStation, and its modern successor ES-DE, use a custom XML format to store game metadata. RomM parses this format and imports the assets as cover art and screenshots. You'll need to store the gamelist.xml file and any related assets under the platform folder:
 
 <!-- prettier-ignore -->
 ```yaml

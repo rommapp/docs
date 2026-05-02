@@ -1,6 +1,6 @@
 ---
 title: Exports
-description: Export metadata for use in other frontend
+description: Export metadata for use in other frontends
 ---
 
 # Exports

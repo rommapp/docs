@@ -42,7 +42,7 @@ environment:
 
 RomM → **Profile** → set your email to exactly the same address PocketID has for you.
 
-![Set email](../../resources/authelia/1-user-profile.png)
+![Set email](../../resources/pocketid/1-user-profile.png)
 
 ## 5. Test
 

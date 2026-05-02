@@ -1,6 +1,6 @@
 ---
 title: Scanning & Watcher
-description: Scanning your library, scan modes, and the filesystem watche
+description: Scanning your library, scan modes, and the filesystem watcher
 ---
 
 # Scanning & Watcher
@@ -39,9 +39,9 @@ Configured via env vars (full table in [Scheduled Tasks](scheduled-tasks.md)):
 | Variable             | Default     | Purpose                                                                                           |
 | -------------------- | ----------- | ------------------------------------------------------------------------------------------------- |
 | `SCAN_INTERVAL_CRON` | `0 0 * * *` | Cron expression for the scheduled library scan. Runs a **Quick** scan by default.                 |
-| `SCAN_TIMEOUT_HOURS` | `1`         | Hard cap: scans that exceed this are killed and logged.                                           |
+| `SCAN_TIMEOUT`       | `14400`     | Hard cap in seconds: scans that exceed this are killed and logged.                                |
 | `SCAN_WORKERS`       | `1`         | Concurrent worker processes for scanning; leave as auto unless you're tuning.                     |
-| `SEVEN_ZIP_TIMEOUT`  | `60`        | Per-archive timeout for `.7z` extraction during scan; raise if scanning huge compressed ROM sets. |
+| `SEVEN_ZIP_TIMEOUT`  | `60`        | Per-archive timeout in seconds for `.7z` extraction during scan; raise if scanning huge compressed ROM sets. |
 
 To disable scheduled scans entirely, either unset the cron or set it to something unreachable (`SCAN_INTERVAL_CRON=0 0 31 2 *`).
 
@@ -52,7 +52,7 @@ The watcher tails your library folder and schedules scans in response to file ev
 ```yaml
 environment:
     - ENABLE_RESCAN_ON_FILESYSTEM_CHANGE=true
-    - RESCAN_ON_FILESYSTEM_CHANGE_DELAY=10 # seconds before acting on an event
+    - RESCAN_ON_FILESYSTEM_CHANGE_DELAY=5 # minutes before acting on an event
 ```
 
 Behaviour:

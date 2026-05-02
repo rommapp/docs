@@ -32,4 +32,4 @@ Virtual collections are read-only, so you can't:
 
 ## "Why isn't my game in [X]?"
 
-A game missing from "Virtual Collection: RPG" probably doesn't have the `RPG` genre set on its metadata. Either manually edit the genre, run an Unmatche scan, or add it to the collection by hand with a standard collection.
+A game missing from "Virtual Collection: RPG" probably doesn't have the `RPG` genre set on its metadata. Either manually edit the genre, run an Unmatched scan, or add it to the collection by hand with a standard collection.

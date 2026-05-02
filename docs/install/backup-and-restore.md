@@ -70,7 +70,7 @@ rsync -a --delete /srv/romm/config/ "$DEST/config/"
 find "$DEST" -maxdepth 1 -name 'db-*.sql.gz' -mtime +14 -delete
 ```
 
-Send it offsite however you already do (rclone to B2/S3, restic, borg). Rememer the 3-2-1 rule: 3 copies, on 2 different media, with 1 offsite!
+Send it offsite however you already do (rclone to B2/S3, restic, borg). Remember the 3-2-1 rule: 3 copies, on 2 different media, with 1 offsite!
 
 ## Restore
 

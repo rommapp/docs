@@ -5,7 +5,7 @@ description: Everything about the supported platforms
 
 # Platforms & Players
 
-- **[Supported Platforms](supported-platforms.md)**: every recognises with metadata provider coverage
+- **[Supported Platforms](supported-platforms.md)**: every platform RomM recognises, with metadata provider coverage
 - **[Custom Platforms](custom-platforms.md)**: add an unknown platform with no metadata sources
 
 ## Related sections

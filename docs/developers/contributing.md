@@ -1,3 +1,8 @@
+---
+title: Contributing
+description: How to contribute to RomM and its documentation
+---
+
 # Contributing to the documentation
 
 Thank you for considering contributing to the documentation! This document outlines some guidelines to help you get started with your contributions.
@@ -6,13 +11,13 @@ Thank you for considering contributing to the documentation! This document outli
 
 ## Code of Conduct
 
-Please note that this project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md). By participating in this project, you are expected to uphold this code.
+Please note that this project adheres to the Contributor Covenant [code of conduct](https://github.com/rommapp/docs/blob/main/CODE_OF_CONDUCT.md). By participating in this project, you are expected to uphold this code.
 
 ## Setting up the linter
 
 We use [Trunk](https://trunk.io) for linting, which combines multiple linters with sensible defaults and a single configuration file. You'll need to install the Trunk CLI to use it.
 
-### - Install the Trunk CLI
+### Install the Trunk CLI
 
 ```sh
 curl https://get.trunk.io -fsSL | bash
@@ -77,8 +82,6 @@ If you encounter any bugs or have suggestions for improvements, please [create a
 
 ## Licensing
 
-By contributing to the documentation, you agree that your contributions will be licensed under the project's [LICENSE](LICENSE).
-
----
+By contributing to the documentation, you agree that your contributions will be licensed under the project's [LICENSE](https://github.com/rommapp/docs/blob/main/LICENSE).
 
 Thank you for contributing to the documentation! Your help is greatly appreciated.

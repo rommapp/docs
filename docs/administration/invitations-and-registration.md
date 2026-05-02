@@ -28,16 +28,16 @@ You'll then need to create the first admin via the API or by injecting a databas
 
 The recommended way to add users, because it avoids you ever touching their password.
 
-1. **Administration → Users c Invite.** Pick a role (Viewer, Editor, Admin).
+1. **Administration → Users → Invite.** Pick a role (Viewer, Editor, Admin).
 2. RomM generates a single-use URL → copy it and send it to the invitee.
 3. When they open it, they pick their own username and password.
 4. RomM creates the account with the role you chose and logs them straight in.
 
 Invite tokens are **single-use** and **time-limited**. Defaults:
 
-| Setting | Default | Env var             |
-| ------- | ------- | ------------------- |
-| Expiry  | 30 days | `INVITE_TOKEN_DAYS` |
+| Setting | Default    | Env var                       |
+| ------- | ---------- | ----------------------------- |
+| Expiry  | 600 (10 m) | `INVITE_TOKEN_EXPIRY_SECONDS` |
 
 Expired links return a clear error on the `/register` page. Generate a new one from the Users panel.
 
