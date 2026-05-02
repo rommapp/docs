@@ -5,9 +5,9 @@ description: Rule-based collections that auto-populate from your library
 
 # Smart Collections
 
-A **smart collection** is a collection defined by **rules**, not by hand-picking. You describe what's in it ("all SNES games rated ≥4 stars", "everything in the Zelda franchise", "games I've beaten"), and RomM keeps the list in sync automatically: as you add ROMs, update ratings, mark games complete, the collection updates.
+A **smart collection** is a collection defined by **filter rules**. You describe what's in it (like "all SNES games rated ≥4 stars"), and the list stays in sync. The collection updates itself as you add ROMs to your library, update ratings, and manually match games.
 
-New in 5.0. For hand-curated collections, see [Collections](collections.md). For auto-generated-by-RomM groupings, see [Virtual Collections](virtual-collections.md).
+For hand-curated collections, see [Collections](collections.md), and for auto-generated groupings, see [Virtual Collections](virtual-collections.md).
 
 ## Rule structure
 
@@ -99,39 +99,20 @@ any of:
   - Title contains "zelda"
 ```
 
-`all of` and `any of` can nest into groups for more complex rules.
-
 ## Public/private
 
 Same visibility model as standard collections:
 
 - **Private**: only you see it (your personal data fields matter).
-- **Public**: everyone on the instance sees it. _Your_ personal-data rules still apply. If your smart collection is "games I haven't finished", every user sees _your_ unfinished games.
+- **Public**: everyone on the instance sees it, but _your_ personal-data rules still apply.
 
 For shared rule sets across users, use metadata-only fields and keep the collection public. Rules that reference Personal data (status, rating, playtime, favourites) only make sense as private collections.
 
 ## Refresh behaviour
 
-Smart collections refresh:
-
-- **Live**: when you add, remove, rate, or edit a ROM, RomM re-evaluates rules instantly.
-- **On scan**: after every scan, rules are re-evaluated against the new state.
-- **No manual refresh needed**, but admins can trigger a full re-evaluation as a scheduled task if something looks stale.
+Smart collections refresh themselves when you add, remove, rate, or edit a ROM, so the list is always up to date. No manual refresh needed!
 
 ## Limitations
 
-- **No nested smart collections**: a smart collection can't reference another collection as a source. Compose rules directly.
-- **Performance**: very complex rule sets (many conditions, many nested groups) on huge libraries can slow down the gallery load. Usually imperceptible but mentioned here for completeness.
-- **Timezone**: "Release Year" uses UTC, not the user's timezone. Edge-case edge-of-year games might fall on the "wrong" side.
-
-## API
-
-```http
-POST   /api/collections/smart           # create
-GET    /api/collections/smart           # list
-GET    /api/collections/smart/{id}      # get
-PUT    /api/collections/smart/{id}      # update
-DELETE /api/collections/smart/{id}      # delete
-```
-
-Rule schema is part of the POST body. See the [API Reference](../developers/api-reference.md) for the JSON structure, which requires `collections.read`/`collections.write`.
+- **No nested smart collections**: a smart collection can't reference another collection as a source.
+- **Performance**: very complex rule sets (many conditions, many nested groups) on huge libraries can slow down the gallery load.

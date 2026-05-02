@@ -5,6 +5,10 @@ description: Upload ROMs, firmware, saves, states, and screenshots into RomM
 
 # Uploads
 
+<!-- prettier-ignore -->
+!!! tip "Prefer direct file transfer for ROMs"
+    For ROM files, copying or moving them straight into the right platform folder under `/romm/library` (via FTP, SFTP, SMB, `rsync`, or your NAS file manager) is more reliable than uploading through the web UI, especially for large or multi-file games. Then run a Quick scan to pick them up. The web UI uploader works, but it's bottlenecked by your browser, the reverse proxy, and any chunked-upload edge cases.
+
 ## What you can upload
 
 | Type              | Permission       | Details                                                              |
@@ -12,7 +16,7 @@ description: Upload ROMs, firmware, saves, states, and screenshots into RomM
 | **ROMs**          | Admin, Editor    | Goes to the correct platform folder in `/romm/library`.              |
 | **Firmware/BIOS** | Admin, Editor    | See [Firmware Management](../administration/firmware-management.md). |
 | **Saves**         | Self (own games) | Per-ROM, per-user.                                                   |
-| **States**        | Self (own games) | Per-ROM, per-user. Optional screenshot attached.                     |
+| **States**        | Self (own games) | Per-ROM, per-user, with optional screenshot attached.                     |
 | **Screenshots**   | Self (own games) | Per-ROM, per-user.                                                   |
 | **Manuals**       | Admin, Editor    | PDF, becomes the Manual tab content.                                 |
 | **Cover art**     | Admin, Editor    | Replaces the provider-fetched cover.                                 |
@@ -24,18 +28,14 @@ description: Upload ROMs, firmware, saves, states, and screenshots into RomM
 Files over 64 MB are uploaded in chunks. The server:
 
 1. Opens an upload session (`POST /api/roms/upload/start`).
-2. Streams chunks (`PUT /api/roms/upload/{id}`), 64 MB each.
+2. Streams chunks (`PUT /api/roms/upload/{id}`) of 64 MB each.
 3. Finalises the upload (`POST /api/roms/upload/{id}/complete`), which assembles the file and indexes it.
 
 A browser refresh mid-upload cancels the session and cleans up partial data.
 
 ### Multi-file uploads
 
-To upload a multi-file game (multi-disc, game + DLC):
-
-1. Zip the whole game folder on your end.
-2. Upload the zip: the structure is detected and unpacks to a folder under the platform directory.
-3. The resulting folder follows the [multi-file game convention](../getting-started/folder-structure.md#multi-file-games).
+Multi-file uploads (e.g. multi-disc games) aren't supported via the UI. Instead, copy the files directly into the correct platform folder, then run a scan to pick them up. For example, a two-disc PSX game would have `game_disc1.iso` and `game_disc2.iso` copied into `/romm/library/psx/game/`, then a Quick scan run to match them.
 
 ### After upload
 
