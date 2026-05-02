@@ -5,114 +5,70 @@ description: Rule-based collections that auto-populate from your library
 
 # Smart Collections
 
-A **smart collection** is a collection defined by **filter rules**. You describe what's in it (like "all SNES games rated ≥4 stars"), and the list stays in sync. The collection updates itself as you add ROMs to your library, update ratings, and manually match games.
+A **smart collection** is a collection defined by **filter criteria**, not by hand-picking. You set filters ("SNES games tagged RPG", "Zelda franchise", "playable in the browser") and RomM keeps the list in sync as you add ROMs and edit metadata.
 
 For hand-curated collections, see [Collections](collections.md), and for auto-generated groupings, see [Virtual Collections](virtual-collections.md).
 
-## Rule structure
+## How filters work
 
-A smart collection is one or more **conditions** joined by **all** (AND) or **any** (OR).
+A smart collection holds a fixed set of filter fields (it isn't a generic rule engine). Each field accepts one or more values, and multi-value fields take a `<field>_logic` companion that picks `any` (OR) or `all` (AND) **within that field**. Different fields are always combined with **AND**.
 
-Each condition has three parts:
+That has three big consequences:
 
-1. **Field**: what you're matching on
-2. **Operator**: comparison (equals, contains, greater-than, etc.)
-3. **Value**: the thing you're comparing against
+- **No top-level OR.** You can't express "Franchise = Zelda OR Title contains 'zelda'". Different fields always AND.
+- **No negation.** Filters are inclusion-only. There's no "Status is not Complete" or "exclude Genre RPG". Pick the values you want, not the ones you don't.
+- **No numeric thresholds.** No "Rating greater than 85" or "Playtime greater than 60 minutes". The age-rating filter is categorical (ESRB / PEGI labels), not a review-score number.
 
 ## Supported fields
 
-### Metadata
-
-- **Platform**: platform slug
-- **Title**: game title (case-insensitive substring match with `contains`)
-- **Genre**: IGDB genre tag
-- **Franchise**: game franchise (Mario, Final Fantasy, etc.)
-- **Developer**: company that made the game
-- **Publisher**: company that released it
-- **Release Year**: year
-- **Age Rating**: ESRB/PEGI rating
-- **Region**: game region (USA, Japan, Europe, World, etc.)
-- **Language**: game language
-- **Rating**: IGDB/ScreenScraper critic score
-
-### Personal data
-
-- **Personal Rating**: your per-game rating
-- **Status**: Never Played/Backlogged/Playing/Complete/Hidden
-- **Playtime**: accumulated play time (minutes)
-- **Favourites**: whether you've favourited it
-- **Has Achievements**: whether the game has [RetroAchievements](retroachievements.md)
-
-### Flags
-
-- **Matched**: has a provider ID
-- **Playable in browser**: supports EmulatorJS/Ruffle
-- **Has Firmware**: required firmware exists in the library.
-- **Duplicate**: the same game appears twice.
-
-## Operators
-
-Available operators depend on the field type:
-
-| Operator                               | Works with                                         |
-| -------------------------------------- | -------------------------------------------------- |
-| `equals`, `not equals`                 | Everything.                                        |
-| `contains`, `does not contain`         | Text fields.                                       |
-| `starts with`, `ends with`             | Text fields.                                       |
-| `is`, `is not`                         | Boolean/enum fields (Status, Matched, Favourites). |
-| `greater than`, `less than`, `between` | Numeric fields (Rating, Playtime, Release Year).   |
-| `in`, `not in`                         | Multi-value fields (Region, Language, Genre).      |
+- **Platform** (`platform_ids`): one or more platform slugs.
+- **Genre** (`genres` + `genres_logic`): one or more genres, ANDed or ORed within the field.
+- **Franchise** (`franchises`): one or more franchises.
+- **Title** (`search_term`): case-insensitive substring match against the game title.
+- **Status** (`statuses`): one or more personal play statuses (Never Played, Backlogged, Playing, Complete, Hidden). Inclusion only.
+- **Age rating** (`age_ratings`): ESRB / PEGI categorical labels.
+- **Playable in browser** (`playable`): boolean, restricts to platforms with an EmulatorJS or Ruffle core.
 
 ## Examples
 
-### "SNES RPGs I haven't finished"
+### "SNES RPGs I'm playing or haven't started"
 
 ```text
-all of:
-  - Platform equals "snes"
-  - Genre in ["RPG"]
-  - Status is not "Complete"
+Platform: snes
+Genre: RPG
+Status: Never Played, Playing
 ```
 
-### "Top-rated arcade games that run in browser"
+Inclusion-only, so list the statuses you want and let everything else fall away.
+
+### "Arcade games playable in browser"
 
 ```text
-all of:
-  - Platform equals "arcade"
-  - Rating greater than 85
-  - Playable in browser is "yes"
+Platform: arcade
+Playable in browser: yes
 ```
 
-### "Everything I've touched recently but not finished"
+### "Zelda franchise"
 
 ```text
-all of:
-  - Playtime greater than 60
-  - Status is not "Complete"
+Franchise: The Legend of Zelda
 ```
 
-### "Zelda franchise, any platform"
+To match by title substring instead, use `Title: zelda`. You can't OR the two together in one collection (different fields always AND).
 
-```text
-any of:
-  - Franchise equals "The Legend of Zelda"
-  - Title contains "zelda"
-```
-
-## Public/private
+## Public / private
 
 Same visibility model as standard collections:
 
-- **Private**: only you see it (your personal data fields matter).
-- **Public**: everyone on the instance sees it, but _your_ personal-data rules still apply.
-
-For shared rule sets across users, use metadata-only fields and keep the collection public. Rules that reference Personal data (status, rating, playtime, favourites) only make sense as private collections.
+- **Private**: only you see it. Personal-data fields (Status) only make sense here.
+- **Public**: everyone on the instance sees it. _Your_ personal-data filters still apply, so a public smart collection filtering on Status will reflect _your_ statuses for every viewer.
 
 ## Refresh behaviour
 
-Smart collections refresh themselves when you add, remove, rate, or edit a ROM, so the list is always up to date. No manual refresh needed!
+Smart collections refresh on add/remove/edit of ROMs, and on scan. No manual refresh needed!
 
 ## Limitations
 
-- **No nested smart collections**: a smart collection can't reference another collection as a source.
-- **Performance**: very complex rule sets (many conditions, many nested groups) on huge libraries can slow down the gallery load.
+- **No top-level OR or nested groups.**
+- **No numeric review-score or playtime thresholds.**
+- **No nested smart collections**

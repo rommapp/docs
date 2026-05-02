@@ -70,20 +70,3 @@ If you use [RetroAchievements](retroachievements.md) in hardcore mode, loading a
 - **Can't upload, "file too large"**: reverse proxy limit. Raise `client_max_body_size`/`proxy-body-size` (see [Reverse Proxy](../install/reverse-proxy.md)).
 
 More in [Troubleshooting](../troubleshooting/index.md).
-
-## API
-
-```http
-POST   /api/saves                    # upload
-GET    /api/saves                    # list own saves
-GET    /api/saves/{id}/content       # download
-PUT    /api/saves/{id}               # update metadata/attach screenshot
-POST   /api/saves/delete             # bulk delete
-
-POST   /api/states                   # upload
-GET    /api/states                   # list own states
-PUT    /api/states/{id}              # update
-POST   /api/states/delete            # bulk delete
-```
-
-Requires `assets.read`/`assets.write` scopes. Full reference: [API Reference](../developers/api-reference.md).
