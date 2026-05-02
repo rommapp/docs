@@ -46,7 +46,7 @@ Wire to your monitoring stack via the API rather than scraping the HTML page (se
 ## Troubleshooting
 
 - **Numbers look stale**: stats are computed on page load, not cached
-- **Disk sizes look wrong**: if your compose mounts a path that's smaller than the host dataset (e.g. you mounted a sub-directory), it will only sees that subset
+- **Disk sizes look wrong**: if your compose mounts a path that's smaller than the host dataset (e.g. you mounted a sub-directory), it will only see that subset
 - **"Platform stats couldn't load"**: the DB query timed out on a very large library
 
 For anything else, see [Troubleshooting](../troubleshooting/index.md).

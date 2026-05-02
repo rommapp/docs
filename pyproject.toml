@@ -19,5 +19,4 @@ dependencies = [
   "neoteroi-mkdocs>=1.1.0",
   "pillow>=11.1.0",
   "python-dotenv>=1.0.0",
-  "tomli>=2.0.1",
 ]

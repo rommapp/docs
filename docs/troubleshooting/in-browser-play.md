@@ -38,8 +38,8 @@ Not sure which files you need? The error message usually names them, otherwise c
 
 ## Save states crash on load
 
-- **Core changed between save and load.** States are emulator-build-specifisc, start fresh or switch to in-game saves (portable across builds).
-- **Desktop emulator save state.** States from desktop emulators might now work in-browser.
+- **Core changed between save and load.** States are emulator-build-specific, start fresh or switch to in-game saves (portable across builds).
+- **Desktop emulator save state.** States from desktop emulators might not work in-browser.
 
 ## DOS games fail to boot
 

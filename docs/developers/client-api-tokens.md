@@ -18,7 +18,7 @@ A **Client API Token** is a long-lived credential that a companion app (or scrip
 64 hex characters prefixed with `rmm_`:
 
 ```text
-rmm_abcdef0123456789abcdef0123456789abcdef01
+rmm_abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789
 ```
 
 Send as a bearer token on any authenticated API call:
@@ -68,7 +68,7 @@ Typing a 68-character token into a handheld thumbstick isn't realistic. Instead:
 
 ### Timing
 
-- Pairing codes are valid for **60 seconds** after creation
+- Pairing codes are valid for **5 minutes** after creation
 - Once a device exchanges the code, it's invalid for anyone else (single-use)
 - Re-create it if the user doesn't complete the flow within the time window
 

@@ -15,7 +15,7 @@ PocketID installed, running, and your admin passkey already registered via their
 
 In PocketID admin:
 
-1. **Application Configuration**: make sure **Emails Verified** is tickedas RomM requires verified emails.
+1. **Application Configuration**: make sure **Emails Verified** is ticked as we now require verified emails.
 2. Go to **OIDC Client** → **Add OIDC Client**.
 3. Fill in:
     - **Name**: `RomM`
