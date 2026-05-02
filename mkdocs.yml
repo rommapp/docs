@@ -2,7 +2,7 @@ site_name: RomM
 docs_dir: docs
 site_url: https://docs.romm.app/
 site_author: RomM Team
-site_description: Your beautiful, powerful, self-hosted rom manager
+site_description: Your beautiful, powerful, self-hosted ROM manager
 repo_url: https://github.com/rommapp/romm
 repo_name: rommapp/romm
 edit_uri: edit/main/docs/
@@ -52,9 +52,9 @@ plugins:
               font_family: Roboto
               background_color: "#371f69"
               color: "#ede5f8"
-              logo: docs/assets/romm/romm-logo.pngg
+              logo: docs/assets/romm/romm-logo.png
               title: RomM Docs
-              description: Your beautiful, powerful, self-hosted rom manager
+              description: Your beautiful, powerful, self-hosted ROM manager
     - glightbox:
           skip_classes:
               - skip-lightbox
@@ -65,6 +65,67 @@ plugins:
           enable_creation_date: true
           type: timeago
     - mike
+    - redirects:
+          redirect_maps:
+              # Getting Started → new IA
+              Getting-Started/Quick-Start-Guide.md: getting-started/quick-start.md
+              Getting-Started/Configuration-File.md: reference/configuration-file.md
+              Getting-Started/Environment-Variables.md: reference/environment-variables.md
+              Getting-Started/Metadata-Providers.md: administration/metadata-providers.md
+              Getting-Started/OIDC-Setup.md: administration/oidc/index.md
+              Getting-Started/Reverse-Proxy.md: install/reverse-proxy.md
+              Getting-Started/Authentication.md: administration/authentication.md
+              # Platforms and Players
+              Platforms-and-Players/Supported-Platforms.md: platforms/supported-platforms.md
+              Platforms-and-Players/EmulatorJS-Player.md: using/in-browser-play/emulatorjs.md
+              Platforms-and-Players/RuffleRS-Player.md: using/in-browser-play/ruffle.md
+              Platforms-and-Players/MS-DOS.md: using/in-browser-play/ms-dos.md
+              Platforms-and-Players/Custom-Platforms.md: platforms/custom-platforms.md
+              # System Setup → Install
+              System-Setup/Unraid-Setup-Guide.md: install/unraid.md
+              System-Setup/Unraid-Compose-Setup.md: install/unraid.md
+              System-Setup/Synology-Setup-Guide.md: install/synology.md
+              System-Setup/TrueNAS-Setup-Guide.md: install/truenas.md
+              # Usage → split into Administration + Using
+              Usage/LibraryManagement.md: using/index.md
+              Usage/UserManagement.md: administration/users-and-roles.md
+              Usage/Administration.md: administration/index.md
+              # OIDC Guides
+              OIDC-Guides/OIDC-Setup-With-Authelia.md: administration/oidc/authelia.md
+              OIDC-Guides/OIDC-Setup-With-Authentik.md: administration/oidc/authentik.md
+              OIDC-Guides/OIDC-Setup-With-Keycloak.md: administration/oidc/keycloak.md
+              OIDC-Guides/OIDC-Setup-With-PocketID.md: administration/oidc/pocketid.md
+              OIDC-Guides/OIDC-Setup-With-Zitadel.md: administration/oidc/zitadel.md
+              # API & Development
+              API-and-Development/index.md: developers/index.md
+              API-and-Development/API-Reference.md: developers/api-reference.md
+              API-and-Development/Development-Setup.md: developers/development-setup.md
+              API-and-Development/Contributing.md: developers/contributing.md
+              # Tools → Ecosystem
+              Tools/Igir-Collection-Manager.md: ecosystem/igir.md
+              # Ecosystem → Developers (moved)
+              ecosystem/client-api-tokens.md: developers/client-api-tokens.md
+              ecosystem/ssh-sync.md: developers/ssh-sync.md
+              # Core Concepts merged into Glossary
+              getting-started/concepts.md: reference/glossary.md
+              # Docker Compose reference folded into Quick Start
+              install/docker-compose.md: getting-started/quick-start.md
+              # Maintenance
+              Maintenance/Scheduled-Tasks.md: administration/scheduled-tasks.md
+              Maintenance/Migrating-to-new-machine.md: install/backup-and-restore.md
+              # Integrations → Ecosystem
+              Integrations/Playnite-plugin.md: ecosystem/first-party-apps.md
+              Integrations/muOS-app.md: ecosystem/first-party-apps.md#grout
+              Integrations/Tinfoil-integration.md: ecosystem/feed-clients.md#tinfoil
+              Integrations/pkgj-integration.md: ecosystem/feed-clients.md#pkgj
+              # Troubleshooting (just casing change)
+              Troubleshooting/Scanning-Issues.md: troubleshooting/scanning.md
+              Troubleshooting/Authentication-Issues.md: troubleshooting/authentication.md
+              Troubleshooting/Synology-Issues.md: troubleshooting/synology.md
+              Troubleshooting/Kubernetes-Issues.md: troubleshooting/kubernetes.md
+              # Miscellaneous → About
+              Miscellaneous/FAQs.md: about/faqs.md
+              Miscellaneous/Brand-Guidelines.md: about/brand-guidelines.md
 
 markdown_extensions:
     - pymdownx.blocks.caption

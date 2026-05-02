@@ -27,6 +27,12 @@ lint:
         - taplo@0.9.3
         - trufflehog@3.88.12
         - yamllint@1.35.1
+    ignore:
+        # Snippet partials are included into other pages via pymdownx.snippets,
+        # so they intentionally lack a top-level heading and standalone structure.
+        - linters: [markdownlint]
+          paths:
+              - docs/resources/snippets/**
 # actions:
 # enabled:
 # - trunk-announce

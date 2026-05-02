@@ -1,0 +1,58 @@
+name: PR Checks
+
+on:
+    pull_request:
+        branches: [main]
+
+concurrency:
+    group: pr-checks-${{ github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    contents: read
+    pull-requests: read
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4.3.0
+
+            - name: Install uv
+              uses: astral-sh/setup-uv@v6.7.0
+              with:
+                  enable-cache: true
+                  cache-dependency-glob: uv.lock
+
+            - name: Set up Python
+              uses: actions/setup-python@v6.0.0
+              with:
+                  python-version-file: .python-version
+
+            - name: Install dependencies
+              run: uv sync --all-extras --dev
+
+            - name: Build docs (strict)
+              run: uv run mkdocs build --strict
+
+            - name: Verify redirect targets exist
+              run: uv run python -m scripts.check_redirects
+
+    link-check:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4.3.0
+              with:
+                  fetch-depth: 0
+
+            - name: Get changed Markdown files
+              id: changed
+              run: |
+                  base="${{ github.event.pull_request.base.sha }}"
+                  head="${{ github.event.pull_request.head.sha }}"
+                  files=$(git diff --name-only "$base" "$head" -- 'docs/**/*.md' | tr '\n' ' ')
+                  echo "files=$files" >> "$GITHUB_OUTPUT"

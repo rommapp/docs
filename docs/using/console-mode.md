@@ -1,0 +1,33 @@
+---
+title: Console Mode
+description: TV + gamepad UI for RomM
+---
+
+# Console Mode
+
+**Console Mode** is a second UI for RomM, living at `/console` and designed for TV screens and gamepad input. It runs on the same instance with the same data, just with a completely different UX.
+
+## Input
+
+Console Mode supports gamepads (Xbox, PS, 8BitDo, Steam Controller, Switch Pro, or anything the browser sees as a standard gamepad), keyboards as a fallback, and touch on handhelds without native gamepad input. Button labels in the UI follow the Xbox convention regardless of actual controller, so "A" is always the bottom face button.
+
+## Available features
+
+Most of the main UI's features are available in Console Mode:
+
+- Browse library, platforms, collections
+- Search and filters
+- Play (launches [In-Browser Play](in-browser-play/emulatorjs.md) or offers a download if the platform isn't browser-playable)
+- Saves and states: upload, select, delete
+- Smart and virtual collections
+- RetroAchievements progression display
+
+## Known limitations
+
+- **Admin features aren't available**: if you're the admin, flip back to the main UI for scans/user management.
+- **Mobile browsers with no gamepad**: touch works but the UX is designed for gamepads, not fingers. Use the main UI or the [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher).
+
+## Troubleshooting
+
+- **Gamepad not detected**: Chrome sometimes needs a button press on the page before enumerating gamepads, press any button and it'll show up.
+- **Laggy navigation**: Try Chrome or a beefier browser/client.
