@@ -1,6 +1,6 @@
 ---
 title: Netplay
-description: Play EmulatorJS games with friends in real time: hosting, joining, ICE servers, and NAT.
+description: Play EmulatorJS games with friends in real time
 ---
 
 # Netplay
@@ -21,24 +21,9 @@ Best for 2-player co-op and turn-based games. Not ideal for twitchy fighting gam
 
 See [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay-new-in-50) for the operator-side setup.
 
-## Hosting a room
+## Hosting and joining
 
-1. **Play** a supported game (any EmulatorJS platform works).
-2. Once loaded, click the 🌐 (globe) icon in the bottom toolbar.
-3. Enter your display name (shown to other players).
-4. **Create Room** → optional password.
-5. Players who can reach your instance see the room in the Netplay list.
-
-You're Player 1. Up to three more players can join as Players 2–4 (core-dependent, some only support 2).
-
-## Joining a room
-
-1. Open the same ROM (or any ROM, and open the 🌐 panel).
-2. **Available Rooms** lists active rooms on your instance.
-3. Join → enter password if required.
-4. Wait for the host to start. You'll see their game once the session's live.
-
-Other players must be on **your instance**. Netplay doesn't federate across instances.
+The host creates a room from a supported game and is Player 1. Up to three more players can join as Players 2–4 (core-dependent, some only support 2). Other players must be on the same instance, since Netplay doesn't federate across instances. Optional room password gates access.
 
 ## Controls
 
@@ -81,7 +66,7 @@ For production Netplay, operators should get a dedicated TURN account (free tier
 
 ## Known caveat: nightly CDN
 
-When Netplay is enabled, EmulatorJS loads some assets (localisation, some cores) from the nightly CDN rather than the bundled stable assets.
+When Netplay is enabled, EmulatorJS loads some assets (localisation, some cores) from the nightly CDN rather than the bundled stable assets:
 
 ```text
 https://cdn.emulatorjs.org/nightly/...
@@ -97,7 +82,7 @@ Netplay room data is short-lived, with no persistent record beyond the [Netplay 
 
 - **"Failed to start game"**: Netplay server-side config is broken. Operator: check `docker logs romm | grep -i netplay`. Usually a misconfigured ICE server URL
 - **Other players can't see my room**: either they're not on your instance (shouldn't happen if they have accounts) or the WebSocket connection is broken (see [WebSocket Troubleshooting](../troubleshooting/authentication.md#400-bad-request-on-the-websocket-endpoint)).
-- **Game plays fine locally but Netplay glitches**: network round-trip is too high. Test with Players on the same LAN first, then add TURN and re-test from outside.
+- **Game plays fine locally but Netplay glitches**: network round-trip is too high. Test with players on the same LAN first, then add TURN and re-test from outside.
 - **Audio desync**: known WebRTC issue. Try a different browser (Chrome is most-tested), or restart the session.
 
 More in [Netplay Troubleshooting](../troubleshooting/netplay.md).

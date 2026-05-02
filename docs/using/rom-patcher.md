@@ -5,7 +5,7 @@ description: Apply IPS, UPS, BPS, PPF, and other patch formats to a ROM in the b
 
 # ROM Patcher
 
-The **ROM Patcher** applies a patch file (a translation, hack, rebalance, no-intro fix) to a ROM **in your browser**: no CLI, no downloads, no uploading half-patched files by hand.
+The **ROM Patcher** applies a patch file (translation, hack, rebalance, no-intro fix) to a ROM **in your browser**: no CLI, no downloads, no uploading half-patched files by hand.
 
 New in 5.0. Powered by the `rom-patcher-js` library.
 
@@ -25,26 +25,12 @@ New in 5.0. Powered by the `rom-patcher-js` library.
 
 If your patch has an unusual extension, try renaming to one of the above. Many are just different framings of the same underlying algorithm.
 
-## Getting there
+## Patching options
 
-Menu bar → **Patcher** icon (a wrench). Admins and Editors can also reach it from the ROM detail page → context menu → **Patch this ROM**.
+Two output paths:
 
-## Patching workflow
-
-1. **Upload the ROM**: drag and drop, or click to browse. The Patcher validates basic structure.
-2. **Upload the patch**: same drag/drop zone below.
-3. **Pick the target platform**: usually auto-detected from the ROM.
-4. **Choose output**:
-    - **Download patched ROM**: saves a file locally. RomM keeps neither the original nor the result.
-    - **Save to library**: adds the patched ROM as a new entry in your library, alongside the original
-    - Optional **filename**: customise the output name. Defaults to `<original> [patched].<ext>`
-5. **Apply**.
-
-Everything runs client-side in the browser. The ROM never gets uploaded to the server during patching (if you picked Download), so nothing leaves your machine.
-
-## Save to library
-
-When you pick **Save to library** instead of Download, RomM receives the final patched file and stores it as a new ROM. Goes in the same platform folder as the original, with the patched filename. A subsequent scan picks it up, and a **Quick** scan is enough.
+- **Download patched ROM**: saves a file locally. RomM keeps neither the original nor the result. Everything runs client-side, so nothing leaves your machine.
+- **Save to library**: RomM receives the final patched file and stores it as a new ROM. Goes in the same platform folder as the original, with the patched filename. A subsequent scan picks it up, and a Quick scan is enough.
 
 Metadata isn't inherited, so the new ROM is **unmatched** until you run a scan. If the patch is listed on IGDB / ROMHacking.net as its own entry, matching may pick it up. Otherwise, match manually or tag with `(igdb-XXXX)` (see [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames)).
 

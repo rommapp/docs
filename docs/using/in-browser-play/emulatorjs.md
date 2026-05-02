@@ -1,6 +1,6 @@
 ---
 title: EmulatorJS
-description: Play retro games in your browser via the bundled EmulatorJS player
+description: Play retro games in your browser
 ---
 
 # EmulatorJS

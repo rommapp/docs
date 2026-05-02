@@ -5,57 +5,29 @@ description: Download ROMs from RomM to your local device
 
 # Downloads
 
-## Single download
+## How downloads work
 
-The quick path: hover a game card → click **Download**. Or from the game detail page → **Download** button.
+Downloads stream directly from disk with no temp file, no copy, and no packaging delay, so large ROMs and multi-disc sets download just as quickly as small ones.
 
-The file streams directly, with no temp file on disk, no copy, and no waiting for packaging, so large ROMs and multi-disc sets download just as quickly as small ones.
+For multi-file games (folder-based), the bundled nginx is built with `mod_zip`, which streams a zip archive over HTTP without ever materialising it on disk. The browser sees a zip download start immediately with no "packaging…" step, regardless of the folder size. The same applies to bulk downloads of multiple ROMs, where memory doesn't grow with selection size.
 
-For multi-file games (folder-based), a stream of a zip on the fly (see [Multi-file downloads](#multi-file-and-bulk-downloads-nginx-mod_zip) below).
+## Auth
 
-## Copy download link
+Download URLs require either a session cookie or a bearer token by default. Two patterns for programmatic / third-party use:
 
-For cases where you want the URL, not the file right now: sending it to another device, pasting into a script, using an external download manager.
+### Client API tokens (preferred)
 
-Context menu (…) on a game card → **Copy download link**, and the URL is on your clipboard.
+Issue a [Client API Token](../developers/client-api-tokens.md) and pass it as a bearer:
 
-Anyone with access to the link and the server can download, though by default the link requires your session cookie or a bearer token (see [Third-party download auth](#third-party-download-auth) for the exception).
+```bash
+curl -H "Authorization: Bearer rmm_..." \
+     -o mario.sfc \
+     https://demo.romm.app/api/roms/123/content/mario.sfc
+```
 
-## QR code
+### Disabling auth on download endpoints
 
-For handheld-to-desktop or desktop-to-phone transfers without typing a URL.
-
-Context menu (…) → **Show QR Code**, then point the other device's camera at the screen.
-
-The QR decodes to the same URL as Copy Link, and the same auth rules apply.
-
-### Nintendo 3DS direct install
-
-The 3DS built-in QR scanner can install compatible `.cia` files directly from a URL. For supported Nintendo 3DS files, the QR code becomes a one-tap install path:
-
-1. Open the ROM → context menu → **Show QR Code**.
-2. On the 3DS, launch FBI (or another CIA installer that accepts QR input).
-3. Select **Install from URL** → **Scan QR** → point at your screen.
-
-Same prerequisites as any Copy Link / QR download: the 3DS needs network access to your instance, and the file has to be accessible (either authenticated with basic-auth support on the 3DS side, or `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` behind upstream auth).
-
-## Multi-file and bulk downloads (nginx `mod_zip`)
-
-The bundled nginx is built with `mod_zip`, which streams a zip archive over HTTP without ever materialising the file on disk. Two places this matters:
-
-### Multi-disc / multi-file games
-
-When a game is stored as a folder (multi-disc, game + DLC, game + patch, etc.), clicking **Download** builds a zip on the fly containing the whole folder, and the browser sees a zip download start immediately with no "packaging…" delay.
-
-### Bulk download from a gallery
-
-Multi-select ROMs in any gallery (platform view, collection, search results) → toolbar → **Download selected**, producing a single zip with every selected ROM preserved in its platform folder structure.
-
-No practical limit: the zip is streamed so memory doesn't grow with selection size, and disk I/O and network bandwidth are the actual limits.
-
-## Third-party download auth
-
-Some third-party tools (a dumb emulator loading a ROM by URL, a browser extension, a homebrew Switch app) can't send a bearer token. For those, admins can turn off download-endpoint auth.
+Some third-party tools (a dumb emulator loading a ROM by URL, a homebrew Switch app) can't send a bearer token. For those, admins can turn auth off on download endpoints:
 
 ```yaml
 environment:
@@ -68,21 +40,17 @@ This makes ROM and firmware download URLs work unauthenticated.
 !!! danger "Only enable this behind upstream auth"
     This flag makes your library world-downloadable from whatever URL serves it. Only set it when you have authentication at the reverse-proxy layer (Authelia, Cloudflare Access, an IP allowlist, a VPN).
 
-For authenticated programmatic use, a [Client API Token](account-and-profile.md) is the cleaner answer:
+## Nintendo 3DS direct install
 
-```bash
-curl -H "Authorization: Bearer rmm_..." \
-     -o mario.sfc \
-     https://demo.romm.app/api/roms/123/content/mario.sfc
-```
+The 3DS built-in QR scanner can install compatible `.cia` files directly from a URL. RomM produces compatible QR codes, so a 3DS with FBI (or another CIA installer) can install over the air given network access to your instance and either basic-auth on the 3DS side or `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` behind upstream auth.
 
 ## Streaming to an emulator
 
-Some emulators can take an HTTP URL directly. Point them at the same URL the Copy Link button produces. With `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` and a reverse proxy that restricts access, you can set up truly remote ROM loading from a handheld over Wi-Fi.
+Some emulators take an HTTP URL directly. With `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` and a reverse proxy that restricts access, you can set up truly remote ROM loading from a handheld over Wi-Fi.
 
 ## Download history
 
-Not tracked in 5.0: Downloads aren't logged for privacy reasons, so use your reverse proxy's access log if you need to audit.
+Downloads aren't logged for privacy reasons, so use your reverse proxy's access log if you need to audit.
 
 ## Troubleshooting
 

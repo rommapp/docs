@@ -1,6 +1,6 @@
 ---
 title: Virtual Collections
-description: Auto-generated groupings by genre, developer, year, tag, with no rules to write.
+description: Auto-generated groupings by genre, developer, year, tag
 ---
 
 # Virtual Collections
@@ -31,35 +31,17 @@ Virtual collections are generated for several dimensions:
 
 Collections with too few ROMs are suppressed, so you won't see a "Developer: Some Indie Studio" with one entry.
 
-## Turning them on and off
-
-All dimensions on by default. To turn a dimension off:
-
-**Profile → User Interface → Virtual Collections → toggle a dimension.**
-
-Disabling a dimension hides all its collections from your drawer and dashboard. The underlying data is still there, so you can re-enable any time.
-
-## Using them
-
-Virtual collections show up alongside regular and smart collections in:
-
-- The **Collections** drawer
-- The dashboard's **Collections** ribbon (if enabled)
-- The filter panel under "Collection", so you can filter any gallery by virtual collection membership.
-
-Open one like any collection: grid/list view, filters, play, download, etc.
+All dimensions are on by default. Each can be toggled off per-user, hiding all of that dimension's collections without removing the underlying data.
 
 ## What you _can't_ do
 
-Virtual collections are read-only. You can't:
+Virtual collections are read-only:
 
 - Add a ROM by hand (use a [standard collection](collections.md)).
 - Remove a ROM (its metadata determines membership, so fix the metadata if it's wrong).
 - Make one "public" vs "private" (they're per-user, always visible to you).
 - Rename them (they take their name from the metadata dimension).
 - Set a custom cover image.
-
-If any of that matters, create a standard or smart collection instead.
 
 ## Refresh
 

@@ -1,11 +1,11 @@
 ---
 title: Languages
-description: Switch the UI language, 19 locales supported in 5.0.
+description: UI translation
 ---
 
 # Languages
 
-The UI is translated into 19 locales. Pick yours from **Profile → User Interface → Language**. The change is immediate: no reload, no re-login.
+The UI is translated into 19 locales. Pick yours per-user, with the choice stored server-side so it follows you across devices. If you're not signed in (Kiosk mode), the UI picks based on browser `Accept-Language` and falls back to `en_US`.
 
 ## Supported locales
 
@@ -29,7 +29,7 @@ The UI is translated into 19 locales. Pick yours from **Profile → User Interfa
 | `zh_CN` | Chinese (Simplified)             |
 | `zh_TW` | Chinese (Traditional)            |
 
-Two more ship as work-in-progress with partial coverage. Check the language dropdown to see the current list.
+Two more ship as work-in-progress with partial coverage.
 
 ## What gets translated
 
@@ -45,9 +45,7 @@ Not translated:
 
 ## Missing strings
 
-If a translation is incomplete, you'll see the English fallback for untranslated strings. This is intentional: better than showing a broken UI in a half-translated locale.
-
-Spotted something missing? Help translate it, see below.
+If a translation is incomplete, you'll see the English fallback for untranslated strings. Better than showing a broken UI in a half-translated locale.
 
 ## Contributing a translation
 
@@ -69,15 +67,11 @@ Partial translations are welcome. We'd rather have a 70%-translated locale up fo
 
 See [Translations (i18n)](../developers/i18n.md) for the full contributor walkthrough.
 
-## Persistence
-
-Your language choice is stored server-side on your user record, so it follows you across devices. If you're not signed in (Kiosk mode, for example), the UI picks based on browser `Accept-Language` header and falls back to `en_US`.
-
 ## Locale-specific notes
 
 ### Right-to-left (RTL)
 
-No RTL locales in 5.0. Arabic and Hebrew translations may land in a future release, because the UI needs some layout work before it can present them cleanly.
+No RTL locales in 5.0. Arabic and Hebrew translations may land in a future release, since the UI needs some layout work before it can present them cleanly.
 
 ### CJK typography
 
@@ -85,10 +79,9 @@ CJK locales (Japanese, Korean, Chinese simplified/traditional) use the browser's
 
 ## Docs i18n
 
-The docs site is currently English-only. Localising docs is a much bigger commitment than localising the app. If you'd like to help, open an issue on [rommapp/docs](https://github.com/rommapp/docs) and we can discuss scope.
+The docs site is currently English-only. Localising docs is a much bigger commitment than localising the app. To help, open an issue on [rommapp/docs](https://github.com/rommapp/docs).
 
 ## Related
 
-- [User Interface settings](account-and-profile.md): full list of personal UI preferences
 - [Console Mode](console-mode.md): same locale selection applies.
 - [Developers → Translations (i18n)](../developers/i18n.md): contributor guide

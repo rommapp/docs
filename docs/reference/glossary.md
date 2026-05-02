@@ -65,7 +65,7 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Play session**: a timestamped record of someone playing a ROM (start, end, duration, device). Used by the stats, the Continue Playing ribbon, and per-ROM playtime totals. Ingested automatically when playing in-browser, and companion apps push them via API.
 
-**PWA**: Progressive Web App. Install RomM to your home screen (see [Install as PWA](../using/pwa.md)).
+**PWA**: Progressive Web App. Install RomM to your phone or desktop home screen via your browser's add-to-home-screen flow. Requires HTTPS.
 
 **Resource**: provider-fetched metadata image (cover art, screenshot, manual) stored under `/romm/resources`. **Machine-managed** and rebuildable from a rescan. Not the same as an Asset (`/romm/assets`), which is user-owned and not recoverable from the library.
 

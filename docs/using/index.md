@@ -11,8 +11,7 @@ Admins: see [Administration](../administration/index.md) for operator tasks.
 
 ## Browse and play
 
-- **[Library](library.md)**: the main UI: home dashboard, platform and game cards, filters, the search bar
-- **In-Browser Play**: [EmulatorJS](in-browser-play/emulatorjs.md) for retro consoles, [Ruffle](in-browser-play/ruffle.md) for Flash. Save states, cheats, fullscreen
+- **In-Browser Play**: [EmulatorJS](in-browser-play/emulatorjs.md) for retro consoles, [Ruffle](in-browser-play/ruffle.md) for Flash
 - **[Downloads](downloads.md)**: single, bulk, QR code, copy link
 - **[Uploads](uploads.md)**: drag-and-drop ROMs, firmware, saves, states, screenshots
 
@@ -30,8 +29,7 @@ Admins: see [Administration](../administration/index.md) for operator tasks.
 
 ## Special modes
 
-- **[Console Mode](console-mode.md)**: `/console` UI for TVs and gamepads. Spatial navigation, SFX, no mouse needed
-- **[Install as PWA](pwa.md)**: add RomM to your phone/desktop home screen.
+- **[Console Mode](console-mode.md)**: `/console` UI for TVs and gamepads
 - **[Mobile & TV](mobile-and-tv.md)**: device-specific usage patterns
 
 ## Tools
@@ -43,6 +41,3 @@ Admins: see [Administration](../administration/index.md) for operator tasks.
 
 - **[Languages](languages.md)**: 19 locales
 
----
-
-Looking for something specific? Every page in this section is linked from the dashboard or the profile drawer. If you can't find a feature, check [Glossary](../reference/glossary.md), the vocabulary index.

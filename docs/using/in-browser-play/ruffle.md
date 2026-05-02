@@ -1,6 +1,6 @@
 ---
 title: Ruffle
-description: Play Flash and Shockwave games in the browser via the bundled Ruffle player
+description: Play Flash and Shockwave games in the browser
 ---
 
 # Ruffle

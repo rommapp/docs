@@ -42,7 +42,6 @@ search:
     - [Administration Page](administration/administration-page.md)
 - Using RomM
     - [Overview](using/index.md)
-    - [Library](using/library.md)
     - [Collections](using/collections.md)
     - [Smart Collections](using/smart-collections.md)
     - [Virtual Collections](using/virtual-collections.md)
@@ -57,7 +56,6 @@ search:
     - [ROM Patcher](using/rom-patcher.md)
     - [Netplay](using/netplay.md)
     - [Console Mode](using/console-mode.md)
-    - [Install as PWA](using/pwa.md)
     - [Mobile & TV](using/mobile-and-tv.md)
     - [Account & Profile](using/account-and-profile.md)
     - [Languages](using/languages.md)

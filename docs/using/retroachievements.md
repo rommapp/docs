@@ -7,46 +7,18 @@ description: Link your RetroAchievements account, surface progression, and brows
 
 [RetroAchievements](https://retroachievements.org/) adds Xbox-style achievements to retro games. Thousands of classic titles have had achievement sets authored by the community, from NES through PSX and beyond.
 
-When wired up to RetroAchievements, each user's progression (achievements unlocked, percentage complete, hardcore flag) is surfaced per-game in the UI.
+When wired up to RetroAchievements, each user's progression (achievements unlocked, percentage complete, hardcore flag) is surfaced per-game.
 
 ## Prerequisites
 
-1. **The operator** has to enable the provider (see [Metadata Providers → RetroAchievements](../administration/metadata-providers.md#retroachievements)). Check by looking for the achievement tab on any known-supported game. If it's absent, the provider isn't active.
-2. **You** need a [RetroAchievements account](https://retroachievements.org/) and your personal **API key**.
+1. **The operator** has to enable the provider (see [Metadata Providers → RetroAchievements](../administration/metadata-providers.md#retroachievements)).
+2. **You** need a [RetroAchievements account](https://retroachievements.org/) and your personal API key from the [RA settings page](https://retroachievements.org/settings).
 
 ## Linking your account
 
-1. Go to your [RA settings page](https://retroachievements.org/settings).
-2. Scroll to **Web API Keys** → copy the generated key.
-3. In **Profile** → **RetroAchievements** section → paste:
-    - **Username**: your RA username (case-sensitive).
-    - **API Key**: the key you just copied.
-4. **Sync now**: progression data is pulled and populates the Achievements tab on matched games.
+Paste the username and API key into your profile and sync. Subsequent syncs run automatically through the nightly RetroAchievements Sync scheduled task (see [Scheduled Tasks](../administration/scheduled-tasks.md)). On-demand syncs are also available.
 
-From this point on, auto-sync runs every user's progression via the nightly RetroAchievements Sync scheduled task (see [Scheduled Tasks](../administration/scheduled-tasks.md)). No manual sync needed but you can force one from the Profile page whenever.
-
-## Where it shows up
-
-### Game detail → Achievements tab
-
-Per-game breakdown:
-
-- Total achievements authored
-- How many you've unlocked
-- Points earned / total points available
-- Hardcore vs softcore totals (if applicable)
-- List of specific achievements with icons and descriptions
-
-### Game cards
-
-A small badge appears on games where RA achievements exist, regardless of whether you've unlocked any yet. Hover for percentage complete.
-
-### Filters
-
-- **Show RetroAchievements**: filter to games that have RA achievements.
-- You can combine with **Show Unmatched** or **Status: Playing** to find targets.
-
-### Smart collections
+## Smart collections
 
 [Smart collections](smart-collections.md) support a **Has Achievements** boolean field. Build "Games with achievements I haven't started" with a rule combining this + your Personal status.
 
@@ -79,16 +51,14 @@ Some tips:
 ## Privacy
 
 - Your RA API key is stored server-side (per-user), encrypted at rest.
-- Calls to RA only use your key for _your_ data, never shares across users.
+- Calls to RA only use your key for _your_ data, never shared across users.
 - Admins can see which users have RA linked but not the API keys themselves.
-
-To unlink: Profile → RetroAchievements → **Unlink** → confirm. Key is deleted. Progression data stays cached until the next sync pass.
 
 ## Troubleshooting
 
 - **"Invalid API key"**: regenerate on the RA settings page, paste fresh.
-- **Games don't show the Achievements tab**: ROM hash doesn't match RA's canonical. Try a No-Intro dump.
-- **Achievements show 0/N but you've unlocked some**: initial sync hasn't run yet. Click **Sync now** on your Profile page, or wait for the nightly.
+- **Games don't show achievements**: ROM hash doesn't match RA's canonical. Try a No-Intro dump.
+- **Achievements show 0/N but you've unlocked some**: initial sync hasn't run yet. Trigger an on-demand sync, or wait for the nightly.
 - **Hardcore run didn't credit**: you probably loaded a save state mid-run. Start over and avoid states.
 
 More in [Troubleshooting](../troubleshooting/index.md).

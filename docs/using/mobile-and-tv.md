@@ -11,7 +11,7 @@ RomM is a web app. Anything with a modern browser can use it: phones, tablets, h
 
 ### Option A: the PWA
 
-Install RomM as a [Progressive Web App](pwa.md), the recommended path for most mobile users: feels native, launches from the home screen, no app store.
+Install RomM as a Progressive Web App via your browser's add-to-home-screen flow, the recommended path for most mobile users: feels native, launches from the home screen, no app store. Requires HTTPS.
 
 - Good for: browsing, managing your library, downloading ROMs, in-browser play on devices with enough horsepower
 - Limited by: no push notifications (yet), no OS-level file pickers for ROM uploads (use the web UI instead), Safari quirks on iOS
@@ -41,7 +41,7 @@ You've got a TV-attached Android box, a mini-PC, a Nvidia Shield, or a browser r
 ### The setup
 
 1. **Install RomM as a PWA** on the device's browser.
-2. **Set the default view to Console Mode**: Profile → User Interface → **Default view** → `/console`.
+2. **Set the default view to Console Mode** in your profile preferences.
 3. **Plug in a gamepad**: USB, Bluetooth, anything the browser sees.
 4. **Launch the PWA.** You're in Console Mode, gamepad-ready.
 
@@ -109,7 +109,6 @@ If you host RomM on a home server and want to reach it from cellular:
 
 ## See also
 
-- [Install as PWA](pwa.md)
 - [Console Mode](console-mode.md)
 - [Integrations & Ecosystem](../ecosystem/index.md): every supported companion app
 - [Community section in the RomM README](https://github.com/rommapp/romm/#community): the full list with platform / status flags
