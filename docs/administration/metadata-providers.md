@@ -221,7 +221,7 @@ Here are the text properties that will be read from `gamelist.xml`.
 
 #### ES-DE media
 
-Two ways of mapping media files exist: first it looks at `gamelist.xml` for properties, and it falls back to looking at nested folders for images that have the same name as the ROM.
+There are two ways media files are mapped: first it looks at `gamelist.xml` for properties, and it falls back to looking at nested folders for images that have the same name as the ROM.
 
 | Property Name | Folder Name   | Description                            |
 | ------------- | ------------- | -------------------------------------- |
