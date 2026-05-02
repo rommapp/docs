@@ -3,8 +3,6 @@ title: WebSockets
 description: Endpoints for live updates
 ---
 
-<!-- trunk-ignore-all(markdownlint/MD024) -->
-
 # WebSockets
 
 RomM uses **socket.io** for real-time communication, with two endpoints serving distinct purposes:

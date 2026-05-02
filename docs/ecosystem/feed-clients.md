@@ -4,6 +4,7 @@ description: URL feeds homebrew installers and frontends
 ---
 
 <!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore-all(markdownlint/MD024) -->
 
 # Feed Clients
 

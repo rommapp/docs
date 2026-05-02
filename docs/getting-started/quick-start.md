@@ -3,8 +3,6 @@ title: Quick Start
 description: Get your instance running in about fifteen minutes
 ---
 
-<!-- trunk-ignore-all(markdownlint/MD033) -->
-
 # Quick Start
 
 This guide gets a RomM instance up and running with the default stack (MariaDB + Valkey) using Docker Compose. If you're on Unraid, Synology, TrueNAS, or Kubernetes, check out the [Install & Deploy](../install/index.md) section for platform-specific guides.

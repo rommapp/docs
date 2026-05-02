@@ -36,11 +36,11 @@ A manual scan can be scoped to specific platforms and a chosen subset of metadat
 
 Configured via env vars (full table in [Scheduled Tasks](scheduled-tasks.md)):
 
-| Variable             | Default     | Purpose                                                                                           |
-| -------------------- | ----------- | ------------------------------------------------------------------------------------------------- |
-| `SCAN_INTERVAL_CRON` | `0 0 * * *` | Cron expression for the scheduled library scan. Runs a **Quick** scan by default.                 |
-| `SCAN_TIMEOUT`       | `14400`     | Hard cap in seconds: scans that exceed this are killed and logged.                                |
-| `SCAN_WORKERS`       | `1`         | Concurrent worker processes for scanning; leave as auto unless you're tuning.                     |
+| Variable             | Default     | Purpose                                                                                                      |
+| -------------------- | ----------- | ------------------------------------------------------------------------------------------------------------ |
+| `SCAN_INTERVAL_CRON` | `0 0 * * *` | Cron expression for the scheduled library scan. Runs a **Quick** scan by default.                            |
+| `SCAN_TIMEOUT`       | `14400`     | Hard cap in seconds: scans that exceed this are killed and logged.                                           |
+| `SCAN_WORKERS`       | `1`         | Concurrent worker processes for scanning; leave as auto unless you're tuning.                                |
 | `SEVEN_ZIP_TIMEOUT`  | `60`        | Per-archive timeout in seconds for `.7z` extraction during scan; raise if scanning huge compressed ROM sets. |
 
 To disable scheduled scans entirely, either unset the cron or set it to something unreachable (`SCAN_INTERVAL_CRON=0 0 31 2 *`).

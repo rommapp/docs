@@ -3,6 +3,8 @@ title: Development Setup
 description: Run RomM locally for development
 ---
 
+<!-- trunk-ignore-all(markdownlint/MD024) -->
+
 # Setting up RomM for development
 
 ## Option 1: Using Docker

@@ -16,7 +16,7 @@ description: Uploading ROMs
 | **ROMs**          | Admin, Editor    | Goes to the correct platform folder in `/romm/library`.              |
 | **Firmware/BIOS** | Admin, Editor    | See [Firmware Management](../administration/firmware-management.md). |
 | **Saves**         | Self (own games) | Per-ROM, per-user.                                                   |
-| **States**        | Self (own games) | Per-ROM, per-user, with optional screenshot attached.                     |
+| **States**        | Self (own games) | Per-ROM, per-user, with optional screenshot attached.                |
 | **Screenshots**   | Self (own games) | Per-ROM, per-user.                                                   |
 | **Manuals**       | Admin, Editor    | PDF, becomes the Manual tab content.                                 |
 | **Cover art**     | Admin, Editor    | Replaces the provider-fetched cover.                                 |

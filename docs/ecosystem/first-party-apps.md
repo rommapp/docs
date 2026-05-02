@@ -4,6 +4,7 @@ description: Official clients for Android, Windows, and Linux handhelds.
 ---
 
 <!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore-all(markdownlint/MD024) -->
 
 # First-Party Apps
 
