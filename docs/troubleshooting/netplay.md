@@ -15,7 +15,7 @@ The most common error, and almost always the operator-side config:
 2. **Are ICE servers configured?** The operator needs at least one STUN server in `emulatorjs.netplay.ice_servers`. Without any, NAT traversal can't begin.
 3. **ICE server URLs reachable?** RomM can't talk to `stun.l.google.com:19302` if your server has no outbound internet. Sounds silly but happens in air-gapped labs.
 
-Full config: [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay-new-in-50).
+Full config: [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay).
 
 ## Can't see the room
 

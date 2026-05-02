@@ -77,9 +77,9 @@ plugins:
               Getting-Started/Authentication.md: administration/authentication.md
               # Platforms and Players
               Platforms-and-Players/Supported-Platforms.md: platforms/supported-platforms.md
-              Platforms-and-Players/EmulatorJS-Player.md: using/in-browser-play.md
-              Platforms-and-Players/RuffleRS-Player.md: using/in-browser-play.md
-              Platforms-and-Players/MS-DOS.md: platforms/ms-dos.md
+              Platforms-and-Players/EmulatorJS-Player.md: using/in-browser-play/emulatorjs.md
+              Platforms-and-Players/RuffleRS-Player.md: using/in-browser-play/ruffle.md
+              Platforms-and-Players/MS-DOS.md: using/in-browser-play/ms-dos.md
               Platforms-and-Players/Custom-Platforms.md: platforms/custom-platforms.md
               # System Setup → Install
               System-Setup/Unraid-Setup-Guide.md: install/unraid.md
@@ -87,9 +87,9 @@ plugins:
               System-Setup/Synology-Setup-Guide.md: install/synology.md
               System-Setup/TrueNAS-Setup-Guide.md: install/truenas.md
               # Usage → split into Administration + Using
-              Usage/LibraryManagement.md: using/library.md
+              Usage/LibraryManagement.md: using/index.md
               Usage/UserManagement.md: administration/users-and-roles.md
-              Usage/Administration.md: administration/administration-page.md
+              Usage/Administration.md: administration/index.md
               # OIDC Guides
               OIDC-Guides/OIDC-Setup-With-Authelia.md: administration/oidc/authelia.md
               OIDC-Guides/OIDC-Setup-With-Authentik.md: administration/oidc/authentik.md
@@ -113,7 +113,6 @@ plugins:
               # Maintenance
               Maintenance/Scheduled-Tasks.md: administration/scheduled-tasks.md
               Maintenance/Migrating-to-new-machine.md: install/backup-and-restore.md
-              Maintenance/Upgrading-to-3.0.md: releases/upgrading-to-3.0.md
               # Integrations → Ecosystem
               Integrations/Playnite-plugin.md: ecosystem/first-party-apps.md
               Integrations/muOS-app.md: ecosystem/first-party-apps.md#grout
@@ -123,7 +122,6 @@ plugins:
               Troubleshooting/Scanning-Issues.md: troubleshooting/scanning.md
               Troubleshooting/Authentication-Issues.md: troubleshooting/authentication.md
               Troubleshooting/Synology-Issues.md: troubleshooting/synology.md
-              Troubleshooting/Miscellaneous-Troubleshooting.md: troubleshooting/miscellaneous.md
               Troubleshooting/Kubernetes-Issues.md: troubleshooting/kubernetes.md
               # Miscellaneous → About
               Miscellaneous/FAQs.md: about/faqs.md

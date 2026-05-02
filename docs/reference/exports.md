@@ -124,5 +124,5 @@ Exports don't auto-rerun on every metadata edit, instead they run:
 
 ## See also
 
-- [Configuration File → `scan.gamelist`](../reference/configuration-file.md#scangamelistexport-new-in-50)
-- [Configuration File → `scan.pegasus`](../reference/configuration-file.md#scanpegasusexport-new-in-50)
+- [Configuration File → `scan.gamelist`](../reference/configuration-file.md#scangamelistexport)
+- [Configuration File → `scan.pegasus`](../reference/configuration-file.md#scanpegasusexport)

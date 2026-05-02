@@ -89,7 +89,7 @@ initContainers:
 
 RomM starts before the DB is ready, fails, and crashlooped-restarts forever because the restart is too fast for the DB to catch up.
 
-Fix: add an init container that waits, or a `readinessProbe` + generous `startupProbe` on the DB StatefulSet. The [Kubernetes install guide](../install/kubernetes.md#mariadb) has a readiness probe baked in, so check you're using it.
+Fix: add an init container that waits, or a `readinessProbe` + generous `startupProbe` on the DB StatefulSet so the app pod doesn't start until the DB is reachable.
 
 ## Scheduler tasks don't run
 

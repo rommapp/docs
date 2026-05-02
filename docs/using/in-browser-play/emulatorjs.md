@@ -27,7 +27,7 @@ RomM's EmulatorJS integration automates save-file and save-state handling: if a 
 
 Available in 5.0+. Up to four players can join a room hosted on your instance, with inputs streamed to the host over WebRTC, best for co-op and turn-based games (frame-perfect fighting isn't realistic over the internet).
 
-Operator setup (ICE servers, enable flag) lives in [Configuration File → `emulatorjs.netplay`](../../reference/configuration-file.md#emulatorjsnetplay-new-in-50). End-user docs live in [Netplay](../netplay.md).
+Operator setup (ICE servers, enable flag) lives in [Configuration File → `emulatorjs.netplay`](../../reference/configuration-file.md#emulatorjsnetplay). End-user docs live in [Netplay](../netplay.md).
 
 <!-- prettier-ignore -->
 !!! note "Nightly CDN caveat"
