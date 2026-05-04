@@ -5,6 +5,10 @@ description: Play games with friends in real time
 
 # Netplay
 
+<!-- prettier-ignore -->
+!!! warning "Intermittently broken on nightly EmulatorJS"
+    Netplay is currently unstable on the nightly EmulatorJS build and may not work. Expect failed connections, desyncs, or rooms that won't start until upstream fixes land.
+
 **Netplay** lets you play [in-browser](in-browser-play/emulatorjs.md) with other users in real time: co-op, turn-based, or party games, shared across the internet.
 
 ## Prerequisites
