@@ -118,7 +118,7 @@ resources:
         memory: "4Gi"
 ```
 
-Or disable hashing on the Scan page to cut memory use by ~80% (you lose RetroAchievements + Hasheous matching, see [Metadata Providers](../administration/metadata-providers.md)).
+Or disable hashing on the Scan page to cut memory use by ~80% (you lose RetroAchievements + Hasheous matching, see [Metadata Providers](../getting-started/metadata-providers.md)).
 
 ## Still stuck?
 

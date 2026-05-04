@@ -21,7 +21,7 @@ Your folder name has to match the **platform slug** in the table. If yours diffe
 
 - **Slug**: the folder name RomM expects. Matches the IGDB platform slug where possible.
 - **Name**: the human-readable platform name
-- **Providers**: which metadata providers have at least partial coverage (see [Metadata Providers](../administration/metadata-providers.md)).
+- **Providers**: which metadata providers have at least partial coverage (see [Metadata Providers](../getting-started/metadata-providers.md)).
 - **EmulatorJS**: a playable in-browser core exists (see [Configuration File → `emulatorjs`](../reference/configuration-file.md#emulatorjs) for operator-level tuning).
 - **Firmware**: platform needs BIOS files for emulation (see [Firmware Management](../administration/firmware-management.md)).
 
@@ -46,6 +46,6 @@ uv run python -m scripts.gen_platforms
 
 - [Folder Structure](../getting-started/folder-structure.md): how platform slugs map to on-disk folders
 - [Custom Platforms](custom-platforms.md): adding platforms outside the built-in list
-- [Metadata Providers](../administration/metadata-providers.md): provider coverage deep-dive
+- [Metadata Providers](../getting-started/metadata-providers.md): provider coverage deep-dive
 - [In-Browser Play → EmulatorJS](../using/in-browser-play/emulatorjs.md): EmulatorJS core catalogue
 - [Firmware Management](../administration/firmware-management.md): how RomM stores and serves BIOS files

@@ -194,7 +194,7 @@ Values are the provider slugs. Full list:
 | `tgdb`       | TheGamesDB            |
 | `libretro`   | Libretro metadata     |
 
-See [Metadata Providers](../administration/metadata-providers.md) for context on each.
+See [Metadata Providers](../getting-started/metadata-providers.md) for context on each.
 
 ### `scan.priority.artwork`
 
@@ -428,4 +428,4 @@ Most settings under `emulatorjs.settings` and `emulatorjs.controls` can be overr
 ## Related
 
 - [Folder Structure](../getting-started/folder-structure.md): how the filesystem shape interacts with `config.yml`
-- [Metadata Providers](../administration/metadata-providers.md): per-provider detail for the `scan.priority.*` slugs
+- [Metadata Providers](../getting-started/metadata-providers.md): per-provider detail for the `scan.priority.*` slugs

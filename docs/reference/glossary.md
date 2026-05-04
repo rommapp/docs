@@ -51,7 +51,7 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Library**: your ROM files on disk. Mounted (usually read-only) at `/romm/library` inside the container, with platforms as subdirectories. The catalogue is built from what's found there (see [Folder Structure](../getting-started/folder-structure.md)).
 
-**Metadata provider**: external source of game data, queried during a scan, with results merged. Configured via env vars + priority in `config.yml` (see [Metadata Providers](../administration/metadata-providers.md)).
+**Metadata provider**: external source of game data, queried during a scan, with results merged. Configured via env vars + priority in `config.yml` (see [Metadata Providers](../getting-started/metadata-providers.md)).
 
 **Netplay**: EmulatorJS's multiplayer mode. Two or more players share a session across the internet. Open rooms are tracked and brokered via WebSocket. Needs STUN/TURN (ICE servers) configured in `config.yml` for reliable NAT traversal (see [Netplay](../using/netplay.md)).
 
