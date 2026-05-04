@@ -64,7 +64,7 @@ Keep the output. It becomes `ROMM_AUTH_SECRET_KEY` in your compose file. Don't l
 
 ## 4. Set up metadata provider credentials
 
-Recommended before the first scan. Full walkthrough in [Metadata Providers](../administration/metadata-providers.md).
+Recommended before the first scan. Full walkthrough in [Metadata Providers](../getting-started/metadata-providers.md).
 
 ## 5. Docker Compose
 

@@ -77,7 +77,7 @@ ERROR:    [RomM][scan_handler][2025-04-12 11:48:55]   Failed to process /romm/li
 Options, in order of effort:
 
 1. **Add more providers**: a ROM IGDB doesn't know about might be in ScreenScraper, Hasheous, or LaunchBox, so enable one or more, then run an **Unmatched** scan.
-2. **Use filename tags**: if you already know the provider ID, rename the file to include `(igdb-1234)` or similar (see [Metadata Providers → Filename tags](../administration/metadata-providers.md#metadata-tags-in-filenames)).
+2. **Use filename tags**: if you already know the provider ID, rename the file to include `(igdb-1234)` or similar (see [Metadata Providers → Filename tags](../getting-started/metadata-providers.md#metadata-tags-in-filenames)).
 3. **Manually match**: open the ROM detail page, click the **Match** button, and search for the right title.
 
 ## Hash calculations are slow

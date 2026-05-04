@@ -19,6 +19,6 @@ Most 2D Flash games work, but 3D Shockwave and some advanced ActionScript titles
 
 ## Metadata
 
-If you enable the [Flashpoint](../../administration/metadata-providers.md#flashpoint) provider, Ruffle games pick up descriptions, cover art, and tags from the Flashpoint database.
+If you enable the [Flashpoint](../../getting-started/metadata-providers.md#flashpoint) provider, Ruffle games pick up descriptions, cover art, and tags from the Flashpoint database.
 
 More troubleshooting in [In-Browser Play Troubleshooting](../../troubleshooting/in-browser-play.md).

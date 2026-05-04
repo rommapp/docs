@@ -71,7 +71,7 @@ Once `gamelist.xml` has been generated and populated `covers/` + `screenshots/`,
 - `MediaDirectory`: point it at the ROM folder (same path ES-DE uses for `ROMDirectory`), so ES-DE looks for media in-place rather than in its own library.
 - `LegacyGamelistFileLocation`: makes ES-DE write updates back to the same `gamelist.xml` read on import, rather than its separate config dir.
 
-See also [Metadata Providers → gamelist.xml](../administration/metadata-providers.md) for the _import_ direction (reading gamelist.xml back in).
+See also [Metadata Providers → gamelist.xml](../getting-started/metadata-providers.md) for the _import_ direction (reading gamelist.xml back in).
 
 ## Pegasus
 

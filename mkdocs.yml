@@ -71,7 +71,7 @@ plugins:
               Getting-Started/Quick-Start-Guide.md: getting-started/quick-start.md
               Getting-Started/Configuration-File.md: reference/configuration-file.md
               Getting-Started/Environment-Variables.md: reference/environment-variables.md
-              Getting-Started/Metadata-Providers.md: administration/metadata-providers.md
+              Getting-Started/Metadata-Providers.md: getting-started/metadata-providers.md
               Getting-Started/OIDC-Setup.md: administration/oidc/index.md
               Getting-Started/Reverse-Proxy.md: install/reverse-proxy.md
               Getting-Started/Authentication.md: administration/authentication.md
@@ -108,6 +108,8 @@ plugins:
               ecosystem/ssh-sync.md: developers/ssh-sync.md
               # Core Concepts merged into Glossary
               getting-started/concepts.md: reference/glossary.md
+              # Metadata Providers moved into Getting Started
+              administration/metadata-providers.md: getting-started/metadata-providers.md
               # Docker Compose reference folded into Quick Start
               install/docker-compose.md: getting-started/quick-start.md
               # Maintenance

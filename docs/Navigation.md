@@ -9,6 +9,7 @@ search:
 - Getting Started
     - [Quick Start](getting-started/quick-start.md)
     - [Folder Structure](getting-started/folder-structure.md)
+    - [Metadata Providers](getting-started/metadata-providers.md)
     - [Your First Scan](getting-started/first-scan.md)
 - Install & Deploy
     - [Overview](install/index.md)
@@ -33,7 +34,6 @@ search:
         - [Keycloak](administration/oidc/keycloak.md)
         - [PocketID](administration/oidc/pocketid.md)
         - [Zitadel](administration/oidc/zitadel.md)
-    - [Metadata Providers](administration/metadata-providers.md)
     - [Scanning & Watcher](administration/scanning-and-watcher.md)
     - [Scheduled Tasks](administration/scheduled-tasks.md)
     - [Server Stats](administration/server-stats.md)
