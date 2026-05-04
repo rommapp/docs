@@ -31,16 +31,16 @@ Start from the reference file shipped in the repo. A known-good, minimally-edite
 
 You'll want to edit the following values before launching:
 
-| Where     | Variable                  | What to put                                                                                                            |
-| --------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `romm-db` | `MARIADB_ROOT_PASSWORD`   | A long, randomly generated password.                                                                                   |
-| `romm-db` | `MARIADB_PASSWORD`        | A separate long, randomly generated password.                                                                          |
-| `romm`    | `DB_PASSWD`               | Must match `MARIADB_PASSWORD` above.                                                                                   |
-| `romm`    | `ROMM_AUTH_SECRET_KEY`    | Generate with `openssl rand -hex 32` and keep it secret.                                                               |
+| Where     | Variable                  | What to put                                                                                          |
+| --------- | ------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `romm-db` | `MARIADB_ROOT_PASSWORD`   | A long, randomly generated password.                                                                 |
+| `romm-db` | `MARIADB_PASSWORD`        | A separate long, randomly generated password.                                                        |
+| `romm`    | `DB_PASSWD`               | Must match `MARIADB_PASSWORD` above.                                                                 |
+| `romm`    | `ROMM_AUTH_SECRET_KEY`    | Generate with `openssl rand -hex 32` and keep it secret.                                             |
 | `romm`    | Metadata provider creds   | Fill in only the providers you've registered with (see [Metadata Providers](metadata-providers.md)). |
-| `romm`    | `/path/to/library` volume | Host path to the directory containing your `roms/` folder.                                                             |
-| `romm`    | `/path/to/assets` volume  | Host storage paths for saves, states and screenshots.                                                                  |
-| `romm`    | `/path/to/config` volume  | Host path to a directory that will hold `config.yml`.                                                                  |
+| `romm`    | `/path/to/library` volume | Host path to the directory containing your `roms/` folder.                                           |
+| `romm`    | `/path/to/assets` volume  | Host storage paths for saves, states and screenshots.                                                |
+| `romm`    | `/path/to/config` volume  | Host path to a directory that will hold `config.yml`.                                                |
 
 Generate the auth secret now so you don't forget:
 
