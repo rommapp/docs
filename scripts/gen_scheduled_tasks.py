@@ -1,11 +1,8 @@
 """Generate the scheduled-tasks reference table from the romm task registry.
 
-Output: docs/resources/snippets/scheduled-tasks.md
-
-Strategy: parse the upstream task registration calls (or, once a stable
-public registry exists, import it). For now we ship a hand-curated table
-to unblock Wave 1. Real auto-extraction lands once the upstream registry
-shape stabilizes for 5.0.
+Parse the upstream task registration calls (or, once a stable
+public registry exists, import it), and generate 
+docs/resources/snippets/scheduled-tasks.md
 
 Run manually:
     uv run python -m scripts.gen_scheduled_tasks
@@ -17,7 +14,6 @@ from scripts._sources import write_snippet
 
 
 # Sourced from rommapp/romm@master backend/tasks/* registration as of 4.8.x.
-# Refresh against the 5.0 release SHA before GA.
 TASKS = [
     {
         "name": "Folder Scan",
