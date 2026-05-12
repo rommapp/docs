@@ -17,7 +17,7 @@ Your RomM instance will be referenced as https://demo.romm.app .
 Login as an admin in VoidAuth web interface. Create a new OIDC Apps  (e.g. `RomM`). 
 
 - **Name**: `RomM`
-- **Home Page URL**: `https://romm.example.com`
+- **Home Page URL**: `https://demo.romm.app`
 - **Logo URL**: `https://github.com/HydrelioxGitHub/romm-docs/blob/main/.github/resources/isotipo.png?raw=true`
 - **Group**: You could add a group that the user must belong to get access to your RomM instance. If left empty, any user created in your VoidAuth instance will be allowed.
 - **Skip Consent** and **MFA Required** : This options could be checked or not as you wish.
