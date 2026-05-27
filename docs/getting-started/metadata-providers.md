@@ -29,11 +29,11 @@ Here are some combinations you can use based on your needs:
 
 ![Hasheous + IGDB + SteamGridDB + Retroachievements](../resources/metadata_providers/2dcovers.png)
 
-#### The Twitch Fanboy: [IGDB](#igdb) + [PlayMatch](#playmatch)
+#### The Twitch Fanboy: [IGDB](#igdb) + [Playmatch](#playmatch)
 
 - Supports the 200+ systems available on IGDB
 - Provides titles, descriptions, cover art and related games from IGDB
-- PlayMatch adds hash-based matching for unmatched files
+- Playmatch adds hash-based matching for unmatched files
 - **Use this if you want a single-provider solution**
 
 #### The Quick Starter: [Hasheous](#hasheous)
@@ -97,11 +97,13 @@ You must run a LaunchBox metadata update (either manually, or scheduled via cron
 
 Simply set `HASHEOUS_API_ENABLED=true` in your environment variables, and future scans will start using the [Hasheous API](https://hasheous.org/swagger/index.html).
 
-### PlayMatch
+### Playmatch
 
-[PlayMatch](https://github.com/RetroRealm/playmatch) is a hash-based matching service used in conjunction with IGDB to provide better matching for games, hosted by a member of our community.
+[Playmatch](https://github.com/RetroRealm/playmatch) is a free, open source and community driven hash based matching service supporting multiple metadata providers such as IGDB, ScreenScraper, SteamGridDB, Retroachievements and more, hosted by a member of our community.
 
-To enable PlayMatch, set `PLAYMATCH_API_ENABLED=true` in your environment variables.
+To enable Playmatch, set `PLAYMATCH_API_ENABLED=true` in your environment variables.
+
+When Playmatch is enabled, manually matching a ROM through the edit dialog also forwards the ROM's hashes, filename, filesize and resolved provider IDs as a suggestion to Playmatch. Suggestions are reviewed manually before being added to the Playmatch database, which helps improve match quality for the wider community over time.
 
 ### SteamGridDB
 

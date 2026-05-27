@@ -46,7 +46,7 @@ This stack stands on an enormous amount of open-source work. In rough order of "
 - [RetroAchievements](https://retroachievements.org/)
 - [SteamGridDB](https://www.steamgriddb.com/)
 - [Hasheous](https://hasheous.org/)
-- [PlayMatch](https://github.com/RetroRealm/playmatch)
+- [Playmatch](https://github.com/RetroRealm/playmatch)
 - [LaunchBox Games Database](https://gamesdb.launchbox-app.com/)
 - [TheGamesDB](https://thegamesdb.net/)
 - [Flashpoint Archive](https://flashpointproject.github.io/flashpoint-database/)
