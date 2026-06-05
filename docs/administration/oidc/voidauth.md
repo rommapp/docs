@@ -14,7 +14,7 @@ Your RomM instance will be referenced as https://demo.romm.app .
 
 ## 2. Create a new app
 
-Login as an admin in VoidAuth web interface. Create a new OIDC Apps  (e.g. `RomM`). 
+Login as an admin in VoidAuth web interface. Create a new OIDC Apps (e.g. `RomM`).
 
 - **Name**: `RomM`
 - **Home Page URL**: `https://demo.romm.app`
