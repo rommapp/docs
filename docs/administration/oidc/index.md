@@ -5,7 +5,7 @@ description: Wire up to an OpenID Connect provider for SSO and centralised user 
 
 # OIDC Setup
 
-OpenID Connect (OIDC) lets users sign in through an external identity provider: Authelia, Authentik, Keycloak, PocketID, Zitadel, Okta, Auth0, or anything standards-compliant. Single sign-on across your homelab, no app-specific password to manage, centralised MFA, and map OIDC groups/claims to roles.
+OpenID Connect (OIDC) lets users sign in through an external identity provider: Authelia, Authentik, Keycloak, PocketID, Zitadel, Okta, Auth0, VoidAuth, or anything standards-compliant. Single sign-on across your homelab, no app-specific password to manage, centralised MFA, and map OIDC groups/claims to roles.
 
 <!-- prettier-ignore -->
 !!! note "OIDC is optional"
@@ -28,6 +28,7 @@ Pick your provider and follow the step-by-step instructions. They all end with t
 - [Keycloak](keycloak.md)
 - [PocketID](pocketid.md)
 - [Zitadel](zitadel.md)
+- [VoidAuth](voidauth.md)
 
 Not listed? Most standards-compliant OIDC providers work: Okta, Auth0, Google Workspace, Microsoft Entra, etc. Use one of the above as a template and consult your provider's docs for the registration side.
 
@@ -38,7 +39,7 @@ Whichever provider you pick, set these in the `romm` service's environment:
 ```yaml
 environment:
     - OIDC_ENABLED=true
-    - OIDC_PROVIDER=<authelia|authentik|keycloak|pocketid|zitadel|generic>
+    - OIDC_PROVIDER=<authelia|authentik|keycloak|pocket-id|zitadel|voidauth|generic>
     - OIDC_CLIENT_ID=<from your provider>
     - OIDC_CLIENT_SECRET=<from your provider>
     - OIDC_SERVER_APPLICATION_URL=https://auth.example.com

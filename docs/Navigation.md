@@ -34,6 +34,7 @@ search:
         - [Keycloak](administration/oidc/keycloak.md)
         - [PocketID](administration/oidc/pocketid.md)
         - [Zitadel](administration/oidc/zitadel.md)
+        - [VoidAuth](administration/oidc/voidauth.md)
     - [Scanning & Watcher](administration/scanning-and-watcher.md)
     - [Scheduled Tasks](administration/scheduled-tasks.md)
     - [Server Stats](administration/server-stats.md)
