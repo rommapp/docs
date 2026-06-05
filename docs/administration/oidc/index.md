@@ -39,7 +39,7 @@ Whichever provider you pick, set these in the `romm` service's environment:
 ```yaml
 environment:
     - OIDC_ENABLED=true
-    - OIDC_PROVIDER=<authelia|authentik|keycloak|pocketid|zitadel|voidauth|generic>
+    - OIDC_PROVIDER=<authelia|authentik|keycloak|pocket-id|zitadel|voidauth|generic>
     - OIDC_CLIENT_ID=<from your provider>
     - OIDC_CLIENT_SECRET=<from your provider>
     - OIDC_SERVER_APPLICATION_URL=https://auth.example.com

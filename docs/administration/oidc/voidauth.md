@@ -9,34 +9,34 @@ description: Wire up SSO to VoidAuth
 
 ## 1. Prerequisites
 
-VoidAuth installed and running via their [self-hosted deployment docs](https://voidauth.app/#/?id=quick-start). We will use the APP_URL provided in the compose.yml exemple for reference in this documentation : https://auth.example.com
-Your RomM instance will be referenced as https://demo.romm.app .
+VoidAuth installed and running via their [self-hosted deployment docs](https://voidauth.app/#/?id=quick-start). We'll use the `APP_URL` from the example `compose.yml` in those docs as `https://auth.example.com`.
+Your RomM instance will be referenced as `https://demo.romm.app`.
 
 ## 2. Create a new app
 
-Login as an admin in VoidAuth web interface. Create a new OIDC Apps (e.g. `RomM`).
+Log in as an admin in the VoidAuth web interface. Create a new OIDC app (e.g. `RomM`).
 
 - **Name**: `RomM`
 - **Home Page URL**: `https://demo.romm.app`
-- **Logo URL**: `https://github.com/HydrelioxGitHub/romm-docs/blob/main/.github/resources/isotipo.png?raw=true`
+- **Logo URL**: `https://docs.romm.app/resources/romm/isotipo.png`
 - **Group**: You could add a group that the user must belong to get access to your RomM instance. If left empty, any user created in your VoidAuth instance will be allowed.
-- **Skip Consent** and **MFA Required** : This options could be checked or not as you wish.
-- **Client ID**: Generate an ID using the button
-- **Auth Method**: `Client Secred Basic`
-- **Client Secret**: Generate a secret using the button
+- **Skip Consent** and **MFA Required**: These options can be enabled or left disabled as you prefer.
+- **Client ID**: Generate an ID using the button.
+- **Auth Method**: `Client Secret Basic`
+- **Client Secret**: Generate a secret using the button.
 - **Redirect URLs**: add `https://demo.romm.app/api/oauth/openid`
 - **Response Types**: check `code`
 - **Grant Types**: check `authorization_code` and `refresh_token`
 - **Post Logout URL**: `https://demo.romm.app/`
 
-Don't forget to click on the `Create` button to valid your app.
+Don't forget to click the `Create` button to validate your app.
 
 ## 3. Configure
 
 ```yaml
 environment:
     - OIDC_ENABLED=true
-    - OIDC_PROVIDER=VoidAuth
+    - OIDC_PROVIDER=voidauth
     - OIDC_CLIENT_ID=<from VoidAuth>
     - OIDC_CLIENT_SECRET=<from VoidAuth>
     - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
