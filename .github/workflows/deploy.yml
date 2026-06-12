@@ -42,11 +42,6 @@ jobs:
             - name: Install dependencies
               run: uv sync --all-extras --dev
 
-            - name: Refresh generated snippets
-              run: |
-                  uv run python -m scripts.gen_env_vars
-                  uv run python -m scripts.gen_scheduled_tasks
-
             - name: Set Git user
               run: |
                   git config --global user.name ${{ secrets.GIT_NAME }}
@@ -57,6 +52,12 @@ jobs:
                   git checkout gh-pages
                   git pull origin gh-pages
                   git checkout main
+
+            - name: Refresh generated snippets
+              run: |
+                  uv run python -m scripts.gen_env_vars
+                  uv run python -m scripts.gen_scheduled_tasks
+                  uv run python -m scripts.gen_platforms
 
             - name: Build the documentation
               env:

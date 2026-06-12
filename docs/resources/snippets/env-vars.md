@@ -6,7 +6,7 @@
 | ---------------- | ---------------- | :------: | -------------------------------------------------- |
 | `ROMM_BASE_PATH` | `/romm`          |          | Base folder path for library, resources and assets |
 | `ROMM_TMP_PATH`  |                  |          | Custom temporary directory path                    |
-| `ROMM_BASE_URL`  | `http://0.0.0.0` |          | Base URL used when rendering container log links   |
+| `ROMM_BASE_URL`  | `http://0.0.0.0` |          | Public URL of this instance                        |
 | `ROMM_PORT`      | `8080`           |          | Port on which the application listens              |
 | `KIOSK_MODE`     | `false`          |          | Read-only mode for public displays or kiosks       |
 
@@ -36,17 +36,17 @@
 
 ### Authentication
 
-| Variable                             | Default   | Required | Description                                       |
-| ------------------------------------ | --------- | :------: | ------------------------------------------------- |
-| `ROMM_AUTH_SECRET_KEY`               |           |   `✓`    | App secret, generate with `openssl rand -hex 32`  |
-| `OAUTH_ACCESS_TOKEN_EXPIRE_SECONDS`  | `1800`    |          | Access token lifetime in seconds                  |
-| `OAUTH_REFRESH_TOKEN_EXPIRE_SECONDS` | `604800`  |          | Refresh token lifetime in seconds                 |
-| `SESSION_MAX_AGE_SECONDS`            | `1209600` |          | Maximum age of a session in seconds               |
-| `INVITE_TOKEN_EXPIRY_SECONDS`        | `600`     |          | Invite token lifetime in seconds                  |
-| `DISABLE_DOWNLOAD_ENDPOINT_AUTH`     | `false`   |          | Disable auth on the download endpoint for Tinfoil |
-| `DISABLE_CSRF_PROTECTION`            | `false`   |          | Disable CSRF protection (not recommended)         |
-| `DISABLE_USERPASS_LOGIN`             | `false`   |          | Disable username/password login when using OIDC   |
-| `DISABLE_SETUP_WIZARD`               | `false`   |          | Skip the first-boot setup wizard                  |
+| Variable                             | Default   | Required | Description                                                |
+| ------------------------------------ | --------- | :------: | ---------------------------------------------------------- |
+| `ROMM_AUTH_SECRET_KEY`               |           |   `✓`    | App secret, generate with `openssl rand -hex 32`           |
+| `OAUTH_ACCESS_TOKEN_EXPIRE_SECONDS`  | `1800`    |          | Access token lifetime in seconds                           |
+| `OAUTH_REFRESH_TOKEN_EXPIRE_SECONDS` | `604800`  |          | Refresh token lifetime in seconds                          |
+| `SESSION_MAX_AGE_SECONDS`            | `1209600` |          | Maximum age of a session in seconds                        |
+| `INVITE_TOKEN_EXPIRY_SECONDS`        | `600`     |          | Invite token lifetime in seconds                           |
+| `DISABLE_DOWNLOAD_ENDPOINT_AUTH`     | `false`   |          | Disable auth on the download endpoint for WebRcade/Tinfoil |
+| `DISABLE_CSRF_PROTECTION`            | `false`   |          | Disable CSRF protection (not recommended)                  |
+| `DISABLE_USERPASS_LOGIN`             | `false`   |          | Disable username/password login when using OIDC            |
+| `DISABLE_SETUP_WIZARD`               | `false`   |          | Skip the first-boot setup wizard                           |
 
 ### OpenID Connect
 
@@ -114,7 +114,6 @@
 
 | Variable                     | Default        | Required | Description                                                               |
 | ---------------------------- | -------------- | :------: | ------------------------------------------------------------------------- |
-| `SYNC_BASE_PATH`             |                |          | Base folder for sync state (defaults to $ROMM_BASE_PATH/sync)             |
 | `ENABLE_SYNC_FOLDER_WATCHER` | `false`        |          | Watch the sync folder and trigger scans on change                         |
 | `SYNC_FOLDER_SCAN_DELAY`     | `2`            |          | Delay in minutes before scanning after a sync folder change               |
 | `ENABLE_SYNC_PUSH_PULL`      | `false`        |          | Enable scheduled sync push/pull                                           |
