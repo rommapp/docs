@@ -83,6 +83,10 @@ docker ps -f name=romm
 
 Open `http://<host>:8080` in a browser. On first start, you'll be redirected to the **Setup Wizard**. Set an admin username and password (the first user created always gets the Admin role), then log in.
 
+### Setup Wizard
+
+![A screenshot of the RomM Setup Wizard](.github/resources/setup-wizard.png "A screenshot of the RomM Setup Wizard")
+
 ## Next steps
 
 - Populate the library by [scanning the mounted ROMs](first-scan.md)
