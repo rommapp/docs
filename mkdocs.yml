@@ -6,6 +6,13 @@ site_description: Your beautiful, powerful, self-hosted ROM manager
 repo_url: https://github.com/rommapp/romm
 repo_name: rommapp/romm
 edit_uri: edit/main/docs/
+
+# Snippet sources live under docs/ so pymdownx.snippets can include them, but
+# they are not standalone pages. Exclude them from the build so they don't get
+# rendered or indexed by search (inclusion still works via snippets base_path).
+exclude_docs: |
+    resources/snippets/
+
 theme:
     name: material
     logo: resources/romm/isotipo.png
