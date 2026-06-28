@@ -16,7 +16,7 @@ It's often handy to know what's happening under the hood, especially when debugg
 
 ```yaml
 environment:
-    - LOG_LEVEL=INFO # DEBUG | INFO | WARNING | ERROR
+    - LOGLEVEL=INFO # DEBUG | INFO | WARNING | ERROR
     - FORCE_COLOR=0 # 1 to force colour even when not a TTY
     - NO_COLOR=1 # 1 to disable colour entirely
 ```
