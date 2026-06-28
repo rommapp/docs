@@ -11,6 +11,12 @@ description: Diagnose common issues by symptom
 - Database connection errors → verify `DB_HOST`/`DB_PASSWD` match your DB container, and that the DB has finished initialising (first run takes longer than you'd think).
 - "Page not found" on first load → wait, because initial migrations and resource seeding take a minute.
 
+## No Setup Wizard
+
+- If you don't see the setup wizard when first connecting, and instead see a login screen, check if the version number in the bottom right is `0.0.0`. If it is, RomM is functional and accessible, but not configured correctly, and you will not be able to login, no matter what username and password you try.
+- Ensure that you have modified `path/to/library`,`path/to/assets`, and `path/to/configs` in your `docker-compose.yml` so that they point to directories on the host.
+- `/romm/library`, `/romm/assets`, and `/romm/config` should remain unchanged, as these refer to directories inside the docker container itself.
+
 ## Login issues
 
 - Getting 403s → [Authentication Troubleshooting](authentication.md)
