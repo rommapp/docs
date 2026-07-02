@@ -5,7 +5,7 @@ description: Full schema reference for config.yml
 
 # Configuration File
 
-RomM reads `config.yml` from `/romm/config/config.yml` inside the container. The whole file is optional: any section you omit falls back to the defaults. You can edit `config.yml` directly on disk **or** through **Administration → Library Management** in the UI, which is a two-way view of the same file.
+RomM reads `config.yml` from `/romm/config/config.yml` inside the container. The whole file is optional: any section you omit falls back to the defaults. You can edit `config.yml` directly on disk **or** through **Library → Library Management** in the settings dropdown, which is a two-way view of the same file.
 
 Start from the [`config.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.example.yml) upstream. Two larger fully-worked examples for frontend-integration scenarios:
 
