@@ -28,7 +28,7 @@ Skip entire platform folders. Values are platform slugs, not folder names (see [
 
 ```yaml
 exclude:
-    platforms: ["ps", "ngc", "gba"]
+  platforms: ["ps", "ngc", "gba"]
 ```
 
 ### `exclude.roms.single_file.extensions`
@@ -39,9 +39,9 @@ Drop files with these extensions before matching, only for files that aren't ins
 
 ```yaml
 exclude:
-    roms:
-        single_file:
-            extensions: ["xml", "txt"]
+  roms:
+    single_file:
+      extensions: ["xml", "txt"]
 ```
 
 ### `exclude.roms.single_file.names`
@@ -52,9 +52,9 @@ Unix-glob file-name patterns to skip.
 
 ```yaml
 exclude:
-    roms:
-        single_file:
-            names: ["info.txt", "._*", "*.nfo"]
+  roms:
+    single_file:
+      names: ["info.txt", "._*", "*.nfo"]
 ```
 
 ### `exclude.roms.multi_file.names`
@@ -65,9 +65,9 @@ Skip whole folders. Used for multi-disc/multi-file games you want invisible.
 
 ```yaml
 exclude:
-    roms:
-        multi_file:
-            names: ["final fantasy VII", "DLC"]
+  roms:
+    multi_file:
+      names: ["final fantasy VII", "DLC"]
 ```
 
 ### `exclude.roms.multi_file.parts.names`
@@ -78,10 +78,10 @@ Files **inside** a multi-file ROM folder to ignore (e.g. `.nfo`, `._*` macOS att
 
 ```yaml
 exclude:
-    roms:
-        multi_file:
-            parts:
-                names: ["data.xml", "._*"]
+  roms:
+    multi_file:
+      parts:
+        names: ["data.xml", "._*"]
 ```
 
 ### `exclude.roms.multi_file.parts.extensions`
@@ -92,10 +92,10 @@ Extensions to ignore inside a multi-file ROM folder.
 
 ```yaml
 exclude:
-    roms:
-        multi_file:
-            parts:
-                extensions: ["xml", "txt"]
+  roms:
+    multi_file:
+      parts:
+        extensions: ["xml", "txt"]
 ```
 
 ---
@@ -110,10 +110,10 @@ Map your folder names to [supported platform](../platforms/supported-platforms.m
 
 ```yaml
 system:
-    platforms:
-        gc: "ngc" # treat "gc/" folder as GameCube
-        psx: "ps" # treat "psx/" folder as PlayStation
-        super_nintendo: "snes"
+  platforms:
+    gc: "ngc" # treat "gc/" folder as GameCube
+    psx: "ps" # treat "psx/" folder as PlayStation
+    super_nintendo: "snes"
 ```
 
 ### `system.versions`
@@ -122,8 +122,8 @@ Associate a platform with its "main" IGDB version, for platforms that have multi
 
 ```yaml
 system:
-    versions:
-        naomi: "arcade"
+  versions:
+    naomi: "arcade"
 ```
 
 ---
@@ -136,7 +136,7 @@ Override the default ROMs folder name (`roms`).
 
 ```yaml
 filesystem:
-    roms_folder: "my_roms"
+  roms_folder: "my_roms"
 ```
 
 ### `filesystem.firmware_folder`
@@ -145,7 +145,7 @@ Override the default BIOS/firmware folder name (`bios`).
 
 ```yaml
 filesystem:
-    firmware_folder: "firmware"
+  firmware_folder: "firmware"
 ```
 
 ### `filesystem.skip_hash_calculation`
@@ -156,7 +156,7 @@ Skip hashing on low-power devices. You lose hash-based matching (RetroAchievemen
 
 ```yaml
 filesystem:
-    skip_hash_calculation: true
+  skip_hash_calculation: true
 ```
 
 ---
@@ -171,11 +171,11 @@ Order metadata providers are queried during a scan. First match wins for descrip
 
 ```yaml
 scan:
-    priority:
-        metadata:
-            - "igdb"
-            - "ss"
-            - "moby"
+  priority:
+    metadata:
+      - "igdb"
+      - "ss"
+      - "moby"
 ```
 
 Values are the provider slugs. Full list:
@@ -202,11 +202,11 @@ Same idea, for cover art and screenshots. Defaults to the same order as `scan.pr
 
 ```yaml
 scan:
-    priority:
-        artwork:
-            - "ss" # prefer ScreenScraper artwork
-            - "igdb"
-            - "moby"
+  priority:
+    artwork:
+      - "ss" # prefer ScreenScraper artwork
+      - "igdb"
+      - "moby"
 ```
 
 ### `scan.priority.region`
@@ -217,11 +217,11 @@ Preferred region for titles, cover art, and regional variants. ScreenScraper use
 
 ```yaml
 scan:
-    priority:
-        region:
-            - "us"
-            - "eu"
-            - "jp"
+  priority:
+    region:
+      - "us"
+      - "eu"
+      - "jp"
 ```
 
 ### `scan.priority.language`
@@ -232,40 +232,43 @@ Preferred localisation language.
 
 ```yaml
 scan:
-    priority:
-        language:
-            - "en"
-            - "es"
-            - "fr"
+  priority:
+    language:
+      - "en"
+      - "es"
+      - "fr"
 ```
 
 ### `scan.media`
 
 Which media types to fetch during a scan, primarily for ScreenScraper and the gamelist.xml importer.
 
-| Type           | Description                                  |
-| -------------- | -------------------------------------------- |
-| `box2d`        | Normal 2D cover art. Always enabled.         |
-| `box2d_back`   | Back cover art.                              |
-| `box2d_side`   | 2D side/spine box art.                       |
-| `box3d`        | 3D box art.                                  |
-| `miximage`     | Composite image (box + screenshot + logo).   |
-| `physical`     | Physical media (disc, cartridge).            |
-| `screenshot`   | In-game screenshot. Enabled by default.      |
-| `title_screen` | Title-screen capture.                        |
-| `marquee`      | Transparent logo.                            |
-| `fanart`       | Community-uploaded fan art.                  |
-| `bezel`        | EmulatorJS-compatible bezel.                 |
-| `manual`       | PDF manual. Enabled by default.              |
-| `video`        | Gameplay video (big files, watch your disk). |
+| Type               | Description                                  |
+| ------------------ | -------------------------------------------- |
+| `box2d`            | Normal 2D cover art. Always enabled.         |
+| `box2d_back`       | Back cover art.                              |
+| `box2d_side`       | 2D side/spine box art.                       |
+| `box3d`            | 3D box art.                                  |
+| `miximage`         | Composite image (box + screenshot + logo).   |
+| `miximage_v2`      | Newer composite-image layout.                |
+| `physical`         | Physical media (disc, cartridge).            |
+| `screenshot`       | In-game screenshot. Enabled by default.      |
+| `title_screen`     | Title-screen capture.                        |
+| `marquee`          | Transparent logo.                            |
+| `logo`             | Clear/wheel logo art.                        |
+| `fanart`           | Community-uploaded fan art.                  |
+| `bezel`            | EmulatorJS-compatible bezel.                 |
+| `manual`           | PDF manual. Enabled by default.              |
+| `video`            | Gameplay video (big files, watch your disk). |
+| `video_normalized` | Loudness-normalised gameplay video.          |
 
 ```yaml
 scan:
-    media:
-        - box2d
-        - screenshot
-        - manual
-        - bezel
+  media:
+    - box2d
+    - screenshot
+    - manual
+    - bezel
 ```
 
 ### `scan.gamelist.export`
@@ -274,11 +277,11 @@ Generate a `gamelist.xml` in each platform folder, compatible with ES-DE/Batocer
 
 ```yaml
 scan:
-    gamelist:
-        export: true
-        media:
-            thumbnail: box2d
-            image: screenshot
+  gamelist:
+    export: true
+    media:
+      thumbnail: box2d
+      image: screenshot
 ```
 
 ### `scan.pegasus.export`
@@ -287,8 +290,8 @@ Export metadata in Pegasus-frontend format (`metadata.pegasus.txt`).
 
 ```yaml
 scan:
-    pegasus:
-        export: true
+  pegasus:
+    export: true
 ```
 
 ---
@@ -305,7 +308,7 @@ Log available EmulatorJS options to the browser console for debugging.
 
 ```yaml
 emulatorjs:
-    debug: true
+  debug: true
 ```
 
 ### `emulatorjs.cache_limit`
@@ -314,7 +317,7 @@ Per-ROM cache limit in bytes. `null` = unlimited.
 
 ```yaml
 emulatorjs:
-    cache_limit: 52428800 # 50 MB
+  cache_limit: 52428800 # 50 MB
 ```
 
 ### `emulatorjs.disable_batch_bootup`
@@ -323,7 +326,7 @@ DOS-specific knob that skips the `autorun.bat` step. Toggle if DOS games won't b
 
 ```yaml
 emulatorjs:
-    disable_batch_bootup: true
+  disable_batch_bootup: true
 ```
 
 ### `emulatorjs.disable_auto_unload`
@@ -332,7 +335,7 @@ By default, EmulatorJS stops the emulator when you leave its page. Disable to ke
 
 ```yaml
 emulatorjs:
-    disable_auto_unload: true
+  disable_auto_unload: true
 ```
 
 ### `emulatorjs.netplay`
@@ -341,18 +344,18 @@ Toggle Netplay and configure STUN/TURN servers. Google's public STUN servers are
 
 ```yaml
 emulatorjs:
-    netplay:
-        enabled: true
-        ice_servers:
-            - urls: "stun:stun.l.google.com:19302"
-            - urls: "stun:stun1.l.google.com:19302"
-            - urls: "stun:stun2.l.google.com:19302"
-            - urls: "turn:openrelay.metered.ca:80"
-              username: "openrelayproject"
-              credential: "openrelayproject"
-            - urls: "turn:openrelay.metered.ca:443"
-              username: "openrelayproject"
-              credential: "openrelayproject"
+  netplay:
+    enabled: true
+    ice_servers:
+      - urls: "stun:stun.l.google.com:19302"
+      - urls: "stun:stun1.l.google.com:19302"
+      - urls: "stun:stun2.l.google.com:19302"
+      - urls: "turn:openrelay.metered.ca:80"
+        username: "openrelayproject"
+        credential: "openrelayproject"
+      - urls: "turn:openrelay.metered.ca:443"
+        username: "openrelayproject"
+        credential: "openrelayproject"
 ```
 
 <!-- prettier-ignore -->
@@ -365,13 +368,13 @@ Per-core emulator options. Use `default` to apply to every core.
 
 ```yaml
 emulatorjs:
-    settings:
-        parallel_n64:
-            vsync: disable
-        snes9x:
-            snes9x_region: ntsc
-        default:
-            fps: show
+  settings:
+    parallel_n64:
+      vsync: disable
+    snes9x:
+      snes9x_region: ntsc
+    default:
+      fps: show
 ```
 
 Core names must match the EmulatorJS core identifier exactly. To discover core names and per-core option keys, turn on `debug: true`, load a game in that core, open the browser console, filter for "option", and copy the keys you care about. Upstream reference is available in [EmulatorJS core options](https://emulatorjs.org/docs4devs/settings/).
@@ -382,16 +385,16 @@ Map keyboard and controller buttons per core, per player.
 
 ```yaml
 emulatorjs:
-    controls:
-        snes9x:
-            0: # player 1
-                0: # button slot
-                    value: x # keyboard key
-                    value2: BUTTON_2 # controller button
-            1: # player 2
-                0:
-                    value: /
-                    value2: BUTTON_2
+  controls:
+    snes9x:
+      0: # player 1
+        0: # button slot
+          value: x # keyboard key
+          value2: BUTTON_2 # controller button
+      1: # player 2
+        0:
+          value: /
+          value2: BUTTON_2
 ```
 
 See the [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/control-mapping/) for the button-slot reference. Users can override these defaults in-game via Menu → **Controls**, the config.yml setting only sets the starting point.
@@ -400,19 +403,19 @@ See the [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/contr
 
 ```yaml
 emulatorjs:
-    settings:
-        snes9x:
-            snes9x_region: ntsc
-    controls:
-        snes9x:
-            0: # P1 on keyboard (WASD cluster)
-                0: { value: ",", value2: "BUTTON_2" } # B
-                1: { value: ".", value2: "BUTTON_3" } # A
-                2: { value: "l", value2: "BUTTON_1" } # Y
-                3: { value: "p", value2: "BUTTON_4" } # X
-            1: # P2 on arrows + numpad
-                0: { value: "/", value2: "BUTTON_2" }
-                1: { value: "'", value2: "BUTTON_3" }
+  settings:
+    snes9x:
+      snes9x_region: ntsc
+  controls:
+    snes9x:
+      0: # P1 on keyboard (WASD cluster)
+        0: { value: ",", value2: "BUTTON_2" } # B
+        1: { value: ".", value2: "BUTTON_3" } # A
+        2: { value: "l", value2: "BUTTON_1" } # Y
+        3: { value: "p", value2: "BUTTON_4" } # X
+      1: # P2 on arrows + numpad
+        0: { value: "/", value2: "BUTTON_2" }
+        1: { value: "'", value2: "BUTTON_3" }
 ```
 
 ### Operator-level vs per-user
