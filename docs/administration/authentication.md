@@ -61,7 +61,7 @@ environment:
     - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
 ```
 
-When OIDC is configured, an OIDC sign-in option is offered alongside username/password. Set `OIDC_AUTOLOGIN=true` to redirect straight to the IdP without the user having to choose. By default the first login for an unknown email auto-creates an account; set `OIDC_ALLOW_REGISTRATION=false` to allow only pre-provisioned users in. See [OIDC Setup](oidc/index.md) for role mapping and auto-provisioning.
+When OIDC is configured, an OIDC sign-in option is offered alongside username/password. Set `OIDC_AUTOLOGIN=true` to redirect straight to the IdP without the user having to choose. By default the first login for an unknown email auto-creates an account; set `OIDC_ALLOW_REGISTRATION=false` to allow only pre-provisioned users in (see [OIDC Setup](oidc/index.md) for role mapping and auto-provisioning).
 
 ## Client API Tokens
 

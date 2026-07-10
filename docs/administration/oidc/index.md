@@ -17,7 +17,7 @@ OpenID Connect (OIDC) lets users sign in through an external identity provider: 
 2. They're redirected to your provider.
 3. They authenticate (password, passkey, MFA, whatever your provider enforces).
 4. Provider redirects back to `{ROMM_BASE_URL}/api/oauth/openid` with an authorisation code.
-5. The code is exchanged for an ID token, the user's email and role claims are read, and either a matching local user is created on the fly (unless you've turned off registration, see [Auto-provisioning](#auto-provisioning)) or an existing one is logged in.
+5. The code is exchanged for an ID token, the user's email and role claims are read, and either a matching local user is created on the fly (unless you've [turned off registration](#auto-provisioning)), or an existing one is logged in.
 
 ## Provider guides
 
@@ -62,7 +62,7 @@ With it disabled, an unknown user is rejected at login instead of getting a fres
 
 ## Role mapping
 
-As of 5.0, RomM has only two roles: **User** and **Admin** (see [Users & Roles](../users-and-roles.md#roles)). New OIDC users are provisioned as **Users**. To let your IdP promote someone to **Admin** based on group membership, set:
+RomM has only two roles: **User** and **Admin** (see [Users & Roles](../users-and-roles.md#roles)). New OIDC users are provisioned as **Users**. To let your IdP promote someone to **Admin** based on group membership, set:
 
 ```yaml
 environment:
@@ -76,7 +76,7 @@ Roles are re-evaluated on **every login**, so demoting someone on the IdP side t
 
 <!-- prettier-ignore -->
 !!! note "Legacy role variables"
-    `OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` still exist for backwards compatibility but no longer map to distinct roles: matching users resolve to **User**. Use permission groups for finer-grained access. Only `OIDC_ROLE_ADMIN` still changes the role.
+    `OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` still exist for backwards compatibility but no longer map to distinct roles. Matching users now resolve to **User**. Use permission groups for finer-grained access, as only `OIDC_ROLE_ADMIN` still changes the role.
 
 ## Autologin
 

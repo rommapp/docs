@@ -55,7 +55,7 @@ On the Keycloak side, go to **Admin Console → Users** and mark each user's ema
 
 Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Keycloak → authenticate → bounced back and signed in!
 
-If a local user already exists with a matching email, they're signed into that account. Otherwise a new account is created as a regular User in the default permission group (unless you've set `OIDC_ALLOW_REGISTRATION=false`, in which case unknown users are rejected).
+If a local user already exists with a matching email, they're signed into that account. Otherwise a new account is created as a regular User in the default permission group.
 
 If it doesn't work, head to [Authentication Troubleshooting](../../troubleshooting/authentication.md).
 
@@ -82,6 +82,6 @@ environment:
     - OIDC_ROLE_ADMIN=romm-admin
 ```
 
-Configure Keycloak's client to include the role/group claim in the ID token (usually via a **Group Membership** or **Realm Role** client scope mapper). Values in the claim are compared against `OIDC_ROLE_ADMIN` on every login, so demoting in Keycloak takes effect on the user's next sign-in. (`OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` are legacy no-ops now that roles are just User and Admin.)
+Configure Keycloak's client to include the role/group claim in the ID token (usually via a **Group Membership** or **Realm Role** client scope mapper). Values in the claim are compared against `OIDC_ROLE_ADMIN` on every login, so demoting in Keycloak takes effect on the user's next sign-in.
 
 See [OIDC Setup → Role mapping](index.md#role-mapping) for the generic version.

@@ -246,6 +246,7 @@ Which media types to fetch during a scan, primarily for ScreenScraper and the ga
 | Type           | Description                                  |
 | -------------- | -------------------------------------------- |
 | `box2d`        | Normal 2D cover art. Always enabled.         |
+| `box2d_back`   | Back cover art.                              |
 | `box2d_side`   | 2D side/spine box art.                       |
 | `box3d`        | 3D box art.                                  |
 | `miximage`     | Composite image (box + screenshot + logo).   |
