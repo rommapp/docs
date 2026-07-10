@@ -5,26 +5,20 @@ description: User management, roles, and the permission-group model
 
 # Users & Roles
 
-RomM is multi-user from the start. The first user created during Setup is always an **Admin**, and everyone after that is a regular **User** whose access is governed by the [permission group](#permission-groups) you assign.
+The first user created during Setup is always an **Admin**, and everyone after that is a regular **User** whose access is governed by the [permission group](#permission-groups) you assign.
 
 ## Roles
 
 There are only two roles:
 
-| Role      | Who it's for                                    | Access                                                                                                        |
-| --------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Admin** | You, and anyone you fully trust.                | Everything. Admins **bypass permission groups** entirely, including user management and tasks.                |
-| **User**  | Everyone else: household members, guests, kids. | Whatever their assigned permission group grants, plus any per-user overrides. Nothing by default beyond that. |
-
-<!-- prettier-ignore -->
-!!! note "Upgrading from a pre-5.0 instance"
-    Earlier versions had three roles: **Viewer**, **Editor**, and **Admin**. In 5.0 these collapse to **User** and **Admin**. Existing Viewer and Editor accounts become **Users** and are placed in an auto-created **system** permission group that reproduces their old level of access, so nobody loses (or gains) permissions on upgrade. System groups are flagged in the UI, which warns before you edit or delete one.
+| Role      | Who it's for                     | Access                                                                             |
+| --------- | -------------------------------- | ---------------------------------------------------------------------------------- |
+| **Admin** | You, and anyone you fully trust. | Admins **bypass permission groups** entirely, including user management and tasks. |
+| **User**  | Everyone else                    | Whatever their assigned permission group grants, plus any per-user overrides.      |
 
 ## Permission groups
 
-Fine-grained access is no longer baked into the role. Instead, each User belongs to a **permission group**: a named template of capabilities that you manage in the new UI (**Administration → Permissions**). Admins ignore groups completely.
-
-A group is a **grant matrix** over entity types and actions:
+Each User belongs to a **permission group**: a named template of capabilities that you manage in the new UI (**Administration → Permissions**). A group is a **grant matrix** over entity types and actions:
 
 | Entity        | `read`                        | `write`                          | `delete`         |
 | ------------- | ----------------------------- | -------------------------------- | ---------------- |
@@ -41,29 +35,28 @@ A group is a **grant matrix** over entity types and actions:
 Rules of the model:
 
 - **A missing grant means denied.** A group only allows what it explicitly lists.
-- **`own_only`** narrows a grant to entities the user owns. For example, `assets` `write` with `own_only` lets a user manage their own saves/states/screenshots but not anyone else's.
-- **Default group** (`is_default`): exactly one group is marked as the server-wide default and is applied automatically to every new User (invite sign-up, OIDC first login, admin-created accounts without an explicit group).
+- **`own_only`** narrows a grant to entities the user owns. For example, `assets.write` with `own_only` lets a user manage their own saves/states/screenshots but not anyone else's.
+- **Default group**: exactly one group is marked as the server-wide default and is applied automatically to every new User (invite sign-up, OIDC first login, admin-created accounts without an explicit group).
 
 ### Per-user overrides
 
-On top of the group, you can **add or revoke a single capability** for one user without creating a whole new group:
+On top of the group, you can **add or revoke individual capabilities** for one user without creating a whole new group:
 
 - **Grant** an override to give a user something their group lacks.
 - **Revoke** an override to take away something their group provides.
-- With no override for a given `(entity, action)`, the user's group decides.
 
-Use overrides for one-offs ("this one user can also delete ROMs"); use groups for anything you'd apply to more than one person.
+Use overrides for one-offs ("this one user can also delete ROMs"), and use groups for anything you'd apply to more than one person.
 
 ### Hidden entities
 
-Beyond allow/deny, you can **hide specific platforms or ROMs** from a user or from an entire group. A hidden entity simply doesn't appear for that principal, regardless of read grants. Firmware visibility isn't hidden directly, it cascades from the platform it belongs to.
+Beyond allow/deny, you can **hide specific platforms or ROMs** from a user or from an entire group. A hidden entity simply doesn't appear for that principal, regardless of read grants. Firmware visibility isn't hidden directly, as it cascades from the platform it belongs to.
 
 ## Creating users
 
 Three paths:
 
-- **Admin adds directly**: set username, email, password, role, and (for Users) a permission group. The account is usable immediately.
-- **Invite link**: better when you don't want to handle someone else's password. The admin generates a single-use link, and the recipient picks their own credentials. New Users land in the default permission group. Invite links expire after 600 seconds by default, configurable via [`INVITE_TOKEN_EXPIRY_SECONDS`](../reference/environment-variables.md).
+- **Admin page**: set username, email, password, role, and a permission group. The account is usable immediately.
+- **Invite link**: when you don't want to handle someone else's password. The admin generates a single-use link, and the recipient picks their own credentials. New Users land in the default permission group. Invite links expire after 600 seconds by default, configurable via [`INVITE_TOKEN_EXPIRY_SECONDS`](../reference/environment-variables.md).
 - **OIDC**: if you've wired up OIDC, new identities can be provisioned on first login. Whether that happens is controlled by `OIDC_ALLOW_REGISTRATION`, and Admin mapping from OIDC claims is covered in [OIDC Setup](oidc/index.md).
 
 ## Editing and deleting users
