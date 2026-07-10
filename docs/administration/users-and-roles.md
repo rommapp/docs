@@ -1,62 +1,96 @@
 ---
 title: Users & Roles
-description: User management, roles, and the scope model
+description: User management, roles, and the permission-group model
 ---
 
 # Users & Roles
 
-RomM is multi-user from the start. The first user created during Setup is always an **Admin**, and everyone after that gets the role you assign when creating the account.
+RomM is multi-user from the start. The first user created during Setup is always an **Admin**, and everyone after that is a regular **User** whose access is governed by the [permission group](#permission-groups) you assign.
 
 ## Roles
 
-| Role       | Who it's for                                                            | Default scopes                                                                    |
-| ---------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| **Admin**  | You, and anyone you fully trust.                                        | All scopes, including user management and task execution.                         |
-| **Editor** | Household members who help curate the library.                          | Read everything, edit ROMs/platforms/collections, upload, but no user management. |
-| **Viewer** | Guests, kids, anyone who should only play and track their own progress. | Read the library, manage their own saves/states/screenshots/profile.              |
+There are only two roles:
 
-Roles are a convenience layer on top of **scopes** (see the scope matrix below for exactly what each role grants). You can't create custom roles (yet), so if you need finer-grained access, use the most restrictive role and rely on [Client API Tokens](../developers/client-api-tokens.md) for per-app customisation.
+| Role      | Who it's for                                    | Access                                                                                                        |
+| --------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Admin** | You, and anyone you fully trust.                | Everything. Admins **bypass permission groups** entirely, including user management and tasks.                |
+| **User**  | Everyone else: household members, guests, kids. | Whatever their assigned permission group grants, plus any per-user overrides. Nothing by default beyond that. |
 
-## Scope matrix
+<!-- prettier-ignore -->
+!!! note "Upgrading from a pre-5.0 instance"
+    Earlier versions had three roles: **Viewer**, **Editor**, and **Admin**. In 5.0 these collapse to **User** and **Admin**. Existing Viewer and Editor accounts become **Users** and are placed in an auto-created **system** permission group that reproduces their old level of access, so nobody loses (or gains) permissions on upgrade. System groups are flagged in the UI, which warns before you edit or delete one.
 
-RomM authorisation is scope-based. Every API call and UI action maps to one or more scopes, and OAuth tokens and OIDC sessions carry a subset of them. Nineteen scopes total, grouped by resource:
+## Permission groups
 
-| Scope               | Purpose                                         | Viewer | Editor | Admin |
-| ------------------- | ----------------------------------------------- | :----: | :----: | :---: |
-| `me.read`           | View own profile                                |   ✓    |   ✓    |   ✓   |
-| `me.write`          | Edit own profile                                |   ✓    |   ✓    |   ✓   |
-| `roms.read`         | Browse ROMs                                     |   ✓    |   ✓    |   ✓   |
-| `roms.user.read`    | View own per-ROM data (rating, playtime, notes) |   ✓    |   ✓    |   ✓   |
-| `roms.user.write`   | Edit own per-ROM data                           |   ✓    |   ✓    |   ✓   |
-| `platforms.read`    | Browse platforms                                |   ✓    |   ✓    |   ✓   |
-| `assets.read`       | View own saves/states/screenshots               |   ✓    |   ✓    |   ✓   |
-| `assets.write`      | Upload saves/states/screenshots                 |   ✓    |   ✓    |   ✓   |
-| `collections.read`  | Browse collections                              |   ✓    |   ✓    |   ✓   |
-| `collections.write` | Create/edit collections                         |   -    |   ✓    |   ✓   |
-| `roms.write`        | Edit ROM metadata                               |   -    |   ✓    |   ✓   |
-| `platforms.write`   | Edit/create platforms                           |   -    |   ✓    |   ✓   |
-| `firmware.read`     | List firmware                                   |   -    |   ✓    |   ✓   |
-| `firmware.write`    | Upload/delete firmware                          |   -    |   ✓    |   ✓   |
-| `devices.read`      | View own paired devices                         |   ✓    |   ✓    |   ✓   |
-| `devices.write`     | Manage own paired devices                       |   ✓    |   ✓    |   ✓   |
-| `users.read`        | List all users                                  |   -    |   -    |   ✓   |
-| `users.write`       | Create/edit/delete users                        |   -    |   -    |   ✓   |
-| `tasks.run`         | Trigger background tasks (scan, cleanup, etc.)  |   -    |   -    |   ✓   |
+Fine-grained access is no longer baked into the role. Instead, each User belongs to a **permission group**: a named template of capabilities that you manage in the new UI (**Administration → Permissions**). Admins ignore groups completely.
+
+A group is a **grant matrix** over entity types and actions:
+
+| Entity        | `read`                        | `write`                          | `delete`         |
+| ------------- | ----------------------------- | -------------------------------- | ---------------- |
+| `platforms`   | Browse platforms              | Edit/create platforms            | Delete platforms |
+| `roms`        | Browse ROMs                   | Edit ROM metadata                | Delete ROMs      |
+| `collections` | Browse collections            | Create/edit                      | Delete           |
+| `firmware`    | List firmware                 | Upload firmware                  | Delete firmware  |
+| `assets`      | View saves/states/screenshots | Upload/replace                   | Delete           |
+| `devices`     | View paired devices           | Pair/manage devices              | Unpair devices   |
+| `users`       | List users                    | Create/edit users                | Delete users     |
+| `tasks`       | View task status              | Trigger tasks (scan, cleanup, …) | —                |
+| `logs`        | View server logs              | —                                | —                |
+
+Rules of the model:
+
+- **A missing grant means denied.** A group only allows what it explicitly lists.
+- **`own_only`** narrows a grant to entities the user owns. For example, `assets` `write` with `own_only` lets a user manage their own saves/states/screenshots but not anyone else's.
+- **Default group** (`is_default`): exactly one group is marked as the server-wide default and is applied automatically to every new User (invite sign-up, OIDC first login, admin-created accounts without an explicit group).
+
+### Per-user overrides
+
+On top of the group, you can **add or revoke a single capability** for one user without creating a whole new group:
+
+- **Grant** an override to give a user something their group lacks.
+- **Revoke** an override to take away something their group provides.
+- With no override for a given `(entity, action)`, the user's group decides.
+
+Use overrides for one-offs ("this one user can also delete ROMs"); use groups for anything you'd apply to more than one person.
+
+### Hidden entities
+
+Beyond allow/deny, you can **hide specific platforms or ROMs** from a user or from an entire group. A hidden entity simply doesn't appear for that principal, regardless of read grants. Firmware visibility isn't hidden directly, it cascades from the platform it belongs to.
 
 ## Creating users
 
 Three paths:
 
-- **Admin adds directly**: set username, email, password, and role, and the account is usable immediately.
-- **Invite link**: better when you don't want to handle someone else's password. The admin generates a single-use link with a pre-assigned role, and the recipient picks their own credentials. Invite links expire after 600 seconds by default, configurable via [`INVITE_TOKEN_EXPIRY_SECONDS`](../reference/environment-variables.md).
-- **OIDC**: if you've wired up OIDC, new identities can be provisioned on first login. Role mapping from OIDC claims is covered in [OIDC Setup](oidc/index.md).
+- **Admin adds directly**: set username, email, password, role, and (for Users) a permission group. The account is usable immediately.
+- **Invite link**: better when you don't want to handle someone else's password. The admin generates a single-use link, and the recipient picks their own credentials. New Users land in the default permission group. Invite links expire after 600 seconds by default, configurable via [`INVITE_TOKEN_EXPIRY_SECONDS`](../reference/environment-variables.md).
+- **OIDC**: if you've wired up OIDC, new identities can be provisioned on first login. Whether that happens is controlled by `OIDC_ALLOW_REGISTRATION`, and Admin mapping from OIDC claims is covered in [OIDC Setup](oidc/index.md).
 
 ## Editing and deleting users
 
-Admins can change any user's role, reset their password, or delete the account. Role changes take effect on next login. You can't delete the last admin or delete yourself while signed in.
+Admins can change any user's role, move them between permission groups, add per-user overrides, reset their password, or delete the account. Role and permission changes take effect on next login. You can't delete the last admin or delete yourself while signed in.
 
 Deleting a user keeps their contributions (collections they made public, ROM metadata edits) but removes their personal data from the database (per-ROM ratings, saves, states, play sessions, paired devices, API tokens). It does not delete any files from disk.
 
+## OAuth scopes
+
+The permission groups above are the source of truth for the UI. For the **API**, RomM derives a flat set of OAuth **scopes** from a user's effective grants (group + overrides). Each `(entity, action)` grant maps to the scope of the same name, e.g. `roms` + `write` → `roms.write`. Client API Tokens and OIDC sessions carry a **subset** of the owning user's scopes, and every endpoint declares which scopes it requires.
+
+The full scope list (grouped by resource):
+
+| Resource    | Scopes                                                         |
+| ----------- | -------------------------------------------------------------- |
+| Profile     | `me.read`, `me.write`                                          |
+| ROMs        | `roms.read`, `roms.write`, `roms.user.read`, `roms.user.write` |
+| Platforms   | `platforms.read`, `platforms.write`                            |
+| Assets      | `assets.read`, `assets.write`                                  |
+| Collections | `collections.read`, `collections.write`                        |
+| Firmware    | `firmware.read`, `firmware.write`                              |
+| Devices     | `devices.read`, `devices.write`                                |
+| Users       | `users.read`, `users.write`                                    |
+| Tasks       | `tasks.run`                                                    |
+| Logs        | `logs.read`                                                    |
+
 ## API tokens (advanced)
 
-Each user can issue up to 25 **Client API Tokens**. Tokens carry a subset of the user's scopes and are the right way to authenticate companion apps (Argosy, Grout, Playnite, custom scripts). The pairing flow for devices is covered in [Client API Tokens](../developers/client-api-tokens.md), and the API side is in [API Authentication](../developers/api-authentication.md).
+Each user can issue up to 25 **Client API Tokens**. A token carries a subset of the owning user's scopes (see above), whichever you pick at creation time. Tokens are the right way to authenticate companion apps (Argosy, Grout, Playnite, custom scripts). The pairing flow for devices is covered in [Client API Tokens](../developers/client-api-tokens.md), and the API side is in [API Authentication](../developers/api-authentication.md).

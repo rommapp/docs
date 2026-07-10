@@ -21,26 +21,26 @@ In the Admin Console, select your realm → **Clients** → **Create client**.
 2. **Client ID**: `romm` (or something unique).
 3. Click **Next**.
 4. On the capability page:
-    - Enable **Client authentication**
-    - Leave only **Standard flow** enabled
-    - Click **Next**
+   - Enable **Client authentication**
+   - Leave only **Standard flow** enabled
+   - Click **Next**
 5. Set URLs:
-    - **Root URL**: `https://demo.romm.app`
-    - **Valid Redirect URIs**: `https://demo.romm.app/api/oauth/openid`
-    - **Web origins**: `https://demo.romm.app`
+   - **Root URL**: `https://demo.romm.app`
+   - **Valid Redirect URIs**: `https://demo.romm.app/api/oauth/openid`
+   - **Web origins**: `https://demo.romm.app`
 6. Save, then head to the **Credentials** tab and copy the **Client Secret**.
 
 ## 3. Configure
 
 ```yaml
 environment:
-    - OIDC_ENABLED=true
-    - OIDC_PROVIDER=keycloak
-    - OIDC_CLIENT_ID=romm
-    - OIDC_CLIENT_SECRET=<from Keycloak Credentials tab>
-    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
-    - OIDC_SERVER_APPLICATION_URL=https://keycloak.example.com/realms/<realm-name>
-    - ROMM_BASE_URL=https://demo.romm.app
+  - OIDC_ENABLED=true
+  - OIDC_PROVIDER=keycloak
+  - OIDC_CLIENT_ID=romm
+  - OIDC_CLIENT_SECRET=<from Keycloak Credentials tab>
+  - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
+  - OIDC_SERVER_APPLICATION_URL=https://keycloak.example.com/realms/<realm-name>
+  - ROMM_BASE_URL=https://demo.romm.app
 ```
 
 `OIDC_SERVER_APPLICATION_URL` must include the realm (`.../realms/<realm-name>`), not just the Keycloak root.
@@ -55,7 +55,7 @@ On the Keycloak side, go to **Admin Console → Users** and mark each user's ema
 
 Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Keycloak → authenticate → bounced back and signed in!
 
-If a local user already exists with a matching email, they're signed into that account. Otherwise a new account is created with Viewer permissions.
+If a local user already exists with a matching email, they're signed into that account. Otherwise a new account is created as a regular User in the default permission group (unless you've set `OIDC_ALLOW_REGISTRATION=false`, in which case unknown users are rejected).
 
 If it doesn't work, head to [Authentication Troubleshooting](../../troubleshooting/authentication.md).
 
@@ -65,7 +65,7 @@ Force users through Keycloak:
 
 ```yaml
 environment:
-    - DISABLE_USERPASS_LOGIN=true
+  - DISABLE_USERPASS_LOGIN=true
 ```
 
 <!-- prettier-ignore -->
@@ -74,16 +74,14 @@ environment:
 
 ## 7. (Optional) Role mapping
 
-By default, new OIDC users come in as Viewers. To map Keycloak roles/groups to local roles:
+By default, new OIDC users come in as regular Users. To let Keycloak promote someone to **Admin** based on a role/group:
 
 ```yaml
 environment:
-    - OIDC_CLAIM_ROLES=groups # or realm_access.roles, depending on your token
-    - OIDC_ROLE_VIEWER=romm-viewer
-    - OIDC_ROLE_EDITOR=romm-editor
-    - OIDC_ROLE_ADMIN=romm-admin
+  - OIDC_CLAIM_ROLES=groups # or realm_access.roles, depending on your token
+  - OIDC_ROLE_ADMIN=romm-admin
 ```
 
-Configure Keycloak's client to include the role/group claim in the ID token (usually via a **Group Membership** or **Realm Role** client scope mapper). Values in the claim are compared against the `OIDC_ROLE_*` env vars on every login, so demoting in Keycloak takes effect on the user's next sign-in.
+Configure Keycloak's client to include the role/group claim in the ID token (usually via a **Group Membership** or **Realm Role** client scope mapper). Values in the claim are compared against `OIDC_ROLE_ADMIN` on every login, so demoting in Keycloak takes effect on the user's next sign-in. (`OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` are legacy no-ops now that roles are just User and Admin.)
 
 See [OIDC Setup → Role mapping](index.md#role-mapping) for the generic version.

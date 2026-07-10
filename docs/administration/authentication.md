@@ -36,7 +36,7 @@ Local accounts are created via [invitations, registration, admin setup, or the S
 
 ```yaml
 environment:
-    - DISABLE_USERPASS_LOGIN=true
+  - DISABLE_USERPASS_LOGIN=true
 ```
 
 <!-- prettier-ignore -->
@@ -53,15 +53,15 @@ See [OIDC Setup](oidc/index.md) for the full walkthrough. One-liner config sketc
 
 ```yaml
 environment:
-    - OIDC_ENABLED=true
-    - OIDC_PROVIDER=keycloak
-    - OIDC_CLIENT_ID=...
-    - OIDC_CLIENT_SECRET=...
-    - OIDC_SERVER_APPLICATION_URL=https://auth.example.com
-    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
+  - OIDC_ENABLED=true
+  - OIDC_PROVIDER=keycloak
+  - OIDC_CLIENT_ID=...
+  - OIDC_CLIENT_SECRET=...
+  - OIDC_SERVER_APPLICATION_URL=https://auth.example.com
+  - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
 ```
 
-When OIDC is configured, an OIDC sign-in option is offered alongside username/password. Set `OIDC_AUTOLOGIN=true` to redirect straight to the IdP without the user having to choose.
+When OIDC is configured, an OIDC sign-in option is offered alongside username/password. Set `OIDC_AUTOLOGIN=true` to redirect straight to the IdP without the user having to choose. By default the first login for an unknown email auto-creates an account; set `OIDC_ALLOW_REGISTRATION=false` to allow only pre-provisioned users in. See [OIDC Setup](oidc/index.md) for role mapping and auto-provisioning.
 
 ## Client API Tokens
 
@@ -80,7 +80,7 @@ Grants unauthenticated, read-only access to nearly every GET endpoint. Anyone re
 
 ```yaml
 environment:
-    - KIOSK_MODE=true
+  - KIOSK_MODE=true
 ```
 
 Appropriate for:
@@ -89,13 +89,13 @@ Appropriate for:
 - Public-facing "display" instances
 - `demo.romm.app`
 
-Authenticated users (when you do sign in) will still see the full UI with all actions available to their role.
+Authenticated users (when you do sign in) will still see the full UI with all actions available to their role and [permission group](users-and-roles.md#permission-groups).
 
 ## Download-endpoint auth bypass
 
 ```yaml
 environment:
-    - DISABLE_DOWNLOAD_ENDPOINT_AUTH=true
+  - DISABLE_DOWNLOAD_ENDPOINT_AUTH=true
 ```
 
 Skips auth on `GET /api/roms/{id}/content/…` and the firmware download endpoint. Exists so third-party apps that can't carry a bearer header (like dumb emulators loading a ROM by URL) can still pull files. **Only enable this when the public internet can't reach RomM directly**, i.e. there's auth or an IP allowlist at the reverse-proxy layer. Otherwise you've just made your library world-downloadable.

@@ -17,7 +17,7 @@ OpenID Connect (OIDC) lets users sign in through an external identity provider: 
 2. They're redirected to your provider.
 3. They authenticate (password, passkey, MFA, whatever your provider enforces).
 4. Provider redirects back to `{ROMM_BASE_URL}/api/oauth/openid` with an authorisation code.
-5. The code is exchanged for an ID token, the user's email and role claims are read, and either a matching local user is created on the fly or an existing one is logged in.
+5. The code is exchanged for an ID token, the user's email and role claims are read, and either a matching local user is created on the fly (unless you've turned off registration, see [Auto-provisioning](#auto-provisioning)) or an existing one is logged in.
 
 ## Provider guides
 
@@ -38,32 +38,45 @@ Whichever provider you pick, set these in the `romm` service's environment:
 
 ```yaml
 environment:
-    - OIDC_ENABLED=true
-    - OIDC_PROVIDER=<authelia|authentik|keycloak|pocket-id|zitadel|voidauth|generic>
-    - OIDC_CLIENT_ID=<from your provider>
-    - OIDC_CLIENT_SECRET=<from your provider>
-    - OIDC_SERVER_APPLICATION_URL=https://auth.example.com
-    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
-    - ROMM_BASE_URL=https://demo.romm.app # must match your reverse-proxy URL
+  - OIDC_ENABLED=true
+  - OIDC_PROVIDER=<authelia|authentik|keycloak|pocket-id|zitadel|voidauth|generic>
+  - OIDC_CLIENT_ID=<from your provider>
+  - OIDC_CLIENT_SECRET=<from your provider>
+  - OIDC_SERVER_APPLICATION_URL=https://auth.example.com
+  - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
+  - ROMM_BASE_URL=https://demo.romm.app # must match your reverse-proxy URL
 ```
 
 `OIDC_REDIRECT_URI` must exactly match what you register at the provider (same scheme, host, path, no trailing slash).
 
-## Role mapping
+## Auto-provisioning
 
-By default, new OIDC users are provisioned as **Viewers**. To let your IdP assign roles based on group membership, set:
+By default, the first successful OIDC login for an email that has no matching account **creates** a local account automatically. To require accounts to exist beforehand (so only pre-provisioned users can sign in via OIDC), turn registration off:
 
 ```yaml
 environment:
-    - OIDC_CLAIM_ROLES=groups # which claim to read
-    - OIDC_ROLE_VIEWER=romm-viewer,guests # group names → Viewer
-    - OIDC_ROLE_EDITOR=romm-editor
-    - OIDC_ROLE_ADMIN=romm-admin,platform-admins
+  - OIDC_ALLOW_REGISTRATION=false # default: true
 ```
 
-On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, sometimes `realm_access.roles` on Keycloak, check your provider's token output). Whichever role has a matching value wins. If nothing matches, the user stays/becomes a Viewer.
+With it disabled, an unknown user is rejected at login instead of getting a fresh account. New accounts land in the [default permission group](../users-and-roles.md#permission-groups) unless a role claim maps them to Admin.
+
+## Role mapping
+
+As of 5.0, RomM has only two roles: **User** and **Admin** (see [Users & Roles](../users-and-roles.md#roles)). New OIDC users are provisioned as **Users**. To let your IdP promote someone to **Admin** based on group membership, set:
+
+```yaml
+environment:
+  - OIDC_CLAIM_ROLES=groups # which claim to read
+  - OIDC_ROLE_ADMIN=romm-admin,platform-admins # group values → Admin
+```
+
+On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, sometimes `realm_access.roles` on Keycloak, check your provider's token output). If a value matches `OIDC_ROLE_ADMIN`, the user becomes an Admin; otherwise they're a User in the default permission group.
 
 Roles are re-evaluated on **every login**, so demoting someone on the IdP side takes effect the next time they sign in.
+
+<!-- prettier-ignore -->
+!!! note "Legacy role variables"
+    `OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` still exist for backwards compatibility but no longer map to distinct roles: matching users resolve to **User**. Use permission groups for finer-grained access. Only `OIDC_ROLE_ADMIN` still changes the role.
 
 ## Autologin
 
@@ -71,7 +84,7 @@ To bypass the login page entirely and redirect straight to the IdP:
 
 ```yaml
 environment:
-    - OIDC_AUTOLOGIN=true
+  - OIDC_AUTOLOGIN=true
 ```
 
 Useful when you want this to feel like a native part of your SSO stack. Combine with `DISABLE_USERPASS_LOGIN=true` to lock out local accounts entirely.
@@ -86,8 +99,8 @@ When set, hitting "Sign out" in RomM also signs the user out at the IdP:
 
 ```yaml
 environment:
-    - OIDC_RP_INITIATED_LOGOUT=true
-    - OIDC_END_SESSION_ENDPOINT=https://auth.example.com/application/o/end-session/
+  - OIDC_RP_INITIATED_LOGOUT=true
+  - OIDC_END_SESSION_ENDPOINT=https://auth.example.com/application/o/end-session/
 ```
 
 The endpoint URL is provider-specific, check the per-provider guides or your IdP's docs.
@@ -98,7 +111,7 @@ By default the local part of the email (the bit before `@`) becomes the username
 
 ```yaml
 environment:
-    - OIDC_USERNAME_ATTRIBUTE=preferred_username
+  - OIDC_USERNAME_ATTRIBUTE=preferred_username
 ```
 
 ## Important notes
@@ -112,4 +125,4 @@ environment:
 Common failures and fixes live in [Authentication Troubleshooting](../../troubleshooting/authentication.md). Two of the usual suspects:
 
 - `redirect_uri_mismatch`: `OIDC_REDIRECT_URI` differs from what's registered at the provider. Even a trailing slash can matter!
-- User created but stuck at Viewer: check `OIDC_CLAIM_ROLES` points at a claim that actually exists in the token, and the group names match exactly (case-sensitive).
+- User created but not made Admin: check `OIDC_CLAIM_ROLES` points at a claim that actually exists in the token, and that the group values match `OIDC_ROLE_ADMIN` exactly (case-sensitive).

@@ -29,13 +29,11 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Device**: a registered endpoint that syncs with RomM, such as a handheld running Grout, an Android phone running Argosy, or a SteamDeck running DeckRommSync. Devices pull saves and states, and some push them back after a session (see [Device Sync Protocol](../developers/device-sync-protocol.md)).
 
-**Editor**: mid-tier user role. Edits content (ROMs, platforms, collections) and uploads, but no user management (see [Users & Roles](../administration/users-and-roles.md)).
-
 **EmulatorJS**: the bundled in-browser retro emulator. Handles NES, SNES, N64, PSX, Saturn, and 20+ more cores (see [In-Browser Play → EmulatorJS](../using/in-browser-play/emulatorjs.md)).
 
 **Feed**: a URL endpoint that exposes a filtered library view in a third-party tool's expected format (see [Feed Clients](../ecosystem/feed-clients.md)).
 
-**Firmware**: BIOS or system firmware required for certain emulators (PS1, GBA, Saturn, etc.). Lives under `/romm/library/bios/{platform}/` or `/romm/library/{platform}/bios/` (depending on which folder structure you chose). Uploaded via the UI and managed by admins/editors (see [Firmware Management](../administration/firmware-management.md)).
+**Firmware**: BIOS or system firmware required for certain emulators (PS1, GBA, Saturn, etc.). Lives under `/romm/library/bios/{platform}/` or `/romm/library/{platform}/bios/` (depending on which folder structure you chose). Uploaded via the UI and managed by admins and users with the `firmware.write` scope (see [Firmware Management](../administration/firmware-management.md)).
 
 **Full image**: the default container variant, including EmulatorJS + Ruffle. `rommapp/romm:X.Y.Z` (see [Image Variants](../install/image-variants.md)).
 
@@ -59,6 +57,8 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **OpenTelemetry (OTEL)**: opt-in traces/metrics/logs export. `OTEL_ENABLED=true` (see [Observability](../administration/observability.md)).
 
+**Permission group**: a named template of capabilities (a grant matrix over entity types × `read`/`write`/`delete`) assigned to a User. One group is the server-wide default for new users. Admins bypass groups entirely (see [Users & Roles](../administration/users-and-roles.md#permission-groups)).
+
 **Personal tab**: the ROM detail page tab for per-user data (rating, status, notes, playtime).
 
 **Platform**: a gaming system: SNES, PlayStation, Game Boy Advance, DOS, etc. ~400 platforms ship supported. Each has a **slug** (`snes`, `ps`, `gba`) that doubles as the folder name expected in your library. Override the folder-name → slug mapping via `config.yml` (see [Supported Platforms](../platforms/supported-platforms.md)).
@@ -71,13 +71,13 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **ROM**: a single game entry. One filesystem file, one folder of files (multi-disc, patched, with DLC), or a manual DB entry. Each ROM belongs to exactly one platform. ROMs get metadata (cover, description, ratings, related games), user data (per-user rating, notes, playtime), and optional assets (saves, states, screenshots, firmware).
 
-**Role**: a convenience bundle of scopes. Three roles: Viewer, Editor, Admin (see [Users & Roles](../administration/users-and-roles.md)).
+**Role**: an account's top-level type. Two roles: User (access governed by a permission group) and Admin (full access, bypasses groups). See [Users & Roles](../administration/users-and-roles.md).
 
 **Ruffle**: the bundled in-browser Flash/Shockwave emulator (see [In-Browser Play → Ruffle](../using/in-browser-play/ruffle.md)).
 
 **Scan**: the process of walking the library, hashing files, calling metadata providers, and updating the DB. Scans run in six **modes** (New Platforms, Quick, Unmatched, Update, Hashes, Complete) and can be triggered manually, on a cron, or by the filesystem watcher (see [Scanning & Watcher](../administration/scanning-and-watcher.md)).
 
-**Scope**: fine-grained permission. 19 in total, grouped into roles. Tokens and OIDC sessions carry subsets of scopes. Every endpoint requires specific scopes. See the [scope matrix](../administration/users-and-roles.md#scope-matrix).
+**Scope**: a coarse OAuth permission derived from a user's effective [permission-group](../administration/users-and-roles.md#permission-groups) grants. Client API Tokens and OIDC sessions carry a subset of the user's scopes (see [Users & Roles → API tokens](../administration/users-and-roles.md#api-tokens-advanced)).
 
 **Setup Wizard**: first-run flow that creates the admin user. Shown before any user exists.
 
@@ -89,11 +89,9 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Tinfoil**: Nintendo Switch homebrew that installs from RomM's feed (see [Tinfoil](../ecosystem/feed-clients.md#tinfoil)).
 
-**User**: an account with a role (Viewer, Editor, Admin) and a set of scopes. Can be created by the Setup Wizard, an admin, an invite link, public registration, or OIDC auto-provisioning (see [Users & Roles](../administration/users-and-roles.md)).
+**User**: an account. Its role is either User (access from a permission group plus per-user overrides) or Admin (full access). Can be created by the Setup Wizard, an admin, an invite link, or OIDC auto-provisioning (see [Users & Roles](../administration/users-and-roles.md)).
 
 **Valkey**: open-source Redis fork, drop-in compatible (see [Redis or Valkey](../install/redis-or-valkey.md)).
-
-**Viewer**: lowest user role. Read-only on library, own saves/states/profile (see [Users & Roles](../administration/users-and-roles.md)).
 
 **Virtual Collection**: auto-generated collection by genre/developer/year/tag. Read-only (see [Virtual Collections](../using/virtual-collections.md)).
 

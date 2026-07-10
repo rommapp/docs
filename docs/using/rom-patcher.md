@@ -32,14 +32,18 @@ Two output paths:
 
 Metadata isn't inherited, so the new ROM is **unmatched** until you run a scan!
 
+<!-- prettier-ignore -->
+!!! note "Server-side patching (5.0+)"
+    RomM 5.0 can also apply a patch **on the server** and store the result directly, which sidesteps the browser-memory limits below for very large ISOs. The supported formats and permission requirements are the same as the in-browser path.
+
 ## Permissions
 
-| Action                        | Viewer | Editor | Admin |
-| ----------------------------- | :----: | :----: | :---: |
-| Use Patcher → Download        |   ✓    |   ✓    |   ✓   |
-| Use Patcher → Save to library |   -    |   ✓    |   ✓   |
+| Action                        | User              | Admin |
+| ----------------------------- | :---------------- | :---: |
+| Use Patcher → Download        | ✓                 |   ✓   |
+| Use Patcher → Save to library | With `roms.write` |   ✓   |
 
-Saving to the library requires `roms.write` scope.
+Saving to the library requires the `roms.write` scope (from the user's [permission group](../administration/users-and-roles.md#permission-groups) or an override).
 
 ## Limits
 

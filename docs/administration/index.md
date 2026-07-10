@@ -13,7 +13,7 @@ The end-user equivalent (how to actually play the games, build collections, uplo
 
 ### Users & access
 
-- **[Users & Roles](users-and-roles.md)**: roles, the scope model, how permissions add up
+- **[Users & Roles](users-and-roles.md)**: roles, permission groups, per-user overrides, and hidden entities
 - **[Invitations & Registration](invitations-and-registration.md)**: invite links, public signup, first-user setup
 - **[Authentication](authentication.md)**: session config, password reset, Client API Tokens for devices
 - **[OIDC Setup](oidc/index.md)**: Authelia, Authentik, Keycloak, PocketID, Zitadel, VoidAuth, SSO + role mapping

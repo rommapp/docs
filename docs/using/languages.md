@@ -28,6 +28,7 @@ Pick the language you want for the UI, with the choice stored server-side so it 
 | `bg_BG` | Bulgarian                        |
 | `zh_CN` | Chinese (Simplified)             |
 | `zh_TW` | Chinese (Traditional)            |
+| `tr_TR` | Turkish                          |
 
 ## What gets translated
 
