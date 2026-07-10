@@ -55,7 +55,7 @@ On the Keycloak side, go to **Admin Console → Users** and mark each user's ema
 
 Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Keycloak → authenticate → bounced back and signed in!
 
-If a local user already exists with a matching email, they're signed into that account. Otherwise a new account is created with Viewer permissions.
+If a local user already exists with a matching email, they're signed into that account. Otherwise a new account is created as a regular User in the default permission group.
 
 If it doesn't work, head to [Authentication Troubleshooting](../../troubleshooting/authentication.md).
 
@@ -74,16 +74,14 @@ environment:
 
 ## 7. (Optional) Role mapping
 
-By default, new OIDC users come in as Viewers. To map Keycloak roles/groups to local roles:
+By default, new OIDC users come in as regular Users. To let Keycloak promote someone to **Admin** based on a role/group:
 
 ```yaml
 environment:
     - OIDC_CLAIM_ROLES=groups # or realm_access.roles, depending on your token
-    - OIDC_ROLE_VIEWER=romm-viewer
-    - OIDC_ROLE_EDITOR=romm-editor
     - OIDC_ROLE_ADMIN=romm-admin
 ```
 
-Configure Keycloak's client to include the role/group claim in the ID token (usually via a **Group Membership** or **Realm Role** client scope mapper). Values in the claim are compared against the `OIDC_ROLE_*` env vars on every login, so demoting in Keycloak takes effect on the user's next sign-in.
+Configure Keycloak's client to include the role/group claim in the ID token (usually via a **Group Membership** or **Realm Role** client scope mapper). Values in the claim are compared against `OIDC_ROLE_ADMIN` on every login, so demoting in Keycloak takes effect on the user's next sign-in.
 
 See [OIDC Setup → Role mapping](index.md#role-mapping) for the generic version.

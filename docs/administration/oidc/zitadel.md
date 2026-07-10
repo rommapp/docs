@@ -13,7 +13,7 @@ Zitadel installed and running via their [self-hosted deployment docs](https://zi
 
 ## 2. Create a project
 
-Create a new project (e.g. `RomM`). This holds the client and its auth settings. On the **General** tab, **Check authorization on Authentication** is recommended. If turned off, anyone who can register in Zitadel can sign into RomM (as a Viewer). Turn this on if Zitadel registration is open.
+Create a new project (e.g. `RomM`). This holds the client and its auth settings. On the **General** tab, **Check authorization on Authentication** is recommended. If turned off, anyone who can register in Zitadel can sign into RomM (as a regular User). Turn this on if Zitadel registration is open.
 
 ### 2.5 (Optional) Grant users to the project
 

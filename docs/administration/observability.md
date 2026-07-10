@@ -41,6 +41,19 @@ docker logs romm 2>&1 | grep -iE 'auth|oidc|oauth'
 docker logs romm 2>&1 | grep -iE 'scan_handler.*Identified'
 ```
 
+### In-app logs viewer
+
+RomM also tails the server log live in the UI, with a filter by module (scan handler, auth, config manager, etc.), so you can watch a scan or debug an auth issue without shelling into the container. Access is gated on the `logs.read` scope.
+
+To turn it off for everyone (admins included), set:
+
+```yaml
+environment:
+    - DISABLE_LOGS_VIEWER=true
+```
+
+This also disables the `GET /api/logs` endpoint that backs it. The container logs above are unaffected.
+
 ## `/api/heartbeat`
 
 A single-request endpoint to fetch health and config information. Works when not logged in, though some fields only appear for authenticated callers.

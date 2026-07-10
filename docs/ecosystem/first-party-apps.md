@@ -114,7 +114,7 @@ Open **Menu → Library → Configure Integrations → RomM** and enter:
 - **Host URL**, including the protocol and without a trailing slash, for example `https://romm.example.com`
 - Your **username** and **password**
 
-Passwords are stored in plaintext in Playnite, so use a separate account with the **VIEWER** role rather than your main credentials.
+Passwords are stored in plaintext in Playnite, so use a separate account with a **read-only permission group** rather than your main credentials.
 
 #### Map emulator paths
 

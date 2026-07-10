@@ -17,7 +17,7 @@ OpenID Connect (OIDC) lets users sign in through an external identity provider: 
 2. They're redirected to your provider.
 3. They authenticate (password, passkey, MFA, whatever your provider enforces).
 4. Provider redirects back to `{ROMM_BASE_URL}/api/oauth/openid` with an authorisation code.
-5. The code is exchanged for an ID token, the user's email and role claims are read, and either a matching local user is created on the fly or an existing one is logged in.
+5. The code is exchanged for an ID token, the user's email and role claims are read, and either a matching local user is created on the fly (unless you've [turned off registration](#auto-provisioning)), or an existing one is logged in.
 
 ## Provider guides
 
@@ -49,21 +49,34 @@ environment:
 
 `OIDC_REDIRECT_URI` must exactly match what you register at the provider (same scheme, host, path, no trailing slash).
 
+## Auto-provisioning
+
+By default, the first successful OIDC login for an email that has no matching account **creates** a local account automatically. To require accounts to exist beforehand (so only pre-provisioned users can sign in via OIDC), turn registration off:
+
+```yaml
+environment:
+    - OIDC_ALLOW_REGISTRATION=false # default: true
+```
+
+With it disabled, an unknown user is rejected at login instead of getting a fresh account. New accounts land in the [default permission group](../users-and-roles.md#permission-groups) unless a role claim maps them to Admin.
+
 ## Role mapping
 
-By default, new OIDC users are provisioned as **Viewers**. To let your IdP assign roles based on group membership, set:
+RomM has only two roles: **User** and **Admin** (see [Users & Roles](../users-and-roles.md#roles)). New OIDC users are provisioned as **Users**. To let your IdP promote someone to **Admin** based on group membership, set:
 
 ```yaml
 environment:
     - OIDC_CLAIM_ROLES=groups # which claim to read
-    - OIDC_ROLE_VIEWER=romm-viewer,guests # group names → Viewer
-    - OIDC_ROLE_EDITOR=romm-editor
-    - OIDC_ROLE_ADMIN=romm-admin,platform-admins
+    - OIDC_ROLE_ADMIN=romm-admin,platform-admins # group values → Admin
 ```
 
-On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, sometimes `realm_access.roles` on Keycloak, check your provider's token output). Whichever role has a matching value wins. If nothing matches, the user stays/becomes a Viewer.
+On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, sometimes `realm_access.roles` on Keycloak, check your provider's token output). If a value matches `OIDC_ROLE_ADMIN`, the user becomes an Admin; otherwise they're a User in the default permission group.
 
 Roles are re-evaluated on **every login**, so demoting someone on the IdP side takes effect the next time they sign in.
+
+<!-- prettier-ignore -->
+!!! note "Legacy role variables"
+    `OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` still exist for backwards compatibility but no longer map to distinct roles. Matching users now resolve to **User**. Use permission groups for finer-grained access, as only `OIDC_ROLE_ADMIN` still changes the role.
 
 ## Autologin
 
@@ -112,4 +125,4 @@ environment:
 Common failures and fixes live in [Authentication Troubleshooting](../../troubleshooting/authentication.md). Two of the usual suspects:
 
 - `redirect_uri_mismatch`: `OIDC_REDIRECT_URI` differs from what's registered at the provider. Even a trailing slash can matter!
-- User created but stuck at Viewer: check `OIDC_CLAIM_ROLES` points at a claim that actually exists in the token, and the group names match exactly (case-sensitive).
+- User created but not made Admin: check `OIDC_CLAIM_ROLES` points at a claim that actually exists in the token, and that the group values match `OIDC_ROLE_ADMIN` exactly (case-sensitive).

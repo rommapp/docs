@@ -65,7 +65,7 @@ The `OIDC_REDIRECT_URI` in the env doesn't **exactly** match what's registered a
 - **Host**: `demo.romm.app` vs `www.demo.romm.app` vs the bare IP
 - **Port**: implied `80`/`443` on HTTPS vs an explicit port
 
-### User is created but stays Viewer, even though they should be Admin
+### User is created but stays a regular User, even though they should be Admin
 
 You configured `OIDC_CLAIM_ROLES` but it's not being honoured.
 

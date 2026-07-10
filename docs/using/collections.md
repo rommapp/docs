@@ -27,10 +27,10 @@ Don't use a standard collection for things that have better solutions:
 
 ## Permissions
 
-| Action                                   | Viewer | Editor | Admin |
-| ---------------------------------------- | :----: | :----: | :---: |
-| See public collections                   |   ✓    |   ✓    |   ✓   |
-| Create own private collection            |   ✓    |   ✓    |   ✓   |
-| Edit own collection                      |   ✓    |   ✓    |   ✓   |
-| Make a collection public                 |   -    |   ✓    |   ✓   |
-| See all users' collections (admin panel) |   -    |   -    |   ✓   |
+| Action                                   | Scope required      |
+| ---------------------------------------- | ------------------- |
+| See public collections                   | `collections.read`  |
+| Create own private collection            | `collections.read`  |
+| Edit own collection                      | `collections.write` |
+| Make a collection public                 | `collections.write` |
+| See all users' collections (admin panel) | Admin               |

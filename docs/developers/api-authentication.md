@@ -14,7 +14,7 @@ The API accepts multiple authentication modes:
 | **OAuth2 Bearer**    | Automation, CI, third-party apps                         | `Authorization: Bearer <jwt>`                    |
 | **Client API Token** | Companion apps (Argosy, Grout, Playnite, custom scripts) | `Authorization: Bearer rmm_<token>`              |
 
-All of them resolve to the same scope model. See the [scope matrix in Users & Roles](../administration/users-and-roles.md#scope-matrix). A request is allowed if the active identity holds all scopes the endpoint requires.
+All of them resolve to the same scope model. See the [OAuth scopes in Users & Roles](../administration/users-and-roles.md#oauth-scopes). A request is allowed if the active identity holds all scopes the endpoint requires.
 
 ## Base URL
 

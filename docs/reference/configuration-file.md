@@ -243,19 +243,24 @@ scan:
 
 Which media types to fetch during a scan, primarily for ScreenScraper and the gamelist.xml importer.
 
-| Type           | Description                                  |
-| -------------- | -------------------------------------------- |
-| `box2d`        | Normal 2D cover art. Always enabled.         |
-| `box3d`        | 3D box art.                                  |
-| `miximage`     | Composite image (box + screenshot + logo).   |
-| `physical`     | Physical media (disc, cartridge).            |
-| `screenshot`   | In-game screenshot. Enabled by default.      |
-| `title_screen` | Title-screen capture.                        |
-| `marquee`      | Transparent logo.                            |
-| `fanart`       | Community-uploaded fan art.                  |
-| `bezel`        | EmulatorJS-compatible bezel.                 |
-| `manual`       | PDF manual. Enabled by default.              |
-| `video`        | Gameplay video (big files, watch your disk). |
+| Type               | Description                                  |
+| ------------------ | -------------------------------------------- |
+| `box2d`            | Normal 2D cover art. Always enabled.         |
+| `box2d_back`       | Back cover art.                              |
+| `box2d_side`       | 2D side/spine box art.                       |
+| `box3d`            | 3D box art.                                  |
+| `miximage`         | Composite image (box + screenshot + logo).   |
+| `miximage_v2`      | Newer composite-image layout.                |
+| `physical`         | Physical media (disc, cartridge).            |
+| `screenshot`       | In-game screenshot. Enabled by default.      |
+| `title_screen`     | Title-screen capture.                        |
+| `marquee`          | Transparent logo.                            |
+| `logo`             | Clear/wheel logo art.                        |
+| `fanart`           | Community-uploaded fan art.                  |
+| `bezel`            | EmulatorJS-compatible bezel.                 |
+| `manual`           | PDF manual. Enabled by default.              |
+| `video`            | Gameplay video (big files, watch your disk). |
+| `video_normalized` | Loudness-normalised gameplay video.          |
 
 ```yaml
 scan:

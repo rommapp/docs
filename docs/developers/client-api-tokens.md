@@ -82,11 +82,11 @@ The companion app stores the token and uses it on every subsequent API call. Fro
 
 ## Scoping tokens properly
 
-A token can only hold scopes the owning user _also_ holds. If the user is an Editor, their token can hold any Editor scope but not `users.write` (which is Admin-only). Default to read-only, and only grant write scopes the app actually needs.
+A token can only hold scopes the owning user _also_ holds, and a user's scopes come from their [permission group](../administration/users-and-roles.md#permission-groups) plus any overrides (Admins hold everything). For example, a token can't carry `users.write` unless its owner is an Admin. Default to read-only, and only grant write scopes the app actually needs.
 
-## What happens on user role change
+## What happens on permission change
 
-If the owning user's role drops below what the token needs, the token continues to exist but fails at request time with **403 Forbidden**. It's the user's decision to revoke it. However if the user is deleted, all their tokens are revoked immediately.
+If the owning user's permissions are narrowed so they no longer hold what a token needs, the token continues to exist but fails at request time with **403 Forbidden**. It's the user's decision to revoke it. However if the user is deleted, all their tokens are revoked immediately.
 
 ## Anti-patterns
 
@@ -99,4 +99,4 @@ If the owning user's role drops below what the token needs, the token continues 
 
 - [Device Sync Protocol](device-sync-protocol.md): how the synced content flows after pairing
 - [API Authentication](api-authentication.md): all RomM auth modes side-by-side
-- [Users & Roles → scope matrix](../administration/users-and-roles.md#scope-matrix): the 19-scope taxonomy
+- [Users & Roles → OAuth scopes](../administration/users-and-roles.md#oauth-scopes): the full scope taxonomy

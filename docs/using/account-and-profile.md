@@ -5,7 +5,7 @@ description: Manage your user account
 
 # Account & Profile
 
-Every user (Viewer, Editor, Admin) can manage their own profile, but Admins can edit _other_ users' profiles (see [Users & Roles](../administration/users-and-roles.md) for the admin side).
+Every user (User or Admin) can manage their own profile, but Admins can edit _other_ users' profiles (see [Users & Roles](../administration/users-and-roles.md) for the admin side).
 
 ## Preferred username in OIDC
 
