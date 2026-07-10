@@ -69,11 +69,11 @@ grant_type=password&username=alice&password=s3cret&scope=roms.read%20roms.write
 
 ```json
 {
-  "access_token": "eyJhbGciOi...",
-  "refresh_token": "eyJhbGciOi...",
-  "token_type": "bearer",
-  "expires": 1800,
-  "refresh_expires": 604800
+    "access_token": "eyJhbGciOi...",
+    "refresh_token": "eyJhbGciOi...",
+    "token_type": "bearer",
+    "expires": 1800,
+    "refresh_expires": 604800
 }
 ```
 

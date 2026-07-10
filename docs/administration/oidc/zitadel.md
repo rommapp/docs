@@ -46,13 +46,13 @@ Without this, RomM throws "Email is missing from token" on login. Open the appli
 
 ```yaml
 environment:
-  - OIDC_ENABLED=true
-  - OIDC_PROVIDER=zitadel
-  - OIDC_CLIENT_ID=<from Zitadel>
-  - OIDC_CLIENT_SECRET=<from Zitadel>
-  - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
-  - OIDC_SERVER_APPLICATION_URL=https://zitadel.example.com
-  - ROMM_BASE_URL=https://demo.romm.app
+    - OIDC_ENABLED=true
+    - OIDC_PROVIDER=zitadel
+    - OIDC_CLIENT_ID=<from Zitadel>
+    - OIDC_CLIENT_SECRET=<from Zitadel>
+    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
+    - OIDC_SERVER_APPLICATION_URL=https://zitadel.example.com
+    - ROMM_BASE_URL=https://demo.romm.app
 ```
 
 Zitadel's OIDC discovery URL is at `<OIDC_SERVER_APPLICATION_URL>/.well-known/openid-configuration`, which is handy for debugging.

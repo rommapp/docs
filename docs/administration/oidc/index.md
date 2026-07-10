@@ -38,13 +38,13 @@ Whichever provider you pick, set these in the `romm` service's environment:
 
 ```yaml
 environment:
-  - OIDC_ENABLED=true
-  - OIDC_PROVIDER=<authelia|authentik|keycloak|pocket-id|zitadel|voidauth|generic>
-  - OIDC_CLIENT_ID=<from your provider>
-  - OIDC_CLIENT_SECRET=<from your provider>
-  - OIDC_SERVER_APPLICATION_URL=https://auth.example.com
-  - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
-  - ROMM_BASE_URL=https://demo.romm.app # must match your reverse-proxy URL
+    - OIDC_ENABLED=true
+    - OIDC_PROVIDER=<authelia|authentik|keycloak|pocket-id|zitadel|voidauth|generic>
+    - OIDC_CLIENT_ID=<from your provider>
+    - OIDC_CLIENT_SECRET=<from your provider>
+    - OIDC_SERVER_APPLICATION_URL=https://auth.example.com
+    - OIDC_REDIRECT_URI=https://demo.romm.app/api/oauth/openid
+    - ROMM_BASE_URL=https://demo.romm.app # must match your reverse-proxy URL
 ```
 
 `OIDC_REDIRECT_URI` must exactly match what you register at the provider (same scheme, host, path, no trailing slash).
@@ -55,7 +55,7 @@ By default, the first successful OIDC login for an email that has no matching ac
 
 ```yaml
 environment:
-  - OIDC_ALLOW_REGISTRATION=false # default: true
+    - OIDC_ALLOW_REGISTRATION=false # default: true
 ```
 
 With it disabled, an unknown user is rejected at login instead of getting a fresh account. New accounts land in the [default permission group](../users-and-roles.md#permission-groups) unless a role claim maps them to Admin.
@@ -66,8 +66,8 @@ As of 5.0, RomM has only two roles: **User** and **Admin** (see [Users & Roles](
 
 ```yaml
 environment:
-  - OIDC_CLAIM_ROLES=groups # which claim to read
-  - OIDC_ROLE_ADMIN=romm-admin,platform-admins # group values → Admin
+    - OIDC_CLAIM_ROLES=groups # which claim to read
+    - OIDC_ROLE_ADMIN=romm-admin,platform-admins # group values → Admin
 ```
 
 On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, sometimes `realm_access.roles` on Keycloak, check your provider's token output). If a value matches `OIDC_ROLE_ADMIN`, the user becomes an Admin; otherwise they're a User in the default permission group.
@@ -84,7 +84,7 @@ To bypass the login page entirely and redirect straight to the IdP:
 
 ```yaml
 environment:
-  - OIDC_AUTOLOGIN=true
+    - OIDC_AUTOLOGIN=true
 ```
 
 Useful when you want this to feel like a native part of your SSO stack. Combine with `DISABLE_USERPASS_LOGIN=true` to lock out local accounts entirely.
@@ -99,8 +99,8 @@ When set, hitting "Sign out" in RomM also signs the user out at the IdP:
 
 ```yaml
 environment:
-  - OIDC_RP_INITIATED_LOGOUT=true
-  - OIDC_END_SESSION_ENDPOINT=https://auth.example.com/application/o/end-session/
+    - OIDC_RP_INITIATED_LOGOUT=true
+    - OIDC_END_SESSION_ENDPOINT=https://auth.example.com/application/o/end-session/
 ```
 
 The endpoint URL is provider-specific, check the per-provider guides or your IdP's docs.
@@ -111,7 +111,7 @@ By default the local part of the email (the bit before `@`) becomes the username
 
 ```yaml
 environment:
-  - OIDC_USERNAME_ATTRIBUTE=preferred_username
+    - OIDC_USERNAME_ATTRIBUTE=preferred_username
 ```
 
 ## Important notes

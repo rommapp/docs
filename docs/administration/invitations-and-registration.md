@@ -19,7 +19,7 @@ To skip the wizard (e.g. when provisioning via automation and you'll create user
 
 ```yaml
 environment:
-  - DISABLE_SETUP_WIZARD=true
+    - DISABLE_SETUP_WIZARD=true
 ```
 
 You'll then need to create the first admin via the API or by injecting a database row at deploy time, because the UI won't offer a setup flow.

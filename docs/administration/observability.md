@@ -16,9 +16,9 @@ It's often handy to know what's happening under the hood, especially when debugg
 
 ```yaml
 environment:
-  - LOGLEVEL=INFO # DEBUG | INFO | WARNING | ERROR
-  - FORCE_COLOR=0 # 1 to force colour even when not a TTY
-  - NO_COLOR=1 # 1 to disable colour entirely
+    - LOGLEVEL=INFO # DEBUG | INFO | WARNING | ERROR
+    - FORCE_COLOR=0 # 1 to force colour even when not a TTY
+    - NO_COLOR=1 # 1 to disable colour entirely
 ```
 
 `INFO` is the default and the sane choice for production. Drop to `DEBUG` only while debugging a specific issue, because `DEBUG` is chatty.
@@ -49,7 +49,7 @@ To turn it off for everyone (admins included), set:
 
 ```yaml
 environment:
-  - DISABLE_LOGS_VIEWER=true
+    - DISABLE_LOGS_VIEWER=true
 ```
 
 This also disables the `GET /api/logs` endpoint that backs it. The container logs above are unaffected.
@@ -85,7 +85,7 @@ Opt-in error tracking:
 
 ```yaml
 environment:
-  - SENTRY_DSN=https://abc123@sentry.example.com/42
+    - SENTRY_DSN=https://abc123@sentry.example.com/42
 ```
 
 What's sent:
@@ -102,10 +102,10 @@ If you're already using OpenTelemetry with your other apps and want unified obse
 
 ```yaml
 environment:
-  - OTEL_ENABLED=true
-  - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
-  - OTEL_SERVICE_NAME=romm
-  - OTEL_RESOURCE_ATTRIBUTES=deployment.environment=prod
+    - OTEL_ENABLED=true
+    - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+    - OTEL_SERVICE_NAME=romm
+    - OTEL_RESOURCE_ATTRIBUTES=deployment.environment=prod
 ```
 
 Standard [OTEL env vars](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) apply. The app emits:
