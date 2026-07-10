@@ -28,7 +28,7 @@ You'll then need to create the first admin via the API or by injecting a databas
 
 The recommended way to add users, because it avoids you ever touching their password.
 
-1. **Administration → Users → Invite.** Pick a role (User or Admin); for a User you can also pick a [permission group](users-and-roles.md#permission-groups).
+1. **Administration → Users → Invite.** Pick a role (User or Admin).
 2. RomM generates a single-use URL → copy it and send it to the invitee.
 3. When they open it, they pick their own username and password.
 4. RomM creates the account with the role you chose and logs them straight in.

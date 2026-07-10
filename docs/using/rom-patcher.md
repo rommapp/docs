@@ -55,8 +55,6 @@ If your patch has an unusual extension, try renaming to one of the above. Many a
 | Apply patch → download    | `roms.read`    |
 | Apply patch → upload back | `roms.write`   |
 
-Scopes come from the user's [permission group](../administration/users-and-roles.md#permission-groups) or an override; Admins can do both.
-
 ## Limits
 
 - **File size**: the ROM and the patch must each stay under `ROM_PATCHER_MAX_FILE_SIZE_BYTES` (default **4 GiB**). patcherjs loads the whole file into memory server-side, so oversized inputs are rejected with a `400`.

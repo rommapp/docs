@@ -21,8 +21,6 @@ description: Uploading ROMs
 | **Manuals**       | `roms.write`     | PDF, becomes the Manual tab content.                                 |
 | **Cover art**     | `roms.write`     | Replaces the provider-fetched cover.                                 |
 
-The `*.write` scopes come from a user's [permission group](../administration/users-and-roles.md#permission-groups) or an override; Admins can upload anything.
-
 ## ROM uploads
 
 ### Large uploads (chunked)

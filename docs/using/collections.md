@@ -34,5 +34,3 @@ Don't use a standard collection for things that have better solutions:
 | Edit own collection                      | `collections.write` |
 | Make a collection public                 | `collections.write` |
 | See all users' collections (admin panel) | Admin               |
-
-`collections.read`/`collections.write` come from a user's [permission group](../administration/users-and-roles.md#permission-groups); Admins have everything.
