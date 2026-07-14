@@ -25,10 +25,6 @@ description: Browse, play, collect, patch, and share from the UI
 - **[RetroAchievements](retroachievements.md)**
 - **[Account & Profile](account-and-profile.md)**
 
-## Special modes
-
-- **[Console Mode](console-mode.md)**
-
 ## Tools
 
 - **[ROM Patcher](rom-patcher.md)**
