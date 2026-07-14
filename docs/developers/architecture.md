@@ -19,11 +19,11 @@ rommapp/romm
 │   ├── tasks/            # RQ jobs: scheduled/ and manual/
 │   ├── alembic/          # 80+ DB migrations
 │   └── config/           # Env vars + YAML config.json manager
-├── frontend/             # Vue 3 + Vuetify SPA (main UI + Console Mode)
+├── frontend/             # Vue 3 + Vuetify SPA (main UI + alternate UI)
 │   └── src/
 │       ├── views/        # Page-level components
 │       ├── components/   # ~168 components, organised by feature
-│       ├── console/      # Console Mode SPA (own router, layout, input bus)
+│       ├── console/      # Alternate UI SPA (own router, layout, input bus)
 │       ├── stores/       # 18 Pinia stores
 │       ├── services/     # Axios API modules + socket.io + browser cache
 │       └── __generated__/# TS types generated from the backend OpenAPI spec
@@ -109,7 +109,7 @@ Three layouts cover the routes:
 
 Permission-protected routes follow the scope model from [Users & Roles](../administration/users-and-roles.md): `/scan` and `/library-management` require `platforms.write`, `/client-api-tokens` requires `me.write`, and `/administration` requires `users.write`.
 
-### Console Mode
+### Alternate TV and gamepad UI
 
 A second SPA bundle aimed at TVs and gamepads is kept under `frontend/src/console/`. The input system is a stack-based bus with grid-based spatial navigation, gamepad polling runs in `requestAnimationFrame`, and the sound effects are synthesised on the fly through the Web Audio API rather than shipped as audio assets.
 

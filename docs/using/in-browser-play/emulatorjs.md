@@ -12,8 +12,8 @@ description: Play retro games in your browser
     Older or less-powerful devices may struggle, especially with demanding cores (Dreamcast, Saturn, PSP). Try a different browser or device before filing a bug.
 
 <!-- prettier-ignore -->
-!!! note "Some cores don't work in Console Mode"
-    PSP (`ppsspp`) and MS-DOS (`dosbox-pure`) aren't supported in [Console Mode](../console-mode.md).
+!!! warning "PSP requires HTTPS"
+    PSP games use the `SharedArrayBuffer` API through the `ppsspp` core. Browsers only expose this API in secure, cross-origin-isolated contexts, so RomM must be served over `https://` for PSP games to run. See the [SharedArrayBuffer browser requirements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) and use a [reverse proxy with TLS](../../install/reverse-proxy.md) if needed.
 
 <!-- prettier-ignore -->
 !!! note "Zip bundles for multi-file firmware"

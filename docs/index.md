@@ -43,7 +43,7 @@ RomM (ROM Manager) lets you scan, enrich, organise, and play your game collectio
 
     ***
 
-    Library, collections, saves & states, Console Mode, ROM Patcher, Netplay.
+    Library, collections, saves & states, ROM Patcher, Netplay.
 
     [Using RomM →](using/index.md)
 

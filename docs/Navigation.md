@@ -55,7 +55,6 @@ search:
     - [RetroAchievements](using/retroachievements.md)
     - [ROM Patcher](using/rom-patcher.md)
     - [Netplay](using/netplay.md)
-    - [Console Mode](using/console-mode.md)
     - [Account & Profile](using/account-and-profile.md)
     - [Languages](using/languages.md)
 - Platforms & Players
