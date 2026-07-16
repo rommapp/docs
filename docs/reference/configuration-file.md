@@ -243,6 +243,10 @@ scan:
 
 Which media types to fetch during a scan, primarily for ScreenScraper and the gamelist.xml importer.
 
+<!-- prettier-ignore -->
+!!! tip "This controls the UI Boxart styles"
+    The gallery's **Boxart style** picker (2D Box, 3D Box, Physical, Mix Image) only changes what the cards *display*g. Styles other than 2D Box need their media type added here, then a rescan, or the cards fallback to 2D Box. See [Boxart styles and media types](../getting-started/metadata-providers.md#boxart-styles-and-media-types) for the full mapping and steps.
+
 | Type               | Description                                  |
 | ------------------ | -------------------------------------------- |
 | `box2d`            | Normal 2D cover art. Always enabled.         |

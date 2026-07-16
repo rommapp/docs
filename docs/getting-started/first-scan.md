@@ -52,6 +52,7 @@ Typical next steps:
 
 - **Fix unmatched ROMs**: rename or re-tag, then re-run an **Unmatched** scan to pick them up (see [Scanning & Watcher](../administration/scanning-and-watcher.md#scan-modes)).
 - **Tweak priorities**: if ScreenScraper's covers are nicer than IGDB's for your library, reorder `scan.priority.artwork` in [`config.yml`](../reference/configuration-file.md).
+- **Switch boxart styles**: want 3D boxes, physical media, or mix images on your cards? That needs the matching media type added to `scan.media` and a rescan, not just the UI picker. See [Boxart styles and media types](metadata-providers.md#boxart-styles-and-media-types).
 
 ## Skip to a targeted scan
 
