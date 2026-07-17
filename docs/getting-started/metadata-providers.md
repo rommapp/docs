@@ -277,6 +277,48 @@ Scans will now parse custom metadata tags in the filename that match specific pa
 
 Filenames will not be renamed to add tags, as they are a non-standard formatting system and could create conflicts with other software.
 
+## Boxart styles and media types
+
+The gallery renders one piece of cover art per game card. Which one it shows is controlled by the **Boxart style** picker, a per-user setting under **Settings → User Interface**. The options are:
+
+| Boxart style | Setting value   | Media type fetched by the scanner | In `scan.media` by default? |
+| ------------ | --------------- | --------------------------------- | --------------------------- |
+| 2D Box       | `cover_path`    | `box2d`                           | ✅ Yes (always enabled)     |
+| 3D Box       | `box3d_path`    | `box3d`                           | ❌ No                       |
+| Physical     | `physical_path` | `physical`                        | ❌ No                       |
+| Mix Image    | `miximage_path` | `miximage`                        | ❌ No                       |
+
+The picker only changes **what the gallery displays**, it doesn't fetch anything. The scanner downloads artwork during a scan, and it only downloads media types listed in `scan.media` in `config.yml`. The default is `box2d`, `screenshot`, and `manual`, so out of the box only the **2D Box** style has art to show.
+
+If you switch to **3D Box**, **Physical**, or **Mix Image** without adding the matching media type to `scan.media`, your cards will come up blank even though the setting clearly "took" in the UI.
+
+To use an alternate style end-to-end:
+
+1. Add the media type(s) you want to `scan.media` in [`config.yml`](../reference/configuration-file.md#scanmedia). For all four styles plus the back/spine covers:
+
+    ```yaml
+    scan:
+        media:
+            - box2d
+            - box2d_back
+            - box2d_side
+            - box3d
+            - physical
+            - miximage
+            - screenshot
+            - manual
+    ```
+
+    `box2d` is always fetched regardless of the list, so you don't strictly need to list it, but keeping it explicit makes the list self-documenting. See the [full `scan.media` table](../reference/configuration-file.md#scanmedia) for every type (fanart, title screens, marquees, bezels, videos, etc.).
+
+2. Re-fetch the art. Most styles come from ScreenScraper, which only pulls media types in `scan.media` during a scan. Run an **Update Metadata** scan on the platforms you want.
+
+3. Set your **Boxart style** in the UI, and the cards should display the newly-downloaded art.
+
+<!-- prettier-ignore -->
+!!! note "Provider support varies"
+    ScreenScraper is the richest source for `box3d`, `physical`, and `miximage`. If you want 3D boxes across your library, make sure ScreenScraper is [enabled](#screenscraper) and ranked in [`scan.priority.artwork`](#priority-and-conflict-resolution).
+
 ## Priority and conflict resolution
 
 When multiple providers return different values for the same field, the winner is determined by `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`. Defaults:
