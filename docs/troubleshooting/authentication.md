@@ -75,6 +75,27 @@ You configured `OIDC_CLAIM_ROLES` but it's not being honoured.
 
 Roles are re-evaluated on every login with no cache to bust, so log out and back in to test the fix.
 
+### `User has not been granted any roles for this application.`
+
+A newly created (non-admin) user logs in and is rejected with:
+
+```json
+{ "detail": "User has not been granted any roles for this application." }
+```
+
+You set `OIDC_CLAIM_ROLES`, which makes RomM require every user to match at least one mapped role group. Admins work because they match `OIDC_ROLE_ADMIN`, but users in no mapped group are turned away.
+
+Fix: map your non-admin group to the **User** role with `OIDC_ROLE_VIEWER` (or `OIDC_ROLE_EDITOR`), pointing at a group all your regular users belong to:
+
+```yaml
+environment:
+    - OIDC_CLAIM_ROLES=groups
+    - OIDC_ROLE_ADMIN=romm-admin,platform-admins
+    - OIDC_ROLE_VIEWER=platform-users # grants login to non-admins
+```
+
+`OIDC_ROLE_VIEWER`/`OIDC_ROLE_EDITOR` all resolve to **User** (not distinct roles anymore), but they're still what grants access when role claims are enabled. See [Role mapping](../administration/oidc/index.md#role-mapping).
+
 ### "Email is missing from token" (Zitadel-specific)
 
 On Zitadel, open the application → **Token Settings** → tick **User Info inside ID Token** → Save.
