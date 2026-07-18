@@ -80,7 +80,7 @@ Roles are re-evaluated on every login with no cache to bust, so log out and back
 A newly created (non-admin) user logs in and is rejected with:
 
 ```json
-{"detail":"User has not been granted any roles for this application."}
+{ "detail": "User has not been granted any roles for this application." }
 ```
 
 You set `OIDC_CLAIM_ROLES`, which makes RomM require every user to match at least one mapped role group. Admins work because they match `OIDC_ROLE_ADMIN`, but users in no mapped group are turned away.

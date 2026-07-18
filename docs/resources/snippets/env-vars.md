@@ -51,25 +51,25 @@
 
 ### OpenID Connect
 
-| Variable                      | Default              | Required | Description                                                        |
-| ----------------------------- | -------------------- | :------: | ------------------------------------------------------------------ |
-| `OIDC_ENABLED`                | `false`              |          | Enable OpenID Connect authentication                               |
-| `OIDC_AUTOLOGIN`              | `false`              |          | Skip the OIDC button on the login page and auto-redirect           |
-| `OIDC_ALLOW_REGISTRATION`     | `true`               |          | Allow new accounts to be created automatically on first OIDC login |
-| `OIDC_PROVIDER`               |                      |          | Name of the OIDC provider in use                                   |
-| `OIDC_CLIENT_ID`              |                      |          | Client ID for OIDC authentication                                  |
-| `OIDC_CLIENT_SECRET`          |                      |          | Client secret for OIDC authentication                              |
-| `OIDC_REDIRECT_URI`           |                      |          | Absolute redirect URI for OIDC authentication                      |
-| `OIDC_SERVER_APPLICATION_URL` |                      |          | Absolute URL of the OIDC server application                        |
-| `OIDC_SERVER_METADATA_URL`    |                      |          | URL to the OIDC provider metadata endpoint                         |
-| `OIDC_CLAIM_ROLES`            |                      |          | OIDC claim containing user roles                                   |
+| Variable                      | Default              | Required | Description                                                                                 |
+| ----------------------------- | -------------------- | :------: | ------------------------------------------------------------------------------------------- |
+| `OIDC_ENABLED`                | `false`              |          | Enable OpenID Connect authentication                                                        |
+| `OIDC_AUTOLOGIN`              | `false`              |          | Skip the OIDC button on the login page and auto-redirect                                    |
+| `OIDC_ALLOW_REGISTRATION`     | `true`               |          | Allow new accounts to be created automatically on first OIDC login                          |
+| `OIDC_PROVIDER`               |                      |          | Name of the OIDC provider in use                                                            |
+| `OIDC_CLIENT_ID`              |                      |          | Client ID for OIDC authentication                                                           |
+| `OIDC_CLIENT_SECRET`          |                      |          | Client secret for OIDC authentication                                                       |
+| `OIDC_REDIRECT_URI`           |                      |          | Absolute redirect URI for OIDC authentication                                               |
+| `OIDC_SERVER_APPLICATION_URL` |                      |          | Absolute URL of the OIDC server application                                                 |
+| `OIDC_SERVER_METADATA_URL`    |                      |          | URL to the OIDC provider metadata endpoint                                                  |
+| `OIDC_CLAIM_ROLES`            |                      |          | OIDC claim containing user roles                                                            |
 | `OIDC_ROLE_VIEWER`            |                      |          | Group value granting the User role (grants non-admins login when `OIDC_CLAIM_ROLES` is set) |
-| `OIDC_ROLE_EDITOR`            |                      |          | Group value granting the User role (same effect as viewer)         |
-| `OIDC_ROLE_ADMIN`             |                      |          | Role value mapping to admin permissions                            |
-| `OIDC_TLS_CACERTFILE`         |                      |          | Path to file containing trusted CA certificates                    |
-| `OIDC_USERNAME_ATTRIBUTE`     | `preferred_username` |          | Attribute on OIDC user info used as the username                   |
-| `OIDC_RP_INITIATED_LOGOUT`    | `false`              |          | Enable RP-initiated logout flow                                    |
-| `OIDC_END_SESSION_ENDPOINT`   |                      |          | OIDC end-session endpoint override URL                             |
+| `OIDC_ROLE_EDITOR`            |                      |          | Group value granting the User role (same effect as viewer)                                  |
+| `OIDC_ROLE_ADMIN`             |                      |          | Role value mapping to admin permissions                                                     |
+| `OIDC_TLS_CACERTFILE`         |                      |          | Path to file containing trusted CA certificates                                             |
+| `OIDC_USERNAME_ATTRIBUTE`     | `preferred_username` |          | Attribute on OIDC user info used as the username                                            |
+| `OIDC_RP_INITIATED_LOGOUT`    | `false`              |          | Enable RP-initiated logout flow                                                             |
+| `OIDC_END_SESSION_ENDPOINT`   |                      |          | OIDC end-session endpoint override URL                                                      |
 
 ### Metadata Providers
 
