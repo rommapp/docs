@@ -70,13 +70,30 @@ environment:
     - OIDC_ROLE_ADMIN=romm-admin,platform-admins # group values → Admin
 ```
 
-On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, sometimes `realm_access.roles` on Keycloak, check your provider's token output). If a value matches `OIDC_ROLE_ADMIN`, the user becomes an Admin; otherwise they're a User in the default permission group.
+On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, sometimes `realm_access.roles` on Keycloak, check your provider's token output). If a value matches `OIDC_ROLE_ADMIN`, the user becomes an Admin.
 
 Roles are re-evaluated on **every login**, so demoting someone on the IdP side takes effect the next time they sign in.
 
 <!-- prettier-ignore -->
-!!! note "Legacy role variables"
-    `OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` still exist for backwards compatibility but no longer map to distinct roles. Matching users now resolve to **User**. Use permission groups for finer-grained access, as only `OIDC_ROLE_ADMIN` still changes the role.
+!!! warning "Once `OIDC_CLAIM_ROLES` is set, users must match a mapped group"
+    As soon as `OIDC_CLAIM_ROLES` is configured, RomM expects every user to match at least one mapped role group. A user whose claim matches **none** of the configured groups is rejected at login with:
+
+    ```json
+    {"detail":"User has not been granted any roles for this application."}
+    ```
+
+    To let non-admin users in, map their group to the **User** role with `OIDC_ROLE_VIEWER` (or `OIDC_ROLE_EDITOR`):
+
+    ```yaml
+    environment:
+        - OIDC_CLAIM_ROLES=groups
+        - OIDC_ROLE_ADMIN=romm-admin,platform-admins # → Admin
+        - OIDC_ROLE_VIEWER=platform-users # non-admins → User (grants access)
+    ```
+
+    `OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` no longer map to distinct roles — matching users all resolve to **User** — but they're still how you grant those users access when role claims are enabled. Point them at a group that all your non-admin users belong to. Use [permission groups](../users-and-roles.md#permission-groups) for finer-grained access; only `OIDC_ROLE_ADMIN` changes the role.
+
+    If you *don't* set `OIDC_CLAIM_ROLES` at all, role mapping is skipped entirely and everyone is provisioned as a **User** in the default permission group.
 
 ## Autologin
 

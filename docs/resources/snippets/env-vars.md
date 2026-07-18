@@ -63,8 +63,8 @@
 | `OIDC_SERVER_APPLICATION_URL` |                      |          | Absolute URL of the OIDC server application                        |
 | `OIDC_SERVER_METADATA_URL`    |                      |          | URL to the OIDC provider metadata endpoint                         |
 | `OIDC_CLAIM_ROLES`            |                      |          | OIDC claim containing user roles                                   |
-| `OIDC_ROLE_VIEWER`            |                      |          | Role value mapping to viewer permissions                           |
-| `OIDC_ROLE_EDITOR`            |                      |          | Role value mapping to editor permissions                           |
+| `OIDC_ROLE_VIEWER`            |                      |          | Group value granting the User role (grants non-admins login when `OIDC_CLAIM_ROLES` is set) |
+| `OIDC_ROLE_EDITOR`            |                      |          | Group value granting the User role (same effect as viewer)         |
 | `OIDC_ROLE_ADMIN`             |                      |          | Role value mapping to admin permissions                            |
 | `OIDC_TLS_CACERTFILE`         |                      |          | Path to file containing trusted CA certificates                    |
 | `OIDC_USERNAME_ATTRIBUTE`     | `preferred_username` |          | Attribute on OIDC user info used as the username                   |
