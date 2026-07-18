@@ -74,6 +74,7 @@ On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, s
 
 Roles are re-evaluated on **every login**, so demoting someone on the IdP side takes effect the next time they sign in.
 
+<!-- markdownlint-disable MD046 -->
 <!-- prettier-ignore -->
 !!! warning "Once `OIDC_CLAIM_ROLES` is set, users must match a mapped group"
     As soon as `OIDC_CLAIM_ROLES` is configured, RomM expects every user to match at least one mapped role group. A user whose claim matches **none** of the configured groups is rejected at login with:
@@ -94,6 +95,8 @@ Roles are re-evaluated on **every login**, so demoting someone on the IdP side t
     `OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` no longer map to distinct roles — matching users all resolve to **User** — but they're still how you grant those users access when role claims are enabled. Point them at a group that all your non-admin users belong to. Use [permission groups](../users-and-roles.md#permission-groups) for finer-grained access; only `OIDC_ROLE_ADMIN` changes the role.
 
     If you *don't* set `OIDC_CLAIM_ROLES` at all, role mapping is skipped entirely and everyone is provisioned as a **User** in the default permission group.
+
+<!-- markdownlint-enable MD046 -->
 
 ## Autologin
 
