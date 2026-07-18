@@ -83,16 +83,16 @@ The fix is to keep the library and resources on the **same dataset**. For exampl
 
 ```yaml
 volumes:
-  - /mnt/Tank1/games/roms:/romm/library
-  - /mnt/Tank1/games/resources:/romm/resources
+    - /mnt/Tank1/games/roms:/romm/library
+    - /mnt/Tank1/games/resources:/romm/resources
 ```
 
 while this leaves artwork unlinked, even though the art downloads correctly:
 
 ```yaml
 volumes:
-  - /mnt/Tank1/games/roms:/romm/library
-  - /mnt/Tank1/Docker/resources:/romm/resources
+    - /mnt/Tank1/games/roms:/romm/library
+    - /mnt/Tank1/Docker/resources:/romm/resources
 ```
 
 Keeping just the database and config file on a separate Docker dataset is fine — only the library and resources need to share a dataset.
