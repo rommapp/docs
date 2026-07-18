@@ -2,326 +2,326 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.romm.app/5.0.0/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/Navigation/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/about/brand-guidelines/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/about/credits/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/about/faqs/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/about/license/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/authentication/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/firmware-management/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/invitations-and-registration/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/observability/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/scanning-and-watcher/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/scheduled-tasks/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/server-stats/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/users-and-roles/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/oidc/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/oidc/authelia/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/oidc/authentik/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/oidc/keycloak/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/oidc/pocketid/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/oidc/voidauth/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/administration/oidc/zitadel/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/api-authentication/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/api-reference/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/architecture/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/client-api-tokens/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/contributing/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/development-setup/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/device-sync-protocol/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/i18n/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/openapi/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/ssh-sync/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/developers/websockets/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/ecosystem/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/ecosystem/feed-clients/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/ecosystem/first-party-apps/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/ecosystem/igir/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/getting-started/first-scan/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/getting-started/folder-structure/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/getting-started/metadata-providers/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/getting-started/quick-start/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/install/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/install/backup-and-restore/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/install/databases/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/install/image-variants/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/install/kubernetes/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/install/redis-or-valkey/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/install/reverse-proxy/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/install/synology/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/install/truenas/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/install/unraid/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/platforms/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/platforms/custom-platforms/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/platforms/supported-platforms/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/reference/configuration-file/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/reference/environment-variables/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/reference/exports/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/reference/glossary/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/troubleshooting/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/troubleshooting/authentication/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/troubleshooting/in-browser-play/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/troubleshooting/kubernetes/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/troubleshooting/netplay/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/troubleshooting/scanning/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/troubleshooting/synology/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/account-and-profile/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/collections/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/downloads/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/languages/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/netplay/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/retroachievements/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/rom-patcher/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/saves-and-states/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/smart-collections/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/uploads/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/virtual-collections/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/in-browser-play/emulatorjs/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/in-browser-play/ms-dos/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
     <url>
          <loc>https://docs.romm.app/5.0.0/using/in-browser-play/ruffle/</loc>
-         <lastmod>2026-07-15</lastmod>
+         <lastmod>2026-07-18</lastmod>
     </url>
 </urlset>

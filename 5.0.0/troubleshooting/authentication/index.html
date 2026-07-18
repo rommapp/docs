@@ -2557,6 +2557,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#user-has-not-been-granted-any-roles-for-this-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      User has not been granted any roles for this application.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#email-is-missing-from-token-zitadel-specific" class="md-nav__link">
     <span class="md-ellipsis">
       "Email is missing from token" (Zitadel-specific)
@@ -2960,6 +2969,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#user-has-not-been-granted-any-roles-for-this-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      User has not been granted any roles for this application.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#email-is-missing-from-token-zitadel-specific" class="md-nav__link">
     <span class="md-ellipsis">
       "Email is missing from token" (Zitadel-specific)
@@ -3096,6 +3114,18 @@
 <li><strong>Is the claim mapper on the IdP side configured to include the claim?</strong> On Keycloak, for example, you need a Client Scope with a Group Membership mapper added to the client.</li>
 </ol>
 <p>Roles are re-evaluated on every login with no cache to bust, so log out and back in to test the fix.</p>
+<h3 id="user-has-not-been-granted-any-roles-for-this-application"><code>User has not been granted any roles for this application.</code></h3>
+<p>A newly created (non-admin) user logs in and is rejected with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User has not been granted any roles for this application."</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>You set <code>OIDC_CLAIM_ROLES</code>, which makes RomM require every user to match at least one mapped role group. Admins work because they match <code>OIDC_ROLE_ADMIN</code>, but users in no mapped group are turned away.</p>
+<p>Fix: map your non-admin group to the <strong>User</strong> role with <code>OIDC_ROLE_VIEWER</code> (or <code>OIDC_ROLE_EDITOR</code>), pointing at a group all your regular users belong to:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_CLAIM_ROLES=groups</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_ROLE_ADMIN=romm-admin,platform-admins</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_ROLE_VIEWER=platform-users</span><span class="w"> </span><span class="c1"># grants login to non-admins</span>
+</code></pre></div>
+<p><code>OIDC_ROLE_VIEWER</code>/<code>OIDC_ROLE_EDITOR</code> all resolve to <strong>User</strong> (not distinct roles anymore), but they're still what grants access when role claims are enabled. See <a href="../../administration/oidc/#role-mapping">Role mapping</a>.</p>
 <h3 id="email-is-missing-from-token-zitadel-specific">"Email is missing from token" (Zitadel-specific)</h3>
 <p>On Zitadel, open the application → <strong>Token Settings</strong> → tick <strong>User Info inside ID Token</strong> → Save.</p>
 <p>See <a href="../../administration/oidc/zitadel/">OIDC with Zitadel → Enable claims</a> for the full walkthrough.</p>
@@ -3147,7 +3177,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2026-07-10T17:35:36+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2026-07-10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2026-07-18T18:30:36+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2026-07-18</span>
   </span>
 
     

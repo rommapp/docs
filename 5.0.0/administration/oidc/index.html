@@ -2874,17 +2874,30 @@
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_CLAIM_ROLES=groups</span><span class="w"> </span><span class="c1"># which claim to read</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_ROLE_ADMIN=romm-admin,platform-admins</span><span class="w"> </span><span class="c1"># group values → Admin</span>
 </code></pre></div>
-<p>On every login, the claim named by <code>OIDC_CLAIM_ROLES</code> is read (often <code>groups</code>, sometimes <code>realm_access.roles</code> on Keycloak, check your provider's token output). If a value matches <code>OIDC_ROLE_ADMIN</code>, the user becomes an Admin; otherwise they're a User in the default permission group.</p>
+<p>On every login, the claim named by <code>OIDC_CLAIM_ROLES</code> is read (often <code>groups</code>, sometimes <code>realm_access.roles</code> on Keycloak, check your provider's token output). If a value matches <code>OIDC_ROLE_ADMIN</code>, the user becomes an Admin.</p>
 <p>Roles are re-evaluated on <strong>every login</strong>, so demoting someone on the IdP side takes effect the next time they sign in.</p>
+<!-- markdownlint-disable MD046 -->
 <!-- prettier-ignore -->
-<div class="admonition note">
-<p class="admonition-title">Legacy role variables</p>
-<p><code>OIDC_ROLE_VIEWER</code> and <code>OIDC_ROLE_EDITOR</code> still exist for backwards compatibility but no longer map to distinct roles. Matching users now resolve to <strong>User</strong>. Use permission groups for finer-grained access, as only <code>OIDC_ROLE_ADMIN</code> still changes the role.</p>
+<div class="admonition warning">
+<p class="admonition-title">Once <code>OIDC_CLAIM_ROLES</code> is set, users must match a mapped group</p>
+<p>As soon as <code>OIDC_CLAIM_ROLES</code> is configured, RomM expects every user to match at least one mapped role group. A user whose claim matches <strong>none</strong> of the configured groups is rejected at login with:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span><span class="nt">"detail"</span><span class="p">:</span><span class="s2">"User has not been granted any roles for this application."</span><span class="p">}</span>
+</code></pre></div>
+<p>To let non-admin users in, map their group to the <strong>User</strong> role with <code>OIDC_ROLE_VIEWER</code> (or <code>OIDC_ROLE_EDITOR</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_CLAIM_ROLES=groups</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_ROLE_ADMIN=romm-admin,platform-admins</span><span class="w"> </span><span class="c1"># → Admin</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_ROLE_VIEWER=platform-users</span><span class="w"> </span><span class="c1"># non-admins → User (grants access)</span>
+</code></pre></div>
+<p><code>OIDC_ROLE_VIEWER</code> and <code>OIDC_ROLE_EDITOR</code> no longer map to distinct roles — matching users all resolve to <strong>User</strong> — but they're still how you grant those users access when role claims are enabled. Point them at a group that all your non-admin users belong to. Use <a href="../users-and-roles/#permission-groups">permission groups</a> for finer-grained access; only <code>OIDC_ROLE_ADMIN</code> changes the role.</p>
+<p>If you <em>don't</em> set <code>OIDC_CLAIM_ROLES</code> at all, role mapping is skipped entirely and everyone is provisioned as a <strong>User</strong> in the default permission group.</p>
 </div>
+<!-- markdownlint-enable MD046 -->
+
 <h2 id="autologin">Autologin</h2>
 <p>To bypass the login page entirely and redirect straight to the IdP:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">environment</span><span class="p">:</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_AUTOLOGIN=true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_AUTOLOGIN=true</span>
 </code></pre></div>
 <p>Useful when you want this to feel like a native part of your SSO stack. Combine with <code>DISABLE_USERPASS_LOGIN=true</code> to lock out local accounts entirely.</p>
 <!-- prettier-ignore -->
@@ -2894,15 +2907,15 @@
 </div>
 <h2 id="rp-initiated-logout">RP-Initiated Logout</h2>
 <p>When set, hitting "Sign out" in RomM also signs the user out at the IdP:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">environment</span><span class="p">:</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_RP_INITIATED_LOGOUT=true</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_END_SESSION_ENDPOINT=https://auth.example.com/application/o/end-session/</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_RP_INITIATED_LOGOUT=true</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_END_SESSION_ENDPOINT=https://auth.example.com/application/o/end-session/</span>
 </code></pre></div>
 <p>The endpoint URL is provider-specific, check the per-provider guides or your IdP's docs.</p>
 <h2 id="username-source">Username source</h2>
 <p>By default the local part of the email (the bit before <code>@</code>) becomes the username, but you can override it with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">environment</span><span class="p">:</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_USERNAME_ATTRIBUTE=preferred_username</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OIDC_USERNAME_ATTRIBUTE=preferred_username</span>
 </code></pre></div>
 <h2 id="important-notes">Important notes</h2>
 <ul>
@@ -2938,7 +2951,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2026-07-10T18:07:35+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2026-07-10</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2026-07-18T18:44:49+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2026-07-18</span>
   </span>
 
     
