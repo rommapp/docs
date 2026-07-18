@@ -73,6 +73,30 @@ Save, and you're done!
 
 If you're seeing permission errors on paths _inside_ the container (not on TrueNAS datasets), try temporarily running the container as root (`user: 0`) to unblock yourself, fix the offending permissions via shell, and switch back to a non-root user. In at least one reported setup, creating a user/group in TrueNAS with UID/GID `1000:1000` and the auxiliary `apps` group was needed to get the app talking to its embedded Valkey cleanly.
 
+### Artwork/covers download but never show up
+
+If a scan reports success and the logs show art being fetched (and you can even see the downloaded media on disk), but covers and artwork stay blank in the UI, check whether your **Library** and **Assets/resources** volumes live on **different ZFS datasets**.
+
+RomM can't link ROMs to their artwork across dataset boundaries, even when permissions are correct on both. This most often happens when ROMs sit on a media/game dataset while resources are pointed at a Docker-specific dataset.
+
+The fix is to keep the library and resources on the **same dataset**. For example, this works:
+
+```yaml
+volumes:
+    - /mnt/Tank1/games/roms:/romm/library
+    - /mnt/Tank1/games/resources:/romm/resources
+```
+
+while this leaves artwork unlinked, even though the art downloads correctly:
+
+```yaml
+volumes:
+    - /mnt/Tank1/games/roms:/romm/library
+    - /mnt/Tank1/Docker/resources:/romm/resources
+```
+
+Keeping just the database and config file on a separate Docker dataset is fine — only the library and resources need to share a dataset.
+
 ### Other issues
 
 - [Scanning Troubleshooting](../troubleshooting/scanning.md) for matching/ingest problems
