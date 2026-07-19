@@ -434,7 +434,49 @@ Most settings under `emulatorjs.settings` and `emulatorjs.controls` can be overr
 
 ---
 
+## `streaming`
+
+Configure [emulator streaming](../using/emulator-streaming.md), which lets you launch games in native emulator containers and stream them to the browser. The end-user side and full setup walkthrough live in [Using RomM → Emulator Streaming](../using/emulator-streaming.md).
+
+### `streaming.enabled`
+
+**Default:** `false`
+
+```yaml
+streaming:
+    enabled: true
+```
+
+### `streaming.containers`
+
+One entry per emulator container, where each entry maps a [platform slug](../platforms/supported-platforms.md) to the container that streams it.
+
+| Key             | Required | Purpose                                                                                                   |
+| --------------- | -------- | --------------------------------------------------------------------------------------------------------- |
+| `platform`      | Yes      | Platform slug this container serves (e.g. `ps2`, `ngc`, `xbox`, `switch`)                                 |
+| `host`          | Yes      | Browser-facing Selkies web UI (must be reachable from clients and served over **HTTPS**)                  |
+| `broker_host`   | No       | Server-side broker API (derived from `host` if omitted)                                                   |
+| `label`         | Yes      | Text shown on the play action (e.g. `PCSX2`)                                                              |
+| `broker_secret` | No       | Per-container override for the `STREAMING_BROKER_SECRET` env var, for brokers that use a different secret |
+
+```yaml
+streaming:
+    enabled: true
+    containers:
+        - platform: ps2
+          host: https://192.168.1.51:3001 # browser-facing, must be HTTPS
+          broker_host: http://192.168.1.51:8000 # server-to-container, HTTP ok
+          label: PCSX2
+        - platform: ngc # ngc/wii/wiiu can share one Dolphin container
+          host: https://192.168.1.51:3002
+          broker_host: http://192.168.1.51:8001
+          label: Dolphin
+```
+
+---
+
 ## Related
 
 - [Folder Structure](../getting-started/folder-structure.md): how the filesystem shape interacts with `config.yml`
 - [Metadata Providers](../getting-started/metadata-providers.md): per-provider detail for the `scan.priority.*` slugs
+- [Emulator Streaming](../using/emulator-streaming.md): the full setup guide for the `streaming` block
