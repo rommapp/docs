@@ -10,6 +10,7 @@ description: Browse, play, collect, patch, and share from the UI
 - **[EmulatorJS](in-browser-play/emulatorjs.md)**
     - **[MS-DOS](in-browser-play/ms-dos.md)**
 - **[Ruffle](in-browser-play/ruffle.md)**
+- **[Emulator Streaming](emulator-streaming.md)**
 - **[Downloads](downloads.md)**
 - **[Uploads](uploads.md)**
 

@@ -51,6 +51,7 @@ search:
         - [EmulatorJS](using/in-browser-play/emulatorjs.md)
         - [MS-DOS](using/in-browser-play/ms-dos.md)
         - [Ruffle](using/in-browser-play/ruffle.md)
+    - [Emulator Streaming](using/emulator-streaming.md)
     - [Saves & States](using/saves-and-states.md)
     - [RetroAchievements](using/retroachievements.md)
     - [ROM Patcher](using/rom-patcher.md)
