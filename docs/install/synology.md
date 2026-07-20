@@ -72,10 +72,9 @@ The Synology-flavoured compose file: MariaDB on port `3309` externally (to avoid
 
 <!-- prettier-ignore -->
 ???+ example "docker-compose.yml"
-
-<!-- `yaml
-    --8<-- "synology.docker-compose.yml"
-   ` -->
+    `yaml
+        --8<-- "synology.docker-compose.yml"
+    `
 
 Replace placeholder passwords, API keys, and `ROMM_AUTH_SECRET_KEY` with your own before starting.
 
