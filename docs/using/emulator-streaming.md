@@ -5,7 +5,7 @@ description: Launch games into a native emulator running in a container
 
 # Emulator Streaming
 
-Emulator streaming launches a game into a **native** emulator running in a separate container and streams the picture, sound, and input back to your browser. Unlike [in-browser play](in-browser-play/emulatorjs.md), the emulation runs server-side on real emulator binaries (PCSX2, Dolphin, xemu, Eden), so the heavy lifting happens on the host rather than in the client. The server claims a session, tells the emulator which ROM to launch, and shows the live stream inside a player view, with save-state and volume controls in the toolbar.
+Emulator streaming launches a game into a **native** emulator running in a separate container and streams the picture, sound, and input back to your browser. Unlike [in-browser play](in-browser-play/emulatorjs.md), the emulation runs server-side on real emulator binaries (PCSX2, Dolphin, xemu), so the heavy lifting happens on the host rather than in the client. The server claims a session, tells the emulator which ROM to launch, and shows the live stream inside a player view, with save-state and volume controls in the toolbar.
 
 Each emulator runs in its own [linuxserver](https://docs.linuxserver.io) container with a [Selkies](https://github.com/selkies-project/selkies) WebRTC stream and a small HTTP broker sidecar that RomM talks to. Nothing appears in the UI until you configure at least one container.
 
