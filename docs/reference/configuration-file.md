@@ -224,6 +224,21 @@ scan:
             - "jp"
 ```
 
+### `scan.priority.region_mode`
+
+Controls how ScreenScraper applies `scan.priority.region` when picking regional media. With the default `prefer_rom_tags`, the region tags in the ROM's own filename win and `scan.priority.region` only reorders those tags. With `prefer_config`, the configured regions come first, so you can pull the FR box for an `(Europe)` dump even when `fr` is not in the filename, then fall back to the ROM's tags when a preferred region has no media.
+
+**Default:** `prefer_rom_tags`
+
+```yaml
+scan:
+    priority:
+        region:
+            - "fr"
+            - "eu"
+        region_mode: "prefer_config"
+```
+
 ### `scan.priority.language`
 
 Preferred localisation language.
