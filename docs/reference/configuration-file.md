@@ -28,7 +28,7 @@ Skip entire platform folders. Values are platform slugs, not folder names (see [
 
 ```yaml
 exclude:
-    platforms: ["ps", "ngc", "gba"]
+  platforms: ["ps", "ngc", "gba"]
 ```
 
 ### `exclude.roms.single_file.extensions`
@@ -39,9 +39,9 @@ Drop files with these extensions before matching, only for files that aren't ins
 
 ```yaml
 exclude:
-    roms:
-        single_file:
-            extensions: ["xml", "txt"]
+  roms:
+    single_file:
+      extensions: ["xml", "txt"]
 ```
 
 ### `exclude.roms.single_file.names`
@@ -52,9 +52,9 @@ Unix-glob file-name patterns to skip.
 
 ```yaml
 exclude:
-    roms:
-        single_file:
-            names: ["info.txt", "._*", "*.nfo"]
+  roms:
+    single_file:
+      names: ["info.txt", "._*", "*.nfo"]
 ```
 
 ### `exclude.roms.multi_file.names`
@@ -65,9 +65,9 @@ Skip whole folders. Used for multi-disc/multi-file games you want invisible.
 
 ```yaml
 exclude:
-    roms:
-        multi_file:
-            names: ["final fantasy VII", "DLC"]
+  roms:
+    multi_file:
+      names: ["final fantasy VII", "DLC"]
 ```
 
 ### `exclude.roms.multi_file.parts.names`
@@ -78,10 +78,10 @@ Files **inside** a multi-file ROM folder to ignore (e.g. `.nfo`, `._*` macOS att
 
 ```yaml
 exclude:
-    roms:
-        multi_file:
-            parts:
-                names: ["data.xml", "._*"]
+  roms:
+    multi_file:
+      parts:
+        names: ["data.xml", "._*"]
 ```
 
 ### `exclude.roms.multi_file.parts.extensions`
@@ -92,10 +92,10 @@ Extensions to ignore inside a multi-file ROM folder.
 
 ```yaml
 exclude:
-    roms:
-        multi_file:
-            parts:
-                extensions: ["xml", "txt"]
+  roms:
+    multi_file:
+      parts:
+        extensions: ["xml", "txt"]
 ```
 
 ---
@@ -110,10 +110,10 @@ Map your folder names to [supported platform](../platforms/supported-platforms.m
 
 ```yaml
 system:
-    platforms:
-        gc: "ngc" # treat "gc/" folder as GameCube
-        psx: "ps" # treat "psx/" folder as PlayStation
-        super_nintendo: "snes"
+  platforms:
+    gc: "ngc" # treat "gc/" folder as GameCube
+    psx: "ps" # treat "psx/" folder as PlayStation
+    super_nintendo: "snes"
 ```
 
 ### `system.versions`
@@ -122,8 +122,8 @@ Associate a platform with its "main" IGDB version, for platforms that have multi
 
 ```yaml
 system:
-    versions:
-        naomi: "arcade"
+  versions:
+    naomi: "arcade"
 ```
 
 ---
@@ -136,7 +136,7 @@ Override the default ROMs folder name (`roms`).
 
 ```yaml
 filesystem:
-    roms_folder: "my_roms"
+  roms_folder: "my_roms"
 ```
 
 ### `filesystem.firmware_folder`
@@ -145,7 +145,7 @@ Override the default BIOS/firmware folder name (`bios`).
 
 ```yaml
 filesystem:
-    firmware_folder: "firmware"
+  firmware_folder: "firmware"
 ```
 
 ### `filesystem.skip_hash_calculation`
@@ -156,7 +156,7 @@ Skip hashing on low-power devices. You lose hash-based matching (RetroAchievemen
 
 ```yaml
 filesystem:
-    skip_hash_calculation: true
+  skip_hash_calculation: true
 ```
 
 ---
@@ -171,11 +171,11 @@ Order metadata providers are queried during a scan. First match wins for descrip
 
 ```yaml
 scan:
-    priority:
-        metadata:
-            - "igdb"
-            - "ss"
-            - "moby"
+  priority:
+    metadata:
+      - "igdb"
+      - "ss"
+      - "moby"
 ```
 
 Values are the provider slugs. Full list:
@@ -202,11 +202,11 @@ Same idea, for cover art and screenshots. Defaults to the same order as `scan.pr
 
 ```yaml
 scan:
-    priority:
-        artwork:
-            - "ss" # prefer ScreenScraper artwork
-            - "igdb"
-            - "moby"
+  priority:
+    artwork:
+      - "ss" # prefer ScreenScraper artwork
+      - "igdb"
+      - "moby"
 ```
 
 ### `scan.priority.region`
@@ -217,11 +217,11 @@ Preferred region for titles, cover art, and regional variants. ScreenScraper use
 
 ```yaml
 scan:
-    priority:
-        region:
-            - "us"
-            - "eu"
-            - "jp"
+  priority:
+    region:
+      - "us"
+      - "eu"
+      - "jp"
 ```
 
 ### `scan.priority.region_mode`
@@ -232,11 +232,11 @@ Controls how ScreenScraper applies `scan.priority.region` when picking regional 
 
 ```yaml
 scan:
-    priority:
-        region:
-            - "fr"
-            - "eu"
-        region_mode: "prefer_config"
+  priority:
+    region:
+      - "fr"
+      - "eu"
+    region_mode: "prefer_config"
 ```
 
 ### `scan.priority.language`
@@ -247,11 +247,11 @@ Preferred localisation language.
 
 ```yaml
 scan:
-    priority:
-        language:
-            - "en"
-            - "es"
-            - "fr"
+  priority:
+    language:
+      - "en"
+      - "es"
+      - "fr"
 ```
 
 ### `scan.media`
@@ -283,11 +283,11 @@ Which media types to fetch during a scan, primarily for ScreenScraper and the ga
 
 ```yaml
 scan:
-    media:
-        - box2d
-        - screenshot
-        - manual
-        - bezel
+  media:
+    - box2d
+    - screenshot
+    - manual
+    - bezel
 ```
 
 ### `scan.gamelist.export`
@@ -296,11 +296,11 @@ Generate a `gamelist.xml` in each platform folder, compatible with ES-DE/Batocer
 
 ```yaml
 scan:
-    gamelist:
-        export: true
-        media:
-            thumbnail: box2d
-            image: screenshot
+  gamelist:
+    export: true
+    media:
+      thumbnail: box2d
+      image: screenshot
 ```
 
 ### `scan.pegasus.export`
@@ -309,8 +309,8 @@ Export metadata in Pegasus-frontend format (`metadata.pegasus.txt`).
 
 ```yaml
 scan:
-    pegasus:
-        export: true
+  pegasus:
+    export: true
 ```
 
 ---
@@ -327,7 +327,7 @@ Log available EmulatorJS options to the browser console for debugging.
 
 ```yaml
 emulatorjs:
-    debug: true
+  debug: true
 ```
 
 ### `emulatorjs.cache_limit`
@@ -336,7 +336,7 @@ Per-ROM cache limit in bytes. `null` = unlimited.
 
 ```yaml
 emulatorjs:
-    cache_limit: 52428800 # 50 MB
+  cache_limit: 52428800 # 50 MB
 ```
 
 ### `emulatorjs.disable_batch_bootup`
@@ -345,7 +345,7 @@ DOS-specific knob that skips the `autorun.bat` step. Toggle if DOS games won't b
 
 ```yaml
 emulatorjs:
-    disable_batch_bootup: true
+  disable_batch_bootup: true
 ```
 
 ### `emulatorjs.disable_auto_unload`
@@ -354,7 +354,7 @@ By default, EmulatorJS stops the emulator when you leave its page. Disable to ke
 
 ```yaml
 emulatorjs:
-    disable_auto_unload: true
+  disable_auto_unload: true
 ```
 
 ### `emulatorjs.netplay`
@@ -363,18 +363,18 @@ Toggle Netplay and configure STUN/TURN servers. Google's public STUN servers are
 
 ```yaml
 emulatorjs:
-    netplay:
-        enabled: true
-        ice_servers:
-            - urls: "stun:stun.l.google.com:19302"
-            - urls: "stun:stun1.l.google.com:19302"
-            - urls: "stun:stun2.l.google.com:19302"
-            - urls: "turn:openrelay.metered.ca:80"
-              username: "openrelayproject"
-              credential: "openrelayproject"
-            - urls: "turn:openrelay.metered.ca:443"
-              username: "openrelayproject"
-              credential: "openrelayproject"
+  netplay:
+    enabled: true
+    ice_servers:
+      - urls: "stun:stun.l.google.com:19302"
+      - urls: "stun:stun1.l.google.com:19302"
+      - urls: "stun:stun2.l.google.com:19302"
+      - urls: "turn:openrelay.metered.ca:80"
+        username: "openrelayproject"
+        credential: "openrelayproject"
+      - urls: "turn:openrelay.metered.ca:443"
+        username: "openrelayproject"
+        credential: "openrelayproject"
 ```
 
 <!-- prettier-ignore -->
@@ -387,13 +387,13 @@ Per-core emulator options. Use `default` to apply to every core.
 
 ```yaml
 emulatorjs:
-    settings:
-        parallel_n64:
-            vsync: disable
-        snes9x:
-            snes9x_region: ntsc
-        default:
-            fps: show
+  settings:
+    parallel_n64:
+      vsync: disable
+    snes9x:
+      snes9x_region: ntsc
+    default:
+      fps: show
 ```
 
 Core names must match the EmulatorJS core identifier exactly. To discover core names and per-core option keys, turn on `debug: true`, load a game in that core, open the browser console, filter for "option", and copy the keys you care about. Upstream reference is available in [EmulatorJS core options](https://emulatorjs.org/docs4devs/settings/).
@@ -404,16 +404,16 @@ Map keyboard and controller buttons per core, per player.
 
 ```yaml
 emulatorjs:
-    controls:
-        snes9x:
-            0: # player 1
-                0: # button slot
-                    value: x # keyboard key
-                    value2: BUTTON_2 # controller button
-            1: # player 2
-                0:
-                    value: /
-                    value2: BUTTON_2
+  controls:
+    snes9x:
+      0: # player 1
+        0: # button slot
+          value: x # keyboard key
+          value2: BUTTON_2 # controller button
+      1: # player 2
+        0:
+          value: /
+          value2: BUTTON_2
 ```
 
 See the [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/control-mapping/) for the button-slot reference. Users can override these defaults in-game via Menu → **Controls**, the config.yml setting only sets the starting point.
@@ -422,19 +422,19 @@ See the [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/contr
 
 ```yaml
 emulatorjs:
-    settings:
-        snes9x:
-            snes9x_region: ntsc
-    controls:
-        snes9x:
-            0: # P1 on keyboard (WASD cluster)
-                0: { value: ",", value2: "BUTTON_2" } # B
-                1: { value: ".", value2: "BUTTON_3" } # A
-                2: { value: "l", value2: "BUTTON_1" } # Y
-                3: { value: "p", value2: "BUTTON_4" } # X
-            1: # P2 on arrows + numpad
-                0: { value: "/", value2: "BUTTON_2" }
-                1: { value: "'", value2: "BUTTON_3" }
+  settings:
+    snes9x:
+      snes9x_region: ntsc
+  controls:
+    snes9x:
+      0: # P1 on keyboard (WASD cluster)
+        0: { value: ",", value2: "BUTTON_2" } # B
+        1: { value: ".", value2: "BUTTON_3" } # A
+        2: { value: "l", value2: "BUTTON_1" } # Y
+        3: { value: "p", value2: "BUTTON_4" } # X
+      1: # P2 on arrows + numpad
+        0: { value: "/", value2: "BUTTON_2" }
+        1: { value: "'", value2: "BUTTON_3" }
 ```
 
 ### Operator-level vs per-user
@@ -459,33 +459,39 @@ Configure [emulator streaming](../using/emulator-streaming.md), which lets you l
 
 ```yaml
 streaming:
-    enabled: true
+  enabled: true
 ```
 
 ### `streaming.containers`
 
 One entry per emulator container, where each entry maps a [platform slug](../platforms/supported-platforms.md) to the container that streams it.
 
-| Key             | Required | Purpose                                                                                                   |
-| --------------- | -------- | --------------------------------------------------------------------------------------------------------- |
-| `platform`      | Yes      | Platform slug this container serves (e.g. `ps2`, `ngc`, `xbox`, `switch`)                                 |
-| `host`          | Yes      | Browser-facing Selkies web UI (must be reachable from clients and served over **HTTPS**)                  |
-| `broker_host`   | No       | Server-side broker API (derived from `host` if omitted)                                                   |
-| `label`         | Yes      | Text shown on the play action (e.g. `PCSX2`)                                                              |
-| `broker_secret` | No       | Per-container override for the `STREAMING_BROKER_SECRET` env var, for brokers that use a different secret |
+| Key                | Required | Purpose                                                                                                     |
+| ------------------ | -------- | ----------------------------------------------------------------------------------------------------------- |
+| `platform`         | Yes      | Platform slug this container serves (e.g. `ps2`, `ngc`, `xbox`, `switch`)                                   |
+| `host`             | Yes      | Browser-facing Selkies web UI (must be reachable from clients and served over **HTTPS**)                    |
+| `broker_host`      | No       | Server-side broker API (derived from `host` if omitted)                                                     |
+| `label`            | Yes      | Text shown on the play action (e.g. `PCSX2`)                                                                |
+| `broker_secret`    | No       | Per-container override for the `STREAMING_BROKER_SECRET` env var, for brokers that use a different secret   |
+| `memory_card_sync` | No       | Sync the whole memory card to the RomM library on `ps2` and `ngc` (GameCube); ignored on cardless platforms |
+| `library_path`     | No       | In-container path to the RomM library if it is mounted somewhere other than the default `/romm/library`     |
+| `emulator`         | No       | Name used to group this container's states and memory cards; defaults to `label`, then the platform slug    |
+
+See [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-cards) for how `memory_card_sync` behaves.
 
 ```yaml
 streaming:
-    enabled: true
-    containers:
-        - platform: ps2
-          host: https://192.168.1.51:3001 # browser-facing, must be HTTPS
-          broker_host: http://192.168.1.51:8000 # server-to-container, HTTP ok
-          label: PCSX2
-        - platform: ngc # ngc/wii/wiiu can share one Dolphin container
-          host: https://192.168.1.51:3002
-          broker_host: http://192.168.1.51:8001
-          label: Dolphin
+  enabled: true
+  containers:
+    - platform: ps2
+      host: https://192.168.1.51:3001 # browser-facing, must be HTTPS
+      broker_host: http://192.168.1.51:8000 # server-to-container, HTTP ok
+      label: PCSX2
+      memory_card_sync: true # keep the PS2 memory card in your RomM library
+    - platform: ngc # ngc/wii/wiiu can share one Dolphin container
+      host: https://192.168.1.51:3002
+      broker_host: http://192.168.1.51:8001
+      label: Dolphin
 ```
 
 ---
