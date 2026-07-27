@@ -209,6 +209,23 @@ scan:
             - "moby"
 ```
 
+### `scan.priority.cover`, `scan.priority.screenshot`, `scan.priority.manual`
+
+Optional per-field overrides that let you prioritise sources differently for each artwork type. Any field you omit falls back to the shared [`scan.priority.artwork`](#scanpriorityartwork) order, so only set the ones you want to diverge.
+
+```yaml
+scan:
+    priority:
+        cover: # Cover art only
+            - "igdb"
+            - "ss"
+        screenshot: # Screenshots only
+            - "ss"
+            - "igdb"
+        manual: # Game manuals only
+            - "launchbox"
+```
+
 ### `scan.priority.region`
 
 Preferred region for titles, cover art, and regional variants. ScreenScraper uses this directly, and other providers respect it where possible.

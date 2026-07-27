@@ -105,6 +105,8 @@ To enable Playmatch, set `PLAYMATCH_API_ENABLED=true` in your environment variab
 
 When Playmatch is enabled, manually matching a ROM through the edit dialog also forwards the ROM's hashes, filename, filesize and resolved provider IDs as a suggestion to Playmatch. Suggestions are reviewed manually before being added to the Playmatch database, which helps improve match quality for the wider community over time.
 
+By default RomM talks to the community-hosted Playmatch instance. To point at your own [self-hosted Playmatch](https://github.com/RetroRealm/playmatch), set `PLAYMATCH_API_URL` to its API base (e.g. `https://playmatch.example.com/api/v2`).
+
 ### SteamGridDB
 
 SteamGridDB provides custom cover art for games or collections. It's not accessed through the scanner but from the "search cover" button when manually editing a game.

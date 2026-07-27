@@ -40,13 +40,13 @@ def main() -> int:
         return 1
 
     backend = Path(romm_src).expanduser() / "backend"
-    script = backend / "utils" / "generate_supported_platforms.py"
+    script = backend / "tools" / "generate_supported_platforms.py"
     if not script.exists():
         print(f"error: {script} not found (ROMM_SRC={romm_src})", file=sys.stderr)
         return 1
 
     result = subprocess.run(
-        ["uv", "run", "python", "-m", "utils.generate_supported_platforms"],
+        ["uv", "run", "python", "-m", "tools.generate_supported_platforms"],
         cwd=backend,
         capture_output=True,
         text=True,

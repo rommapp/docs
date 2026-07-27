@@ -187,3 +187,16 @@ environment:
 ```
 
 If you're also using OIDC, update `OIDC_REDIRECT_URI` to match (see [OIDC Setup](../administration/oidc/index.md)).
+
+## Harden cookies and CORS behind HTTPS
+
+Two optional env vars tighten browser security once you're on HTTPS:
+
+```yaml
+environment:
+    - ROMM_SESSION_SECURE_COOKIE=true
+    - ROMM_CORS_ALLOWED_ORIGINS=https://romm.mysite.com
+```
+
+- `ROMM_SESSION_SECURE_COOKIE` marks the session and CSRF cookies `Secure` so browsers only send them over HTTPS. Leave it `false` if you still reach the instance over plain HTTP, or logins will silently fail.
+- `ROMM_CORS_ALLOWED_ORIGINS` is a comma-separated allowlist of origins permitted to call the API from a browser. An empty value (the default) allows any origin, so set it to your public URL (plus any companion-app origins) when you want to lock cross-origin requests down.

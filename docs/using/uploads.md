@@ -41,3 +41,4 @@ Multi-file uploads (e.g. multi-disc games) aren't supported via the UI. Instead,
 
 - **`413 Request Entity Too Large`**: your reverse proxy or ingress is capping body size (see [Reverse Proxy](../install/reverse-proxy.md) for the `client_max_body_size 0`/`proxy-body-size: "0"` fix).
 - **Upload progresses then fails at 99%**: the finalise step timed out. Usually reverse-proxy read timeout is too tight, so raise it.
+- **Save, state, or screenshot upload rejected as too large**: these asset uploads are capped by `MAX_ASSET_UPLOAD_SIZE_BYTES` (default 512 MiB). Raise it, or set it to `0` to disable the limit (see [Environment Variables](../reference/environment-variables.md)). This is separate from ROM uploads, which are chunked and not subject to this cap.

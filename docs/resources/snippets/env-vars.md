@@ -36,40 +36,42 @@
 
 ### Authentication
 
-| Variable                             | Default   | Required | Description                                                |
-| ------------------------------------ | --------- | :------: | ---------------------------------------------------------- |
-| `ROMM_AUTH_SECRET_KEY`               |           |   `✓`    | App secret, generate with `openssl rand -hex 32`           |
-| `OAUTH_ACCESS_TOKEN_EXPIRE_SECONDS`  | `1800`    |          | Access token lifetime in seconds                           |
-| `OAUTH_REFRESH_TOKEN_EXPIRE_SECONDS` | `604800`  |          | Refresh token lifetime in seconds                          |
-| `SESSION_MAX_AGE_SECONDS`            | `1209600` |          | Maximum age of a session in seconds                        |
-| `INVITE_TOKEN_EXPIRY_SECONDS`        | `600`     |          | Invite token lifetime in seconds                           |
-| `DISABLE_DOWNLOAD_ENDPOINT_AUTH`     | `false`   |          | Disable auth on the download endpoint for WebRcade/Tinfoil |
-| `DISABLE_CSRF_PROTECTION`            | `false`   |          | Disable CSRF protection (not recommended)                  |
-| `DISABLE_USERPASS_LOGIN`             | `false`   |          | Disable username/password login when using OIDC            |
-| `DISABLE_SETUP_WIZARD`               | `false`   |          | Skip the first-boot setup wizard                           |
-| `DISABLE_LOGS_VIEWER`                | `false`   |          | Disable the backend logs viewer                            |
+| Variable                             | Default   | Required | Description                                                          |
+| ------------------------------------ | --------- | :------: | -------------------------------------------------------------------- |
+| `ROMM_AUTH_SECRET_KEY`               |           |   `✓`    | App secret, generate with `openssl rand -hex 32`                     |
+| `OAUTH_ACCESS_TOKEN_EXPIRE_SECONDS`  | `1800`    |          | Access token lifetime in seconds                                     |
+| `OAUTH_REFRESH_TOKEN_EXPIRE_SECONDS` | `604800`  |          | Refresh token lifetime in seconds                                    |
+| `SESSION_MAX_AGE_SECONDS`            | `1209600` |          | Maximum age of a session in seconds                                  |
+| `INVITE_TOKEN_EXPIRY_SECONDS`        | `600`     |          | Invite token lifetime in seconds                                     |
+| `DISABLE_DOWNLOAD_ENDPOINT_AUTH`     | `false`   |          | Disable auth on the download endpoint for WebRcade/Tinfoil           |
+| `DISABLE_CSRF_PROTECTION`            | `false`   |          | Disable CSRF protection (not recommended)                            |
+| `DISABLE_USERPASS_LOGIN`             | `false`   |          | Disable username/password login when using OIDC                      |
+| `DISABLE_SETUP_WIZARD`               | `false`   |          | Skip the first-boot setup wizard                                     |
+| `DISABLE_LOGS_VIEWER`                | `false`   |          | Disable the backend logs viewer                                      |
+| `ROMM_CORS_ALLOWED_ORIGINS`          |           |          | Comma-separated list of allowed CORS origins (empty allows all)      |
+| `ROMM_SESSION_SECURE_COOKIE`         | `false`   |          | Mark session and CSRF cookies Secure (enable when served over HTTPS) |
 
 ### OpenID Connect
 
-| Variable                      | Default              | Required | Description                                                                                 |
-| ----------------------------- | -------------------- | :------: | ------------------------------------------------------------------------------------------- |
-| `OIDC_ENABLED`                | `false`              |          | Enable OpenID Connect authentication                                                        |
-| `OIDC_AUTOLOGIN`              | `false`              |          | Skip the OIDC button on the login page and auto-redirect                                    |
-| `OIDC_ALLOW_REGISTRATION`     | `true`               |          | Allow new accounts to be created automatically on first OIDC login                          |
-| `OIDC_PROVIDER`               |                      |          | Name of the OIDC provider in use                                                            |
-| `OIDC_CLIENT_ID`              |                      |          | Client ID for OIDC authentication                                                           |
-| `OIDC_CLIENT_SECRET`          |                      |          | Client secret for OIDC authentication                                                       |
-| `OIDC_REDIRECT_URI`           |                      |          | Absolute redirect URI for OIDC authentication                                               |
-| `OIDC_SERVER_APPLICATION_URL` |                      |          | Absolute URL of the OIDC server application                                                 |
-| `OIDC_SERVER_METADATA_URL`    |                      |          | URL to the OIDC provider metadata endpoint                                                  |
-| `OIDC_CLAIM_ROLES`            |                      |          | OIDC claim containing user roles                                                            |
-| `OIDC_ROLE_VIEWER`            |                      |          | Group value granting the User role (grants non-admins login when `OIDC_CLAIM_ROLES` is set) |
-| `OIDC_ROLE_EDITOR`            |                      |          | Group value granting the User role (same effect as viewer)                                  |
-| `OIDC_ROLE_ADMIN`             |                      |          | Role value mapping to admin permissions                                                     |
-| `OIDC_TLS_CACERTFILE`         |                      |          | Path to file containing trusted CA certificates                                             |
-| `OIDC_USERNAME_ATTRIBUTE`     | `preferred_username` |          | Attribute on OIDC user info used as the username                                            |
-| `OIDC_RP_INITIATED_LOGOUT`    | `false`              |          | Enable RP-initiated logout flow                                                             |
-| `OIDC_END_SESSION_ENDPOINT`   |                      |          | OIDC end-session endpoint override URL                                                      |
+| Variable                      | Default              | Required | Description                                                        |
+| ----------------------------- | -------------------- | :------: | ------------------------------------------------------------------ |
+| `OIDC_ENABLED`                | `false`              |          | Enable OpenID Connect authentication                               |
+| `OIDC_AUTOLOGIN`              | `false`              |          | Skip the OIDC button on the login page and auto-redirect           |
+| `OIDC_ALLOW_REGISTRATION`     | `true`               |          | Allow new accounts to be created automatically on first OIDC login |
+| `OIDC_PROVIDER`               |                      |          | Name of the OIDC provider in use                                   |
+| `OIDC_CLIENT_ID`              |                      |          | Client ID for OIDC authentication                                  |
+| `OIDC_CLIENT_SECRET`          |                      |          | Client secret for OIDC authentication                              |
+| `OIDC_REDIRECT_URI`           |                      |          | Absolute redirect URI for OIDC authentication                      |
+| `OIDC_SERVER_APPLICATION_URL` |                      |          | Absolute URL of the OIDC server application                        |
+| `OIDC_SERVER_METADATA_URL`    |                      |          | URL to the OIDC provider metadata endpoint                         |
+| `OIDC_CLAIM_ROLES`            |                      |          | OIDC claim containing user roles                                   |
+| `OIDC_ROLE_VIEWER`            |                      |          | Role value mapping to viewer permissions                           |
+| `OIDC_ROLE_EDITOR`            |                      |          | Role value mapping to editor permissions                           |
+| `OIDC_ROLE_ADMIN`             |                      |          | Role value mapping to admin permissions                            |
+| `OIDC_TLS_CACERTFILE`         |                      |          | Path to file containing trusted CA certificates                    |
+| `OIDC_USERNAME_ATTRIBUTE`     | `preferred_username` |          | Attribute on OIDC user info used as the username                   |
+| `OIDC_RP_INITIATED_LOGOUT`    | `false`              |          | Enable RP-initiated logout flow                                    |
+| `OIDC_END_SESSION_ENDPOINT`   |                      |          | OIDC end-session endpoint override URL                             |
 
 ### Metadata Providers
 
@@ -137,6 +139,13 @@
 | `YOUTUBE_BASE_URL`        | `https://www.youtube.com` |          | Base URL for alternate YouTube frontends (Piped, Invidious, etc.) |
 | `TINFOIL_WELCOME_MESSAGE` | `RomM Switch Library`     |          | Welcome message shown in Tinfoil Switch clients                   |
 
+### Assets
+
+| Variable                      | Default     | Required | Description                                                                        |
+| ----------------------------- | ----------- | :------: | ---------------------------------------------------------------------------------- |
+| `MAX_ASSET_UPLOAD_SIZE_BYTES` | `536870912` |          | Max size of a save/state/screenshot upload request in bytes (0 disables the limit) |
+| `MAX_AUTOCLEANUP_LIMIT`       | `100`       |          | Max number of saves a client can keep per slot when autocleanup is on (minimum 1)  |
+
 ### Logging
 
 | Variable      | Default | Required | Description                |
@@ -186,3 +195,10 @@
 | `POSTGRES_PASSWORD`            | `authentik` |          | Postgres password for the Authentik dev stack      |
 | `AUTHENTIK_SECRET_KEY`         |             |          | Authentik secret key                               |
 | `AUTHENTIK_BOOTSTRAP_PASSWORD` |             |          | Initial Authentik admin bootstrap password         |
+
+### Emulator Streaming
+
+| Variable                  | Default | Required | Description                                                                       |
+| ------------------------- | ------- | :------: | --------------------------------------------------------------------------------- |
+| `STREAMING_BROKER_SECRET` |         |          | -                                                                                 |
+| `STREAMING_SAVE_TIMEOUT`  | `45`    |          | Seconds to wait for a broker save-and-exit (raise if a broker has SAVE_WAIT > 45) |
