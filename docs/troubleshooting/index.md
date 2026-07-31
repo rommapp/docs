@@ -9,6 +9,7 @@ description: Diagnose common issues by symptom
 
 - Container crashes immediately → check `docker logs romm`. If it's `invalid host in "tcp://..."` you're on Kubernetes, see [Kubernetes Troubleshooting](kubernetes.md).
 - Database connection errors → verify `DB_HOST`/`DB_PASSWD` match your DB container, and that the DB has finished initialising (first run takes longer than you'd think).
+- `Failed to run database migrations` with `You do not have the SUPER privilege and binary logging is enabled` → your MariaDB/MySQL server needs `log_bin_trust_function_creators = 1`, or the RomM database user needs the privilege granted (see [Databases → Binary logging and trigger privileges](../install/databases.md#binary-logging-and-trigger-privileges)).
 - "Page not found" on first load → wait, because initial migrations and resource seeding take a minute.
 
 ## No Setup Wizard
