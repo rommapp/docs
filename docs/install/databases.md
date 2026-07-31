@@ -7,11 +7,11 @@ description: Supported database drivers
 
 RomM uses SQLAlchemy + Alembic for persistence. Three drivers are supported, so pick based on what you already run.
 
-| Driver                             | `ROMM_DB_DRIVER` | Image         | Default port | Notes                                          |
-| ---------------------------------- | ---------------- | ------------- | ------------ | ---------------------------------------------- |
-| **MariaDB** (default, recommended) | `mariadb`        | `mariadb:11`  | `3306`       | What the reference compose uses. Well-tested.  |
+| Driver                             | `ROMM_DB_DRIVER` | Image         | Default port | Notes                                                                                                            |
+| ---------------------------------- | ---------------- | ------------- | ------------ | ---------------------------------------------------------------------------------------------------------------- |
+| **MariaDB** (default, recommended) | `mariadb`        | `mariadb:11`  | `3306`       | What the reference compose uses. Well-tested.                                                                    |
 | **MySQL**                          | `mysql`          | `mysql:8`     | `3306`       | Largely interchangeable with MariaDB for RomM, but see [binary logging](#binary-logging-and-trigger-privileges). |
-| **PostgreSQL**                     | `postgresql`     | `postgres:16` | `5432`       | Use if you already run Postgres.               |
+| **PostgreSQL**                     | `postgresql`     | `postgres:16` | `5432`       | Use if you already run Postgres.                                                                                 |
 
 ## MariaDB (default)
 
@@ -70,7 +70,7 @@ services:
 
 RomM's migrations create triggers on the `roms` table. MariaDB and MySQL refuse trigger DDL when binary logging is enabled and the connecting user lacks `SUPER`, so the container aborts during startup with:
 
-```
+```text
 sqlalchemy.exc.OperationalError: (mariadb.OperationalError) You do not have the SUPER
 privilege and binary logging is enabled (you *might* want to use the less safe
 log_bin_trust_function_creators variable)
