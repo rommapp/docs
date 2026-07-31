@@ -34,7 +34,7 @@ docker network ls  # confirm `romm` is listed
 
 1. Install MariaDB
 
-From **Apps** → search `mariadb`. Only the [official `mariadb`](https://hub.docker.com/_/mariadb) and [linuxserver/docker-mariadb](https://github.com/linuxserver/docker-mariadb/pkgs/container/mariadb) templates are supported. **Prefer the official one.**
+From **Apps** → search `mariadb`. Only the [official `mariadb`](https://hub.docker.com/_/mariadb) and [linuxserver/docker-mariadb](https://github.com/linuxserver/docker-mariadb/pkgs/container/mariadb) templates are supported. **Prefer the official one.** If you point RomM at an existing MariaDB or MySQL server instead, check the [binary logging prerequisite](databases.md#binary-logging-and-trigger-privileges) before starting the app.
 
 ![community apps search results for MariaDB](https://github.com/user-attachments/assets/76f4b6ef-5b63-454f-9357-d2920b9afd0e)
 

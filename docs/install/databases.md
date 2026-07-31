@@ -10,7 +10,7 @@ RomM uses SQLAlchemy + Alembic for persistence. Three drivers are supported, so 
 | Driver                             | `ROMM_DB_DRIVER` | Image         | Default port | Notes                                          |
 | ---------------------------------- | ---------------- | ------------- | ------------ | ---------------------------------------------- |
 | **MariaDB** (default, recommended) | `mariadb`        | `mariadb:11`  | `3306`       | What the reference compose uses. Well-tested.  |
-| **MySQL**                          | `mysql`          | `mysql:8`     | `3306`       | Largely interchangeable with MariaDB for RomM. |
+| **MySQL**                          | `mysql`          | `mysql:8`     | `3306`       | Largely interchangeable with MariaDB for RomM, but see [binary logging](#binary-logging-and-trigger-privileges). |
 | **PostgreSQL**                     | `postgresql`     | `postgres:16` | `5432`       | Use if you already run Postgres.               |
 
 ## MariaDB (default)
@@ -65,6 +65,41 @@ services:
             timeout: 5s
             retries: 5
 ```
+
+## Binary logging and trigger privileges
+
+RomM's migrations create triggers on the `roms` table. MariaDB and MySQL refuse trigger DDL when binary logging is enabled and the connecting user lacks `SUPER`, so the container aborts during startup with:
+
+```
+sqlalchemy.exc.OperationalError: (mariadb.OperationalError) You do not have the SUPER
+privilege and binary logging is enabled (you *might* want to use the less safe
+log_bin_trust_function_creators variable)
+ERROR:    [RomM][init] Failed to run database migrations
+```
+
+This mainly affects external or managed database servers, because binary logging is on by default on MySQL 8 and is commonly enabled on hardened or replicated MariaDB instances. The `mariadb:11` container from the reference Compose is not affected out of the box.
+
+Both fixes below have to be applied by an admin or root database user rather than the RomM user. The quickest one sets the global flag, though it is lost when the database restarts:
+
+```sql
+SET GLOBAL log_bin_trust_function_creators = 1;
+```
+
+To make it survive a restart, add it under `[mysqld]` in the server's option file and restart the database (see [Configuring MariaDB with option files](https://mariadb.com/docs/server/server-management/install-and-upgrade-mariadb/configuring-mariadb/configuring-mariadb-with-option-files)). That file is usually `my.cnf`, or `custom.cnf` under `/config` on the linuxserver image:
+
+```cnf
+[mysqld]
+log_bin_trust_function_creators = 1
+```
+
+Alternatively, grant the privilege to the RomM user itself:
+
+```sql
+GRANT BINLOG ADMIN ON *.* TO 'romm-user'@'%';  -- MariaDB 10.5+
+GRANT SUPER ON *.* TO 'romm-user'@'%';         -- older MariaDB, or MySQL
+```
+
+Restart RomM once the change is in place. A migration that failed this way is safe to re-run, so it picks up from wherever it stopped and completes.
 
 ## PostgreSQL
 

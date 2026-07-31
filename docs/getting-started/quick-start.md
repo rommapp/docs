@@ -57,7 +57,7 @@ From the directory containing your `docker-compose.yml`:
 docker compose up -d
 ```
 
-On the first run Docker will pull `rommapp/romm:latest` and `mariadb:latest`, bring up the database, wait for the healthcheck, then bring up the app. Verify everything is running:
+On the first run Docker will pull `rommapp/romm:latest` and `mariadb:latest`, bring up the database, wait for the healthcheck, then bring up the app. If you dropped the `romm-db` service and pointed RomM at a MariaDB or MySQL server you already run, read the [binary logging prerequisite](../install/databases.md#binary-logging-and-trigger-privileges) first, because migrations fail at startup without it. Verify everything is running:
 
 ```sh
 docker ps -f name=romm
