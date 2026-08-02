@@ -505,7 +505,7 @@ streaming:
           broker_host: http://192.168.1.51:8000 # server-to-container, HTTP ok
           label: PCSX2
           memory_card_sync: true # keep the PS2 memory card in your RomM library
-        - platform: ngc # ngc/wii/wiiu can share one Dolphin container
+        - platform: ngc # ngc/wii can share one Dolphin container
           host: https://192.168.1.51:3002
           broker_host: http://192.168.1.51:8001
           label: Dolphin

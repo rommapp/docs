@@ -17,11 +17,11 @@ Each emulator runs in its own [linuxserver](https://docs.linuxserver.io) contain
 
 Each emulator ships as a companion Docker mod repo with the broker sidecar and a worked `docker-compose.yml`.
 
-| Platform slug        | Emulator | Save states | Manual slots | Autosave slot | Broker repo                                                                           |
-| -------------------- | -------- | ----------- | ------------ | ------------- | ------------------------------------------------------------------------------------- |
-| `ps2`                | PCSX2    | Yes         | 9            | Slot 10       | [pcsx2-romm-integration](https://github.com/LoneAngelFayt/pcsx2-romm-integration)     |
-| `ngc`, `wii`, `wiiu` | Dolphin  | Yes         | 7            | Slot 8        | [dolphin-romm-integration](https://github.com/LoneAngelFayt/dolphin-romm-integration) |
-| `xbox`               | xemu     | Yes         | 9            | Slot 10       | [xemu-romm-integration](https://github.com/LoneAngelFayt/xemu-romm-integration)       |
+| Platform slug | Emulator | Save states | Manual slots | Autosave slot | Broker repo                                                                           |
+| ------------- | -------- | ----------- | ------------ | ------------- | ------------------------------------------------------------------------------------- |
+| `ps2`         | PCSX2    | Yes         | 9            | Slot 10       | [pcsx2-romm-integration](https://github.com/LoneAngelFayt/pcsx2-romm-integration)     |
+| `ngc`, `wii`  | Dolphin  | Yes         | 7            | Slot 8        | [dolphin-romm-integration](https://github.com/LoneAngelFayt/dolphin-romm-integration) |
+| `xbox`        | xemu     | Yes         | 9            | Slot 10       | [xemu-romm-integration](https://github.com/LoneAngelFayt/xemu-romm-integration)       |
 
 The broker launches ROMs as direct files, so **archive extraction is not supported**.
 
@@ -70,7 +70,7 @@ Add a `streaming` block with one entry per emulator container, full schema in [C
 - `library_path` overrides the in-container library path if the container mounts the RomM library somewhere other than the default `/romm/library`.
 - `emulator` sets an explicit name used to group this container's states and memory cards. It defaults to `label`, then the platform slug.
 
-Multiple platforms can share one container (point `ngc`, `wii`, and `wiiu` at the same Dolphin instance) or each use their own.
+Multiple platforms can share one container (point `ngc` and `wii` at the same Dolphin instance) or each use their own.
 
 ### Set the shared secret
 
