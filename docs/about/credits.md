@@ -35,6 +35,8 @@ This stack stands on an enormous amount of open-source work. In rough order of "
 ### In-browser emulation
 
 - [EmulatorJS](https://emulatorjs.org/)
+- [`js-dos`](https://js-dos.com/)
+- [DOSBox-X](https://dosbox-x.com/)
 - [Ruffle](https://ruffle.rs/)
 - [dosbox-pure](https://github.com/schellingb/dosbox-pure)
 
