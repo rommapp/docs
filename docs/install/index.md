@@ -1,11 +1,11 @@
 ---
 title: Install & Deploy
-description: On Docker Compose, Unraid, Synology, TrueNAS, Kubernetes, or Railway
+description: On Docker Compose, Unraid, Synology, TrueNAS, Kubernetes, Railway, or NixOS
 ---
 
 # Install & Deploy
 
-RomM is distributed as a Docker image. Every supported deployment runs the same container, and the differences are in who manages it.
+RomM is distributed as a Docker image. Every supported deployment runs the same container, and the differences are in who manages it. The exception is [NixOS](nixos.md), which packages RomM natively.
 
 ## Pick your path
 
