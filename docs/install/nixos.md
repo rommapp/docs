@@ -5,7 +5,7 @@ description: Install RomM natively on NixOS via the services.romm module
 
 # NixOS
 
-Unlike the other platforms in this section, NixOS doesn't run the Docker image: RomM is packaged natively in [nixpkgs](https://github.com/NixOS/nixpkgs), with a NixOS module that sets up the whole stack — the backend services, PostgreSQL, Redis, and an nginx virtual host that mirrors what upstream's container image does (frontend, streamed ZIP downloads via `mod_zip`, and the cross-origin isolation headers the in-browser emulator needs).
+Unlike the other platforms in this section, NixOS doesn't run the Docker image: RomM is packaged natively in [nixpkgs](https://github.com/NixOS/nixpkgs). The `services.romm` module sets up everything RomM needs — the RomM services themselves, a database, Redis, and a web server — from a few lines of configuration.
 
 <!-- prettier-ignore -->
 !!! note "Availability"
@@ -30,14 +30,7 @@ You'll need:
 }
 ```
 
-That single block gives you, after a `nixos-rebuild switch`:
-
-- The `romm`, `romm-worker`, `romm-scheduler` and `romm-watcher` systemd services, running as the `romm` system user
-- A local **PostgreSQL** database with peer authentication (no password to manage)
-- A dedicated local **Redis** instance for sessions and the task queue
-- An **nginx** virtual host serving the frontend and proxying the API
-- `RAHasher` on the services' `PATH` for RetroAchievements hashing
-- An auto-generated `ROMM_AUTH_SECRET_KEY`, persisted under the data directory
+After a `nixos-rebuild switch`, RomM is up on that domain with everything included: a local PostgreSQL database and Redis instance (no credentials to manage), an nginx virtual host serving the app, and in-browser play, streamed downloads and RetroAchievements hashing all working out of the box.
 
 <!-- prettier-ignore -->
 !!! note "PostgreSQL, not MariaDB"
@@ -94,11 +87,11 @@ services.nginx.virtualHosts."romm.example.org" = {
 };
 ```
 
-The module picks up TLS on the virtual host automatically and sets `ROMM_BASE_URL` and secure session cookies accordingly. If you terminate TLS on a different machine instead, point your external [reverse proxy](reverse-proxy.md) at this host's virtual host.
+The module detects TLS on the virtual host and configures RomM accordingly — no extra settings needed. If you terminate TLS on a different machine instead, point your external [reverse proxy](reverse-proxy.md) at this host's virtual host.
 
 ## Library location
 
-Upstream fixes the library to `<data dir>/library`, which on NixOS defaults to `/var/lib/romm/library`. To use an existing collection stored elsewhere, bind-mount it there:
+RomM expects the library at `/var/lib/romm/library`. To use an existing collection stored elsewhere, bind-mount it there:
 
 ```nix
 fileSystems."/var/lib/romm/library" = {
@@ -107,7 +100,7 @@ fileSystems."/var/lib/romm/library" = {
 };
 ```
 
-Make sure the mounted collection is readable and writable by the `romm` user. The filesystem watcher rescans the library on changes by default (`services.romm.watcher.enable`).
+Make sure the mounted collection is readable and writable by the `romm` user. Changes to the library are picked up automatically.
 
 ## External database or Redis
 
@@ -119,7 +112,7 @@ The full set of module options is documented in the NixOS options search: [`serv
 
 ## Updating
 
-RomM updates arrive with your channel: `nixos-rebuild switch --upgrade` (or your flake update workflow) picks up new versions, and database migrations run automatically before the service starts.
+RomM updates arrive with your channel: `nixos-rebuild switch --upgrade` (or your flake update workflow) picks up new versions, and database migrations run automatically.
 
 ## Troubleshooting
 
