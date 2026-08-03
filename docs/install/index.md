@@ -1,6 +1,6 @@
 ---
 title: Install & Deploy
-description: On Docker Compose, Unraid, Synology, TrueNAS, or Kubernetes
+description: On Docker Compose, Unraid, Synology, TrueNAS, Kubernetes, or Railway
 ---
 
 # Install & Deploy
@@ -16,6 +16,7 @@ RomM is distributed as a Docker image. Every supported deployment runs the same 
 | **Synology**         | [Container Manager + DSM-specific notes](synology.md)              |
 | **TrueNAS**          | [App Catalog or YAML install](truenas.md)                          |
 | **Kubernetes**       | [Community charts and gotchas](kubernetes.md)                      |
+| **Railway**          | [Community one-click template](railway.md)                         |
 
 If none of those match, start with [Docker Compose](../getting-started/quick-start.md) and adapt as needed.
 

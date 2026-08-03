@@ -5,7 +5,7 @@ description: Get your instance running in about fifteen minutes
 
 # Quick Start
 
-This guide gets a RomM instance up and running with the default stack (MariaDB + Valkey) using Docker Compose. If you're on Unraid, Synology, TrueNAS, or Kubernetes, check out the [Install & Deploy](../install/index.md) section for platform-specific guides.
+This guide gets a RomM instance up and running with the default stack (MariaDB + Valkey) using Docker Compose. If you're on Unraid, Synology, TrueNAS, Kubernetes, or Railway, check out the [Install & Deploy](../install/index.md) section for platform-specific guides.
 
 ## Before you start
 
