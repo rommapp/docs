@@ -60,6 +60,7 @@ OUTPUT_DIR=roms-verified
 time npx -y igir@latest \
   move \
   extract \
+  playlist \
   report \
   test \
   -d dats/ \
@@ -68,7 +69,8 @@ time npx -y igir@latest \
   --input-checksum-quick false \
   --input-checksum-min CRC32 \
   --input-checksum-max SHA256 \
-  --only-retail
+  --only-retail \
+  --merge-discs
 ```
 
 Make it executable:
@@ -97,42 +99,75 @@ npx -y igir@latest \
 
 This keeps the original subfolder structure but normalises extensions.
 
-## Multi-disc reorganisation
+## Multi-disc games
 
-Igir outputs multi-disc games as separate folders, which confuses multi-file game detection. Collapse them:
+Redump and No-Intro catalogue each disc of a multi-disc game as a separate game, so by default Igir writes them out as sibling folders — which confuses multi-file game detection. Two parts of the script above handle this, no manual reorganisation needed:
 
-```sh
-cd roms-verified/psx
-
-ls -d *Disc* | while read file; do
-    game=$(echo "${file}" | sed -E 's/ ?\(Disc.*//')
-    mkdir -p "${game}"
-    mv "${file}" "${game}"
-    m3u="${game}/${game}.m3u"
-    touch "${m3u}"
-    echo "${file}" >> "${m3u}"
-done
-```
+- `--merge-discs` groups the discs of a game back into a single folder.
+- The `playlist` command writes an `.m3u` alongside them.
 
 Before:
 
 ```text
-Final Fantasy VII (Disc 1) (USA)/
-Final Fantasy VII (Disc 2) (USA)/
-Final Fantasy VII (Disc 3) (USA)/
+Final Fantasy VII (USA) (Disc 1)/
+Final Fantasy VII (USA) (Disc 2)/
+Final Fantasy VII (USA) (Disc 3)/
 ```
 
 After:
 
 ```text
 Final Fantasy VII (USA)/
-  Final Fantasy VII (Disc 1) (USA)/
-  Final Fantasy VII (Disc 2) (USA)/
-  Final Fantasy VII (Disc 3) (USA)/
+  Final Fantasy VII (USA) (Disc 1)/
+  Final Fantasy VII (USA) (Disc 2)/
+  Final Fantasy VII (USA) (Disc 3)/
   Final Fantasy VII (USA).m3u
 ```
 
-The `.m3u` is a playlist RomM respects for launching multi-disc games.
+The `.m3u` is a playlist RomM respects for launching multi-disc games. It holds a relative path to each disc's playable file, in disc order:
+
+```text
+Final Fantasy VII (USA) (Disc 1)/Final Fantasy VII (USA) (Disc 1).cue
+Final Fantasy VII (USA) (Disc 2)/Final Fantasy VII (USA) (Disc 2).cue
+Final Fantasy VII (USA) (Disc 3)/Final Fantasy VII (USA) (Disc 3).cue
+```
+
+A few things worth knowing:
+
+- A playlist points at each disc's playable file, so discs can't be sitting inside zip archives — that's why the script uses `extract` rather than `zip` for these platforms. The extensions Igir will reference default to `.ccd`, `.cdi`, `.chd`, `.cue`, `.gdi`, `.iso`, `.mdf`, and `.toc`, adjustable with `--playlist-extensions`.
+- CHDs need no special handling to appear in a playlist, but `extract` will unpack them into their `.cue`/`.bin` (or `.gdi`) tracks. See [keeping CHDs as CHDs](#keeping-chds-as-chds) below.
+- Matching CHDs against DATs is slower on the first run, since a CHD carries only a SHA1 rather than per-file CRC32. Igir caches the results, so subsequent runs are much faster.
+
+- Playlists are only written for multi-disc games. If you want one for every game, add `--playlist-mode always`.
+- `--merge-discs` doesn't require DAT files, but is far more reliable with them — the script already passes `-d dats/`.
+- Some TOSEC-catalogued discs won't merge, because the ring/box codes used to distinguish separate pressings can't be told apart from other metadata programmatically. See Igir's [merging limitations](https://igir.io/roms/sets/#merging-limitations).
+
+### Keeping CHDs as CHDs
+
+`extract` applies to the whole run, so dropping it to protect your CHDs would also stop cartridge ROMs being unzipped. Split the run in two instead, excluding CHDs from the pass that extracts and handling them in a second pass that copies them through untouched:
+
+```bash
+# Everything except CHDs, extracted
+npx -y igir@latest \
+  move extract playlist report test \
+  -d dats/ \
+  -i "${INPUT_DIR}/" \
+  -I "${INPUT_DIR}/**/*.chd" \
+  -o "${OUTPUT_DIR}/{romm}/" \
+  --only-retail \
+  --merge-discs
+
+# CHDs, left as they are
+npx -y igir@latest \
+  move playlist report test \
+  -d dats/ \
+  -i "${INPUT_DIR}/**/*.chd" \
+  -o "${OUTPUT_DIR}/{romm}/" \
+  --only-retail \
+  --merge-discs
+```
+
+Each game's discs are either all CHDs or all not, so grouping and playlists still come out right despite the split.
 
 ## Importing
 
