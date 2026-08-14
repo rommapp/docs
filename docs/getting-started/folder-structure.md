@@ -44,7 +44,7 @@ See the [reference Docker Compose](quick-start.md) for where `/romm/library` liv
 
 ## Multi-file games
 
-Some games come as **folders** instead of single files, which could include multiple disc, DLCs, manuals, or patches. These sub-folder names are recognised and surfaced as tags in the UI: `dlc`, `hack`, `manual`, `mod`, `patch`, `update`, `demo`, `translation`, `prototype`.
+Some games come as **folders** instead of single files, which could include multiple disc, DLCs, manuals, or patches. These sub-folder names are recognised and surfaced as tags in the UI: `dlc`, `hack`, `manual`, `mod`, `patch`, `update`, `demo`, `translation`, `prototype`, `screenshots`.
 
 ## Visual reference
 
@@ -88,7 +88,8 @@ Some games come as **folders** instead of single files, which could include mult
         │  │     ├─ update
         │  │     ├─ demo
         │  │     ├─ translation
-        │  │     └─ prototype
+        │  │     ├─ prototype
+        │  │     └─ screenshots
         │  │
         │  └─ ps/
         │     ├─ game_5/
@@ -128,7 +129,8 @@ Some games come as **folders** instead of single files, which could include mult
         │  │     ├─ update
         │  │     ├─ demo
         │  │     ├─ translation
-        │  │     └─ prototype
+        │  │     ├─ prototype
+        │  │     └─ screenshots
         │  │
         │  └─ bios/
         │     └─ gba_bios.bin
