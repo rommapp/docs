@@ -97,7 +97,7 @@
 | Variable                                           | Default     | Required | Description                                                   |
 | -------------------------------------------------- | ----------- | :------: | ------------------------------------------------------------- |
 | `SCAN_TIMEOUT`                                     | `14400`     |          | Timeout for background scan/rescan tasks in seconds           |
-| `SCAN_WORKERS`                                     | `1`         |          | Number of worker processes for scanning tasks                 |
+| `SCAN_WORKERS`                                     | `2`         |          | Number of worker processes for scanning tasks                 |
 | `TASK_TIMEOUT`                                     | `300`       |          | Timeout for other background tasks in seconds                 |
 | `TASK_RESULT_TTL`                                  | `86400`     |          | How long to keep task results in Valkey in seconds            |
 | `SEVEN_ZIP_TIMEOUT`                                | `60`        |          | Timeout for 7-Zip operations in seconds                       |
@@ -158,7 +158,7 @@
 
 | Variable                           | Default | Required | Description                                                 |
 | ---------------------------------- | ------- | :------: | ----------------------------------------------------------- |
-| `WEB_SERVER_CONCURRENCY`           | `1`     |          | Number of worker processes (recommended: 2 × CPU cores + 1) |
+| `WEB_SERVER_CONCURRENCY`           | `3`     |          | Number of worker processes (recommended: 2 × CPU cores + 1) |
 | `WEB_SERVER_TIMEOUT`               | `300`   |          | Timeout for web server requests in seconds                  |
 | `WEB_SERVER_KEEPALIVE`             | `2`     |          | Keep-Alive connection wait time in seconds                  |
 | `WEB_SERVER_MAX_REQUESTS`          | `1000`  |          | Maximum requests a worker processes before restarting       |
