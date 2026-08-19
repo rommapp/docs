@@ -80,6 +80,17 @@ Options, in order of effort:
 2. **Use filename tags**: if you already know the provider ID, rename the file to include `(igdb-1234)` or similar (see [Metadata Providers → Filename tags](../getting-started/metadata-providers.md#metadata-tags-in-filenames)).
 3. **Manually match**: open the ROM detail page, click the **Match** button, and search for the right title.
 
+## ScreenScraper fails with 403 Forbidden
+
+```text
+ERROR:    [RomM][screenscraper]   403, message='Forbidden', url='https://api.screenscraper.fr/api2/jeuInfos.php?...'
+ERROR:    [RomM][scan]   401: Invalid ScreenScraper credentials
+```
+
+Despite the message, this usually isn't your account. ScreenScraper also requires developer credentials identifying the application, which our official Docker images supply at build time and builds from source or third-party packages don't, so set `SCREENSCRAPER_DEV_ID` and `SCREENSCRAPER_DEV_PASSWORD` and rerun the scan (see [ScreenScraper](../getting-started/metadata-providers.md#screenscraper)).
+
+If you're on an official image and still get 403s, re-check `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD`, then check whether you've exhausted your account's daily request quota.
+
 ## Hash calculations are slow
 
 Hashing large ROMs (PS1, Saturn, DC images) is IO-bound, with a few options:
