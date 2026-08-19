@@ -73,6 +73,12 @@ Note the client ID and secret that appear on screen, and use them to set `IGDB_C
 
 To access the ScreenScraper API, create a [ScreenScraper](https://www.screenscraper.fr/membreinscription.php) account and copy the **user** and **password** you just created to `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD` respectively.
 
+ScreenScraper's API also expects a second pair of **developer** credentials that identify the calling application, which RomM sends on every request alongside your user credentials. Our official Docker images have RomM's developer credentials baked in at build time, so there's nothing extra to set.
+
+<!-- prettier-ignore -->
+!!! important "Running RomM outside our official image"
+    Builds from source and third-party packages (such as the `romm` package in nixpkgs) ship without developer credentials, and ScreenScraper then rejects every request with `403 Forbidden`, which the scanner reports as `401: Invalid ScreenScraper credentials` even when `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD` are correct. Set `SCREENSCRAPER_DEV_ID` and `SCREENSCRAPER_DEV_PASSWORD` to a valid developer pair to fix it. ScreenScraper issues developer credentials to registered members on request, and the pair inside our official images is also usable. Either way, load them from a secret store or an env file rather than a world-readable config, and never commit them. Nothing else in RomM depends on them, so every other provider and feature keeps working while they're unset.
+
 ### MobyGames
 
 MobyGames is a metadata provider that offers metadata, cover art and screenshots.
