@@ -19,7 +19,7 @@ TASKS = [
         "name": "Folder Scan",
         "type": "Scheduled",
         "default_cron": "0 0 * * *",
-        "env_var": "SCAN_INTERVAL_CRON",
+        "env_var": "SCHEDULED_RESCAN_CRON",
         "purpose": "Rescan ROM library for new or changed files.",
     },
     {

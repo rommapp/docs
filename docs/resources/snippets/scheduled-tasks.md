@@ -2,7 +2,7 @@
 
 | Task                       | Type      | Default schedule | Env var                                | Purpose                                                                 |
 | -------------------------- | --------- | ---------------- | -------------------------------------- | ----------------------------------------------------------------------- |
-| Folder Scan                | Scheduled | `0 0 * * *`      | `SCAN_INTERVAL_CRON`                   | Rescan ROM library for new or changed files.                            |
+| Folder Scan                | Scheduled | `0 0 * * *`      | `SCHEDULED_RESCAN_CRON`                | Rescan ROM library for new or changed files.                            |
 | Switch titleDB Fetch       | Scheduled | `0 12 * * 0`     | `SWITCH_TITLEDB_FETCH_INTERVAL_CRON`   | Update Nintendo Switch game database used for matching.                 |
 | LaunchBox Metadata Sync    | Scheduled | `0 2 * * *`      | `LAUNCHBOX_SYNC_INTERVAL_CRON`         | Synchronize LaunchBox metadata cache.                                   |
 | Image Conversion           | Scheduled | `0 3 * * *`      | `IMAGE_CONVERSION_INTERVAL_CRON`       | Convert media to WebP for serving.                                      |
