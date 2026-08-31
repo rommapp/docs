@@ -1,7 +1,13 @@
 # Pinned upstream sources for the docs generators.
 #
-# Bumped automatically by .github/workflows/romm-release-bump.yml on each
-# rommapp/romm release. Do not hand-edit unless you know why.
+# Bumped automatically by .github/workflows/romm-release-bump.yml, which polls
+# daily for new rommapp/romm releases and opens a PR with the regenerated
+# snippets. Hand-edit only to pin a pre-release or roll back, and re-run the
+# generators afterwards:
+#
+#     uv run python -m scripts.gen_env_vars
+#     uv run python -m scripts.gen_scheduled_tasks
+#     uv run python -m scripts.gen_platforms
 
 [romm]
 repo = "rommapp/romm"
