@@ -13,84 +13,129 @@ from __future__ import annotations
 from scripts._sources import write_snippet
 
 
-# Sourced from rommapp/romm@master backend/tasks/* registration as of 4.8.x.
+# Sourced from rommapp/romm backend/tasks/ at the ref pinned in sources.toml.
+# Task titles, `enabled=` flags and `cron_string=` defaults come from each
+# task's constructor; env var names are cross-checked against env.template.
 TASKS = [
     {
-        "name": "Folder Scan",
-        "type": "Scheduled",
-        "default_cron": "0 0 * * *",
-        "env_var": "SCHEDULED_RESCAN_CRON",
-        "purpose": "Rescan ROM library for new or changed files.",
-    },
-    {
-        "name": "Switch titleDB Fetch",
-        "type": "Scheduled",
-        "default_cron": "0 12 * * 0",
-        "env_var": "SWITCH_TITLEDB_FETCH_INTERVAL_CRON",
-        "purpose": "Update Nintendo Switch game database used for matching.",
-    },
-    {
-        "name": "LaunchBox Metadata Sync",
-        "type": "Scheduled",
-        "default_cron": "0 2 * * *",
-        "env_var": "LAUNCHBOX_SYNC_INTERVAL_CRON",
-        "purpose": "Synchronize LaunchBox metadata cache.",
-    },
-    {
-        "name": "Image Conversion",
+        "name": "Scheduled rescan",
         "type": "Scheduled",
         "default_cron": "0 3 * * *",
-        "env_var": "IMAGE_CONVERSION_INTERVAL_CRON",
-        "purpose": "Convert media to WebP for serving.",
+        "enable_var": "ENABLE_SCHEDULED_RESCAN",
+        "env_var": "SCHEDULED_RESCAN_CRON",
+        "purpose": "Rescan the entire ROM library for new or changed files.",
     },
     {
-        "name": "RetroAchievements Sync",
+        "name": "Switch TitleDB update",
         "type": "Scheduled",
         "default_cron": "0 4 * * *",
-        "env_var": "RETROACHIEVEMENTS_SYNC_INTERVAL_CRON",
-        "purpose": "Sync per-user RetroAchievements progression data.",
+        "enable_var": "ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB",
+        "env_var": "SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON",
+        "purpose": "Update the Nintendo Switch TitleDB index used for matching.",
     },
     {
-        "name": "Netplay Cleanup",
+        "name": "LaunchBox metadata update",
+        "type": "Scheduled",
+        "default_cron": "0 4 * * *",
+        "enable_var": "ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA",
+        "env_var": "SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON",
+        "purpose": "Refresh the LaunchBox metadata store.",
+    },
+    {
+        "name": "Convert images to WebP",
+        "type": "Scheduled",
+        "default_cron": "0 4 * * *",
+        "enable_var": "ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP",
+        "env_var": "SCHEDULED_CONVERT_IMAGES_TO_WEBP_CRON",
+        "purpose": "Convert existing PNG, JPG, BMP, TIFF and GIF media to WebP.",
+    },
+    {
+        "name": "Cleanup orphaned resources",
+        "type": "Scheduled",
+        "default_cron": "0 5 * * *",
+        "enable_var": "ENABLE_SCHEDULED_CLEANUP_ORPHANED_RESOURCES",
+        "env_var": "SCHEDULED_CLEANUP_ORPHANED_RESOURCES_CRON",
+        "purpose": "Delete covers, screenshots and other resources left behind by deleted ROMs.",
+    },
+    {
+        "name": "RetroAchievements progress sync",
+        "type": "Scheduled",
+        "default_cron": "0 4 * * *",
+        "enable_var": "ENABLE_SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC",
+        "env_var": "SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC_CRON",
+        "purpose": "Update RetroAchievements progress for all users.",
+    },
+    {
+        "name": "Push-pull device sync",
         "type": "Scheduled",
         "default_cron": "*/30 * * * *",
-        "env_var": "NETPLAY_CLEANUP_INTERVAL_CRON",
-        "purpose": "Remove orphaned netplay sessions.",
+        "enable_var": "ENABLE_SYNC_PUSH_PULL",
+        "env_var": "SYNC_PUSH_PULL_CRON",
+        "purpose": "Sync saves with registered devices over SSH/SFTP.",
     },
     {
-        "name": "Push-Pull Device Sync",
+        "name": "Netplay cleanup",
         "type": "Scheduled",
-        "default_cron": "-",
+        "default_cron": "*/30 * * * *",
+        "enable_var": "-",
         "env_var": "-",
-        "purpose": "Bidirectional save/state sync to registered devices (work in progress).",
+        "purpose": "Clean up empty netplay rooms. Always on, not configurable.",
     },
     {
-        "name": "Cleanup Missing ROMs",
+        "name": "Upload tmp cleanup",
+        "type": "Scheduled",
+        "default_cron": "0 * * * *",
+        "enable_var": "-",
+        "env_var": "-",
+        "purpose": "Remove orphaned chunked-upload temp directories. Always on, not configurable.",
+    },
+    {
+        "name": "ZIP cache cleanup",
+        "type": "Scheduled",
+        "default_cron": "0 4 * * *",
+        "enable_var": "-",
+        "env_var": "-",
+        "purpose": "Remove stale cached ZIP files on a tiered TTL. Always on, not configurable.",
+    },
+    {
+        "name": "Cleanup missing ROMs",
         "type": "Manual",
         "default_cron": "-",
+        "enable_var": "-",
         "env_var": "-",
-        "purpose": "Remove DB entries whose files are no longer on disk.",
+        "purpose": "Delete database entries for ROMs flagged as missing from the filesystem.",
     },
     {
-        "name": "Cleanup Orphaned Resources",
+        "name": "Recompute save content hashes",
         "type": "Manual",
         "default_cron": "-",
+        "enable_var": "-",
         "env_var": "-",
-        "purpose": "Delete cached media not referenced by any ROM.",
+        "purpose": "Recompute content hashes for stored saves.",
     },
     {
-        "name": "Sync Folder Scan",
+        "name": "Sync folder scan",
         "type": "Manual",
         "default_cron": "-",
+        "enable_var": "-",
         "env_var": "-",
-        "purpose": "On-demand library scan + sync.",
+        "purpose": "Scan device sync folders for new save files.",
     },
     {
-        "name": "Filesystem Watcher",
+        "name": "Filesystem watcher",
         "type": "Watcher",
         "default_cron": "-",
-        "env_var": "WATCHER_ENABLED",
-        "purpose": "Live-watch the library folder and trigger quick scans on changes.",
+        "enable_var": "ENABLE_RESCAN_ON_FILESYSTEM_CHANGE",
+        "env_var": "RESCAN_ON_FILESYSTEM_CHANGE_DELAY",
+        "purpose": "Watch the library folder and trigger a rescan on changes.",
+    },
+    {
+        "name": "Sync folder watcher",
+        "type": "Watcher",
+        "default_cron": "-",
+        "enable_var": "ENABLE_SYNC_FOLDER_WATCHER",
+        "env_var": "SYNC_FOLDER_SCAN_DELAY",
+        "purpose": "Watch the sync folder and trigger a scan on changes.",
     },
 ]
 
@@ -99,12 +144,13 @@ def render() -> str:
     out = [
         "<!-- AUTOGENERATED by scripts/gen_scheduled_tasks.py: do not edit. -->",
         "",
-        "| Task | Type | Default schedule | Env var | Purpose |",
-        "| --- | --- | --- | --- | --- |",
+        "| Task | Type | Default schedule | Enable var | Schedule/delay var | Purpose |",
+        "| --- | --- | --- | --- | --- | --- |",
     ]
     for t in TASKS:
         out.append(
-            f"| {t['name']} | {t['type']} | `{t['default_cron']}` | `{t['env_var']}` | {t['purpose']} |"
+            f"| {t['name']} | {t['type']} | `{t['default_cron']}` "
+            f"| `{t['enable_var']}` | `{t['env_var']}` | {t['purpose']} |"
         )
     out.append("")
     return "\n".join(out)

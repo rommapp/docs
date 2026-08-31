@@ -29,7 +29,9 @@ Set the env var and restart the container; the scheduler picks up the new schedu
 
 ## Enabling a scheduled task
 
-Each task has an `ENABLE_*` environment variable, like `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` which enables the LaunchBox sync. Check the [env var reference](../reference/environment-variables.md) for the full list. Some tasks are enabled by default, others aren't.
+Most tasks have an `ENABLE_*` environment variable, like `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` which enables the LaunchBox sync, and every one of them is off by default. Set both the enable var and its cron var, since a task with an empty cron string has nothing to schedule and stays unscheduled even when enabled.
+
+The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup) are always on and have no env vars. Check the [env var reference](../reference/environment-variables.md) for the full list.
 
 ## Triggering a task manually
 

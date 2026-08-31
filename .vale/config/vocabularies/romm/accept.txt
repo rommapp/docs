@@ -25,3 +25,5 @@ UIDs
 URIs
 Websocket
 Websockets
+ZimaOS
+ZimaSpace
