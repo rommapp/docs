@@ -30,8 +30,6 @@ The defaults work out of the box, so everything below is optional.
 
 To change container settings, use the options button in the upper-right corner of the app tile. ZimaOS offers both a form-based editor and a YAML editor for the underlying compose file, so you can set volumes, ports, and env vars either way.
 
-![The options button on the RomM app tile](../resources/zimaos/app-tile-options.png)
-
 ![Editing RomM's volumes and environment variables](../resources/zimaos/edit-config.png)
 
 The env vars are the same ones documented in [Quick Start](../getting-started/quick-start.md) and the [Environment Variables reference](../reference/environment-variables.md). Two worth setting early:
