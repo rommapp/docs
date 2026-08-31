@@ -8,7 +8,7 @@
 | `ROMM_TMP_PATH`  |                  |          | Custom temporary directory path                    |
 | `ROMM_BASE_URL`  | `http://0.0.0.0` |          | Public URL of this instance                        |
 | `ROMM_PORT`      | `8080`           |          | Port on which the application listens              |
-| `KIOSK_MODE`     | `false`          |          | Read-only mode for public displays or kiosks       |
+| `KIOSK_MODE`     | `false`          |          | Let visitors browse without logging in (read-only) |
 
 ### Database
 
@@ -25,14 +25,15 @@
 
 ### Redis/Valkey
 
-| Variable         | Default     | Required | Description                                            |
-| ---------------- | ----------- | :------: | ------------------------------------------------------ |
-| `REDIS_HOST`     | `127.0.0.1` |          | Host name of the Redis/Valkey instance                 |
-| `REDIS_PORT`     | `6379`      |          | Port number of the Redis/Valkey instance               |
-| `REDIS_USERNAME` |             |          | Username for the Redis/Valkey instance                 |
-| `REDIS_PASSWORD` |             |          | Password for the Redis/Valkey instance                 |
-| `REDIS_DB`       | `0`         |          | Database number for the Redis/Valkey instance          |
-| `REDIS_SSL`      | `false`     |          | Enable SSL (rediss://) for the Redis/Valkey connection |
+| Variable            | Default     | Required | Description                                                                                      |
+| ------------------- | ----------- | :------: | ------------------------------------------------------------------------------------------------ |
+| `REDIS_HOST`        | `127.0.0.1` |          | Host name of the Redis/Valkey instance                                                           |
+| `REDIS_PORT`        | `6379`      |          | Port number of the Redis/Valkey instance                                                         |
+| `REDIS_USERNAME`    |             |          | Username for the Redis/Valkey instance                                                           |
+| `REDIS_PASSWORD`    |             |          | Password for the Redis/Valkey instance                                                           |
+| `REDIS_DB`          | `0`         |          | Database number for the Redis/Valkey instance                                                    |
+| `REDIS_SSL`         | `false`     |          | Enable SSL (rediss://) for the Redis/Valkey connection                                           |
+| `REDIS_SAVE_POLICY` | `3600 1`    |          | Snapshot policy of the internal Valkey, as "<seconds> <changes>" pairs (empty to never snapshot) |
 
 ### Authentication
 
@@ -94,25 +95,27 @@
 
 ### Scans & Tasks
 
-| Variable                                           | Default     | Required | Description                                                   |
-| -------------------------------------------------- | ----------- | :------: | ------------------------------------------------------------- |
-| `SCAN_TIMEOUT`                                     | `14400`     |          | Timeout for background scan/rescan tasks in seconds           |
-| `SCAN_WORKERS`                                     | `2`         |          | Number of worker processes for scanning tasks                 |
-| `TASK_TIMEOUT`                                     | `300`       |          | Timeout for other background tasks in seconds                 |
-| `TASK_RESULT_TTL`                                  | `86400`     |          | How long to keep task results in Valkey in seconds            |
-| `SEVEN_ZIP_TIMEOUT`                                | `60`        |          | Timeout for 7-Zip operations in seconds                       |
-| `ENABLE_RESCAN_ON_FILESYSTEM_CHANGE`               | `false`     |          | Re-scan the library automatically when the filesystem changes |
-| `RESCAN_ON_FILESYSTEM_CHANGE_DELAY`                | `5`         |          | Delay in minutes before re-scanning after a filesystem change |
-| `ENABLE_SCHEDULED_RESCAN`                          | `false`     |          | Enable scheduled library re-scans                             |
-| `SCHEDULED_RESCAN_CRON`                            | `0 3 * * *` |          | Cron expression for scheduled re-scans                        |
-| `ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB`           | `false`     |          | Enable scheduled Switch TitleDB index updates                 |
-| `SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON`             | `0 4 * * *` |          | Cron expression for scheduled Switch TitleDB updates          |
-| `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA`       | `false`     |          | Enable scheduled LaunchBox metadata updates                   |
-| `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON`         | `0 4 * * *` |          | Cron expression for scheduled LaunchBox metadata updates      |
-| `ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP`          | `false`     |          | Enable scheduled conversion of images to WebP                 |
-| `SCHEDULED_CONVERT_IMAGES_TO_WEBP_CRON`            | `0 4 * * *` |          | Cron expression for scheduled WebP conversion                 |
-| `ENABLE_SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC` | `false`     |          | Enable scheduled RetroAchievements progress sync              |
-| `SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC_CRON`   | `0 4 * * *` |          | Cron expression for scheduled RetroAchievements sync          |
+| Variable                                           | Default     | Required | Description                                                                               |
+| -------------------------------------------------- | ----------- | :------: | ----------------------------------------------------------------------------------------- |
+| `SCAN_TIMEOUT`                                     | `14400`     |          | Timeout for background scan/rescan tasks in seconds                                       |
+| `SCAN_WORKERS`                                     | `1`         |          | How many ROMs a scan processes at once                                                    |
+| `TASK_TIMEOUT`                                     | `300`       |          | Timeout for other background tasks in seconds                                             |
+| `TASK_RESULT_TTL`                                  | `86400`     |          | How long to keep task results in Valkey in seconds                                        |
+| `SEVEN_ZIP_TIMEOUT`                                | `60`        |          | Timeout for 7-Zip operations in seconds                                                   |
+| `ENABLE_RESCAN_ON_FILESYSTEM_CHANGE`               | `false`     |          | Re-scan the library automatically when the filesystem changes                             |
+| `RESCAN_ON_FILESYSTEM_CHANGE_DELAY`                | `5`         |          | Delay in minutes before re-scanning after a filesystem change                             |
+| `ENABLE_SCHEDULED_RESCAN`                          | `false`     |          | Enable scheduled library re-scans                                                         |
+| `SCHEDULED_RESCAN_CRON`                            | `0 3 * * *` |          | Cron expression for scheduled re-scans                                                    |
+| `ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB`           | `false`     |          | Enable scheduled Switch TitleDB index updates                                             |
+| `SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON`             | `0 4 * * *` |          | Cron expression for scheduled Switch TitleDB updates                                      |
+| `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA`       | `false`     |          | Enable scheduled LaunchBox metadata updates                                               |
+| `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON`         | `0 4 * * *` |          | Cron expression for scheduled LaunchBox metadata updates                                  |
+| `ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP`          | `false`     |          | Enable scheduled conversion of images to WebP                                             |
+| `SCHEDULED_CONVERT_IMAGES_TO_WEBP_CRON`            | `0 4 * * *` |          | Cron expression for scheduled WebP conversion                                             |
+| `ENABLE_SCHEDULED_CLEANUP_ORPHANED_RESOURCES`      | `false`     |          | Enable scheduled cleanup of orphaned resources (covers, screenshots) left by deleted ROMs |
+| `SCHEDULED_CLEANUP_ORPHANED_RESOURCES_CRON`        | `0 5 * * *` |          | Cron expression for scheduled orphaned resource cleanup                                   |
+| `ENABLE_SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC` | `false`     |          | Enable scheduled RetroAchievements progress sync                                          |
+| `SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC_CRON`   | `0 4 * * *` |          | Cron expression for scheduled RetroAchievements sync                                      |
 
 ### Sync
 
@@ -158,7 +161,7 @@
 
 | Variable                           | Default | Required | Description                                                 |
 | ---------------------------------- | ------- | :------: | ----------------------------------------------------------- |
-| `WEB_SERVER_CONCURRENCY`           | `3`     |          | Number of worker processes (recommended: 2 × CPU cores + 1) |
+| `WEB_SERVER_CONCURRENCY`           | `1`     |          | Number of worker processes (recommended: 2 × CPU cores + 1) |
 | `WEB_SERVER_TIMEOUT`               | `300`   |          | Timeout for web server requests in seconds                  |
 | `WEB_SERVER_KEEPALIVE`             | `2`     |          | Keep-Alive connection wait time in seconds                  |
 | `WEB_SERVER_MAX_REQUESTS`          | `1000`  |          | Maximum requests a worker processes before restarting       |
