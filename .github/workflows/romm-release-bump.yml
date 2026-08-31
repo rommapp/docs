@@ -1,0 +1,160 @@
+name: Bump pinned romm ref
+
+# The generated reference pages (env vars, scheduled tasks, supported platforms)
+# are built from rommapp/romm at the ref pinned in scripts/sources.toml. Nothing
+# was moving that pin, so it sat on 5.1.0-beta.2 while upstream shipped 5.2.0 and
+# every variable added in between went undocumented (#124).
+#
+# This polls for new upstream releases and opens a PR with the regenerated
+# snippets. rommapp/romm can also trigger it directly by sending a
+# `romm-release` repository_dispatch on publish.
+
+on:
+    schedule:
+        # Daily at 06:00 UTC. Upstream releases are infrequent, so this is
+        # really a safety net.
+        - cron: 0 6 * * *
+    workflow_dispatch:
+        inputs:
+            # trunk-ignore(checkov/CKV_GHA_7)
+            ref:
+                description: Ref to pin (defaults to romm's latest stable release)
+                required: false
+                type: string
+    repository_dispatch:
+        types: [romm-release]
+
+concurrency:
+    group: romm-release-bump
+    cancel-in-progress: false
+
+permissions:
+    contents: write # Push the bump branch
+    pull-requests: write # Open the bump PR
+
+jobs:
+    bump:
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4.3.0
+
+            - name: Resolve target ref
+              id: target
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  INPUT_REF: ${{ github.event.inputs.ref }}
+                  DISPATCH_REF: ${{ github.event.client_payload.ref }}
+              run: |
+                  set -euo pipefail
+                  target="${INPUT_REF:-${DISPATCH_REF:-}}"
+                  if [ -z "$target" ]; then
+                      target=$(gh release view --repo rommapp/romm --json tagName --jq .tagName)
+                  fi
+                  current=$(grep -E '^ref = ' scripts/sources.toml | sed -E 's/.*"(.*)".*/\1/')
+                  echo "target=$target" >> "$GITHUB_OUTPUT"
+                  echo "current=$current" >> "$GITHUB_OUTPUT"
+                  if [ "$target" = "$current" ]; then
+                      echo "changed=false" >> "$GITHUB_OUTPUT"
+                      echo "Already pinned to $current, nothing to do."
+                  else
+                      echo "changed=true" >> "$GITHUB_OUTPUT"
+                      echo "Bumping $current -> $target"
+                  fi
+
+            - name: Install uv
+              if: steps.target.outputs.changed == 'true'
+              uses: astral-sh/setup-uv@v6.7.0
+              with:
+                  enable-cache: true
+                  cache-dependency-glob: uv.lock
+
+            - name: Set up Python
+              if: steps.target.outputs.changed == 'true'
+              uses: actions/setup-python@v6.0.0
+              with:
+                  python-version-file: .python-version
+
+            - name: Install dependencies
+              if: steps.target.outputs.changed == 'true'
+              run: uv sync --all-extras --dev
+
+            - name: Update pinned ref
+              if: steps.target.outputs.changed == 'true'
+              env:
+                  TARGET: ${{ steps.target.outputs.target }}
+              run: |
+                  set -euo pipefail
+                  sed -i -E "s|^ref = \".*\"$|ref = \"$TARGET\"|" scripts/sources.toml
+                  grep -E '^ref = ' scripts/sources.toml
+
+            - name: Regenerate snippets
+              if: steps.target.outputs.changed == 'true'
+              run: |
+                  uv run python -m scripts.gen_env_vars
+                  uv run python -m scripts.gen_scheduled_tasks
+                  uv run python -m scripts.gen_platforms
+
+            # Match the prettier version trunk pins in .trunk/trunk.yaml, so the
+            # bump PR doesn't fail its own trunk-check.
+            - name: Format generated snippets
+              if: steps.target.outputs.changed == 'true'
+              run: npx --yes prettier@3.5.2 --write 'docs/resources/snippets/*.md'
+
+            # The bump PR is opened with GITHUB_TOKEN, which does not trigger
+            # other workflows, so pr-checks won't run on it. Build here instead
+            # so a bump that breaks the docs never reaches review looking green.
+            - name: Build docs (strict)
+              if: steps.target.outputs.changed == 'true'
+              run: uv run mkdocs build --strict
+
+            - name: Open bump PR
+              if: steps.target.outputs.changed == 'true'
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  TARGET: ${{ steps.target.outputs.target }}
+                  CURRENT: ${{ steps.target.outputs.current }}
+              run: |
+                  set -euo pipefail
+                  branch="chore/bump-romm-ref-$TARGET"
+
+                  if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+                      echo "Branch $branch already exists, so this bump is already open."
+                      exit 0
+                  fi
+
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                  git checkout -b "$branch"
+
+                  paths="scripts/sources.toml docs/resources/snippets"
+                  if git diff --quiet -- $paths; then
+                      echo "Ref moved but no generated output changed, nothing to open."
+                      exit 0
+                  fi
+
+                  git add $paths
+                  git commit -m "chore: bump pinned romm ref to $TARGET"
+                  git push origin "$branch"
+
+                  {
+                      echo "Bumps \`scripts/sources.toml\` from \`$CURRENT\` to"
+                      echo "[\`$TARGET\`](https://github.com/rommapp/romm/releases/tag/$TARGET)"
+                      echo "and regenerates the reference snippets."
+                      echo
+                      echo "The diff is upstream drift, not hand-written prose. Skim it for"
+                      echo "anything that reads wrong, then merge."
+                      echo
+                      echo "\`mkdocs build --strict\` passed in the job that opened this PR."
+                      echo "PRs opened with \`GITHUB_TOKEN\` do not trigger \`pr-checks\`, which"
+                      echo "is why the build runs inline."
+                      echo
+                      echo "Opened automatically by \`.github/workflows/romm-release-bump.yml\`."
+                  } > /tmp/pr-body.md
+
+                  gh pr create \
+                      --base main \
+                      --head "$branch" \
+                      --title "chore: bump pinned romm ref to $TARGET" \
+                      --body-file /tmp/pr-body.md
