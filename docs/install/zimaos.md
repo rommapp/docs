@@ -14,13 +14,9 @@ description: Install on ZimaOS in one step from the built-in App Store
 
 ## Install
 
-1. Find the app
-
 Open the **App Store** and search for `RomM`, then hit **Install**.
 
 ![RomM in the ZimaOS App Store](../resources/zimaos/appstore.png)
-
-2. That's it
 
 ZimaOS provisions the container along with its database and Valkey, and the app shows up on your home screen when it's ready.
 
