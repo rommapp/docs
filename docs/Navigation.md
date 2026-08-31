@@ -22,6 +22,7 @@ search:
     - [TrueNAS](install/truenas.md)
     - [Kubernetes](install/kubernetes.md)
     - [Railway](install/railway.md)
+    - [ZimaOS](install/zimaos.md)
     - [NixOS](install/nixos.md)
     - [Backup & Restore](install/backup-and-restore.md)
 - Administration
