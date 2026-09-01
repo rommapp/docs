@@ -95,7 +95,7 @@ The [LaunchBox](https://gamesdb.launchbox-app.com/) Games Database is a communit
 
 To enable LaunchBox, set `LAUNCHBOX_API_ENABLED=true` and `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` in your environment variables. You can customize scheduled updates of the database by setting the frequency on the cron job with `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON` (defaults to 5:00 AM every day).
 
-You must run a LaunchBox metadata update (either manually, or scheduled via cron) to generate a local `.xml` file with Launchbox metadata before using it as a metadata provider. The server will parse the local `.xml` file when trying to match a ROM and fetch metadata from this source.
+You must run a LaunchBox metadata update (either manually, or scheduled via cron) to generate a local `.xml` file with Launchbox metadata before using it as a metadata provider. Manual LaunchBox updates can be run from the System/Administration/Tasks Page. The server will parse the local `.xml` file when trying to match a ROM and fetch metadata from this source.
 
 ### Hasheous
 
