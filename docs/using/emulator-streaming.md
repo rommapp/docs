@@ -10,6 +10,10 @@ Emulator streaming launches a game into a **native** emulator running in a separ
 Each emulator runs in its own [linuxserver](https://docs.linuxserver.io) container with a [Selkies](https://github.com/selkies-project/selkies) WebRTC stream and a small HTTP broker sidecar that RomM talks to. Nothing appears in the UI until you configure at least one container.
 
 <!-- prettier-ignore -->
+!!! info "Already running per-emulator containers?"
+    Streaming is moving to a single webstation container that serves every platform. See [Migrating to webstation](emulator-streaming-migration.md).
+
+<!-- prettier-ignore -->
 !!! warning "Work in progress"
     This is the first release of the streaming framework and ships with four emulators. More integrations (rpcs3 for PS3, and others) are planned as separate follow-ups.
 
