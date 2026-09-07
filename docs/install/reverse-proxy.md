@@ -151,10 +151,18 @@ Items marked ❗ are important. RomM won't work right without them.
 - **Scheme**: `http`
 - **Forward Hostname/IP**: container hostname or LAN IP (e.g. `192.168.1.100`)
 - **Forward Port**: `8080`
-- **Cache Assets**: `off`
+- **Cache Assets**: `off` ❗
 - **Block Common Exploits**: `on`
 - **Websockets Support**: `on` ❗
 - **Access List**: as needed
+
+<!-- prettier-ignore -->
+!!! warning "Leave `Websockets Support` on"
+    With it off, NPM strips the `Upgrade` and `Connection` headers, so RomM never sees an upgrade request and the Socket.IO handshake is rejected. Scan progress, notifications, and log streaming then fall back to HTTP long polling.
+
+<!-- prettier-ignore -->
+!!! warning "Leave `Cache Assets` off"
+    It sends every `.js`, `.css`, `.svg`, and image request through NPM's shared cache, which discards RomM's `Cache-Control`, `Last-Modified`, and `Vary` headers and replaces them with a flat expiry roughly 30 minutes out. Content-hashed bundles lose their one year `immutable` caching, covers and screenshots lose the revalidation that keeps them fresh after a rescan, and dropping `Vary: Accept-Encoding` allows a compressed response to be handed to a client that never asked for one. It also pins a 45s read timeout and a 5s connect timeout on those requests, overriding anything you set below.
 
 ### SSL
 
@@ -162,16 +170,71 @@ Items marked ❗ are important. RomM won't work right without them.
 - **Force SSL**: `on`
 - **HTTP/2 Support**: `on`
 - **HSTS Enabled**: `on` (after you've confirmed TLS works)
+- **Trust Upstream Forwarded Proto Headers**: `off`
 - **Email Address for Let's Encrypt**: your address
 - **I Agree to the TOS**: `on`
 
-### Custom nginx configuration ❗
+<!-- prettier-ignore -->
+!!! warning "`Trust Upstream Forwarded Proto Headers`"
+    Turn this on only when NPM itself sits behind another proxy that terminates TLS, such as a Cloudflare Tunnel or an upstream load balancer. When NPM is the edge, it lets any client skip the Force SSL redirect just by adding `X-Forwarded-Proto: https` to a plain HTTP request, and RomM will then treat that cleartext request as secure.
+
+### Advanced ❗
+
+Paste this into the proxy host's **Advanced** tab. NPM's defaults are tuned for small web apps and get in the way of multi-GB ROM transfers.
 
 ```nginx
-proxy_max_temp_file_size 0;
+# Uploads. NPM caps request bodies at 2000m, which rejects a larger ROM with
+# a 413 before it reaches RomM. Streaming the body also keeps NPM from
+# spooling the whole upload to disk inside its own container first.
+client_max_body_size      0;
+proxy_request_buffering   off;
+
+# Downloads. Buffer responses in RAM with 1 MB of read-ahead so a single
+# download keeps its connection saturated, and never spool to disk.
+# nginx requires busy (128k) >= buffer_size (64k), and busy <= the total
+# of all buffers (1 MB) minus one buffer.
+proxy_buffering           on;
+proxy_buffer_size         64k;
+proxy_buffers             16 64k;
+proxy_busy_buffers_size   128k;
+proxy_max_temp_file_size  0;
+
+# Timeouts. NPM defaults to 90s, which is short for large transfers and slow
+# metadata calls. Socket.IO pings every 25s, so it stays well inside this.
+proxy_connect_timeout     10s;
+proxy_read_timeout        300s;
+proxy_send_timeout        300s;
+send_timeout              300s;
+
+# Compression. RomM already gzips HTML, JSON, JS, and CSS itself. This adds
+# the types it doesn't: platform icons (SVG) and the emulator cores (wasm).
+# Binary assets and ROM downloads are intentionally left uncompressed.
+gzip                      on;
+gzip_vary                 on;
+gzip_proxied              any;
+gzip_comp_level           5;
+gzip_min_length           1024;
+gzip_types                text/plain text/css application/json
+                          application/javascript application/xml
+                          image/svg+xml application/wasm;
 ```
 
-Without that line, large downloads (bulk ROM zips, multi-disc games) will fail on NPM because nginx tries to buffer them to disk.
+What each block buys you:
+
+| Block           | Without it                                                                                                                                                 |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Uploads**     | Uploads over 2 GB are rejected with `413 Request Entity Too Large`, and smaller ones are written to disk inside the NPM container before RomM sees a byte. |
+| **Downloads**   | nginx spools each in-flight download to a temp file, up to 1 GB per connection, on the NPM container's filesystem.                                         |
+| **Timeouts**    | Long downloads and slow metadata calls are cut off at 90s.                                                                                                 |
+| **Compression** | Platform icons and emulator cores cross the wire uncompressed. RomM ships about 4 MB of SVG and 25 MB of wasm, both of which compress by 60 to 75%.        |
+
+<!-- prettier-ignore -->
+!!! note "Don't set `proxy_buffering off`"
+    It is a common suggestion for large downloads, but it does the opposite here: nginx falls back to relaying through a single small buffer and a single download runs at roughly half the speed. `proxy_buffering on` paired with `proxy_max_temp_file_size 0` gives you the read-ahead without the disk writes.
+
+<!-- prettier-ignore -->
+!!! note "Memory use"
+    `proxy_buffers 16 64k` reserves up to 1 MB per in-flight proxied response. On a small box serving many simultaneous downloads, drop to `8 32k` (256 KB each) if memory is tight.
 
 | Details                                                                                   | SSL                                                                                        | Advanced                                                                                   |
 | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
