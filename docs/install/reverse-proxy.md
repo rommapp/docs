@@ -178,6 +178,10 @@ Items marked ❗ are important. RomM won't work right without them.
 !!! warning "`Trust Upstream Forwarded Proto Headers`"
     Turn this on only when NPM itself sits behind another proxy that terminates TLS, such as a Cloudflare Tunnel or an upstream load balancer. When NPM is the edge, it lets any client skip the Force SSL redirect just by adding `X-Forwarded-Proto: https` to a plain HTTP request, and RomM will then treat that cleartext request as secure.
 
+| Details                                                                                                        | SSL                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| ![NPM proxy host Details tab](https://github.com/user-attachments/assets/40b7b009-63e3-4fe9-94c6-7c0e3429261e) | ![NPM proxy host SSL tab](https://github.com/user-attachments/assets/3ebdb711-a8be-487e-8237-d384d49ce60e) |
+
 ### Advanced ❗
 
 Paste this into the proxy host's **Advanced** tab. NPM's defaults are tuned for small web apps and get in the way of multi-GB ROM transfers.
@@ -235,10 +239,6 @@ What each block buys you:
 <!-- prettier-ignore -->
 !!! note "Memory use"
     `proxy_buffers 16 64k` reserves up to 1 MB per in-flight proxied response. On a small box serving many simultaneous downloads, drop to `8 32k` (256 KB each) if memory is tight.
-
-| Details                                                                                   | SSL                                                                                        | Advanced                                                                                   |
-| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| ![image](https://github.com/user-attachments/assets/e106a8e9-8b27-41ef-8ba2-d43c3b68b269) | ![image2](https://github.com/user-attachments/assets/6c82c785-792a-410a-80f2-d95839cba47b) | ![image3](https://github.com/user-attachments/assets/566ae834-99b5-42f3-b46b-306b8f73b5b4) |
 
 ## Set `ROMM_BASE_URL` behind HTTPS
 
