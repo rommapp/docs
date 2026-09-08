@@ -148,6 +148,22 @@ filesystem:
     firmware_folder: "firmware"
 ```
 
+### `filesystem.structure`
+
+Describe a deeper library layout per platform, instead of the default one-level-deep scan (top-level file = game, top-level folder = multi-file game). Keys are platform folder names, values are one template or a list of them. A template is a `/`-separated path relative to the platform's ROM folder, ending in `{gameFile}` (each file is a game) or `{gameDir}` (each folder is one multi-file game); any other braced section matches any folder name. Platforms you omit keep the default behaviour.
+
+```yaml
+filesystem:
+    structure:
+        snes: "{region}/{gameFile}"
+        ps3: "{category}/{gameDir}"
+        nes:
+            - "{gameFile}"
+            - "{category}/{gameFile}"
+```
+
+See [Folder Structure -> Custom library structure](../getting-started/folder-structure.md#custom-library-structure) for the full syntax and how moving games between folders is handled.
+
 ### `filesystem.skip_hash_calculation`
 
 Skip hashing on low-power devices. You lose hash-based matching (RetroAchievements, Hasheous, PlayMatch) but scans run much faster.

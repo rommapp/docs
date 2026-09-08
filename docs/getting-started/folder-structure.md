@@ -156,6 +156,57 @@ Some games come as **folders** instead of single files, which could include mult
 !!! note "Starting from scratch?"
     If you upload files through the web UI without any existing structure, it'll create **Structure A** on your behalf.
 
+## Custom library structure
+
+By default, a platform's ROM folder is scanned one level deep: each top-level file is a game, and each top-level folder is a single multi-file game. If your library is organised more deeply, describe that shape with a **structure template** in [`config.yml`](../reference/configuration-file.md#filesystemstructure). Templates are opt-in per platform, keyed by the platform folder name, and platforms you leave out keep the default behaviour.
+
+### Syntax
+
+A template is a `/`-separated path, relative to the platform's ROM folder. RomM resolves the library root, the `roms_folder` and the platform directory on its own, so those never appear in a template (`{library}` and `{platform}` are rejected).
+
+- A bare section is a literal folder name, matched exactly.
+- A section wrapped in braces is a macro.
+- The **last** section must be a terminal macro: `{gameFile}` makes every file at that level its own game, `{gameDir}` makes every folder at that level a single multi-file game.
+- Any other braced section (`{region}`, `{category}`, or whatever you want to call it) is a wildcard directory level: it matches any folder name and is purely organisational.
+
+```yaml
+filesystem:
+    structure:
+        # roms/snes/USA/foo.sfc, roms/snes/Japan/bar.sfc
+        snes: "{region}/{gameFile}"
+        # roms/ps3/Disc/Game/, roms/ps3/PSN/Game/ -> each folder is one game
+        ps3: "{category}/{gameDir}"
+```
+
+Declaring `{gameDir}` explicitly is what keeps multi-disc and `cue`+`bin` games whole: you say file-or-folder, RomM doesn't guess.
+
+### Several templates for one platform
+
+A platform can declare a **list** of templates, and discovery is their union. That covers the mixed layout no single fixed-depth template can express: loose games at the platform root **and** games inside grouping subfolders below it.
+
+```yaml
+filesystem:
+    structure:
+        nes:
+            - "{gameFile}" # roms/nes/game01.nes
+            - "{category}/{gameFile}" # roms/nes/Hacks/game03.nes
+```
+
+### Moving games around
+
+Game identity is content-based, so a template isn't a cage: move or rename a game within it and the next scan recognises it by its hashes and relocates the existing entry in place, so its saves, states, play history, favourites and collection membership follow it. Removing a platform's template is just another relocation, moving every game back to the platform root rather than re-importing it.
+
+<!-- prettier-ignore -->
+!!! warning "Relocation needs an identity"
+    Matching a moved file to its entry needs all three of its hashes (CRC, MD5, SHA-1), so hashing has to be on (see [`filesystem.skip_hash_calculation`](../reference/configuration-file.md#filesystemskip_hash_calculation)). Platforms RomM doesn't hash (Switch, PS3, PS4, the PC and mobile platforms) fall back to the title id read out of the binary. With neither available, or when two entries missing from the same platform share an identity, the file is imported as a new game and the old entry stays flagged as missing from the filesystem.
+
+### Notes
+
+- Hidden (dot-prefixed) folders are never descended into or surfaced.
+- A folder a template descends into is a grouping level, not a game. With `{gameDir}` and `{category}/{gameFile}` declared together, a folder holding discovered games is a category, and only folders no template descends into stay multi-file games.
+- A folder previously scanned as one multi-file game that a new template descends into leaves its old entry marked as missing from the filesystem (the scan log flags it). Delete the stale entry to clean up.
+- Two files with the same name in different folders become distinct games. `gamelist.xml` matching is by filename, so both may match the same gamelist entry.
+
 ## Naming convention
 
 Filenames are parsed for region, language, revision, and arbitrary tags, with both `[]` and `()` delimiters supported:
