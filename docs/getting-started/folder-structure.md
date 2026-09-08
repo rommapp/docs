@@ -205,7 +205,8 @@ Game identity is content-based, so a template isn't a cage: move or rename a gam
 - Hidden (dot-prefixed) folders are never descended into or surfaced.
 - A folder a template descends into is a grouping level, not a game. With `{gameDir}` and `{category}/{gameFile}` declared together, a folder holding discovered games is a category, and only folders no template descends into stay multi-file games.
 - A folder previously scanned as one multi-file game that a new template descends into leaves its old entry marked as missing from the filesystem (the scan log flags it). Delete the stale entry to clean up.
-- Two files with the same name in different folders become distinct games. `gamelist.xml` matching is by filename, so both may match the same gamelist entry.
+- Two files with the same name in different folders become distinct games. A `gamelist.xml` entry is matched to one of them by its `<path>` relative to the platform folder, and an entry carrying only a bare file name still matches as long as a single game has that name.
+- Exported metadata follows the structure too: `gamelist.xml` and `metadata.pegasus.txt` entries carry each game's path relative to the platform folder, and exported media mirrors those folders.
 
 ## Naming convention
 
