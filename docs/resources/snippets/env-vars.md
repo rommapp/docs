@@ -159,16 +159,16 @@
 
 ### Web Server
 
-| Variable                           | Default | Required | Description                                                                                                    |
-| ---------------------------------- | ------- | :------: | -------------------------------------------------------------------------------------------------------------- |
-| `WEB_SERVER_CONCURRENCY`           | `4`     |          | Number of API worker processes, not background tasks; ~160MB RAM each, raise only for several concurrent users |
-| `WEB_SERVER_TIMEOUT`               | `300`   |          | Timeout for web server requests in seconds                                                                     |
-| `WEB_SERVER_KEEPALIVE`             | `2`     |          | Keep-Alive connection wait time in seconds                                                                     |
-| `WEB_SERVER_MAX_REQUESTS`          | `1000`  |          | Maximum requests a worker processes before restarting                                                          |
-| `WEB_SERVER_MAX_REQUESTS_JITTER`   | `100`   |          | Random jitter added to max requests value                                                                      |
-| `WEB_SERVER_WORKER_CONNECTIONS`    | `1000`  |          | Maximum simultaneous clients per worker process                                                                |
-| `WEB_SERVER_GUNICORN_WAIT_SECONDS` | `30`    |          | Seconds to wait for Gunicorn to start before giving up                                                         |
-| `IPV4_ONLY`                        | `false` |          | Bind only to IPv4                                                                                              |
+| Variable                           | Default | Required | Description                                                        |
+| ---------------------------------- | ------- | :------: | ------------------------------------------------------------------ |
+| `WEB_SERVER_CONCURRENCY`           | `4`     |          | Number of API worker processes, raise for several concurrent users |
+| `WEB_SERVER_TIMEOUT`               | `300`   |          | Timeout for web server requests in seconds                         |
+| `WEB_SERVER_KEEPALIVE`             | `2`     |          | Keep-Alive connection wait time in seconds                         |
+| `WEB_SERVER_MAX_REQUESTS`          | `1000`  |          | Maximum requests a worker processes before restarting              |
+| `WEB_SERVER_MAX_REQUESTS_JITTER`   | `100`   |          | Random jitter added to max requests value                          |
+| `WEB_SERVER_WORKER_CONNECTIONS`    | `1000`  |          | Maximum simultaneous clients per worker process                    |
+| `WEB_SERVER_GUNICORN_WAIT_SECONDS` | `30`    |          | Seconds to wait for Gunicorn to start before giving up             |
+| `IPV4_ONLY`                        | `false` |          | Bind only to IPv4                                                  |
 
 ### Proxy
 
