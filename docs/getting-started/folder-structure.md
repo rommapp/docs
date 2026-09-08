@@ -194,7 +194,7 @@ filesystem:
 
 ### Moving games around
 
-Game identity is content-based, so a template isn't a cage: move or rename a game within it and the next scan recognises it by its hashes and relocates the existing entry in place, so its saves, states, play history, favourites and collection membership follow it. Removing a platform's template is just another relocation, moving every game back to the platform root rather than re-importing it.
+Game identity is content-based, so a template isn't a cage: move or rename a game within it and the next scan recognises it by its hashes and relocates the existing entry in place, so its saves, states, play history, favourites and collection membership follow it. Removing a platform's template moves nothing on disk: RomM goes back to scanning the platform root one level deep, so the games below it are flagged as missing from the filesystem, and the folders that used to group them are picked up as multi-file games instead (a dot-prefixed folder the template skipped can turn up as one too). Flatten the library out yourself and the next scan matches each game by hash and relocates it rather than importing a duplicate.
 
 <!-- prettier-ignore -->
 !!! warning "Relocation needs an identity"
