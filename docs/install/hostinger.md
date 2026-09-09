@@ -58,7 +58,7 @@ The **Environment** section holds the values the template interpolates into the 
 
 ![Editing RomM's environment variables in Hostinger](../resources/hostinger/environment-editor.png)
 
-Fill in the provider credentials before your first scan, since matching quality depends on them.
+Fill in the metadata provider credentials before your first scan, since matching quality depends on them (see [Metadata Providers](../getting-started/metadata-providers.md)).
 
 <!-- prettier-ignore -->
 !!! tip "Names have to match the compose file"
