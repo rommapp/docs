@@ -11,25 +11,46 @@ Each emulator runs in its own [linuxserver](https://docs.linuxserver.io) contain
 
 <!-- prettier-ignore -->
 !!! warning "Work in progress"
-    This is the first release of the streaming framework and ships with four emulators. More integrations (rpcs3 for PS3, and others) are planned as separate follow-ups.
+    This is the first release of the streaming framework and ships with three emulators. More integrations (rpcs3 for PS3, and others) are planned as separate follow-ups.
 
 ## Supported emulators
 
 Each emulator ships as a companion Docker mod repo with the broker sidecar and a worked `docker-compose.yml`.
 
-| Platform slug        | Emulator | Save states | Manual slots | Autosave slot | Broker repo                                                                           |
-| -------------------- | -------- | ----------- | ------------ | ------------- | ------------------------------------------------------------------------------------- |
-| `ps2`                | PCSX2    | Yes         | 9            | Slot 10       | [pcsx2-romm-integration](https://github.com/LoneAngelFayt/pcsx2-romm-integration)     |
-| `ngc`, `wii`, `wiiu` | Dolphin  | Yes         | 7            | Slot 8        | [dolphin-romm-integration](https://github.com/LoneAngelFayt/dolphin-romm-integration) |
-| `xbox`               | xemu     | Yes         | 9            | Slot 10       | [xemu-romm-integration](https://github.com/LoneAngelFayt/xemu-romm-integration)       |
+| Platform slug | Emulator | Save states | Manual slots | Autosave slot | Broker repo                                                                           |
+| ------------- | -------- | ----------- | ------------ | ------------- | ------------------------------------------------------------------------------------- |
+| `ps2`         | PCSX2    | Yes         | 9            | Slot 10       | [pcsx2-romm-integration](https://github.com/LoneAngelFayt/pcsx2-romm-integration)     |
+| `ngc`, `wii`  | Dolphin  | Yes         | 7            | Slot 8        | [dolphin-romm-integration](https://github.com/LoneAngelFayt/dolphin-romm-integration) |
+| `xbox`        | xemu     | Yes         | 9            | Slot 10       | [xemu-romm-integration](https://github.com/LoneAngelFayt/xemu-romm-integration)       |
 
 The broker launches ROMs as direct files, so **archive extraction is not supported**.
 
 Only **one session per platform** can be active at a time, since there is a single emulator container behind it. Sessions are stored in [Valkey](../install/redis-or-valkey.md) with an atomic claim, so multiple workers stay consistent. The session is bound to the user who claimed it, and only that owner or an admin can control or release it, though an admin can force-release a stuck session.
 
-## Save states
+## Saves and save states
 
-The autosave slot is reserved for **Save & Exit**, so it can be overwritten on the next exit. Save files and states here live inside the emulator container and are **not** the same as RomM's [per-user saves and states](saves-and-states.md) from in-browser play.
+**Save states** are the emulator's own quick-save slots: numbered manual slots plus a dedicated autosave slot per platform (see the table above). The autosave slot is reserved for **Save & Exit** and is overwritten on the next exit.
+
+Each state is copied off the container into your library as it is written, with a thumbnail alongside it, and the state written by **Save & Exit** is filed when the session ends. Your stored states are offered the next time you launch that game, so you can carry on from one instead of booting fresh. RomM keeps the newest states per game, emulator, and user, and prunes the rest past `STREAMING_STATE_HISTORY_LIMIT` (default `50`, `0` to keep everything).
+
+These streaming states are stored separately from RomM's [per-user saves and states](saves-and-states.md) from in-browser play.
+
+## Memory cards
+
+On platforms with a memory card (**PS2** and **GameCube**), you can opt a container into whole-card sync with `memory_card_sync: true`. The card then lives in your RomM library rather than on the container: RomM loads your card in when a session starts, copies it back when you exit, and leaves the container's slot blank in between. Your most recently used card for that emulator loads by default, and you can keep several cards and pick which one a session mounts.
+
+PCSX2 only serves its card when Slot 1 holds a **Folder** card rather than a **File** card. With a File card the broker refuses the transfer and the session will not start, so set the card type before turning the flag on (see the [PCSX2 broker's memory card setup](https://github.com/LoneAngelFayt/pcsx2-romm-integration#memory-card-setup)). Dolphin's broker pins its own folder card, so GameCube needs no extra setup.
+
+Because each session starts from your library, the first time RomM uses a container that already has a card on it, it stops and asks what to do:
+
+- Importing it stores the container's card in your library, as a new version of your current card for that emulator, or as your first card if you have none.
+- Starting fresh erases the container's card, which is confirmed first because it cannot be undone.
+
+RomM records your answer per container, so it only asks once.
+
+<!-- prettier-ignore -->
+!!! warning "Playing on the container directly"
+    Syncing only happens around a RomM streaming session. If you play on the emulator container directly, outside RomM, those saves and cards stay on the container and are not pulled into your library. A later RomM session loads your library's copy over them, so make your progress through RomM to keep it.
 
 ## Setup
 
@@ -47,14 +68,17 @@ Add a `streaming` block with one entry per emulator container, full schema in [C
 - `host` must be reachable from clients and served over **HTTPS** (Selkies WebRTC requires a secure context). Use the container's built-in self-signed cert or a [reverse proxy with TLS](../install/reverse-proxy.md).
 - `broker_host` is called server-side, so HTTP is fine. If the containers share a Docker network, use the container name (e.g. `http://pcsx2:8000`). If `broker_host` is omitted, it gets derived from `host`.
 - `label` is the text shown on the play action.
+- `memory_card_sync: true` opts a **PS2** or **GameCube** container into whole-card sync (see [Memory cards](#memory-cards)). It has no effect on platforms without a memory card.
+- `library_path` overrides the in-container library path if the container mounts the RomM library somewhere other than the default `/romm/library`.
+- `emulator` sets an explicit name used to group this container's states and memory cards, lowercased. It defaults to `label`, then the platform slug, so setting it keeps stored states and cards attached when you rename a label later.
 
-Multiple platforms can share one container (point `ngc`, `wii`, and `wiiu` at the same Dolphin instance) or each use their own.
+Multiple platforms can share one container (point `ngc` and `wii` at the same Dolphin instance) or each use their own.
 
 ### Set the shared secret
 
-`STREAMING_BROKER_SECRET` authenticates calls to the broker. Set the **same value** in every container. If a broker slot needs a different secret, a per-container `broker_secret` in `config.yml` overrides the env var for that entry.
+`STREAMING_BROKER_SECRET` authenticates calls to the broker. Set the **same value** in every container. If a broker needs a different secret, set `broker_secret` on that entry in `config.yml` and leave `STREAMING_BROKER_SECRET` unset, because the env var wins over the per-container value whenever it carries one.
 
-If a broker's save wait exceeds the default 45 seconds, raise `STREAMING_SAVE_TIMEOUT` (seconds) so Save & Exit doesn't time out. Both are set as env vars (see [Environment Variables](../reference/environment-variables.md)).
+If a broker's save wait exceeds the default 45 seconds, raise `STREAMING_SAVE_TIMEOUT` (seconds) so Save & Exit doesn't time out. `STREAMING_STATE_HISTORY_LIMIT` (default `50`) caps how many save states RomM keeps per game, emulator, and user before pruning the oldest, and `0` keeps every state. All are set as env vars (see [Environment Variables](../reference/environment-variables.md)).
 
 ## Troubleshooting
 
