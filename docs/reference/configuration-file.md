@@ -483,16 +483,16 @@ streaming:
 
 One entry per emulator container, where each entry maps a [platform slug](../platforms/supported-platforms.md) to the container that streams it.
 
-| Key                | Required | Purpose                                                                                                     |
-| ------------------ | -------- | ----------------------------------------------------------------------------------------------------------- |
-| `platform`         | Yes      | Platform slug this container serves (e.g. `ps2`, `ngc`, `xbox`, `switch`)                                   |
-| `host`             | Yes      | Browser-facing Selkies web UI (must be reachable from clients and served over **HTTPS**)                    |
-| `broker_host`      | No       | Server-side broker API (derived from `host` if omitted)                                                     |
-| `label`            | Yes      | Text shown on the play action (e.g. `PCSX2`)                                                                |
-| `broker_secret`    | No       | Per-container override for the `STREAMING_BROKER_SECRET` env var, for brokers that use a different secret   |
-| `memory_card_sync` | No       | Sync the whole memory card to the RomM library on `ps2` and `ngc` (GameCube); ignored on cardless platforms |
-| `library_path`     | No       | In-container path to the RomM library if it is mounted somewhere other than the default `/romm/library`     |
-| `emulator`         | No       | Name used to group this container's states and memory cards; defaults to `label`, then the platform slug    |
+| Key                | Required | Purpose                                                                                                        |
+| ------------------ | -------- | -------------------------------------------------------------------------------------------------------------- |
+| `platform`         | Yes      | Platform slug this container serves (e.g. `ps2`, `ngc`, `wii`, `xbox`)                                         |
+| `host`             | Yes      | Browser-facing Selkies web UI (must be reachable from clients and served over **HTTPS**)                       |
+| `broker_host`      | No       | Server-side broker API (derived from `host` if omitted)                                                        |
+| `label`            | Yes      | Text shown on the play action (e.g. `PCSX2`)                                                                   |
+| `broker_secret`    | No       | Secret for this container, used only when the `STREAMING_BROKER_SECRET` env var is unset                       |
+| `memory_card_sync` | No       | Sync the whole memory card to the RomM library on `ps2` and `ngc` (GameCube), ignored on cardless platforms    |
+| `library_path`     | No       | In-container path to the RomM library if it is mounted somewhere other than the default `/romm/library`        |
+| `emulator`         | No       | Lowercased name grouping this container's states and memory cards, defaults to `label`, then the platform slug |
 
 See [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-cards) for how `memory_card_sync` behaves.
 
