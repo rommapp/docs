@@ -11,14 +11,14 @@ description: Deploy on a Hostinger VPS with the built-in one-click application
 
 The template creates two Docker applications on the VPS:
 
-- **`romm-<suffix>`**: two containers, the RomM app and a MariaDB database.
+- **`romm-<suffix>`**: two containers, the RomM app and a MariaDB database. There is no third container for the in-memory store, since the template leaves `REDIS_HOST` unset and the image starts its [embedded Valkey](redis-or-valkey.md).
 - **`traefik`**: one container, acting as the reverse proxy.
 
 Resources, assets, and config live in named Docker volumes, while the library is a bind mount from a directory on the VPS, which is where you'll upload ROMs.
 
 ## Prerequisites
 
-- A Hostinger VPS plan. The catalog lists KVM 1 as sufficient, though your library shares the server's disk, so pick a plan whose storage fits your collection.
+- A Hostinger VPS plan. The catalog offers the app on every tier down to the entry-level KVM 1, though your library shares the server's disk, so pick a plan whose storage fits your collection.
 
 ## Install
 
@@ -58,7 +58,13 @@ The **Environment** section holds the values the template interpolates into the 
 
 ![Editing RomM's environment variables in Hostinger](../resources/hostinger/environment-editor.png)
 
+`TRAEFIK_HOST` is the hostname Traefik routes on, so point a domain at the VPS and set it here if you want more than raw IP access. HTTPS is required for OIDC and PWA install (see [Reverse Proxy](reverse-proxy.md)).
+
 Fill in the metadata provider credentials before your first scan, since matching quality depends on them (see [Metadata Providers](../getting-started/metadata-providers.md)).
+
+<!-- prettier-ignore -->
+!!! warning "ScreenScraper needs a username too"
+    The template exposes `SCREENSCRAPER_PASSWORD` but hardcodes `SCREENSCRAPER_USER=` empty in the compose file, so filling in only the password leaves ScreenScraper rejecting every request. Add a `SCREENSCRAPER_USER` entry here and change that line in the **.yaml editor** to `SCREENSCRAPER_USER=${SCREENSCRAPER_USER}`, or set the username inline there.
 
 <!-- prettier-ignore -->
 !!! tip "Names have to match the compose file"
@@ -75,6 +81,7 @@ Everything in it is the standard configuration described in [Quick Start](../get
 The library can live anywhere on the VPS disk, as long as the host directory is bind-mounted to `/romm/library` inside the container. The template mounts `/library`, and you can point it somewhere else by editing that line in the **.yaml editor**. Copy files to the host path over SFTP or SSH using the server's IP and the `root` credentials from the VPS overview:
 
 ```bash
+ssh root@<vps-ip> mkdir -p /library/roms
 scp -r ~/roms/gbc root@<vps-ip>:/library/roms/
 ```
 
