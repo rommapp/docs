@@ -52,6 +52,7 @@ search:
     - [Uploads](using/uploads.md)
     - In-Browser Play
         - [EmulatorJS](using/in-browser-play/emulatorjs.md)
+        - [`js-dos`](using/in-browser-play/js-dos.md)
         - [MS-DOS](using/in-browser-play/ms-dos.md)
         - [Ruffle](using/in-browser-play/ruffle.md)
     - [Emulator Streaming](using/emulator-streaming.md)

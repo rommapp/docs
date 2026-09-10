@@ -130,10 +130,11 @@
 
 ### Emulation
 
-| Variable              | Default | Required | Description                                    |
-| --------------------- | ------- | :------: | ---------------------------------------------- |
-| `DISABLE_EMULATOR_JS` | `false` |          | Disable in-browser play via EmulatorJS         |
-| `DISABLE_RUFFLE_RS`   | `false` |          | Disable in-browser Flash playback via RuffleRS |
+| Variable              | Default | Required | Description                                                 |
+| --------------------- | ------- | :------: | ----------------------------------------------------------- |
+| `DISABLE_EMULATOR_JS` | `false` |          | Disable in-browser play via EmulatorJS                      |
+| `DISABLE_RUFFLE_RS`   | `false` |          | Disable in-browser Flash playback via RuffleRS              |
+| `DISABLE_JSDOS`       | `false` |          | Disable in-browser Windows 3.x and 9x playback via `js-dos` |
 
 ### Integrations
 

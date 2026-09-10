@@ -10,6 +10,6 @@ description: Everything about the supported platforms
 
 ## Related sections
 
-- **[In-Browser Play](../using/in-browser-play/emulatorjs.md)**: the end-user side of EmulatorJS + Ruffle
+- **[In-Browser Play](../using/in-browser-play/emulatorjs.md)**: the end-user side of EmulatorJS, `js-dos`, and Ruffle
 - **[Metadata Providers](../getting-started/metadata-providers.md)**
 - **[Folder Structure](../getting-started/folder-structure.md)**

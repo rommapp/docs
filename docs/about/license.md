@@ -34,7 +34,7 @@ Companion repos use more permissive licenses AGPLv3 or MIT because they're small
 
 ## Third-party components
 
-Several third-party components ship with their own licenses: [EmulatorJS](https://emulatorjs.org/), [Ruffle](https://ruffle.rs/), Vue, FastAPI, and a long list of smaller dependencies. Their licenses apply to their respective code, and none of them override AGPLv3 on the RomM code itself. View the full list via `uv tree` in the backend and `npm ls` in the frontend. Redistribution respects each upstream's terms.
+Several third-party components ship with their own licenses: [EmulatorJS](https://emulatorjs.org/), [`js-dos`](https://js-dos.com/), [Ruffle](https://ruffle.rs/), Vue, FastAPI, and a long list of smaller dependencies. Their licenses apply to their respective code, and none of them override AGPLv3 on the RomM code itself. View the full list via `uv tree` in the backend and `npm ls` in the frontend. Redistribution respects each upstream's terms.
 
 ## FAQ
 
