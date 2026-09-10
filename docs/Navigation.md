@@ -21,6 +21,8 @@ search:
     - [Synology](install/synology.md)
     - [TrueNAS](install/truenas.md)
     - [Kubernetes](install/kubernetes.md)
+    - [Hostinger](install/hostinger.md)
+    - [Cloudzy](install/cloudzy.md)
     - [Railway](install/railway.md)
     - [ZimaOS](install/zimaos.md)
     - [NixOS](install/nixos.md)

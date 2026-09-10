@@ -1,6 +1,6 @@
 ---
 title: Install & Deploy
-description: On Docker Compose, Unraid, Synology, TrueNAS, Kubernetes, Railway, ZimaOS, or NixOS
+description: On Docker Compose, Unraid, Synology, TrueNAS, Kubernetes, Hostinger, Cloudzy, Railway, ZimaOS, or NixOS
 ---
 
 # Install & Deploy
@@ -16,6 +16,8 @@ RomM is distributed as a Docker image. Every supported deployment runs the same 
 | **Synology**         | [Container Manager + DSM-specific notes](synology.md)              |
 | **TrueNAS**          | [App Catalog or YAML install](truenas.md)                          |
 | **Kubernetes**       | [Community charts and gotchas](kubernetes.md)                      |
+| **Hostinger**        | [One-click VPS template](hostinger.md)                             |
+| **Cloudzy**          | [One-click Marketplace image](cloudzy.md)                          |
 | **Railway**          | [Community one-click template](railway.md)                         |
 | **ZimaOS**           | [One-click install from the App Store](zimaos.md)                  |
 
