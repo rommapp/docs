@@ -130,39 +130,31 @@ system:
 
 ## `filesystem`
 
-### `filesystem.roms_folder`
-
-Override the default ROMs folder name (`roms`).
-
-```yaml
-filesystem:
-    roms_folder: "my_roms"
-```
-
-### `filesystem.firmware_folder`
-
-Override the default BIOS/firmware folder name (`bios`).
-
-```yaml
-filesystem:
-    firmware_folder: "firmware"
-```
-
 ### `filesystem.structure`
 
-Describe a deeper library layout per platform, instead of the default one-level-deep scan (top-level file = game, top-level folder = multi-file game). Keys are platform folder names, values are one template or a list of them. A template is a `/`-separated path relative to the platform's ROM folder, ending in `{gameFile}` (each file is a game) or `{gameDir}` (each folder is one multi-file game); any other braced section matches any folder name. Platforms you omit keep the default behaviour.
+Describe the whole library layout. A template is a `/`-separated path relative to the library root, where `{platform}` marks the platform folder and `{game}` the level a game begins at (a file there is one game, a folder one multi-file game). Any other braced section is a wildcard level matching any folder name.
+
+- `default` is the library-wide ROM layout, `roms/{platform}/{game}` if unset.
+- `firmware` is the firmware layout, `bios/{platform}` if unset, and it takes only literal folder names around `{platform}`.
+- Any other key is a platform folder name (matched case-insensitively, like `system.platforms`) overriding the ROM layout for that platform, as one template or a list of them whose discovery is unioned. An override has to agree with `default` on where the platform folder sits.
 
 ```yaml
 filesystem:
     structure:
-        snes: "{region}/{gameFile}"
-        ps3: "{category}/{gameDir}"
+        default: "roms/{platform}/{game}"
+        firmware: "bios/{platform}"
+        snes: "roms/{platform}/{region}/{game}"
+        ps3: "roms/{platform}/{category}/{game}"
         nes:
-            - "{gameFile}"
-            - "{category}/{gameFile}"
+            - "roms/{platform}/{game}"
+            - "roms/{platform}/{category}/{game}"
 ```
 
-See [Folder Structure -> Custom library structure](../getting-started/folder-structure.md#custom-library-structure) for the full syntax and how moving games between folders is handled.
+See [Folder Structure → Custom library structure](../getting-started/folder-structure.md#custom-library-structure) for the full syntax and how moving games between folders is handled.
+
+<!-- prettier-ignore -->
+!!! warning "`roms_folder` and `firmware_folder` were retired"
+    Each named one path segment that a template now spells out, so RomM refuses to start while either is set, printing the template that reproduces the layout. `roms_folder: "my_roms"` becomes `default: "my_roms/{platform}/{game}"`, and `firmware_folder: "firmware"` becomes `firmware: "firmware/{platform}"`.
 
 ### `filesystem.skip_hash_calculation`
 
