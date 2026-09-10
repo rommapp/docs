@@ -7,7 +7,7 @@ description: How to organise your library on disk
 
 # Folder Structure
 
-RomM expects your library to be organised in one of two layouts. It tries **Structure A** first, and falls back to **Structure B** if A isn't found. This auto-detection is per-library (not per-platform), so if you don't pick one up front, just arrange files the way you prefer and it'll figure it out.
+RomM expects your library to be organised in one of two layouts. **Structure A** is what it scans unless told otherwise. **Structure B** is not auto-detected, so a library laid out that way has to declare it as a [structure template](#custom-library-structure) in `config.yml`, and RomM refuses to start with the two lines you need if it spots that layout undeclared.
 
 ## The two layouts
 
@@ -20,11 +20,20 @@ Both layouts separate ROMs from BIOS files, and they differ on whether the split
 /bios/{platform}/
 ```
 
-- **Structure B (fallback)**: one folder per platform at the top, `roms/` and `bios/` inside each
+- **Structure B (opt-in)**: one folder per platform at the top, `roms/` and `bios/` inside each
 
 ```text
 /{platform}/roms/
 /{platform}/bios/
+```
+
+Structure B is declared with two templates, and the [custom library structure](#custom-library-structure) section below covers the syntax:
+
+```yaml
+filesystem:
+    structure:
+        default: "{platform}/roms/{game}"
+        firmware: "{platform}/bios"
 ```
 
 As the BIOS/firmware tree is **optional**, only platforms that require firmware for emulation need it.
@@ -51,7 +60,7 @@ Some games come as **folders** instead of single files, which could include mult
 <table>
 <tr>
     <th style="text-align: center"><b>Structure A (recommended)</b></th>
-    <th style="text-align: center"><b>Structure B (fallback)</b></th>
+    <th style="text-align: center"><b>Structure B (opt-in)</b></th>
 </tr>
 <tr>
     <td style="text-align: center">
@@ -155,6 +164,66 @@ Some games come as **folders** instead of single files, which could include mult
 <!-- prettier-ignore -->
 !!! note "Starting from scratch?"
     If you upload files through the web UI without any existing structure, it'll create **Structure A** on your behalf.
+
+## Custom library structure
+
+Both layouts above are **structure templates**, and so is anything deeper. `filesystem.structure` in [`config.yml`](../reference/configuration-file.md#filesystemstructure) holds them: `default` is the library-wide ROM layout (`roms/{platform}/{game}` unless you say otherwise), `firmware` is the firmware one (`bios/{platform}`), and any other key overrides the ROM layout for one platform.
+
+### Syntax
+
+A template is a `/`-separated path relative to the **library root**, the folder you mount as `/romm/library`. A bare section is a literal folder name, matched exactly, and a section wrapped in braces is a macro.
+
+- `{platform}` marks the platform folder, and every section before it has to be a literal so there is one known folder to enumerate platforms in. A per-platform override may spell that folder out by name instead, which is how its key already reads (`roms/ps3/{category}/{game}` under the `ps3` key).
+- `{game}` is the **terminal** and has to be the last section. It marks the level where a game begins, and at that level a file is a game of its own while a folder is one multi-file game, so multi-disc and `cue`+`bin` games stay whole without you declaring anything.
+- Any other braced section (`{region}`, `{category}`, or whatever you want to call it) is a wildcard directory level: it matches any folder name and is purely organisational.
+- `{library}` is rejected, because a template is already relative to the library root.
+
+```yaml
+filesystem:
+    structure:
+        # The defaults, spelled out
+        default: "roms/{platform}/{game}"
+        firmware: "bios/{platform}"
+        # roms/snes/USA/foo.sfc, roms/snes/Japan/bar.sfc
+        snes: "roms/{platform}/{region}/{game}"
+        # roms/ps3/Disc/Game/, roms/ps3/PSN/Game/ -> each folder is one game
+        ps3: "roms/{platform}/{category}/{game}"
+```
+
+Platform keys are matched case-insensitively, like `system.platforms`, so `Atari - 2600` and `atari - 2600` name the same platform. `default` and `firmware` are reserved, and a platform folder named either is read as the layout key rather than as an override.
+
+The `firmware` template takes only literal folder names around `{platform}`, no wildcard levels and no `{game}`, because it points at a folder rather than at a set of games.
+
+Every per-platform override has to agree with `default` on where the platform folder itself sits, since platform discovery enumerates a single folder. Pairing `default: "roms/{platform}/{game}"` with `snes: "games/{platform}/{game}"` is refused at startup.
+
+### Several templates for one platform
+
+A platform can declare a **list** of templates, and discovery is their union. That covers the mixed layout no single fixed-depth template can express: loose games directly in the platform folder **and** games inside grouping subfolders below it.
+
+```yaml
+filesystem:
+    structure:
+        nes:
+            - "roms/{platform}/{game}" # roms/nes/game01.nes
+            - "roms/{platform}/{category}/{game}" # roms/nes/Hacks/game03.nes
+```
+
+### Moving games around
+
+Game identity is content-based, so a template isn't a cage: move or rename a game within it and the next scan recognises it by its hashes and relocates the existing entry in place, so its saves, states, play history, favourites and collection membership follow it. Removing a platform's override moves nothing on disk: the platform falls back to `structure.default`, so the games that no longer sit where that template expects them are flagged as missing from the filesystem, and the folders that used to group them are picked up as multi-file games instead. Flatten the library out yourself and the next scan matches each game by hash and relocates it rather than importing a duplicate.
+
+<!-- prettier-ignore -->
+!!! warning "Relocation needs an identity"
+    Matching a moved file to its entry needs all three of its hashes (CRC, MD5, SHA-1), so hashing has to be on (see [`filesystem.skip_hash_calculation`](../reference/configuration-file.md#filesystemskip_hash_calculation)). Platforms RomM doesn't hash (Switch, PS3, PS4, the PC and mobile platforms) fall back to the title id read out of the binary. With neither available, or when two entries missing from the same platform share an identity, the file is imported as a new game and the old entry stays flagged as missing from the filesystem.
+
+### Notes
+
+- Hidden (dot-prefixed) folders are never descended into or surfaced.
+- A folder a template descends into is a grouping level, not a game. With `roms/{platform}/{game}` and `roms/{platform}/{category}/{game}` declared together, a folder holding discovered games is a category, and only folders no template descends into stay multi-file games.
+- A folder previously scanned as one multi-file game that a new template descends into leaves its old entry marked as missing from the filesystem (the scan log flags it). Delete the stale entry to clean up.
+- Uploading through the web UI needs a folder RomM can derive, so a platform whose every template carries a wildcard level rejects uploads. Add those files from the filesystem and rescan the platform.
+- Two files with the same name in different folders become distinct games. A `gamelist.xml` entry is matched to one of them by its `<path>` relative to the platform folder, and an entry carrying only a bare file name still matches as long as a single game has that name.
+- Exported metadata follows the structure too: `gamelist.xml` and `metadata.pegasus.txt` entries carry each game's path relative to the platform folder, and exported media mirrors those folders.
 
 ## Naming convention
 
