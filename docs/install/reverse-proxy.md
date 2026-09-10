@@ -162,7 +162,7 @@ Items marked ❗ are important. RomM won't work right without them.
 
 <!-- prettier-ignore -->
 !!! warning "Leave `Cache Assets` off"
-    It sends every `.js`, `.css`, `.svg`, and image request through NPM's shared cache, which discards RomM's `Cache-Control`, `Last-Modified`, and `Vary` headers and replaces them with a flat expiry roughly 30 minutes out. Content-hashed bundles lose their one year `immutable` caching, covers and screenshots lose the revalidation that keeps them fresh after a rescan, and dropping `Vary: Accept-Encoding` allows a compressed response to be handed to a client that never asked for one. It also pins a 45s read timeout and a 5s connect timeout on those requests, overriding anything you set below.
+    It sends every `.js`, `.css`, `.svg`, and image request through NPM's shared cache, which discards RomM's `Cache-Control`, `Last-Modified`, and `Vary` headers and replaces them with a flat `Expires` pinned to a clock time (NPM's `expires @30m`), which can leave a browser holding a stale copy for hours. Content-hashed bundles lose their one year `immutable` caching, covers and screenshots lose the revalidation that keeps them fresh after a rescan, and dropping `Vary: Accept-Encoding` allows a compressed response to be handed to a client that never asked for one. It also pins a 45s read timeout and a 5s connect timeout on those requests, overriding anything you set below.
 
 ### SSL
 
@@ -170,13 +170,13 @@ Items marked ❗ are important. RomM won't work right without them.
 - **Force SSL**: `on`
 - **HTTP/2 Support**: `on`
 - **HSTS Enabled**: `on` (after you've confirmed TLS works)
-- **Trust Upstream Forwarded Proto Headers**: `off`
+- **Trust Upstream Forwarded Proto Headers**: `off` (NPM 2.14 and newer)
 - **Email Address for Let's Encrypt**: your address
 - **I Agree to the TOS**: `on`
 
 <!-- prettier-ignore -->
 !!! warning "`Trust Upstream Forwarded Proto Headers`"
-    Turn this on only when NPM itself sits behind another proxy that terminates TLS, such as a Cloudflare Tunnel or an upstream load balancer. When NPM is the edge, it lets any client skip the Force SSL redirect just by adding `X-Forwarded-Proto: https` to a plain HTTP request, and RomM will then treat that cleartext request as secure.
+    Turn this on only when NPM itself sits behind another proxy that terminates TLS, such as a Cloudflare Tunnel or an upstream load balancer. When NPM is the edge, it lets any client skip the Force SSL redirect just by adding `X-Forwarded-Proto: https` to a plain HTTP request, so the cleartext request reaches RomM and RomM treats it as secure. The toggle only gates that redirect, because NPM passes the client's `X-Forwarded-Proto` value upstream either way.
 
 | Details                                                                                                        | SSL                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -203,8 +203,9 @@ proxy_buffers             16 64k;
 proxy_busy_buffers_size   128k;
 proxy_max_temp_file_size  0;
 
-# Timeouts. NPM defaults to 90s, which is short for large transfers and slow
-# metadata calls. Socket.IO pings every 25s, so it stays well inside this.
+# Timeouts. NPM's proxy defaults are 90s and nginx's send_timeout is 60s, both
+# short for large transfers and slow metadata calls. Socket.IO pings every 25s,
+# so it stays well inside these.
 proxy_connect_timeout     10s;
 proxy_read_timeout        300s;
 proxy_send_timeout        300s;
@@ -225,12 +226,12 @@ gzip_types                text/plain text/css application/json
 
 What each block buys you:
 
-| Block           | Without it                                                                                                                                                 |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Uploads**     | Uploads over 2 GB are rejected with `413 Request Entity Too Large`, and smaller ones are written to disk inside the NPM container before RomM sees a byte. |
-| **Downloads**   | nginx spools each in-flight download to a temp file, up to 1 GB per connection, on the NPM container's filesystem.                                         |
-| **Timeouts**    | Long downloads and slow metadata calls are cut off at 90s.                                                                                                 |
-| **Compression** | Platform icons and emulator cores cross the wire uncompressed. RomM ships about 4 MB of SVG and 25 MB of wasm, both of which compress by 60 to 75%.        |
+| Block           | Without it                                                                                                                                                         |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Uploads**     | Uploads over 2 GB are rejected with `413 Request Entity Too Large`, and smaller ones are written to disk inside the NPM container before RomM sees a byte.         |
+| **Downloads**   | nginx spools each in-flight download to a temp file, up to 1 GB per connection, on the NPM container's filesystem.                                                 |
+| **Timeouts**    | Long downloads and slow metadata calls are cut off after 60 to 90s of inactivity.                                                                                  |
+| **Compression** | Platform icons and emulator cores cross the wire uncompressed. RomM ships about 4 MB of SVG, plus 25 MB of wasm on the full image, and both compress by 60 to 75%. |
 
 <!-- prettier-ignore -->
 !!! note "Don't set `proxy_buffering off`"

@@ -50,5 +50,5 @@ Some emulators take an HTTP URL directly. With `DISABLE_DOWNLOAD_ENDPOINT_AUTH=t
 
 ## Troubleshooting
 
-- **Download stalls at N%**: usually the reverse proxy buffering to disk (see [Reverse Proxy → Nginx Proxy Manager](../install/reverse-proxy.md#nginx-proxy-manager) for the `proxy_max_temp_file_size 0` fix).
+- **Download stalls at N%**: usually reverse-proxy buffering, which spools each in-flight download to a temp file and can fill the proxy container's disk (see [Reverse Proxy → Nginx Proxy Manager](../install/reverse-proxy.md#nginx-proxy-manager) for the buffering and timeout settings).
 - **Multi-file zip download is corrupt**: disk may have filled up during streaming, or the nginx mod_zip build is broken. Check `docker logs romm | grep mod_zip`.
