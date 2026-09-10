@@ -58,13 +58,7 @@ The **Environment** section holds the values the template interpolates into the 
 
 ![Editing RomM's environment variables in Hostinger](../resources/hostinger/environment-editor.png)
 
-`TRAEFIK_HOST` is the hostname Traefik routes on, so point a domain at the VPS and set it here if you want more than raw IP access. HTTPS is required for OIDC and PWA install (see [Reverse Proxy](reverse-proxy.md)).
-
 Fill in the metadata provider credentials before your first scan, since matching quality depends on them (see [Metadata Providers](../getting-started/metadata-providers.md)).
-
-<!-- prettier-ignore -->
-!!! warning "ScreenScraper needs a username too"
-    The template exposes `SCREENSCRAPER_PASSWORD` but hardcodes `SCREENSCRAPER_USER=` empty in the compose file, so filling in only the password leaves ScreenScraper rejecting every request. Add a `SCREENSCRAPER_USER` entry here and change that line in the **.yaml editor** to `SCREENSCRAPER_USER=${SCREENSCRAPER_USER}`, or set the username inline there.
 
 <!-- prettier-ignore -->
 !!! tip "Names have to match the compose file"
