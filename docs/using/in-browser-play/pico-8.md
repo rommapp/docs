@@ -23,12 +23,12 @@ A `.p8.png` cartridge **is** a PNG, and what it draws is the cartridge label. Ro
 
 PICO-8's whole input model is a d-pad and two buttons, and all four input methods map onto it:
 
-| Input        | Mapping                                              |
-| ------------ | ---------------------------------------------------- |
-| **Keyboard** | Arrow keys, <kbd>Z</kbd> for ❎, <kbd>X</kbd> for 🅾️ |
-| **Gamepad**  | D-pad, plus the A and B face buttons                 |
-| **Touch**    | On-screen d-pad and buttons                          |
-| **Mouse**    | Passed through for carts that read the pointer       |
+| Input        | Mapping                                        |
+| ------------ | ---------------------------------------------- |
+| **Keyboard** | Arrow keys, `Z` for ❎, `X` for 🅾️             |
+| **Gamepad**  | D-pad, plus the A and B face buttons           |
+| **Touch**    | On-screen d-pad and buttons                    |
+| **Mouse**    | Passed through for carts that read the pointer |
 
 The display is PICO-8's native 128×128 at 30 frames per second, scaled to fit, with audio and fullscreen.
 

@@ -184,7 +184,7 @@ Switch headers need `prod.keys` to decrypt, so a Switch file with no keys availa
 
 ### `filesystem.embed_switch_title_ids`
 
-Rename Switch ROMs on disk to carry ` [TITLEID][vVERSION]` in their filename, which is the convention most Switch tooling expects. Off by default, since it rewrites your files.
+Rename Switch ROMs on disk so their filename ends in `[TITLEID][vVERSION]`, which is the convention most Switch tooling expects. Off by default, since it rewrites your files.
 
 **Default:** `false`
 
