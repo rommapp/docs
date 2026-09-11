@@ -59,7 +59,7 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Personal tab**: the ROM detail page tab for per-user data (rating, status, notes, playtime).
 
-**Platform**: a gaming system: SNES, PlayStation, Game Boy Advance, DOS, etc. ~400 platforms ship supported. Each has a **slug** (`snes`, `ps`, `gba`) that doubles as the folder name expected in your library. Override the folder-name → slug mapping via `config.yml` (see [Supported Platforms](../platforms/supported-platforms.md)).
+**Platform**: a gaming system: SNES, PlayStation, Game Boy Advance, DOS, etc. ~400 platforms ship supported. Each has a **slug** (`snes`, `psx`, `gba`) that doubles as the folder name expected in your library, alongside the [folder name aliases](../platforms/supported-platforms.md#folder-name-aliases) other frontends use. Override the folder-name → slug mapping via `config.yml` (see [Supported Platforms](../platforms/supported-platforms.md)).
 
 **Play session**: a timestamped record of someone playing a ROM (start, end, duration, device). Used by the stats, the Continue Playing ribbon, and per-ROM playtime totals. Ingested automatically when playing in-browser, and companion apps push them via API.
 
