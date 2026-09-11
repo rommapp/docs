@@ -35,7 +35,7 @@ exclude:
 
 Drop files with these extensions before matching, only for files that aren't inside a multi-file folder.
 
-**Default:** `["db", "ini", "tmp", "bak", "lock", "log", "cache", "crdownload"]`
+**Default:** `["db", "tmp", "bak", "lock", "log", "cache", "crdownload", "assembling"]`
 
 ```yaml
 exclude:
@@ -48,7 +48,7 @@ exclude:
 
 Unix-glob file-name patterns to skip.
 
-**Default:** `[".DS_Store", ".localized", ".Trashes", ".stfolder", "@SynoResource", "gamelist.xml"]`
+**Default:** `[".DS_Store", ".localized", ".Trashes", ".stfolder", "@SynoResource", "*:Zone.Identifier", "gamelist.xml", "metadata.pegasus.txt"]`
 
 ```yaml
 exclude:
@@ -61,7 +61,7 @@ exclude:
 
 Skip whole folders. Used for multi-disc/multi-file games you want invisible.
 
-**Default:** `["@eaDir", "__MACOSX", "$RECYCLE.BIN", ".Trash-*", ".stfolder", ".Spotlight-V100", ".fseventsd", ".DocumentRevisions-V100", "System Volume Information"]`
+The default covers the system folders that are never a platform, plus the per-media-type folders that ES-DE, Batocera and the [Pegasus export](exports.md) write beside the ROMs: `3dboxes`, `backcovers`, `bezels`, `covers`, `fanart`, `images`, `manuals`, `marquees`, `miximages`, `miximages_v2`, `physicalmedia`, `screenshots`, `thumbnails`, `titlescreens` and `videos`. Your own list is added to that, it does not replace it.
 
 ```yaml
 exclude:
@@ -74,7 +74,7 @@ exclude:
 
 Files **inside** a multi-file ROM folder to ignore (e.g. `.nfo`, `._*` macOS attributes, similar noise from multi-disc sets).
 
-**Default:** `[".DS_Store", ".localized", ".Trashes", ".stfolder", "@SynoResource", "gamelist.xml"]`
+**Default:** the same list as [`exclude.roms.single_file.names`](#excluderomssingle_filenames)
 
 ```yaml
 exclude:
@@ -88,7 +88,7 @@ exclude:
 
 Extensions to ignore inside a multi-file ROM folder.
 
-**Default:** `["db", "ini", "tmp", "bak", "lock", "log", "cache", "crdownload"]`
+**Default:** the same list as [`exclude.roms.single_file.extensions`](#excluderomssingle_fileextensions)
 
 ```yaml
 exclude:
@@ -106,7 +106,7 @@ Customise how your filesystem layout is interpreted, and how platforms are ident
 
 ### `system.platforms`
 
-Map your folder names to [supported platform](../platforms/supported-platforms.md) slugs.
+Map your folder names to [supported platform](../platforms/supported-platforms.md) slugs. Matching is case-insensitive.
 
 ```yaml
 system:
@@ -115,6 +115,8 @@ system:
         psx: "ps" # treat "psx/" folder as PlayStation
         super_nintendo: "snes"
 ```
+
+The folder names **Batocera, RetroBat and ES-DE** use are recognised out of the box, so a library laid out by one of those frontends needs no mapping here. Only set this for folder names of your own.
 
 ### `system.versions`
 
@@ -165,6 +167,30 @@ Skip hashing on low-power devices. You lose hash-based matching (RetroAchievemen
 ```yaml
 filesystem:
     skip_hash_calculation: true
+```
+
+### `filesystem.skip_title_id_extraction`
+
+Scans read the platform-native title id out of a ROM's own binary on the platforms that have one: PSX, PS2, PS3, PSP, PS Vita, Switch, 3DS, Wii, Wii U, GameCube, Dreamcast, Xbox and Xbox 360. That id identifies a game the way a hash does on platforms RomM doesn't hash, and it tells RomM where the game writes its saves. Set this to skip that read, at the cost of matching quality on those platforms.
+
+**Default:** `false`
+
+```yaml
+filesystem:
+    skip_title_id_extraction: true
+```
+
+Switch headers need `prod.keys` to decrypt, so a Switch file with no keys available reads as a file with no title id.
+
+### `filesystem.embed_switch_title_ids`
+
+Rename Switch ROMs on disk to carry ` [TITLEID][vVERSION]` in their filename, which is the convention most Switch tooling expects. Off by default, since it rewrites your files.
+
+**Default:** `false`
+
+```yaml
+filesystem:
+    embed_switch_title_ids: true
 ```
 
 ---
@@ -323,7 +349,7 @@ scan:
 
 ### `scan.gamelist.export`
 
-Generate a `gamelist.xml` in each platform folder, compatible with ES-DE/Batocera.
+Generate a `gamelist.xml` in each platform folder, compatible with ES-DE/Batocera. An existing file is **merged** rather than overwritten, so entries a frontend wrote for games RomM doesn't know about survive the export.
 
 ```yaml
 scan:
@@ -334,15 +360,19 @@ scan:
             image: screenshot
 ```
 
+`media.thumbnail` and `media.image` pick which [`scan.media`](#scanmedia) type fills the `<thumbnail>` and `<image>` tags.
+
 ### `scan.pegasus.export`
 
-Export metadata in Pegasus-frontend format (`metadata.pegasus.txt`).
+Export metadata in Pegasus-frontend format (`metadata.pegasus.txt`), merged into an existing file the same way. It reads the same per-media-type folders ES-DE and Batocera do, so the two exports share one set of media on disk rather than each writing its own copy.
 
 ```yaml
 scan:
     pegasus:
         export: true
 ```
+
+Both exports are covered in full in [Exports](exports.md).
 
 ---
 
@@ -372,11 +402,37 @@ emulatorjs:
 
 ### `emulatorjs.disable_batch_bootup`
 
-DOS-specific knob that skips the `autorun.bat` step. Toggle if DOS games won't boot.
+By default a multi-disc game hands EmulatorJS every disc at once, so the emulator can swap between them from its own menu without reloading. Set this to boot only the disc you launched, which is the older behaviour, and which is what you want if a core mishandles the batch.
+
+**Default:** `false`
 
 ```yaml
 emulatorjs:
     disable_batch_bootup: true
+```
+
+### `emulatorjs.default_cores`
+
+Preselect the libretro core for a platform, keyed by [platform slug](../platforms/supported-platforms.md). A user who has already picked a core on their device keeps their choice, so this sets the starting point rather than forcing one.
+
+```yaml
+emulatorjs:
+    default_cores:
+        nds: desmume
+        nintendo-dsi: melonds
+```
+
+Use the exact core name, as listed for that platform in [EmulatorJS → Supported systems](../using/in-browser-play/emulatorjs.md#supported-systems). A platform you don't list keeps EmulatorJS's own default core.
+
+### `emulatorjs.auto_save_sync`
+
+Upload a game's save to RomM whenever the emulator writes it, instead of only on save-and-quit. Closing the tab mid-game then costs you nothing, at the price of more upload traffic on a game that saves often.
+
+**Default:** `false`
+
+```yaml
+emulatorjs:
+    auto_save_sync: true
 ```
 
 ### `emulatorjs.disable_auto_unload`
