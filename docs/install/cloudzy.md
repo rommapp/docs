@@ -67,10 +67,13 @@ cd /root/romm
 docker compose up -d
 ```
 
-Then edit the site address at the top of `/etc/caddy/Caddyfile`, replacing `http://<server-ip>` with your domain and leaving the compression, header, and reverse proxy directives below it untouched:
+Then swap the site address at the top of `/etc/caddy/Caddyfile` for your domain, leaving everything inside the block alone:
 
 ```caddyfile
-romm.example.com {
+# /etc/caddy/Caddyfile
+romm.example.com {  # was http://<server-ip>
+    # compression, headers, and the reverse proxy to RomM, all unchanged
+}
 ```
 
 Reload the proxy with `systemctl reload caddy`, and Caddy obtains a Let's Encrypt certificate on the next request and renews it from then on. HTTPS is worth doing early, since OIDC logins and PWA installs both require it (see [Reverse Proxy](reverse-proxy.md)).
