@@ -10,6 +10,7 @@ description: Browse, play, collect, patch, and share from the UI
 - **[EmulatorJS](in-browser-play/emulatorjs.md)**
     - **[MS-DOS](in-browser-play/ms-dos.md)**
 - **[`js-dos`](in-browser-play/js-dos.md)**
+- **[PICO-8](in-browser-play/pico-8.md)**
 - **[Ruffle](in-browser-play/ruffle.md)**
 - **[Emulator Streaming](emulator-streaming.md)**
 - **[Downloads](downloads.md)**

@@ -57,6 +57,7 @@ search:
         - [EmulatorJS](using/in-browser-play/emulatorjs.md)
         - [`js-dos`](using/in-browser-play/js-dos.md)
         - [MS-DOS](using/in-browser-play/ms-dos.md)
+        - [PICO-8](using/in-browser-play/pico-8.md)
         - [Ruffle](using/in-browser-play/ruffle.md)
     - [Emulator Streaming](using/emulator-streaming.md)
         - [Migrating to webstation](using/emulator-streaming-migration.md)
