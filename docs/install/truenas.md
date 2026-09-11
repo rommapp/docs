@@ -101,4 +101,4 @@ Keeping just the database and config file on a separate Docker dataset is fine â
 
 - [Scanning Troubleshooting](../troubleshooting/scanning.md) for matching/ingest problems
 - [Authentication Troubleshooting](../troubleshooting/authentication.md) for login issues
-- The [Discord](https://discord.com/invite/romm) has a `#truenas` channel with active community troubleshooting.
+- The [Discord](https://discord.gg/romm) has a `#truenas` channel with active community troubleshooting.

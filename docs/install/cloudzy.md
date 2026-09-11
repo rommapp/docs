@@ -90,7 +90,7 @@ Platform folder names inside `roms/` have to match the expected naming (see [Fol
 
 ## Getting help
 
-For problems with the VPS or the marketplace image, open a ticket from your Cloudzy dashboard or contact [Cloudzy support](https://cloudzy.com/contact-us/), since they maintain the catalog entry. For issues with the app itself, try the [RomM Discord](https://discord.com/invite/romm) or:
+For problems with the VPS or the marketplace image, open a ticket from your Cloudzy dashboard or contact [Cloudzy support](https://cloudzy.com/contact-us/), since they maintain the catalog entry. For issues with the app itself, try the [RomM Discord](https://discord.gg/romm) or:
 
 - [Scanning Troubleshooting](../troubleshooting/scanning.md) for matching and ingest problems
 - [Authentication Troubleshooting](../troubleshooting/authentication.md) for login issues
