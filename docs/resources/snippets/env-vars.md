@@ -12,16 +12,17 @@
 
 ### Database
 
-| Variable         | Default   | Required | Description                                                              |
-| ---------------- | --------- | :------: | ------------------------------------------------------------------------ |
-| `ROMM_DB_DRIVER` | `mariadb` |          | Database driver to use (mariadb, mysql, postgresql)                      |
-| `DB_HOST`        |           |   `✓`    | Host name of the database instance                                       |
-| `DB_PORT`        | `3306`    |          | Port number of the database instance                                     |
-| `DB_NAME`        | `romm`    |          | Database name (should match MYSQL_DATABASE in MariaDB)                   |
-| `DB_USER`        |           |   `✓`    | Database username (should match MARIADB_USER in MariaDB)                 |
-| `DB_PASSWD`      |           |   `✓`    | Database password (should match MARIADB_PASSWORD in MariaDB)             |
-| `DB_ROOT_PASSWD` |           |          | Database root user password (only used by the bundled MariaDB container) |
-| `DB_QUERY_JSON`  |           |          | Extra query parameters for the database connection, as JSON              |
+| Variable                  | Default   | Required | Description                                                                                                 |
+| ------------------------- | --------- | :------: | ----------------------------------------------------------------------------------------------------------- |
+| `ROMM_DB_DRIVER`          | `mariadb` |          | Database driver to use (mariadb, mysql, postgresql)                                                         |
+| `DB_HOST`                 |           |   `✓`    | Host name of the database instance                                                                          |
+| `DB_PORT`                 | `3306`    |          | Port number of the database instance                                                                        |
+| `DB_NAME`                 | `romm`    |          | Database name (should match MYSQL_DATABASE in MariaDB)                                                      |
+| `DB_USER`                 |           |   `✓`    | Database username (should match MARIADB_USER in MariaDB)                                                    |
+| `DB_PASSWD`               |           |   `✓`    | Database password (should match MARIADB_PASSWORD in MariaDB)                                                |
+| `DB_ROOT_PASSWD`          |           |          | Database root user password (only used by the bundled MariaDB container)                                    |
+| `DB_QUERY_JSON`           |           |          | Extra query parameters for the database connection, as JSON                                                 |
+| `DB_POOL_RECYCLE_SECONDS` | `300`     |          | Retire a pooled connection after this long, before the server drops it for being idle (-1 to never recycle) |
 
 ### Redis/Valkey
 
@@ -76,46 +77,60 @@
 
 ### Metadata Providers
 
-| Variable                               | Default | Required | Description                                               |
-| -------------------------------------- | ------- | :------: | --------------------------------------------------------- |
-| `IGDB_CLIENT_ID`                       |         |          | Client ID for the IGDB API                                |
-| `IGDB_CLIENT_SECRET`                   |         |          | Client secret for the IGDB API                            |
-| `MOBYGAMES_API_KEY`                    |         |          | MobyGames secret API key                                  |
-| `SCREENSCRAPER_USER`                   |         |          | Screenscraper username                                    |
-| `SCREENSCRAPER_PASSWORD`               |         |          | Screenscraper password                                    |
-| `STEAMGRIDDB_API_KEY`                  |         |          | SteamGridDB secret API key                                |
-| `RETROACHIEVEMENTS_API_KEY`            |         |          | RetroAchievements secret API key                          |
-| `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS` | `30`    |          | RetroAchievements metadata cache refresh interval in days |
-| `PLAYMATCH_API_ENABLED`                | `false` |          | Enable PlayMatch API integration                          |
-| `LAUNCHBOX_API_ENABLED`                | `false` |          | Enable LaunchBox API integration                          |
-| `HASHEOUS_API_ENABLED`                 | `false` |          | Enable Hasheous API integration                           |
-| `FLASHPOINT_API_ENABLED`               | `false` |          | Enable Flashpoint API integration                         |
-| `HLTB_API_ENABLED`                     | `false` |          | Enable HowLongToBeat API integration                      |
-| `TGDB_API_ENABLED`                     | `false` |          | Enable TheGamesDB API integration                         |
+| Variable                               | Default | Required | Description                                                                       |
+| -------------------------------------- | ------- | :------: | --------------------------------------------------------------------------------- |
+| `IGDB_CLIENT_ID`                       |         |          | Client ID for the IGDB API                                                        |
+| `IGDB_CLIENT_SECRET`                   |         |          | Client secret for the IGDB API                                                    |
+| `MOBYGAMES_API_KEY`                    |         |          | MobyGames secret API key                                                          |
+| `SCREENSCRAPER_USER`                   |         |          | Screenscraper username                                                            |
+| `SCREENSCRAPER_PASSWORD`               |         |          | Screenscraper password                                                            |
+| `STEAMGRIDDB_API_KEY`                  |         |          | SteamGridDB secret API key                                                        |
+| `RETROACHIEVEMENTS_API_KEY`            |         |          | RetroAchievements secret API key                                                  |
+| `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS` | `30`    |          | RetroAchievements metadata cache refresh interval in days                         |
+| `PLAYMATCH_API_ENABLED`                | `false` |          | Enable PlayMatch API integration                                                  |
+| `LAUNCHBOX_API_ENABLED`                | `false` |          | Enable LaunchBox API integration                                                  |
+| `HASHEOUS_API_ENABLED`                 | `false` |          | Enable Hasheous API integration                                                   |
+| `FLASHPOINT_API_ENABLED`               | `false` |          | Enable Flashpoint API integration                                                 |
+| `HLTB_API_ENABLED`                     | `false` |          | Enable HowLongToBeat API integration                                              |
+| `DEMOZOO_API_ENABLED`                  | `false` |          | Enable Demozoo (filename tags (demozoo-N) / paste ID; no API key)                 |
+| `POUET_API_ENABLED`                    | `false` |          | Enable Pouët (filename tags (pouet-N) / paste ID; no API key)                     |
+| `CSDB_API_ENABLED`                     | `false` |          | Enable CSDb (filename tags (csdb-N) / paste ID / Demozoo CsdbRelease; no API key) |
+| `STEAM_API_ENABLED`                    | `false` |          | Enable Steam API integration (PC platforms only)                                  |
+| `TGDB_API_ENABLED`                     | `false` |          | Enable TheGamesDB API integration                                                 |
+
+### Physical Games
+
+| Variable             | Default                                       | Required | Description                                            |
+| -------------------- | --------------------------------------------- | :------: | ------------------------------------------------------ |
+| `UPC_LOOKUP_ENABLED` | `true`                                        |          | Look a barcode up by UPC when adding a physical game   |
+| `UPC_LOOKUP_API_KEY` |                                               |          | Key for the UPC lookup service, if your plan needs one |
+| `UPC_LOOKUP_URL`     | `https://api.upcitemdb.com/prod/trial/lookup` |          | UPC lookup endpoint                                    |
 
 ### Scans & Tasks
 
-| Variable                                           | Default     | Required | Description                                                                               |
-| -------------------------------------------------- | ----------- | :------: | ----------------------------------------------------------------------------------------- |
-| `SCAN_TIMEOUT`                                     | `14400`     |          | Timeout for background scan/rescan tasks in seconds                                       |
-| `SCAN_WORKERS`                                     | `4`         |          | How many ROMs a scan processes at once                                                    |
-| `TASK_TIMEOUT`                                     | `300`       |          | Timeout for other background tasks in seconds                                             |
-| `TASK_RESULT_TTL`                                  | `86400`     |          | How long to keep task results in Valkey in seconds                                        |
-| `SEVEN_ZIP_TIMEOUT`                                | `60`        |          | Timeout for 7-Zip operations in seconds                                                   |
-| `ENABLE_RESCAN_ON_FILESYSTEM_CHANGE`               | `false`     |          | Re-scan the library automatically when the filesystem changes                             |
-| `RESCAN_ON_FILESYSTEM_CHANGE_DELAY`                | `5`         |          | Delay in minutes before re-scanning after a filesystem change                             |
-| `ENABLE_SCHEDULED_RESCAN`                          | `false`     |          | Enable scheduled library re-scans                                                         |
-| `SCHEDULED_RESCAN_CRON`                            | `0 3 * * *` |          | Cron expression for scheduled re-scans                                                    |
-| `ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB`           | `false`     |          | Enable scheduled Switch TitleDB index updates                                             |
-| `SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON`             | `0 4 * * *` |          | Cron expression for scheduled Switch TitleDB updates                                      |
-| `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA`       | `false`     |          | Enable scheduled LaunchBox metadata updates                                               |
-| `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON`         | `0 4 * * *` |          | Cron expression for scheduled LaunchBox metadata updates                                  |
-| `ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP`          | `false`     |          | Enable scheduled conversion of images to WebP                                             |
-| `SCHEDULED_CONVERT_IMAGES_TO_WEBP_CRON`            | `0 4 * * *` |          | Cron expression for scheduled WebP conversion                                             |
-| `ENABLE_SCHEDULED_CLEANUP_ORPHANED_RESOURCES`      | `false`     |          | Enable scheduled cleanup of orphaned resources (covers, screenshots) left by deleted ROMs |
-| `SCHEDULED_CLEANUP_ORPHANED_RESOURCES_CRON`        | `0 5 * * *` |          | Cron expression for scheduled orphaned resource cleanup                                   |
-| `ENABLE_SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC` | `false`     |          | Enable scheduled RetroAchievements progress sync                                          |
-| `SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC_CRON`   | `0 4 * * *` |          | Cron expression for scheduled RetroAchievements sync                                      |
+| Variable                                           | Default      | Required | Description                                                                               |
+| -------------------------------------------------- | ------------ | :------: | ----------------------------------------------------------------------------------------- |
+| `SCAN_TIMEOUT`                                     | `14400`      |          | Timeout for background scan/rescan tasks in seconds                                       |
+| `SCAN_WORKERS`                                     | `4`          |          | How many ROMs a scan processes at once                                                    |
+| `TASK_TIMEOUT`                                     | `300`        |          | Timeout for other background tasks in seconds                                             |
+| `TASK_RESULT_TTL`                                  | `86400`      |          | How long to keep task results in Valkey in seconds                                        |
+| `SEVEN_ZIP_TIMEOUT`                                | `60`         |          | Timeout for 7-Zip operations in seconds                                                   |
+| `ENABLE_RESCAN_ON_FILESYSTEM_CHANGE`               | `false`      |          | Re-scan the library automatically when the filesystem changes                             |
+| `RESCAN_ON_FILESYSTEM_CHANGE_DELAY`                | `5`          |          | Delay in minutes before re-scanning after a filesystem change                             |
+| `ENABLE_SCHEDULED_RESCAN`                          | `false`      |          | Enable scheduled library re-scans                                                         |
+| `SCHEDULED_RESCAN_CRON`                            | `0 3 * * *`  |          | Cron expression for scheduled re-scans                                                    |
+| `ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB`           | `false`      |          | Enable scheduled Switch TitleDB index updates                                             |
+| `SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON`             | `0 4 * * *`  |          | Cron expression for scheduled Switch TitleDB updates                                      |
+| `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA`       | `false`      |          | Enable scheduled LaunchBox metadata updates                                               |
+| `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON`         | `0 4 * * *`  |          | Cron expression for scheduled LaunchBox metadata updates                                  |
+| `ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP`          | `false`      |          | Enable scheduled conversion of images to WebP                                             |
+| `SCHEDULED_CONVERT_IMAGES_TO_WEBP_CRON`            | `0 4 * * *`  |          | Cron expression for scheduled WebP conversion                                             |
+| `ENABLE_SCHEDULED_CLEANUP_ORPHANED_RESOURCES`      | `false`      |          | Enable scheduled cleanup of orphaned resources (covers, screenshots) left by deleted ROMs |
+| `SCHEDULED_CLEANUP_ORPHANED_RESOURCES_CRON`        | `0 5 * * *`  |          | Cron expression for scheduled orphaned resource cleanup                                   |
+| `ENABLE_SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC` | `false`      |          | Enable scheduled RetroAchievements progress sync                                          |
+| `SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC_CRON`   | `0 4 * * *`  |          | Cron expression for scheduled RetroAchievements sync                                      |
+| `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS`           | `true`       |          | Enable the scheduled rebuild of the recommendations index                                 |
+| `SCHEDULED_BUILD_RECOMMENDATIONS_CRON`             | `30 5 * * *` |          | Cron expression for the recommendations index rebuild                                     |
 
 ### Sync
 
@@ -130,11 +145,12 @@
 
 ### Emulation
 
-| Variable              | Default | Required | Description                                                 |
-| --------------------- | ------- | :------: | ----------------------------------------------------------- |
-| `DISABLE_EMULATOR_JS` | `false` |          | Disable in-browser play via EmulatorJS                      |
-| `DISABLE_RUFFLE_RS`   | `false` |          | Disable in-browser Flash playback via RuffleRS              |
-| `DISABLE_JSDOS`       | `false` |          | Disable in-browser Windows 3.x and 9x playback via `js-dos` |
+| Variable              | Default | Required | Description                                              |
+| --------------------- | ------- | :------: | -------------------------------------------------------- |
+| `DISABLE_EMULATOR_JS` | `false` |          | Disable in-browser play via EmulatorJS                   |
+| `DISABLE_RUFFLE_RS`   | `false` |          | Disable in-browser Flash playback via RuffleRS           |
+| `DISABLE_JSDOS`       | `false` |          | Disable in-browser Win3.x and Win9.x playback via js-dos |
+| `DISABLE_PICO8`       | `false` |          | Disable in-browser PICO-8 playback via FAKE-08           |
 
 ### Integrations
 
@@ -202,7 +218,9 @@
 
 ### Emulator Streaming
 
-| Variable                  | Default | Required | Description                                                                       |
-| ------------------------- | ------- | :------: | --------------------------------------------------------------------------------- |
-| `STREAMING_BROKER_SECRET` |         |          | -                                                                                 |
-| `STREAMING_SAVE_TIMEOUT`  | `45`    |          | Seconds to wait for a broker save-and-exit (raise if a broker has SAVE_WAIT > 45) |
+| Variable                        | Default | Required | Description                                                                                        |
+| ------------------------------- | ------- | :------: | -------------------------------------------------------------------------------------------------- |
+| `STREAMING_BROKER_SECRET`       |         |          | Shared secret matching streaming containers' BROKER_SECRET, required for broker auth               |
+| `STREAMING_SAVE_TIMEOUT`        | `45`    |          | Seconds to wait for a broker save-and-exit (raise if a broker has SAVE_WAIT > 45)                  |
+| `STREAMING_LAUNCH_TIMEOUT`      | `600`   |          | Seconds a webstation activate may take, covering pkg/archive extraction before the emulator starts |
+| `STREAMING_STATE_HISTORY_LIMIT` | `50`    |          | Save states kept per ROM, emulator and user; oldest are pruned past this (0 disables)              |
