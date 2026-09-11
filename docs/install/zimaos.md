@@ -45,7 +45,7 @@ Once the files land, run a scan from the app (see [Your First Scan](../getting-s
 
 ## Getting help
 
-For ZimaOS-specific problems, the [ZimaSpace Discord](https://discord.gg/f9nzbmpMtU) is the fastest route, since their team and community maintain the App Store entry. For issues with the app itself, try the [RomM Discord](https://discord.gg/P5HtHnhUDH) or:
+For ZimaOS-specific problems, the [ZimaSpace Discord](https://discord.gg/f9nzbmpMtU) is the fastest route, since their team and community maintain the App Store entry. For issues with the app itself, try the [RomM Discord](https://discord.gg/romm) or:
 
 - [Scanning Troubleshooting](../troubleshooting/scanning.md) for matching and ingest problems
 - [Authentication Troubleshooting](../troubleshooting/authentication.md) for login issues

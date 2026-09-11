@@ -35,9 +35,9 @@ Join us on Discord, where you can ask questions, submit ideas, get help, showcas
 [license-badge-img]: https://img.shields.io/github/license/rommapp/docs?style=for-the-badge&color=a32d2a
 [license-badge]: LICENSE
 [discord-badge-img]: https://img.shields.io/badge/discord-7289da?style=for-the-badge
-[discord-badge]: https://discord.gg/P5HtHnhUDH
+[discord-badge]: https://discord.gg/romm
 
 <!-- Links -->
 
-[discord-invite]: https://invidget.switchblade.xyz/P5HtHnhUDH
-[discord-invite-url]: https://discord.gg/P5HtHnhUDH
+[discord-invite]: https://invidget.switchblade.xyz/romm
+[discord-invite-url]: https://discord.gg/romm
