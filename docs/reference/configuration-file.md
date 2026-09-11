@@ -106,17 +106,28 @@ Customise how your filesystem layout is interpreted, and how platforms are ident
 
 ### `system.platforms`
 
-Map your folder names to [supported platform](../platforms/supported-platforms.md) slugs. Matching is case-insensitive.
+Map your folder names to [supported platform](../platforms/supported-platforms.md) slugs, for folders RomM doesn't recognise or gets wrong.
 
 ```yaml
 system:
     platforms:
-        gc: "ngc" # treat "gc/" folder as GameCube
-        psx: "ps" # treat "psx/" folder as PlayStation
-        super_nintendo: "snes"
+        super_nintendo: "snes" # treat "super_nintendo/" folder as SNES
+        my_saturn_dump: "saturn"
 ```
 
-The folder names **Batocera, RetroBat and ES-DE** use are recognised out of the box, so a library laid out by one of those frontends needs no mapping here. Only set this for folder names of your own.
+Keys are folder names, values are platform slugs, and both are matched case-insensitively, so `GameCube: "ngc"` and `gamecube: "ngc"` do the same thing.
+
+RomM tries a folder name against each of these in turn and takes the first hit:
+
+1. A `system.platforms` or [`system.versions`](#systemversions) binding.
+2. The folder name itself, if it already is a platform slug.
+3. The [built-in folder aliases](../platforms/supported-platforms.md#folder-name-aliases) for names Batocera, RetroBat and ES-DE use (`megadrive/`, `gamecube/`, `n3ds/`, `mame/`, ...).
+
+A name that matches none of them becomes a [custom platform](../platforms/custom-platforms.md), with no metadata coverage.
+
+A binding beats an alias, so `mame: "mame"` gets you a separate Mame platform instead of folding that folder into Arcade.
+
+A folder name that is itself a slug never gets as far as the aliases, which bites when a frontend uses the name for something broader. ES-DE and Batocera put the whole Atari 8-bit family in `atari800/`, while RomM reads `atari800` as the Atari 800 alone, so that one needs `atari800: "atari8bit"` written out. The shipped Batocera and ES-DE configs both include it.
 
 ### `system.versions`
 

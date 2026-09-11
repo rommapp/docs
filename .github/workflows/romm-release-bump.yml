@@ -1,9 +1,10 @@
 name: Bump pinned romm ref
 
-# The generated reference pages (env vars, scheduled tasks, supported platforms)
-# are built from rommapp/romm at the ref pinned in scripts/sources.toml. Nothing
-# was moving that pin, so it sat on 5.1.0-beta.2 while upstream shipped 5.2.0 and
-# every variable added in between went undocumented (#124).
+# The generated reference pages (env vars, scheduled tasks, platform folder
+# aliases, supported platforms) are built from rommapp/romm at the ref pinned in
+# scripts/sources.toml. Nothing was moving that pin, so it sat on 5.1.0-beta.2
+# while upstream shipped 5.2.0 and every variable added in between went
+# undocumented (#124).
 #
 # This polls for new upstream releases and opens a PR with the regenerated
 # snippets. rommapp/romm can also trigger it directly by sending a
@@ -94,6 +95,7 @@ jobs:
               run: |
                   uv run python -m scripts.gen_env_vars
                   uv run python -m scripts.gen_scheduled_tasks
+                  uv run python -m scripts.gen_platform_aliases
                   uv run python -m scripts.gen_platforms
 
             # Match the prettier version trunk pins in .trunk/trunk.yaml, so the

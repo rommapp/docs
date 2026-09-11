@@ -106,7 +106,7 @@ Anything you list is **added** to RomM's own defaults rather than replacing them
 
 ## Platform folder names
 
-A platform folder has to resolve to a [known slug](../platforms/supported-platforms.md). The folder names **Batocera, RetroBat and ES-DE** use resolve on their own, so a library laid out by one of those frontends needs no configuration. Map anything else with [`system.platforms`](../reference/configuration-file.md#systemplatforms).
+A platform folder has to resolve to a [known slug](../platforms/supported-platforms.md). The [folder name aliases](../platforms/supported-platforms.md#folder-name-aliases) cover the names Batocera, RetroBat and ES-DE use, so a library laid out by one of those frontends mostly needs no configuration. Map anything else with [`system.platforms`](../reference/configuration-file.md#systemplatforms).
 
 ## Title ids read from the binary
 
