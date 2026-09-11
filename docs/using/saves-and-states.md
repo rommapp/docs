@@ -22,7 +22,11 @@ If a ROM has multiple saves or states, RomM presents a picker before the emulato
 
 ## In-emulator behaviour
 
-In-game save/save-state/load-state actions are written straight back to the server, so there's no "forgot to upload" step.
+In-game save/save-state/load-state actions are written straight back to the server, so there's no "forgot to upload" step. The player also asks for confirmation before you navigate away from a running game, so a stray click doesn't cost you unsaved progress.
+
+By default a save file reaches the server when you save and quit. Turn on [`emulatorjs.auto_save_sync`](../reference/configuration-file.md#emulatorjsauto_save_sync) and the player uploads the save whenever the emulator writes it, so closing the tab mid-game costs nothing. It is off by default because a game that saves often then uploads often.
+
+Streamed play has its own, separate save and state store, covered in [Emulator Streaming → Saves and save states](emulator-streaming.md#saves-and-save-states).
 
 ## Device sync
 

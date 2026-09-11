@@ -23,6 +23,16 @@ description: Play retro games in your browser
 
 RomM's EmulatorJS integration automates save-file and save-state handling: if a save or state already exists you're prompted to pick one before launch, and any in-emulator save or state is written straight back to the server with no manual download or re-upload step. Full details in [Saves & States](../saves-and-states.md).
 
+## Cores
+
+Most platforms above have more than one core. RomM remembers which core you launched a game with and reuses it next time, so your states stay loadable rather than being orphaned by a silent core change.
+
+Operators can preselect the core for a platform with [`emulatorjs.default_cores`](../../reference/configuration-file.md#emulatorjsdefault_cores). That sets the starting point, and a user who has already picked a core on their device keeps their choice.
+
+## Multi-disc games
+
+A multi-disc game hands EmulatorJS every disc at once, so you can swap discs from the emulator's own menu without going back and reloading. Set [`emulatorjs.disable_batch_bootup`](../../reference/configuration-file.md#emulatorjsdisable_batch_bootup) to boot only the disc you launched, if a core mishandles the batch.
+
 ## Netplay
 
 Up to four players can join a room hosted on your instance, with inputs streamed to the host over WebRTC, best for co-op and turn-based games (frame-perfect fighting isn't realistic over the internet).
@@ -58,6 +68,8 @@ Operator setup (ICE servers, enable flag) lives in [Configuration File → `emul
 | SNES/Super Famicom                          | `snes9x`, `bsnes`                                                        |
 | TurboGraphx-16/PC Engine                    | `mednafen_pce`                                                           |
 | Virtual Boy                                 | `mednafen_vb`                                                            |
-| WonderSwan/Color                            | `mednafen_wswan`                                                         |
+
+Windows 3.x and 9x do **not** run on `dosbox-pure`, which blank-screens on them. They use [`js-dos`](js-dos.md) and its DOSBox-X backend instead, and PICO-8 carts use [FAKE-08](pico-8.md). MS-DOS stays on `dosbox-pure` (see [MS-DOS](ms-dos.md)).
+| WonderSwan/Color | `mednafen_wswan` |
 
 Player UI features beyond the basics (cheats, in-emulator screenshots, multi-disc swap, hotkeys, fullscreen) are covered in the broader [EmulatorJS docs](https://emulatorjs.org/docs/).
