@@ -103,6 +103,8 @@ You must run a LaunchBox metadata update (either manually, or scheduled via cron
 
 Simply set `HASHEOUS_API_ENABLED=true` in your environment variables, and future scans will start using the [Hasheous API](https://hasheous.org/swagger/index.html).
 
+By default RomM talks to the public instance at `hasheous.org`. To point at your own [self-hosted Hasheous](https://github.com/gaseous-project/hasheous), set `HASHEOUS_API_URL` to its API base (e.g. `https://hasheous.example.com/api/v1`).
+
 ### Playmatch
 
 [Playmatch](https://github.com/RetroRealm/playmatch) is a free, open source and community driven hash based matching service supporting multiple metadata providers such as IGDB, ScreenScraper, SteamGridDB, Retroachievements and more, hosted by a member of our community.
@@ -143,6 +145,35 @@ The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint
 The [HowLongToBeat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` environment variable. If you are adding this provider to an existing setup, perform a `UNMATCHED` scan with HowLongToBeat selected to update an existing platform.
 
 Game completion times will be added to a new tab on the details page for supported matched games.
+
+### Steam
+
+[Steam](https://store.steampowered.com/) is a metadata source for the `win`, `linux` and `mac` platforms, and it is the only storefront RomM reads. Enable it with `STEAM_API_ENABLED=true`. There is no API key, no account, and no rate-limit sign-up.
+
+It supplies the title, description, capsule art, screenshots, genres, developers, publishers, release date, game modes, and the Metacritic score. Because it only knows about PC titles, RomM skips it entirely on every other platform, so ranking it in `scan.priority.metadata` costs nothing on your console platforms.
+
+```yaml
+scan:
+    priority:
+        metadata:
+            - steam # PC platforms only
+```
+
+Tag a file `(steam-xxxx)` with a Steam app id to force a specific match.
+
+### Demozoo, Pouët and CSDb
+
+Three demoscene databases, covering productions (demos, intros, cracktros, musicdisks) rather than commercial releases. All three are public APIs with no key, and all three are off by default:
+
+| Provider                        | Variable              | Filename tag     | Covers                                                 |
+| ------------------------------- | --------------------- | ---------------- | ------------------------------------------------------ |
+| [Demozoo](https://demozoo.org/) | `DEMOZOO_API_ENABLED` | `(demozoo-xxxx)` | `win`, `dos`, `amiga`, `c64`, `nes`, `snes`, `genesis` |
+| [Pouët](https://www.pouet.net/) | `POUET_API_ENABLED`   | `(pouet-xxxx)`   | Whatever platforms the production itself declares      |
+| [CSDb](https://csdb.dk/)        | `CSDB_API_ENABLED`    | `(csdb-xxxx)`    | `c64`, used for stills Demozoo doesn't have            |
+
+They match on the production id, which you can supply three ways: a filename tag, a bare id pasted into the ROM editor, or a production URL pasted into the ROM editor (`https://demozoo.org/productions/108/`, `https://www.pouet.net/prod.php?which=108`, `https://csdb.dk/release/?id=75330`). Demozoo additionally matches by title search, and CSDb release ids referenced from a Demozoo production are followed automatically.
+
+Pouët only accepts a title search when it resolves to exactly one production, so an ambiguous title stays unmatched rather than matching the wrong demo.
 
 ### ES-DE gamelist.xml
 
@@ -282,6 +313,10 @@ Scans will now parse custom metadata tags in the filename that match specific pa
 (ssfr-xxxx) for [ScreenScraper](https://screenscraper.fr/)
 (launchbox-xxxx) for [Launchbox](https://gamesdb.launchbox-app.com/)
 (hltb-xxxx) for [HowLongToBeat](https://howlongtobeat.com/)
+(steam-xxxx) for [Steam](https://store.steampowered.com/)
+(demozoo-xxxx) for [Demozoo](https://demozoo.org/)
+(pouet-xxxx) for [Pouët](https://www.pouet.net/)
+(csdb-xxxx) for [CSDb](https://csdb.dk/)
 
 Filenames will not be renamed to add tags, as they are a non-standard formatting system and could create conflicts with other software.
 
@@ -342,20 +377,33 @@ scan:
             - launchbox
             - gamelist
             - hasheous
+            - tgdb
             - flashpoint
+            - steam
             - hltb
+            - demozoo
+            - pouet
+            - csdb
         artwork:
+            - sgdb
             - igdb
             - moby
             - ss
+            - libretro
             - ra
             - launchbox
-            - libretro
             - gamelist
             - hasheous
+            - tgdb
             - flashpoint
+            - steam
             - hltb
+            - demozoo
+            - pouet
+            - csdb
 ```
+
+A provider that isn't enabled is skipped wherever it sits in the list, so leaving all of them in place costs nothing.
 
 Reorder these lists to taste. For example, put `ss` first if you prefer ScreenScraper boxart, or move `hltb` up if you care about completion times more than descriptions.
 

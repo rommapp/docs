@@ -175,7 +175,7 @@ filesystem:
 
 Order metadata providers are queried during a scan. First match wins for descriptive fields (title, description, release date, etc.).
 
-**Default:** `["igdb", "moby", "ss", "ra", "launchbox", "gamelist", "hasheous", "flashpoint", "hltb"]`
+**Default:** `["igdb", "moby", "ss", "ra", "launchbox", "gamelist", "hasheous", "tgdb", "flashpoint", "steam", "hltb", "demozoo", "pouet", "csdb"]`
 
 ```yaml
 scan:
@@ -188,25 +188,31 @@ scan:
 
 Values are the provider slugs. Full list:
 
-| Slug         | Provider              |
-| ------------ | --------------------- |
-| `igdb`       | IGDB                  |
-| `moby`       | MobyGames             |
-| `ss`         | ScreenScraper         |
-| `ra`         | RetroAchievements     |
-| `launchbox`  | LaunchBox             |
-| `gamelist`   | gamelist.xml importer |
-| `hasheous`   | Hasheous              |
-| `flashpoint` | Flashpoint            |
-| `hltb`       | HowLongToBeat         |
-| `tgdb`       | TheGamesDB            |
-| `libretro`   | Libretro metadata     |
+| Slug         | Provider                        |
+| ------------ | ------------------------------- |
+| `igdb`       | IGDB                            |
+| `moby`       | MobyGames                       |
+| `ss`         | ScreenScraper                   |
+| `ra`         | RetroAchievements               |
+| `launchbox`  | LaunchBox                       |
+| `gamelist`   | gamelist.xml importer           |
+| `hasheous`   | Hasheous                        |
+| `playmatch`  | Playmatch                       |
+| `flashpoint` | Flashpoint                      |
+| `steam`      | Steam, on the PC platforms only |
+| `hltb`       | HowLongToBeat                   |
+| `demozoo`    | Demozoo, demoscene productions  |
+| `pouet`      | Pouët, demoscene productions    |
+| `csdb`       | CSDb, C64 demoscene productions |
+| `tgdb`       | TheGamesDB                      |
+| `sgdb`       | SteamGridDB, artwork only       |
+| `libretro`   | Libretro metadata, artwork only |
 
 See [Metadata Providers](../getting-started/metadata-providers.md) for context on each.
 
 ### `scan.priority.artwork`
 
-Same idea, for cover art and screenshots. Defaults to the same order as `scan.priority.metadata` but can differ.
+Same idea, for cover art and screenshots. It carries its own default, `["sgdb", "igdb", "moby", "ss", "libretro", "ra", "launchbox", "gamelist", "hasheous", "tgdb", "flashpoint", "steam", "hltb", "demozoo", "pouet", "csdb"]`, which leads with the two artwork-only sources.
 
 ```yaml
 scan:
