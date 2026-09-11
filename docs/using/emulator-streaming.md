@@ -55,11 +55,11 @@ Three separate things move between the container and your library. Which ones ap
 
 ### Save states
 
-These are the emulator's own snapshots. How they work splits into three groups, as shown in the table:
+These are the emulator's own snapshots, and the table above says which of three shapes each platform gets:
 
-- **Numbered slots with an autosave** (PCSX2, Dolphin). The autosave slot belongs to save-and-exit and gets overwritten every time you exit, so don't put anything there you want to keep.
-- **A single resume state** (DuckStation, RPCS3, RetroArch, ScummVM). These emulators only write a state as they shut down, so there's no grid of slots, just the one state that saving and resuming both use.
-- **None at all** (xemu, Xenia, Cemu, Eden, Azahar, shadPS4). You rely on the game's own save data instead.
+- **Numbered slots with an autosave.** The autosave slot belongs to save-and-exit and is overwritten every time you exit, so don't keep anything there.
+- **A single resume state.** These emulators only write a state as they shut down, so there's no grid to pick from, just the one state that saving and resuming both use.
+- **No states at all.** You rely on the game's own save data instead.
 
 Whenever a state is written, RomM copies it off the container, along with a thumbnail grabbed from the video. The state from save-and-exit is collected when the session closes. Claim a container later and RomM pushes your stored states back onto it, which is why they follow you between containers and survive a container being rebuilt.
 
@@ -136,26 +136,20 @@ streaming:
         - protocol: webstation
           host: https://192.168.1.56:3010
           subfolder: /streaming
-          library_path: /romm
-          broker_secret: change-me
           label: Emulation station
           platforms:
               snes: retroarch # just the emulator name...
               ps2: # ...or a block overriding container keys
                   emulator: pcsx2
-                  label: PCSX2
-                  memory_card_sync: true
-              ngc:
-                  emulator: dolphin
-                  label: Dolphin
                   memory_card_sync: true
 ```
 
-- `host` is what the browser connects to, and it has to be **HTTPS**: Selkies WebRTC won't run without a secure context. Use the container's self-signed cert, or put it behind a [reverse proxy with TLS](../install/reverse-proxy.md). You can also use a path like `/streaming` if you've proxied the container onto RomM's own origin, but then you must set `broker_host` yourself, because a bare path gives RomM no address to call.
-- `subfolder` has to match the container's `SUBFOLDER`. It's the prefix the broker's routes live under.
-- `broker_host` is only ever called server to server, so plain HTTP is fine here. Leave it out on a webstation container and RomM works it out from `host`. Pooled containers are identified by their broker host, meaning two of them serving the same platform need different ones.
-- `library_path` is where the container sees your library, if that's not RomM's own `/romm/library`. Don't change it casually, since your state and save history is keyed to it.
-- `emulator` is the name your states and memory cards are filed under. Set it explicitly. Otherwise it falls back to `label`, and renaming a label later will orphan everything stored under the old name.
+Four of those keys have consequences worth knowing before you pick their values:
+
+- `host` is what the browser connects to, and it has to be **HTTPS**: Selkies WebRTC won't run without a secure context. Use the container's self-signed cert, or put it behind a [reverse proxy with TLS](../install/reverse-proxy.md). A path like `/streaming` works if you've proxied the container onto RomM's own origin, but then you must set `broker_host` yourself, because a bare path gives RomM no address to call.
+- `broker_host` is only ever called server to server, so plain HTTP is fine. Pooled containers are identified by it, so two serving the same platform need different ones.
+- `library_path` is where the container sees your library. Don't change it casually, since your state and save history is keyed to it.
+- `emulator` names what your states and memory cards are filed under. Set it explicitly, because it otherwise falls back to `label`, and renaming a label later orphans everything stored under the old name.
 
 ### Set the shared secret
 
@@ -165,13 +159,9 @@ If one broker needs its own secret, put `broker_secret` on that entry in `config
 
 ### Tune the timeouts
 
-All set as env vars (see [Environment Variables](../reference/environment-variables.md)):
+Three env vars bound how long streaming waits, listed with their defaults in [Environment Variables → Emulator Streaming](../reference/environment-variables.md#emulator-streaming).
 
-| Variable                        | Default | What it bounds                                                                 |
-| ------------------------------- | ------- | ------------------------------------------------------------------------------ |
-| `STREAMING_LAUNCH_TIMEOUT`      | `600`   | How long a launch can take, including unpacking before the emulator starts     |
-| `STREAMING_SAVE_TIMEOUT`        | `45`    | How long save-and-exit can take. Raise it if a broker's `SAVE_WAIT` is higher  |
-| `STREAMING_STATE_HISTORY_LIMIT` | `50`    | States kept per ROM, emulator and user before old ones are pruned. `0` for all |
+`STREAMING_LAUNCH_TIMEOUT` covers the whole launch, including any unpacking before the emulator starts. `STREAMING_SAVE_TIMEOUT` covers save-and-exit, and needs raising if a broker's own `SAVE_WAIT` is higher. `STREAMING_STATE_HISTORY_LIMIT` caps how many states are kept per ROM, emulator and user.
 
 ## Troubleshooting
 
@@ -181,9 +171,3 @@ All set as env vars (see [Environment Variables](../reference/environment-variab
 - **A container shows as unconfigured in the fleet.** Its `host` is missing a scheme, or RomM has no reachable broker for it. It can't be claimed until that's fixed.
 - **Platform stuck as in use.** Someone disconnected without releasing it. Wait for the heartbeat to go stale or force-release it from the fleet.
 - **"The previous session is still saving".** An exit is still pulling state off the container. Give it a moment and try again.
-
-## Related
-
-- [Migrating to webstation](emulator-streaming-migration.md): moving off the per-emulator broker mods
-- [Configuration File → `streaming`](../reference/configuration-file.md#streaming): every key the block accepts
-- [Saves & States](saves-and-states.md): the in-browser player's separate save store

@@ -26,22 +26,13 @@ Each recommendation comes with the reason it was picked, which is what the "why 
 
 ## Building the index
 
-| Variable                                 | Default      | Purpose             |
-| ---------------------------------------- | ------------ | ------------------- |
-| `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS` | `true`       | The nightly rebuild |
-| `SCHEDULED_BUILD_RECOMMENDATIONS_CRON`   | `30 5 * * *` | When it runs        |
+**Build recommendations index** is the one [scheduled task](../administration/scheduled-tasks.md) that ships switched on. Both sections read the index, and with the task off they'd just sit empty.
 
-This is the one [scheduled task](../administration/scheduled-tasks.md) that ships switched on. Both sections read the index, and with the task off they'd just sit empty.
-
-It runs at 5:30am by default, after the nightly scan and metadata jobs have finished. You can also run it by hand from the tasks page. In between runs, scans add new games to the index as they come in.
+It runs early each morning, after the nightly scan and metadata jobs have finished, and you can also run it by hand from the tasks page. In between runs, scans add new games to the index as they come in. Its schedule and enable variable are in [Environment Variables → Scans & Tasks](../reference/environment-variables.md#scans-tasks).
 
 **Neither section appears until the index has been built once.** On a new instance, that's the morning after you set it up, or whenever you run the task yourself.
 
-## Turning them off
-
-Users can hide either section in their own settings.
-
-Instance-wide, set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false`. Both sections go empty and you save the nightly build, which is worth doing on a very large library.
+Users can hide either section in their own settings. To switch the feature off instance-wide, set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` and both sections stay empty, which also saves the nightly build on a very large library.
 
 ## API
 
@@ -54,5 +45,4 @@ Instance-wide, set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false`. Both sections
 
 ## Related
 
-- [Scheduled Tasks](../administration/scheduled-tasks.md): the nightly build alongside the rest
 - [Collections](collections.md): the strongest signal the index reads

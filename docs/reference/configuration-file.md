@@ -61,7 +61,7 @@ exclude:
 
 Skip whole folders. Used for multi-disc/multi-file games you want invisible.
 
-The default already covers the system folders that are never a platform, plus the media folders ES-DE, Batocera and the [Pegasus export](exports.md) drop beside your ROMs: `3dboxes`, `backcovers`, `bezels`, `covers`, `fanart`, `images`, `manuals`, `marquees`, `miximages`, `miximages_v2`, `physicalmedia`, `screenshots`, `thumbnails`, `titlescreens` and `videos`. Your list gets added to that rather than replacing it.
+The default already covers the system folders that are never a platform, plus every per-media-type folder ES-DE, Batocera and the [Pegasus export](exports.md) drop beside your ROMs (`covers`, `screenshots`, `manuals` and the rest). Your list gets added to that rather than replacing it.
 
 ```yaml
 exclude:
@@ -182,7 +182,7 @@ filesystem:
 
 ### `filesystem.skip_title_id_extraction`
 
-Scans pull the platform-native title id out of the ROM binary wherever there is one: PSX, PS2, PS3, PSP, PS Vita, Switch, 3DS, Wii, Wii U, GameCube, Dreamcast, Xbox and Xbox 360. On platforms RomM doesn't hash, that id is what identifies the game, and it also says where the game writes its saves. Set this to skip reading it, and expect worse matching on those platforms.
+Skip reading the platform-native title id out of ROM binaries. That id is what identifies a game on the platforms RomM doesn't hash, and it records where the game writes its saves, so expect worse matching on those platforms with this on. See [Title ids read from the binary](../administration/scanning-and-watcher.md#title-ids-read-from-the-binary) for which platforms have one and what the id is used for.
 
 **Default:** `false`
 
@@ -190,8 +190,6 @@ Scans pull the platform-native title id out of the ROM binary wherever there is 
 filesystem:
     skip_title_id_extraction: true
 ```
-
-Switch headers are encrypted. Without `prod.keys` available, a Switch file just looks like one with no title id.
 
 ### `filesystem.embed_switch_title_ids`
 
@@ -362,7 +360,7 @@ scan:
 
 ### `scan.gamelist.export`
 
-Generate a `gamelist.xml` in each platform folder, compatible with ES-DE/Batocera. An existing file is **merged** rather than overwritten, so entries your frontend wrote for games RomM has never seen come through unharmed.
+Generate a `gamelist.xml` in each platform folder, compatible with ES-DE/Batocera.
 
 ```yaml
 scan:
@@ -377,7 +375,7 @@ scan:
 
 ### `scan.pegasus.export`
 
-Export metadata in Pegasus-frontend format (`metadata.pegasus.txt`), merged into an existing file the same way. It uses the same media folders ES-DE and Batocera do, so you get one set of files on disk instead of each export keeping its own.
+Export metadata in Pegasus-frontend format (`metadata.pegasus.txt`).
 
 ```yaml
 scan:

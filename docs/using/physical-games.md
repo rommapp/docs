@@ -15,13 +15,9 @@ A barcode gets sent to an external lookup service, which returns a product title
 
 The lookup only produces a name. It doesn't attach any provider ids. If the barcode comes back with nothing usable, you get an error rather than an untitled entry, and you can add the game by name instead.
 
-| Variable             | Default                                       | Purpose                                                  |
-| -------------------- | --------------------------------------------- | -------------------------------------------------------- |
-| `UPC_LOOKUP_ENABLED` | `true`                                        | Turn barcode lookups off entirely, leaving the name path |
-| `UPC_LOOKUP_URL`     | `https://api.upcitemdb.com/prod/trial/lookup` | The lookup endpoint                                      |
-| `UPC_LOOKUP_API_KEY` | _(unset)_                                     | Sent as the `user_key` header, for a plan that needs one |
+Out of the box this hits [UPCitemdb](https://www.upcitemdb.com/)'s trial tier, which needs no account but is rate limited. If you hit the limit, point `UPC_LOOKUP_URL` at their paid endpoint and set `UPC_LOOKUP_API_KEY` (sent as the `user_key` header), or point it at anything else that answers `?upc=` with `{"items": [{"title": ...}]}`. `UPC_LOOKUP_ENABLED=false` turns barcode lookups off entirely and leaves you the name path.
 
-Out of the box this hits [UPCitemdb](https://www.upcitemdb.com/)'s trial tier, which needs no account but is rate limited. Point `UPC_LOOKUP_URL` at their paid endpoint with a key if you hit the limit, or at anything else that answers `?upc=` with `{"items": [{"title": ...}]}`.
+Defaults for all three are in [Environment Variables → Physical Games](../reference/environment-variables.md#physical-games).
 
 ## What's different about them
 
@@ -48,9 +44,3 @@ Just drop the file in the platform folder and scan. You'll end up with two entri
 Send a `platform_id` plus either a `name` or a `upc`. Add `metadata_sources` to limit which providers get asked, otherwise it uses all the enabled ones. The endpoint runs a quick scan inline and returns the matched game. If a provider blows up part way through, the entry is deleted rather than left behind half-populated.
 
 Every ROM in `DetailedRomSchema` carries `is_physical`, `upc` and `has_file_on_disk`, which is enough to tell a physical game from a missing one from a normal one.
-
-## Related
-
-- [Metadata Providers](../getting-started/metadata-providers.md): what a physical game gets matched against
-- [Collections](collections.md): shelving physical and digital copies together
-- [Exports](../reference/exports.md): why file-less games are left out

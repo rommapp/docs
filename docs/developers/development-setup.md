@@ -9,14 +9,12 @@ description: Run RomM locally for development
 
 ## Prerequisites
 
-| Tool    | Version                                                          |
-| ------- | ---------------------------------------------------------------- |
-| Python  | 3.14 or newer, pinned in `.python-version`                       |
-| Node.js | 24, with npm 11.10 or newer, per `frontend/package.json`         |
-| uv      | Any recent version, which installs the Python toolchain it needs |
-| Docker  | For the database, Valkey, and the optional streaming stack       |
-
-You don't need to install Python 3.14 yourself. `uv` reads `.python-version` and fetches the right interpreter.
+| Tool    | Needed for                                                   |
+| ------- | ------------------------------------------------------------ |
+| Python  | 3.14 or newer, pinned in `.python-version`                   |
+| Node.js | 24, with npm 11.10 or newer, per `frontend/package.json`     |
+| uv      | Dependencies, and it fetches the Python in `.python-version` |
+| Docker  | For the database, Valkey, and the optional streaming stack   |
 
 ## Option 1: Using Docker
 
@@ -146,7 +144,6 @@ uv run python3 main.py
 
 ```sh
 cd frontend
-# npm version >= 9 needed
 npm install
 ```
 

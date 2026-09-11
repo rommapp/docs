@@ -34,7 +34,7 @@ Output is PICO-8's native 128×128 at 30fps, scaled to fit the window. Audio and
 
 ## How it is bundled
 
-FAKE-08 doesn't publish a web build of its own, so RomM pulls the WebAssembly build out of [p3a](https://github.com/fabkury/p3a). It's pinned to a specific commit and checksummed when the image is built, same as EmulatorJS, Ruffle and `js-dos`. Nothing is downloaded at runtime. Whichever image tag you're running decides the version you get.
+FAKE-08 doesn't publish a web build of its own, so RomM pulls the WebAssembly build out of [p3a](https://github.com/fabkury/p3a), pinned to a commit and checksummed when the image is built. Whichever image tag you're running decides the version you get.
 
 ## Saves
 
@@ -44,4 +44,3 @@ Cart data doesn't sync back to RomM. Whatever the cartridge saves stays in your 
 
 - [EmulatorJS](emulatorjs.md): the libretro-core player behind most platforms
 - [`js-dos`](js-dos.md): the other native, non-EmulatorJS player
-- [Image Variants](../../install/image-variants.md): which runtimes each image carries

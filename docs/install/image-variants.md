@@ -16,12 +16,12 @@ RomM publishes two production image variants. They're interchangeable at the con
 
 The full image bundles all four browser runtimes, each pinned and checksummed at build time. The slim image bundles none of them, and only two have a CDN to fall back on:
 
-| Runtime                                              | Full image | Slim image         |
-| ---------------------------------------------------- | ---------- | ------------------ |
-| [EmulatorJS](../using/in-browser-play/emulatorjs.md) | Bundled    | Fetched from a CDN |
-| [`js-dos`](../using/in-browser-play/js-dos.md)       | Bundled    | Fetched from a CDN |
-| [Ruffle](../using/in-browser-play/ruffle.md)         | Bundled    | Unavailable        |
-| [PICO-8](../using/in-browser-play/pico-8.md)         | Bundled    | Unavailable        |
+| Runtime                                              | On the slim image  |
+| ---------------------------------------------------- | ------------------ |
+| [EmulatorJS](../using/in-browser-play/emulatorjs.md) | Fetched from a CDN |
+| [`js-dos`](../using/in-browser-play/js-dos.md)       | Fetched from a CDN |
+| [Ruffle](../using/in-browser-play/ruffle.md)         | Unavailable        |
+| [PICO-8](../using/in-browser-play/pico-8.md)         | Unavailable        |
 
 The two CDN-backed runtimes need outbound internet **from the browser**, not from the server. [Emulator streaming](../using/emulator-streaming.md) doesn't care either way, since the emulation happens in its own container.
 

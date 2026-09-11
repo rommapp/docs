@@ -27,8 +27,6 @@ Every scheduled task takes a standard 5-field cron expression:
 
 Set the env var and restart the container. The scheduler picks up the new schedule as soon as RomM is back.
 
-Scheduling uses RQ's own cron these days, not a separate `rq-scheduler` process. Whatever the old scheduler left behind in Valkey gets cleared on your first startup after upgrading. There's nothing to clean up by hand.
-
 ## Enabling a scheduled task
 
 Most tasks have an `ENABLE_*` environment variable, like `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` which enables the LaunchBox sync. Set both the enable var and its cron var, since a task with an empty cron string has nothing to schedule and stays unscheduled even when enabled.
@@ -63,10 +61,7 @@ A task that's been "running" for hours is usually a scan that hit `SCAN_TIMEOUT`
 On a Raspberry Pi or NAS with 2 GB of RAM and/or a single CPU core:
 
 - Raise the cron intervals (daily → weekly) for the nightlies
-- Set `SCAN_WORKERS=1`. The default of `4` chews through four ROMs at once
-- Set `WEB_SERVER_CONCURRENCY=1`. The default of `4` runs four API worker processes
+- Set `SCAN_WORKERS=1` and `WEB_SERVER_CONCURRENCY=1`, both of which default to `4`
 - Enable the watcher but raise `RESCAN_ON_FILESYSTEM_CHANGE_DELAY` to 30+ minutes
 - Disable image conversion if you don't care about WebP (`ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP=false`)
 - On a big library, set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` and give up the recommendation sections to skip the nightly build
-
-Scans now get their own queue and worker, so a long one won't hold up the shorter tasks queued behind it.

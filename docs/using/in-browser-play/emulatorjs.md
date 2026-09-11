@@ -68,8 +68,8 @@ Operator setup (ICE servers, enable flag) lives in [Configuration File → `emul
 | SNES/Super Famicom                          | `snes9x`, `bsnes`                                                        |
 | TurboGraphx-16/PC Engine                    | `mednafen_pce`                                                           |
 | Virtual Boy                                 | `mednafen_vb`                                                            |
+| WonderSwan/Color                            | `mednafen_wswan`                                                         |
 
 Windows 3.x and 9x are **not** on this list. `dosbox-pure` just blank-screens on them, so they run on [`js-dos`](js-dos.md) and its DOSBox-X backend instead. PICO-8 carts have their own player, [FAKE-08](pico-8.md). Plain MS-DOS still uses `dosbox-pure` (see [MS-DOS](ms-dos.md)).
-| WonderSwan/Color | `mednafen_wswan` |
 
 Player UI features beyond the basics (cheats, in-emulator screenshots, multi-disc swap, hotkeys, fullscreen) are covered in the broader [EmulatorJS docs](https://emulatorjs.org/docs/).

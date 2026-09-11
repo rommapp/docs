@@ -55,22 +55,22 @@ See the [reference Docker Compose](quick-start.md) for where `/romm/library` liv
 
 Some games come as **folders** instead of single files, holding multiple discs, DLC, manuals, or patches alongside the game itself. These sub-folder names are recognised and surfaced as tags in the UI, in singular or plural form:
 
-| Folder        | Holds                                                             |
-| ------------- | ----------------------------------------------------------------- |
-| `dlc`         | Downloadable content                                              |
-| `update`      | Game updates                                                      |
-| `patch`       | Patch files, see [ROM Patcher](../using/rom-patcher.md)           |
-| `hack`, `mod` | Community modifications                                           |
-| `translation` | Fan translations                                                  |
-| `demo`        | Demo builds                                                       |
-| `prototype`   | Prototype builds                                                  |
-| `manual`      | Manuals, as `.pdf`, `.md`, `.txt` or `.html`                      |
-| `walkthrough` | [Walkthroughs](../using/walkthroughs.md), same formats as manuals |
-| `soundtrack`  | Audio tracks for the [Jukebox](../using/jukebox.md)               |
-| `cheat`       | Cheat files                                                       |
-| `screenshot`  | Screenshots                                                       |
+| Folder           | Holds                                                   |
+| ---------------- | ------------------------------------------------------- |
+| `dlc`            | Downloadable content                                    |
+| `update`         | Game updates                                            |
+| `patch`          | Patch files, see [ROM Patcher](../using/rom-patcher.md) |
+| `hack`, `mod`    | Community modifications                                 |
+| `translation`    | Fan translations                                        |
+| `demo`           | Demo builds                                             |
+| `prototype`      | Prototype builds                                        |
+| `manual` \*      | Manuals                                                 |
+| `walkthrough` \* | [Walkthroughs](../using/walkthroughs.md)                |
+| `soundtrack` \*  | Audio tracks for the [Jukebox](../using/jukebox.md)     |
+| `cheat` \*       | Cheat files                                             |
+| `screenshot` \*  | Screenshots                                             |
 
-The last four never contain a ROM binary, so hashing and title-id extraction skip them.
+\* These never contain a ROM binary, so hashing and title-id extraction skip them.
 
 ## Visual reference
 
@@ -115,7 +115,10 @@ The last four never contain a ROM binary, so hashing and title-id extraction ski
         │  │     ├─ demo
         │  │     ├─ translation
         │  │     ├─ prototype
-        │  │     └─ screenshots
+        │  │     ├─ walkthrough
+        │  │     ├─ soundtrack
+        │  │     ├─ cheat
+        │  │     └─ screenshot
         │  │
         │  └─ ps/
         │     ├─ game_5/
@@ -156,7 +159,10 @@ The last four never contain a ROM binary, so hashing and title-id extraction ski
         │  │     ├─ demo
         │  │     ├─ translation
         │  │     ├─ prototype
-        │  │     └─ screenshots
+        │  │     ├─ walkthrough
+        │  │     ├─ soundtrack
+        │  │     ├─ cheat
+        │  │     └─ screenshot
         │  │
         │  └─ bios/
         │     └─ gba_bios.bin

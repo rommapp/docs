@@ -40,7 +40,7 @@ Configured via env vars (full table in [Scheduled Tasks](scheduled-tasks.md)):
 | ----------------------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
 | `SCHEDULED_RESCAN_CRON` | `0 3 * * *` | Cron expression for the scheduled library scan, which runs a **Quick** scan                                |
 | `SCAN_TIMEOUT`          | `14400`     | Hard cap in seconds, after which the scan is killed and the clients watching it are told why               |
-| `SCAN_WORKERS`          | `4`         | How many ROMs a scan processes at once, raised from `1`                                                    |
+| `SCAN_WORKERS`          | `4`         | How many ROMs a scan processes at once                                                                     |
 | `SEVEN_ZIP_TIMEOUT`     | `60`        | Per-archive timeout in seconds for `.7z` extraction during scan, raise it if scanning huge compressed sets |
 
 Scans get their own queue and worker now, so a long library scan won't hold up the shorter background tasks behind it.

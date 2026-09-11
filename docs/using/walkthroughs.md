@@ -57,5 +57,4 @@ The upload endpoint streams the body and wants the filename in an `x-upload-file
 
 ## Related
 
-- [Folder Structure](../getting-started/folder-structure.md#multi-file-games): the other subfolders a game folder can carry
 - [Uploads](uploads.md): how files reach the library

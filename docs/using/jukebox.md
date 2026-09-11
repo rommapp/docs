@@ -73,5 +73,4 @@ Playlists are under `/music/playlists` with the usual create, read, update and d
 
 ## Related
 
-- [Folder Structure](../getting-started/folder-structure.md#multi-file-games): where a `soundtrack/` folder goes
 - [Uploads](uploads.md): adding tracks through the web UI

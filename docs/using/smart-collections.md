@@ -17,6 +17,7 @@ That has two big consequences:
 
 - **No top-level OR.** You can't express "Franchise = Zelda OR Title contains 'zelda'". Different fields always AND.
 - **No negation.** Filters are inclusion-only. There's no "Status is not Complete" or "exclude Genre RPG". Pick the values you want, not the ones you don't.
+- **No nesting.** A smart collection can't filter on another smart collection.
 
 The one numeric range is [game length](#game-length). There is no "rating greater than 85" or "playtime greater than 60 minutes", and the age-rating filter is categorical (ESRB / PEGI labels) rather than a review-score number.
 
@@ -24,7 +25,7 @@ The one numeric range is [game length](#game-length). There is no "rating greate
 
 ### Multi-value
 
-Each takes one or more values plus an optional `<field>_logic` of `any` (OR, the default) or `all` (AND).
+Each takes one or more values. All except `platform_ids` also accept a `<field>_logic` companion of `any` (OR, the default) or `all` (AND); platforms are always ORed.
 
 | Field                | Matches                                                                |
 | -------------------- | ---------------------------------------------------------------------- |
@@ -73,7 +74,7 @@ Each restricts to games where the answer is yes.
 
 Lengths come from [HowLongToBeat](../getting-started/metadata-providers.md#howlongtobeat), which means you need `HLTB_API_ENABLED=true` and a scan that actually matched the game. The number used is **main story** time, not completionist.
 
-This is the only filter that takes a numeric range. Give it a floor, a ceiling, or both:
+Give it a floor, a ceiling, or both:
 
 ```text
 Main story: 2 to 8 hours
@@ -130,10 +131,3 @@ Same visibility model as standard collections:
 ## Refresh behaviour
 
 Smart collections refresh on add/remove/edit of ROMs, and on scan. No manual refresh needed!
-
-## Limitations
-
-- **No top-level OR or nested groups.**
-- **No negation.**
-- **No numeric review-score threshold.** Game length is the only numeric range.
-- **No nested smart collections.**

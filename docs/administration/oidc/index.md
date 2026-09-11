@@ -134,11 +134,9 @@ environment:
     - OIDC_USERNAME_ATTRIBUTE=preferred_username
 ```
 
-Whatever that attribute holds gets sanitised before it becomes a username. A provider returning characters RomM doesn't allow won't break the login any more.
+Whatever that attribute holds gets sanitised before it becomes a username, so a provider returning characters RomM doesn't allow won't break the login.
 
-## PKCE
-
-RomM sends a PKCE challenge on the authorization request. If your provider **requires** PKCE, it'll just work. If it only supports PKCE, it takes the challenge and ignores it. Either way there's nothing for you to configure, and if your IdP lets you mark PKCE required per client, it's safe to do that for RomM.
+RomM also sends a PKCE challenge on every authorization request, so it's safe to mark PKCE required for the RomM client if your IdP offers that.
 
 ## Important notes
 

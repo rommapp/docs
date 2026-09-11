@@ -159,19 +159,17 @@ scan:
             - steam # PC platforms only
 ```
 
-Tag a file `(steam-xxxx)` with a Steam app id to force a specific match.
-
 ### Demozoo, Pouët and CSDb
 
 Three demoscene databases. These cover productions (demos, intros, cracktros, musicdisks) rather than commercial games. All three are public APIs needing no key, and all three are off by default:
 
-| Provider                        | Variable              | Filename tag     | Covers                                                 |
-| ------------------------------- | --------------------- | ---------------- | ------------------------------------------------------ |
-| [Demozoo](https://demozoo.org/) | `DEMOZOO_API_ENABLED` | `(demozoo-xxxx)` | `win`, `dos`, `amiga`, `c64`, `nes`, `snes`, `genesis` |
-| [Pouët](https://www.pouet.net/) | `POUET_API_ENABLED`   | `(pouet-xxxx)`   | Whatever platforms the production itself declares      |
-| [CSDb](https://csdb.dk/)        | `CSDB_API_ENABLED`    | `(csdb-xxxx)`    | `c64`, used for stills Demozoo doesn't have            |
+| Provider                        | Variable              | Covers                                                 |
+| ------------------------------- | --------------------- | ------------------------------------------------------ |
+| [Demozoo](https://demozoo.org/) | `DEMOZOO_API_ENABLED` | `win`, `dos`, `amiga`, `c64`, `nes`, `snes`, `genesis` |
+| [Pouët](https://www.pouet.net/) | `POUET_API_ENABLED`   | Whatever platforms the production itself declares      |
+| [CSDb](https://csdb.dk/)        | `CSDB_API_ENABLED`    | `c64`, used for stills Demozoo doesn't have            |
 
-All three match on the production id, which you can give them three ways: a filename tag, the bare id pasted into the ROM editor, or a production URL pasted into the ROM editor (`https://demozoo.org/productions/108/`, `https://www.pouet.net/prod.php?which=108`, `https://csdb.dk/release/?id=75330`).
+All three match on the production id, which you can give them three ways: a [filename tag](#metadata-tags-in-filenames), the bare id pasted into the ROM editor, or a production URL pasted into the ROM editor (`https://demozoo.org/productions/108/`, `https://www.pouet.net/prod.php?which=108`, `https://csdb.dk/release/?id=75330`).
 
 Demozoo will also search by title. If a Demozoo production references a CSDb release, RomM follows it automatically.
 
@@ -366,48 +364,9 @@ To use an alternate style end-to-end:
 
 ## Priority and conflict resolution
 
-When multiple providers return different values for the same field, the winner is determined by `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`.
+When multiple providers return different values for the same field, the winner is decided by `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`. The current defaults and the full slug table live in [Configuration File → `scan.priority.metadata`](../reference/configuration-file.md#scanprioritymetadata).
 
-Where a provider reports the roles separately, company credits are split into **developers** and **publishers**. The old combined list is still there for the providers that don't. The `<developer>` and `<publisher>` tags in the [gamelist and Pegasus exports](../reference/exports.md) come from the split version.
-
-Defaults:
-
-```yaml
-scan:
-    priority:
-        metadata:
-            - igdb
-            - moby
-            - ss
-            - ra
-            - launchbox
-            - gamelist
-            - hasheous
-            - tgdb
-            - flashpoint
-            - steam
-            - hltb
-            - demozoo
-            - pouet
-            - csdb
-        artwork:
-            - sgdb
-            - igdb
-            - moby
-            - ss
-            - libretro
-            - ra
-            - launchbox
-            - gamelist
-            - hasheous
-            - tgdb
-            - flashpoint
-            - steam
-            - hltb
-            - demozoo
-            - pouet
-            - csdb
-```
+Company credits are split into **developers** and **publishers** where a provider reports the roles separately. The old combined list is still there for the providers that don't, and the `<developer>` and `<publisher>` tags in the [gamelist and Pegasus exports](../reference/exports.md) come from the split version.
 
 A provider that isn't enabled is skipped wherever it sits in the list, so leaving all of them in place costs nothing.
 
