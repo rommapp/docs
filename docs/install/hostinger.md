@@ -89,7 +89,7 @@ Platform folder names inside `roms/` have to match the expected naming (see [Fol
 
 ## Getting help
 
-For problems with the VPS, the template, or Docker Manager, contact [Hostinger support](https://www.hostinger.com/contact), since they maintain the catalog entry. For issues with the app itself, try the [RomM Discord](https://discord.gg/P5HtHnhUDH) or:
+For problems with the VPS, the template, or Docker Manager, contact [Hostinger support](https://www.hostinger.com/contact), since they maintain the catalog entry. For issues with the app itself, try the [RomM Discord](https://discord.com/invite/romm) or:
 
 - [Scanning Troubleshooting](../troubleshooting/scanning.md) for matching and ingest problems
 - [Authentication Troubleshooting](../troubleshooting/authentication.md) for login issues
