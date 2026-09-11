@@ -106,7 +106,7 @@ Customise how your filesystem layout is interpreted, and how platforms are ident
 
 ### `system.platforms`
 
-Map your folder names to [supported platform](../platforms/supported-platforms.md) slugs, for folders RomM doesn't already recognise.
+Map your folder names to [supported platform](../platforms/supported-platforms.md) slugs, for folders RomM doesn't recognise on its own or recognises as the wrong platform.
 
 ```yaml
 system:
@@ -124,6 +124,8 @@ A folder name is resolved in this order, and the first hit wins:
 3. The [built-in folder aliases](../platforms/supported-platforms.md#folder-name-aliases) for names Batocera, RetroBat and ES-DE use (`megadrive/`, `gamecube/`, `n3ds/`, `mame/`, ...).
 
 Anything left over is imported as a [custom platform](../platforms/custom-platforms.md) with no metadata coverage.
+
+Step 2 shadows step 3, so a folder name that already is a slug never reaches the alias table. That matters when a frontend means something else by it: ES-DE and Batocera use `atari800/` for the whole Atari 8-bit family, but `atari800` is RomM's slug for the Atari 800 alone, so that one needs `atari800: "atari8bit"` spelled out. Both example configs carry it.
 
 Because the alias table is consulted last, a binding always wins: point `mame: "mame"` at a custom platform and RomM stops folding that folder into Arcade.
 

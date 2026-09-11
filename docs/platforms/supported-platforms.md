@@ -42,10 +42,11 @@ Batocera, RetroBat and ES-DE name a fair number of their system folders differen
 
 That is a sample; the full table lives in [`backend/utils/platform_aliases.py`](https://github.com/rommapp/romm/blob/master/backend/utils/platform_aliases.py) and covers roughly 140 folder names.
 
-Two things to know about it:
+Three things to know about it:
 
 - **A binding always wins.** Aliases are consulted only after `system.platforms` and `system.versions`, and after the folder name is checked against the slug list, so you can always override one.
 - **Several folders can collapse onto one platform.** All four Amiga models land on `amiga`, and every arcade board lands on `arcade`, which means those games share a single platform in RomM.
+- **A folder name that already is a slug never reaches the table.** It matches itself first, so a frontend that means something else by that name still needs a binding: ES-DE and Batocera use `atari800/` for the whole Atari 8-bit family, while `atari800` is RomM's slug for the Atari 800 alone. The shipped example configs bind it to `atari8bit`.
 
 If the folder name you want is missing, open an issue at [rommapp/romm](https://github.com/rommapp/romm/issues) so it can be added for everyone, and bind it in `config.yml` meanwhile.
 
