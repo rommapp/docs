@@ -49,7 +49,7 @@ See the [reference Docker Compose](quick-start.md) for where `/romm/library` liv
 
 <!-- prettier-ignore -->
 !!! tip "Platform folder names"
-    The platform folder name has to match a known slug from the full list in [Supported Platforms](../platforms/supported-platforms.md). If your existing folder names don't match (say, `super_nintendo/` instead of `snes/`), override the mapping via `system.platforms` in [`config.yml`](../reference/configuration-file.md).
+    The platform folder name should match a slug from the full list in [Supported Platforms](../platforms/supported-platforms.md), matched case-insensitively so `SNES/` and `snes/` are the same platform. RomM also recognises the folder names Batocera, RetroBat and ES-DE use, so a library that already reads `megadrive/`, `gamecube/` or `n3ds/` scans as-is (see [Folder name aliases](../platforms/supported-platforms.md#folder-name-aliases)). For anything else (say, `super_nintendo/` instead of `snes/`), bind the folder yourself via [`system.platforms`](../reference/configuration-file.md#systemplatforms) in `config.yml`.
 
 ## Multi-file games
 

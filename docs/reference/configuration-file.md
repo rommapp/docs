@@ -106,15 +106,26 @@ Customise how your filesystem layout is interpreted, and how platforms are ident
 
 ### `system.platforms`
 
-Map your folder names to [supported platform](../platforms/supported-platforms.md) slugs.
+Map your folder names to [supported platform](../platforms/supported-platforms.md) slugs, for folders RomM doesn't already recognise.
 
 ```yaml
 system:
     platforms:
-        gc: "ngc" # treat "gc/" folder as GameCube
-        psx: "ps" # treat "psx/" folder as PlayStation
-        super_nintendo: "snes"
+        super_nintendo: "snes" # treat "super_nintendo/" folder as SNES
+        my_saturn_dump: "saturn"
 ```
+
+Keys are folder names and values are platform slugs. Both sides are matched case-insensitively, so `GameCube: "ngc"` binds a `gamecube/` folder just as well as a `GameCube/` one.
+
+A folder name is resolved in this order, and the first hit wins:
+
+1. A `system.platforms` or [`system.versions`](#systemversions) binding.
+2. The folder name itself, when it already is a platform slug.
+3. The [built-in folder aliases](../platforms/supported-platforms.md#folder-name-aliases) for names Batocera, RetroBat and ES-DE use (`megadrive/`, `gamecube/`, `n3ds/`, `mame/`, ...).
+
+Anything left over is imported as a [custom platform](../platforms/custom-platforms.md) with no metadata coverage.
+
+Because the alias table is consulted last, a binding always wins: point `mame: "mame"` at a custom platform and RomM stops folding that folder into Arcade.
 
 ### `system.versions`
 

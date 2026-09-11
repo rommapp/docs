@@ -63,7 +63,7 @@ Read the [upstream release notes](https://github.com/rommapp/romm/releases) befo
 
 ## Why can't I see a specific platform?
 
-The platform folder name probably doesn't match a known slug. Check [Supported Platforms](../platforms/supported-platforms.md), and fix it by either renaming the folder or updating the [`system.platforms`](../reference/configuration-file.md#systemplatforms) binding in `config.yml`.
+The platform folder name probably matches neither a known slug nor one of the [folder name aliases](../platforms/supported-platforms.md#folder-name-aliases). Check [Supported Platforms](../platforms/supported-platforms.md), and fix it by either renaming the folder or updating the [`system.platforms`](../reference/configuration-file.md#systemplatforms) binding in `config.yml`.
 
 ## Why are my ROMs unmatched after a scan?
 

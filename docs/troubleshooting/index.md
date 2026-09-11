@@ -27,7 +27,7 @@ description: Diagnose common issues by symptom
 ## Scanning problems
 
 - Scan ends immediately, no platforms found → [Scanning Troubleshooting](scanning.md)
-- Platform not detected → check folder slug matches [Supported Platforms](../platforms/supported-platforms.md) or add a `system.platforms` binding in [`config.yml`](../reference/configuration-file.md).
+- Platform not detected → check the folder name matches a slug or [folder name alias](../platforms/supported-platforms.md#folder-name-aliases) in [Supported Platforms](../platforms/supported-platforms.md), or add a `system.platforms` binding in [`config.yml`](../reference/configuration-file.md).
 - Scan times out → [Scanning Troubleshooting](scanning.md)
 
 ## In-browser play
