@@ -7,9 +7,15 @@ description: Diagnose EmulatorJS and Ruffle issues
 
 ## EmulatorJS won't load at all
 
-- **On the slim image without internet?** The slim image fetches EmulatorJS cores from a CDN at runtime rather than bundling them, so without outbound network the container can't load games. Either switch to the full image (cores bundled) or open outbound access (see [Image Variants](../install/image-variants.md)).
+- **On the slim image without internet?** The slim image fetches EmulatorJS cores from a CDN at runtime rather than bundling them, so without outbound network the browser can't load games. Either switch to the full image (cores bundled) or open outbound access (see [Image Variants](../install/image-variants.md)). Ruffle and PICO-8 have **no** CDN fallback at all, so those two only work on the full image.
 - Check the **browser console** and look for 404s on `/assets/emulatorjs/...`, which indicate the EmulatorJS bundle didn't install correctly in the container. Check `docker logs romm` for entrypoint install-step failures.
 - **Browser compatibility**: EmulatorJS uses SharedArrayBuffer, which needs a modern Chrome/Firefox/Safari and an HTTPS-served instance (cross-origin isolation requires HTTPS). If you're still on plain HTTP, set up TLS first (see [Reverse Proxy](../install/reverse-proxy.md)).
+
+## "This core needs a secure connection"
+
+Some cores are threaded and need the `SharedArrayBuffer` API, which browsers only expose on a secure, cross-origin-isolated origin. On plain HTTP the player says so outright rather than failing with a generic error. Serve RomM over `https://` (see [Reverse Proxy](../install/reverse-proxy.md)), or pick a single-threaded core for that platform.
+
+This affects the PSP core, [`js-dos`](../using/in-browser-play/js-dos.md) for Windows 3.x and 9x, and several of the heavier EmulatorJS cores.
 
 ## Black screen or no audio
 
