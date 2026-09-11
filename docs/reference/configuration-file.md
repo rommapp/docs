@@ -489,35 +489,48 @@ streaming:
 
 ### `streaming.containers`
 
-One entry per emulator container, where each entry maps a [platform slug](../platforms/supported-platforms.md) to the container that streams it.
+**One entry per container**, not per platform. A container serves every platform listed in its `platforms` map, and its own keys are the defaults for all of them.
 
-| Key                | Required | Purpose                                                                                                        |
-| ------------------ | -------- | -------------------------------------------------------------------------------------------------------------- |
-| `platform`         | Yes      | Platform slug this container serves (e.g. `ps2`, `ngc`, `wii`, `xbox`)                                         |
-| `host`             | Yes      | Browser-facing Selkies web UI (must be reachable from clients and served over **HTTPS**)                       |
-| `broker_host`      | No       | Server-side broker API (derived from `host` if omitted)                                                        |
-| `label`            | Yes      | Text shown on the play action (e.g. `PCSX2`)                                                                   |
-| `broker_secret`    | No       | Secret for this container, used only when the `STREAMING_BROKER_SECRET` env var is unset                       |
-| `memory_card_sync` | No       | Sync the whole memory card to the RomM library on `ps2` and `ngc` (GameCube), ignored on cardless platforms    |
-| `library_path`     | No       | In-container path to the RomM library if it is mounted somewhere other than the default `/romm/library`        |
-| `emulator`         | No       | Lowercased name grouping this container's states and memory cards, defaults to `label`, then the platform slug |
+| Key                | Required | Purpose                                                                                                         |
+| ------------------ | -------- | --------------------------------------------------------------------------------------------------------------- |
+| `host`             | Yes      | Browser-facing Selkies web UI, served over **HTTPS**, or a path when reverse proxied onto RomM's own origin     |
+| `platforms`        | Yes      | Map of [platform slug](../platforms/supported-platforms.md) to the emulator serving it, or to an override block |
+| `protocol`         | Yes      | `webstation`. Omitted, the entry is read as a deprecated per-emulator broker mod                                |
+| `label`            | Yes      | Name for the container, used on the play action for any platform that sets none of its own                      |
+| `subfolder`        | No       | URL prefix the broker is served under, matching the container's `SUBFOLDER`                                     |
+| `broker_host`      | No       | Server-to-broker API base. Derived from `host` when omitted, and **required** when `host` is a path             |
+| `broker_secret`    | No       | Secret for this container, used only when the `STREAMING_BROKER_SECRET` env var is unset                        |
+| `library_path`     | No       | In-container path to the RomM library, if it is mounted somewhere other than the default `/romm/library`        |
+| `emulator`         | No       | Lowercased name grouping this container's states and memory cards, defaults to `label`                          |
+| `memory_card_sync` | No       | Sync the whole memory card to the RomM library, honoured on `ps2` and `ngc` and ignored elsewhere               |
 
-See [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-cards) for how `memory_card_sync` behaves.
+A `platforms` value is either the emulator name as a bare string, or a block overriding `emulator`, `label` and `memory_card_sync` for that one platform.
 
 ```yaml
 streaming:
     enabled: true
     containers:
-        - platform: ps2
-          host: https://192.168.1.51:3001 # browser-facing, must be HTTPS
-          broker_host: http://192.168.1.51:8000 # server-to-container, HTTP ok
-          label: PCSX2
-          memory_card_sync: true # keep the PS2 memory card in your RomM library
-        - platform: ngc # ngc/wii can share one Dolphin container
-          host: https://192.168.1.51:3002
-          broker_host: http://192.168.1.51:8001
-          label: Dolphin
+        - protocol: webstation
+          host: https://192.168.1.56:3010 # browser-facing, must be HTTPS
+          subfolder: /streaming # matches the container's SUBFOLDER
+          library_path: /romm # where it mounts your ROM library
+          broker_secret: change-me # matches the container's BROKER_SECRET
+          label: Emulation station
+          platforms:
+              snes: retroarch # the emulator name directly...
+              ps2: # ...or a block overriding container keys
+                  emulator: pcsx2
+                  label: PCSX2
+                  memory_card_sync: true
+              ngc:
+                  emulator: dolphin
+                  label: Dolphin
+                  memory_card_sync: true
 ```
+
+List a platform on several containers and they become a pool, where a claim takes the first free one. Pool members have to agree on `emulator`, `memory_card_sync` and `protocol`, and are told apart by their broker host, so give each a distinct `broker_host` (see [Emulator Streaming → How a session works](../using/emulator-streaming.md#how-a-session-works)).
+
+See [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-cards) for how `memory_card_sync` behaves, and [Migrating to webstation](../using/emulator-streaming-migration.md) if you still run the per-emulator broker mods.
 
 ---
 
