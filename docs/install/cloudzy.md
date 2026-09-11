@@ -13,25 +13,24 @@ description: Deploy on a Cloudzy VPS with the one-click marketplace image
 
 The image installs Ubuntu Server 24.04 LTS and a Docker Compose stack rooted at `/root/romm`:
 
-- **The RomM app and a MariaDB database**, as two containers. There is no third container for the in-memory store, since the stack leaves `REDIS_HOST` unset and the image starts its [embedded Valkey](redis-or-valkey.md).
+- **The RomM app and a MariaDB database**, as two containers.
 - **Caddy**, as the reverse proxy. It runs on the host under systemd rather than in Docker, and reads `/etc/caddy/Caddyfile`.
 
-The library, assets, and config live in directories under `/root/romm`, while the database persists in the `romm_mysql_data` Docker volume.
+The library, assets, and config live in directories under `/root/romm`, while the database persists in the `romm_mysql_data` volume.
 
 ## Prerequisites
 
 - A Cloudzy VPS plan with at least 2 GB of RAM, which is the image's stated minimum. Your library shares the server's disk, so pick a plan whose storage fits your collection.
-- A domain name, if you want HTTPS. Let's Encrypt will not issue certificates for bare IP addresses, so an IP-only server stays on plain HTTP.
 
 ## Install
 
-The button above opens a cart with the RomM image and a 2 GB plan already selected, so all that's left is to pick a location close to you and order. You can also start from the [marketplace listing](https://cloudzy.com/marketplace/romm/) and select **RomM** yourself. Either way, Cloudzy provisions the VPS and brings the stack up.
+The button above opens a cart with the RomM image and a 2 GB plan preselected, and the [marketplace listing](https://cloudzy.com/marketplace/romm/) is the other way in. Cloudzy provisions the VPS and brings the stack up.
 
-Once it's ready, open `http://<server-ip>`. The first start takes a few minutes while the containers initialise, after which RomM redirects you to the **Setup Wizard**, where the first account you create becomes the administrator.
+Once it's ready, open `http://<server-ip>`. The first start takes a few minutes while the containers initialise, after which RomM hands you to the setup wizard, where the first account you create becomes the administrator.
 
 ## Managing the stack
 
-Everything after install happens over SSH, using the server's IP and the `root` credentials from your Cloudzy dashboard. The compose file lives at `/root/romm/docker-compose.yml`, so the usual commands work from that directory:
+Everything after install happens over SSH, using the server's IP and its `root` credentials. The compose file lives at `/root/romm/docker-compose.yml`, so the usual commands work from that directory:
 
 ```bash
 cd /root/romm
