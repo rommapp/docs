@@ -24,6 +24,10 @@ scan:
 
 With `export: true`, every scan writes a `gamelist.xml` into the platform folder, and downloads the selected media into sibling folders (`covers/`, `screenshots/`, etc.) that ES-DE expects.
 
+An existing `gamelist.xml` is **merged**, not overwritten. Entries for games RomM knows about are rewritten, and entries a frontend added for anything else are left alone, so pointing an export at a library a frontend has already scraped doesn't throw that work away.
+
+A game in a subfolder keeps its folder in the exported `<path>`, relative to the platform folder, and its media mirrors those folders. That matches how a [custom library structure](../getting-started/folder-structure.md#custom-library-structure) lays the platform out, so nested games export and re-import correctly.
+
 Standard ES-DE/EmulationStation format:
 
 ```xml
@@ -59,6 +63,10 @@ Content-Type: application/json
 
 Response includes where the files were written.
 
+<!-- prettier-ignore -->
+!!! warning "Permissions changed in 5.3"
+    Both export endpoints now require the `platforms.write` scope rather than `roms.read`, and they enforce platform visibility: a platform hidden from the caller is refused rather than quietly exported. Writing files into someone's library is a write, so a read-only token can no longer trigger one. Update any [client API token](../developers/client-api-tokens.md) that calls them.
+
 ### Using with ES-DE
 
 Once `gamelist.xml` has been generated and populated `covers/` + `screenshots/`, point ES-DE at the library:
@@ -84,6 +92,8 @@ scan:
     pegasus:
         export: true
 ```
+
+Like the gamelist export, an existing `metadata.pegasus.txt` is merged rather than overwritten, and the two exports **share one set of media folders**. Enabling both writes one copy of each cover and screenshot on disk instead of two.
 
 Human-readable text format:
 
@@ -122,7 +132,12 @@ Exports don't auto-rerun on every metadata edit, instead they run:
 - **Next scan**: exports are part of scan completion when enabled.
 - **Manual trigger** via the API above
 
+<!-- prettier-ignore -->
+!!! note "Games with no file are skipped"
+    [Physical games](../using/physical-games.md) and ROMs missing from the filesystem are left out of both exports, since a frontend has nothing to launch for them.
+
 ## See also
 
 - [Configuration File → `scan.gamelist`](../reference/configuration-file.md#scangamelistexport)
 - [Configuration File → `scan.pegasus`](../reference/configuration-file.md#scanpegasusexport)
+- [API Authentication](../developers/api-authentication.md): the scopes the export endpoints need

@@ -19,9 +19,16 @@ RomM does not ship games or firmware, and the team cannot help you obtain BIOS f
 ## Ingesting firmware
 
 1. Put the file in the right `bios/` folder (see [Folder Structure](../getting-started/folder-structure.md))
-2. Run a scan → Firmware is picked up alongside ROMs
-3. Navigate to the platform's gallery and click the `CPU` icon in the top left
-4. Firmware files will display at the bottom of the page
+2. Run a scan, and firmware is picked up alongside ROMs
+3. The platform's firmware is then listed on that platform's page, and offered to the in-browser player
+
+Where `bios/` sits is up to you. It defaults to `bios/{platform}` at the library root, and the [`filesystem.structure.firmware`](../reference/configuration-file.md#filesystemstructure) template moves it.
+
+## Missing firmware
+
+Firmware is tracked the same way ROMs are, so a file deleted from `bios/` is **flagged missing from the filesystem** on the next scan rather than vanishing from the database. The row stays, carrying whatever you recorded about it, and it is excluded from the in-browser player, so a core is never handed a firmware path that no longer resolves. The content endpoints answer `404` for one rather than serving a stale file.
+
+Put the file back and the next scan clears the flag. To clear out firmware you have no intention of replacing, run the **Cleanup missing firmware** task, which deletes every flagged row (see [Scheduled Tasks](scheduled-tasks.md#triggering-a-task-manually)).
 
 ## Platform-specific firmware
 
