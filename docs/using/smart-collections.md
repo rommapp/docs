@@ -18,7 +18,7 @@ That has two big consequences:
 - **No top-level OR.** You can't express "Franchise = Zelda OR Title contains 'zelda'". Different fields always AND.
 - **No negation.** Filters are inclusion-only. There's no "Status is not Complete" or "exclude Genre RPG". Pick the values you want, not the ones you don't.
 
-The one numeric range is game length. There is no "rating greater than 85" or "playtime greater than 60 minutes", and the age-rating filter is categorical (ESRB / PEGI labels) rather than a review-score number.
+The one numeric range is [game length](#game-length). There is no "rating greater than 85" or "playtime greater than 60 minutes", and the age-rating filter is categorical (ESRB / PEGI labels) rather than a review-score number.
 
 ## Supported fields
 
@@ -63,11 +63,27 @@ Each restricts to games where the answer is yes.
 
 ### Single-value
 
-| Field                                        | Matches                                                                                    |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `search_term`                                | Case-insensitive substring match against the title                                         |
-| `collection_id`, `virtual_collection_id`     | Membership in one specific collection                                                      |
-| `hltb_main_story_min`, `hltb_main_story_max` | A [HowLongToBeat](../getting-started/metadata-providers.md#howlongtobeat) main-story range |
+| Field                                        | Matches                                            |
+| -------------------------------------------- | -------------------------------------------------- |
+| `search_term`                                | Case-insensitive substring match against the title |
+| `collection_id`, `virtual_collection_id`     | Membership in one specific collection              |
+| `hltb_main_story_min`, `hltb_main_story_max` | A [game length](#game-length) range                |
+
+## Game length
+
+Game length comes from [HowLongToBeat](../getting-started/metadata-providers.md#howlongtobeat), so it needs `HLTB_API_ENABLED=true` and a scan that matched the game. It is the **main story** time, not completionist.
+
+It is the one filter that takes a numeric range, as a lower bound, an upper bound, or both:
+
+```text
+Main story: 2 to 8 hours     # both bounds
+Main story: up to 4 hours    # upper only, for a backlog you can actually clear
+Main story: 40 hours or more # lower only
+```
+
+The gallery can also **sort and filter** by game length directly, without building a collection for it, which is the quicker way to answer "what can I finish this weekend".
+
+Games HowLongToBeat never matched have no length, so a length filter leaves them out entirely. That is worth remembering on a library with patchy coverage, where a filter can hide more than you expect. Run an **Unmatched** scan with HowLongToBeat selected to fill the gaps in.
 
 ## Examples
 
