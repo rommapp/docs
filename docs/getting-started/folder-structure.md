@@ -53,7 +53,24 @@ See the [reference Docker Compose](quick-start.md) for where `/romm/library` liv
 
 ## Multi-file games
 
-Some games come as **folders** instead of single files, which could include multiple disc, DLCs, manuals, or patches. These sub-folder names are recognised and surfaced as tags in the UI: `dlc`, `hack`, `manual`, `mod`, `patch`, `update`, `demo`, `translation`, `prototype`, `screenshots`.
+Some games come as **folders** instead of single files, holding multiple discs, DLC, manuals, or patches alongside the game itself. These sub-folder names are recognised and surfaced as tags in the UI, in singular or plural form:
+
+| Folder        | Holds                                                             |
+| ------------- | ----------------------------------------------------------------- |
+| `dlc`         | Downloadable content                                              |
+| `update`      | Game updates                                                      |
+| `patch`       | Patch files, see [ROM Patcher](../using/rom-patcher.md)           |
+| `hack`, `mod` | Community modifications                                           |
+| `translation` | Fan translations                                                  |
+| `demo`        | Demo builds                                                       |
+| `prototype`   | Prototype builds                                                  |
+| `manual`      | Manuals, as `.pdf`, `.md`, `.txt` or `.html`                      |
+| `walkthrough` | [Walkthroughs](../using/walkthroughs.md), same formats as manuals |
+| `soundtrack`  | Audio tracks for the [Jukebox](../using/jukebox.md)               |
+| `cheat`       | Cheat files                                                       |
+| `screenshot`  | Screenshots                                                       |
+
+The last four never hold a ROM binary, so they are skipped when a game's hashes and title id are read.
 
 ## Visual reference
 

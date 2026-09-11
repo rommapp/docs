@@ -15,16 +15,21 @@ description: Browse, play, collect, patch, and share from the UI
 - **[Downloads](downloads.md)**
 - **[Uploads](uploads.md)**
 
+- **[Jukebox](jukebox.md)**
+
 ## Organise
 
 - **[Collections](collections.md)**
 - **[Smart Collections](smart-collections.md)**
 - **[Virtual Collections](virtual-collections.md)**
+- **[Physical Games](physical-games.md)**
+- **[Recommendations](recommendations.md)**
 
 ## Personal data
 
 - **[Saves & States](saves-and-states.md)**
 - **[RetroAchievements](retroachievements.md)**
+- **[Walkthroughs](walkthroughs.md)**
 - **[Account & Profile](account-and-profile.md)**
 
 ## Tools
