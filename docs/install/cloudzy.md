@@ -7,6 +7,8 @@ description: Deploy on a Cloudzy VPS with the one-click marketplace image
 
 [Cloudzy](https://cloudzy.com/marketplace/romm/) ships RomM as a one-click image in its VPS marketplace, so a fresh server comes up with the container, its database, and a reverse proxy already wired together. Cloudzy builds and maintains the image, and the app itself is the same `rommapp/romm` image documented everywhere else in these docs.
 
+[![Deploy on Cloudzy](../resources/cloudzy/button.svg)](https://panel.cloudzy.com/cart?ram=2&appId=62f846a9-4da3-4c04-b85f-046eb2006736)
+
 ## What it deploys
 
 The image installs Ubuntu Server 24.04 LTS and a Docker Compose stack rooted at `/root/romm`:
@@ -23,7 +25,7 @@ The library, assets, and config live in directories under `/root/romm`, while th
 
 ## Install
 
-Order a server, pick a location close to you, and select **RomM** from the marketplace catalog. Cloudzy provisions the VPS and brings the stack up.
+The button above opens a cart with the RomM image and a 2 GB plan already selected, so all that's left is to pick a location close to you and order. You can also start from the [marketplace listing](https://cloudzy.com/marketplace/romm/) and select **RomM** yourself. Either way, Cloudzy provisions the VPS and brings the stack up.
 
 Once it's ready, open `http://<server-ip>`. The first start takes a few minutes while the containers initialise, after which RomM redirects you to the **Setup Wizard**, where the first account you create becomes the administrator.
 
