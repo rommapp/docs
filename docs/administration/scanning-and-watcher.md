@@ -43,7 +43,7 @@ Configured via env vars (full table in [Scheduled Tasks](scheduled-tasks.md)):
 | `SCAN_WORKERS`          | `4`         | How many ROMs a scan processes at once, raised from `1`                                                    |
 | `SEVEN_ZIP_TIMEOUT`     | `60`        | Per-archive timeout in seconds for `.7z` extraction during scan, raise it if scanning huge compressed sets |
 
-Scans run on their own queue and worker, so a long library scan no longer blocks the shorter background tasks behind it.
+Scans get their own queue and worker now, so a long library scan won't hold up the shorter background tasks behind it.
 
 To disable scheduled scans entirely, either unset the cron or set it to something unreachable (`SCHEDULED_RESCAN_CRON=0 0 31 2 *`).
 
@@ -102,17 +102,19 @@ exclude:
                 extensions: [nfo]
 ```
 
-Anything you list is **added** to RomM's own defaults rather than replacing them, so the system folders and the frontend media folders stay excluded whether or not you name them. Full schema in [Configuration File](../reference/configuration-file.md).
+Whatever you list here is **added** to RomM's defaults, not swapped in for them. The system folders and the frontend media folders stay excluded either way. Full schema in [Configuration File](../reference/configuration-file.md).
 
 ## Platform folder names
 
-A platform folder has to resolve to a [known slug](../platforms/supported-platforms.md). The [folder name aliases](../platforms/supported-platforms.md#folder-name-aliases) cover the names Batocera, RetroBat and ES-DE use, so a library laid out by one of those frontends mostly needs no configuration. Map anything else with [`system.platforms`](../reference/configuration-file.md#systemplatforms).
+Every platform folder has to resolve to a [known slug](../platforms/supported-platforms.md). The [folder name aliases](../platforms/supported-platforms.md#folder-name-aliases) already cover what Batocera, RetroBat and ES-DE call things, so a library from one of those mostly works untouched. Anything else needs a [`system.platforms`](../reference/configuration-file.md#systemplatforms) mapping.
 
 ## Title ids read from the binary
 
-On the platforms that have one, a scan reads the game's **native title id** straight out of its binary: PSX, PS2, PS3, PSP, PS Vita, Switch, 3DS, Wii, Wii U, GameCube, Dreamcast, Xbox and Xbox 360. That id does two jobs. It identifies a game on the platforms RomM doesn't hash, which is what lets a moved or renamed file keep its saves and collections, and it tells RomM where the game writes its saves so device sync knows what to look for.
+Some platforms stamp a **native title id** into the game binary, and scans read it out: PSX, PS2, PS3, PSP, PS Vita, Switch, 3DS, Wii, Wii U, GameCube, Dreamcast, Xbox and Xbox 360.
 
-Switch headers are encrypted, so a Switch file needs `prod.keys` available for its id to be read, and [`filesystem.embed_switch_title_ids`](../reference/configuration-file.md#filesystemembed_switch_title_ids) can write the id back into the filename. Turn the whole read off with [`filesystem.skip_title_id_extraction`](../reference/configuration-file.md#filesystemskip_title_id_extraction).
+That id earns its keep twice over. It identifies games on the platforms RomM doesn't hash, which is how a renamed or moved file holds on to its saves and collections. It also tells RomM where the game writes its saves, which is what device sync needs to know.
+
+Switch headers are encrypted, so those files need `prod.keys` available before the id can be read. [`filesystem.embed_switch_title_ids`](../reference/configuration-file.md#filesystemembed_switch_title_ids) will write the id back into the filename if you want it there. To skip the whole thing, use [`filesystem.skip_title_id_extraction`](../reference/configuration-file.md#filesystemskip_title_id_extraction).
 
 ## Region and language preference
 

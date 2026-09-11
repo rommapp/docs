@@ -61,7 +61,7 @@ exclude:
 
 Skip whole folders. Used for multi-disc/multi-file games you want invisible.
 
-The default covers the system folders that are never a platform, plus the per-media-type folders that ES-DE, Batocera and the [Pegasus export](exports.md) write beside the ROMs: `3dboxes`, `backcovers`, `bezels`, `covers`, `fanart`, `images`, `manuals`, `marquees`, `miximages`, `miximages_v2`, `physicalmedia`, `screenshots`, `thumbnails`, `titlescreens` and `videos`. Your own list is added to that, it does not replace it.
+The default already covers the system folders that are never a platform, plus the media folders ES-DE, Batocera and the [Pegasus export](exports.md) drop beside your ROMs: `3dboxes`, `backcovers`, `bezels`, `covers`, `fanart`, `images`, `manuals`, `marquees`, `miximages`, `miximages_v2`, `physicalmedia`, `screenshots`, `thumbnails`, `titlescreens` and `videos`. Your list gets added to that rather than replacing it.
 
 ```yaml
 exclude:
@@ -182,7 +182,7 @@ filesystem:
 
 ### `filesystem.skip_title_id_extraction`
 
-Scans read the platform-native title id out of a ROM's own binary on the platforms that have one: PSX, PS2, PS3, PSP, PS Vita, Switch, 3DS, Wii, Wii U, GameCube, Dreamcast, Xbox and Xbox 360. That id identifies a game the way a hash does on platforms RomM doesn't hash, and it tells RomM where the game writes its saves. Set this to skip that read, at the cost of matching quality on those platforms.
+Scans pull the platform-native title id out of the ROM binary wherever there is one: PSX, PS2, PS3, PSP, PS Vita, Switch, 3DS, Wii, Wii U, GameCube, Dreamcast, Xbox and Xbox 360. On platforms RomM doesn't hash, that id is what identifies the game, and it also says where the game writes its saves. Set this to skip reading it, and expect worse matching on those platforms.
 
 **Default:** `false`
 
@@ -191,11 +191,11 @@ filesystem:
     skip_title_id_extraction: true
 ```
 
-Switch headers need `prod.keys` to decrypt, so a Switch file with no keys available reads as a file with no title id.
+Switch headers are encrypted. Without `prod.keys` available, a Switch file just looks like one with no title id.
 
 ### `filesystem.embed_switch_title_ids`
 
-Rename Switch ROMs on disk so their filename ends in `[TITLEID][vVERSION]`, which is the convention most Switch tooling expects. Off by default, since it rewrites your files.
+Rename Switch ROMs on disk so their filename ends in `[TITLEID][vVERSION]`, which is what most Switch tooling expects to see. Off by default, because it rewrites your files.
 
 **Default:** `false`
 
@@ -249,7 +249,7 @@ See [Metadata Providers](../getting-started/metadata-providers.md) for context o
 
 ### `scan.priority.artwork`
 
-Same idea, for cover art and screenshots. It carries its own default, `["sgdb", "igdb", "moby", "ss", "libretro", "ra", "launchbox", "gamelist", "hasheous", "tgdb", "flashpoint", "steam", "hltb", "demozoo", "pouet", "csdb"]`, which leads with the two artwork-only sources.
+Same idea, for cover art and screenshots. This has a default of its own, `["sgdb", "igdb", "moby", "ss", "libretro", "ra", "launchbox", "gamelist", "hasheous", "tgdb", "flashpoint", "steam", "hltb", "demozoo", "pouet", "csdb"]`, led by the two sources that only do artwork.
 
 ```yaml
 scan:
@@ -281,7 +281,7 @@ scan:
 
 Preferred region for titles, cover art, and regional variants. ScreenScraper uses this directly, and other providers respect it where possible.
 
-It also picks which dump the gallery shows when you own several of the same game. A group of siblings collapses to one card, and the one shown is the highest-ranked region in this list, with pre-release dumps ranked after full releases. A region that isn't in the list ranks last, so a Japan-only release still wins a group of one.
+This also decides which dump the gallery shows when you own several copies of a game. Siblings collapse into one card, and the winner is whichever region sits highest in this list, with pre-release dumps pushed below full releases. Regions you haven't listed come last, so a Japan-only release still wins when it's the only one there.
 
 **Default:** `["us", "wor", "ss", "eu", "jp"]`
 
@@ -362,7 +362,7 @@ scan:
 
 ### `scan.gamelist.export`
 
-Generate a `gamelist.xml` in each platform folder, compatible with ES-DE/Batocera. An existing file is **merged** rather than overwritten, so entries a frontend wrote for games RomM doesn't know about survive the export.
+Generate a `gamelist.xml` in each platform folder, compatible with ES-DE/Batocera. An existing file is **merged** rather than overwritten, so entries your frontend wrote for games RomM has never seen come through unharmed.
 
 ```yaml
 scan:
@@ -377,7 +377,7 @@ scan:
 
 ### `scan.pegasus.export`
 
-Export metadata in Pegasus-frontend format (`metadata.pegasus.txt`), merged into an existing file the same way. It reads the same per-media-type folders ES-DE and Batocera do, so the two exports share one set of media on disk rather than each writing its own copy.
+Export metadata in Pegasus-frontend format (`metadata.pegasus.txt`), merged into an existing file the same way. It uses the same media folders ES-DE and Batocera do, so you get one set of files on disk instead of each export keeping its own.
 
 ```yaml
 scan:
@@ -415,7 +415,7 @@ emulatorjs:
 
 ### `emulatorjs.disable_batch_bootup`
 
-By default a multi-disc game hands EmulatorJS every disc at once, so the emulator can swap between them from its own menu without reloading. Set this to boot only the disc you launched, which is the older behaviour, and which is what you want if a core mishandles the batch.
+Multi-disc games hand EmulatorJS every disc at once, which lets the emulator swap between them from its own menu without a reload. Set this to go back to booting only the disc you launched, which is worth trying if a core doesn't cope with the batch.
 
 **Default:** `false`
 
@@ -426,7 +426,7 @@ emulatorjs:
 
 ### `emulatorjs.default_cores`
 
-Preselect the libretro core for a platform, keyed by [platform slug](../platforms/supported-platforms.md). A user who has already picked a core on their device keeps their choice, so this sets the starting point rather than forcing one.
+Preselect the libretro core for a platform, keyed by [platform slug](../platforms/supported-platforms.md). This is a starting point, not a lock: anyone who has already chosen a core on their device keeps it.
 
 ```yaml
 emulatorjs:
@@ -435,11 +435,11 @@ emulatorjs:
         nintendo-dsi: melonds
 ```
 
-Use the exact core name, as listed for that platform in [EmulatorJS → Supported systems](../using/in-browser-play/emulatorjs.md#supported-systems). A platform you don't list keeps EmulatorJS's own default core.
+Core names have to be exact. They're listed per platform in [EmulatorJS → Supported systems](../using/in-browser-play/emulatorjs.md#supported-systems). Anything you don't list keeps EmulatorJS's own default.
 
 ### `emulatorjs.auto_save_sync`
 
-Upload a game's save to RomM whenever the emulator writes it, instead of only on save-and-quit. Closing the tab mid-game then costs you nothing, at the price of more upload traffic on a game that saves often.
+Upload a save to RomM every time the emulator writes one, rather than only on save-and-quit. Closing the tab mid-game then loses nothing. The trade is bandwidth, since a game that saves constantly will upload constantly.
 
 **Default:** `false`
 
@@ -579,7 +579,7 @@ streaming:
 | `emulator`         | No       | Lowercased name grouping this container's states and memory cards, defaults to `label`                          |
 | `memory_card_sync` | No       | Sync the whole memory card to the RomM library, honoured on `ps2` and `ngc` and ignored elsewhere               |
 
-A `platforms` value is either the emulator name as a bare string, or a block overriding `emulator`, `label` and `memory_card_sync` for that one platform.
+Each `platforms` value is either the emulator name on its own, or a block overriding `emulator`, `label` and `memory_card_sync` for that platform.
 
 ```yaml
 streaming:
@@ -603,7 +603,7 @@ streaming:
                   memory_card_sync: true
 ```
 
-List a platform on several containers and they become a pool, where a claim takes the first free one. Pool members have to agree on `emulator`, `memory_card_sync` and `protocol`, and are told apart by their broker host, so give each a distinct `broker_host` (see [Emulator Streaming → How a session works](../using/emulator-streaming.md#how-a-session-works)).
+List a platform on several containers and they form a pool, with each claim taking the first free one. Pool members have to agree on `emulator`, `memory_card_sync` and `protocol`, and RomM tells them apart by broker host, so give each one a distinct `broker_host` (see [Emulator Streaming → How a session works](../using/emulator-streaming.md#how-a-session-works)).
 
 See [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-cards) for how `memory_card_sync` behaves, and [Migrating to webstation](../using/emulator-streaming-migration.md) if you still run the per-emulator broker mods.
 

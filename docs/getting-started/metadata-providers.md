@@ -103,7 +103,7 @@ You must run a LaunchBox metadata update (either manually, or scheduled via cron
 
 Simply set `HASHEOUS_API_ENABLED=true` in your environment variables, and future scans will start using the [Hasheous API](https://hasheous.org/swagger/index.html).
 
-By default RomM talks to the public instance at `hasheous.org`. To point at your own [self-hosted Hasheous](https://github.com/gaseous-project/hasheous), set `HASHEOUS_API_URL` to its API base (e.g. `https://hasheous.example.com/api/v1`).
+RomM uses the public instance at `hasheous.org` by default. Running your own [self-hosted Hasheous](https://github.com/gaseous-project/hasheous)? Point `HASHEOUS_API_URL` at its API base, e.g. `https://hasheous.example.com/api/v1`.
 
 ### Playmatch
 
@@ -144,13 +144,13 @@ The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint
 
 The [HowLongToBeat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` environment variable. If you are adding this provider to an existing setup, perform a `UNMATCHED` scan with HowLongToBeat selected to update an existing platform.
 
-Game completion times will be added to a new tab on the details page for supported matched games, and the gallery can sort and filter by game length once they are populated. A HowLongToBeat match you pinned by hand survives a rescan rather than being replaced by an automatic one.
+Game completion times will be added to a new tab on the details page for supported matched games. Once those are populated the gallery can sort and filter by game length. If you've pinned a HowLongToBeat match by hand, a rescan leaves it alone.
 
 ### Steam
 
 [Steam](https://store.steampowered.com/) is a metadata source for the `win`, `linux` and `mac` platforms, and it is the only storefront RomM reads. Enable it with `STEAM_API_ENABLED=true`. There is no API key, no account, and no rate-limit sign-up.
 
-It supplies the title, description, capsule art, screenshots, genres, developers, publishers, release date, game modes, and the Metacritic score. Because it only knows about PC titles, RomM skips it entirely on every other platform, so ranking it in `scan.priority.metadata` costs nothing on your console platforms.
+You get the title, description, capsule art, screenshots, genres, developers, publishers, release date, game modes and the Metacritic score. Steam only knows about PC titles, and RomM skips it entirely elsewhere, so putting it in `scan.priority.metadata` costs your console platforms nothing.
 
 ```yaml
 scan:
@@ -163,7 +163,7 @@ Tag a file `(steam-xxxx)` with a Steam app id to force a specific match.
 
 ### Demozoo, Pouët and CSDb
 
-Three demoscene databases, covering productions (demos, intros, cracktros, musicdisks) rather than commercial releases. All three are public APIs with no key, and all three are off by default:
+Three demoscene databases. These cover productions (demos, intros, cracktros, musicdisks) rather than commercial games. All three are public APIs needing no key, and all three are off by default:
 
 | Provider                        | Variable              | Filename tag     | Covers                                                 |
 | ------------------------------- | --------------------- | ---------------- | ------------------------------------------------------ |
@@ -171,9 +171,11 @@ Three demoscene databases, covering productions (demos, intros, cracktros, music
 | [Pouët](https://www.pouet.net/) | `POUET_API_ENABLED`   | `(pouet-xxxx)`   | Whatever platforms the production itself declares      |
 | [CSDb](https://csdb.dk/)        | `CSDB_API_ENABLED`    | `(csdb-xxxx)`    | `c64`, used for stills Demozoo doesn't have            |
 
-They match on the production id, which you can supply three ways: a filename tag, a bare id pasted into the ROM editor, or a production URL pasted into the ROM editor (`https://demozoo.org/productions/108/`, `https://www.pouet.net/prod.php?which=108`, `https://csdb.dk/release/?id=75330`). Demozoo additionally matches by title search, and CSDb release ids referenced from a Demozoo production are followed automatically.
+All three match on the production id, which you can give them three ways: a filename tag, the bare id pasted into the ROM editor, or a production URL pasted into the ROM editor (`https://demozoo.org/productions/108/`, `https://www.pouet.net/prod.php?which=108`, `https://csdb.dk/release/?id=75330`).
 
-Pouët only accepts a title search when it resolves to exactly one production, so an ambiguous title stays unmatched rather than matching the wrong demo.
+Demozoo will also search by title. If a Demozoo production references a CSDb release, RomM follows it automatically.
+
+Pouët only accepts a title search that lands on exactly one production. An ambiguous title is left unmatched rather than guessed at.
 
 ### ES-DE gamelist.xml
 
@@ -366,7 +368,7 @@ To use an alternate style end-to-end:
 
 When multiple providers return different values for the same field, the winner is determined by `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`.
 
-Company credits are split into **developers** and **publishers** where a provider reports the roles separately, and the older combined list is kept alongside them for providers that don't. That split is what the `<developer>` and `<publisher>` tags in the [gamelist and Pegasus exports](../reference/exports.md) are filled from.
+Where a provider reports the roles separately, company credits are split into **developers** and **publishers**. The old combined list is still there for the providers that don't. The `<developer>` and `<publisher>` tags in the [gamelist and Pegasus exports](../reference/exports.md) come from the split version.
 
 Defaults:
 

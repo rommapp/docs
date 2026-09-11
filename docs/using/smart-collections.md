@@ -71,19 +71,19 @@ Each restricts to games where the answer is yes.
 
 ## Game length
 
-Game length comes from [HowLongToBeat](../getting-started/metadata-providers.md#howlongtobeat), so it needs `HLTB_API_ENABLED=true` and a scan that matched the game. It is the **main story** time, not completionist.
+Lengths come from [HowLongToBeat](../getting-started/metadata-providers.md#howlongtobeat), which means you need `HLTB_API_ENABLED=true` and a scan that actually matched the game. The number used is **main story** time, not completionist.
 
-It is the one filter that takes a numeric range, as a lower bound, an upper bound, or both:
+This is the only filter that takes a numeric range. Give it a floor, a ceiling, or both:
 
 ```text
-Main story: 2 to 8 hours     # both bounds
-Main story: up to 4 hours    # upper only, for a backlog you can actually clear
-Main story: 40 hours or more # lower only
+Main story: 2 to 8 hours
+Main story: up to 4 hours
+Main story: 40 hours or more
 ```
 
-The gallery can also **sort and filter** by game length directly, without building a collection for it, which is the quicker way to answer "what can I finish this weekend".
+The gallery sorts and filters by length too, so for a one-off question like "what can I finish this weekend" you don't need a collection at all.
 
-Games HowLongToBeat never matched have no length, so a length filter leaves them out entirely. That is worth remembering on a library with patchy coverage, where a filter can hide more than you expect. Run an **Unmatched** scan with HowLongToBeat selected to fill the gaps in.
+One catch: a game HowLongToBeat never matched has no length at all, and a length filter drops it. If your coverage is patchy you'll hide more than you meant to. An **Unmatched** scan with HowLongToBeat selected will fill in the gaps.
 
 ## Examples
 

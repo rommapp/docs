@@ -5,24 +5,24 @@ description: Similar games and a personalised feed, built from your own library
 
 # Recommendations
 
-RomM recommends games from **your library**, on two surfaces:
+RomM recommends games you already own, in two places:
 
-- **Similar games** on a game's page, the closest games you own to the one you are looking at.
-- **Recommended for you** on the home screen, ranked against what you actually play.
+- **Similar games**, on a game's page.
+- **Recommended for you**, on the home screen.
 
-Similar games used to come straight from IGDB, which mostly named games you don't own and returned nothing at all when IGDB never matched the game in the first place. Both surfaces now rank your own shelf, with IGDB's list folded in as one signal among several.
+Similar games used to be IGDB's list verbatim, which mostly named games you don't have and came up empty whenever IGDB hadn't matched the game at all. Both sections now rank your own library, and IGDB's list is just one of the inputs.
 
 ## How it works
 
-A scheduled task builds an **item-item similarity graph** over the library, keeping the closest two dozen neighbours per game. Two games are close when they overlap on facets: shared collections and franchises pull hardest, then genres, perspectives, themes, keywords and developers, with publishers, game modes, platform and decade counting as context rather than taste. IGDB's own similar-games list and a high rating each add an edge of their own.
+A nightly task compares every game in your library against every other and stores the closest two dozen matches for each. Games score as similar when they share metadata. A shared collection or franchise counts for a lot, genres and themes and keywords for less, and platform and release decade barely at all.
 
-The weighting is **library-relative**. A facet counts for as much as it is rare _in your library_, so a shelf that is nine-tenths platformers doesn't have "Platformer" tell it anything, and no shelf needs its weights tuned by hand.
+How much a shared trait is worth depends on your library. If nine tenths of your games are platformers, "Platformer" tells RomM nothing and stops counting. You don't have to configure any of this.
 
-The personalised feed is ranked **on demand** from that graph plus live activity, rather than precomputed per user. A game you played an hour ago is exactly the signal that matters most, and a nightly feed would ignore it. Your ratings steer it in both directions, since anything below the middle of the 1-10 scale pushes similar games away rather than merely not pulling them in. Playtime saturates, because the gap between one hour and ten says a great deal and the gap between a hundred and two hundred says almost nothing, and older play counts for less on a roughly two-month half-life without dropping out entirely.
+**Recommended for you** re-ranks those matches against what you've been playing, at the moment you load the page rather than overnight, so a game you finished this morning already affects it. Ratings count in both directions: rate something below 5.5 and games like it get pushed down. Playtime counts with diminishing returns, and games you played recently count for more than ones you dropped a year ago.
 
-Both surfaces cap how many games one series may contribute, so a deep franchise can't fill the whole row, and both respect visibility, so a recommendation never names a platform or game the viewer can't see.
+Neither section will show you six Mega Man games in a row, and neither will surface a game or platform your account can't see.
 
-Every recommendation carries its reasons, which is what the "why this was recommended" explanation reads: the facets the two games share, or that it came from IGDB's list, or that it is simply highly rated.
+Each recommendation comes with the reason it was picked, which is what the "why this was recommended" note shows.
 
 ## Building the index
 
@@ -31,17 +31,17 @@ Every recommendation carries its reasons, which is what the "why this was recomm
 | `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS` | `true`       | The nightly rebuild |
 | `SCHEDULED_BUILD_RECOMMENDATIONS_CRON`   | `30 5 * * *` | When it runs        |
 
-This one is **on by default**, unlike the other [scheduled tasks](../administration/scheduled-tasks.md), because the index is what both surfaces read and leaving it off silently empties them. It runs after the nightly scan and metadata tasks so it builds against a settled library, and it can also be run by hand from the tasks page. Scans top the graph up incrementally in between, so newly added games don't wait for the next full build to appear.
+This is the one [scheduled task](../administration/scheduled-tasks.md) that ships switched on. Both sections read the index, and with the task off they'd just sit empty.
 
-Both sections stay hidden until the index has been built at least once. On a fresh instance that means after the first nightly run, or after running the task by hand.
+It runs at 5:30am by default, after the nightly scan and metadata jobs have finished. You can also run it by hand from the tasks page. In between runs, scans add new games to the index as they come in.
 
-A full build derives the whole graph from one consistent snapshot of the library, since the weighting shifts as the shelf grows.
+**Neither section appears until the index has been built once.** On a new instance, that's the morning after you set it up, or whenever you run the task yourself.
 
 ## Turning them off
 
-Each user can hide either surface from their own settings, without affecting anyone else or stopping the index from being built.
+Users can hide either section in their own settings.
 
-To switch the feature off for the whole instance, set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false`. The index stops being rebuilt and both sections stay empty, which also saves the nightly build on a large library.
+Instance-wide, set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false`. Both sections go empty and you save the nightly build, which is worth doing on a very large library.
 
 ## API
 
@@ -50,7 +50,7 @@ To switch the feature off for the whole instance, set `ENABLE_SCHEDULED_BUILD_RE
 | `GET`  | `/recommendations`   | The requester's recommended games       |
 | `GET`  | `/roms/{id}/similar` | Library-aware similar games for one ROM |
 
-`/recommendations` takes a `limit` (up to 50, 20 by default) and a `refresh` flag that bypasses the cached ranking. Each entry carries a score, the reasons behind it, and the game in your library that seeded it.
+`/recommendations` takes a `limit` (20 by default, 50 max) and a `refresh` flag to skip the cache. Every entry comes back with a score, its reasons, and the game that triggered it.
 
 ## Related
 

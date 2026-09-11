@@ -5,9 +5,9 @@ description: Attach guides to a game and track where you left off
 
 # Walkthroughs
 
-A walkthrough is a document attached to a game, stored and served the same way its manual is. You can upload your own, or hand RomM a GameFAQs URL and let it fetch the guide for you. RomM remembers where each user left off, separately per user, and shows that as reading progress.
+Walkthroughs are documents attached to a game, handled the same way manuals are. Upload your own, or paste in a GameFAQs URL and RomM will fetch the guide for you. It tracks how far through you are, per user, and shows that as a progress bar.
 
-Adding and deleting walkthroughs needs the `roms.write` permission. Reading one, and recording your own progress in it, needs only read access.
+You need `roms.write` to add or delete one. Reading a walkthrough and tracking your own progress only needs read access.
 
 ## Where they live
 
@@ -23,23 +23,25 @@ roms/snes/chrono trigger/
    └─ boss-faq.md
 ```
 
-Uploading a walkthrough to a game that is a single file on disk promotes it to a folder first, so the file has somewhere to go. They are ordinary files in your library, so they survive a rescan, get backed up with everything else, and can be dropped in from the filesystem instead of uploaded.
+If the game is a single file on disk, uploading a walkthrough converts it to a folder first so there's somewhere to put the document.
 
-Accepted formats are `.pdf`, `.md`, `.txt`, `.html` and `.htm`. HTML documents are served under a sandboxing content-security policy, on top of being sanitised when they are stored.
+These are just files in your library. They survive rescans, they're covered by your backups, and you can copy them in from the filesystem instead of uploading if you'd rather.
+
+Accepted formats: `.pdf`, `.md`, `.txt`, `.html`, `.htm`. HTML gets sanitised on the way in and is served under a sandboxing CSP on the way out.
 
 ## Importing from GameFAQs
 
-Give RomM the URL of a GameFAQs text guide and it fetches the guide, extracts the title, the author and the body, and stores the result as **plain text**. Remote HTML is never stored and never served, so there is nothing script-capable to sanitise in the first place.
+Paste in a GameFAQs URL and RomM pulls out the title, author and body, then saves the lot as **plain text**. None of the remote HTML is kept or served.
 
-Only `https` URLs on GameFAQs' own hosts (`gamefaqs.gamespot.com`, `www.gamefaqs.com`, `gamefaqs.com`) are accepted, and the fetch rides RomM's SSRF-protected HTTP client. Guides larger than 8 MiB are refused.
+The URL has to be `https` and on one of GameFAQs' own hosts (`gamefaqs.gamespot.com`, `www.gamefaqs.com`, `gamefaqs.com`). Guides over 8 MiB are rejected.
 
-This works on GameFAQs' plain-text guides, the ones that render inside a `<pre>` block. A guide published as a rich HTML page has no plain text to pull out and will not import, so save it yourself and upload it instead.
+This only works on the old-style text guides, the ones that render inside a `<pre>` block. If a guide is published as a proper HTML page there's no plain text to extract and the import fails, so save it yourself and upload it.
 
 ## Reading progress
 
-Progress is recorded per user, per document, as a scroll fraction between 0 and 1 plus the last page for paged formats. It is what drives the progress bar on the document, and it is stored server-side rather than in the browser, so picking a guide back up on your phone lands where you left it on your desktop.
+RomM stores how far you've scrolled (0 to 1) and, for paged formats, which page you're on. That's what the progress bar reads.
 
-Progress is per document, not per game, so two guides for the same game track separately.
+It's kept server-side rather than in the browser, so opening a guide on your phone picks up where you left off on your desktop. Tracking is per document, which means two guides for the same game don't interfere.
 
 ## API
 
@@ -51,7 +53,7 @@ Progress is per document, not per game, so two guides for the same game track se
 | `GET`    | `/roms/{rom_id}/files/{file_id}/progress` | The requester's reading progress for a document |
 | `PUT`    | `/roms/{rom_id}/files/{file_id}/progress` | Record reading progress                         |
 
-The upload endpoint streams the body and takes the filename in an `x-upload-filename` header, with optional `x-doc-title` and `x-doc-author` headers. The progress endpoints are per user, so they need no user id and cannot read anyone else's position.
+The upload endpoint streams the body and wants the filename in an `x-upload-filename` header, optionally with `x-doc-title` and `x-doc-author`. The progress endpoints always act on the calling user, so there's no user id to pass and no way to read someone else's position.
 
 ## Related
 

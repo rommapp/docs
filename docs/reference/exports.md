@@ -24,9 +24,9 @@ scan:
 
 With `export: true`, every scan writes a `gamelist.xml` into the platform folder, and downloads the selected media into sibling folders (`covers/`, `screenshots/`, etc.) that ES-DE expects.
 
-An existing `gamelist.xml` is **merged**, not overwritten. Entries for games RomM knows about are rewritten, and entries a frontend added for anything else are left alone, so pointing an export at a library a frontend has already scraped doesn't throw that work away.
+An existing `gamelist.xml` is **merged**, not overwritten. RomM rewrites the entries for games it knows about and leaves everything else alone, so exporting into a library your frontend already scraped won't throw that work away.
 
-A game in a subfolder keeps its folder in the exported `<path>`, relative to the platform folder, and its media mirrors those folders. That matches how a [custom library structure](../getting-started/folder-structure.md#custom-library-structure) lays the platform out, so nested games export and re-import correctly.
+Games in subfolders keep their folder in the exported `<path>`, relative to the platform folder, and their media mirrors the same folders. That lines up with how a [custom library structure](../getting-started/folder-structure.md#custom-library-structure) arranges things, so nested games survive a round trip.
 
 Standard ES-DE/EmulationStation format:
 
@@ -89,7 +89,7 @@ scan:
         export: true
 ```
 
-Like the gamelist export, an existing `metadata.pegasus.txt` is merged rather than overwritten, and the two exports **share one set of media folders**. Enabling both writes one copy of each cover and screenshot on disk instead of two.
+Same as the gamelist export, an existing `metadata.pegasus.txt` gets merged rather than overwritten. The two exports also **share their media folders**, so turning both on gives you one copy of each cover and screenshot rather than two.
 
 Human-readable text format:
 
@@ -130,7 +130,7 @@ Exports don't auto-rerun on every metadata edit, instead they run:
 
 <!-- prettier-ignore -->
 !!! note "Games with no file are skipped"
-    [Physical games](../using/physical-games.md) and ROMs missing from the filesystem are left out of both exports, since a frontend has nothing to launch for them.
+    Both exports skip [physical games](../using/physical-games.md) and anything missing from the filesystem. There's no file for a frontend to launch.
 
 ## See also
 

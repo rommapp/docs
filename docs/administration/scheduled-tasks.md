@@ -25,15 +25,15 @@ Every scheduled task takes a standard 5-field cron expression:
 - `*/30 * * * *`: every 30 minutes
 - `0 2 * * 0`: 2 AM every Sunday
 
-Set the env var and restart the container, and the scheduler picks up the new schedule the moment RomM comes back up.
+Set the env var and restart the container. The scheduler picks up the new schedule as soon as RomM is back.
 
-Scheduling is RQ's own cron rather than a separate `rq-scheduler` process. Anything the old scheduler left in Valkey is cleared on the first startup after upgrading, so no manual cleanup is needed.
+Scheduling uses RQ's own cron these days, not a separate `rq-scheduler` process. Whatever the old scheduler left behind in Valkey gets cleared on your first startup after upgrading. There's nothing to clean up by hand.
 
 ## Enabling a scheduled task
 
 Most tasks have an `ENABLE_*` environment variable, like `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` which enables the LaunchBox sync. Set both the enable var and its cron var, since a task with an empty cron string has nothing to schedule and stays unscheduled even when enabled.
 
-They are all off by default with one exception: **Build recommendations index** is on, because it is what both [recommendation](../using/recommendations.md) surfaces read and leaving it off would silently empty them. Set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` to turn it off along with those surfaces.
+They're all off by default except one. **Build recommendations index** ships enabled, because both [recommendation](../using/recommendations.md) sections read that index and they'd sit empty without it. Set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` if you'd rather not have either.
 
 The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup) are always on and have no env vars. Check the [env var reference](../reference/environment-variables.md) for the full list.
 
@@ -41,7 +41,7 @@ The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup) 
 
 ### From the Administration page
 
-**Administration → Tasks** lists every task with its status and a way to run it. Anyone with the `tasks.run` scope can trigger one, including the scheduled tasks, so you don't have to wait for the next cron tick after changing configuration.
+**Administration → Tasks** lists every task with its status and a way to run it. Anyone with the `tasks.run` scope can fire one off, scheduled tasks included, which saves waiting for the next cron tick after a config change.
 
 ### From the API
 
@@ -63,10 +63,10 @@ A task that's been "running" for hours is usually a scan that hit `SCAN_TIMEOUT`
 On a Raspberry Pi or NAS with 2 GB of RAM and/or a single CPU core:
 
 - Raise the cron intervals (daily → weekly) for the nightlies
-- Set `SCAN_WORKERS=1`, since the default of `4` processes four ROMs at once
-- Set `WEB_SERVER_CONCURRENCY=1`, since the default of `4` runs four API workers
+- Set `SCAN_WORKERS=1`. The default of `4` chews through four ROMs at once
+- Set `WEB_SERVER_CONCURRENCY=1`. The default of `4` runs four API worker processes
 - Enable the watcher but raise `RESCAN_ON_FILESYSTEM_CHANGE_DELAY` to 30+ minutes
 - Disable image conversion if you don't care about WebP (`ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP=false`)
-- Set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` on a large library, which trades the recommendation surfaces for the nightly build
+- On a big library, set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` and give up the recommendation sections to skip the nightly build
 
-Scans run on a queue and worker of their own, so a long scan no longer holds up the shorter tasks queued behind it.
+Scans now get their own queue and worker, so a long one won't hold up the shorter tasks queued behind it.

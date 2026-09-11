@@ -5,7 +5,7 @@ description: A soundtrack player across your whole library
 
 # Jukebox
 
-The Jukebox is a music player over every soundtrack in your library at once, rather than per game. It is a **beta feature**, so expect it to move around between releases.
+The Jukebox plays every soundtrack in your library as one collection, instead of one game at a time. It's a **beta feature**, so expect bits of it to change between releases.
 
 ## Where the tracks come from
 
@@ -19,13 +19,15 @@ roms/snes/chrono trigger/
    └─ 02 - Memories of Green.flac
 ```
 
-`.mp3`, `.ogg`, `.oga`, `.opus`, `.m4a`, `.aac`, `.wav` and `.flac` are read. Scanning parses each file's tags for the title, artist, album, genre, year, track number and duration, and pulls out an embedded cover if there is one, so a well-tagged rip browses properly without any work on your part. Files with no tags fall back to their filename.
+Supported formats are `.mp3`, `.ogg`, `.oga`, `.opus`, `.m4a`, `.aac`, `.wav` and `.flac`.
 
-Soundtrack files never carry a ROM binary, so they are skipped by hashing and by title-id extraction, and they don't affect how the game itself is matched.
+Scanning reads each file's tags (title, artist, album, genre, year, track number, duration) and grabs the embedded cover if there is one. Drop in a properly tagged rip and it'll browse correctly with no further work. Untagged files just show their filename.
+
+Soundtrack files are skipped by hashing and title-id extraction, and they have no effect on how the game gets matched.
 
 ## Browsing
 
-The same track library is faceted several ways, each of which is also the typeahead behind its search box:
+You can slice the track list several ways. Each one also backs the typeahead in its search box:
 
 | Facet      | What it groups by                                                |
 | ---------- | ---------------------------------------------------------------- |
@@ -37,20 +39,22 @@ The same track library is faceted several ways, each of which is also the typeah
 | Game genre | The genre of the _game_, not of the music                        |
 | Year       | The year tag                                                     |
 
-Everything you can see follows your normal library visibility, so a platform hidden from you contributes no tracks.
+Your normal library visibility applies throughout. A platform you can't see contributes no tracks.
 
 ## Mixes and playlists
 
-Four generated shelves need no setup:
+Four mixes are generated for you, no setup needed:
 
-- **Free Radio** picks a randomised, album-balanced hour, so one long soundtrack can't take the whole set over.
-- **Decade Mix** groups by release decade.
-- **Recently added** is the newest tracks in the library.
-- **Favourites** is your own starred tracks.
+- **Free Radio**, about an hour of tracks picked at random but balanced across albums, so one long soundtrack can't hog it.
+- **Decade Mix**, grouped by release decade.
+- **Recently added**, the newest tracks in the library.
+- **Favourites**, whatever you've starred.
 
-Beyond those, you can build playlists of your own: ordered, renameable, and either private or visible to everyone on the instance. Favourites and playlists need the `playlists.read` and `playlists.write` permissions, browsing needs only `roms.read`.
+You can also build your own playlists. They're ordered, you can rename them, and each one is either private or visible to everyone on the instance.
 
-The player keeps shuffle on across sessions rather than resetting it per queue, collapses to a mini player so it keeps going while you browse, and offers play, favourite, download and delete on each track.
+Browsing needs `roms.read`. Favourites and playlists need `playlists.read` and `playlists.write`.
+
+Shuffle stays on between sessions instead of resetting every time you start a new queue, and the player shrinks to a mini player so the music carries on while you browse. Each track has play, favourite, download and delete.
 
 ## API
 
@@ -65,7 +69,7 @@ Browsing and the facets above:
 | `GET`  | `/music/favorites`                                                 | The requester's favourite tracks            |
 | `POST` | `/music/favorites`                                                 | Mark tracks as favourites                   |
 
-Playlists live under `/music/playlists`, with the usual create, read, update and delete, plus `/{id}/tracks` to list, append and remove, and `/{id}/tracks/order` to reorder.
+Playlists are under `/music/playlists` with the usual create, read, update and delete. `/{id}/tracks` lists, appends and removes, and `/{id}/tracks/order` reorders.
 
 ## Related
 

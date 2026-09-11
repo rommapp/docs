@@ -22,13 +22,13 @@ RomM does not ship games or firmware, and the team cannot help you obtain BIOS f
 2. Run a scan, and firmware is picked up alongside ROMs
 3. The platform's firmware is then listed on that platform's page, and offered to the in-browser player
 
-Where `bios/` sits is up to you. It defaults to `bios/{platform}` at the library root, and the [`filesystem.structure.firmware`](../reference/configuration-file.md#filesystemstructure) template moves it.
+Where `bios/` lives is up to you. The default is `bios/{platform}` at the library root, and you can move it with the [`filesystem.structure.firmware`](../reference/configuration-file.md#filesystemstructure) template.
 
 ## Missing firmware
 
-Firmware is tracked the same way ROMs are, so a file deleted from `bios/` is **flagged missing from the filesystem** on the next scan rather than vanishing from the database. The row stays, carrying whatever you recorded about it, and it is excluded from the in-browser player, so a core is never handed a firmware path that no longer resolves. The content endpoints answer `404` for one rather than serving a stale file.
+Firmware is tracked like ROMs are. Delete a file from `bios/` and the next scan **flags it missing** instead of dropping it from the database. The row sticks around with whatever you'd recorded on it, the in-browser player stops offering it, and its content endpoints return `404` rather than something stale.
 
-Put the file back and the next scan clears the flag. To clear out firmware you have no intention of replacing, run the **Cleanup missing firmware** task, which deletes every flagged row (see [Scheduled Tasks](scheduled-tasks.md#triggering-a-task-manually)).
+Put the file back and the next scan clears the flag. If you're never replacing it, the **Cleanup missing firmware** task deletes every flagged row in one go (see [Scheduled Tasks](scheduled-tasks.md#triggering-a-task-manually)).
 
 ## Platform-specific firmware
 

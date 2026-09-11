@@ -25,13 +25,13 @@ RomM's EmulatorJS integration automates save-file and save-state handling: if a 
 
 ## Cores
 
-Most platforms above have more than one core. RomM remembers which core you launched a game with and reuses it next time, so your states stay loadable rather than being orphaned by a silent core change.
+Most platforms above have more than one core available. RomM remembers which one you launched a game with and uses it again next time, which matters because a silently changed core leaves your save states unloadable.
 
-Operators can preselect the core for a platform with [`emulatorjs.default_cores`](../../reference/configuration-file.md#emulatorjsdefault_cores). That sets the starting point, and a user who has already picked a core on their device keeps their choice.
+Operators can set the starting core per platform with [`emulatorjs.default_cores`](../../reference/configuration-file.md#emulatorjsdefault_cores). Anyone who has already picked a core on their device keeps theirs.
 
 ## Multi-disc games
 
-A multi-disc game hands EmulatorJS every disc at once, so you can swap discs from the emulator's own menu without going back and reloading. Set [`emulatorjs.disable_batch_bootup`](../../reference/configuration-file.md#emulatorjsdisable_batch_bootup) to boot only the disc you launched, if a core mishandles the batch.
+Multi-disc games hand EmulatorJS every disc at once, so you can change discs from the emulator's own menu without backing out and reloading. If a core doesn't handle that well, [`emulatorjs.disable_batch_bootup`](../../reference/configuration-file.md#emulatorjsdisable_batch_bootup) goes back to booting just the one you launched.
 
 ## Netplay
 
@@ -69,7 +69,7 @@ Operator setup (ICE servers, enable flag) lives in [Configuration File → `emul
 | TurboGraphx-16/PC Engine                    | `mednafen_pce`                                                           |
 | Virtual Boy                                 | `mednafen_vb`                                                            |
 
-Windows 3.x and 9x do **not** run on `dosbox-pure`, which blank-screens on them. They use [`js-dos`](js-dos.md) and its DOSBox-X backend instead, and PICO-8 carts use [FAKE-08](pico-8.md). MS-DOS stays on `dosbox-pure` (see [MS-DOS](ms-dos.md)).
+Windows 3.x and 9x are **not** on this list. `dosbox-pure` just blank-screens on them, so they run on [`js-dos`](js-dos.md) and its DOSBox-X backend instead. PICO-8 carts have their own player, [FAKE-08](pico-8.md). Plain MS-DOS still uses `dosbox-pure` (see [MS-DOS](ms-dos.md)).
 | WonderSwan/Color | `mednafen_wswan` |
 
 Player UI features beyond the basics (cheats, in-emulator screenshots, multi-disc swap, hotkeys, fullscreen) are covered in the broader [EmulatorJS docs](https://emulatorjs.org/docs/).

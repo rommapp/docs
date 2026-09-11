@@ -5,15 +5,15 @@ description: Track games you own on cartridge or disc, with no ROM file
 
 # Physical Games
 
-A physical game is a library entry for a copy you own on a cartridge or a disc but have no ROM file for. It carries the same metadata, artwork, collections, notes and ratings as any other game, so your shelf and your library are one list instead of two.
+Own a game on a cartridge or disc but have no ROM for it? Add it anyway. A physical game is a library entry with no file behind it, and it gets the same metadata, artwork, collections, notes and ratings as everything else, so you're not keeping a separate list somewhere for the shelf.
 
-You add one by name, or by its barcode, and RomM matches it against your enabled [metadata providers](../getting-started/metadata-providers.md) exactly as a scanned file would be. Adding one needs the `roms.write` permission.
+Add one by name or by barcode. Either way RomM matches it against your enabled [metadata providers](../getting-started/metadata-providers.md) the same as it would a scanned file. You need the `roms.write` permission.
 
 ## Barcode lookup
 
-Scanning a barcode resolves the UPC or EAN to a product title through an external lookup service, and that title is what gets matched against the metadata providers. RomM strips the retail noise those catalogues carry (`Sonic - Nintendo Switch` becomes `Sonic`) before searching, since a store listing's title is rarely the title a game database knows.
+A barcode gets sent to an external lookup service, which returns a product title, and that title is what the metadata providers then search for. Store listings are messy, so RomM trims them first: `Sonic - Nintendo Switch` becomes `Sonic`.
 
-The lookup attaches no provider ids of its own, it only produces a name. A barcode that resolves to nothing usable is rejected rather than creating a nameless entry, so you can fall back to adding the game by name.
+The lookup only produces a name. It doesn't attach any provider ids. If the barcode comes back with nothing usable, you get an error rather than an untitled entry, and you can add the game by name instead.
 
 | Variable             | Default                                       | Purpose                                                  |
 | -------------------- | --------------------------------------------- | -------------------------------------------------------- |
@@ -21,23 +21,23 @@ The lookup attaches no provider ids of its own, it only produces a name. A barco
 | `UPC_LOOKUP_URL`     | `https://api.upcitemdb.com/prod/trial/lookup` | The lookup endpoint                                      |
 | `UPC_LOOKUP_API_KEY` | _(unset)_                                     | Sent as the `user_key` header, for a plan that needs one |
 
-The default endpoint is [UPCitemdb](https://www.upcitemdb.com/)'s trial tier, which is rate limited and needs no account. Point `UPC_LOOKUP_URL` at their paid endpoint with a key, or at any service that answers `?upc=` with the same `{"items": [{"title": ...}]}` shape.
+Out of the box this hits [UPCitemdb](https://www.upcitemdb.com/)'s trial tier, which needs no account but is rate limited. Point `UPC_LOOKUP_URL` at their paid endpoint with a key if you hit the limit, or at anything else that answers `?upc=` with `{"items": [{"title": ...}]}`.
 
-## What a physical game is not
+## What's different about them
 
-A physical entry has no file behind it, which changes what RomM will do with it:
+No file means a few things work differently:
 
-- It is **never flagged missing from the filesystem** and is never removed by the missing-ROM cleanup, since there was never a file to lose.
-- It is **excluded from downloads and playback**, and from the [gamelist.xml and Pegasus exports](../reference/exports.md) and the [device feeds](../ecosystem/feed-clients.md), all of which need a real file. RomM treats "physical" and "missing" alike wherever a file is required.
-- It does **not** occupy space, and reports a size of zero in [server stats](../administration/server-stats.md).
+- They're **never flagged missing**, and the missing-ROM cleanup won't touch them.
+- They **can't be downloaded or played**, and they're left out of the [gamelist.xml and Pegasus exports](../reference/exports.md) and the [device feeds](../ecosystem/feed-clients.md). Anything that needs a real file treats them the same as a missing one.
+- They take up no space, and show as zero bytes in [server stats](../administration/server-stats.md).
 
-Entries live under a sentinel `.physical` folder inside the platform's ROM folder. That folder never exists on disk and is never scanned, it just gives the entry a path to be unique within. One consequence is that a platform holds **one entry per title**: adding the same game twice is rejected, which matches what you can actually own.
+You also get **one entry per title per platform**. Try to add the same game twice and RomM refuses, which is fine, because you can't own the same cartridge twice either. Under the hood the entries sit in a `.physical` folder that doesn't exist on disk and never gets scanned.
 
-Everything else behaves normally. A physical game can join [collections](collections.md), be rated and marked completed, carry [walkthroughs](walkthroughs.md) and manuals, and show [RetroAchievements](retroachievements.md) for the matched game.
+Everything else works as normal: [collections](collections.md), ratings, completion status, [walkthroughs](walkthroughs.md), manuals, and [RetroAchievements](retroachievements.md) for whatever it matched.
 
 ## Getting the ROM later
 
-Nothing special is needed. Drop the file into the platform folder, scan, and you have both entries. Merging them is a manual step, so delete the physical entry once the scanned one has picked up the metadata you want.
+Just drop the file in the platform folder and scan. You'll end up with two entries, so delete the physical one once the real one has its metadata. There's no automatic merge.
 
 ## API
 
@@ -45,9 +45,9 @@ Nothing special is needed. Drop the file into the platform folder, scan, and you
 | ------ | ---------------- | ------------------------------------------ |
 | `POST` | `/roms/physical` | Create a game with no file, by name or UPC |
 
-The request takes a `platform_id` and either a `name` or a `upc`, plus an optional `metadata_sources` list to narrow which providers are consulted (all enabled ones by default). It runs a single quick scan inline and returns the matched game, so a provider failure rolls the entry back rather than leaving a metadata-less row behind.
+Send a `platform_id` plus either a `name` or a `upc`. Add `metadata_sources` to limit which providers get asked, otherwise it uses all the enabled ones. The endpoint runs a quick scan inline and returns the matched game. If a provider blows up part way through, the entry is deleted rather than left behind half-populated.
 
-`DetailedRomSchema` carries `is_physical`, `upc` and `has_file_on_disk` for every ROM, so a client can tell the three states apart.
+Every ROM in `DetailedRomSchema` carries `is_physical`, `upc` and `has_file_on_disk`, which is enough to tell a physical game from a missing one from a normal one.
 
 ## Related
 

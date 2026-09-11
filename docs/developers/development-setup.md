@@ -16,7 +16,7 @@ description: Run RomM locally for development
 | uv      | Any recent version, which installs the Python toolchain it needs |
 | Docker  | For the database, Valkey, and the optional streaming stack       |
 
-`uv` reads `.python-version` and fetches the right interpreter, so you don't have to install Python 3.14 yourself.
+You don't need to install Python 3.14 yourself. `uv` reads `.python-version` and fetches the right interpreter.
 
 ## Option 1: Using Docker
 
@@ -122,14 +122,14 @@ uv sync --all-extras --dev
 docker compose up -d
 ```
 
-Two optional stacks live in their own compose files, each its own project so a `down --remove-orphans` in one can't reach the dev stack:
+Two optional stacks have their own compose files. They're separate projects, so a `down --remove-orphans` in one can't take the dev stack with it:
 
 ```sh
 docker compose -f docker-compose.oidc.yml up -d      # Authentik, for testing OIDC
 docker compose -f docker-compose.streaming.yml up -d # webstation, for emulator streaming
 ```
 
-The streaming image is amd64-only and several GB, so it is opt-in.
+The streaming image is amd64 only and runs to several GB, hence opt-in.
 
 #### Run the backend
 

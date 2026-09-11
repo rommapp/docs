@@ -29,7 +29,7 @@ Under the summary, it's a table sorted by name, size or game count. For each pla
 - Region distribution (how many games tagged USA, Japan, Europe, World, etc.)
 - Metadata coverage (how many games have metadata from each provider)
 
-Each row links through to that platform, so the answer to "which platform has the worst match rate" is one click from the games behind it.
+Rows link through to the platform, so you're one click from the games behind whichever number looks wrong.
 
 ## API
 

@@ -22,24 +22,24 @@ If a ROM has multiple saves or states, RomM presents a picker before the emulato
 
 ## In-emulator behaviour
 
-In-game save/save-state/load-state actions are written straight back to the server, so there's no "forgot to upload" step. The player also asks for confirmation before you navigate away from a running game, so a stray click doesn't cost you unsaved progress.
+In-game save/save-state/load-state actions are written straight back to the server, so there's no "forgot to upload" step. The player will also ask you to confirm before navigating away from a running game, which stops a stray click costing you unsaved progress.
 
 Streamed play has its own, separate save and state store, covered in [Emulator Streaming → Saves and save states](emulator-streaming.md#saves-and-save-states).
 
 ## Automatic save sync
 
-By default a save file reaches the server when you **save and quit**, which is the moment the player has a finished save to upload. A session that ends any other way (a closed tab, a crashed browser, a laptop going to sleep) leaves the save on the device.
+Normally your save gets uploaded when you **save and quit**. Close the tab instead, or crash the browser, or shut the laptop, and the save never leaves the device.
 
-Turn on [`emulatorjs.auto_save_sync`](../reference/configuration-file.md#emulatorjsauto_save_sync) and the player instead uploads the save **whenever the emulator writes one**, so there is nothing to lose by closing the tab mid-game:
+Switch on [`emulatorjs.auto_save_sync`](../reference/configuration-file.md#emulatorjsauto_save_sync) and the player uploads every time the emulator writes a save, so it doesn't matter how the session ends:
 
 ```yaml
 emulatorjs:
     auto_save_sync: true
 ```
 
-It is off by default because it trades traffic for safety. A game that saves often uploads often, and every upload is the whole save file rather than a delta. On a small instance that is nothing, and on a busy one with large saves it adds up.
+It's off by default because it costs bandwidth. Each upload is the entire save file, not a diff, and some games save constantly. On a small instance you won't notice. With a lot of users and large saves, you might.
 
-This is an operator setting covering everyone on the instance, and it applies to in-browser play only. Save **states** are unaffected either way, and are always written back as they are created.
+This is instance-wide, set by the operator, and only affects in-browser play. Save **states** already upload as you create them and aren't affected either way.
 
 ## Device sync
 

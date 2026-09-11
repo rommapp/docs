@@ -126,9 +126,9 @@ services:
 
 ## Connection pooling
 
-RomM pools its database connections, and retires a pooled connection after `DB_POOL_RECYCLE_SECONDS` (default `300`) rather than handing out one the server has already dropped for being idle. That is what the "MySQL server has gone away" and "server closed the connection unexpectedly" errors are, and they surface on an instance that sits quiet between bursts of use.
+RomM pools its database connections and throws each one away after `DB_POOL_RECYCLE_SECONDS` (default `300`). Without that, a quiet instance eventually hands out a connection the database already closed for being idle, which is where "MySQL server has gone away" and "server closed the connection unexpectedly" come from.
 
-Keep the value **below** whatever idle timeout your database enforces (MySQL and MariaDB's `wait_timeout`, a managed provider's own cap, a proxy or load balancer in between). The default of five minutes is under every common one. Set `-1` to never recycle, which is only sensible against a database you know closes nothing.
+Keep this **below** whatever idle timeout sits in front of your database: MySQL and MariaDB's `wait_timeout`, a managed provider's own cap, or a proxy in between. Five minutes clears all the common ones. `-1` disables recycling entirely, which is only a good idea if you're certain nothing is closing connections on you.
 
 ```yaml
 environment:
