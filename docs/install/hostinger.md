@@ -7,6 +7,12 @@ description: Deploy on a Hostinger VPS with the built-in one-click application
 
 [Hostinger](https://www.hostinger.com/applications/romm) ships RomM as a one-click application in its VPS catalog, so a fresh server comes up with the container, its database, and a reverse proxy already wired together. Hostinger builds and maintains the template, and the app itself is the same `rommapp/romm` image documented everywhere else in these docs.
 
+[![Deploy on Hostinger](../resources/hostinger/button.svg)](https://www.hostg.xyz/aff_c?offer_id=815&aff_id=243561&url_id=6779)
+
+<!-- prettier-ignore -->
+!!! info "Supporting RomM"
+    The button above is an affiliate link, and signups through it send a share of the revenue back to the project.
+
 ## What it deploys
 
 The template creates two Docker applications on the VPS:
