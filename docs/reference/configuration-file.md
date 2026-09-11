@@ -270,6 +270,8 @@ scan:
 
 Preferred region for titles, cover art, and regional variants. ScreenScraper uses this directly, and other providers respect it where possible.
 
+It also picks which dump the gallery shows when you own several of the same game. A group of siblings collapses to one card, and the one shown is the highest-ranked region in this list, with pre-release dumps ranked after full releases. A region that isn't in the list ranks last, so a Japan-only release still wins a group of one.
+
 **Default:** `["us", "wor", "ss", "eu", "jp"]`
 
 ```yaml

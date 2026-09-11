@@ -134,6 +134,12 @@ environment:
     - OIDC_USERNAME_ATTRIBUTE=preferred_username
 ```
 
+Whatever the attribute holds is sanitised before it becomes a username, so a provider handing back a value with characters RomM doesn't allow no longer breaks the login.
+
+## PKCE
+
+RomM sends a PKCE challenge on the authorization request, so a provider that **requires** PKCE works without extra configuration on your side. Providers that merely support it accept the challenge and ignore it, so there is nothing to turn on either way. If your IdP lets you require PKCE per client, you can safely do so for RomM's client.
+
 ## Important notes
 
 - **Email must match** between OIDC and any existing local account, otherwise OIDC creates a new account alongside the old one.

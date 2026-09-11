@@ -144,7 +144,7 @@ The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint
 
 The [HowLongToBeat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` environment variable. If you are adding this provider to an existing setup, perform a `UNMATCHED` scan with HowLongToBeat selected to update an existing platform.
 
-Game completion times will be added to a new tab on the details page for supported matched games.
+Game completion times will be added to a new tab on the details page for supported matched games, and the gallery can sort and filter by game length once they are populated. A HowLongToBeat match you pinned by hand survives a rescan rather than being replaced by an automatic one.
 
 ### Steam
 
@@ -364,7 +364,11 @@ To use an alternate style end-to-end:
 
 ## Priority and conflict resolution
 
-When multiple providers return different values for the same field, the winner is determined by `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`. Defaults:
+When multiple providers return different values for the same field, the winner is determined by `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`.
+
+Company credits are split into **developers** and **publishers** where a provider reports the roles separately, and the older combined list is kept alongside them for providers that don't. That split is what the `<developer>` and `<publisher>` tags in the [gamelist and Pegasus exports](../reference/exports.md) are filled from.
+
+Defaults:
 
 ```yaml
 scan:
