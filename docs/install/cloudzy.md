@@ -43,7 +43,7 @@ docker compose up -d     # start the stack, and apply config changes
 
 `/root/romm/.env` holds the environment variables the compose file reads, and `docker compose up -d` applies a change by recreating the containers.
 
-The image enables Hasheous, which matches games by file hash without an API key, so scans work out of the box. Adding IGDB, SteamGridDB, or Retroachievements credentials to the same file gives you better artwork and richer metadata (see [Metadata Providers](../getting-started/metadata-providers.md)).
+The image enables [Hasheous](../getting-started/metadata-providers.md#hasheous), which matches games by file hash without an API key, so scans work out of the box. Adding IGDB, SteamGridDB, or Retroachievements credentials to the same file gives you better artwork and richer metadata (see [Metadata Providers](../getting-started/metadata-providers.md)).
 
 Everything in the compose file is the standard configuration described in [Quick Start](../getting-started/quick-start.md) and the [Environment Variables reference](../reference/environment-variables.md), so you can edit it directly to add volumes, change the image tag, or set variables the template doesn't ship.
 
