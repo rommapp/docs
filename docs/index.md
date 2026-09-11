@@ -17,7 +17,7 @@ Welcome to the **RomM Project**, the premier self-hosted, open source ROM manage
 <a href="https://romm.app" target="_blank">Website</a> · <a href="https://demo.romm.app" target="_blank" >Demo</a> · <a href="https://discord.gg/romm" target="_blank">Discord</a>
 </div>
 
-RomM (ROM Manager) lets you scan, enrich, organise, and play your game collection from a clean web UI, with metadata from IGDB, ScreenScraper, MobyGames, RetroAchievements, Hasheous, LaunchBox, and more. In-browser play via EmulatorJS and Ruffle, companion apps for Android, handhelds, and desktop, and a first-class multi-user experience with OIDC SSO.
+RomM (ROM Manager) lets you scan, enrich, organise, and play your game collection from a clean web UI, with metadata from IGDB, ScreenScraper, MobyGames, RetroAchievements, Hasheous, LaunchBox, Steam, and more. Play in the browser through EmulatorJS, Ruffle, `js-dos` and FAKE-08, or stream a native emulator from a container, with companion apps for Android, handhelds, and desktop, and a first-class multi-user experience with OIDC SSO.
 
 ## Where do you want to go?
 
@@ -43,7 +43,7 @@ RomM (ROM Manager) lets you scan, enrich, organise, and play your game collectio
 
     ***
 
-    Library, collections, saves & states, ROM Patcher, Netplay.
+    Library, collections, saves & states, streaming, Jukebox, Netplay.
 
     [Using RomM →](using/index.md)
 
