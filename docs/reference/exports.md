@@ -63,10 +63,6 @@ Content-Type: application/json
 
 Response includes where the files were written.
 
-<!-- prettier-ignore -->
-!!! warning "Permissions changed in 5.3"
-    Both export endpoints now require the `platforms.write` scope rather than `roms.read`, and they enforce platform visibility: a platform hidden from the caller is refused rather than quietly exported. Writing files into someone's library is a write, so a read-only token can no longer trigger one. Update any [client API token](../developers/client-api-tokens.md) that calls them.
-
 ### Using with ES-DE
 
 Once `gamelist.xml` has been generated and populated `covers/` + `screenshots/`, point ES-DE at the library:
