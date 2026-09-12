@@ -25,11 +25,13 @@ Every scheduled task takes a standard 5-field cron expression:
 - `*/30 * * * *`: every 30 minutes
 - `0 2 * * 0`: 2 AM every Sunday
 
-Set the env var and restart the container; the scheduler picks up the new schedule the moment RomM comes back up.
+Set the env var and restart the container. The scheduler picks up the new schedule as soon as RomM is back.
 
 ## Enabling a scheduled task
 
-Most tasks have an `ENABLE_*` environment variable, like `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` which enables the LaunchBox sync, and every one of them is off by default. Set both the enable var and its cron var, since a task with an empty cron string has nothing to schedule and stays unscheduled even when enabled.
+Most tasks have an `ENABLE_*` environment variable, like `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` which enables the LaunchBox sync. Set both the enable var and its cron var, since a task with an empty cron string has nothing to schedule and stays unscheduled even when enabled.
+
+Unlike other tasks, **build recommendations index** ships enabled, because the [recommendation](../using/recommendations.md) sections read that index and similar games sits empty without it. Setting `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` stops the nightly rebuild, but doesn't hide either section; users turn those off in their own settings.
 
 The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup) are always on and have no env vars. Check the [env var reference](../reference/environment-variables.md) for the full list.
 
@@ -37,7 +39,7 @@ The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup) 
 
 ### From the Administration page
 
-**Administration → Tasks** shows every task with a "Run" button. Admins (anyone with `tasks.run` scope) can trigger:
+**Administration → Tasks** lists every task with its status and a way to run it. Anyone with the `tasks.run` scope can fire one off, scheduled tasks included, which saves waiting for the next cron tick after a config change.
 
 ### From the API
 
@@ -59,6 +61,7 @@ A task that's been "running" for hours is usually a scan that hit `SCAN_TIMEOUT`
 On a Raspberry Pi or NAS with 2 GB of RAM and/or a single CPU core:
 
 - Raise the cron intervals (daily → weekly) for the nightlies
-- Set `SCAN_WORKERS=1` to avoid concurrent scan processes
+- Set `SCAN_WORKERS=1` and `WEB_SERVER_CONCURRENCY=1`, both of which default to `4`
 - Enable the watcher but raise `RESCAN_ON_FILESYSTEM_CHANGE_DELAY` to 30+ minutes
-- Disable image conversion if you don't care about WebP (`ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP=false`).
+- Disable image conversion if you don't care about WebP (`ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP=false`)
+- On a big library, set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` to skip the nightly build

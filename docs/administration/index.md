@@ -5,7 +5,7 @@ description: Running RomM for yourself and others.
 
 # Administration
 
-Administration is everything you do **as the operator** of a RomM instance: managing accounts, controlling access, configuring metadata sources, scheduling scans, watching the library for changes, monitoring the server, and keeping data safe.
+Administration is everything you do **as the server owner** of a RomM instance: managing accounts, controlling access, configuring metadata sources, scheduling scans, watching the library for changes, monitoring the server, and keeping data safe.
 
 The end-user equivalent (how to actually play the games, build collections, upload saves) lives in [Using RomM](../using/index.md).
 

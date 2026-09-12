@@ -24,6 +24,8 @@ scan:
 
 With `export: true`, every scan writes a `gamelist.xml` into the platform folder, and downloads the selected media into sibling folders (`covers/`, `screenshots/`, etc.) that ES-DE expects.
 
+Existing entries in `gamelist.xml` are rewritten with new data, so exporting into a library your frontend already scraped won't throw that work away. Games in subfolders keep their folder in the exported `<path>`, relative to the platform folder, and their media mirrors the same folders.
+
 Standard ES-DE/EmulationStation format:
 
 ```xml
@@ -84,6 +86,8 @@ scan:
     pegasus:
         export: true
 ```
+
+An existing `metadata.pegasus.txt` gets merged rather than overwritten. Both exports also **share their media folders**, so turning both on gives you one copy of each cover and screenshot rather than two.
 
 Human-readable text format:
 

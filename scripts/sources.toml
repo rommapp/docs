@@ -7,10 +7,11 @@
 #
 #     uv run python -m scripts.gen_env_vars
 #     uv run python -m scripts.gen_scheduled_tasks
+#     uv run python -m scripts.gen_platform_aliases
 #     uv run python -m scripts.gen_platforms
 
 [romm]
 repo = "rommapp/romm"
 # Set to a tag (e.g. "v5.0.0") or a full SHA. Generators fetch raw files
 # from raw.githubusercontent.com/${repo}/${ref}/...
-ref = "5.2.0"
+ref = "839605e679bad7a6b552c4219627f68c32e41e29"

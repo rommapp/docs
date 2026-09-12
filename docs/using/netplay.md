@@ -13,11 +13,11 @@ description: Play games with friends in real time
 
 ## Prerequisites
 
-- EmulatorJS Netplay enabled in `config.yml` (operator-level)
+- EmulatorJS Netplay enabled in `config.yml` (server owner-level)
 - ICE servers configured (STUN + TURN). Without them, Netplay only works when all players are on the same LAN.
 - All players need access to your instance, as Netplay doesn't proxy the ROM to people without accounts.
 
-See [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay) for the operator-side setup.
+See [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay) for the server owner setup.
 
 ## Hosting and joining
 

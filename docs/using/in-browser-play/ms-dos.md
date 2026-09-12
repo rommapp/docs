@@ -7,7 +7,7 @@ description: Run DOS games in the browser via dosbox-pure
 
 # MS-DOS
 
-DOS games run via the `dosbox-pure` core (part of [EmulatorJS](emulatorjs.md)). Create a DOS platform (folder named `dos`) and drop your games in. Operator tuning lives in [Configuration File → `emulatorjs`](../../reference/configuration-file.md#emulatorjs) (notably `disable_batch_bootup` for DOS-specific issues).
+DOS games run via the `dosbox-pure` core (part of [EmulatorJS](emulatorjs.md)). Create a DOS platform (folder named `dos`) and drop your games in. Server owner tuning lives in [Configuration File → `emulatorjs`](../../reference/configuration-file.md#emulatorjs) (notably `disable_batch_bootup` for DOS-specific issues).
 
 <!-- prettier-ignore -->
 !!! info "Windows 3.x and 9x games use `js-dos`"

@@ -15,7 +15,7 @@ description: Play Windows 3.x and 9x games in the browser via DOSBox-X
 !!! warning "`js-dos` requires HTTPS"
     DOSBox-X uses the `SharedArrayBuffer` API, which browsers only expose in secure, cross-origin-isolated contexts, so RomM must be served over `https://` for these games to run. Use a [reverse proxy with TLS](../../install/reverse-proxy.md) if you're still on plain HTTP.
 
-Operators can turn the player off with `DISABLE_JSDOS=true` (see [Environment Variables](../../reference/environment-variables.md)).
+Server owners can turn the player off with `DISABLE_JSDOS=true` (see [Environment Variables](../../reference/environment-variables.md)).
 
 ## Bundling a game
 

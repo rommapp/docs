@@ -10,8 +10,7 @@ Run manually:
 
 Sources, all fetched at the ref pinned in sources.toml:
 
-    backend/startup.py          which tasks the scheduler calls init() on
-    backend/endpoints/tasks.py  which tasks the Tasks page can run by hand
+    backend/tasks/registry.py   the SCHEDULED_TASKS and MANUAL_TASKS registries
     backend/tasks/**.py         each task's title, enabled flag and cron default
     env.template                resolves env constants to documented defaults
 
@@ -78,60 +77,70 @@ def import_map(tree: ast.Module) -> dict[str, str]:
     return out
 
 
-def scheduled_module_paths(startup_src: str) -> list[str]:
-    """Module paths for every task startup.py calls `.init()` on, in order."""
-    tree = ast.parse(startup_src)
-    imports = import_map(tree)
+def assigned_dict(tree: ast.Module, name: str) -> ast.Dict:
+    """The dict literal assigned to a module-level `name`.
 
-    paths: list[str] = []
-    for node in ast.walk(tree):
-        if not isinstance(node, ast.Call):
+    Both registries are module-level, so `tree.body` is enough and nothing is
+    gained by walking into function bodies.
+    """
+    for node in tree.body:
+        if isinstance(node, ast.AnnAssign):
+            targets: list[ast.expr] = [node.target]
+        elif isinstance(node, ast.Assign):
+            targets = list(node.targets)
+        else:
             continue
-        func = node.func
-        if not isinstance(func, ast.Attribute) or func.attr != "init":
+        if not any(isinstance(t, ast.Name) and t.id == name for t in targets):
             continue
-        if not isinstance(func.value, ast.Name):
-            continue
-        path = imports.get(func.value.id)
-        if path and path not in paths:
-            paths.append(path)
-
-    if not paths:
-        raise UpstreamDrift(
-            "no `<task>.init()` calls found in backend/startup.py. The scheduler "
-            "entrypoint moved or changed shape, so this parser needs updating."
-        )
-    return paths
-
-
-def manual_module_paths(endpoints_src: str) -> list[str]:
-    """Module paths for the entries of the `manual_tasks` registry list."""
-    tree = ast.parse(endpoints_src)
-    imports = import_map(tree)
-
-    for node in ast.walk(tree):
-        target = None
-        if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
-            target = node.target.id
-        elif isinstance(node, ast.Assign) and len(node.targets) == 1:
-            if isinstance(node.targets[0], ast.Name):
-                target = node.targets[0].id
-        if target != "manual_tasks" or node.value is None:
-            continue
-
-        names = {n.id for n in ast.walk(node.value) if isinstance(n, ast.Name)}
-        paths: list[str] = []
-        for name in sorted(names):
-            path = imports.get(name)
-            if path and path not in paths:
-                paths.append(path)
-        if paths:
-            return paths
+        if not isinstance(node.value, ast.Dict):
+            raise UpstreamDrift(
+                f"`{name}` in backend/tasks/registry.py is a "
+                f"{type(node.value).__name__}, not a dict literal, so this "
+                "parser can no longer read the registry."
+            )
+        return node.value
 
     raise UpstreamDrift(
-        "no `manual_tasks` registry found in backend/endpoints/tasks.py. The "
-        "registry moved or was renamed, so this parser needs updating."
+        f"no `{name}` dict found in backend/tasks/registry.py. The registry moved "
+        "or changed shape, so this parser needs updating."
     )
+
+
+def registry_module_paths(
+    tree: ast.Module, imports: dict[str, str], name: str
+) -> list[str]:
+    """Module paths for the task singletons a registry dict maps to.
+
+    `SCHEDULED_TASKS = {"scan_library": scan_library_task, ...}`
+        -> ["backend/tasks/scheduled/scan_library.py", ...]
+
+    Registry order is the table's order, so the dict is read in source order.
+    """
+    paths: list[str] = []
+    for value in assigned_dict(tree, name).values:
+        if not isinstance(value, ast.Name):
+            raise UpstreamDrift(
+                f"{name} in backend/tasks/registry.py maps a key to a "
+                f"{type(value).__name__} rather than an imported task "
+                "singleton, which this parser cannot resolve."
+            )
+        path = imports.get(value.id)
+        if path is None:
+            raise UpstreamDrift(
+                f"{name} references {value.id}, which is not imported from a "
+                "tasks.* module in backend/tasks/registry.py."
+            )
+        if path in paths:
+            # Registry keys are unique, so two of them resolving to one module
+            # means two task singletons share a file. `task_kwargs` reads only
+            # the first task class it finds there, so the second would vanish
+            # from the table without a word.
+            raise UpstreamDrift(
+                f"{name} maps two tasks to {path}. task_kwargs() reads only the "
+                "first task class in a module, so one would be dropped silently."
+            )
+        paths.append(path)
+    return paths
 
 
 def task_kwargs(module_src: str, path: str) -> dict[str, ast.expr]:
@@ -214,8 +223,10 @@ def build_row(path: str, kind: str, env: dict[str, dict]) -> dict:
 
 
 def collect(env: dict[str, dict]) -> list[dict]:
-    scheduled = scheduled_module_paths(fetch_text(romm_raw_url("backend/startup.py")))
-    manual = manual_module_paths(fetch_text(romm_raw_url("backend/endpoints/tasks.py")))
+    registry = ast.parse(fetch_text(romm_raw_url("backend/tasks/registry.py")))
+    imports = import_map(registry)
+    scheduled = registry_module_paths(registry, imports, "SCHEDULED_TASKS")
+    manual = registry_module_paths(registry, imports, "MANUAL_TASKS")
 
     rows = [build_row(p, "Scheduled", env) for p in scheduled]
     # A task in both registries is scheduled and also runnable by hand, so it is

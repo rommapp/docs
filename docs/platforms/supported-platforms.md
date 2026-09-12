@@ -22,7 +22,7 @@ Name your folder after the **platform slug** in the table, or after one of the [
 - **Slug**: the folder name RomM expects. Matches the IGDB platform slug where possible. Matched case-insensitively, so `SNES/` and `snes/` are the same platform.
 - **Name**: the human-readable platform name
 - **Providers**: which metadata providers have at least partial coverage (see [Metadata Providers](../getting-started/metadata-providers.md)).
-- **EmulatorJS**: a playable in-browser core exists (see [Configuration File → `emulatorjs`](../reference/configuration-file.md#emulatorjs) for operator-level tuning).
+- **EmulatorJS**: a playable in-browser core exists (see [Configuration File → `emulatorjs`](../reference/configuration-file.md#emulatorjs) for server owner-level tuning).
 - **Firmware**: platform needs BIOS files for emulation (see [Firmware Management](../administration/firmware-management.md)).
 
 ## Folder name aliases

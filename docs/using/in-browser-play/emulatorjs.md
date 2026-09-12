@@ -23,11 +23,19 @@ description: Play retro games in your browser
 
 RomM's EmulatorJS integration automates save-file and save-state handling: if a save or state already exists you're prompted to pick one before launch, and any in-emulator save or state is written straight back to the server with no manual download or re-upload step. Full details in [Saves & States](../saves-and-states.md).
 
+## Cores
+
+Most platforms above have more than one core available. RomM remembers which one you launched a game with and uses it again next time, which matters because changing cores leaves your save states unloadable. Server owners can set the starting core per platform with [`emulatorjs.default_cores`](../../reference/configuration-file.md#emulatorjsdefault_cores), but anyone who has already picked a core will keep using it on subsequent launches.
+
+## Multi-disc games
+
+Multi-disc games hand EmulatorJS every disc at once, so you can change discs from the emulator's own menu without backing out and reloading. If a core doesn't handle that well, [`emulatorjs.disable_batch_bootup`](../../reference/configuration-file.md#emulatorjsdisable_batch_bootup) goes back to booting just the one you launched.
+
 ## Netplay
 
 Up to four players can join a room hosted on your instance, with inputs streamed to the host over WebRTC, best for co-op and turn-based games (frame-perfect fighting isn't realistic over the internet).
 
-Operator setup (ICE servers, enable flag) lives in [Configuration File → `emulatorjs.netplay`](../../reference/configuration-file.md#emulatorjsnetplay). End-user docs live in [Netplay](../netplay.md).
+Server owner setup (ICE servers, enable flag) lives in [Configuration File → `emulatorjs.netplay`](../../reference/configuration-file.md#emulatorjsnetplay). End-user docs live in [Netplay](../netplay.md).
 
 <!-- prettier-ignore -->
 !!! note "Nightly CDN caveat"

@@ -7,6 +7,15 @@ description: Run RomM locally for development
 
 # Setting up RomM for development
 
+## Prerequisites
+
+| Tool    | Needed for                                                   |
+| ------- | ------------------------------------------------------------ |
+| Python  | 3.14 or newer, pinned in `.python-version`                   |
+| Node.js | 24, with npm 11.10 or newer, per `frontend/package.json`     |
+| uv      | Dependencies, and it fetches the Python in `.python-version` |
+| Docker  | For the database, Valkey, and the optional streaming stack   |
+
 ## Option 1: Using Docker
 
 If you prefer to use Docker for development, you can set up RomM using the provided Docker Compose configuration. This method simplifies the setup process by encapsulating all dependencies within Docker containers.
@@ -111,6 +120,15 @@ uv sync --all-extras --dev
 docker compose up -d
 ```
 
+Two optional stacks have their own compose files:
+
+```sh
+docker compose -f docker-compose.oidc.yml up -d      # Authentik, for testing OIDC
+docker compose -f docker-compose.streaming.yml up -d # webstation, for emulator streaming
+```
+
+The streaming image is amd64 only and runs to several GB, hence opt-in.
+
 #### Run the backend
 
 _Migrations will be run automatically when running the backend._
@@ -126,7 +144,6 @@ uv run python3 main.py
 
 ```sh
 cd frontend
-# npm version >= 9 needed
 npm install
 ```
 

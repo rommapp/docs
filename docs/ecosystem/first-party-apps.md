@@ -62,7 +62,7 @@ See [Getting Started](https://github.com/rommapp/argosy-launcher#getting-started
 - **Pulls** ROMs from your instance to the handheld's SD card, organised into muOS/NextUI's expected folder layout
 - **Pushes** saves and states back to your instance when you finish a session
 - **Schedules** sync runs: on idle, on session end, or on a cron
-- Works fully offline between syncs, so the handheld doesn't need your instance to play
+- Works fully offline between syncs so the handheld doesn't need your instance to play
 
 ### Setup
 

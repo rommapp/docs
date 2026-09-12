@@ -1,0 +1,38 @@
+---
+title: PICO-8
+description: Play PICO-8 cartridges in the browser
+---
+
+# PICO-8
+
+[PICO-8](https://www.lexaloffle.com/pico-8.php) cartridges run in the browser on [FAKE-08](https://github.com/jtothebell/fake-08), an open-source reimplementation of the PICO-8 runtime built to WebAssembly. Put carts under the `pico` platform to play them, either as `.p8` (plain text) or `.p8.png` (PNG-wrapped).
+
+<!-- prettier-ignore -->
+!!! info "Full image only"
+    FAKE-08 is bundled in the full container image and has **no CDN fallback**, so PICO-8 does not play on the slim image (see [Image Variants](../../install/image-variants.md)).
+
+Server owners can turn the player off with `DISABLE_PICO8=true` (see [Environment Variables](../../reference/environment-variables.md)).
+
+## Cartridge art
+
+A `.p8.png` cart is a real PNG, and the image it draws is the cartridge label, so these come out of a scan with their own art and never need a metadata provider for it. Plain `.p8` carts are text with no image in them at all, and fall back to the usual artwork sources.
+
+## Controls
+
+PICO-8 only has a d-pad and two buttons:
+
+| Input        | Mapping                                        |
+| ------------ | ---------------------------------------------- |
+| **Keyboard** | Arrow keys, `Z` for 🅾️, `X` for ❎             |
+| **Gamepad**  | D-pad, plus the A and B face buttons           |
+| **Touch**    | On-screen d-pad and buttons                    |
+| **Mouse**    | Passed through for carts that read the pointer |
+
+## Saves
+
+Cart data doesn't sync back to the server; whatever the cartridge saves stays in your browser.
+
+## Related
+
+- [EmulatorJS](emulatorjs.md): the libretro-core player behind most platforms
+- [`js-dos`](js-dos.md): the other native, non-EmulatorJS player

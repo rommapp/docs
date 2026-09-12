@@ -9,10 +9,10 @@ Netplay uses WebRTC + ICE servers for peer-to-peer connections, so most issues a
 
 ## `Failed to start game`
 
-The most common error, and almost always the operator-side config:
+The most common error, and almost always the server owner config:
 
 1. **Is Netplay enabled?** `emulatorjs.netplay.enabled: true` in `config.yml`.
-2. **Are ICE servers configured?** The operator needs at least one STUN server in `emulatorjs.netplay.ice_servers`. Without any, NAT traversal can't begin.
+2. **Are ICE servers configured?** The server owner needs at least one STUN server in `emulatorjs.netplay.ice_servers`. Without any, NAT traversal can't begin.
 3. **ICE server URLs reachable?** RomM can't talk to `stun.l.google.com:19302` if your server has no outbound internet. Sounds silly but happens in air-gapped labs.
 
 Full config: [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay).

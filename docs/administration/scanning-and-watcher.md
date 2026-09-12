@@ -20,7 +20,7 @@ Every scan picks one mode. Modes differ in what they touch, so use the most-targ
 | Mode              | What it does                                                               | When to use                                                                               |
 | ----------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | **New Platforms** | Only scans platform folders not already in the DB.                         | After mounting a new ROM set (very fast).                                                 |
-| **Quick**         | Skips files that already exist in the DB, with no metadata refresh.        | Default for scheduled runs and the watcher.                                               |
+| **Quick**         | Adds new games and catches file updates, with no metadata refresh.         | Default for scheduled runs and the watcher.                                               |
 | **Unmatched**     | Re-runs metadata matching against ROMs currently missing external IDs.     | After adding a new metadata provider, or when some titles didn't match on the first scan. |
 | **Update**        | Re-fetches metadata for all already-matched ROMs.                          | When metadata providers have meaningfully changed (e.g. IGDB restructured).               |
 | **Hashes**        | Recalculates CRC/MD5/SHA1 hashes.                                          | After upgrading from a version that didn't hash or when you suspect file corruption.      |
@@ -36,12 +36,14 @@ A manual scan can be scoped to specific platforms and a chosen subset of metadat
 
 Configured via env vars (full table in [Scheduled Tasks](scheduled-tasks.md)):
 
-| Variable                | Default     | Purpose                                                                                                      |
-| ----------------------- | ----------- | ------------------------------------------------------------------------------------------------------------ |
-| `SCHEDULED_RESCAN_CRON` | `0 0 * * *` | Cron expression for the scheduled library scan. Runs a **Quick** scan by default.                            |
-| `SCAN_TIMEOUT`          | `14400`     | Hard cap in seconds: scans that exceed this are killed and logged.                                           |
-| `SCAN_WORKERS`          | `1`         | Concurrent worker processes for scanning; leave as auto unless you're tuning.                                |
-| `SEVEN_ZIP_TIMEOUT`     | `60`        | Per-archive timeout in seconds for `.7z` extraction during scan; raise if scanning huge compressed ROM sets. |
+| Variable                | Default     | Purpose                                                                                                    |
+| ----------------------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
+| `SCHEDULED_RESCAN_CRON` | `0 3 * * *` | Cron expression for the scheduled library scan, which runs a **Quick** scan                                |
+| `SCAN_TIMEOUT`          | `14400`     | Hard cap in seconds, after which the scan is killed and the clients watching it are told why               |
+| `SCAN_WORKERS`          | `4`         | How many ROMs a scan processes at once                                                                     |
+| `SEVEN_ZIP_TIMEOUT`     | `60`        | Per-archive timeout in seconds for `.7z` extraction during scan, raise it if scanning huge compressed sets |
+
+Scans get their own queue and worker now, so a long library scan won't hold up the shorter background tasks behind it.
 
 To disable scheduled scans entirely, either unset the cron or set it to something unreachable (`SCHEDULED_RESCAN_CRON=0 0 31 2 *`).
 
@@ -100,7 +102,19 @@ exclude:
                 extensions: [nfo]
 ```
 
-Full schema in [Configuration File](../reference/configuration-file.md).
+Whatever you list here is **added** to the defaults, not swapped in for them. The system folders and the frontend media folders stay excluded either way. Full schema in [Configuration File](../reference/configuration-file.md).
+
+## Platform folder names
+
+Every platform folder has to resolve to a [known slug](../platforms/supported-platforms.md). The [folder name aliases](../platforms/supported-platforms.md#folder-name-aliases) already cover what Batocera, RetroBat and ES-DE call things, so a library from one of those works mostly untouched. Anything else needs a [`system.platforms`](../reference/configuration-file.md#systemplatforms) mapping.
+
+## Title IDs read from the binary
+
+The following platforms stamp a **native Title ID** into the game binary, which scans can read: PSX, PS2, PS3, PSP, PS Vita, Switch, 3DS, Wii, Wii U, GameCube, Dreamcast, Xbox and Xbox 360.
+
+That ID identifies games on the platforms RomM doesn't hash, which is how a renamed or moved file holds on to its saves and collections, and marks the location where the game writes its saves, which is needed for device sync.
+
+To skip the whole thing, use [`filesystem.skip_title_id_extraction`](../reference/configuration-file.md#filesystemskip_title_id_extraction).
 
 ## Region and language preference
 

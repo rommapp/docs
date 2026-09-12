@@ -103,6 +103,8 @@ You must run a LaunchBox metadata update (either manually, or scheduled via cron
 
 Simply set `HASHEOUS_API_ENABLED=true` in your environment variables, and future scans will start using the [Hasheous API](https://hasheous.org/swagger/index.html).
 
+RomM uses the public instance at `hasheous.org` by default, but users running their own [self-hosted Hasheous](https://github.com/gaseous-project/hasheous) can point `HASHEOUS_API_URL` at its API base, e.g. `https://hasheous.example.com/api/v1`.
+
 ### Playmatch
 
 [Playmatch](https://github.com/RetroRealm/playmatch) is a free, open source and community driven hash based matching service supporting multiple metadata providers such as IGDB, ScreenScraper, SteamGridDB, Retroachievements and more, hosted by a member of our community.
@@ -142,7 +144,32 @@ The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint
 
 The [HowLongToBeat](https://howlongtobeat.com/) project provides game completion times for more than 84,000 games. Enable this metadata source with the `HLTB_API_ENABLED=true` environment variable. If you are adding this provider to an existing setup, perform a `UNMATCHED` scan with HowLongToBeat selected to update an existing platform.
 
-Game completion times will be added to a new tab on the details page for supported matched games.
+Game completion times will be added to a new tab on the details page for supported matched games. Once those are populated the gallery can sort and filter by game length.
+
+### Steam
+
+[Steam](https://store.steampowered.com/) is a metadata source for the `win`, `linux` and `mac` platforms. Enable it with `STEAM_API_ENABLED=true`; there is no API key, no account, and no rate-limit sign-up. You get the title, description, capsule art, screenshots, genres, developers, publishers, release date, game modes and the Metacritic score.
+
+```yaml
+scan:
+    priority:
+        metadata:
+            - steam # PC platforms only
+```
+
+### Demozoo, Pouët and CSDb
+
+These demoscene databases cover productions (demos, intros, cracktros, musicdisks) rather than commercial games. All three are public APIs needing no key, and all three are off by default:
+
+| Provider                        | Variable              | Covers                                                 |
+| ------------------------------- | --------------------- | ------------------------------------------------------ |
+| [Demozoo](https://demozoo.org/) | `DEMOZOO_API_ENABLED` | `win`, `dos`, `amiga`, `c64`, `nes`, `snes`, `genesis` |
+| [Pouët](https://www.pouet.net/) | `POUET_API_ENABLED`   | Whatever platforms the production itself declares      |
+| [CSDb](https://csdb.dk/)        | `CSDB_API_ENABLED`    | `c64`, used for stills Demozoo doesn't have            |
+
+All three match on the production id, which you can give them three ways: a [filename tag](#metadata-tags-in-filenames), the bare ID pasted into the ROM editor, or a production URL pasted into the ROM editor (`https://demozoo.org/productions/108/`, `https://www.pouet.net/prod.php?which=108`, `https://csdb.dk/release/?id=75330`).
+
+Demozoo will also search by title, and if a Demozoo production references a CSDb release, the scan follows it automatically. Pouët only accepts a title search that lands on exactly one production. An ambiguous title is left unmatched rather than guessed at.
 
 ### ES-DE gamelist.xml
 
@@ -282,6 +309,10 @@ Scans will now parse custom metadata tags in the filename that match specific pa
 (ssfr-xxxx) for [ScreenScraper](https://screenscraper.fr/)
 (launchbox-xxxx) for [Launchbox](https://gamesdb.launchbox-app.com/)
 (hltb-xxxx) for [HowLongToBeat](https://howlongtobeat.com/)
+(steam-xxxx) for [Steam](https://store.steampowered.com/)
+(demozoo-xxxx) for [Demozoo](https://demozoo.org/)
+(pouet-xxxx) for [Pouët](https://www.pouet.net/)
+(csdb-xxxx) for [CSDb](https://csdb.dk/)
 
 Filenames will not be renamed to add tags, as they are a non-standard formatting system and could create conflicts with other software.
 
@@ -329,33 +360,9 @@ To use an alternate style end-to-end:
 
 ## Priority and conflict resolution
 
-When multiple providers return different values for the same field, the winner is determined by `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`. Defaults:
+When multiple providers return different values for the same field, the winner is decided by `scan.priority.metadata` and `scan.priority.artwork` in `config.yml`. The current defaults and the full slug table live in [Configuration File → `scan.priority.metadata`](../reference/configuration-file.md#scanprioritymetadata).
 
-```yaml
-scan:
-    priority:
-        metadata:
-            - igdb
-            - moby
-            - ss
-            - ra
-            - launchbox
-            - gamelist
-            - hasheous
-            - flashpoint
-            - hltb
-        artwork:
-            - igdb
-            - moby
-            - ss
-            - ra
-            - launchbox
-            - libretro
-            - gamelist
-            - hasheous
-            - flashpoint
-            - hltb
-```
+A provider that isn't enabled is skipped wherever it sits in the list, so leaving all of them in place costs nothing.
 
 Reorder these lists to taste. For example, put `ss` first if you prefer ScreenScraper boxart, or move `hltb` up if you care about completion times more than descriptions.
 

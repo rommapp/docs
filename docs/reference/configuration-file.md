@@ -35,7 +35,7 @@ exclude:
 
 Drop files with these extensions before matching, only for files that aren't inside a multi-file folder.
 
-**Default:** `["db", "ini", "tmp", "bak", "lock", "log", "cache", "crdownload"]`
+**Default:** `["db", "tmp", "bak", "lock", "log", "cache", "crdownload", "assembling"]`
 
 ```yaml
 exclude:
@@ -48,7 +48,7 @@ exclude:
 
 Unix-glob file-name patterns to skip.
 
-**Default:** `[".DS_Store", ".localized", ".Trashes", ".stfolder", "@SynoResource", "gamelist.xml"]`
+**Default:** `[".DS_Store", ".localized", ".Trashes", ".stfolder", "@SynoResource", "*:Zone.Identifier", "gamelist.xml", "metadata.pegasus.txt"]`
 
 ```yaml
 exclude:
@@ -61,7 +61,7 @@ exclude:
 
 Skip whole folders. Used for multi-disc/multi-file games you want invisible.
 
-**Default:** `["@eaDir", "__MACOSX", "$RECYCLE.BIN", ".Trash-*", ".stfolder", ".Spotlight-V100", ".fseventsd", ".DocumentRevisions-V100", "System Volume Information"]`
+The default already covers the system folders that are never a platform, plus every per-media-type folder ES-DE, Batocera and the [Pegasus export](exports.md) drop beside your ROMs (`covers`, `screenshots`, `manuals` and the rest). Your list gets added to that rather than replacing it.
 
 ```yaml
 exclude:
@@ -74,7 +74,7 @@ exclude:
 
 Files **inside** a multi-file ROM folder to ignore (e.g. `.nfo`, `._*` macOS attributes, similar noise from multi-disc sets).
 
-**Default:** `[".DS_Store", ".localized", ".Trashes", ".stfolder", "@SynoResource", "gamelist.xml"]`
+**Default:** the same list as [`exclude.roms.single_file.names`](#excluderomssingle_filenames)
 
 ```yaml
 exclude:
@@ -88,7 +88,7 @@ exclude:
 
 Extensions to ignore inside a multi-file ROM folder.
 
-**Default:** `["db", "ini", "tmp", "bak", "lock", "log", "cache", "crdownload"]`
+**Default:** the same list as [`exclude.roms.single_file.extensions`](#excluderomssingle_fileextensions)
 
 ```yaml
 exclude:
@@ -180,6 +180,28 @@ filesystem:
     skip_hash_calculation: true
 ```
 
+### `filesystem.skip_title_id_extraction`
+
+Skip reading the platform-native Title ID out of ROM binaries. That ID is what identifies a game on non-hashed platforms, and it records where the game writes its saves, so expect worse matching on those platforms with this on. See [Title ids read from the binary](../administration/scanning-and-watcher.md#title-ids-read-from-the-binary) for which platforms have one and what the ID carries.
+
+**Default:** `false`
+
+```yaml
+filesystem:
+    skip_title_id_extraction: true
+```
+
+### `filesystem.embed_switch_title_ids`
+
+Rename Switch ROMs on disk so their filename ends in `[TITLEID][vVERSION]`, which is what most Switch tooling expects to see. Disabled by default because it rewrites file names.
+
+**Default:** `false`
+
+```yaml
+filesystem:
+    embed_switch_title_ids: true
+```
+
 ---
 
 ## `scan`
@@ -188,7 +210,7 @@ filesystem:
 
 Order metadata providers are queried during a scan. First match wins for descriptive fields (title, description, release date, etc.).
 
-**Default:** `["igdb", "moby", "ss", "ra", "launchbox", "gamelist", "hasheous", "flashpoint", "hltb"]`
+**Default:** `["igdb", "moby", "ss", "ra", "launchbox", "gamelist", "hasheous", "tgdb", "flashpoint", "steam", "hltb", "demozoo", "pouet", "csdb"]`
 
 ```yaml
 scan:
@@ -201,25 +223,31 @@ scan:
 
 Values are the provider slugs. Full list:
 
-| Slug         | Provider              |
-| ------------ | --------------------- |
-| `igdb`       | IGDB                  |
-| `moby`       | MobyGames             |
-| `ss`         | ScreenScraper         |
-| `ra`         | RetroAchievements     |
-| `launchbox`  | LaunchBox             |
-| `gamelist`   | gamelist.xml importer |
-| `hasheous`   | Hasheous              |
-| `flashpoint` | Flashpoint            |
-| `hltb`       | HowLongToBeat         |
-| `tgdb`       | TheGamesDB            |
-| `libretro`   | Libretro metadata     |
+| Slug         | Provider                        |
+| ------------ | ------------------------------- |
+| `igdb`       | IGDB                            |
+| `moby`       | MobyGames                       |
+| `ss`         | ScreenScraper                   |
+| `ra`         | RetroAchievements               |
+| `launchbox`  | LaunchBox                       |
+| `gamelist`   | gamelist.xml importer           |
+| `hasheous`   | Hasheous                        |
+| `playmatch`  | Playmatch                       |
+| `flashpoint` | Flashpoint                      |
+| `steam`      | Steam, on the PC platforms only |
+| `hltb`       | HowLongToBeat                   |
+| `demozoo`    | Demozoo, demoscene productions  |
+| `pouet`      | Pouët, demoscene productions    |
+| `csdb`       | CSDb, C64 demoscene productions |
+| `tgdb`       | TheGamesDB                      |
+| `sgdb`       | SteamGridDB, artwork only       |
+| `libretro`   | Libretro metadata, artwork only |
 
 See [Metadata Providers](../getting-started/metadata-providers.md) for context on each.
 
 ### `scan.priority.artwork`
 
-Same idea, for cover art and screenshots. Defaults to the same order as `scan.priority.metadata` but can differ.
+Same idea but for cover art and screenshots, with a default of its own: `["sgdb", "igdb", "moby", "ss", "libretro", "ra", "launchbox", "gamelist", "hasheous", "tgdb", "flashpoint", "steam", "hltb", "demozoo", "pouet", "csdb"]`.
 
 ```yaml
 scan:
@@ -250,6 +278,8 @@ scan:
 ### `scan.priority.region`
 
 Preferred region for titles, cover art, and regional variants. ScreenScraper uses this directly, and other providers respect it where possible.
+
+This also decides which dump the gallery shows when you own several copies of a game. Siblings collapse into one card, and the winner is whichever region sits highest in this list, with pre-release dumps pushed below full releases. Regions you haven't listed come last, so a Japan-only release still wins when it's the only one there.
 
 **Default:** `["us", "wor", "ss", "eu", "jp"]`
 
@@ -341,6 +371,8 @@ scan:
             image: screenshot
 ```
 
+`media.thumbnail` and `media.image` pick which [`scan.media`](#scanmedia) type fills the `<thumbnail>` and `<image>` tags.
+
 ### `scan.pegasus.export`
 
 Export metadata in Pegasus-frontend format (`metadata.pegasus.txt`).
@@ -350,6 +382,8 @@ scan:
     pegasus:
         export: true
 ```
+
+Both exports are covered in full in [Exports](exports.md).
 
 ---
 
@@ -379,11 +413,37 @@ emulatorjs:
 
 ### `emulatorjs.disable_batch_bootup`
 
-DOS-specific knob that skips the `autorun.bat` step. Toggle if DOS games won't boot.
+Multi-disc games hand EmulatorJS every disc at once, which lets the emulator swap between them from its own menu without a reload. Set this to go back to booting only the disc you launched, which is worth trying if a core doesn't cope with the batch.
+
+**Default:** `false`
 
 ```yaml
 emulatorjs:
     disable_batch_bootup: true
+```
+
+### `emulatorjs.default_cores`
+
+Preselect the libretro core for a platform, keyed by [platform slug](../platforms/supported-platforms.md). Players who have already chosen a core on their device will keep defaulting to it.
+
+```yaml
+emulatorjs:
+    default_cores:
+        nds: desmume
+        nintendo-dsi: melonds
+```
+
+Core names have to be exact, and anything you don't list keeps EmulatorJS's own default.
+
+### `emulatorjs.auto_save_sync`
+
+Upload a save every time the emulator writes one, rather than only on save-and-quit. Closing the tab or suffering a crash mid-game then loses nothing.
+
+**Default:** `false`
+
+```yaml
+emulatorjs:
+    auto_save_sync: true
 ```
 
 ### `emulatorjs.disable_auto_unload`
@@ -475,15 +535,15 @@ emulatorjs:
                 1: { value: "'", value2: "BUTTON_3" }
 ```
 
-### Operator-level vs per-user
+### Server owner vs per-user
 
 Most settings under `emulatorjs.settings` and `emulatorjs.controls` can be overridden by users in-game (Menu → Settings, Menu → Controls). Per-user values take precedence, the config.yml setting is the fallback.
 
-| Where the setting lives           | Who it affects       | Survives upgrades? |
-| --------------------------------- | -------------------- | ------------------ |
-| Operator: `config.yml`/env vars   | Everyone, as default | Yes                |
-| Per-user: in-game Menu → Settings | Just that user       | Yes                |
-| Per-user: in-game Menu → Controls | Just that user       | Yes                |
+| Where the setting lives             | Who it affects       | Survives upgrades? |
+| ----------------------------------- | -------------------- | ------------------ |
+| Server owner: `config.yml`/env vars | Everyone, as default | Yes                |
+| Per-user: in-game Menu → Settings   | Just that user       | Yes                |
+| Per-user: in-game Menu → Controls   | Just that user       | Yes                |
 
 ---
 
@@ -502,35 +562,48 @@ streaming:
 
 ### `streaming.containers`
 
-One entry per emulator container, where each entry maps a [platform slug](../platforms/supported-platforms.md) to the container that streams it.
+**One entry per container**, not per platform. A container serves every platform listed in its `platforms` map, and its own keys are the defaults for all of them.
 
-| Key                | Required | Purpose                                                                                                        |
-| ------------------ | -------- | -------------------------------------------------------------------------------------------------------------- |
-| `platform`         | Yes      | Platform slug this container serves (e.g. `ps2`, `ngc`, `wii`, `xbox`)                                         |
-| `host`             | Yes      | Browser-facing Selkies web UI (must be reachable from clients and served over **HTTPS**)                       |
-| `broker_host`      | No       | Server-side broker API (derived from `host` if omitted)                                                        |
-| `label`            | Yes      | Text shown on the play action (e.g. `PCSX2`)                                                                   |
-| `broker_secret`    | No       | Secret for this container, used only when the `STREAMING_BROKER_SECRET` env var is unset                       |
-| `memory_card_sync` | No       | Sync the whole memory card to the RomM library on `ps2` and `ngc` (GameCube), ignored on cardless platforms    |
-| `library_path`     | No       | In-container path to the RomM library if it is mounted somewhere other than the default `/romm/library`        |
-| `emulator`         | No       | Lowercased name grouping this container's states and memory cards, defaults to `label`, then the platform slug |
+| Key                | Required | Purpose                                                                                                                                                                  |
+| ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `host`             | Yes      | Browser-facing Selkies web UI, served over **HTTPS**, or a path when reverse proxied onto RomM's own origin                                                              |
+| `platforms`        | Yes      | Map of [platform slug](../platforms/supported-platforms.md) to the emulator serving it, or to an override block                                                          |
+| `protocol`         | No       | `webstation`. Omitted, the entry is read as a deprecated per-emulator broker mod                                                                                         |
+| `label`            | No       | Name for the container, shown in the fleet view. The play action is named after the emulator instead                                                                     |
+| `subfolder`        | No       | URL prefix the broker is served under, matching the container's `SUBFOLDER`                                                                                              |
+| `broker_host`      | No       | Server-to-broker API base. Derived from `host` when omitted, and **required** when `host` is a path                                                                      |
+| `broker_secret`    | No       | Secret for this container, used only when the `STREAMING_BROKER_SECRET` env var is unset                                                                                 |
+| `library_path`     | No       | In-container path to the RomM library, if it is mounted somewhere other than the default `/romm/library`                                                                 |
+| `emulator`         | No       | Lowercased name grouping states and memory cards. Ignored when `platforms` is used, since each platform's own emulator names them                                        |
+| `memory_card_sync` | No       | Sync the whole memory card to the RomM library. Ignored only on platforms known to have no card (`wii`, `psx`, `ps3`, `ps4`, `xbox`, `xbox360`, `wiiu`, `3ds`, `switch`) |
 
-See [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-cards) for how `memory_card_sync` behaves.
+Each `platforms` value is either the emulator name on its own, or a block overriding `emulator`, `label` and `memory_card_sync` for that platform.
 
 ```yaml
 streaming:
     enabled: true
     containers:
-        - platform: ps2
-          host: https://192.168.1.51:3001 # browser-facing, must be HTTPS
-          broker_host: http://192.168.1.51:8000 # server-to-container, HTTP ok
-          label: PCSX2
-          memory_card_sync: true # keep the PS2 memory card in your RomM library
-        - platform: ngc # ngc/wii can share one Dolphin container
-          host: https://192.168.1.51:3002
-          broker_host: http://192.168.1.51:8001
-          label: Dolphin
+        - protocol: webstation
+          host: https://192.168.1.56:3010 # browser-facing, must be HTTPS
+          subfolder: /streaming # matches the container's SUBFOLDER
+          library_path: /romm # where it mounts your ROM library
+          broker_secret: change-me # matches the container's BROKER_SECRET
+          label: Emulation station
+          platforms:
+              snes: retroarch # the emulator name directly...
+              ps2: # ...or a block overriding container keys
+                  emulator: pcsx2
+                  label: PCSX2
+                  memory_card_sync: true
+              ngc:
+                  emulator: dolphin
+                  label: Dolphin
+                  memory_card_sync: true
 ```
+
+Platforms listed on several containers form a pool, with each claim taking the first free lane. Pool members have to agree on `emulator`, `memory_card_sync` and `protocol`, and are differentiated by broker host, so give each one a distinct `broker_host` (see [Emulator Streaming → How a session works](../using/emulator-streaming.md#how-a-session-works)).
+
+See [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-cards) for how `memory_card_sync` behaves, and [Migrating to webstation](../using/emulator-streaming-migration.md) if you still run the per-emulator broker mods.
 
 ---
 

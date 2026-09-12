@@ -9,7 +9,7 @@ Every user (User or Admin) can manage their own profile, but Admins can edit _ot
 
 ## Preferred username in OIDC
 
-If you're an OIDC user and want to show your `preferred_username` from the token instead of your email local-part, the operator can set `OIDC_USERNAME_ATTRIBUTE=preferred_username` (see [OIDC Setup](../administration/oidc/index.md)).
+If you're an OIDC user and want to show your `preferred_username` from the token instead of your email local-part, the server owner can set `OIDC_USERNAME_ATTRIBUTE=preferred_username` (see [OIDC Setup](../administration/oidc/index.md)).
 
 ## Client API tokens
 
