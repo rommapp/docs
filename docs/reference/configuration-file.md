@@ -182,7 +182,7 @@ filesystem:
 
 ### `filesystem.skip_title_id_extraction`
 
-Skip reading the platform-native Title ID out of ROM binaries. That ID is what identifies a game on the platforms RomM doesn't hash, and it records where the game writes its saves, so expect worse matching on those platforms with this on. See [Title ids read from the binary](../administration/scanning-and-watcher.md#title-ids-read-from-the-binary) for which platforms have one and what the ID is used for.
+Skip reading the platform-native Title ID out of ROM binaries. That ID is what identifies a game on non-hashed platforms, and it records where the game writes its saves, so expect worse matching on those platforms with this on. See [Title ids read from the binary](../administration/scanning-and-watcher.md#title-ids-read-from-the-binary) for which platforms have one and what the ID carries.
 
 **Default:** `false`
 
@@ -193,7 +193,7 @@ filesystem:
 
 ### `filesystem.embed_switch_title_ids`
 
-Rename Switch ROMs on disk so their filename ends in `[TITLEID][vVERSION]`, which is what most Switch tooling expects to see. Off by default, because it rewrites your files.
+Rename Switch ROMs on disk so their filename ends in `[TITLEID][vVERSION]`, which is what most Switch tooling expects to see. Disabled by default because it rewrites file names.
 
 **Default:** `false`
 
@@ -247,7 +247,7 @@ See [Metadata Providers](../getting-started/metadata-providers.md) for context o
 
 ### `scan.priority.artwork`
 
-Same idea, for cover art and screenshots. This has a default of its own, `["sgdb", "igdb", "moby", "ss", "libretro", "ra", "launchbox", "gamelist", "hasheous", "tgdb", "flashpoint", "steam", "hltb", "demozoo", "pouet", "csdb"]`, led by the two sources that only do artwork.
+Same idea but for cover art and screenshots, with a default of its own: `["sgdb", "igdb", "moby", "ss", "libretro", "ra", "launchbox", "gamelist", "hasheous", "tgdb", "flashpoint", "steam", "hltb", "demozoo", "pouet", "csdb"]`.
 
 ```yaml
 scan:
@@ -424,7 +424,7 @@ emulatorjs:
 
 ### `emulatorjs.default_cores`
 
-Preselect the libretro core for a platform, keyed by [platform slug](../platforms/supported-platforms.md). This is a starting point, not a lock: anyone who has already chosen a core on their device keeps it.
+Preselect the libretro core for a platform, keyed by [platform slug](../platforms/supported-platforms.md). Players who have already chosen a core on their device will keep defaulting to it.
 
 ```yaml
 emulatorjs:
@@ -433,11 +433,11 @@ emulatorjs:
         nintendo-dsi: melonds
 ```
 
-Core names have to be exact. They're listed per platform in [EmulatorJS → Supported systems](../using/in-browser-play/emulatorjs.md#supported-systems). Anything you don't list keeps EmulatorJS's own default.
+Core names have to be exact, and anything you don't list keeps EmulatorJS's own default.
 
 ### `emulatorjs.auto_save_sync`
 
-Upload a save to RomM every time the emulator writes one, rather than only on save-and-quit. Closing the tab mid-game then loses nothing. The trade is bandwidth, since a game that saves constantly will upload constantly.
+Upload a save every time the emulator writes one, rather than only on save-and-quit. Closing the tab or suffering a crash mid-game then loses nothing.
 
 **Default:** `false`
 
@@ -601,7 +601,7 @@ streaming:
                   memory_card_sync: true
 ```
 
-List a platform on several containers and they form a pool, with each claim taking the first free one. Pool members have to agree on `emulator`, `memory_card_sync` and `protocol`, and RomM tells them apart by broker host, so give each one a distinct `broker_host` (see [Emulator Streaming → How a session works](../using/emulator-streaming.md#how-a-session-works)).
+Platforms listed on several containers form a pool, with each claim taking the first free lane. Pool members have to agree on `emulator`, `memory_card_sync` and `protocol`, and are differentiated by broker host, so give each one a distinct `broker_host` (see [Emulator Streaming → How a session works](../using/emulator-streaming.md#how-a-session-works)).
 
 See [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-cards) for how `memory_card_sync` behaves, and [Migrating to webstation](../using/emulator-streaming-migration.md) if you still run the per-emulator broker mods.
 
