@@ -26,9 +26,7 @@ Where `bios/` lives is up to you. The default is `bios/{platform}` at the librar
 
 ## Missing firmware
 
-Firmware is tracked like ROMs are. Delete a file from `bios/` and the next scan **flags it missing** instead of dropping it from the database. The row sticks around with whatever you'd recorded on it, the in-browser player stops offering it, and its content endpoints return `404` rather than something stale.
-
-Put the file back and the next scan clears the flag. If you're never replacing it, the **Cleanup missing firmware** task deletes every flagged row in one go (see [Scheduled Tasks](scheduled-tasks.md#triggering-a-task-manually)).
+Delete a file from `bios/` and the next scan **flags it missing** instead of dropping it from the database. Put the file back and the next scan clears the flag. If you're never replacing it, the **Cleanup missing firmware** task deletes every flagged row in one go (see [Scheduled Tasks](scheduled-tasks.md#triggering-a-task-manually)).
 
 ## Platform-specific firmware
 

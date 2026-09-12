@@ -17,14 +17,14 @@ All three share the same scan engine and the same set of **scan modes**.
 
 Every scan picks one mode. Modes differ in what they touch, so use the most-targeted mode that accomplishes what you want.
 
-| Mode              | What it does                                                                                                  | When to use                                                                               |
-| ----------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| **New Platforms** | Only scans platform folders not already in the DB.                                                            | After mounting a new ROM set (very fast).                                                 |
-| **Quick**         | Adds new games, and reconciles the files of games it already knows with what is on disk. No metadata refresh. | Default for scheduled runs and the watcher.                                               |
-| **Unmatched**     | Re-runs metadata matching against ROMs currently missing external IDs.                                        | After adding a new metadata provider, or when some titles didn't match on the first scan. |
-| **Update**        | Re-fetches metadata for all already-matched ROMs.                                                             | When metadata providers have meaningfully changed (e.g. IGDB restructured).               |
-| **Hashes**        | Recalculates CRC/MD5/SHA1 hashes.                                                                             | After upgrading from a version that didn't hash or when you suspect file corruption.      |
-| **Complete**      | Full rescan, recalculating hashes and re-fetching metadata for everything.                                    | Rarely, since it takes a long time.                                                       |
+| Mode              | What it does                                                               | When to use                                                                               |
+| ----------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **New Platforms** | Only scans platform folders not already in the DB.                         | After mounting a new ROM set (very fast).                                                 |
+| **Quick**         | Adds new games and catches file updates, with no metadata refresh.         | Default for scheduled runs and the watcher.                                               |
+| **Unmatched**     | Re-runs metadata matching against ROMs currently missing external IDs.     | After adding a new metadata provider, or when some titles didn't match on the first scan. |
+| **Update**        | Re-fetches metadata for all already-matched ROMs.                          | When metadata providers have meaningfully changed (e.g. IGDB restructured).               |
+| **Hashes**        | Recalculates CRC/MD5/SHA1 hashes.                                          | After upgrading from a version that didn't hash or when you suspect file corruption.      |
+| **Complete**      | Full rescan, recalculating hashes and re-fetching metadata for everything. | Rarely, since it takes a long time.                                                       |
 
 You can further scope a scan to specific **platforms** and specific **metadata providers**, useful when only one provider has changed (e.g. just enabled Hasheous → Unmatched scan, Hasheous selected, on all platforms).
 
@@ -102,19 +102,19 @@ exclude:
                 extensions: [nfo]
 ```
 
-Whatever you list here is **added** to RomM's defaults, not swapped in for them. The system folders and the frontend media folders stay excluded either way. Full schema in [Configuration File](../reference/configuration-file.md).
+Whatever you list here is **added** to the defaults, not swapped in for them. The system folders and the frontend media folders stay excluded either way. Full schema in [Configuration File](../reference/configuration-file.md).
 
 ## Platform folder names
 
-Every platform folder has to resolve to a [known slug](../platforms/supported-platforms.md). The [folder name aliases](../platforms/supported-platforms.md#folder-name-aliases) already cover what Batocera, RetroBat and ES-DE call things, so a library from one of those mostly works untouched. Anything else needs a [`system.platforms`](../reference/configuration-file.md#systemplatforms) mapping.
+Every platform folder has to resolve to a [known slug](../platforms/supported-platforms.md). The [folder name aliases](../platforms/supported-platforms.md#folder-name-aliases) already cover what Batocera, RetroBat and ES-DE call things, so a library from one of those works mostly untouched. Anything else needs a [`system.platforms`](../reference/configuration-file.md#systemplatforms) mapping.
 
-## Title ids read from the binary
+## Title IDs read from the binary
 
-Some platforms stamp a **native title id** into the game binary, and scans read it out: PSX, PS2, PS3, PSP, PS Vita, Switch, 3DS, Wii, Wii U, GameCube, Dreamcast, Xbox and Xbox 360.
+The following platforms stamp a **native Title ID** into the game binary, which scans can read: PSX, PS2, PS3, PSP, PS Vita, Switch, 3DS, Wii, Wii U, GameCube, Dreamcast, Xbox and Xbox 360.
 
-That id earns its keep twice over. It identifies games on the platforms RomM doesn't hash, which is how a renamed or moved file holds on to its saves and collections. It also tells RomM where the game writes its saves, which is what device sync needs to know.
+That ID identifies games on the platforms RomM doesn't hash, which is how a renamed or moved file holds on to its saves and collections, and marks the location where the game writes its saves, which is needed for device sync.
 
-Switch headers are encrypted, so those files need `prod.keys` available before the id can be read. [`filesystem.embed_switch_title_ids`](../reference/configuration-file.md#filesystemembed_switch_title_ids) will write the id back into the filename if you want it there. To skip the whole thing, use [`filesystem.skip_title_id_extraction`](../reference/configuration-file.md#filesystemskip_title_id_extraction).
+To skip the whole thing, use [`filesystem.skip_title_id_extraction`](../reference/configuration-file.md#filesystemskip_title_id_extraction).
 
 ## Region and language preference
 
