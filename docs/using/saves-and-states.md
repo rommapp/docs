@@ -22,31 +22,25 @@ If a ROM has multiple saves or states, RomM presents a picker before the emulato
 
 ## In-emulator behaviour
 
-In-game save/save-state/load-state actions are written straight back to the server, so there's no "forgot to upload" step. The player will also ask you to confirm before navigating away from a running game, which stops a stray click costing you unsaved progress.
-
-Streamed play has its own, separate save and state store, covered in [Emulator Streaming → Saves and save states](emulator-streaming.md#saves-and-save-states).
+In-game save/save-state/load-state actions are written straight back to the server, so there's no "forgot to upload" step. The player will also ask you to confirm before navigating away from a running game, which prevents loosing any unsaved progress.
 
 ## Automatic save sync
 
-Normally your save gets uploaded when you **save and quit**. Close the tab instead, or crash the browser, or shut the laptop, and the save never leaves the device.
-
-Switch on [`emulatorjs.auto_save_sync`](../reference/configuration-file.md#emulatorjsauto_save_sync) and the player uploads every time the emulator writes a save, so it doesn't matter how the session ends:
+Normally your save gets uploaded when you **save and quit**. Close the tab instead, or crash the browser, or shut the laptop, and the save never leaves the device. Enable [`emulatorjs.auto_save_sync`](../reference/configuration-file.md#emulatorjsauto_save_sync) and the player uploads every time the emulator writes a save, so it doesn't matter how the session ends:
 
 ```yaml
 emulatorjs:
     auto_save_sync: true
 ```
 
-It's off by default because it costs bandwidth. Each upload is the entire save file, not a diff, and some games save constantly. On a small instance you won't notice. With a lot of users and large saves, you might.
-
-This is instance-wide, set by the operator, and only affects in-browser play. Save **states** already upload as you create them and aren't affected either way.
+Each upload is the entire save file, and some games save constantly. On a small instance you won't notice, but you might with a lot of users and large saves. This is instance-wide, set by the server owner, and only affects in-browser play. Save **states** already upload as you create them and aren't affected either way.
 
 ## Device sync
 
 Saves and states can sync to/from registered devices (Grout on muOS, DeckRommSync on a Deck, etc.). Covered in depth in the ecosystem section:
 
 - [Device Sync Protocol](../developers/device-sync-protocol.md): wire-level reference
-- [SSH Sync](../developers/ssh-sync.md): operator-side config
+- [SSH Sync](../developers/ssh-sync.md): server owner config
 - [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher)/[Grout](../ecosystem/first-party-apps.md#grout): per-app setup
 
 Once a device is paired and sync is running, saves made on the device appear server-side within a couple of sync cycles (default: 15 minutes). Conflicts (same ROM saved on two devices between syncs) surface as two separate save entries, so pick which to keep.

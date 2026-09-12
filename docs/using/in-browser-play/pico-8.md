@@ -13,7 +13,7 @@ Put carts under the `pico` platform, either as `.p8` (plain text) or `.p8.png` (
 !!! info "Full image only"
     FAKE-08 is bundled in the full container image and has **no CDN fallback**, so PICO-8 does not play on the slim image (see [Image Variants](../../install/image-variants.md)).
 
-Operators can turn the player off with `DISABLE_PICO8=true` (see [Environment Variables](../../reference/environment-variables.md)).
+Server owners can turn the player off with `DISABLE_PICO8=true` (see [Environment Variables](../../reference/environment-variables.md)).
 
 ## Cartridge art
 

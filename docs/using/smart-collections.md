@@ -19,13 +19,11 @@ That has two big consequences:
 - **No negation.** Filters are inclusion-only. There's no "Status is not Complete" or "exclude Genre RPG". Pick the values you want, not the ones you don't.
 - **No nesting.** A smart collection can't filter on another smart collection.
 
-The one numeric range is [game length](#game-length). There is no "rating greater than 85" or "playtime greater than 60 minutes", and the age-rating filter is categorical (ESRB / PEGI labels) rather than a review-score number.
-
 ## Supported fields
 
 ### Multi-value
 
-Each takes one or more values. All except `platform_ids` also accept a `<field>_logic` companion of `any` (OR, the default) or `all` (AND); platforms are always ORed.
+Each takes one or more values. All (except `platform_ids`) also accept a `<field>_logic` companion of `any` (OR, the default) or `all` (AND).
 
 | Field                | Matches                                                                |
 | -------------------- | ---------------------------------------------------------------------- |
@@ -40,13 +38,11 @@ Each takes one or more values. All except `platform_ids` also accept a `<field>_
 | `regions`            | Region tags                                                            |
 | `languages`          | Language tags                                                          |
 | `tags`               | Arbitrary filename tags                                                |
-| `statuses`           | Your play status (Never Played, Backlogged, Playing, Complete, Hidden) |
+| `statuses`           | Your play status (backlogged, playing, etc.) |
 | `player_counts`      | Supported player counts                                                |
 | `metadata_providers` | Which provider matched the game                                        |
 
 ### Boolean
-
-Each restricts to games where the answer is yes.
 
 | Field            | Matches                                                           |
 | ---------------- | ----------------------------------------------------------------- |

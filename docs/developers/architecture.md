@@ -83,7 +83,7 @@ Environment variables (100+ of them, all listed in `env.template`) cover infrast
 
 ### Background jobs
 
-RQ workers run scheduled jobs (rescans, Switch TitleDB refresh, LaunchBox refresh, image-to-WebP conversion, RA progress sync, netplay cleanup) and manual tasks (`cleanup_missing_roms`, `cleanup_orphaned_resources`, `sync_folder_scan`). Each scheduled task is gated by an `ENABLE_SCHEDULED_*` env var and tunable via the matching `*_CRON`. Operator-side detail in [Scheduled Tasks](../administration/scheduled-tasks.md).
+RQ workers run scheduled jobs (rescans, Switch TitleDB refresh, LaunchBox refresh, image-to-WebP conversion, RA progress sync, netplay cleanup) and manual tasks (`cleanup_missing_roms`, `cleanup_orphaned_resources`, `sync_folder_scan`). Each scheduled task is gated by an `ENABLE_SCHEDULED_*` env var and tunable via the matching `*_CRON`. Server owner detail in [Scheduled Tasks](../administration/scheduled-tasks.md).
 
 ## Frontend
 

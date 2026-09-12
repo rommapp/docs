@@ -25,9 +25,7 @@ RomM's EmulatorJS integration automates save-file and save-state handling: if a 
 
 ## Cores
 
-Most platforms above have more than one core available. RomM remembers which one you launched a game with and uses it again next time, which matters because a silently changed core leaves your save states unloadable.
-
-Operators can set the starting core per platform with [`emulatorjs.default_cores`](../../reference/configuration-file.md#emulatorjsdefault_cores). Anyone who has already picked a core on their device keeps theirs.
+Most platforms above have more than one core available. RomM remembers which one you launched a game with and uses it again next time, which matters because changing cores leaves your save states unloadable. Server owners can set the starting core per platform with [`emulatorjs.default_cores`](../../reference/configuration-file.md#emulatorjsdefault_cores), but anyone who has already picked a core will keep using it on subsequent launches.
 
 ## Multi-disc games
 
@@ -37,7 +35,7 @@ Multi-disc games hand EmulatorJS every disc at once, so you can change discs fro
 
 Up to four players can join a room hosted on your instance, with inputs streamed to the host over WebRTC, best for co-op and turn-based games (frame-perfect fighting isn't realistic over the internet).
 
-Operator setup (ICE servers, enable flag) lives in [Configuration File → `emulatorjs.netplay`](../../reference/configuration-file.md#emulatorjsnetplay). End-user docs live in [Netplay](../netplay.md).
+Server owner setup (ICE servers, enable flag) lives in [Configuration File → `emulatorjs.netplay`](../../reference/configuration-file.md#emulatorjsnetplay). End-user docs live in [Netplay](../netplay.md).
 
 <!-- prettier-ignore -->
 !!! note "Nightly CDN caveat"
@@ -69,7 +67,5 @@ Operator setup (ICE servers, enable flag) lives in [Configuration File → `emul
 | TurboGraphx-16/PC Engine                    | `mednafen_pce`                                                           |
 | Virtual Boy                                 | `mednafen_vb`                                                            |
 | WonderSwan/Color                            | `mednafen_wswan`                                                         |
-
-Windows 3.x and 9x are **not** on this list. `dosbox-pure` just blank-screens on them, so they run on [`js-dos`](js-dos.md) and its DOSBox-X backend instead. PICO-8 carts have their own player, [FAKE-08](pico-8.md). Plain MS-DOS still uses `dosbox-pure` (see [MS-DOS](ms-dos.md)).
 
 Player UI features beyond the basics (cheats, in-emulator screenshots, multi-disc swap, hotkeys, fullscreen) are covered in the broader [EmulatorJS docs](https://emulatorjs.org/docs/).

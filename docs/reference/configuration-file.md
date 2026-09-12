@@ -535,13 +535,13 @@ emulatorjs:
                 1: { value: "'", value2: "BUTTON_3" }
 ```
 
-### Operator-level vs per-user
+### Server owner vs per-user
 
 Most settings under `emulatorjs.settings` and `emulatorjs.controls` can be overridden by users in-game (Menu → Settings, Menu → Controls). Per-user values take precedence, the config.yml setting is the fallback.
 
 | Where the setting lives           | Who it affects       | Survives upgrades? |
 | --------------------------------- | -------------------- | ------------------ |
-| Operator: `config.yml`/env vars   | Everyone, as default | Yes                |
+| Server owner: `config.yml`/env vars   | Everyone, as default | Yes                |
 | Per-user: in-game Menu → Settings | Just that user       | Yes                |
 | Per-user: in-game Menu → Controls | Just that user       | Yes                |
 

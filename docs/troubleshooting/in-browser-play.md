@@ -13,9 +13,7 @@ description: Diagnose EmulatorJS and Ruffle issues
 
 ## "This core needs a secure connection"
 
-Threaded cores need the `SharedArrayBuffer` API, and browsers only hand that out on a secure, cross-origin-isolated origin. Over plain HTTP the player now tells you this directly instead of throwing a generic error at you.
-
-Fix it by serving RomM over `https://` (see [Reverse Proxy](../install/reverse-proxy.md)), or pick a single-threaded core for the platform. It comes up with the PSP core, with [`js-dos`](../using/in-browser-play/js-dos.md) for Windows 3.x and 9x, and with a few of the heavier EmulatorJS cores.
+Threaded cores need the `SharedArrayBuffer` API, and browsers only hand that out on a secure, cross-origin-isolated origin. Over plain HTTP the player now tells you this directly instead of throwing a generic error at you. Fix it by serving the app over `https://` (see [Reverse Proxy](../install/reverse-proxy.md)), or pick a single-threaded core for the platform. It comes up with the PSP core, with [`js-dos`](../using/in-browser-play/js-dos.md) for Windows 3.x and 9x, and with a few of the heavier EmulatorJS cores.
 
 ## Black screen or no audio
 

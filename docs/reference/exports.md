@@ -24,9 +24,7 @@ scan:
 
 With `export: true`, every scan writes a `gamelist.xml` into the platform folder, and downloads the selected media into sibling folders (`covers/`, `screenshots/`, etc.) that ES-DE expects.
 
-An existing `gamelist.xml` is **merged**, not overwritten. RomM rewrites the entries for games it knows about and leaves everything else alone, so exporting into a library your frontend already scraped won't throw that work away.
-
-Games in subfolders keep their folder in the exported `<path>`, relative to the platform folder, and their media mirrors the same folders. That lines up with how a [custom library structure](../getting-started/folder-structure.md#custom-library-structure) arranges things, so nested games survive a round trip.
+Existing entries in `gamelist.xml` are rewritten with new data, so exporting into a library your frontend already scraped won't throw that work away. Games in subfolders keep their folder in the exported `<path>`, relative to the platform folder, and their media mirrors the same folders.
 
 Standard ES-DE/EmulationStation format:
 
@@ -89,7 +87,7 @@ scan:
         export: true
 ```
 
-Same as the gamelist export, an existing `metadata.pegasus.txt` gets merged rather than overwritten. The two exports also **share their media folders**, so turning both on gives you one copy of each cover and screenshot rather than two.
+An existing `metadata.pegasus.txt` gets merged rather than overwritten. Both exports also **share their media folders**, so turning both on gives you one copy of each cover and screenshot rather than two.
 
 Human-readable text format:
 
@@ -128,12 +126,7 @@ Exports don't auto-rerun on every metadata edit, instead they run:
 - **Next scan**: exports are part of scan completion when enabled.
 - **Manual trigger** via the API above
 
-<!-- prettier-ignore -->
-!!! note "Games with no file are skipped"
-    Both exports skip [physical games](../using/physical-games.md) and anything missing from the filesystem. There's no file for a frontend to launch.
-
 ## See also
 
 - [Configuration File → `scan.gamelist`](../reference/configuration-file.md#scangamelistexport)
 - [Configuration File → `scan.pegasus`](../reference/configuration-file.md#scanpegasusexport)
-- [API Authentication](../developers/api-authentication.md): the scopes the export endpoints need
