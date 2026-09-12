@@ -1,13 +1,11 @@
 ---
 title: PICO-8
-description: Play PICO-8 cartridges in the browser via FAKE-08
+description: Play PICO-8 cartridges in the browser
 ---
 
 # PICO-8
 
-[PICO-8](https://www.lexaloffle.com/pico-8.php) cartridges run in the browser on [FAKE-08](https://github.com/jtothebell/fake-08), an open-source reimplementation of the PICO-8 runtime built to WebAssembly. It's its own player, not a libretro core, so [EmulatorJS](emulatorjs.md) isn't involved.
-
-Put carts under the `pico` platform, either as `.p8` (plain text) or `.p8.png` (PNG-wrapped).
+[PICO-8](https://www.lexaloffle.com/pico-8.php) cartridges run in the browser on [FAKE-08](https://github.com/jtothebell/fake-08), an open-source reimplementation of the PICO-8 runtime built to WebAssembly. Put carts under the `pico` platform to play them, either as `.p8` (plain text) or `.p8.png` (PNG-wrapped).
 
 <!-- prettier-ignore -->
 !!! info "Full image only"
@@ -17,11 +15,11 @@ Server owners can turn the player off with `DISABLE_PICO8=true` (see [Environmen
 
 ## Cartridge art
 
-A `.p8.png` cart is a real PNG, and the image it draws is the cartridge label. RomM just uses the file itself as the cover, so these come out of a scan with their own art and never need a metadata provider for it. Plain `.p8` carts are text with no image in them at all, and fall back to the usual artwork sources.
+A `.p8.png` cart is a real PNG, and the image it draws is the cartridge label, so these come out of a scan with their own art and never need a metadata provider for it. Plain `.p8` carts are text with no image in them at all, and fall back to the usual artwork sources.
 
 ## Controls
 
-PICO-8 only has a d-pad and two buttons, which every input method maps onto:
+PICO-8 only has a d-pad and two buttons:
 
 | Input        | Mapping                                        |
 | ------------ | ---------------------------------------------- |
@@ -30,15 +28,9 @@ PICO-8 only has a d-pad and two buttons, which every input method maps onto:
 | **Touch**    | On-screen d-pad and buttons                    |
 | **Mouse**    | Passed through for carts that read the pointer |
 
-Output is PICO-8's native 128×128 at 30fps, scaled to fit the window. Audio and fullscreen both work.
-
-## How it is bundled
-
-FAKE-08 doesn't publish a web build of its own, so RomM pulls the WebAssembly build out of [p3a](https://github.com/fabkury/p3a), pinned to a commit and checksummed when the image is built. Whichever image tag you're running decides the version you get.
-
 ## Saves
 
-Cart data doesn't sync back to RomM. Whatever the cartridge saves stays in your browser.
+Cart data doesn't sync back to the server; whatever the cartridge saves stays in your browser.
 
 ## Related
 
