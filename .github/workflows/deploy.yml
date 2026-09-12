@@ -8,6 +8,11 @@ on:
                 description: Version to publish
                 required: true
                 type: string
+            set_latest:
+                description: Point the `latest` alias at this version (uncheck for pre-releases)
+                required: false
+                default: true
+                type: boolean
 
 concurrency:
     group: pages
@@ -58,8 +63,18 @@ jobs:
                   uv run python -m scripts.gen_env_vars
                   uv run python -m scripts.gen_scheduled_tasks
 
+            # The site root redirects to `latest/`, so that alias is what decides
+            # where visitors land. A pre-release deploys without it, reachable at
+            # its own URL and listed in the version dropdown, but not the default.
             - name: Build the documentation
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   VERSION: ${{ github.event.inputs.version }}
-              run: uv run mike deploy --push --update-aliases $VERSION latest
+                  SET_LATEST: ${{ github.event.inputs.set_latest }}
+              run: |
+                  set -euo pipefail
+                  if [ "$SET_LATEST" = "false" ]; then
+                      uv run mike deploy --push "$VERSION"
+                  else
+                      uv run mike deploy --push --update-aliases "$VERSION" latest
+                  fi
