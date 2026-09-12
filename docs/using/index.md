@@ -15,7 +15,6 @@ description: Browse, play, collect, patch, and share from the UI
 - **[Emulator Streaming](emulator-streaming.md)**
 - **[Downloads](downloads.md)**
 - **[Uploads](uploads.md)**
-
 - **[Jukebox](jukebox.md)**
 
 ## Organise

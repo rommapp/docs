@@ -9,7 +9,7 @@ Emulator streaming used to mean one container per emulator, each running its own
 
 <!-- prettier-ignore -->
 !!! warning "The per-emulator broker mods are deprecated"
-    A `config.yml` container without `protocol: webstation` still works today, logs a startup warning telling you to migrate, and will stop being supported in a future release.
+    A `config.yml` container without `protocol: webstation` still works today, but will stop being supported in a future release.
 
 ## Why
 
@@ -63,7 +63,7 @@ The full field reference lives in [Configuration File → `streaming`](../refere
 2. Point `library_path` in `config.yml` at that same mount.
 3. Move each platform you were streaming into the new container's `platforms:` map (see the before/after above).
 4. Confirm streaming works for each platform, then remove the old per-emulator containers.
-5. Restart RomM. The startup warning about legacy containers disappears once no `config.yml` container is missing `protocol: webstation`.
+5. Restart RomM. Every container is on the new shape once none of them is missing `protocol: webstation`.
 
 ## Per-emulator notes
 

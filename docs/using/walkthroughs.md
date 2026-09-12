@@ -5,7 +5,7 @@ description: Attach guides to a game and track where you left off
 
 # Walkthroughs
 
-Walkthroughs are documents attached to a game, handled the same way as manuals. Upload your own, or paste in a GameFAQs URL and RomM will fetch the guide for you. It tracks how far through you are, per user, and shows is as a progress bar.
+Walkthroughs are documents attached to a game, handled the same way as manuals. Upload your own, or paste in a GameFAQs URL and RomM will fetch the guide for you. It tracks how far through you are, per user, and shows it as a progress bar.
 
 ## Where they live
 

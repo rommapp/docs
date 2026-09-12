@@ -22,7 +22,7 @@ If a ROM has multiple saves or states, RomM presents a picker before the emulato
 
 ## In-emulator behaviour
 
-In-game save/save-state/load-state actions are written straight back to the server, so there's no "forgot to upload" step. The player will also ask you to confirm before navigating away from a running game, which prevents loosing any unsaved progress.
+In-game save/save-state/load-state actions are written straight back to the server, so there's no "forgot to upload" step. The player will also ask you to confirm before navigating away from a running game, which prevents losing any unsaved progress.
 
 ## Automatic save sync
 

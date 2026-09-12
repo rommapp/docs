@@ -126,7 +126,7 @@ services:
 
 ## Connection pooling
 
-Database connections are pooled and disgarded after `DB_POOL_RECYCLE_SECONDS` (default `300`). Without it, a quiet instance eventually hands out a connection the database already closed for being idle. Keep this **below** whatever idle timeout sits in front of your database: MySQL/MariaDB's `wait_timeout`, a provider's cap, or a proxy in between. `-1` disables recycling entirely, which is only a good idea if you're certain nothing is closing idle connections.
+Database connections are pooled and discarded after `DB_POOL_RECYCLE_SECONDS` (default `300`). Without it, a quiet instance eventually hands out a connection the database already closed for being idle. Keep this **below** whatever idle timeout sits in front of your database: MySQL/MariaDB's `wait_timeout`, a provider's cap, or a proxy in between. `-1` disables recycling entirely, which is only a good idea if you're certain nothing is closing idle connections.
 
 ```yaml
 environment:

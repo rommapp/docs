@@ -23,7 +23,7 @@ PICO-8 only has a d-pad and two buttons:
 
 | Input        | Mapping                                        |
 | ------------ | ---------------------------------------------- |
-| **Keyboard** | Arrow keys, `Z` for ❎, `X` for 🅾️             |
+| **Keyboard** | Arrow keys, `Z` for 🅾️, `X` for ❎             |
 | **Gamepad**  | D-pad, plus the A and B face buttons           |
 | **Touch**    | On-screen d-pad and buttons                    |
 | **Mouse**    | Passed through for carts that read the pointer |

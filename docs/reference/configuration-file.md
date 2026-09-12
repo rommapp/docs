@@ -564,18 +564,18 @@ streaming:
 
 **One entry per container**, not per platform. A container serves every platform listed in its `platforms` map, and its own keys are the defaults for all of them.
 
-| Key                | Required | Purpose                                                                                                         |
-| ------------------ | -------- | --------------------------------------------------------------------------------------------------------------- |
-| `host`             | Yes      | Browser-facing Selkies web UI, served over **HTTPS**, or a path when reverse proxied onto RomM's own origin     |
-| `platforms`        | Yes      | Map of [platform slug](../platforms/supported-platforms.md) to the emulator serving it, or to an override block |
-| `protocol`         | Yes      | `webstation`. Omitted, the entry is read as a deprecated per-emulator broker mod                                |
-| `label`            | Yes      | Name for the container, used on the play action for any platform that sets none of its own                      |
-| `subfolder`        | No       | URL prefix the broker is served under, matching the container's `SUBFOLDER`                                     |
-| `broker_host`      | No       | Server-to-broker API base. Derived from `host` when omitted, and **required** when `host` is a path             |
-| `broker_secret`    | No       | Secret for this container, used only when the `STREAMING_BROKER_SECRET` env var is unset                        |
-| `library_path`     | No       | In-container path to the RomM library, if it is mounted somewhere other than the default `/romm/library`        |
-| `emulator`         | No       | Lowercased name grouping this container's states and memory cards, defaults to `label`                          |
-| `memory_card_sync` | No       | Sync the whole memory card to the RomM library, honoured on `ps2` and `ngc` and ignored elsewhere               |
+| Key                | Required | Purpose                                                                                                                                                                  |
+| ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `host`             | Yes      | Browser-facing Selkies web UI, served over **HTTPS**, or a path when reverse proxied onto RomM's own origin                                                              |
+| `platforms`        | Yes      | Map of [platform slug](../platforms/supported-platforms.md) to the emulator serving it, or to an override block                                                          |
+| `protocol`         | No       | `webstation`. Omitted, the entry is read as a deprecated per-emulator broker mod                                                                                         |
+| `label`            | No       | Name for the container, shown in the fleet view. The play action is named after the emulator instead                                                                     |
+| `subfolder`        | No       | URL prefix the broker is served under, matching the container's `SUBFOLDER`                                                                                              |
+| `broker_host`      | No       | Server-to-broker API base. Derived from `host` when omitted, and **required** when `host` is a path                                                                      |
+| `broker_secret`    | No       | Secret for this container, used only when the `STREAMING_BROKER_SECRET` env var is unset                                                                                 |
+| `library_path`     | No       | In-container path to the RomM library, if it is mounted somewhere other than the default `/romm/library`                                                                 |
+| `emulator`         | No       | Lowercased name grouping states and memory cards. Ignored when `platforms` is used, since each platform's own emulator names them                                        |
+| `memory_card_sync` | No       | Sync the whole memory card to the RomM library. Ignored only on platforms known to have no card (`wii`, `psx`, `ps3`, `ps4`, `xbox`, `xbox360`, `wiiu`, `3ds`, `switch`) |
 
 Each `platforms` value is either the emulator name on its own, or a block overriding `emulator`, `label` and `memory_card_sync` for that platform.
 

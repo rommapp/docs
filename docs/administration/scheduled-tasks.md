@@ -31,7 +31,7 @@ Set the env var and restart the container. The scheduler picks up the new schedu
 
 Most tasks have an `ENABLE_*` environment variable, like `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` which enables the LaunchBox sync. Set both the enable var and its cron var, since a task with an empty cron string has nothing to schedule and stays unscheduled even when enabled.
 
-Unlike other tasks, **build recommendations index** ships enabled, because both [recommendation](../using/recommendations.md) sections read that index and they'd sit empty without it. Set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` if you'd rather not have either.
+Unlike other tasks, **build recommendations index** ships enabled, because the [recommendation](../using/recommendations.md) sections read that index and similar games sits empty without it. Setting `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` stops the nightly rebuild, but doesn't hide either section; users turn those off in their own settings.
 
 The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup) are always on and have no env vars. Check the [env var reference](../reference/environment-variables.md) for the full list.
 

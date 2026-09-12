@@ -70,7 +70,7 @@ Some games come as **folders** instead of single files, holding multiple discs, 
 | `cheat` \*       | Cheat files                                         |
 | `screenshot` \*  | Screenshots                                         |
 
-\* These never contain a ROM binary, so hashing and title-id extraction skip them.
+\* These never contain a ROM binary, so title-id extraction skips them. They are still hashed.
 
 ## Visual reference
 

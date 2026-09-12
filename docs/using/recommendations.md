@@ -22,9 +22,9 @@ You don't have to configure any of this. How much a shared trait is worth depend
 
 **Build recommendations index** is the only [scheduled task](../administration/scheduled-tasks.md) that's enabled by default. It runs early each morning, after the nightly scan and metadata jobs have finished, and you can run it by hand from the tasks page. In between runs, scans add new games to the index as they come in. Its schedule and enable variable are in [Environment Variables → Scans & Tasks](../reference/environment-variables.md#scans-tasks).
 
-**Neither section appears until the index has been built once.** On a new instance, that's the morning after you set it up, or whenever you run the task yourself.
+**Similar games** stays empty until the index has been built once, which on a new instance is the morning after you set it up, or whenever you run the task yourself. **Recommended for you** doesn't wait: with no index and nothing played yet, it falls back to the best-reviewed games in your own library.
 
-Users can hide either section in their own settings. To switch the feature off instance-wide, set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` and neither section will appear, which also saves the nightly build on a very large library.
+Users can hide either section in their own settings. Setting `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` only stops the nightly rebuild, which saves the work on a very large library; both sections stay visible.
 
 ## API
 

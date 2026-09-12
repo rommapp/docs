@@ -41,9 +41,9 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **gamelist.xml**: ES-DE/Batocera-compatible metadata format. Importable as a metadata source and exportable.
 
-**Jukebox**: the library-wide soundtrack player, reading the audio files in each game's `soundtrack/` folder (see [Jukebox](../using/jukebox.md)).
-
 **Invite link**: single-use URL that lets a new user register with a pre-assigned role (see [Invitations & Registration](../administration/invitations-and-registration.md)).
+
+**Jukebox**: the library-wide soundtrack player, reading the audio files in each game's `soundtrack/` folder (see [Jukebox](../using/jukebox.md)).
 
 **Kekatsu**: Nintendo DS multiboot loader that reads RomM's feed (see [Kekatsu](../ecosystem/feed-clients.md#kekatsu)).
 
@@ -51,9 +51,9 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Library**: your ROM files on disk. Mounted at `/romm/library` inside the container, and laid out according to your [structure templates](../getting-started/folder-structure.md#custom-library-structure). The catalogue is built from what's found there (see [Folder Structure](../getting-started/folder-structure.md)).
 
-**Metadata provider**: external source of game data, queried during a scan, with results merged. Configured via env vars + priority in `config.yml` (see [Metadata Providers](../getting-started/metadata-providers.md)).
-
 **Memory card**: on PS2 and GameCube, the emulator's whole card kept in your RomM library rather than on the streaming container, with versions and sharing (see [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-cards)).
+
+**Metadata provider**: external source of game data, queried during a scan, with results merged. Configured via env vars + priority in `config.yml` (see [Metadata Providers](../getting-started/metadata-providers.md)).
 
 **Netplay**: EmulatorJS's multiplayer mode. Two or more players share a session across the internet. Open rooms are tracked and brokered via WebSocket. Needs STUN/TURN (ICE servers) configured in `config.yml` for reliable NAT traversal (see [Netplay](../using/netplay.md)).
 
@@ -65,9 +65,9 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Personal tab**: the ROM detail page tab for per-user data (rating, status, notes, playtime).
 
-**Platform**: a gaming system: SNES, PlayStation, Game Boy Advance, DOS, etc. ~400 platforms ship supported. Each has a **slug** (`snes`, `psx`, `gba`) that doubles as the folder name expected in your library, alongside the [folder name aliases](../platforms/supported-platforms.md#folder-name-aliases) other frontends use. Override the folder-name → slug mapping via `config.yml` (see [Supported Platforms](../platforms/supported-platforms.md)).
-
 **Physical game**: a library entry for a copy you own on cartridge or disc, with no file on disk. Added by name or by barcode, and excluded from anything that needs a real file (see [Physical Games](../using/physical-games.md)).
+
+**Platform**: a gaming system: SNES, PlayStation, Game Boy Advance, DOS, etc. ~400 platforms ship supported. Each has a **slug** (`snes`, `psx`, `gba`) that doubles as the folder name expected in your library, alongside the [folder name aliases](../platforms/supported-platforms.md#folder-name-aliases) other frontends use. Override the folder-name → slug mapping via `config.yml` (see [Supported Platforms](../platforms/supported-platforms.md)).
 
 **Play session**: a timestamped record of someone playing a ROM (start, end, duration, device). Used by the stats, the Continue Playing ribbon, and per-ROM playtime totals. Ingested automatically when playing in-browser, and companion apps push them via API.
 
@@ -83,9 +83,9 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Scan**: the process of walking the library, hashing files, calling metadata providers, and updating the DB. Scans run in six **modes** (New Platforms, Quick, Unmatched, Update, Hashes, Complete) and can be triggered manually, on a cron, or by the filesystem watcher (see [Scanning & Watcher](../administration/scanning-and-watcher.md)).
 
-**Session (streaming)**: one claim on a streaming container. A container drives one display, so it holds one session at a time, bound to the user who claimed it (see [Emulator Streaming](../using/emulator-streaming.md#how-a-session-works)).
-
 **Scope**: a coarse OAuth permission derived from a user's effective [permission-group](../administration/users-and-roles.md#permission-groups) grants. Client API Tokens and OIDC sessions carry a subset of the user's scopes (see [Users & Roles → API tokens](../administration/users-and-roles.md#api-tokens-advanced)).
+
+**Session (streaming)**: one claim on a streaming container. A container drives one display, so it holds one session at a time, bound to the user who claimed it (see [Emulator Streaming](../using/emulator-streaming.md#how-a-session-works)).
 
 **Setup Wizard**: first-run flow that creates the admin user. Shown before any user exists.
 
@@ -95,9 +95,9 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **Task**: a unit of background work (scan, metadata sync, cleanup, device sync). Runs through RQ. Can be scheduled (cron), watcher-triggered, or manual (see [Scheduled Tasks](../administration/scheduled-tasks.md)).
 
-**Title id**: the platform-native identifier read out of a ROM's own binary during a scan, on the platforms that have one. Identifies a game where RomM doesn't hash, and says where the game writes its saves (see [Scanning & Watcher](../administration/scanning-and-watcher.md#title-ids-read-from-the-binary)).
-
 **Tinfoil**: Nintendo Switch homebrew that installs from RomM's feed (see [Tinfoil](../ecosystem/feed-clients.md#tinfoil)).
+
+**Title id**: the platform-native identifier read out of a ROM's own binary during a scan, on the platforms that have one. Identifies a game where RomM doesn't hash, and says where the game writes its saves (see [Scanning & Watcher](../administration/scanning-and-watcher.md#title-ids-read-from-the-binary)).
 
 **User**: an account. Its role is either User (access from a permission group plus per-user overrides) or Admin (full access). Can be created by the Setup Wizard, an admin, an invite link, or OIDC auto-provisioning (see [Users & Roles](../administration/users-and-roles.md)).
 

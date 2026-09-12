@@ -13,7 +13,7 @@ If a platform can do both, you get separate actions for browser play and streami
 
 <!-- prettier-ignore -->
 !!! info "Coming from the per-emulator broker mods?"
-    A container without `protocol: webstation` still works, logs a startup warning, and will stop being supported in a future release. See [Migrating to webstation](emulator-streaming-migration.md) for the config rewrite.
+    A container without `protocol: webstation` still works, but will stop being supported in a future release. See [Migrating to webstation](emulator-streaming-migration.md) for the config rewrite.
 
 ## How a session works
 
@@ -149,7 +149,7 @@ Four of those keys have consequences worth knowing before you pick their values:
 - `host` is what the browser connects to, and it has to be **HTTPS**: Selkies WebRTC won't run without a secure context. Use the container's self-signed cert, or put it behind a [reverse proxy with TLS](../install/reverse-proxy.md). A path like `/streaming` works if you've proxied the container onto RomM's own origin, but then you must set `broker_host` yourself, because a bare path gives RomM no address to call.
 - `broker_host` is only ever called server to server, so plain HTTP is fine. Pooled containers are identified by it, so two serving the same platform need different ones.
 - `library_path` is where the container sees your library. Don't change it casually, since your state and save history is keyed to it.
-- `emulator` names what your states and memory cards are filed under. Set it explicitly, because it otherwise falls back to `label`, and renaming a label later orphans everything stored under the old name.
+- The per-platform `emulator` names what that platform's states and memory cards are filed under, so renaming it later orphans everything stored under the old name. A container-level `emulator` is ignored whenever `platforms` is used.
 
 ### Set the shared secret
 
