@@ -120,7 +120,7 @@ uv sync --all-extras --dev
 docker compose up -d
 ```
 
-Two optional stacks have their own compose files. They're separate projects, so a `down --remove-orphans` in one can't take the dev stack with it:
+Two optional stacks have their own compose files:
 
 ```sh
 docker compose -f docker-compose.oidc.yml up -d      # Authentik, for testing OIDC

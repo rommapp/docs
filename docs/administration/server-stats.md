@@ -11,14 +11,14 @@ description: "The numbers Mason! What do they mean?"
 
 ### Top-line counts
 
-| Metric           | What it counts                                                                                                                                              |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Platforms**    | Every platform RomM has seen at least one ROM for. Deleted platforms don't count.                                                                           |
-| **Games**        | Total ROM entries. A multi-file game (folder with multiple files) counts as 1, and a [physical game](../using/physical-games.md) counts as 1 at zero bytes. |
-| **Saves**        | User save files across all users.                                                                                                                           |
-| **States**       | Emulator save states across all users.                                                                                                                      |
-| **Screenshots**  | User-uploaded screenshots. Provider-fetched screenshots aren't counted here.                                                                                |
-| **Size on disk** | Total disk usage of all ROMs, saves, states, and screenshots.                                                                                               |
+| Metric           | What it counts                                                                            |
+| ---------------- | ----------------------------------------------------------------------------------------- |
+| **Platforms**    | Every platform RomM has seen at least one ROM for. Deleted platforms don't count.         |
+| **Games**        | Total ROM entries. Multi-file (folder with multiple files) and physical games count as 1. |
+| **Saves**        | User save files across all users.                                                         |
+| **States**       | Emulator save states across all users.                                                    |
+| **Screenshots**  | User-uploaded screenshots. Provider-fetched screenshots aren't counted here.              |
+| **Size on disk** | Total disk usage of all ROMs, saves, states, and screenshots.                             |
 
 ### Per-platform breakdown
 
@@ -28,8 +28,6 @@ Under the summary, it's a table sorted by name, size or game count. For each pla
 - Size on disk (in bytes and by percentage of total)
 - Region distribution (how many games tagged USA, Japan, Europe, World, etc.)
 - Metadata coverage (how many games have metadata from each provider)
-
-Rows link through to the platform, so you're one click from the games behind whichever number looks wrong.
 
 ## API
 

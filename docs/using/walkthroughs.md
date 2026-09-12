@@ -53,7 +53,7 @@ It's kept server-side rather than in the browser, so opening a guide on your pho
 | `GET`    | `/roms/{rom_id}/files/{file_id}/progress` | The requester's reading progress for a document |
 | `PUT`    | `/roms/{rom_id}/files/{file_id}/progress` | Record reading progress                         |
 
-The upload endpoint streams the body and wants the filename in an `x-upload-filename` header, optionally with `x-doc-title` and `x-doc-author`. The progress endpoints always act on the calling user, so there's no user id to pass and no way to read someone else's position.
+The upload endpoint streams the body and wants the filename in an `x-upload-filename` header, optionally with `x-doc-title` and `x-doc-author`. The progress endpoints always act on the calling user, so there's no user ID to pass and no way to read someone else's position.
 
 ## Related
 

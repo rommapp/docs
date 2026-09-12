@@ -182,7 +182,7 @@ filesystem:
 
 ### `filesystem.skip_title_id_extraction`
 
-Skip reading the platform-native title id out of ROM binaries. That id is what identifies a game on the platforms RomM doesn't hash, and it records where the game writes its saves, so expect worse matching on those platforms with this on. See [Title ids read from the binary](../administration/scanning-and-watcher.md#title-ids-read-from-the-binary) for which platforms have one and what the id is used for.
+Skip reading the platform-native Title ID out of ROM binaries. That ID is what identifies a game on the platforms RomM doesn't hash, and it records where the game writes its saves, so expect worse matching on those platforms with this on. See [Title ids read from the binary](../administration/scanning-and-watcher.md#title-ids-read-from-the-binary) for which platforms have one and what the ID is used for.
 
 **Default:** `false`
 

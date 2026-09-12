@@ -55,20 +55,20 @@ See the [reference Docker Compose](quick-start.md) for where `/romm/library` liv
 
 Some games come as **folders** instead of single files, holding multiple discs, DLC, manuals, or patches alongside the game itself. These sub-folder names are recognised and surfaced as tags in the UI, in singular or plural form:
 
-| Folder           | Holds                                                   |
-| ---------------- | ------------------------------------------------------- |
-| `dlc`            | Downloadable content                                    |
-| `update`         | Game updates                                            |
-| `patch`          | Patch files, see [ROM Patcher](../using/rom-patcher.md) |
-| `hack`, `mod`    | Community modifications                                 |
-| `translation`    | Fan translations                                        |
-| `demo`           | Demo builds                                             |
-| `prototype`      | Prototype builds                                        |
-| `manual` \*      | Manuals                                                 |
-| `walkthrough` \* | [Walkthroughs](../using/walkthroughs.md)                |
-| `soundtrack` \*  | Audio tracks for the [Jukebox](../using/jukebox.md)     |
-| `cheat` \*       | Cheat files                                             |
-| `screenshot` \*  | Screenshots                                             |
+| Folder           | Holds                                               |
+| ---------------- | --------------------------------------------------- |
+| `dlc`            | Downloadable content                                |
+| `update`         | Game updates                                        |
+| `patch`          | [Patch files](../using/rom-patcher.md)              |
+| `hack`, `mod`    | Community modifications                             |
+| `translation`    | Fan translations                                    |
+| `demo`           | Demo builds                                         |
+| `prototype`      | Prototype builds                                    |
+| `manual` \*      | Manuals                                             |
+| `walkthrough` \* | [Walkthroughs](../using/walkthroughs.md)            |
+| `soundtrack` \*  | Audio tracks for the [Jukebox](../using/jukebox.md) |
+| `cheat` \*       | Cheat files                                         |
+| `screenshot` \*  | Screenshots                                         |
 
 \* These never contain a ROM binary, so hashing and title-id extraction skip them.
 
@@ -237,7 +237,7 @@ Game identity is content-based, so a template isn't a cage: move or rename a gam
 
 <!-- prettier-ignore -->
 !!! warning "Relocation needs an identity"
-    Matching a moved file to its entry needs all three of its hashes (CRC, MD5, SHA-1), so hashing has to be on (see [`filesystem.skip_hash_calculation`](../reference/configuration-file.md#filesystemskip_hash_calculation)). Platforms RomM doesn't hash (Switch, PS3, PS4, the PC and mobile platforms) fall back to the title id read out of the binary. With neither available, or when two entries missing from the same platform share an identity, the file is imported as a new game and the old entry stays flagged as missing from the filesystem.
+    Matching a moved file to its entry needs all three of its hashes (CRC, MD5, SHA-1), so hashing has to be on (see [`filesystem.skip_hash_calculation`](../reference/configuration-file.md#filesystemskip_hash_calculation)). Platforms RomM doesn't hash (Switch, PS3, PS4, the PC and mobile platforms) fall back to the Title ID read out of the binary. With neither available, or when two entries missing from the same platform share an identity, the file is imported as a new game and the old entry stays flagged as missing from the filesystem.
 
 ### Notes
 

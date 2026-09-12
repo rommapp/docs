@@ -31,7 +31,7 @@ Set the env var and restart the container. The scheduler picks up the new schedu
 
 Most tasks have an `ENABLE_*` environment variable, like `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` which enables the LaunchBox sync. Set both the enable var and its cron var, since a task with an empty cron string has nothing to schedule and stays unscheduled even when enabled.
 
-They're all off by default except one. **Build recommendations index** ships enabled, because both [recommendation](../using/recommendations.md) sections read that index and they'd sit empty without it. Set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` if you'd rather not have either.
+Unlike other tasks, **build recommendations index** ships enabled, because both [recommendation](../using/recommendations.md) sections read that index and they'd sit empty without it. Set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` if you'd rather not have either.
 
 The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup) are always on and have no env vars. Check the [env var reference](../reference/environment-variables.md) for the full list.
 
@@ -64,4 +64,4 @@ On a Raspberry Pi or NAS with 2 GB of RAM and/or a single CPU core:
 - Set `SCAN_WORKERS=1` and `WEB_SERVER_CONCURRENCY=1`, both of which default to `4`
 - Enable the watcher but raise `RESCAN_ON_FILESYSTEM_CHANGE_DELAY` to 30+ minutes
 - Disable image conversion if you don't care about WebP (`ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP=false`)
-- On a big library, set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` and give up the recommendation sections to skip the nightly build
+- On a big library, set `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` to skip the nightly build
