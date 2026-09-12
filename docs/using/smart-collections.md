@@ -25,22 +25,22 @@ That has two big consequences:
 
 Each takes one or more values. All (except `platform_ids`) also accept a `<field>_logic` companion of `any` (OR, the default) or `all` (AND).
 
-| Field                | Matches                                                                |
-| -------------------- | ---------------------------------------------------------------------- |
-| `platform_ids`       | One or more platforms                                                  |
-| `genres`             | Game genres                                                            |
-| `franchises`         | Franchises                                                             |
-| `collections`        | Membership in named collections                                        |
-| `companies`          | The combined company credit                                            |
-| `publishers`         | Publishers specifically                                                |
-| `developers`         | Developers specifically                                                |
-| `age_ratings`        | ESRB / PEGI categorical labels                                         |
-| `regions`            | Region tags                                                            |
-| `languages`          | Language tags                                                          |
-| `tags`               | Arbitrary filename tags                                                |
+| Field                | Matches                                      |
+| -------------------- | -------------------------------------------- |
+| `platform_ids`       | One or more platforms                        |
+| `genres`             | Game genres                                  |
+| `franchises`         | Franchises                                   |
+| `collections`        | Membership in named collections              |
+| `companies`          | The combined company credit                  |
+| `publishers`         | Publishers specifically                      |
+| `developers`         | Developers specifically                      |
+| `age_ratings`        | ESRB / PEGI categorical labels               |
+| `regions`            | Region tags                                  |
+| `languages`          | Language tags                                |
+| `tags`               | Arbitrary filename tags                      |
 | `statuses`           | Your play status (backlogged, playing, etc.) |
-| `player_counts`      | Supported player counts                                                |
-| `metadata_providers` | Which provider matched the game                                        |
+| `player_counts`      | Supported player counts                      |
+| `metadata_providers` | Which provider matched the game              |
 
 ### Boolean
 
@@ -68,19 +68,7 @@ Each takes one or more values. All (except `platform_ids`) also accept a `<field
 
 ## Game length
 
-Lengths come from [HowLongToBeat](../getting-started/metadata-providers.md#howlongtobeat), which means you need `HLTB_API_ENABLED=true` and a scan that actually matched the game. The number used is **main story** time, not completionist.
-
-Give it a floor, a ceiling, or both:
-
-```text
-Main story: 2 to 8 hours
-Main story: up to 4 hours
-Main story: 40 hours or more
-```
-
-The gallery sorts and filters by length too, so for a one-off question like "what can I finish this weekend" you don't need a collection at all.
-
-One catch: a game HowLongToBeat never matched has no length at all, and a length filter drops it. If your coverage is patchy you'll hide more than you meant to. An **Unmatched** scan with HowLongToBeat selected will fill in the gaps.
+Lengths come from [HowLongToBeat](../getting-started/metadata-providers.md#howlongtobeat), so you need `HLTB_API_ENABLED=true` and a scan that matched the game. It's **main story** time, and you can set a floor, a ceiling, or both. The gallery sorts and filters by it too, without needing a collection. Games HowLongToBeat never matched have no length at all and drop out of a length filter entirely.
 
 ## Examples
 
