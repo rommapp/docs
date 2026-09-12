@@ -539,11 +539,11 @@ emulatorjs:
 
 Most settings under `emulatorjs.settings` and `emulatorjs.controls` can be overridden by users in-game (Menu → Settings, Menu → Controls). Per-user values take precedence, the config.yml setting is the fallback.
 
-| Where the setting lives           | Who it affects       | Survives upgrades? |
-| --------------------------------- | -------------------- | ------------------ |
-| Server owner: `config.yml`/env vars   | Everyone, as default | Yes                |
-| Per-user: in-game Menu → Settings | Just that user       | Yes                |
-| Per-user: in-game Menu → Controls | Just that user       | Yes                |
+| Where the setting lives             | Who it affects       | Survives upgrades? |
+| ----------------------------------- | -------------------- | ------------------ |
+| Server owner: `config.yml`/env vars | Everyone, as default | Yes                |
+| Per-user: in-game Menu → Settings   | Just that user       | Yes                |
+| Per-user: in-game Menu → Controls   | Just that user       | Yes                |
 
 ---
 
