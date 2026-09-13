@@ -1,9 +1,7 @@
 # Pinned upstream sources for the docs generators.
 #
-# Bumped automatically by .github/workflows/romm-release-bump.yml, which polls
-# daily for new rommapp/romm releases and opens a PR with the regenerated
-# snippets. Hand-edit only to pin a pre-release or roll back, and re-run the
-# generators afterwards:
+# Bump this by hand when a new rommapp/romm release lands, then re-run the
+# generators:
 #
 #     uv run python -m scripts.gen_env_vars
 #     uv run python -m scripts.gen_scheduled_tasks
