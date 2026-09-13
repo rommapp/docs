@@ -98,8 +98,6 @@ Alternatively, grant `SUPER` to the RomM user itself:
 GRANT SUPER ON *.* TO 'romm-user'@'%';
 ```
 
-`SUPER` is the only grant that lifts this check. The finer-grained privileges MariaDB split out of it in 10.5, `BINLOG ADMIN` included, leave the denial in place.
-
 Restart RomM once the change is in place. A migration that failed this way is safe to re-run, so it picks up from wherever it stopped and completes.
 
 ## PostgreSQL
