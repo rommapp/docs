@@ -161,10 +161,11 @@
 
 ### Assets
 
-| Variable                      | Default     | Required | Description                                                                        |
-| ----------------------------- | ----------- | :------: | ---------------------------------------------------------------------------------- |
-| `MAX_ASSET_UPLOAD_SIZE_BYTES` | `536870912` |          | Max size of a save/state/screenshot upload request in bytes (0 disables the limit) |
-| `MAX_AUTOCLEANUP_LIMIT`       | `100`       |          | Max number of saves a client can keep per slot when autocleanup is on (minimum 1)  |
+| Variable                      | Default     | Required | Description                                                                                 |
+| ----------------------------- | ----------- | :------: | ------------------------------------------------------------------------------------------- |
+| `MAX_ASSET_UPLOAD_SIZE_BYTES` | `536870912` |          | Max size of a save/state/screenshot upload request in bytes (0 disables the limit)          |
+| `MAX_AUTOCLEANUP_LIMIT`       | `100`       |          | Max number of saves a client can keep per slot when autocleanup is on (minimum 1)           |
+| `MAX_SAVES_PER_SLOT`          | `50`        |          | Versions the server keeps per save slot, newest first, on every slotted upload (0 disables) |
 
 ### Logging
 
@@ -176,16 +177,16 @@
 
 ### Web Server
 
-| Variable                           | Default | Required | Description                                                        |
-| ---------------------------------- | ------- | :------: | ------------------------------------------------------------------ |
-| `WEB_SERVER_CONCURRENCY`           | `4`     |          | Number of API worker processes, raise for several concurrent users |
-| `WEB_SERVER_TIMEOUT`               | `300`   |          | Timeout for web server requests in seconds                         |
-| `WEB_SERVER_KEEPALIVE`             | `2`     |          | Keep-Alive connection wait time in seconds                         |
-| `WEB_SERVER_MAX_REQUESTS`          | `1000`  |          | Maximum requests a worker processes before restarting              |
-| `WEB_SERVER_MAX_REQUESTS_JITTER`   | `100`   |          | Random jitter added to max requests value                          |
-| `WEB_SERVER_WORKER_CONNECTIONS`    | `1000`  |          | Maximum simultaneous clients per worker process                    |
-| `WEB_SERVER_GUNICORN_WAIT_SECONDS` | `30`    |          | Seconds to wait for Gunicorn to start before giving up             |
-| `IPV4_ONLY`                        | `false` |          | Bind only to IPv4                                                  |
+| Variable                           | Default | Required | Description                                                                              |
+| ---------------------------------- | ------- | :------: | ---------------------------------------------------------------------------------------- |
+| `WEB_SERVER_CONCURRENCY`           | `4`     |          | Number of API worker processes, raise for several concurrent users                       |
+| `WEB_SERVER_TIMEOUT`               | `300`   |          | Timeout for web server requests in seconds                                               |
+| `WEB_SERVER_KEEPALIVE`             | `65`    |          | Keep-Alive connection wait time in seconds, keep above nginx's 60s upstream idle timeout |
+| `WEB_SERVER_MAX_REQUESTS`          | `1000`  |          | Maximum requests a worker processes before restarting                                    |
+| `WEB_SERVER_MAX_REQUESTS_JITTER`   | `100`   |          | Random jitter added to max requests value                                                |
+| `WEB_SERVER_WORKER_CONNECTIONS`    | `1000`  |          | Maximum simultaneous clients per worker process                                          |
+| `WEB_SERVER_GUNICORN_WAIT_SECONDS` | `30`    |          | Seconds to wait for Gunicorn to start before giving up                                   |
+| `IPV4_ONLY`                        | `false` |          | Bind only to IPv4                                                                        |
 
 ### Proxy
 
