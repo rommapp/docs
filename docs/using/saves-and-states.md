@@ -24,14 +24,13 @@ If a ROM has multiple saves or states, RomM presents a picker before the emulato
 
 Saves and states you create in the emulator are written straight back to the server, so there's no "forgot to upload" step. The player also asks you to confirm before navigating away from a running game, so you don't lose unsaved progress.
 
-EmulatorJS' own "Export save file" and "Import save file" buttons are hidden, because RomM handles both for you. In their place:
+In-game, the Export and Import save buttons are replaced by a single **Load save or state** picker, which opens with the same Saves and States tabs as the launch screen. A state applies on the fly; picking a save restarts the game from that save. Either one replaces what's running, so you're asked to confirm first.
 
-- **Load save or state** opens a picker with the same Saves and States tabs as the launch screen. A state applies on the fly; picking a save writes it and restarts the game so it boots from it. Either one replaces what's running, so you're asked to confirm first.
-- **Sync save** appears only when [automatic save sync](#automatic-save-sync) is off, and uploads the current save on demand.
+A **Sync save** button appears alongside it when [automatic save sync](#automatic-save-sync) is off, to upload the current save on demand.
 
 ## Automatic save sync
 
-The player watches the emulator's save memory while you play and uploads a new version seconds after the game writes one. A closed tab, a browser crash or a laptop going to sleep costs you nothing, and leaving the player uploads anything the server doesn't have yet.
+A save syncs automatically with the server seconds after it's stored in the browser. The player watches the emulator's SRAM while you play and uploads a new version as soon as one appears, so your progress is saved even if the tab is closed or the browser crashes. Leaving the player uploads anything the server doesn't have yet.
 
 This is on by default. Set [`emulatorjs.auto_save_sync`](../reference/configuration-file.md#emulatorjsauto_save_sync) to `false` to go back to uploading only on **save and quit**:
 
@@ -46,14 +45,14 @@ An upload the server doesn't take (it's down, the connection dropped) is held in
 
 ## Save slots
 
-A save belongs to a **slot**, the same model the [sync clients](#device-sync) use, so the same slots show up whether you played in the browser or on a device.
+Saves are organized into slots, the same model used by the [sync clients](#device-sync), so the same slots show up whether you played in the browser or on a device.
 
-- **`autosave`** is where ordinary play goes. It keeps a capped history, so it prunes itself as you play.
-- **Named slots** are yours to create from the launch screen, and keep every version. Use one when you want a checkpoint you can always come back to.
+- **`autosave`** is where ordinary play goes, and it keeps a capped history, so it prunes itself as you play.
+- **A named slot**, created on launch, keeps every version. Use one when you want a checkpoint you can always come back to.
 
-Each slot lists its newest version first, tagged **Latest**, with older versions folded behind a toggle. A version made in the browser carries a screenshot of the moment it was written, shown as its thumbnail.
+Each slot lists its newest version first, tagged **Latest**, with older versions folded behind a toggle. A version written in the browser carries a screenshot from the moment it was written, shown as its thumbnail.
 
-Server owners can cap how many versions a slot keeps with `MAX_SAVES_PER_SLOT` (50 by default, `0` to disable the cap). A client that asks for a tighter limit of its own gets the tighter of the two. Saves uploaded without a slot, such as one you imported by hand, are never pruned.
+The server prunes a slot to `MAX_SAVES_PER_SLOT` (50 by default, `0` to disable the cap). A client that asks for a tighter limit of its own gets the tighter of the two. Saves uploaded without a slot, such as one you imported by hand, are never pruned.
 
 ## Device sync
 
