@@ -437,13 +437,13 @@ Core names have to be exact, and anything you don't list keeps EmulatorJS's own 
 
 ### `emulatorjs.auto_save_sync`
 
-Upload a save every time the emulator writes one, rather than only on save-and-quit. Closing the tab or suffering a crash mid-game then loses nothing.
+Upload a save seconds after the emulator writes one, rather than only on save-and-quit. Closing the tab or suffering a crash mid-game then loses nothing. Set it to `false` and the emulator's save button comes back as **Sync save**, for uploading on demand. See [Automatic save sync](../using/saves-and-states.md#automatic-save-sync).
 
-**Default:** `false`
+**Default:** `true`
 
 ```yaml
 emulatorjs:
-    auto_save_sync: true
+    auto_save_sync: false
 ```
 
 ### `emulatorjs.disable_auto_unload`

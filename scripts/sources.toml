@@ -12,4 +12,4 @@
 repo = "rommapp/romm"
 # Set to a tag (e.g. "v5.0.0") or a full SHA. Generators fetch raw files
 # from raw.githubusercontent.com/${repo}/${ref}/...
-ref = "839605e679bad7a6b552c4219627f68c32e41e29"
+ref = "5.3.0-beta.1"

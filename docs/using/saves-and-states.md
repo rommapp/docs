@@ -22,18 +22,38 @@ If a ROM has multiple saves or states, RomM presents a picker before the emulato
 
 ## In-emulator behaviour
 
-In-game save/save-state/load-state actions are written straight back to the server, so there's no "forgot to upload" step. The player will also ask you to confirm before navigating away from a running game, which prevents losing any unsaved progress.
+Saves and states you create in the emulator are written straight back to the server, so there's no "forgot to upload" step. The player also asks you to confirm before navigating away from a running game, so you don't lose unsaved progress.
+
+EmulatorJS' own "Export save file" and "Import save file" buttons are hidden, because RomM handles both for you. In their place:
+
+- **Load save or state** opens a picker with the same Saves and States tabs as the launch screen. A state applies on the fly; picking a save writes it and restarts the game so it boots from it. Either one replaces what's running, so you're asked to confirm first.
+- **Sync save** appears only when [automatic save sync](#automatic-save-sync) is off, and uploads the current save on demand.
 
 ## Automatic save sync
 
-Normally your save gets uploaded when you **save and quit**. Close the tab instead, or crash the browser, or shut the laptop, and the save never leaves the device. Enable [`emulatorjs.auto_save_sync`](../reference/configuration-file.md#emulatorjsauto_save_sync) and the player uploads every time the emulator writes a save, so it doesn't matter how the session ends:
+The player watches the emulator's save memory while you play and uploads a new version seconds after the game writes one. A closed tab, a browser crash or a laptop going to sleep costs you nothing, and leaving the player uploads anything the server doesn't have yet.
+
+This is on by default. Set [`emulatorjs.auto_save_sync`](../reference/configuration-file.md#emulatorjsauto_save_sync) to `false` to go back to uploading only on **save and quit**:
 
 ```yaml
 emulatorjs:
-    auto_save_sync: true
+    auto_save_sync: false
 ```
 
 Each upload is the entire save file, and some games save constantly. On a small instance you won't notice, but you might with a lot of users and large saves. This is instance-wide, set by the server owner, and only affects in-browser play. Save **states** already upload as you create them and aren't affected either way.
+
+An upload the server doesn't take (it's down, the connection dropped) is held in your browser with the screenshot taken when the game wrote it, and retried later. The player tells you whether it was kept, so a "kept for later" message means the progress is safe even though the save isn't on the server yet. Held saves belong to the account that made them, so a shared browser won't hand your progress to whoever signs in next.
+
+## Save slots
+
+A save belongs to a **slot**, the same model the [sync clients](#device-sync) use, so the same slots show up whether you played in the browser or on a device.
+
+- **`autosave`** is where ordinary play goes. It keeps a capped history, so it prunes itself as you play.
+- **Named slots** are yours to create from the launch screen, and keep every version. Use one when you want a checkpoint you can always come back to.
+
+Each slot lists its newest version first, tagged **Latest**, with older versions folded behind a toggle. A version made in the browser carries a screenshot of the moment it was written, shown as its thumbnail.
+
+Server owners can cap how many versions a slot keeps with `MAX_SAVES_PER_SLOT` (50 by default, `0` to disable the cap). A client that asks for a tighter limit of its own gets the tighter of the two. Saves uploaded without a slot, such as one you imported by hand, are never pruned.
 
 ## Device sync
 
@@ -77,7 +97,7 @@ If you use [RetroAchievements](retroachievements.md) in hardcore mode, loading a
 
 - **Save uploaded but the game doesn't see it**: wrong format for the core. Check the compatibility table above, then re-upload or switch cores.
 - **State loads a corrupted frame**: state was saved by a different build of the core. If the emulator bundle updated, old states may not load cleanly. Re-create or start a fresh save.
-- **Save disappears after play**: the emulator didn't flush on quit. Use the in-game save feature instead of just closing the browser.
+- **Save disappears after play**: the emulator didn't write a save at all. Use the in-game save feature rather than relying on the emulator flushing on its own, and check that [automatic save sync](#automatic-save-sync) is on.
 - **Can't upload, "file too large"**: reverse proxy limit. Raise `client_max_body_size`/`proxy-body-size` (see [Reverse Proxy](../install/reverse-proxy.md)).
 
 More in [Troubleshooting](../troubleshooting/index.md).
