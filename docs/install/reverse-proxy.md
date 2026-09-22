@@ -241,6 +241,29 @@ What each block buys you:
 !!! note "Memory use"
     `proxy_buffers 16 64k` reserves up to 1 MB per in-flight proxied response. On a small box serving many simultaneous downloads, drop to `8 32k` (256 KB each) if memory is tight.
 
+## Set `FORWARDED_ALLOW_IPS` for your proxy
+
+The container runs its own nginx in front of gunicorn, and that nginx is the only hop gunicorn trusts by default. Every request it forwards carries an `X-Forwarded-For` header the bundled nginx built by appending the address the connection came from, so with an outer proxy the last entry is your proxy. Gunicorn reads that list from the right and stops at the first address it does not trust, which is your proxy, so every visitor behind it is seen as one client.
+
+That is not only a logging detail. The client IP keys the rate limits on metadata heartbeats, device pairing and client tokens, and it is part of the fingerprint that groups browsers into web devices. One shared address means one shared bucket, so a single caller can lock everyone else out for the rest of the window, and every browser behind the proxy is filed under one device.
+
+Append your proxy's address to the default rather than replacing it:
+
+```yaml
+environment:
+    - FORWARDED_ALLOW_IPS=127.0.0.1,172.18.0.0/16
+```
+
+The value is a comma-separated list of addresses and CIDR ranges. A range is the more durable choice for a proxy in another container, whose address changes when it is recreated. To find yours, look at the last entry of `X-Forwarded-For` on a real request: your proxy's own access log shows it, and the bundled nginx logs the address it saw as well (`docker logs romm`).
+
+<!-- prettier-ignore -->
+!!! warning "Keep `127.0.0.1`, and don't reach for `*`"
+    `127.0.0.1` is the bundled nginx, the only hop gunicorn talks to directly, so leave it in the list. `*` trusts every hop, which makes gunicorn fall back to the leftmost entry of the header, and that one is whatever the client sent.
+
+<!-- prettier-ignore -->
+!!! note "Why listing your proxy is still safe"
+    Addresses to the left of the first untrusted hop are never read, so adding your proxy to the list does not hand clients a way to spoof the address they are seen as.
+
 ## Set `ROMM_BASE_URL` behind HTTPS
 
 Once you're proxying through HTTPS, set `ROMM_BASE_URL` in the container's environment so generated links (QR codes, invite links, OIDC redirects) use the public URL:
@@ -259,8 +282,8 @@ Two optional env vars tighten browser security once you're on HTTPS:
 ```yaml
 environment:
     - ROMM_SESSION_SECURE_COOKIE=true
-    - ROMM_CORS_ALLOWED_ORIGINS=https://romm.mysite.com
+    - ROMM_CORS_ALLOWED_ORIGINS=https://companion.mysite.com
 ```
 
 - `ROMM_SESSION_SECURE_COOKIE` marks the session and CSRF cookies `Secure` so browsers only send them over HTTPS. Leave it `false` if you still reach the instance over plain HTTP, or logins will silently fail.
-- `ROMM_CORS_ALLOWED_ORIGINS` is a comma-separated allowlist of origins permitted to call the API from a browser. An empty value (the default) allows any origin, so set it to your public URL (plus any companion-app origins) when you want to lock cross-origin requests down.
+- `ROMM_CORS_ALLOWED_ORIGINS` is a comma-separated allowlist of origins permitted to call the API from a browser. An empty value (the default) allows none, which is what a normal deployment wants: the UI is served from the same origin as the API and needs no entry. List the origins of any other browser app that calls this instance. `*` allows any origin but never credentials, since a response marked with a wildcard origin is not exposed to a credentialed request, so a wildcard only reaches endpoints that need no login.
