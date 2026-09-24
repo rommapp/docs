@@ -23,7 +23,7 @@ We use [Trunk](https://trunk.io) for linting, which combines multiple linters wi
 curl https://get.trunk.io -fsSL | bash
 ```
 
-Alternative installation methods can be found [here](https://docs.trunk.io/check/usage#install-the-cli). On commit, the linter will run automatically. To run it manually, use the following commands:
+For alternative installation methods, see the [Trunk CLI install guide](https://docs.trunk.io/check/usage#install-the-cli). On commit, the linter will run automatically. To run it manually, use the following commands:
 
 ```sh
 trunk fmt
