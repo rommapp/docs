@@ -112,4 +112,3 @@ For problems with the VPS or the marketplace image, open a ticket from your Clou
 
 - [Scanning Troubleshooting](../troubleshooting/scanning.md) for matching and ingest problems
 - [Authentication Troubleshooting](../troubleshooting/authentication.md) for login issues
-
