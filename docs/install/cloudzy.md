@@ -24,13 +24,31 @@ The library, assets, and config live in directories under `/root/romm`, while th
 
 ## Install
 
-The button above opens a cart with the RomM image and a 2 GB plan preselected, and the [marketplace listing](https://cloudzy.com/marketplace/romm/) is the other way in. Cloudzy provisions the VPS and brings the stack up.
+The button above opens a cart with the RomM image and a 2 GB plan preselected. The other way in is the [marketplace listing](https://cloudzy.com/marketplace/romm/), where **Deploy RomM on a VPS** leads to the same cart.
+
+![RomM on the Cloudzy Marketplace](../resources/cloudzy/marketplace.png)
+
+The order summary on the right lists **RomM** as the image. Pick a plan with at least 2 GB of RAM and a region close to you, then click **Deploy Now**, signing in or creating a Cloudzy account when prompted.
+
+![Choosing a plan and region for the RomM image](../resources/cloudzy/configure.png)
+
+Cloudzy then provisions the VPS and brings the stack up, which takes about a minute.
+
+![Cloudzy provisioning the RomM server](../resources/cloudzy/provisioning.png)
+
+When it finishes, the page lists the server's IP addresses and its `root` credentials. Save them somewhere safe, since you'll need them to open RomM and to connect over SSH.
+
+![The new RomM server with its IP addresses and root credentials](../resources/cloudzy/vps-created.png)
 
 Once it's ready, open `http://<server-ip>`. The first start takes a few minutes while the containers initialise, after which RomM hands you to the setup wizard, where the first account you create becomes the administrator.
 
 ## Managing the stack
 
-Everything after install happens over SSH, using the server's IP and its `root` credentials. The compose file lives at `/root/romm/docker-compose.yml`, so the usual commands work from that directory:
+Everything after install happens over SSH, using the server's IP and its `root` credentials. The server's **Access** tab in the Cloudzy dashboard always shows the IP and username, and **Reset Cloud VPS Password** there sets a new `root` password if you lose the original.
+
+![The Access tab for the RomM server in the Cloudzy dashboard](../resources/cloudzy/access-tab.png)
+
+The compose file lives at `/root/romm/docker-compose.yml`, so the usual commands work from that directory:
 
 ```bash
 cd /root/romm
