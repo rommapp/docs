@@ -241,6 +241,29 @@ What each block buys you:
 !!! note "Memory use"
     `proxy_buffers 16 64k` reserves up to 1 MB per in-flight proxied response. On a small box serving many simultaneous downloads, drop to `8 32k` (256 KB each) if memory is tight.
 
+## Set `FORWARDED_ALLOW_IPS` for your proxy
+
+Inside the container, a bundled nginx sits in front of gunicorn, and by default gunicorn only trusts that nginx. When you put your own reverse proxy in front, the bundled nginx appends your proxy's address to `X-Forwarded-For` before passing the request on. Gunicorn reads the header from right to left and takes the first address it doesn't trust as the client. That address is your proxy, so every request looks like it came from the proxy instead of the real visitor.
+
+The client IP matters beyond the logs. RomM uses it to rate-limit metadata heartbeats, device pairing and client tokens, and as part of the fingerprint that identifies a browser as a web device. When every visitor shares the proxy's address, they all share one rate-limit bucket, and a single user hitting the limit blocks everyone else until the window resets. Every browser behind the proxy also ends up registered as the same device.
+
+Append your proxy's address to the default rather than replacing it:
+
+```yaml
+environment:
+    - FORWARDED_ALLOW_IPS=127.0.0.1,172.18.0.0/16
+```
+
+The value is a comma-separated list of addresses and CIDR ranges. If your proxy runs in another container, use a range, because the container gets a new address each time it's recreated. To find the address, check the last entry of `X-Forwarded-For` on a real request. Your proxy's access log shows it, and so does the bundled nginx log (`docker logs romm`).
+
+<!-- prettier-ignore -->
+!!! warning "Keep `127.0.0.1`, and don't reach for `*`"
+    `127.0.0.1` is the bundled nginx, the only hop gunicorn talks to directly, so leave it in the list. `*` trusts every hop, which makes gunicorn fall back to the leftmost entry of the header, and that one is whatever the client sent.
+
+<!-- prettier-ignore -->
+!!! note "Why listing your proxy is still safe"
+    Addresses to the left of the first untrusted hop are never read, so adding your proxy to the list does not hand clients a way to spoof the address they are seen as.
+
 ## Set `ROMM_BASE_URL` behind HTTPS
 
 Once you're proxying through HTTPS, set `ROMM_BASE_URL` in the container's environment so generated links (QR codes, invite links, OIDC redirects) use the public URL:
@@ -259,8 +282,8 @@ Two optional env vars tighten browser security once you're on HTTPS:
 ```yaml
 environment:
     - ROMM_SESSION_SECURE_COOKIE=true
-    - ROMM_CORS_ALLOWED_ORIGINS=https://romm.mysite.com
+    - ROMM_CORS_ALLOWED_ORIGINS=https://companion.mysite.com
 ```
 
 - `ROMM_SESSION_SECURE_COOKIE` marks the session and CSRF cookies `Secure` so browsers only send them over HTTPS. Leave it `false` if you still reach the instance over plain HTTP, or logins will silently fail.
-- `ROMM_CORS_ALLOWED_ORIGINS` is a comma-separated allowlist of origins permitted to call the API from a browser. An empty value (the default) allows any origin, so set it to your public URL (plus any companion-app origins) when you want to lock cross-origin requests down.
+- `ROMM_CORS_ALLOWED_ORIGINS` is a comma-separated list of origins allowed to call the API from a browser. It's empty by default, which blocks every other origin, and most deployments can leave it that way because the UI and the API share an origin. Add an entry only for another browser app that calls this instance. `*` allows any origin, but browsers won't hand a wildcard response to a request that carries credentials, so it only works for endpoints that don't need a login.
