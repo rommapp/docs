@@ -3968,10 +3968,19 @@
 <li>A Cloudzy VPS plan with at least 2 GB of RAM, which is the image's stated minimum. Your library shares the server's disk, so pick a plan whose storage fits your collection.</li>
 </ul>
 <h2 id="install">Install</h2>
-<p>The button above opens a cart with the RomM image and a 2 GB plan preselected, and the <a href="https://cloudzy.com/marketplace/romm/">marketplace listing</a> is the other way in. Cloudzy provisions the VPS and brings the stack up.</p>
+<p>The button above opens a cart with the RomM image and a 2 GB plan preselected. The other way in is the <a href="https://cloudzy.com/marketplace/romm/">marketplace listing</a>, where <strong>Deploy RomM on a VPS</strong> leads to the same cart.</p>
+<p><a class="glightbox" href="../../resources/cloudzy/marketplace.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="RomM on the Cloudzy Marketplace" src="../../resources/cloudzy/marketplace.png"></a></p>
+<p>The order summary on the right lists <strong>RomM</strong> as the image. Pick a plan with at least 2 GB of RAM and a region close to you, then click <strong>Deploy Now</strong>, signing in or creating a Cloudzy account when prompted.</p>
+<p><a class="glightbox" href="../../resources/cloudzy/configure.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Choosing a plan and region for the RomM image" src="../../resources/cloudzy/configure.png"></a></p>
+<p>Cloudzy then provisions the VPS and brings the stack up, which takes about a minute.</p>
+<p><a class="glightbox" href="../../resources/cloudzy/provisioning.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Cloudzy provisioning the RomM server" src="../../resources/cloudzy/provisioning.png"></a></p>
+<p>When it finishes, the page lists the server's IP addresses and its <code>root</code> credentials. Save them somewhere safe, since you'll need them to open RomM and to connect over SSH.</p>
+<p><a class="glightbox" href="../../resources/cloudzy/vps-created.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The new RomM server with its IP addresses and root credentials" src="../../resources/cloudzy/vps-created.png"></a></p>
 <p>Once it's ready, open <code>http://&lt;server-ip&gt;</code>. The first start takes a few minutes while the containers initialise, after which RomM hands you to the setup wizard, where the first account you create becomes the administrator.</p>
 <h2 id="managing-the-stack">Managing the stack</h2>
-<p>Everything after install happens over SSH, using the server's IP and its <code>root</code> credentials. The compose file lives at <code>/root/romm/docker-compose.yml</code>, so the usual commands work from that directory:</p>
+<p>Everything after install happens over SSH, using the server's IP and its <code>root</code> credentials. The server's <strong>Access</strong> tab in the Cloudzy dashboard always shows the IP and username, and <strong>Reset Cloud VPS Password</strong> there sets a new <code>root</code> password if you lose the original.</p>
+<p><a class="glightbox" href="../../resources/cloudzy/access-tab.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The Access tab for the RomM server in the Cloudzy dashboard" src="../../resources/cloudzy/access-tab.png"></a></p>
+<p>The compose file lives at <code>/root/romm/docker-compose.yml</code>, so the usual commands work from that directory:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>/root/romm
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w">   </span><span class="c1"># follow logs</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w">   </span><span class="c1"># restart the stack</span>
@@ -4035,7 +4044,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2026-09-11T20:39:04+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2026-09-11</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2026-09-24T11:52:24+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2026-09-24</span>
   </span>
 
     
