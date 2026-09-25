@@ -19,7 +19,7 @@ This is a reference for the protocol RomM uses for bidirectional sync with compa
 The sync endpoints accept either:
 
 - a [Client API Token](client-api-tokens.md): `Authorization: Bearer rmm_...`
-- a normal web session: the session cookie plus the CSRF header, as described in [API Authentication](api-authentication.md). RomM Desktop uses this.
+- a normal web session: the session cookie plus the CSRF header, as described in [API Authentication](api-authentication.md).
 
 Required scopes:
 
@@ -54,20 +54,20 @@ Content-Type: application/json
 }
 ```
 
-| Field             | Notes                                                                                          |
-| ----------------- | ---------------------------------------------------------------------------------------------- |
-| `name`            | Display name.                                                                                  |
-| `platform`        | Device platform or OS.                                                                         |
-| `client`          | Short slug for the app (for example `desktop`). The activity feed shows it as the device type. |
-| `client_version`  | App version.                                                                                   |
-| `ip_address`      | Device IP address.                                                                             |
-| `mac_address`     | Used to match an existing device.                                                              |
-| `hostname`        | Used to match an existing device.                                                              |
-| `sync_mode`       | `api`, `file_transfer` or `push_pull`.                                                         |
-| `sync_config`     | Mode-specific settings.                                                                        |
-| `allow_existing`  | Default `true`. Return a matching existing device instead of creating one.                     |
-| `allow_duplicate` | Default `false`. `true` always creates a new device and turns off `allow_existing`.            |
-| `reset_syncs`     | Default `false`.                                                                               |
+| Field             | Notes                                                                                        |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| `name`            | Display name.                                                                                |
+| `platform`        | Device platform or OS.                                                                       |
+| `client`          | Short slug for the app (for example `grout`). The activity feed shows it as the device type. |
+| `client_version`  | App version.                                                                                 |
+| `ip_address`      | Device IP address.                                                                           |
+| `mac_address`     | Used to match an existing device.                                                            |
+| `hostname`        | Used to match an existing device.                                                            |
+| `sync_mode`       | `api`, `file_transfer` or `push_pull`.                                                       |
+| `sync_config`     | Mode-specific settings.                                                                      |
+| `allow_existing`  | Default `true`. Return a matching existing device instead of creating one.                   |
+| `allow_duplicate` | Default `false`. `true` always creates a new device and turns off `allow_existing`.          |
+| `reset_syncs`     | Default `false`.                                                                             |
 
 Registration is idempotent. The server matches an existing device for the user on (`mac_address`, `hostname`, `platform`) and returns it instead of creating a second one, unless `allow_duplicate` is set.
 
@@ -149,7 +149,7 @@ Response:
 
 Operations carry no URLs or local paths: the client builds the request from `save_id` (see [Moving bytes](#moving-bytes)) and decides where the file goes on disk.
 
-A conflict carries no resolution, so the client decides what to do. RomM Desktop keeps both: it uploads its local copy as a `null`-slot (archival) save and never overwrites the slot.
+A conflict carries no resolution, so the client decides what to do. One safe option is to keep both: upload the local copy as a `null`-slot (archival) save instead of overwriting the slot.
 
 ## Moving bytes
 
@@ -208,7 +208,7 @@ Content-Type: application/json
 ```
 
 - `play_sessions` is optional. `save_slot` is optional. `end_time` must be after `start_time`, and both are truncated to whole seconds.
-- Playtime can also be sent on its own to `POST /api/play-sessions`. RomM Desktop always sends it there through a retrying queue, so playtime is still recorded when a sync fails.
+- Playtime can also be sent on its own to `POST /api/play-sessions`. Sending it there (with retries) means playtime is still recorded when a sync fails.
 - The response is `{ session, play_session_ingest }`.
 - Completing a session that isn't pending or in progress returns `400`.
 
@@ -231,4 +231,4 @@ See the [API Reference](api-reference.md) for their full schemas.
 - [API Authentication](api-authentication.md): general auth primer
 - [API Reference](api-reference.md): full endpoint catalogue
 - [SSH Sync](ssh-sync.md): alternative transport
-- [Argosy](../ecosystem/first-party-apps.md#argosy-launcher), [Grout](../ecosystem/first-party-apps.md#grout), [RomM Desktop](https://github.com/rommapp/desktop): reference client implementations
+- [Argosy](../ecosystem/first-party-apps.md#argosy-launcher), [Grout](../ecosystem/first-party-apps.md#grout): reference client implementations
