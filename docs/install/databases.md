@@ -13,6 +13,10 @@ RomM uses SQLAlchemy + Alembic for persistence. Three drivers are supported, so 
 | **MySQL**                          | `mysql`          | `mysql:8`     | `3306`       | Largely interchangeable with MariaDB for RomM. |
 | **PostgreSQL**                     | `postgresql`     | `postgres:16` | `5432`       | Use if you already run Postgres.               |
 
+## Minimum versions
+
+RomM needs **MariaDB 10.11** or newer, or **MySQL 8.0.17** or newer. On an older server it stops before running migrations and logs the version it found, so upgrade the database server and start RomM again. MariaDB 10.11 is the oldest LTS release still receiving fixes.
+
 ## MariaDB (default)
 
 This is what the [reference Compose](../getting-started/quick-start.md) sets up. No extra config beyond filling in the passwords.
