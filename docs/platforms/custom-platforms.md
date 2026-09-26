@@ -46,6 +46,10 @@ This gets you full metadata provider support with your preferred folder name (se
 
 If your platform isn't in [the built-in icons list](https://github.com/rommapp/romm/tree/master/frontend/assets/platforms), RomM shows a default fallback icon.
 
+<!-- prettier-ignore -->
+!!! warning "Classic UI only"
+    The new UI only shows the icons built into the RomM image. It picks which icon to load from a list made when the image is built, so it never requests files you mount yourself. Custom and replacement icons from the mount below appear in the classic UI only.
+
 To load your own:
 
 1. Mount the platform icons directory
