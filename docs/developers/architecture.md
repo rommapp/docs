@@ -59,7 +59,7 @@ A running RomM container hosts several cooperating processes:
 
 ## Request lifecycle
 
-Every request runs the middleware stack in order, CORS → CSRF → authentication → Valkey-backed session → context vars (aiohttp + httpx clients), before FastAPI dispatches to the endpoint. Handlers do the actual work and Pydantic schemas serialise the response.
+Every request runs the middleware stack in order, CORS → CSRF → authentication → Valkey-backed session → context vars (aiohttp + httpx2 clients), before FastAPI dispatches to the endpoint. Handlers do the actual work and Pydantic schemas serialise the response.
 
 ## Backend
 

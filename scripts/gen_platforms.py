@@ -4,7 +4,7 @@ Output: docs/resources/snippets/supported-platforms.md
 
 Strategy: shell out to the upstream generator at
 `backend/utils/generate_supported_platforms.py`. That module imports the
-full romm handler stack (redis, db, httpx), so it has to run inside
+full romm handler stack (redis, db, httpx2), so it has to run inside
 romm's own uv environment, not this one.
 
 Set `ROMM_SRC` to the romm checkout root (read from .env at the repo root
