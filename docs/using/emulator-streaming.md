@@ -21,7 +21,7 @@ There's one display per container, so a container runs **one session at a time**
 
 List the same platform on several containers and you get a **pool**. RomM walks them in config order and grabs the first free one, so two people can play SNES at once if you've got two containers. If they're all busy, RomM checks for sessions whose heartbeat has gone quiet (someone closed a tab, a browser crashed) and clears those out before telling you the platform is in use.
 
-Containers only pool together if they agree on `emulator`, `memory_card_sync` and `protocol`. Those three decide where saves end up and which controls the player offers, and it would be a bad surprise to land on a pool member and find your saves missing. Containers that differ are treated as separate setups.
+Containers only pool together if they agree on `emulator`, `memory_card_sync` and `protocol`, and for RetroArch on `core` and `experimental_cores` too. Those decide where saves end up and which controls the player offers, and it would be a bad surprise to land on a pool member and find your saves missing. Containers that differ are treated as separate setups.
 
 ## Supported platforms
 
@@ -45,9 +45,32 @@ The broker ships standalone emulators for the platforms below, and RetroArch for
 | _(anything else)_   | RetroArch   | One resume state            | -           | Varies    |
 | _(adventure games)_ | ScummVM     | One resume state            | -           | -         |
 
-RetroArch covers dozens of platforms from the one container. The broker picks the core, not RomM, and RomM just labels the action with whatever core that is (`RA Snes9x`, `RA mGBA`). If you want to change the mapping it's the broker's `retroarch_platforms.json`.
+RetroArch covers dozens of platforms from the one container. Out of the box the broker boots its best-tested core for each platform, and RomM labels the action with that core (`RA Snes9x`, `RA mGBA`).
 
 ROMs are launched as plain files, so **archives won't work**. Extract them first.
+
+### Picking a RetroArch core
+
+To run a platform on a different libretro core, name it in `config.yml`, either after the emulator or as `core` in a platform block:
+
+```yaml
+platforms:
+    gba: retroarch:gpsp # shorthand: emulator:core
+    n64: # or a block
+        emulator: retroarch
+        core: parallel_n64
+```
+
+What happens at launch depends on how well the broker knows that core on that platform (the tiers are listed in the broker's [RetroArch core guide](https://romm-streaming.github.io/romm-broker/docs/emulators/retroarch-cores#choosing-a-core)):
+
+- **Vetted cores** launch like the default.
+- **Untested cores** launch, and the player sees a warning that nobody has tested this core on this platform yet.
+- **Known broken cores** are refused unless you set `experimental_cores: true` on the platform block or the container (or `RETROARCH_EXPERIMENTAL_CORES=true` on the broker). Opted in, they launch with a warning too.
+- **A core the broker doesn't offer on that platform** fails the launch with the broker's message.
+
+`core` only works on `protocol: webstation` containers, and needs a broker recent enough to take it. An older broker ignores the core and boots its default, so RomM ends that session without keeping any saves from it and tells the player to upgrade the container or remove `core`.
+
+Save states are core-specific, so RomM records which core wrote each one. The resume picker only lists states the running core can load, and only those get restored onto the container. Switch back to the old core and its states show up again. In-game saves are a different story: the broker carries them over when you switch cores (see [Saves and states when switching cores](https://romm-streaming.github.io/romm-broker/docs/emulators/retroarch-cores#saves-and-states-when-switching-cores)).
 
 ## Saves and save states
 
@@ -61,7 +84,7 @@ These are the emulator's own snapshots, and the table above says which of three 
 - **A single resume state.** These emulators only write a state as they shut down, so there's no grid to pick from, just the one state that saving and resuming both use.
 - **No states at all.** You rely on the game's own save data instead.
 
-Whenever a state is written, RomM copies it off the container, along with a thumbnail grabbed from the video. The state from save-and-exit is collected when the session closes. Claim a container later and RomM pushes your stored states back onto it, which is why they follow you between containers and survive a container being rebuilt.
+Whenever a state is written, RomM copies it off the container, along with a thumbnail grabbed from the video. The state from save-and-exit is collected when the session closes. Claim a container later and RomM pushes your stored states back onto it, which is why they follow you between containers and survive a container being rebuilt. On RetroArch only the states the running core can load go back ([Picking a RetroArch core](#picking-a-retroarch-core)).
 
 RomM keeps the most recent `STREAMING_STATE_HISTORY_LIMIT` states per game, per emulator, per user (default `50`, or `0` to keep everything) and prunes the rest.
 
@@ -139,6 +162,7 @@ streaming:
           label: Emulation station
           platforms:
               snes: retroarch # just the emulator name...
+              gba: retroarch:gpsp # ...with a RetroArch core...
               ps2: # ...or a block overriding container keys
                   emulator: pcsx2
                   memory_card_sync: true
