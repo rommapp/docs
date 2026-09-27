@@ -70,7 +70,7 @@ What happens at launch depends on how well the broker knows that core on that pl
 
 `core` only works on `protocol: webstation` containers, and needs a broker recent enough to take it. An older broker ignores the core and boots its default, so RomM ends that session without keeping any saves from it and tells the player to upgrade the container or remove `core`.
 
-Save states are core-specific, so RomM records which core wrote each one. The resume picker only lists states the running core can load, and only those get restored onto the container. Switch back to the old core and its states show up again. In-game saves are a different story: the broker carries them over when you switch cores (see [Saves and states when switching cores](https://romm-streaming.github.io/romm-broker/docs/emulators/retroarch-cores#saves-and-states-when-switching-cores)).
+Save states are core-specific, so RomM records which core wrote each one. The resume picker only lists states the running core can load, and only those get restored onto the container. Switch back to the old core and its states show up again. The broker does carry in-game saves over when you switch cores (see [Saves and states when switching cores](https://romm-streaming.github.io/romm-broker/docs/emulators/retroarch-cores#saves-and-states-when-switching-cores)).
 
 ## Saves and save states
 
