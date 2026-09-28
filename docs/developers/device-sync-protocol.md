@@ -19,7 +19,7 @@ This page documents the protocol RomM uses for bidirectional sync with companion
 The sync endpoints accept either:
 
 - a [Client API Token](client-api-tokens.md): `Authorization: Bearer rmm_...`
-- a normal web session: the session cookie plus the CSRF header, as described in [API Authentication](api-authentication.md).
+- a normal web session (see [API Authentication](api-authentication.md#session-login-browsers)): the `romm_session` cookie. Requests that change state also need the `romm_csrftoken` cookie, with its value repeated in an `X-CSRFToken` header. Bearer-token requests skip this check.
 
 Required scopes:
 
@@ -33,6 +33,7 @@ Required scopes:
 | `GET /api/saves/{id}/content`                           | `assets.read`                  |
 | `POST /api/saves/{id}/downloaded`                       | `devices.write`                |
 | `POST /api/play-sessions`                               | `roms.user.write`              |
+| `POST /api/sync/devices/{device_id}/push-pull`          | `devices.write`                |
 
 Passing `device_id` to the save endpoints also needs `devices.write` on upload and update, and `devices.read` on download. Without it the call returns `403`.
 
@@ -170,7 +171,7 @@ saveFile=<file>
 screenshotFile=<file, optional>
 ```
 
-- With `overwrite=false`, the server returns `409` if the slot has moved on since this device last synced it, instead of overwriting another device's progress.
+- With `overwrite=false` and a `device_id`, an upload to a slot that already holds a save returns `409` unless this device has synced the slot's latest save and nothing has changed since. That includes the device's first upload to a slot another device filled, so negotiate and download or resolve first. Without a `slot`, `409` only comes back when a save with the same file name changed since this device last synced it.
 - `autocleanup=true` limits how many versions a slot keeps (`autocleanup_limit`, default 10).
 - `content_hash` is the device's MD5 of the file it sent, the same value it sends to negotiate. The server stores it as the device's baseline for the save, so the next negotiate can tell that the device's copy hasn't changed.
 - The response is the stored save, including its `id`.
