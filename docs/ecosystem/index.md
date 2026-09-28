@@ -15,6 +15,8 @@ Maintained by the team:
 - **[Grout](first-party-apps.md#grout)**: Linux handheld companion for muOS/NextUI devices
 - **[Playnite Plugin](first-party-apps.md#playnite-plugin)**: Windows desktop, imports your library into [Playnite](https://playnite.link)
 
+To see which apps sync saves, track playtime or download games for each system, see the [App Feature Comparison](app-comparison.md).
+
 ## Feeds (for third-party apps)
 
 RomM exposes several URL feed endpoints for external homebrew/custom firmware apps that already know how to consume them.
@@ -31,18 +33,20 @@ Individuals in the community, not the team, maintain these apps, so support qual
 
 See the [Community section in the README](https://github.com/rommapp/romm/#community) for the full list with status flags (active/maintenance-mode/abandoned) and links.
 
-Highlights:
+As of September 2026:
 
 - **romm-ios-app** (iOS native)
-- **romm-mobile** (Android + iOS)
-- **RommBrowser** (Electron desktop)
+- **RetroArch Sync** (Linux desktop, syncs RetroArch saves and states)
 - **RomMate** (desktop)
 - **romm-client** (desktop)
-- **DeckRommSync** (Steam Deck)
+- **Freegosy** (desktop game manager)
+- **Tender**, formerly DeckyRommSync (Steam Deck)
 - **SwitchRomM** (Nintendo Switch homebrew NRO)
-- **RetroArch Sync**
 - **romm-comm** (Discord bot)
 - **GGRequestz** (game request tracker)
+- **Syncthing sync** (pushes saves and states from a Syncthing folder)
+
+The [App Feature Comparison](app-comparison.md) covers what each of these supports.
 
 ## Build your own
 

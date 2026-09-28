@@ -56,11 +56,12 @@ The server prunes a slot to `MAX_SAVES_PER_SLOT` (50 by default, `0` to disable 
 
 ## Device sync
 
-Saves and states can sync to/from registered devices (Grout on muOS, DeckRommSync on a Deck, etc.). These pages cover it in depth:
+Saves and states can sync to/from registered devices (Grout on muOS, Tender on a Steam Deck, etc.). These pages cover it in depth:
 
 - [Device Sync Protocol](../developers/device-sync-protocol.md): wire-level reference
 - [SSH Sync](../developers/ssh-sync.md): server owner config
 - [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher)/[Grout](../ecosystem/first-party-apps.md#grout): per-app setup
+- [App Feature Comparison](../ecosystem/app-comparison.md#save-sync-by-system): which apps sync saves and states, and for which systems
 
 Once a device is paired and sync is running, saves made on the device appear server-side within a couple of sync cycles (default: 15 minutes). Conflicts (same ROM saved on two devices between syncs) surface as two separate save entries, so pick which to keep.
 

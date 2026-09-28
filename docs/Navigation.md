@@ -77,6 +77,7 @@ search:
 - Integrations & Ecosystem
     - [Overview](ecosystem/index.md)
     - [First-Party Apps](ecosystem/first-party-apps.md)
+    - [App Feature Comparison](ecosystem/app-comparison.md)
     - [Feed Clients](ecosystem/feed-clients.md)
     - [Igir Collection Manager](ecosystem/igir.md)
 - API & Development

@@ -25,7 +25,7 @@ These are the terms the docs, UI, and API use consistently. Foundational concept
 
 **Collection**: a named grouping of ROMs (see [Collections](../using/collections.md)).
 
-**Device**: a registered endpoint that syncs with RomM, such as a handheld running Grout, an Android phone running Argosy, or a SteamDeck running DeckRommSync. Devices pull saves and states, and some push them back after a session (see [Device Sync Protocol](../developers/device-sync-protocol.md)).
+**Device**: a registered endpoint that syncs with RomM, such as a handheld running Grout, an Android phone running Argosy, or a Steam Deck running Tender. Devices pull saves and states, and some push them back after a session (see [Device Sync Protocol](../developers/device-sync-protocol.md)).
 
 **EmulatorJS**: the bundled in-browser retro emulator. Handles NES, SNES, N64, PSX, Saturn, and 20+ more cores (see [In-Browser Play → EmulatorJS](../using/in-browser-play/emulatorjs.md)).
 

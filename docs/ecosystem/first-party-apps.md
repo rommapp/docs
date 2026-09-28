@@ -16,7 +16,7 @@ The team builds and maintains only these clients. Pick the ones that match your 
 | [Grout](#grout)                     | Linux (muOS, MinUI, NextUI, etc.)           |
 | [Playnite Plugin](#playnite-plugin) | Windows ([Playnite](https://playnite.link)) |
 
-For third-party clients, see the [Community section in the README](https://github.com/rommapp/romm/#community).
+For third-party clients, see the [Community section in the README](https://github.com/rommapp/romm/#community). To compare features across all of these apps, including which systems each one syncs saves for, see the [App Feature Comparison](app-comparison.md).
 
 ## Argosy Launcher
 
@@ -37,7 +37,7 @@ For third-party clients, see the [Community section in the README](https://githu
 - Handles authentication via [Client API Tokens](../developers/client-api-tokens.md), paired over a short code so you don't type a 68-character string
 - Downloads ROMs on demand to your device's storage
 - Launches RetroArch (or another configured emulator) with the downloaded ROM
-- Syncs saves/states back to RomM when you finish a session (optional)
+- Syncs saves/states back to RomM when you finish a session (optional); see [which emulators it covers](app-comparison.md#argosy)
 
 ### Setup
 
@@ -45,7 +45,7 @@ See [Getting Started](https://github.com/rommapp/argosy-launcher#getting-started
 
 ## Grout
 
-**Grout** is our first-party companion for Linux-based handhelds, specifically [muOS](https://muos.dev) and [NextUI](https://github.com/mattsays/nextui). It syncs ROMs, saves, and states bidirectionally with your instance over Wi-Fi.
+**Grout** is our first-party companion for Linux-based handhelds, specifically [muOS](https://muos.dev) and [NextUI](https://github.com/mattsays/nextui). It downloads ROMs, box art and BIOS files from your instance and syncs saves both ways over Wi-Fi.
 
 <div align="center">
     <img src="../../resources/romm/apps/grout.png" alt="Grout screenshot" style="max-width: 600px; width: 100%;">
@@ -60,8 +60,7 @@ See [Getting Started](https://github.com/rommapp/argosy-launcher#getting-started
 
 - Connects to your instance using a [Client API Token](../developers/client-api-tokens.md)
 - Pulls ROMs from your instance to the handheld's SD card, organised into muOS/NextUI's expected folder layout
-- Pushes saves and states back to your instance when you finish a session
-- Schedules sync runs: on idle, on session end, or on a cron
+- Syncs saves both ways when you run **Sync Now**; save states don't sync, and coverage [varies by firmware](app-comparison.md#grout)
 - Works fully offline between syncs so the handheld doesn't need your instance to play
 
 ### Setup
@@ -91,6 +90,7 @@ See [Getting Started](https://grout.romm.app/getting-started/) in the Grout docs
 - Creates Playnite library entries for every game
 - Downloads a ROM on demand when you click **Install** in Playnite
 - Launches via your configured emulator (using Playnite's existing emulator config)
+- Syncs RetroArch saves with RomM before launch and after you quit (opt-in; see [save sync](app-comparison.md#playnite-plugin))
 
 ### Setup
 
