@@ -564,20 +564,22 @@ streaming:
 
 Add one entry per container, not per platform. A container serves every platform listed in its `platforms` map, and its own keys are the defaults for all of them.
 
-| Key                | Required | Purpose                                                                                                                                                                  |
-| ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `host`             | Yes      | Browser-facing Selkies web UI, served over **HTTPS**, or a path when reverse proxied onto RomM's own origin                                                              |
-| `platforms`        | Yes      | Map of [platform slug](../platforms/supported-platforms.md) to the emulator serving it, or to an override block                                                          |
-| `protocol`         | No       | `webstation`. When omitted, the entry is read as a deprecated per-emulator broker mod                                                                                    |
-| `label`            | No       | Name for the container, shown in the fleet view. The play action is named after the emulator instead                                                                     |
-| `subfolder`        | No       | URL prefix the broker is served under, matching the container's `SUBFOLDER`                                                                                              |
-| `broker_host`      | No       | Server-to-broker API base. Derived from `host` when omitted, and **required** when `host` is a path                                                                      |
-| `broker_secret`    | No       | Secret for this container, used only when the `STREAMING_BROKER_SECRET` env var is unset                                                                                 |
-| `library_path`     | No       | In-container path to the RomM library, if it is mounted somewhere other than the default `/romm/library`                                                                 |
-| `emulator`         | No       | Lowercased name grouping states and memory cards. Ignored when `platforms` is used, since each platform's own emulator names them                                        |
-| `memory_card_sync` | No       | Sync the whole memory card to the RomM library. Ignored only on platforms known to have no card (`wii`, `psx`, `ps3`, `ps4`, `xbox`, `xbox360`, `wiiu`, `3ds`, `switch`) |
+| Key                  | Required | Purpose                                                                                                                                                                               |
+| -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `host`               | Yes      | Browser-facing Selkies web UI, served over **HTTPS**, or a path when reverse proxied onto RomM's own origin                                                                           |
+| `platforms`          | Yes      | Map of [platform slug](../platforms/supported-platforms.md) to the emulator serving it, or to an override block                                                                       |
+| `protocol`           | No       | `webstation`. When omitted, the entry is read as a deprecated per-emulator broker mod                                                                                                 |
+| `label`              | No       | Name for the container, shown in the fleet view. The play action is named after the emulator instead                                                                                  |
+| `subfolder`          | No       | URL prefix the broker is served under, matching the container's `SUBFOLDER`                                                                                                           |
+| `broker_host`        | No       | Server-to-broker API base. Derived from `host` when omitted, and **required** when `host` is a path                                                                                   |
+| `broker_secret`      | No       | Secret for this container, used only when the `STREAMING_BROKER_SECRET` env var is unset                                                                                              |
+| `library_path`       | No       | In-container path to the RomM library, if it is mounted somewhere other than the default `/romm/library`                                                                              |
+| `emulator`           | No       | Lowercased name grouping states and memory cards. Ignored when `platforms` is used, since each platform's own emulator names them                                                     |
+| `memory_card_sync`   | No       | Sync the whole memory card to the RomM library. Ignored only on platforms known to have no card (`wii`, `psx`, `ps3`, `ps4`, `xbox`, `xbox360`, `wiiu`, `3ds`, `switch`)              |
+| `core`               | No       | RetroArch only, set on a platform: the libretro core to boot instead of the broker's default. See [Picking a RetroArch core](../using/emulator-streaming.md#picking-a-retroarch-core) |
+| `experimental_cores` | No       | `true` lets a `core` the broker lists as known broken launch anyway. Set on the container or a platform block, where the platform wins                                                |
 
-Each `platforms` value is either the emulator name on its own, or a block overriding `emulator`, `label` and `memory_card_sync` for that platform.
+Each `platforms` value is either the emulator name on its own, `retroarch:<core>` to pick a RetroArch core, or a block overriding `emulator`, `label`, `memory_card_sync`, `core` and `experimental_cores` for that platform.
 
 ```yaml
 streaming:
@@ -591,6 +593,7 @@ streaming:
           label: Emulation station
           platforms:
               snes: retroarch # the emulator name directly...
+              gba: retroarch:gpsp # ...with a RetroArch core...
               ps2: # ...or a block overriding container keys
                   emulator: pcsx2
                   label: PCSX2
@@ -601,7 +604,7 @@ streaming:
                   memory_card_sync: true
 ```
 
-Platforms listed on several containers form a pool, with each claim taking the first free lane. Pool members have to agree on `emulator`, `memory_card_sync` and `protocol`, and are differentiated by broker host, so give each one a distinct `broker_host` (see [Emulator Streaming → How a session works](../using/emulator-streaming.md#how-a-session-works)).
+Platforms listed on several containers form a pool, with each claim taking the first free lane. Pool members have to agree on `emulator`, `memory_card_sync`, `protocol`, `core` and `experimental_cores`, and are differentiated by broker host, so give each one a distinct `broker_host` (see [Emulator Streaming → How a session works](../using/emulator-streaming.md#how-a-session-works)).
 
 See [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-cards) for how `memory_card_sync` behaves, and [Migrating to webstation](../using/emulator-streaming-migration.md) if you still run the per-emulator broker mods.
 
