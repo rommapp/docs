@@ -17,7 +17,8 @@ OpenID Connect (OIDC) lets users sign in through an external identity provider: 
 2. They're redirected to your provider.
 3. They authenticate (password, passkey, MFA, whatever your provider enforces).
 4. Provider redirects back to `{ROMM_BASE_URL}/api/oauth/openid` with an authorisation code.
-5. The code is exchanged for an ID token, the user's email and role claims are read, and either a matching local user is created on the fly (unless you've [turned off registration](#auto-provisioning)), or an existing one is logged in.
+5. The code is exchanged for an ID token and the user's email, username and role claims are read. Claims the ID token leaves out are fetched from the provider's UserInfo endpoint.
+6. The matching local user is logged in (see [Account matching](#account-matching)), or a new one is created on the fly unless you've [turned off registration](#auto-provisioning).
 
 ## Provider guides
 
@@ -70,7 +71,7 @@ environment:
     - OIDC_ROLE_ADMIN=romm-admin,platform-admins # group values → Admin
 ```
 
-On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, or `realm_access.roles` on Keycloak, so check your provider's token output). If a value matches `OIDC_ROLE_ADMIN`, the user becomes an Admin.
+On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, or `realm_access.roles` on Keycloak, so check your provider's ID token or UserInfo response). If a value matches `OIDC_ROLE_ADMIN`, the user becomes an Admin.
 
 Roles are re-evaluated on every login, so demoting someone on the IdP side takes effect the next time they sign in.
 
@@ -97,6 +98,14 @@ Roles are re-evaluated on every login, so demoting someone on the IdP side takes
     If you don't set `OIDC_CLAIM_ROLES` at all, role mapping is skipped entirely and everyone is provisioned as a **User** in the default permission group.
 
 <!-- markdownlint-enable MD046 -->
+
+## Account matching
+
+The first OIDC login for an existing local account matches it by email, so set the account's email to exactly the address your provider has for the user. That login links the account to the user's identity at the provider (the token's `iss` issuer and `sub` subject). Every later login matches on that identity:
+
+- **Email changes at the provider carry over.** The user still signs into the same account, and RomM stores the new email, unless another account already uses it.
+- **Switching providers keeps accounts.** A login from a new issuer matches by email again and relinks the account to the new provider.
+- **A new subject for a linked email is refused.** When the same provider sends a different subject for an email that is already linked, RomM rejects the login with a 403 rather than hand the account to someone else. This happens when the provider reassigns the email or recreates the user. See [Authentication Troubleshooting](../../troubleshooting/authentication.md#this-account-is-linked-to-a-different-identity-at-the-provider) to relink it.
 
 ## Autologin
 
@@ -138,7 +147,7 @@ Whatever that attribute holds gets sanitised before it becomes a username to pre
 
 ## Important notes
 
-- **Email must match** between OIDC and any existing local account, otherwise OIDC creates a new account alongside the old one.
+- **Email must match** between OIDC and an existing local account on its first OIDC login, otherwise OIDC creates a new account alongside the old one. After that, the account follows the user's identity at the provider (see [Account matching](#account-matching)).
 - **HTTPS is required** in production, as OIDC will refuse to redirect to a plain-HTTP `ROMM_BASE_URL`.
 - Large drift between the RomM host and IdP will lead to **clock skew** and cause ID-token validation to fail.
 
@@ -147,4 +156,4 @@ Whatever that attribute holds gets sanitised before it becomes a username to pre
 Common failures and fixes live in [Authentication Troubleshooting](../../troubleshooting/authentication.md). Two of the usual suspects:
 
 - `redirect_uri_mismatch`: `OIDC_REDIRECT_URI` differs from what's registered at the provider. A trailing slash alone is enough to trigger it.
-- User created but not made Admin: check `OIDC_CLAIM_ROLES` points at a claim that actually exists in the token, and that the group values match `OIDC_ROLE_ADMIN` exactly (case-sensitive).
+- User created but not made Admin: check `OIDC_CLAIM_ROLES` points at a claim that actually exists in the ID token or the UserInfo response, and that the group values match `OIDC_ROLE_ADMIN` exactly (case-sensitive).

@@ -40,7 +40,7 @@ Click **Create**. Zitadel shows the client secret only once, so copy it now.
 
 ## 4. Enable claims in the ID Token
 
-Without this, RomM throws "Email is missing from token" on login. On the application's **Token Settings** tab, tick **User Info inside ID Token** and **Save**.
+RomM fetches claims the ID token leaves out from Zitadel's UserInfo endpoint, and putting them in the ID token avoids that extra request. It also rules out "Email is missing from token" when the UserInfo response doesn't carry the email. On the application's **Token Settings** tab, tick **User Info inside ID Token** and **Save**.
 
 ## 5. Configure
 
