@@ -17,7 +17,7 @@ description: Play retro games in your browser
 
 <!-- prettier-ignore -->
 !!! note "Zip bundles for multi-file firmware"
-    Some cores need several BIOS files. Bundle them into a **zip archive** and upload via the Firmware tab on the platform detail page, and EmulatorJS picks it up as a single firmware bundle (see [Firmware Management](../../administration/firmware-management.md)).
+    Some cores need several BIOS files. Bundle them into a zip archive and upload via the Firmware tab on the platform detail page, and EmulatorJS picks it up as a single firmware bundle (see [Firmware Management](../../administration/firmware-management.md)).
 
 ## Saves and states
 
@@ -25,7 +25,7 @@ RomM's EmulatorJS integration automates save-file and save-state handling: if a 
 
 ## Cores
 
-Most platforms above have more than one core available. RomM remembers which one you launched a game with and uses it again next time, which matters because changing cores leaves your save states unloadable. Server owners can set the starting core per platform with [`emulatorjs.default_cores`](../../reference/configuration-file.md#emulatorjsdefault_cores), but anyone who has already picked a core will keep using it on subsequent launches.
+Most platforms in the table below have more than one core available. RomM remembers which one you launched a game with and uses it again next time, which matters because changing cores leaves your save states unloadable. Server owners can set the starting core per platform with [`emulatorjs.default_cores`](../../reference/configuration-file.md#emulatorjsdefault_cores), but anyone who has already picked a core will keep using it on subsequent launches.
 
 ## Multi-disc games
 
@@ -33,7 +33,7 @@ Multi-disc games hand EmulatorJS every disc at once, so you can change discs fro
 
 ## Netplay
 
-Up to four players can join a room hosted on your instance, with inputs streamed to the host over WebRTC, best for co-op and turn-based games (frame-perfect fighting isn't realistic over the internet).
+Up to four players can join a room hosted on your instance, with inputs streamed to the host over WebRTC. It works best for co-op and turn-based games, since frame-perfect fighting isn't realistic over the internet.
 
 Server owner setup (ICE servers, enable flag) lives in [Configuration File → `emulatorjs.netplay`](../../reference/configuration-file.md#emulatorjsnetplay). End-user docs live in [Netplay](../netplay.md).
 

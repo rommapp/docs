@@ -5,7 +5,7 @@ description: Move from one broker container per emulator to a single webstation 
 
 # Migrating Streaming to webstation
 
-Emulator streaming used to mean one container per emulator, each running its own broker mod (`pcsx2-romm-integration`, `dolphin-romm-integration`, `xemu-romm-integration`, `rpcs3-romm-integration`). Going forward, streaming goes through a single [docker-webstation](https://github.com/linuxserver/docker-webstation) container running [romm-broker](https://github.com/romm-streaming/romm-broker), which can serve every platform RomM streams from one place instead of one container per emulator.
+Emulator streaming used to mean one container per emulator, each running its own broker mod (`pcsx2-romm-integration`, `dolphin-romm-integration`, `xemu-romm-integration`, `rpcs3-romm-integration`). Going forward, streaming goes through a single [docker-webstation](https://github.com/linuxserver/docker-webstation) container running [romm-broker](https://github.com/romm-streaming/romm-broker), which can serve every platform RomM streams.
 
 <!-- prettier-ignore -->
 !!! warning "The per-emulator broker mods are deprecated"
@@ -67,7 +67,7 @@ The full field reference lives in [Configuration File → `streaming`](../refere
 
 ## Per-emulator notes
 
-Save data, memory cards, and BIOS/firmware requirements don't change, only which container runs the emulator. See the "Migrating to webstation" section in:
+Save data, memory cards, and BIOS/firmware requirements don't change. Only the container that runs the emulator changes. See the "Migrating to webstation" section in:
 
 - [pcsx2-romm-integration](https://github.com/LoneAngelFayt/pcsx2-romm-integration)
 - [dolphin-romm-integration](https://github.com/LoneAngelFayt/dolphin-romm-integration)

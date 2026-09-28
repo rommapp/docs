@@ -18,7 +18,7 @@ description: Run RomM locally for development
 
 ## Option 1: Using Docker
 
-If you prefer to use Docker for development, you can set up RomM using the provided Docker Compose configuration. This method simplifies the setup process by encapsulating all dependencies within Docker containers.
+You can run RomM for development with the provided Docker Compose configuration, which keeps all dependencies inside Docker containers.
 
 ### Environment setup
 
@@ -56,7 +56,7 @@ docker compose build  # or `docker compose build --no-cache` to rebuild from scr
 docker compose up -d
 ```
 
-And you're done! You can access the app at `http://localhost:3000`. Any changes made to the code will be automatically reflected in the app thanks to the volume mounts.
+The app is then available at `http://localhost:3000`. The volume mounts reflect code changes in the app automatically.
 
 ## Option 2: Manual setup
 
@@ -98,9 +98,7 @@ cp ./bin64/RAHasher /usr/bin/RAHasher
 
 #### Install python dependencies
 
-You'll need uv installed
-
-<https://docs.astral.sh/uv/getting-started/installation/>
+Install uv (see <https://docs.astral.sh/uv/getting-started/installation/>):
 
 ```sh
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -127,7 +125,7 @@ docker compose -f docker-compose.oidc.yml up -d      # Authentik, for testing OI
 docker compose -f docker-compose.streaming.yml up -d # webstation, for emulator streaming
 ```
 
-The streaming image is amd64 only and runs to several GB, hence opt-in.
+The streaming image is amd64 only and runs to several GB, so it's opt-in.
 
 #### Run the backend
 

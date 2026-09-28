@@ -5,7 +5,7 @@ description: Wire up to an OpenID Connect provider for SSO and centralised user 
 
 # OIDC Setup
 
-OpenID Connect (OIDC) lets users sign in through an external identity provider: Authelia, Authentik, Keycloak, PocketID, Zitadel, Okta, Auth0, VoidAuth, or anything standards-compliant. Single sign-on across your homelab, no app-specific password to manage, centralised MFA, and map OIDC groups/claims to roles.
+OpenID Connect (OIDC) lets users sign in through an external identity provider: Authelia, Authentik, Keycloak, PocketID, Zitadel, Okta, Auth0, VoidAuth, or anything standards-compliant. You get single sign-on across your homelab and centralised MFA, with no app-specific password to manage, and you can map OIDC groups or claims to roles.
 
 <!-- prettier-ignore -->
 !!! note "OIDC is optional"
@@ -21,7 +21,7 @@ OpenID Connect (OIDC) lets users sign in through an external identity provider: 
 
 ## Provider guides
 
-Pick your provider and follow the step-by-step instructions. They all end with the same set of app-side env vars. The guides just differ on how to register the app and where to find the client ID/secret.
+Pick your provider and follow the step-by-step instructions. Every guide ends with the same set of app-side env vars and differs only in how you register the app and where you find the client ID and secret.
 
 - [Authelia](authelia.md)
 - [Authentik](authentik.md)
@@ -51,7 +51,7 @@ environment:
 
 ## Auto-provisioning
 
-By default, the first successful OIDC login for an email that has no matching account **creates** a local account automatically. To require accounts to exist beforehand (so only pre-provisioned users can sign in via OIDC), turn registration off:
+By default, the first successful OIDC login for an email that has no matching account creates a local account automatically. To require accounts to exist beforehand (so only pre-provisioned users can sign in via OIDC), turn registration off:
 
 ```yaml
 environment:
@@ -70,14 +70,14 @@ environment:
     - OIDC_ROLE_ADMIN=romm-admin,platform-admins # group values → Admin
 ```
 
-On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, sometimes `realm_access.roles` on Keycloak, check your provider's token output). If a value matches `OIDC_ROLE_ADMIN`, the user becomes an Admin.
+On every login, the claim named by `OIDC_CLAIM_ROLES` is read (often `groups`, or `realm_access.roles` on Keycloak, so check your provider's token output). If a value matches `OIDC_ROLE_ADMIN`, the user becomes an Admin.
 
-Roles are re-evaluated on **every login**, so demoting someone on the IdP side takes effect the next time they sign in.
+Roles are re-evaluated on every login, so demoting someone on the IdP side takes effect the next time they sign in.
 
 <!-- markdownlint-disable MD046 -->
 <!-- prettier-ignore -->
 !!! warning "Once `OIDC_CLAIM_ROLES` is set, users must match a mapped group"
-    As soon as `OIDC_CLAIM_ROLES` is configured, RomM expects every user to match at least one mapped role group. A user whose claim matches **none** of the configured groups is rejected at login with:
+    As soon as `OIDC_CLAIM_ROLES` is configured, RomM expects every user to match at least one mapped role group. A user whose claim matches none of the configured groups is rejected at login with:
 
     ```json
     {"detail":"User has not been granted any roles for this application."}
@@ -92,22 +92,22 @@ Roles are re-evaluated on **every login**, so demoting someone on the IdP side t
         - OIDC_ROLE_VIEWER=platform-users # non-admins → User (grants access)
     ```
 
-    `OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` no longer map to distinct roles — matching users all resolve to **User** — but they're still how you grant those users access when role claims are enabled. Point them at a group that all your non-admin users belong to. Use [permission groups](../users-and-roles.md#permission-groups) for finer-grained access; only `OIDC_ROLE_ADMIN` changes the role.
+    `OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` no longer map to distinct roles (matching users all resolve to **User**), but they're still how you grant those users access when role claims are enabled. Point them at a group that all your non-admin users belong to. Only `OIDC_ROLE_ADMIN` changes the role, so use [permission groups](../users-and-roles.md#permission-groups) for finer-grained access.
 
-    If you *don't* set `OIDC_CLAIM_ROLES` at all, role mapping is skipped entirely and everyone is provisioned as a **User** in the default permission group.
+    If you don't set `OIDC_CLAIM_ROLES` at all, role mapping is skipped entirely and everyone is provisioned as a **User** in the default permission group.
 
 <!-- markdownlint-enable MD046 -->
 
 ## Autologin
 
-To bypass the login page entirely and redirect straight to the IdP:
+To bypass the login page entirely and redirect straight to the IdP, so RomM feels like a native part of your SSO stack:
 
 ```yaml
 environment:
     - OIDC_AUTOLOGIN=true
 ```
 
-Useful when you want this to feel like a native part of your SSO stack. Combine with `DISABLE_USERPASS_LOGIN=true` to lock out local accounts entirely.
+Combine with `DISABLE_USERPASS_LOGIN=true` to lock out local accounts entirely.
 
 <!-- prettier-ignore -->
 !!! warning "Keep one local admin"
@@ -123,7 +123,7 @@ environment:
     - OIDC_END_SESSION_ENDPOINT=https://auth.example.com/application/o/end-session/
 ```
 
-The endpoint URL is provider-specific, check the per-provider guides or your IdP's docs.
+The endpoint URL is provider-specific, so check the per-provider guides or your IdP's docs.
 
 ## Username source
 
@@ -146,5 +146,5 @@ Whatever that attribute holds gets sanitised before it becomes a username to pre
 
 Common failures and fixes live in [Authentication Troubleshooting](../../troubleshooting/authentication.md). Two of the usual suspects:
 
-- `redirect_uri_mismatch`: `OIDC_REDIRECT_URI` differs from what's registered at the provider. Even a trailing slash can matter!
+- `redirect_uri_mismatch`: `OIDC_REDIRECT_URI` differs from what's registered at the provider. A trailing slash alone is enough to trigger it.
 - User created but not made Admin: check `OIDC_CLAIM_ROLES` points at a claim that actually exists in the token, and that the group values match `OIDC_ROLE_ADMIN` exactly (case-sensitive).

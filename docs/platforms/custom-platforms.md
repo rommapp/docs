@@ -29,7 +29,7 @@ Then either run a **Quick Scan** (the platform is auto-discovered) or trigger a 
 
 If your platform is one RomM supports but your folder is named differently, you don't need a custom platform.
 
-Check the [folder name aliases](supported-platforms.md#folder-name-aliases) first: the names Batocera, RetroBat and ES-DE use (`megadrive/`, `gamecube/`, `n3ds/`, and ~140 more) already resolve on their own. For anything else, **remap** it in your `config.yml`:
+Check the [folder name aliases](supported-platforms.md#folder-name-aliases) first: the names Batocera, RetroBat and ES-DE use (`megadrive/`, `gamecube/`, `n3ds/`, and ~140 more) already resolve on their own. For anything else, remap it in your `config.yml`:
 
 ```yaml
 system:

@@ -19,7 +19,7 @@ RomM needs **MariaDB 10.11** or newer, or **MySQL 8.0.17** or newer. On an older
 
 ## MariaDB (default)
 
-This is what the [reference Compose](../getting-started/quick-start.md) sets up. No extra config beyond filling in the passwords.
+This is what the [reference Compose](../getting-started/quick-start.md) sets up, and it needs no extra config beyond filling in the passwords.
 
 ```yaml
 services:
@@ -46,7 +46,7 @@ services:
 
 ## MySQL
 
-Identical compose to MariaDB but swap the image and the healthcheck:
+The compose is the same as for MariaDB, with a different image and healthcheck:
 
 ```yaml
 services:
@@ -102,7 +102,7 @@ Alternatively, grant `SUPER` to the RomM user itself:
 GRANT SUPER ON *.* TO 'romm-user'@'%';
 ```
 
-Restart RomM once the change is in place. A migration that failed this way is safe to re-run, so it picks up from wherever it stopped and completes.
+Restart RomM once the change is in place. A migration that failed this way is safe to re-run, and it picks up from wherever it stopped.
 
 ## PostgreSQL
 
@@ -129,7 +129,7 @@ services:
 
 ## Connection pooling
 
-Database connections are pooled and discarded after `DB_POOL_RECYCLE_SECONDS` (default `300`). Without it, a quiet instance eventually hands out a connection the database already closed for being idle. Keep this **below** whatever idle timeout sits in front of your database: MySQL/MariaDB's `wait_timeout`, a provider's cap, or a proxy in between. `-1` disables recycling entirely, which is only a good idea if you're certain nothing is closing idle connections.
+Database connections are pooled and discarded after `DB_POOL_RECYCLE_SECONDS` (default `300`). Without it, a quiet instance eventually hands out a connection the database already closed for being idle. Keep this below whatever idle timeout sits in front of your database: MySQL/MariaDB's `wait_timeout`, a provider's cap, or a proxy in between. `-1` disables recycling entirely, which is only a good idea if you're certain nothing is closing idle connections.
 
 ```yaml
 environment:

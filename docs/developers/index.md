@@ -5,7 +5,7 @@ description: Build on top of RomM or contribute to it
 
 # API & Development
 
-Everything you need to **build on top of RomM** (third-party apps, scripts, integrations) or **contribute to it** (code, translations, docs). End-user content lives in [Using RomM](../using/index.md). Server owner content lives in [Administration](../administration/index.md).
+This section covers building on top of RomM (third-party apps, scripts, integrations) and contributing to it (code, translations, docs). End-user content lives in [Using RomM](../using/index.md), and server owner content lives in [Administration](../administration/index.md).
 
 ## Calling the API
 

@@ -20,7 +20,7 @@ For code generation, see [Consuming OpenAPI](openapi.md).
 
 ## WebSockets
 
-REST isn't the only surface. Two socket.io endpoints cover live-update and coordination use cases: [WebSockets](websockets.md).
+Alongside REST, two socket.io endpoints cover live-update and coordination use cases (see [WebSockets](websockets.md)).
 
 ## Versioning
 

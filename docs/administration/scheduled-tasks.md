@@ -5,7 +5,7 @@ description: Runs tasks in the background, reschedule and trigger them on demand
 
 # Scheduled Tasks
 
-RomM runs background work through **RQ** (Redis Queue). Tasks fall into four categories:
+RomM runs background work through RQ (Redis Queue). Tasks fall into four categories:
 
 - **Scheduled**: cron-driven, run on their own
 - **Watcher**: triggered by filesystem events
@@ -31,7 +31,7 @@ Set the env var and restart the container. The scheduler picks up the new schedu
 
 Most tasks have an `ENABLE_*` environment variable, like `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` which enables the LaunchBox sync. Set both the enable var and its cron var, since a task with an empty cron string has nothing to schedule and stays unscheduled even when enabled.
 
-Unlike other tasks, **build recommendations index** ships enabled, because the [recommendation](../using/recommendations.md) sections read that index and similar games sits empty without it. Setting `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` stops the nightly rebuild, but doesn't hide either section; users turn those off in their own settings.
+Unlike other tasks, **build recommendations index** ships enabled, because the [recommendation](../using/recommendations.md) sections read that index and similar games sits empty without it. Setting `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` stops the nightly rebuild, but doesn't hide either section. Users turn those off in their own settings.
 
 The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup) are always on and have no env vars. Check the [env var reference](../reference/environment-variables.md) for the full list.
 
@@ -52,7 +52,7 @@ Authorization: Bearer <token-with-tasks.run>
 
 - **Live**: Administration → Tasks page shows every task's current status (queued, running, idle, failed).
 - **API**: `GET /api/tasks/status` for a JSON summary. Wire this to an uptime monitor if you want alerts.
-- **Logs**: `docker logs romm` → look for `rq.worker` lines.
+- **Logs**: run `docker logs romm` and look for `rq.worker` lines.
 
 A task that's been "running" for hours is usually a scan that hit `SCAN_TIMEOUT`, and the logs will say so. Tasks that fail leave a stack trace in the container logs, and the RQ `failed` queue retains the last few for inspection.
 

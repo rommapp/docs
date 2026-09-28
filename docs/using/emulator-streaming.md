@@ -5,9 +5,9 @@ description: Launch games into a native emulator running in a container
 
 # Emulator Streaming
 
-Emulator streaming runs your game in a **real** emulator on the server and streams the video, audio and input to your browser. Where [in-browser play](in-browser-play/emulatorjs.md) compiles emulators to WebAssembly and runs them on your machine, this runs actual PCSX2, Dolphin, RPCS3 and RetroArch binaries on the host. Your browser is just a screen.
+Emulator streaming runs your game in a real emulator on the server and streams the video, audio and input to your browser. Where [in-browser play](in-browser-play/emulatorjs.md) compiles emulators to WebAssembly and runs them on your machine, this runs actual PCSX2, Dolphin, RPCS3 and RetroArch binaries on the host. Your browser is just a screen.
 
-It all runs in one [docker-webstation](https://github.com/linuxserver/docker-webstation) container: a [Selkies](https://github.com/selkies-project/selkies) WebRTC desktop with the emulators installed, plus the [romm-broker](https://github.com/romm-streaming/romm-broker) sidecar RomM sends commands to. A single container handles **every** platform you point at it. Until you configure one, none of this shows up in the UI.
+It all runs in one [docker-webstation](https://github.com/linuxserver/docker-webstation) container: a [Selkies](https://github.com/selkies-project/selkies) WebRTC desktop with the emulators installed, plus the [romm-broker](https://github.com/romm-streaming/romm-broker) sidecar RomM sends commands to. A single container handles every platform you point at it. Until you configure one, none of this shows up in the UI.
 
 If a platform can do both, you get separate actions for browser play and streaming, so turning on streaming doesn't take browser play away.
 
@@ -17,7 +17,7 @@ If a platform can do both, you get separate actions for browser play and streami
 
 ## How a session works
 
-There's one display per container, so a container runs **one session at a time** no matter which platform it's playing. Sessions are stored in [Valkey](../install/redis-or-valkey.md) and claimed atomically, which keeps multiple API workers from stepping on each other. Whoever claims a session owns it, and only they or an admin can control or release it.
+There's one display per container, so a container runs one session at a time no matter which platform it's playing. Sessions are stored in [Valkey](../install/redis-or-valkey.md) and claimed atomically, which keeps multiple API workers from stepping on each other. Whoever claims a session owns it, and only they or an admin can control or release it.
 
 List the same platform on several containers and you get a **pool**. RomM walks them in config order and grabs the first free one, so two people can play SNES at once if you've got two containers. If they're all busy, RomM checks for sessions whose heartbeat has gone quiet (someone closed a tab, a browser crashed) and clears those out before telling you the platform is in use.
 
@@ -47,7 +47,7 @@ The broker ships standalone emulators for the platforms below, and RetroArch for
 
 RetroArch covers dozens of platforms from the one container. Out of the box the broker boots its best-tested core for each platform, and RomM labels the action with that core (`RA Snes9x`, `RA mGBA`).
 
-ROMs are launched as plain files, so **archives won't work**. Extract them first.
+ROMs are launched as plain files, so archives won't work and you need to extract them first.
 
 ### Picking a RetroArch core
 
@@ -96,7 +96,7 @@ This is the save data the game itself writes: NAND, battery saves, the emulated 
 
 ### Memory cards
 
-On **PS2** and **GameCube** you can set `memory_card_sync: true` and have RomM manage the whole card instead of individual save files. The card lives in your library: RomM loads it in when a session starts, copies it back when you exit, and leaves the container's slot empty in between. This **replaces** the in-game save handling above for that container.
+On PS2 and GameCube you can set `memory_card_sync: true` and have RomM manage the whole card instead of individual save files. The card lives in your library: RomM loads it in when a session starts, copies it back when you exit, and leaves the container's slot empty in between. This replaces the in-game save handling above for that container.
 
 Cards are their own little library. Keep as many as you like, name and rename them, snapshot the current state as a version and roll back to it later, share one with another user, or download it. Whichever card you used last loads by default.
 
@@ -150,7 +150,7 @@ There's a working compose file at [`docker-compose.streaming.yml`](https://githu
 
 ### Set up `config.yml`
 
-Add a `streaming` block with **one entry per container** (full schema in [Configuration File → `streaming`](../reference/configuration-file.md#streaming)). Whatever you set at the container level applies to every platform it serves, and a platform block only needs to name the things that differ.
+Add a `streaming` block with one entry per container (full schema in [Configuration File → `streaming`](../reference/configuration-file.md#streaming)). Whatever you set at the container level applies to every platform it serves, and a platform block only needs to name the things that differ.
 
 ```yaml
 streaming:
@@ -177,7 +177,7 @@ Four of those keys have consequences worth knowing before you pick their values:
 
 ### Set the shared secret
 
-`STREAMING_BROKER_SECRET` is what authenticates RomM to the broker, and it has to match the container's `BROKER_SECRET`. Use the **same value** everywhere.
+`STREAMING_BROKER_SECRET` is what authenticates RomM to the broker, and it has to match the container's `BROKER_SECRET`. Use the same value everywhere.
 
 If one broker needs its own secret, put `broker_secret` on that entry in `config.yml` and leave `STREAMING_BROKER_SECRET` unset entirely. The env var beats the per-container value whenever it's set, so you can't mix the two.
 

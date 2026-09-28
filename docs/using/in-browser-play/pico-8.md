@@ -9,7 +9,7 @@ description: Play PICO-8 cartridges in the browser
 
 <!-- prettier-ignore -->
 !!! info "Full image only"
-    FAKE-08 is bundled in the full container image and has **no CDN fallback**, so PICO-8 does not play on the slim image (see [Image Variants](../../install/image-variants.md)).
+    FAKE-08 is bundled in the full container image and has no CDN fallback, so PICO-8 does not play on the slim image (see [Image Variants](../../install/image-variants.md)).
 
 Server owners can turn the player off with `DISABLE_PICO8=true` (see [Environment Variables](../../reference/environment-variables.md)).
 
@@ -30,7 +30,7 @@ PICO-8 only has a d-pad and two buttons:
 
 ## Saves
 
-Cart data doesn't sync back to the server; whatever the cartridge saves stays in your browser.
+Cart data doesn't sync back to the server, so whatever the cartridge saves stays in your browser.
 
 ## Related
 

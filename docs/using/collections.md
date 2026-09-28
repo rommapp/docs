@@ -18,12 +18,12 @@ Public collections are read-only to non-owners (browse/play/download, no edits).
 
 ## Use it for
 
-Curated playthroughs: "RomM Staff Picks", "Games I Want to Stream", "Favourites for My Kid", "Halloween Games". Hand-picked context is what collections are for.
+Collections are for hand-picked lists and curated playthroughs, such as "RomM Staff Picks", "Games I Want to Stream", "Favourites for My Kid", or "Halloween Games".
 
 Don't use a standard collection for things that have better solutions:
 
-- **Genre-based groupings**: use [Virtual Collections](virtual-collections.md), auto-populated.
-- **"Backlogged games"**: use the Personal → Status flag, filterable without a collection.
+- **Genre-based groupings**: use [Virtual Collections](virtual-collections.md), which populate automatically.
+- **"Backlogged games"**: use the Personal → Status flag, which you can filter on without a collection.
 
 ## Permissions
 

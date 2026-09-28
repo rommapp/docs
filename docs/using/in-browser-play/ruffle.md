@@ -11,7 +11,7 @@ description: Play Flash and Shockwave games in the browser
 !!! important "Ruffle needs the right platform folder"
     Ruffle only plays games from platform folders named `flash` or `browser`. If your Flash games are elsewhere, either rename the folder or add a [platform binding](../../reference/configuration-file.md#systemplatforms) in `config.yml`.
 
-No controller mapping, so gamepad-only users will struggle with most Flash titles.
+Ruffle has no controller mapping, so gamepad-only users will struggle with most Flash titles.
 
 ## Supported games
 

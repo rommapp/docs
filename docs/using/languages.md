@@ -5,7 +5,7 @@ description: UI translation
 
 # Languages
 
-Pick the language you want for the UI, with the choice stored server-side so it follows you across devices. If you're not signed in (Kiosk mode), the UI picks based on browser `Accept-Language` and falls back to `en_US`.
+Pick the language you want for the UI. The choice is stored server-side, so it follows you across devices. If you're not signed in (Kiosk mode), the UI picks based on browser `Accept-Language` and falls back to `en_US`.
 
 ## Supported locales
 
@@ -38,7 +38,7 @@ Pick the language you want for the UI, with the choice stored server-side so it 
 
 Not translated:
 
-- **Game metadata**: titles, descriptions, genres come from metadata providers. English is usually the source language. IGDB has some localisation but coverage is uneven.
+- **Game metadata**: titles, descriptions, and genres come from metadata providers, and English is usually the source language. IGDB has some localisation, but coverage is uneven.
 - **Your own content**: collection names, notes, user-uploaded media
 
 ## Contributing a translation

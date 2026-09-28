@@ -36,7 +36,7 @@ return {
 
 ![Property Mapping](../../resources/authentik/propperty-mapping.png)
 
-Click **Create**. Upstream reference: [Authentik scope mappings](https://version-2025-10.goauthentik.io/add-secure-apps/providers/property-mappings/#scope-mappings-with-oauth2).
+Click **Create** (see [Authentik scope mappings](https://version-2025-10.goauthentik.io/add-secure-apps/providers/property-mappings/#scope-mappings-with-oauth2) upstream).
 
 ## 3. Create a provider
 
@@ -53,7 +53,7 @@ Configure:
 - **Name**: `RomM OIDC Provider`
 - **Authorization flow**: implicit consent
 - **Redirect URIs**: `https://demo.romm.app/api/oauth/openid`
-- **Scopes**: Under "Advanced protocol settings", move the property mapping you created above from "Available Scopes" to "Selected Scopes". You'll also need to make sure any existing mappings of `email` or `email_verified` are disabled. Authentik has an `email` mapping by default, so make sure to check for this and remove it if it's present.
+- **Scopes**: Under "Advanced protocol settings", move the property mapping you created above from "Available Scopes" to "Selected Scopes". Also disable any existing mappings of `email` or `email_verified`. Authentik ships an `email` mapping by default, so check for it and remove it if it's present.
 
 Copy the generated **Client ID** and **Client Secret**. You'll use them as `OIDC_CLIENT_ID`/`OIDC_CLIENT_SECRET` on the app side.
 
@@ -94,13 +94,13 @@ For role mapping from Authentik groups, see [OIDC Setup → Role mapping](index.
 
 ## 6. Set your email
 
-In **Profile** → set your email to exactly the same address Authentik has for you.
+In **Profile**, set your email to exactly the same address Authentik has for you.
 
 ![Set email](../../resources/authentik/7-user-profile.png)
 
 ## 7. Test
 
-Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Authentik → authenticate → bounced back and signed in!
+Restart, navigate to `/login` and click the **Login with OIDC** button. RomM redirects you to Authentik, and after you authenticate it sends you back signed in.
 
 ![Login with OIDC](../../resources/authentik/8-romm-login.png)
 

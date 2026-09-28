@@ -5,7 +5,7 @@ description: High-level walkthrough of the codebase
 
 # Architecture
 
-What you need to know to find your way around `rommapp/romm` before you start changing things. The exhaustive deep-dives live alongside the code at [`docs/BACKEND_ARCHITECTURE.md`](https://github.com/rommapp/romm/blob/main/docs/BACKEND_ARCHITECTURE.md) and [`docs/FRONTEND_ARCHITECTURE.md`](https://github.com/rommapp/romm/blob/main/docs/FRONTEND_ARCHITECTURE.md). This page is the orientation pass.
+This page covers what you need to know to find your way around `rommapp/romm` before you start changing things. The exhaustive deep-dives live alongside the code at [`docs/BACKEND_ARCHITECTURE.md`](https://github.com/rommapp/romm/blob/main/docs/BACKEND_ARCHITECTURE.md) and [`docs/FRONTEND_ARCHITECTURE.md`](https://github.com/rommapp/romm/blob/main/docs/FRONTEND_ARCHITECTURE.md).
 
 ## Repo layout
 
@@ -69,7 +69,7 @@ The backend follows a fairly conventional layering. Endpoints handle request val
 
 ### Authentication
 
-`HybridAuthBackend` walks methods in order of session cookie (looked up in Valkey), HTTP Basic (bcrypt), OAuth2 Bearer JWT (HS256), Client API Token (`rmm_...`, SHA-256 lookup), OIDC, kiosk mode if enabled. Token plaintext is never stored as we hash on creation and compare hashes on every request.
+`HybridAuthBackend` walks methods in order of session cookie (looked up in Valkey), HTTP Basic (bcrypt), OAuth2 Bearer JWT (HS256), Client API Token (`rmm_...`, SHA-256 lookup), OIDC, kiosk mode if enabled. Token plaintext is never stored, because tokens are hashed on creation and compared by hash on every request.
 
 ### Metadata providers
 
@@ -83,17 +83,17 @@ Environment variables (100+ of them, all listed in `env.template`) cover infrast
 
 ### Background jobs
 
-RQ workers run scheduled jobs (rescans, Switch TitleDB refresh, LaunchBox refresh, image-to-WebP conversion, RA progress sync, netplay cleanup) and manual tasks (`cleanup_missing_roms`, `cleanup_orphaned_resources`, `sync_folder_scan`). Each scheduled task is gated by an `ENABLE_SCHEDULED_*` env var and tunable via the matching `*_CRON`. Server owner detail in [Scheduled Tasks](../administration/scheduled-tasks.md).
+RQ workers run scheduled jobs (rescans, Switch TitleDB refresh, LaunchBox refresh, image-to-WebP conversion, RA progress sync, netplay cleanup) and manual tasks (`cleanup_missing_roms`, `cleanup_orphaned_resources`, `sync_folder_scan`). Each scheduled task is switched on by an `ENABLE_SCHEDULED_*` env var and tunable via the matching `*_CRON` (see [Scheduled Tasks](../administration/scheduled-tasks.md) for the server-owner details).
 
 ## Frontend
 
 ### Stack
 
-The frontend is a Vue 3 SPA written in TypeScriptusing the Composition API and `<script setup>` syntax, bundled by Vite which gives HMR in development. The UI layer is Vuetify 3 (Material Design) topped with Tailwind CSS 4 for utility classes, and state lives in Pinia stores. Vue Router covers named routes across three layouts, while vue-i18n supplies translations for language packs. Live updates flow through `socket.io-client` for scan progress and netplay, and Mitt sits in the middle as a loose event bus, which is handy for triggering dialogs from anywhere in the component tree without having to thread refs through props.
+The frontend is a Vue 3 SPA written in TypeScript using the Composition API and `<script setup>` syntax, bundled by Vite which gives HMR in development. The UI layer is Vuetify 3 (Material Design) topped with Tailwind CSS 4 for utility classes, and state lives in Pinia stores. Vue Router covers named routes across three layouts, while vue-i18n supplies translations for language packs. Live updates flow through `socket.io-client` for scan progress and netplay, and Mitt sits in the middle as a loose event bus, which is handy for triggering dialogs from anywhere in the component tree without having to thread refs through props.
 
 ### Generated types
 
-TypeScript interfaces in `src/__generated__/` are produced from the backend OpenAPI spec by running `npm run generate`, and the stores and API services consume them directly, giving you type-safe end-to-end communication. Re-run the generator after any backend route or schema change so the frontend types stay in sync.
+TypeScript interfaces in `src/__generated__/` are produced from the backend OpenAPI spec by running `npm run generate`, and the stores and API services consume them directly, so communication with the backend is type-safe end to end. Re-run the generator after any backend route or schema change so the frontend types stay in sync.
 
 ### Persistence
 
@@ -127,12 +127,12 @@ Two socket.io servers run side by side, both Valkey-backed so they horizontally 
 └── config/config.yml            # YAML configuration
 ```
 
-Production serves files via nginx `X-Accel-Redirect`. Dev mode (`DEV_MODE=true`) falls back to FastAPI's `FileResponse`, slower but no nginx in the loop.
+Production serves files via nginx `X-Accel-Redirect`. Dev mode (`DEV_MODE=true`) falls back to FastAPI's `FileResponse`, which is slower but doesn't need nginx in the loop.
 
 ## Observability
 
-Sentry (opt-in via `SENTRY_DSN`) captures unhandled exceptions, tagged with `romm@{version}`. OpenTelemetry (opt-in) ships traces, metrics, and logs over OTLP. `GET /api/heartbeat` returns an aggregated health snapshot, safe to scrape from uptime monitors. Setup details in [Observability](../administration/observability.md).
+Sentry (opt-in via `SENTRY_DSN`) captures unhandled exceptions, tagged with `romm@{version}`. OpenTelemetry (opt-in) ships traces, metrics, and logs over OTLP. `GET /api/heartbeat` returns an aggregated health snapshot that's safe to scrape from uptime monitors (see [Observability](../administration/observability.md) for setup details).
 
 ## Where to start
 
-If you're picking up your first issue, the patterns to mimic live in `backend/handler/` for backend work and in `frontend/src/components/` plus the relevant Pinia store for frontend work. Match the surrounding style. The hardest part of contributing isn't writing the change, it's threading it through the existing layers cleanly (see [Contributing](contributing.md) for process and [Development Setup](development-setup.md) to get a local env running).
+If you're picking up your first issue, the patterns to mimic live in `backend/handler/` for backend work and in `frontend/src/components/` plus the relevant Pinia store for frontend work. Match the surrounding style. The hardest part of contributing is threading the change cleanly through the existing layers (see [Contributing](contributing.md) for process and [Development Setup](development-setup.md) to get a local env running).

@@ -22,7 +22,7 @@ description: "The numbers Mason! What do they mean?"
 
 ### Per-platform breakdown
 
-Under the summary, it's a table sorted by name, size or game count. For each platform, you can see:
+Under the summary is a table sorted by name, size or game count. For each platform, you can see:
 
 - Game count
 - Size on disk (in bytes and by percentage of total)
@@ -39,7 +39,7 @@ GET /api/stats?include_platform_stats=true
 Authorization: Bearer <token>
 ```
 
-Wire to your monitoring stack via the API rather than scraping the HTML page (see the [API Reference](../developers/api-reference.md)).
+Wire it to your monitoring stack via the API rather than scraping the HTML page (see the [API Reference](../developers/api-reference.md)).
 
 ## Troubleshooting
 

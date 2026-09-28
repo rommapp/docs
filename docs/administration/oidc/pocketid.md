@@ -5,7 +5,7 @@ description: Wire up SSO to PocketID
 
 # OIDC with PocketID
 
-[PocketID](https://github.com/stonith404/pocket-id) is a minimalist OIDC provider that **only** supports passkey authentication, with no passwords. Before starting, read the [OIDC Setup overview](index.md), as it covers the RomM-side settings common to every provider.
+[PocketID](https://github.com/stonith404/pocket-id) is a minimalist OIDC provider that only supports passkey authentication, with no passwords. Before starting, read the [OIDC Setup overview](index.md), as it covers the RomM-side settings common to every provider.
 
 ## 1. Prerequisites
 
@@ -15,12 +15,12 @@ PocketID installed, running, and your admin passkey already registered via their
 
 In PocketID admin:
 
-1. **Application Configuration**: make sure **Emails Verified** is ticked as we now require verified emails.
+1. **Application Configuration**: make sure **Emails Verified** is ticked, because RomM requires verified emails.
 2. Go to **OIDC Client** → **Add OIDC Client**.
 3. Fill in:
     - **Name**: `RomM`
     - **Callback URLs**: `https://demo.romm.app/api/oauth/openid`
-4. **Save**. Stay on this page as the client secret only displays **once**.
+4. **Save**. Stay on this page, because the client secret is displayed only once.
 5. Copy both the Client ID and Client Secret now.
 
 ## 3. Configure RomM
@@ -40,11 +40,11 @@ environment:
 
 ## 4. Set your email
 
-RomM → **Profile** → set your email to exactly the same address PocketID has for you.
+In RomM's **Profile**, set your email to exactly the same address PocketID has for you.
 
 ## 5. Test
 
-Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to PocketID → authenticate → bounced back and signed in!
+Restart, navigate to `/login` and click the **Login with OIDC** button. RomM redirects you to PocketID, and after you authenticate it sends you back signed in.
 
 ![Login with OIDC](../../resources/pocketid/2-romm-login.png)
 

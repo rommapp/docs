@@ -62,7 +62,7 @@ The logo should always be used in its standard colors:
 - Always use our logo in the colors provided.
 - Always use our name in a way that makes clear you are not affiliated with the project.
 
-If you're building something that integrates with RomM and would like to use/remix the logo, **please reach out first** via [Discord](https://discord.gg/romm). We'd love to hear about it.
+If you're building something that integrates with RomM and would like to use/remix the logo, please reach out first via [Discord](https://discord.gg/romm). We'd love to hear about it.
 
 ## Please don't
 

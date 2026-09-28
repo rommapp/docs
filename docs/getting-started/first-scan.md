@@ -5,14 +5,14 @@ description: Populate a fresh install by scanning the library for the first time
 
 # Your First Scan
 
-You're up and running ([Quick Start](quick-start.md)), your ROMs are laid out correctly ([Folder Structure](folder-structure.md)), and metadata credentials are configured ([Metadata Providers](metadata-providers.md)). Time to catalogue everything!
+You're up and running ([Quick Start](quick-start.md)), your ROMs are laid out correctly ([Folder Structure](folder-structure.md)), and metadata credentials are configured ([Metadata Providers](metadata-providers.md)), so the next step is a first scan to catalogue everything.
 
 ## Before you hit scan
 
-A fifteen-second check that saves hours:
+Check two things first:
 
 - **Library is mounted**: on the host, `ls /path/to/library` should show your `roms/` (or per-platform) folders. If it doesn't, the mount is wrong.
-- **At least one metadata provider is configured**: scans run without one but every game comes back "unmatched" and you'll have nothing useful to look at.
+- **At least one metadata provider is configured**: scans run without one, but every game comes back "unmatched" and you'll have nothing useful to look at.
 
 ## Run the scan
 
@@ -42,17 +42,17 @@ An **unmatched** ROM means no provider recognised it, with common causes:
 - Bad rip, intro/patch applied, or a regional variant no provider has indexed
 - Metadata provider credentials wrong or rate-limited
 
-Most of these are fixable, see [Scanning Troubleshooting](../troubleshooting/scanning.md).
+Most of these are fixable (see [Scanning Troubleshooting](../troubleshooting/scanning.md)).
 
 ## When the scan finishes
 
-Your dashboard surfaces a card per scanned platform plus recently-added and continue-playing rows.
+Your dashboard shows a card per scanned platform plus recently-added and continue-playing rows.
 
 Typical next steps:
 
 - **Fix unmatched ROMs**: rename or re-tag, then re-run an **Unmatched** scan to pick them up (see [Scanning & Watcher](../administration/scanning-and-watcher.md#scan-modes)).
 - **Tweak priorities**: if ScreenScraper's covers are nicer than IGDB's for your library, reorder `scan.priority.artwork` in [`config.yml`](../reference/configuration-file.md).
-- **Switch boxart styles**: want 3D boxes, physical media, or mix images on your cards? That needs the matching media type added to `scan.media` and a rescan, not just the UI picker. See [Boxart styles and media types](metadata-providers.md#boxart-styles-and-media-types).
+- **Switch boxart styles**: 3D boxes, physical media, or mix images on your cards need the matching media type added to `scan.media` and a rescan, since the UI picker alone isn't enough (see [Boxart styles and media types](metadata-providers.md#boxart-styles-and-media-types)).
 
 ## Skip to a targeted scan
 

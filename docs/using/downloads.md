@@ -46,9 +46,9 @@ The 3DS built-in QR scanner can install compatible `.cia` files directly from a 
 
 ## Streaming to an emulator
 
-Some emulators take an HTTP URL directly. With `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` and a reverse proxy that restricts access, you can set up truly remote ROM loading from a handheld over Wi-Fi.
+Some emulators take an HTTP URL directly. With `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` and a reverse proxy that restricts access, you can load ROMs remotely from a handheld over Wi-Fi.
 
 ## Troubleshooting
 
 - **Download stalls at N%**: usually reverse-proxy buffering, which spools each in-flight download to a temp file and can fill the proxy container's disk (see [Reverse Proxy → Nginx Proxy Manager](../install/reverse-proxy.md#nginx-proxy-manager) for the buffering and timeout settings).
-- **Multi-file zip download is corrupt**: disk may have filled up during streaming, or the nginx mod_zip build is broken. Check `docker logs romm | grep mod_zip`.
+- **Multi-file zip download is corrupt**: the disk may have filled up during streaming, or the nginx mod_zip build is broken. Check `docker logs romm | grep mod_zip`.

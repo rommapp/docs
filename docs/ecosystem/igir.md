@@ -5,15 +5,15 @@ description: Clean up and normalise your ROM collection
 
 # Igir Collection Manager
 
-[Igir](https://igir.io/) is a zero-setup ROM collection manager that sorts, filters, extracts, archives, patches, and reports on collections of any size. While not a companion app per se, it's useful for cleaning up a library _before_ importing into RomM, so scans have a better-named, better-organised starting point.
+[Igir](https://igir.io/) is a zero-setup ROM collection manager that sorts, filters, extracts, archives, patches, and reports on collections of any size. It isn't a companion app, but you can use it to clean up a library _before_ importing into RomM, so scans start from better-named, better-organised files.
 
 **This is not an official app.** Igir is a separate community project, but we document integration here because it's a common workflow and produces a compatible layout directly.
 
 ## When you'd use Igir
 
 - You have a messy collection with inconsistent naming, mixed formats, dumps from multiple sources.
-- You want to **match against No-Intro/Redump DAT files** to verify authenticity and standardise names.
-- You want to **filter** only retail releases, or strip out hacks, or keep only one region, etc.
+- You want to match against No-Intro/Redump DAT files to verify authenticity and standardise names.
+- You want to filter only retail releases, or strip out hacks, or keep only one region, etc.
 - You want to move/rename files to the expected platform folder layout.
 
 ## Directory setup
@@ -101,7 +101,7 @@ This keeps the original subfolder structure but normalises extensions.
 
 ## Multi-disc games
 
-Redump and No-Intro catalogue each disc of a multi-disc game as a separate game, so by default Igir writes them out as sibling folders — which confuses multi-file game detection. Two parts of the script above handle this, no manual reorganisation needed:
+Redump and No-Intro catalogue each disc of a multi-disc game as a separate game, so by default Igir writes them out as sibling folders, which confuses multi-file game detection. Two parts of the script above handle this without any manual reorganisation:
 
 - `--merge-discs` groups the discs of a game back into a single folder.
 - The `playlist` command writes an `.m3u` alongside them.
@@ -134,15 +134,15 @@ Final Fantasy VII (USA) (Disc 3)/Final Fantasy VII (USA) (Disc 3).cue
 
 A few things worth knowing:
 
-- A playlist points at each disc's playable file, so discs can't be sitting inside zip archives — that's why the script uses `extract` rather than `zip` for these platforms. The extensions Igir will reference default to `.ccd`, `.cdi`, `.chd`, `.cue`, `.gdi`, `.iso`, `.mdf`, and `.toc`, adjustable with `--playlist-extensions`.
-- CHDs need no special handling to appear in a playlist, though the script as written will unpack them — see [Keeping CHDs as CHDs](#keeping-chds-as-chds).
+- A playlist points at each disc's playable file, so discs can't be sitting inside zip archives. That's why the script uses `extract` rather than `zip` for these platforms. The extensions Igir will reference default to `.ccd`, `.cdi`, `.chd`, `.cue`, `.gdi`, `.iso`, `.mdf`, and `.toc`, adjustable with `--playlist-extensions`.
+- CHDs need no special handling to appear in a playlist, though the script as written will unpack them (see [Keeping CHDs as CHDs](#keeping-chds-as-chds)).
 - Playlists are only written for multi-disc games. If you want one for every game, add `--playlist-mode always`.
-- `--merge-discs` doesn't require DAT files, but is far more reliable with them — the script already passes `-d dats/`.
-- Some TOSEC-catalogued discs won't merge, because the ring/box codes used to distinguish separate pressings can't be told apart from other metadata programmatically. See Igir's [merging limitations](https://igir.io/roms/sets/#merging-limitations).
+- `--merge-discs` doesn't require DAT files, but is far more reliable with them, and the script already passes `-d dats/`.
+- Some TOSEC-catalogued discs won't merge, because the ring/box codes used to distinguish separate pressings can't be told apart from other metadata programmatically (see Igir's [merging limitations](https://igir.io/roms/sets/#merging-limitations)).
 
 ## Keeping CHDs as CHDs
 
-Igir reads inside a CHD to identify its tracks, but `extract` will unpack it into those tracks — `.cue`/`.bin`, or `.gdi` — rather than leaving the CHD intact. This applies to single-disc games as much as multi-disc ones.
+Igir reads inside a CHD to identify its tracks, but `extract` unpacks it into those tracks (`.cue`/`.bin`, or `.gdi`) instead of leaving the CHD intact. This applies to single-disc games as much as multi-disc ones.
 
 `extract` applies to the whole run, so dropping it to protect your CHDs would also stop cartridge ROMs being unzipped. Split the run in two instead, excluding CHDs from the pass that extracts and handling them in a second pass that copies them through untouched:
 
@@ -182,7 +182,7 @@ services:
             - /path/to/roms-verified:/romm/library/roms:ro
 ```
 
-Read-only is safer: if you need Igir to re-clean, work in a parallel folder and re-promote it to `roms-verified/`. Once you run a scan from RomM, and everything should match cleanly against providers!
+Read-only is safer: if you need Igir to re-clean, work in a parallel folder and re-promote it to `roms-verified/`. After you run a scan from RomM, everything should match cleanly against providers.
 
 ## See also
 

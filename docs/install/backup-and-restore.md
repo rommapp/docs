@@ -9,14 +9,14 @@ This page covers routine backups and restoring from them.
 
 ## What to back up
 
-| Path/volume                                  | What's in it                                                                                            | Backup?                                                                                                  |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| **Database** (`mysql_data`, `pg_data`, etc.) | User accounts, ROM metadata, collections, ratings, play sessions, paired devices, saves/states metadata | **Critical**: back this up nightly.                                                                      |
-| **`/romm/assets`**                           | User uploads: save files, save states, user-uploaded screenshots, manuals, covers                       | **Critical**: back this up nightly.                                                                      |
-| **`/romm/config`**                           | `config.yml` and any custom overrides                                                                   | **Critical**: rarely changes but small and painful to recreate.                                          |
-| `/romm/resources`                            | Metadata images (covers, screenshots) fetched from IGDB/ScreenScraper/etc.                              | Medium priority, and can be re-downloaded on a rescan (including it speeds up recovery).                 |
-| `/redis-data`                                | Task queue state                                                                                        | Low priority, in-flight tasks only, and lost tasks can be re-run.                                        |
-| **`/romm/library`**                          | Your ROM files                                                                                          | Back this up **separately**. It's your source data and you should already have a backup strategy for it. |
+| Path/volume                                  | What's in it                                                                                            | Backup?                                                                                              |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Database** (`mysql_data`, `pg_data`, etc.) | User accounts, ROM metadata, collections, ratings, play sessions, paired devices, saves/states metadata | **Critical**: back this up nightly.                                                                  |
+| **`/romm/assets`**                           | User uploads: save files, save states, user-uploaded screenshots, manuals, covers                       | **Critical**: back this up nightly.                                                                  |
+| **`/romm/config`**                           | `config.yml` and any custom overrides                                                                   | **Critical**: rarely changes but small and painful to recreate.                                      |
+| `/romm/resources`                            | Metadata images (covers, screenshots) fetched from IGDB/ScreenScraper/etc.                              | Medium priority, and can be re-downloaded on a rescan (including it speeds up recovery).             |
+| `/redis-data`                                | Task queue state                                                                                        | Low priority, in-flight tasks only, and lost tasks can be re-run.                                    |
+| **`/romm/library`**                          | Your ROM files                                                                                          | Back this up separately. It's your source data and you should already have a backup strategy for it. |
 
 ## Routine backup
 
@@ -70,7 +70,7 @@ rsync -a --delete /srv/romm/config/ "$DEST/config/"
 find "$DEST" -maxdepth 1 -name 'db-*.sql.gz' -mtime +14 -delete
 ```
 
-Send it offsite however you already do (rclone to B2/S3, restic, borg). Remember the 3-2-1 rule: 3 copies, on 2 different media, with 1 offsite!
+Send it offsite however you already do (rclone to B2/S3, restic, borg). Remember the 3-2-1 rule: 3 copies, on 2 different media, with 1 offsite.
 
 ## Restore
 
@@ -91,7 +91,7 @@ docker exec -i romm-db psql --username=romm-user --dbname=romm < romm-db-2026-04
 
 ## Verifying a backup is actually restorable
 
-A backup you haven't restored is a hope, not a backup. Spin up a throwaway stack from a recent backup twice a year:
+You only know a backup works once you've restored it, so spin up a throwaway stack from a recent backup twice a year:
 
 ```sh
 # in a scratch directory

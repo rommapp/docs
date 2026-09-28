@@ -11,14 +11,14 @@ The first user created during Setup is always an **Admin**, and everyone after t
 
 There are only two roles:
 
-| Role      | Who it's for                     | Access                                                                             |
-| --------- | -------------------------------- | ---------------------------------------------------------------------------------- |
-| **Admin** | You, and anyone you fully trust. | Admins **bypass permission groups** entirely, including user management and tasks. |
-| **User**  | Everyone else                    | Whatever their assigned permission group grants, plus any per-user overrides.      |
+| Role      | Who it's for                     | Access                                                                         |
+| --------- | -------------------------------- | ------------------------------------------------------------------------------ |
+| **Admin** | You, and anyone you fully trust. | Admins bypass permission groups entirely, including user management and tasks. |
+| **User**  | Everyone else                    | Whatever their assigned permission group grants, plus any per-user overrides.  |
 
 ## Permission groups
 
-Each User belongs to a **permission group**: a named template of capabilities that you manage in the new UI (**Administration → Permissions**). A group is a **grant matrix** over entity types and actions:
+Each User belongs to a **permission group**: a named template of capabilities that you manage in **Administration → Permissions**. A group is a grant matrix over entity types and actions:
 
 | Entity        | `read`                        | `write`                          | `delete`         |
 | ------------- | ----------------------------- | -------------------------------- | ---------------- |
@@ -40,7 +40,7 @@ Rules of the model:
 
 ### Per-user overrides
 
-On top of the group, you can **add or revoke individual capabilities** for one user without creating a whole new group:
+On top of the group, you can add or revoke individual capabilities for one user without creating a whole new group:
 
 - **Grant** an override to give a user something their group lacks.
 - **Revoke** an override to take away something their group provides.
@@ -49,7 +49,7 @@ Use overrides for one-offs ("this one user can also delete ROMs"), and use group
 
 ### Hidden entities
 
-Beyond allow/deny, you can **hide specific platforms or ROMs** from a user or from an entire group. A hidden entity simply doesn't appear for that principal, regardless of read grants. Firmware visibility isn't hidden directly, as it cascades from the platform it belongs to.
+Beyond allow/deny, you can hide specific platforms or ROMs from a user or from an entire group. A hidden entity simply doesn't appear for that principal, regardless of read grants. Firmware can't be hidden directly, because its visibility cascades from the platform it belongs to.
 
 ## Creating users
 
@@ -67,7 +67,7 @@ Deleting a user keeps their contributions (collections they made public, ROM met
 
 ## OAuth scopes
 
-The permission groups above are the source of truth for the UI. For the **API**, RomM derives a flat set of OAuth **scopes** from a user's effective grants (group + overrides). Each `(entity, action)` grant maps to the scope of the same name, e.g. `roms` + `write` → `roms.write`. Client API Tokens and OIDC sessions carry a **subset** of the owning user's scopes, and every endpoint declares which scopes it requires.
+The permission groups above are the source of truth for the UI. For the API, RomM derives a flat set of OAuth scopes from a user's effective grants (group + overrides). Each `(entity, action)` grant maps to the scope of the same name, e.g. `roms` + `write` → `roms.write`. Client API Tokens and OIDC sessions carry a subset of the owning user's scopes, and every endpoint declares which scopes it requires.
 
 The full scope list (grouped by resource):
 
@@ -86,4 +86,4 @@ The full scope list (grouped by resource):
 
 ## API tokens (advanced)
 
-Each user can issue up to 25 **Client API Tokens**. A token carries a subset of the owning user's scopes (see above), whichever you pick at creation time. Tokens are the right way to authenticate companion apps (Argosy, Grout, Playnite, custom scripts). The pairing flow for devices is covered in [Client API Tokens](../developers/client-api-tokens.md), and the API side is in [API Authentication](../developers/api-authentication.md).
+Each user can issue up to 25 Client API Tokens. A token carries a subset of the owning user's scopes (see above), whichever you pick at creation time. Tokens are the right way to authenticate companion apps (Argosy, Grout, Playnite, custom scripts). The pairing flow for devices is covered in [Client API Tokens](../developers/client-api-tokens.md), and the API side is in [API Authentication](../developers/api-authentication.md).

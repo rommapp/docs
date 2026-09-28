@@ -40,7 +40,7 @@ When it finishes, the page lists the server's IP addresses and its `root` creden
 
 ![The new RomM server with its IP addresses and root credentials](../resources/cloudzy/vps-created.png)
 
-Once it's ready, open `http://<server-ip>`. The first start takes a few minutes while the containers initialise, after which RomM hands you to the setup wizard, where the first account you create becomes the administrator.
+Once it's ready, open `http://<server-ip>`. The first start takes a few minutes while the containers initialise. RomM then opens the setup wizard, and the first account you create becomes the administrator.
 
 ## Managing the stack
 

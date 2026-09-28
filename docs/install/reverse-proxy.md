@@ -9,7 +9,7 @@ The container listens on plain HTTP on port `8080`. For anything beyond `localho
 
 ## Caddy
 
-Dead-simple, auto-HTTPS via Let's Encrypt:
+Caddy handles HTTPS automatically through Let's Encrypt:
 
 ```caddyfile
 romm.mysite.com {
@@ -143,7 +143,7 @@ labels:
 
 ## Nginx Proxy Manager
 
-Items marked ❗ are important. RomM won't work right without them.
+RomM won't work right without the items marked ❗.
 
 ### Details
 
@@ -162,7 +162,7 @@ Items marked ❗ are important. RomM won't work right without them.
 
 <!-- prettier-ignore -->
 !!! warning "Leave `Cache Assets` off"
-    It sends every `.js`, `.css`, `.svg`, and image request through NPM's shared cache, which discards RomM's `Cache-Control`, `Last-Modified`, and `Vary` headers and replaces them with a flat `Expires` pinned to a clock time (NPM's `expires @30m`), which can leave a browser holding a stale copy for hours. Content-hashed bundles lose their one year `immutable` caching, covers and screenshots lose the revalidation that keeps them fresh after a rescan, and dropping `Vary: Accept-Encoding` allows a compressed response to be handed to a client that never asked for one. It also pins a 45s read timeout and a 5s connect timeout on those requests, overriding anything you set below.
+    It sends every `.js`, `.css`, `.svg`, and image request through NPM's shared cache, which discards RomM's `Cache-Control`, `Last-Modified`, and `Vary` headers and replaces them with a flat `Expires` pinned to a clock time (NPM's `expires @30m`). That can leave a browser holding a stale copy for hours. Content-hashed bundles lose their one year `immutable` caching, covers and screenshots lose the revalidation that keeps them fresh after a rescan, and dropping `Vary: Accept-Encoding` allows a compressed response to be handed to a client that never asked for one. It also pins a 45s read timeout and a 5s connect timeout on those requests, overriding anything you set below.
 
 ### SSL
 

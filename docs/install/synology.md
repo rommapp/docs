@@ -7,12 +7,12 @@ description: Install on a Synology NAS via Container Manager or Docker
 
 ## Looking for an opinionated guide?
 
-[Marius Bogdan Lixandru](https://mariushosting.com/) maintains excellent Synology-focused guides with either MariaDB or Postgres:
+[Marius Bogdan Lixandru](https://mariushosting.com/) maintains Synology guides for both MariaDB and Postgres:
 
 - [How to Install RomM on Your Synology NAS (MariaDB)](https://mariushosting.com/how-to-install-romm-on-your-synology-nas/)
 - [How to Install RomM With PostgreSQL on Your Synology NAS](https://mariushosting.com/how-to-install-romm-with-postgresql-on-your-synology-nas/)
 
-The walkthrough below is the fallback for everything else.
+For any other setup, follow the steps below.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ The walkthrough below is the fallback for everything else.
 
 ## 1. Create folders
 
-Data is split across a few well-known paths. Do this once, via SSH:
+Data is split across a few paths. Create them once over SSH:
 
 ### ROM library
 
@@ -64,11 +64,11 @@ Keep the output. It becomes `ROMM_AUTH_SECRET_KEY` in your compose file. Don't l
 
 ## 4. Set up metadata provider credentials
 
-Recommended before the first scan. Full walkthrough in [Metadata Providers](../getting-started/metadata-providers.md).
+Set these up before the first scan (see [Metadata Providers](../getting-started/metadata-providers.md)).
 
 ## 5. Docker Compose
 
-The Synology-flavoured compose file: MariaDB on port `3309` externally (to avoid colliding with Synology's built-in MariaDB) and a simplified healthcheck:
+This compose file is adapted for Synology. It exposes MariaDB on port `3309` (to avoid colliding with Synology's built-in MariaDB) and uses a simplified healthcheck:
 
 <!-- prettier-ignore -->
 ???+ example "docker-compose.yml"
@@ -86,7 +86,7 @@ From the directory holding your compose file:
 sudo docker compose up -d
 ```
 
-**Be patient.** The first start takes a few minutes while MariaDB initialises, migrations run, and resources get seeded. Tail the logs:
+The first start takes a few minutes while MariaDB initialises, migrations run, and resources get seeded. Tail the logs:
 
 ```bash
 sudo docker compose logs -f
@@ -102,13 +102,13 @@ Once startup reports it's listening, open `http://<nas-ip>:7676` in a browser. T
 
 ## Troubleshooting
 
-Common Synology gotchas:
+Common Synology problems:
 
-- **"Page not found" on first open**: DSM hit it before first-run init finished. Wait for `docker compose logs -f` to calm down.
+- **"Page not found" on first open**: DSM hit it before first-run init finished. Wait until `docker compose logs -f` stops printing startup output.
 - **Database connection errors**: check the MariaDB container is healthy (`docker ps` → status `healthy`), and that `DB_HOST` matches the MariaDB service name in compose.
 - **Permission errors on assets/resources folders**: verify the UID/GID in the compose matches the owner of those host paths on the NAS (`ls -la /volume1/data/media/games/`).
 
-Synology-specific problems that come up often: [Synology Troubleshooting](../troubleshooting/synology.md).
+More Synology-specific problems are covered in [Synology Troubleshooting](../troubleshooting/synology.md).
 
 ## Contributing
 
