@@ -167,7 +167,9 @@ See [Folder Structure → Custom library structure](../getting-started/folder-st
 
 <!-- prettier-ignore -->
 !!! warning "`roms_folder` and `firmware_folder` were retired"
-    Each named one path segment that a template now spells out, so RomM refuses to start while either is set, printing the template that reproduces the layout. `roms_folder: "my_roms"` becomes `default: "my_roms/{platform}/{game}"`, and `firmware_folder: "firmware"` becomes `firmware: "firmware/{platform}"`.
+    Each named one path segment that a template now spells out. RomM ignores a leftover key, with a warning to remove it, when its value matches the default layout (`roms_folder: roms`, `firmware_folder: bios`) or when the matching `structure` key is already declared. Older releases wrote both defaults into `config.yml`, so most upgraded instances start without changes.
+
+    Any other value stops RomM at startup, and the log prints the template that reproduces the layout. `roms_folder: "my_roms"` becomes `default: "my_roms/{platform}/{game}"`, and `firmware_folder: "firmware"` becomes `firmware: "firmware/{platform}"`. With a Structure B `default` such as `"{platform}/roms/{game}"`, firmware used to sit beside each platform's ROMs, so `firmware_folder: bios` without a declared `firmware` stops startup and asks for `firmware: "{platform}/bios"`.
 
 ### `filesystem.skip_hash_calculation`
 
