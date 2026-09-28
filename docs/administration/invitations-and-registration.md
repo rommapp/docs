@@ -13,7 +13,7 @@ There are three ways a new account ends up on a RomM instance:
 
 ## First-admin setup
 
-When a fresh RomM container starts against an empty database, hitting any page redirects to the **Setup Wizard**. The wizard collects a username, email, and password. The resulting account is **always an Admin**, regardless of any env var.
+When a fresh RomM container starts against an empty database, hitting any page redirects to the **Setup Wizard**. The wizard collects a username, email, and password. The resulting account is always an Admin, regardless of any env var.
 
 To skip the wizard (e.g. when provisioning via automation and you'll create users through the API), set:
 
@@ -26,14 +26,14 @@ You'll then need to create the first admin via the API or by injecting a databas
 
 ## Invite links
 
-The recommended way to add users, because it avoids you ever touching their password.
+Invite links are the recommended way to add users, because you never have to touch their password.
 
 1. **Administration → Users → Invite.** Pick a role (User or Admin).
-2. RomM generates a single-use URL → copy it and send it to the invitee.
+2. RomM generates a single-use URL. Copy it and send it to the invitee.
 3. When they open it, they pick their own username and password.
 4. RomM creates the account with the role you chose and logs them straight in.
 
-Invite tokens are **single-use** and **time-limited**. Defaults:
+Invite tokens are single-use and time-limited. Defaults:
 
 | Setting | Default    | Env var                       |
 | ------- | ---------- | ----------------------------- |

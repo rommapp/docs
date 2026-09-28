@@ -5,7 +5,7 @@ description: Wire-level reference for save/state/play-session sync
 
 # Device Sync Protocol
 
-This is a reference for the protocol RomM uses for bidirectional sync with companion apps. End-user view in [Saves & States](../using/saves-and-states.md), with operator-side SSH transport in [SSH Sync](ssh-sync.md).
+This page documents the protocol RomM uses for bidirectional sync with companion apps. The end-user view is in [Saves & States](../using/saves-and-states.md), and the operator-side SSH transport is in [SSH Sync](ssh-sync.md).
 
 ## Primitives
 
@@ -15,7 +15,7 @@ This is a reference for the protocol RomM uses for bidirectional sync with compa
 
 ## Authentication
 
-Every call: `Authorization: Bearer rmm_...`. Required scopes:
+Every call sends `Authorization: Bearer rmm_...`. Required scopes:
 
 | Endpoint family              | Scope                                                         |
 | ---------------------------- | ------------------------------------------------------------- |
@@ -43,7 +43,7 @@ Content-Type: application/json
 }
 ```
 
-Response includes `id`, which the device caches for subsequent calls. `sync_mode` can be `pull_only` (server → device), `push_only` (device → server), or `push_pull` (bidirectional, default).
+The response includes `id`, which the device caches for subsequent calls. `sync_mode` can be `pull_only` (server → device), `push_only` (device → server), or `push_pull` (bidirectional, default).
 
 ## Sync negotiation
 
@@ -65,7 +65,7 @@ POST /api/sync/negotiate
 }
 ```
 
-Response is a list of operations:
+The response is a list of operations:
 
 ```json
 {
@@ -117,7 +117,7 @@ POST /api/sync/sessions/{session_id}/complete
 }
 ```
 
-Closes the session and ingests batched play sessions in one call.
+This call closes the session and ingests the batched play sessions.
 
 ## Rate limits and polling
 

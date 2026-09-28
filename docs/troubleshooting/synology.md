@@ -7,11 +7,11 @@ description: Fix DSM-specific permission and Docker issues
 
 ## `ErrNo 13: Access Denied` in Portainer or Container Manager
 
-The usual Synology permission issue. Fix via SSH:
+This is the usual Synology permission issue, and you can fix it over SSH:
 
 1. **Enable SSH** on the NAS if you haven't (see the [DSM guide](https://kb.synology.com/en-uk/DSM/tutorial/How_to_login_to_DSM_with_root_permission_via_SSH_Telnet)).
 2. **SSH in** with your DSM admin account (same credentials as the DSM web UI).
-3. **Find your UID/GID** and type `id` and note `uid=NNNN(user) gid=NNNN(group)`.
+3. **Find your UID/GID** by typing `id` and noting `uid=NNNN(user) gid=NNNN(group)`.
 4. **Fix permissions on every host path**:
 
 ```sh
@@ -29,7 +29,7 @@ The paths are whatever you mounted into the container as `/romm/library`, `/romm
 
 5. **Restart the containers** with `docker compose restart` or click Restart in Container Manager.
 
-Scans should now complete cleanly!
+Scans should now complete cleanly.
 
 <!-- prettier-ignore -->
 !!! tip
@@ -39,11 +39,11 @@ The permission-mode string comes from [DrFrankenstein's Docker user guide](https
 
 ## DSM's built-in MariaDB conflicts
 
-Synology ships its own MariaDB on port `3306`. If you try to run RomM's MariaDB container on the same port, one of them won't bind. To fix, map MariaDB to a different host port in your compose file (the Synology install guide uses `3309:3306`, see [Synology install guide](../install/synology.md)).
+Synology ships its own MariaDB on port `3306`. If you try to run RomM's MariaDB container on the same port, one of them won't bind. To fix, map MariaDB to a different host port in your compose file (the [Synology install guide](../install/synology.md) uses `3309:3306`).
 
 ## "Page not found" on first open
 
-First-run takes a few minutes on a NAS, as the DB initialisation, migrations, and static asset seeding complete. Wait until the logs show the server is ready, then refresh the page:
+The first run takes a few minutes on a NAS while the DB initialisation, migrations, and static asset seeding complete. Wait until the logs show the server is ready, then refresh the page:
 
 ```sh
 sudo docker compose logs -f

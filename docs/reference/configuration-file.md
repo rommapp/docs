@@ -5,9 +5,9 @@ description: Full schema reference for config.yml
 
 # Configuration File
 
-RomM reads `config.yml` from `/romm/config/config.yml` inside the container. The whole file is optional: any section you omit falls back to the defaults. You can edit `config.yml` directly on disk **or** through **Library → Library Management** in the settings dropdown, which is a two-way view of the same file.
+RomM reads `config.yml` from `/romm/config/config.yml` inside the container. The whole file is optional: any section you omit falls back to the defaults. You can edit `config.yml` directly on disk or through **Library → Library Management** in the settings dropdown, which is a two-way view of the same file.
 
-Start from the [`config.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.example.yml) upstream. Two larger fully-worked examples for frontend-integration scenarios:
+Start from the [`config.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.example.yml) upstream. Two larger worked examples cover frontend integrations:
 
 - [`config.batocera-retrobat.yml`](https://github.com/rommapp/romm/blob/master/examples/config.batocera-retrobat.yml)
 - [`config.es-de.example.yml`](https://github.com/rommapp/romm/blob/master/examples/config.es-de.example.yml)
@@ -59,7 +59,7 @@ exclude:
 
 ### `exclude.roms.multi_file.names`
 
-Skip whole folders. Used for multi-disc/multi-file games you want invisible.
+Skip whole folders, such as multi-disc or multi-file games you want hidden.
 
 The default already covers the system folders that are never a platform, plus every per-media-type folder ES-DE, Batocera and the [Pegasus export](exports.md) drop beside your ROMs (`covers`, `screenshots`, `manuals` and the rest). Your list gets added to that rather than replacing it.
 
@@ -72,7 +72,7 @@ exclude:
 
 ### `exclude.roms.multi_file.parts.names`
 
-Files **inside** a multi-file ROM folder to ignore (e.g. `.nfo`, `._*` macOS attributes, similar noise from multi-disc sets).
+Files inside a multi-file ROM folder to ignore (e.g. `.nfo`, `._*` macOS attributes, similar noise from multi-disc sets).
 
 **Default:** the same list as [`exclude.roms.single_file.names`](#excluderomssingle_filenames)
 
@@ -247,7 +247,7 @@ See [Metadata Providers](../getting-started/metadata-providers.md) for context o
 
 ### `scan.priority.artwork`
 
-Same idea but for cover art and screenshots, with a default of its own: `["sgdb", "igdb", "moby", "ss", "libretro", "ra", "launchbox", "gamelist", "hasheous", "tgdb", "flashpoint", "steam", "hltb", "demozoo", "pouet", "csdb"]`.
+Works like `scan.priority.metadata` but for cover art and screenshots, with its own default: `["sgdb", "igdb", "moby", "ss", "libretro", "ra", "launchbox", "gamelist", "hasheous", "tgdb", "flashpoint", "steam", "hltb", "demozoo", "pouet", "csdb"]`.
 
 ```yaml
 scan:
@@ -328,7 +328,7 @@ Which media types to fetch during a scan, primarily for ScreenScraper and the ga
 
 <!-- prettier-ignore -->
 !!! tip "This controls the UI Boxart styles"
-    The gallery's **Boxart style** picker (2D Box, 3D Box, Physical, Mix Image) only changes what the cards *display*g. Styles other than 2D Box need their media type added here, then a rescan, or the cards fallback to 2D Box. See [Boxart styles and media types](../getting-started/metadata-providers.md#boxart-styles-and-media-types) for the full mapping and steps.
+    The gallery's **Boxart style** picker (2D Box, 3D Box, Physical, Mix Image) only changes what the cards *display*. Styles other than 2D Box need their media type added here, then a rescan, or the cards fall back to 2D Box. See [Boxart styles and media types](../getting-started/metadata-providers.md#boxart-styles-and-media-types) for the full mapping and steps.
 
 | Type               | Description                                  |
 | ------------------ | -------------------------------------------- |
@@ -437,7 +437,7 @@ Core names have to be exact, and anything you don't list keeps EmulatorJS's own 
 
 ### `emulatorjs.auto_save_sync`
 
-Sync a save with the server seconds after it's stored in the browser, rather than only on save-and-quit, so progress is kept even if the tab is closed or the browser crashes. Set it to `false` and the emulator's save button comes back as **Sync save**, for uploading on demand. See [Automatic save sync](../using/saves-and-states.md#automatic-save-sync).
+Sync a save with the server seconds after it's stored in the browser, rather than only on save-and-quit, so progress is kept even if the tab is closed or the browser crashes. Set it to `false` and the emulator's save button comes back as **Sync save**, for uploading on demand (see [Automatic save sync](../using/saves-and-states.md#automatic-save-sync)).
 
 **Default:** `true`
 
@@ -448,7 +448,7 @@ emulatorjs:
 
 ### `emulatorjs.disable_auto_unload`
 
-By default, EmulatorJS stops the emulator when you leave its page. Disable to keep it running across navigation.
+By default, EmulatorJS stops the emulator when you leave its page. Set this to keep it running across navigation.
 
 ```yaml
 emulatorjs:
@@ -494,7 +494,7 @@ emulatorjs:
             fps: show
 ```
 
-Core names must match the EmulatorJS core identifier exactly. To discover core names and per-core option keys, turn on `debug: true`, load a game in that core, open the browser console, filter for "option", and copy the keys you care about. Upstream reference is available in [EmulatorJS core options](https://emulatorjs.org/docs4devs/settings/).
+Core names must match the EmulatorJS core identifier exactly. To discover core names and per-core option keys, turn on `debug: true`, load a game in that core, open the browser console, filter for "option", and copy the keys you care about. The upstream reference is [EmulatorJS core options](https://emulatorjs.org/docs4devs/settings/).
 
 ### `emulatorjs.controls`
 
@@ -514,7 +514,7 @@ emulatorjs:
                     value2: BUTTON_2
 ```
 
-See the [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/control-mapping/) for the button-slot reference. Users can override these defaults in-game via Menu → **Controls**, the config.yml setting only sets the starting point.
+See the [EmulatorJS control-mapping docs](https://emulatorjs.org/docs4devs/control-mapping/) for the button-slot reference. Users can override these defaults in-game via Menu → **Controls**, so the config.yml setting only sets the starting point.
 
 #### Worked example: 2-player SNES
 
@@ -537,7 +537,7 @@ emulatorjs:
 
 ### Server owner vs per-user
 
-Most settings under `emulatorjs.settings` and `emulatorjs.controls` can be overridden by users in-game (Menu → Settings, Menu → Controls). Per-user values take precedence, the config.yml setting is the fallback.
+Most settings under `emulatorjs.settings` and `emulatorjs.controls` can be overridden by users in-game (Menu → Settings, Menu → Controls). Per-user values take precedence, and the config.yml setting is the fallback.
 
 | Where the setting lives             | Who it affects       | Survives upgrades? |
 | ----------------------------------- | -------------------- | ------------------ |
@@ -562,13 +562,13 @@ streaming:
 
 ### `streaming.containers`
 
-**One entry per container**, not per platform. A container serves every platform listed in its `platforms` map, and its own keys are the defaults for all of them.
+Add one entry per container, not per platform. A container serves every platform listed in its `platforms` map, and its own keys are the defaults for all of them.
 
 | Key                | Required | Purpose                                                                                                                                                                  |
 | ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `host`             | Yes      | Browser-facing Selkies web UI, served over **HTTPS**, or a path when reverse proxied onto RomM's own origin                                                              |
 | `platforms`        | Yes      | Map of [platform slug](../platforms/supported-platforms.md) to the emulator serving it, or to an override block                                                          |
-| `protocol`         | No       | `webstation`. Omitted, the entry is read as a deprecated per-emulator broker mod                                                                                         |
+| `protocol`         | No       | `webstation`. When omitted, the entry is read as a deprecated per-emulator broker mod                                                                                    |
 | `label`            | No       | Name for the container, shown in the fleet view. The play action is named after the emulator instead                                                                     |
 | `subfolder`        | No       | URL prefix the broker is served under, matching the container's `SUBFOLDER`                                                                                              |
 | `broker_host`      | No       | Server-to-broker API base. Derived from `host` when omitted, and **required** when `host` is a path                                                                      |

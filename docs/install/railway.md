@@ -5,7 +5,7 @@ description: One-click deploy with a community-maintained Railway template
 
 # Railway
 
-If you want a hosted deploy without wiring the Docker Compose yourself, a **community-maintained** one-click install option for Railway is available.
+For a hosted deploy without wiring up Docker Compose yourself, there is a community-maintained one-click template for Railway.
 
 [![Deploy on Railway](../resources/railway/button.svg)](https://railway.com/deploy/romm)
 

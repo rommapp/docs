@@ -13,7 +13,7 @@ description: Diagnose EmulatorJS and Ruffle issues
 
 ## "This core needs a secure connection"
 
-Threaded cores need the `SharedArrayBuffer` API, and browsers only hand that out on a secure, cross-origin-isolated origin. Over plain HTTP the player now tells you this directly instead of throwing a generic error at you. Fix it by serving the app over `https://` (see [Reverse Proxy](../install/reverse-proxy.md)), or pick a single-threaded core for the platform. It comes up with the PSP core, with [`js-dos`](../using/in-browser-play/js-dos.md) for Windows 3.x and 9x, and with a few of the heavier EmulatorJS cores.
+Threaded cores need the `SharedArrayBuffer` API, and browsers only hand that out on a secure, cross-origin-isolated origin. Over plain HTTP the player shows this message. Fix it by serving the app over `https://` (see [Reverse Proxy](../install/reverse-proxy.md)), or pick a single-threaded core for the platform. It comes up with the PSP core, with [`js-dos`](../using/in-browser-play/js-dos.md) for Windows 3.x and 9x, and with a few of the heavier EmulatorJS cores.
 
 ## Black screen or no audio
 
@@ -38,11 +38,11 @@ Not sure which files you need? The error message usually names them, otherwise c
 
 - **Underpowered device.** Cheap TV boxes and old phones struggle. Try a lighter core (e.g. `snes9x` instead of `bsnes`), or accept the stutter.
 - **Tab is backgrounded.** Keep the play tab foregrounded as most browsers throttle background tabs.
-- **Other tabs eating CPU.** Close them!
+- **Other tabs eating CPU.** Close them.
 
 ## Save states crash on load
 
-- **Core changed between save and load.** States are emulator-build-specific, start fresh or switch to in-game saves (portable across builds).
+- **Core changed between save and load.** States are specific to the emulator build, so start fresh or switch to in-game saves (portable across builds).
 - **Desktop emulator save state.** States from desktop emulators might not work in-browser.
 
 ## DOS games fail to boot

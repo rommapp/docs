@@ -5,7 +5,7 @@ description: Logs, error tracking and telemetry
 
 # Observability
 
-It's often handy to know what's happening under the hood, especially when debugging a scan or task. the observability stack includes:
+These tools show what RomM is doing, which helps most when debugging a scan or task. The observability stack includes:
 
 - **Container logs**: always available, the first stop
 - **`/api/heartbeat`** endpoint: health + config summary for uptime monitors
@@ -56,7 +56,7 @@ This also disables the `GET /api/logs` endpoint that backs it. The container log
 
 ## `/api/heartbeat`
 
-A single-request endpoint to fetch health and config information. Works when not logged in, though some fields only appear for authenticated callers.
+This single-request endpoint returns health and config information. It works when not logged in, though some fields only appear for authenticated callers.
 
 ```http
 GET /api/heartbeat
@@ -77,7 +77,7 @@ Per-metadata provider health:
 GET /api/heartbeat/metadata/[igdb/ss/ra/...]
 ```
 
-Useful when a scan is matching poorly and you want to know whether a provider is down on their side or misconfigured on yours.
+Use it when a scan is matching poorly and you want to know whether a provider is down on their side or misconfigured on yours.
 
 ## Sentry
 
@@ -130,15 +130,15 @@ GET /api/tasks/status
 Authorization: Bearer <token-with-tasks.run>
 ```
 
-Returns an array of every scheduled/manual/watcher task with current status (`idle`, `queued`, `running`, `failed`) and last run time. Scrape this into your monitoring to alert on "Folder Scan hasn't run in 48 hours", which usually means RQ workers are dead.
+It returns an array of every scheduled/manual/watcher task with current status (`idle`, `queued`, `running`, `failed`) and last run time. Scrape this into your monitoring to alert on "Folder Scan hasn't run in 48 hours", which usually means RQ workers are dead.
 
 ## Anti-patterns
 
 - **Don't parse unstructured log lines** for metrics (use OTEL instead)
-- **Don't log at DEBUG in production** as the volume is real and scans will drown in it
-- **Don't scrape HTML pages for health checks**; HTML changes between versions while the API endpoint is stable
+- **Don't log at DEBUG in production** because the volume is real and scans will drown in it
+- **Don't scrape HTML pages for health checks**, because HTML changes between versions while the API endpoint is stable
 
 ## Minimum recommended stack
 
-- Default `INFO` logs into the container logs → forwarded to Loki/Promtail/whatever you already run
+- Default `INFO` logs into the container logs, forwarded to Loki/Promtail/whatever you already run
 - `/api/heartbeat` hit every 60 seconds from Uptime Kuma/Gatus

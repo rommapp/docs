@@ -5,7 +5,7 @@ description: Install on TrueNAS SCALE via the App Catalog or YAML
 
 # TrueNAS
 
-This guide covers **TrueNAS SCALE**. TrueNAS CORE isn't supported because its FreeBSD jail system doesn't run Docker images.
+This guide covers TrueNAS SCALE. TrueNAS CORE isn't supported because its FreeBSD jail system doesn't run Docker images.
 
 ## Prerequisites
 
@@ -23,9 +23,9 @@ This guide covers **TrueNAS SCALE**. TrueNAS CORE isn't supported because its Fr
 
 2. Fill in the install form
 
-You'll be asked for the same set of env vars as [Quick Start](../getting-started/quick-start.md), and most defaults work. Things to look at:
+The form asks for the same env vars as [Quick Start](../getting-started/quick-start.md), and most defaults work. Check these:
 
-- **Database credentials**: TrueNAS will offer to provision MariaDB for you, just pick a strong password.
+- **Database credentials**: TrueNAS offers to provision MariaDB for you, so you only need to pick a strong password.
 - **`ROMM_AUTH_SECRET_KEY`**: generate via `openssl rand -hex 32` on any Linux box and paste the output.
 - **Metadata provider credentials**: fill in whatever you've registered for (see [Metadata Providers](../getting-started/metadata-providers.md)).
 - **Storage configurations**: point the **Library** and **Assets** volumes at datasets you control.
@@ -35,7 +35,7 @@ You'll be asked for the same set of env vars as [Quick Start](../getting-started
 
 3. Install
 
-Save, and TrueNAS will provision the container + DB + Valkey, run migrations, and expose the web UI on the port you configured. If it won't boot, jump to [Troubleshooting](#troubleshooting).
+Save, and TrueNAS provisions the container, database, and Valkey, runs migrations, and exposes the web UI on the port you configured. If it won't boot, jump to [Troubleshooting](#troubleshooting).
 
 ## Option B: Install via YAML
 
@@ -59,7 +59,7 @@ Fill in the empty values with credentials you created in [Quick Start](../gettin
 
 3. Install
 
-Save, and you're done!
+Save to finish the install.
 
 ## Troubleshooting
 
@@ -75,11 +75,11 @@ If you're seeing permission errors on paths _inside_ the container (not on TrueN
 
 ### Artwork/covers download but never show up
 
-If a scan reports success and the logs show art being fetched (and you can even see the downloaded media on disk), but covers and artwork stay blank in the UI, check whether your **Library** and **Assets/resources** volumes live on **different ZFS datasets**.
+If a scan reports success and the logs show art being fetched (and you can even see the downloaded media on disk), but covers and artwork stay blank in the UI, check whether your **Library** and **Assets/resources** volumes live on different ZFS datasets.
 
 RomM can't link ROMs to their artwork across dataset boundaries, even when permissions are correct on both. This most often happens when ROMs sit on a media/game dataset while resources are pointed at a Docker-specific dataset.
 
-The fix is to keep the library and resources on the **same dataset**. For example, this works:
+Keep the library and resources on the same dataset. For example, this works:
 
 ```yaml
 volumes:
@@ -95,7 +95,7 @@ volumes:
     - /mnt/Tank1/Docker/resources:/romm/resources
 ```
 
-Keeping just the database and config file on a separate Docker dataset is fine — only the library and resources need to share a dataset.
+The database and config file can sit on a separate Docker dataset, because only the library and resources need to share one.
 
 ### Other issues
 

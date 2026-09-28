@@ -22,7 +22,7 @@ CSRF protection is on by default, so a mismatched or missing `csrftoken` cookie 
 2. Still broken? Clear cookies for the host and hard-reload (`CMD+SHIFT+R`/`CTRL+F5`).
 3. As a last resort, disable CSRF verification with `DISABLE_CSRF_PROTECTION=true` in your env, but **we strongly discourage this** as it opens you up to CSRF attacks.
 
-If you're behind a reverse proxy and CSRF keeps failing, the proxy is probably stripping the `csrftoken` cookie or the `X-CSRFToken` header. See the [Reverse Proxy recipes](../install/reverse-proxy.md). Every one of them forwards `Cookie` and all custom headers by default, so if yours doesn't, fix the proxy config.
+If you're behind a reverse proxy and CSRF keeps failing, the proxy is probably stripping the `csrftoken` cookie or the `X-CSRFToken` header (see the [Reverse Proxy recipes](../install/reverse-proxy.md)). Every one of them forwards `Cookie` and all custom headers by default, so if yours doesn't, fix the proxy config.
 
 ## `400 Bad Request` on the WebSocket endpoint
 
@@ -94,17 +94,15 @@ environment:
     - OIDC_ROLE_VIEWER=platform-users # grants login to non-admins
 ```
 
-`OIDC_ROLE_VIEWER`/`OIDC_ROLE_EDITOR` all resolve to **User** (not distinct roles anymore), but they're still what grants access when role claims are enabled. See [Role mapping](../administration/oidc/index.md#role-mapping).
+`OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` both resolve to **User**, but they still grant access when role claims are enabled (see [Role mapping](../administration/oidc/index.md#role-mapping)).
 
 ### "Email is missing from token" (Zitadel-specific)
 
-On Zitadel, open the application → **Token Settings** → tick **User Info inside ID Token** → Save.
-
-See [OIDC with Zitadel → Enable claims](../administration/oidc/zitadel.md) for the full walkthrough.
+On Zitadel, open the application → **Token Settings** → tick **User Info inside ID Token** → Save (see [OIDC with Zitadel → Enable claims](../administration/oidc/zitadel.md) for the full walkthrough).
 
 ### Authentik 2025.10: login succeeds but the user is rejected
 
-Authentik 2025.10 changed the default `email_verified` claim from `true` to `false` but a verified email is required so the claim must arrive as `true`.
+Authentik 2025.10 changed the default `email_verified` claim from `true` to `false`. RomM requires a verified email, so the claim must arrive as `true`.
 
 Fix: add the property mapping documented in [OIDC with Authentik → Create a property mapping](../administration/oidc/authentik.md#2-create-a-property-mapping-authentik-202510).
 
@@ -123,7 +121,7 @@ Your host and the IdP have significant clock drift, so run NTP on both.
 
 You set `OIDC_AUTOLOGIN=true` and your IdP keeps bouncing you back, which bounces you back to the IdP.
 
-Usually because something else in the chain (a CSRF check, a cookie domain mismatch, a reverse-proxy rewrite) is breaking the post-callback handoff. To escape:
+This usually happens because something else in the chain (a CSRF check, a cookie domain mismatch, a reverse-proxy rewrite) is breaking the post-callback handoff. To escape:
 
 1. Hit `/login?bypass_autologin=true` directly to land on the normal login page.
 2. Sign in as a local admin.

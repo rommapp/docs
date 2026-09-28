@@ -38,7 +38,7 @@ dir                     # find the .EXE
 filename.exe            # launch
 ```
 
-Works for homebrew and shareware, but retail games usually fail here because they want a CD mounted somewhere.
+This works for homebrew and shareware, but retail games usually fail here because they want a CD mounted somewhere.
 
 ## Auto-config with `.conf` files
 
@@ -46,7 +46,7 @@ Works for homebrew and shareware, but retail games usually fail here because the
 !!! warning "Not for the faint of heart"
     Building working `.conf` files is trial-and-error, so plan for it.
 
-`dosbox-pure` looks for a `.conf` file matching the `.exe` name before booting. If found, it reads the config, mounts whatever's specified, and runs the `[autoexec]` block. Once you have a working `.conf`, click Play → game boots straight into DOS → `[autoexec]` runs → you're in the game, no typing.
+`dosbox-pure` looks for a `.conf` file matching the `.exe` name before booting. If found, it reads the config, mounts whatever's specified, and runs the `[autoexec]` block. Once you have a working `.conf`, the game boots straight into DOS and runs the `[autoexec]` block on launch, so you don't have to type anything.
 
 ### DOOM shareware example
 
@@ -320,4 +320,4 @@ If a game lands on a blank DOS prompt or won't boot:
 2. **Check drive paths**. Many retail DOS games hard-code `D:\` as the CD. If you mount the CD as `E:` the game won't find it.
 3. **Debug with native `dosbox-pure`**. Run the same zip in [RetroArch](https://retroarch.com/) with the `dosbox-pure` core. If it works there it should work, and if not, the `.conf` is the problem.
 
-Full option reference available at [`dosbox-pure` wiki](https://github.com/schellingb/dosbox-pure).
+The full option reference is on the [`dosbox-pure` wiki](https://github.com/schellingb/dosbox-pure).

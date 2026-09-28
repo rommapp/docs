@@ -8,7 +8,7 @@ description: Official clients for Android, Windows, and Linux handhelds.
 
 # First-Party Apps
 
-These are the only clients built and maintained by the team. Pick the one(s) that matches your device(s):
+The team builds and maintains only these clients. Pick the ones that match your devices:
 
 | App                                 | Platform                                    |
 | ----------------------------------- | ------------------------------------------- |
@@ -34,7 +34,7 @@ For third-party clients, see the [Community section in the README](https://githu
 ### What it does
 
 - Browses your full library from an Android device
-- Handles authentication via [Client API Tokens](../developers/client-api-tokens.md), paired over a short code so you don't type a 44-character string
+- Handles authentication via [Client API Tokens](../developers/client-api-tokens.md), paired over a short code so you don't type a 68-character string
 - Downloads ROMs on demand to your device's storage
 - Launches RetroArch (or another configured emulator) with the downloaded ROM
 - Syncs saves/states back to RomM when you finish a session (optional)
@@ -45,7 +45,7 @@ See [Getting Started](https://github.com/rommapp/argosy-launcher#getting-started
 
 ## Grout
 
-**Grout** is our first-party companion for Linux-based handhelds, specifically [muOS](https://muos.dev) and [NextUI](https://github.com/mattsays/nextui). Syncs ROMs, saves, and states bidirectionally with your instance over Wi-Fi.
+**Grout** is our first-party companion for Linux-based handhelds, specifically [muOS](https://muos.dev) and [NextUI](https://github.com/mattsays/nextui). It syncs ROMs, saves, and states bidirectionally with your instance over Wi-Fi.
 
 <div align="center">
     <img src="../../resources/romm/apps/grout.png" alt="Grout screenshot" style="max-width: 600px; width: 100%;">
@@ -59,9 +59,9 @@ See [Getting Started](https://github.com/rommapp/argosy-launcher#getting-started
 ### What it does
 
 - Connects to your instance using a [Client API Token](../developers/client-api-tokens.md)
-- **Pulls** ROMs from your instance to the handheld's SD card, organised into muOS/NextUI's expected folder layout
-- **Pushes** saves and states back to your instance when you finish a session
-- **Schedules** sync runs: on idle, on session end, or on a cron
+- Pulls ROMs from your instance to the handheld's SD card, organised into muOS/NextUI's expected folder layout
+- Pushes saves and states back to your instance when you finish a session
+- Schedules sync runs: on idle, on session end, or on a cron
 - Works fully offline between syncs so the handheld doesn't need your instance to play
 
 ### Setup
@@ -114,7 +114,7 @@ Open **Menu → Library → Configure Integrations → RomM** and enter:
 - **Host URL**, including the protocol and without a trailing slash, for example `https://romm.example.com`
 - Your **username** and **password**
 
-Passwords are stored in plaintext in Playnite, so use a separate account with a **read-only permission group** rather than your main credentials.
+Passwords are stored in plaintext in Playnite, so use a separate account with a read-only permission group rather than your main credentials.
 
 #### Map emulator paths
 

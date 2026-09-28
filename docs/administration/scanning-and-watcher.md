@@ -26,7 +26,7 @@ Every scan picks one mode. Modes differ in what they touch, so use the most-targ
 | **Hashes**        | Recalculates CRC/MD5/SHA1 hashes.                                          | After upgrading from a version that didn't hash or when you suspect file corruption.      |
 | **Complete**      | Full rescan, recalculating hashes and re-fetching metadata for everything. | Rarely, since it takes a long time.                                                       |
 
-You can further scope a scan to specific **platforms** and specific **metadata providers**, useful when only one provider has changed (e.g. just enabled Hasheous → Unmatched scan, Hasheous selected, on all platforms).
+You can further scope a scan to specific platforms and specific metadata providers, which helps when only one provider has changed. For example, after enabling Hasheous, run an Unmatched scan on all platforms with only Hasheous selected.
 
 ## Manual scans
 
@@ -43,7 +43,7 @@ Configured via env vars (full table in [Scheduled Tasks](scheduled-tasks.md)):
 | `SCAN_WORKERS`          | `4`         | How many ROMs a scan processes at once                                                                     |
 | `SEVEN_ZIP_TIMEOUT`     | `60`        | Per-archive timeout in seconds for `.7z` extraction during scan, raise it if scanning huge compressed sets |
 
-Scans get their own queue and worker now, so a long library scan won't hold up the shorter background tasks behind it.
+Scans run on their own queue and worker, so a long library scan won't hold up the shorter background tasks behind it.
 
 To disable scheduled scans entirely, either unset the cron or set it to something unreachable (`SCHEDULED_RESCAN_CRON=0 0 31 2 *`).
 
@@ -60,15 +60,15 @@ environment:
 Behaviour:
 
 - Watches `/romm/library` (and everything under it) recursively
-- Debounces bursts of events: the delay (default 10 seconds) lets a large `cp` or `rsync` settle before scanning.
-- Batches scans intelligently: many events → a single consolidated scan, not one scan per file
+- Debounces bursts of events: the delay (default 5 minutes) lets a large `cp` or `rsync` settle before scanning.
+- Batches many events into a single consolidated scan instead of running one scan per file
 - Ignores content modifications and metadata-only changes, caring only about files appearing or disappearing (not `chmod`)
 - Skips OS noise (`.DS_Store`, `Thumbs.db`, `.tmp`, etc.)
 - If a whole new platform folder appears, switches to a **New Platforms** scan to pick it up cleanly
 
 ### When **not** to enable the watcher
 
-- **Slow/high-latency filesystems** (SMB mounts, rclone mounts, anything not local disk): the watcher reacts to every event, flaky mounts generate a lot of them, so use scheduled scans instead.
+- **Slow/high-latency filesystems** (SMB mounts, rclone mounts, anything not local disk): the watcher reacts to every event and flaky mounts generate a lot of them, so use scheduled scans instead.
 - **Libraries under active write load from other tools** (e.g. IGIR constantly tagging files): the watcher will re-scan on every change, at best noisy and at worst a scan loop.
 
 ### Watcher vs scheduled scan
@@ -81,7 +81,7 @@ Behaviour:
 | Catches renames              | Yes                     | Yes                      |
 | Survives a container restart | Yes, re-arms on startup | Yes                      |
 
-You can run both, where the watcher handles day-to-day additions, and the scheduled scan is a safety net.
+You can run both: the watcher handles day-to-day additions and the scheduled scan acts as a safety net.
 
 ## What gets excluded
 
@@ -102,7 +102,7 @@ exclude:
                 extensions: [nfo]
 ```
 
-Whatever you list here is **added** to the defaults, not swapped in for them. The system folders and the frontend media folders stay excluded either way. Full schema in [Configuration File](../reference/configuration-file.md).
+Whatever you list here is added to the defaults rather than replacing them, and the system folders and frontend media folders stay excluded either way (see [Configuration File](../reference/configuration-file.md) for the full schema).
 
 ## Platform folder names
 

@@ -16,4 +16,4 @@ Find common Kubernetes-specific issues in [Kubernetes Troubleshooting](../troubl
 ## Community charts
 
 - **[ArtifactHub](https://artifacthub.io/packages/search?ts_query_web=romm)**: search for `romm` and pick a chart with active maintenance and recent releases.
-- **[Discord](https://discord.gg/romm)**: the `#kubernetes` channel is a great place to ask which chart people are actually running.
+- **[Discord](https://discord.gg/romm)**: ask in the `#kubernetes` channel which chart people are running.

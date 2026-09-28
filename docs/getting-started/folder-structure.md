@@ -36,7 +36,7 @@ filesystem:
         firmware: "{platform}/bios"
 ```
 
-As the BIOS/firmware tree is **optional**, only platforms that require firmware for emulation need it.
+The BIOS/firmware tree is optional, and only platforms that require firmware for emulation need it.
 
 ### Mount point
 
@@ -53,7 +53,7 @@ See the [reference Docker Compose](quick-start.md) for where `/romm/library` liv
 
 ## Multi-file games
 
-Some games come as **folders** instead of single files, holding multiple discs, DLC, manuals, or patches alongside the game itself. These sub-folder names are recognised and surfaced as tags in the UI, in singular or plural form:
+Some games come as folders instead of single files, holding multiple discs, DLC, manuals, or patches alongside the game itself. These sub-folder names are recognised and surfaced as tags in the UI, in singular or plural form:
 
 | Folder           | Holds                                               |
 | ---------------- | --------------------------------------------------- |
@@ -221,7 +221,7 @@ Every per-platform override has to agree with `default` on where the platform fo
 
 ### Several templates for one platform
 
-A platform can declare a **list** of templates, and discovery is their union. That covers the mixed layout no single fixed-depth template can express: loose games directly in the platform folder **and** games inside grouping subfolders below it.
+A platform can declare a list of templates, and discovery is their union. That covers the mixed layout no single fixed-depth template can express: loose games directly in the platform folder and games inside grouping subfolders below it.
 
 ```yaml
 filesystem:
@@ -233,7 +233,7 @@ filesystem:
 
 ### Moving games around
 
-Game identity is content-based, so a template isn't a cage: move or rename a game within it and the next scan recognises it by its hashes and relocates the existing entry in place, so its saves, states, play history, favourites and collection membership follow it. Removing a platform's override moves nothing on disk: the platform falls back to `structure.default`, so the games that no longer sit where that template expects them are flagged as missing from the filesystem, and the folders that used to group them are picked up as multi-file games instead. Flatten the library out yourself and the next scan matches each game by hash and relocates it rather than importing a duplicate.
+Game identity is content-based, so games aren't pinned to one spot: move or rename a game within a template and the next scan recognises it by its hashes and relocates the existing entry in place, so its saves, states, play history, favourites and collection membership follow it. Removing a platform's override moves nothing on disk: the platform falls back to `structure.default`, so the games that no longer sit where that template expects them are flagged as missing from the filesystem, and the folders that used to group them are picked up as multi-file games instead. Flatten the library out yourself and the next scan matches each game by hash and relocates it rather than importing a duplicate.
 
 <!-- prettier-ignore -->
 !!! warning "Relocation needs an identity"

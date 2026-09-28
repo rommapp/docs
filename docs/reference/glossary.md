@@ -5,7 +5,7 @@ description: The vocabulary every page assumes you know
 
 # Glossary
 
-Every term the docs, UI, and API use consistently, with foundational concepts getting a paragraph, lookups a single sentence, and almost every entry linking out to a dedicated page for full detail.
+These are the terms the docs, UI, and API use consistently. Foundational concepts get a paragraph and simple lookups get a single sentence. Almost every entry links to a dedicated page for full detail.
 
 ---
 
@@ -73,15 +73,15 @@ Every term the docs, UI, and API use consistently, with foundational concepts ge
 
 **PWA**: Progressive Web App. Install RomM to your phone or desktop home screen via your browser's add-to-home-screen flow. Requires HTTPS.
 
-**Resource**: provider-fetched metadata image (cover art, screenshot, manual) stored under `/romm/resources`. **Machine-managed** and rebuildable from a rescan. Not the same as an Asset (`/romm/assets`), which is user-owned and not recoverable from the library.
+**Resource**: provider-fetched metadata image (cover art, screenshot, manual) stored under `/romm/resources`. Machine-managed and rebuildable from a rescan. Not the same as an Asset (`/romm/assets`), which is user-owned and not recoverable from the library.
 
 **ROM**: a single game entry. One filesystem file, one folder of files (multi-disc, patched, with DLC), or a manual DB entry. Each ROM belongs to exactly one platform. ROMs get metadata (cover, description, ratings, related games), user data (per-user rating, notes, playtime), and optional assets (saves, states, screenshots, firmware).
 
-**Role**: an account's top-level type. Two roles: User (access governed by a permission group) and Admin (full access, bypasses groups). See [Users & Roles](../administration/users-and-roles.md).
+**Role**: an account's top-level type. Two roles: User (access governed by a permission group) and Admin, which has full access and bypasses groups (see [Users & Roles](../administration/users-and-roles.md)).
 
 **Ruffle**: the bundled in-browser Flash/Shockwave emulator (see [In-Browser Play → Ruffle](../using/in-browser-play/ruffle.md)).
 
-**Scan**: the process of walking the library, hashing files, calling metadata providers, and updating the DB. Scans run in six **modes** (New Platforms, Quick, Unmatched, Update, Hashes, Complete) and can be triggered manually, on a cron, or by the filesystem watcher (see [Scanning & Watcher](../administration/scanning-and-watcher.md)).
+**Scan**: the process of walking the library, hashing files, calling metadata providers, and updating the DB. Scans run in six modes (New Platforms, Quick, Unmatched, Update, Hashes, Complete) and can be triggered manually, on a cron, or by the filesystem watcher (see [Scanning & Watcher](../administration/scanning-and-watcher.md)).
 
 **Scope**: a coarse OAuth permission derived from a user's effective [permission-group](../administration/users-and-roles.md#permission-groups) grants. Client API Tokens and OIDC sessions carry a subset of the user's scopes (see [Users & Roles → API tokens](../administration/users-and-roles.md#api-tokens-advanced)).
 

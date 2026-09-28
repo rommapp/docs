@@ -19,7 +19,7 @@ Name your folder after the **platform slug** in the table, or after one of the [
 
 ## What the columns mean
 
-- **Slug**: the folder name RomM expects. Matches the IGDB platform slug where possible. Matched case-insensitively, so `SNES/` and `snes/` are the same platform.
+- **Slug**: the folder name RomM expects, matching the IGDB platform slug where possible. It's matched case-insensitively, so `SNES/` and `snes/` are the same platform.
 - **Name**: the human-readable platform name
 - **Providers**: which metadata providers have at least partial coverage (see [Metadata Providers](../getting-started/metadata-providers.md)).
 - **EmulatorJS**: a playable in-browser core exists (see [Configuration File → `emulatorjs`](../reference/configuration-file.md#emulatorjs) for server owner-level tuning).
@@ -31,7 +31,7 @@ Batocera, RetroBat and ES-DE name a fair number of their system folders differen
 
 --8<-- "platform-aliases.md"
 
-Aliases are the last thing RomM tries, so a `system.platforms` binding always overrides one. See [`system.platforms`](../reference/configuration-file.md#systemplatforms) for the full order.
+Aliases are the last thing RomM tries, so a `system.platforms` binding always overrides one (see [`system.platforms`](../reference/configuration-file.md#systemplatforms) for the full order).
 
 Note that aliases are not one-to-one. All four Amiga models land on `amiga` and every arcade board lands on `arcade`, so those games end up sharing a platform. And a folder name that is itself a slug is matched before the aliases are reached, which means a frontend using that name for something broader still needs a binding: `atari800/` holds the whole Atari 8-bit family in ES-DE and Batocera, while RomM reads `atari800` as the Atari 800 alone. The example configs for both frontends bind it to `atari8bit`.
 
@@ -61,6 +61,6 @@ The platform table comes from romm's own generator, so `gen_platforms` needs a r
 
 - [Folder Structure](../getting-started/folder-structure.md): how platform slugs map to on-disk folders
 - [Custom Platforms](custom-platforms.md): adding platforms outside the built-in list
-- [Metadata Providers](../getting-started/metadata-providers.md): provider coverage deep-dive
+- [Metadata Providers](../getting-started/metadata-providers.md): provider coverage details
 - [In-Browser Play → EmulatorJS](../using/in-browser-play/emulatorjs.md): EmulatorJS core catalogue
 - [Firmware Management](../administration/firmware-management.md): how RomM stores and serves BIOS files

@@ -5,7 +5,7 @@ description: Upload, associate, and serve BIOS/firmware files for emulation.
 
 # Firmware Management
 
-Many emulated platforms require BIOS or firmware to boot, or to reach a certain level of stability. RomM tracks firmware files **per platform**, stores them on disk, and serves them to in-browser players (EmulatorJS/Ruffle) and companion apps that request them.
+Many emulated platforms require BIOS or firmware to boot, or to reach a certain level of stability. RomM tracks firmware files per platform, stores them on disk, and serves them to in-browser players (EmulatorJS/Ruffle) and companion apps that request them.
 
 Firmware is **not** ROM. Keep the two separate:
 
@@ -14,7 +14,7 @@ Firmware is **not** ROM. Keep the two separate:
 
 <!-- prettier-ignore -->
 !!! important "Legality varies by jurisdiction"
-RomM does not ship games or firmware, and the team cannot help you obtain BIOS files. Always check your local laws and the emulator's documentation for guidance on what you can legally use.
+    RomM does not ship games or firmware, and the team cannot help you obtain BIOS files. Always check your local laws and the emulator's documentation for guidance on what you can legally use.
 
 ## Ingesting firmware
 
@@ -26,7 +26,7 @@ Where `bios/` lives is up to you. The default is `bios/{platform}` at the librar
 
 ## Missing firmware
 
-Delete a file from `bios/` and the next scan **flags it missing** instead of dropping it from the database. Put the file back and the next scan clears the flag. If you're never replacing it, the **Cleanup missing firmware** task deletes every flagged row in one go (see [Scheduled Tasks](scheduled-tasks.md#triggering-a-task-manually)).
+Delete a file from `bios/` and the next scan flags it missing instead of dropping it from the database. Put the file back and the next scan clears the flag. If you're never replacing it, the **Cleanup missing firmware** task deletes every flagged row in one go (see [Scheduled Tasks](scheduled-tasks.md#triggering-a-task-manually)).
 
 ## Platform-specific firmware
 
@@ -42,7 +42,7 @@ Common examples:
 | Saturn            | `saturn_bios.bin`, `mpr-17933.bin`                | `bios/saturn/`  |
 | Nintendo DS       | `firmware.bin`, `bios9.bin`, `bios7.bin`          | `bios/nds/`     |
 
-File naming matters as emulators look for specific filenames. Double-check against the emulator core's documentation if something won't boot.
+File naming matters because emulators look for specific filenames. Double-check against the emulator core's documentation if something won't boot.
 
 ## Integration with companion apps
 

@@ -30,7 +30,7 @@ Regardless of host platform, you'll make the same handful of decisions:
 - **[Database](databases.md)**: MariaDB (default), MySQL or PostgreSQL
 - **[In-memory store](redis-or-valkey.md)**: required for sessions + task queue, embedded or external
 - **[Reverse proxy](reverse-proxy.md)**: Caddy, nginx, Traefik, or NPM. HTTPS is required for OIDC and PWA install.
-- **[Backup & restore](backup-and-restore.md)**: Test it before you need it!
+- **[Backup & restore](backup-and-restore.md)**: Test it before you need it.
 
 ## After you're up and running
 

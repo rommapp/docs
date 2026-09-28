@@ -20,7 +20,7 @@ Here are some combinations you can use based on your needs:
 
 #### ⭐ The Chef's Choice: [Hasheous](#hasheous) + [IGDB](#igdb) + [SteamGridDB](#steamgriddb) + [Retroachievements](#retroachievements)
 
-- Supports 135+. popular systems
+- Supports 135+ popular systems
 - Hasheous provides hash-based matching and proxies IGDB data (titles, descriptions and artwork)
 - IGDB adds additional metadata like related games and screenshots
 - SteamGridDB provides high-quality alternative cover art
@@ -40,14 +40,14 @@ Here are some combinations you can use based on your needs:
 
 - Hash-based matching only ⚠️
 - Proxies titles, descriptions and cover art from IGDB
-- Incredibly fast scan times
+- Fast scan times
 - **For users who want to avoid API keys**
 
 ## Setup instructions
 
 ### IGDB
 
-[IGDB](https://www.igdb.com/) (Internet Game Database) is a popular metadata provider that offers metadata, cover art, screenshots, related games and more.
+[IGDB](https://www.igdb.com/) (Internet Game Database) is a popular metadata provider for metadata, cover art, screenshots, related games and more.
 
 To access the IGDB API you'll need a Twitch account and a valid phone number for 2FA verification. Up-to-date instructions are available in the [IGDB API documentation](https://api-docs.igdb.com/#account-creation). When registering your application in the Twitch Developer Portal, fill out the form like so:
 
@@ -58,7 +58,7 @@ To access the IGDB API you'll need a Twitch account and a valid phone number for
 
 <!-- prettier-ignore -->
 !!! important
-    The name you pick has to be unique! Picking an existing name will fail silently, with no error messages. We recommend using `romm-<random hash>`, like `romm-3fca6fd7f94dea4a05d029f654c0c44b`
+    The name you pick has to be unique. Picking an existing name fails silently, with no error message. We recommend `romm-<random hash>`, like `romm-3fca6fd7f94dea4a05d029f654c0c44b`.
 
 Note the client ID and secret that appear on screen, and use them to set `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` in your environment variables.
 
@@ -69,7 +69,7 @@ Note the client ID and secret that appear on screen, and use them to set `IGDB_C
 
 ### ScreenScraper
 
-[ScreenScraper.fr](https://screenscraper.fr/) is a French provider that offers metadata, cover art, screenshots and manuals, along with the option for 3D boxes and CD/cartridge cover art. It supports a wide range of systems and is a great alternative to IGDB.
+[ScreenScraper.fr](https://screenscraper.fr/) is a French provider of metadata, cover art, screenshots and manuals, with the option for 3D boxes and CD/cartridge cover art. It supports a wide range of systems and is a good alternative to IGDB.
 
 To access the ScreenScraper API, create a [ScreenScraper](https://www.screenscraper.fr/membreinscription.php) account and copy the **user** and **password** you just created to `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD` respectively.
 
@@ -81,7 +81,7 @@ ScreenScraper's API also expects a second pair of **developer** credentials that
 
 ### MobyGames
 
-MobyGames is a metadata provider that offers metadata, cover art and screenshots.
+MobyGames provides metadata, cover art and screenshots.
 
 To access the MobyGames API, [create a MobyGames account](https://www.mobygames.com/user/register/) and then visit your profile page. Click the **API** link under your user name to sign up for an API key. Copy the key shown and use it to set `MOBYGAMES_API_KEY`.
 
@@ -91,7 +91,7 @@ To access the MobyGames API, [create a MobyGames account](https://www.mobygames.
 
 ### LaunchBox
 
-The [LaunchBox](https://gamesdb.launchbox-app.com/) Games Database is a community-driven database that provides metadata, cover art, and screenshots. Like the Launchbox desktop application, the entire database is downloaded locally and matches games based on their exact filenames.
+The [LaunchBox](https://gamesdb.launchbox-app.com/) Games Database is a community-driven database that provides metadata, cover art, and screenshots. As with the LaunchBox desktop application, RomM downloads the entire database locally and matches games based on their exact filenames.
 
 To enable LaunchBox, set `LAUNCHBOX_API_ENABLED=true` and `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA=true` in your environment variables. You can customize scheduled updates of the database by setting the frequency on the cron job with `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON` (defaults to 5:00 AM every day).
 
@@ -101,13 +101,13 @@ You must run a LaunchBox metadata update (either manually, or scheduled via cron
 
 [Hasheous](https://hasheous.org/) is a free, open-source metadata provider that uses file hashes to match games. It proxies IGDB data for titles, descriptions, and cover art, and can provide Retroachievements IDs for matched games.
 
-Simply set `HASHEOUS_API_ENABLED=true` in your environment variables, and future scans will start using the [Hasheous API](https://hasheous.org/swagger/index.html).
+Set `HASHEOUS_API_ENABLED=true` in your environment variables, and future scans will start using the [Hasheous API](https://hasheous.org/swagger/index.html).
 
 RomM uses the public instance at `hasheous.org` by default, but users running their own [self-hosted Hasheous](https://github.com/gaseous-project/hasheous) can point `HASHEOUS_API_URL` at its API base, e.g. `https://hasheous.example.com/api/v1`.
 
 ### Playmatch
 
-[Playmatch](https://github.com/RetroRealm/playmatch) is a free, open source and community driven hash based matching service supporting multiple metadata providers such as IGDB, ScreenScraper, SteamGridDB, Retroachievements and more, hosted by a member of our community.
+[Playmatch](https://github.com/RetroRealm/playmatch) is a free, open source, community-driven hash-based matching service hosted by a member of our community. It supports multiple metadata providers such as IGDB, ScreenScraper, SteamGridDB, Retroachievements and more.
 
 To enable Playmatch, set `PLAYMATCH_API_ENABLED=true` in your environment variables.
 
@@ -138,7 +138,7 @@ To avoid unnecessary API calls, a cached file with the RA database is stored loc
 
 ### Flashpoint
 
-The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) is a project that enables metadata for 180,000+ flash and browser-based games. Enable this metadata source with the `FLASHPOINT_API_ENABLED=true` environment variable. If you are adding this provider to an existing setup, perform a `UNMATCHED` scan with Flashpoint selected to update an existing platform.
+The [Flashpoint Project Database](https://flashpointproject.github.io/flashpoint-database/) provides metadata for 180,000+ flash and browser-based games. Enable this metadata source with the `FLASHPOINT_API_ENABLED=true` environment variable. If you are adding this provider to an existing setup, perform a `UNMATCHED` scan with Flashpoint selected to update an existing platform.
 
 ### HowLongToBeat
 
@@ -148,7 +148,7 @@ Game completion times will be added to a new tab on the details page for support
 
 ### Steam
 
-[Steam](https://store.steampowered.com/) is a metadata source for the `win`, `linux` and `mac` platforms. Enable it with `STEAM_API_ENABLED=true`; there is no API key, no account, and no rate-limit sign-up. You get the title, description, capsule art, screenshots, genres, developers, publishers, release date, game modes and the Metacritic score.
+[Steam](https://store.steampowered.com/) is a metadata source for the `win`, `linux` and `mac` platforms. Enable it with `STEAM_API_ENABLED=true`. It needs no API key, no account, and no rate-limit sign-up. You get the title, description, capsule art, screenshots, genres, developers, publishers, release date, game modes and the Metacritic score.
 
 ```yaml
 scan:
@@ -239,7 +239,7 @@ library/
 
 #### ES-DE metadata
 
-Here are the text properties that will be read from `gamelist.xml`.
+RomM reads these text properties from `gamelist.xml`.
 
 | Property Name | Description                      |
 | ------------- | -------------------------------- |
@@ -258,7 +258,7 @@ Here are the text properties that will be read from `gamelist.xml`.
 
 #### ES-DE media
 
-There are two ways media files are mapped: first it looks at `gamelist.xml` for properties, and it falls back to looking at nested folders for images that have the same name as the ROM.
+Media files are mapped in two ways: RomM first looks at `gamelist.xml` for properties, and it falls back to looking at nested folders for images that have the same name as the ROM.
 
 | Property Name | Folder Name   | Description                            |
 | ------------- | ------------- | -------------------------------------- |
@@ -278,21 +278,21 @@ There are two ways media files are mapped: first it looks at `gamelist.xml` for 
 
 #### ES-DE settings
 
-Here are the settings you need to change to read your artwork and gamelist.xml files from the same folder that holds your ROMs.
+To have ES-DE read your artwork and gamelist.xml files from the same folder that holds your ROMs, change these settings.
 
 1. Open the ES-DE settings file:
 
     - Linux/macOS: `~/ES-DE/settings/es_settings.xml`
     - Windows: `C:\Program Files\ES-DE\settings\es_settings.xml`
 
-2. Make these two edits (add the lines if they don’t exist):
+2. Make these two edits (add the lines if they don't exist):
 
 ```xml
 <string name="MediaDirectory" value="/path/to/ROMs/folder" />
 <bool name="LegacyGamelistFileLocation" value="true" />
 ```
 
-- `MediaDirectory="/path/to/ROMs/folder"` download artwork into the same directory that contains the ROMs (should match `ROMDirectory`)
+- `MediaDirectory="/path/to/ROMs/folder"` downloads artwork into the same directory that contains the ROMs (should match `ROMDirectory`)
 - `LegacyGamelistFileLocation="true"` forces gamelist.xml to be written next to the ROMs instead of inside the ES-DE config folder
 
 3. If you already have scraped artwork, copy/move the systems from `~/ES-DE/downloaded_media/` and `~/ES-DE/gamelists/` into your ROMs folder
@@ -301,7 +301,7 @@ After a restart, ES-DE will place new artwork and the updated gamelist.xml direc
 
 ## Metadata Tags in Filenames
 
-Scans will now parse custom metadata tags in the filename that match specific patterns, and use them to fetch game metadata for the specified ID. The supported tags are:
+Scans parse custom metadata tags in the filename that match specific patterns and use them to fetch game metadata for the specified ID. The supported tags are:
 
 (igdb-xxxx) for [IGDB](https://www.igdb.com/)
 (moby-xxxx) for [MobyGames](https://www.mobygames.com/)
@@ -327,7 +327,7 @@ The gallery renders one piece of cover art per game card. Which one it shows is 
 | Physical     | `physical_path` | `physical`                        | ❌ No                       |
 | Mix Image    | `miximage_path` | `miximage`                        | ❌ No                       |
 
-The picker only changes **what the gallery displays**, it doesn't fetch anything. The scanner downloads artwork during a scan, and it only downloads media types listed in `scan.media` in `config.yml`. The default is `box2d`, `screenshot`, and `manual`, so out of the box only the **2D Box** style has art to show.
+The picker only changes what the gallery displays and doesn't fetch anything. The scanner downloads artwork during a scan, and it only downloads media types listed in `scan.media` in `config.yml`. The default is `box2d`, `screenshot`, and `manual`, so out of the box only the **2D Box** style has art to show.
 
 If you switch to **3D Box**, **Physical**, or **Mix Image** without adding the matching media type to `scan.media`, your cards will come up blank even though the setting clearly "took" in the UI.
 
@@ -348,7 +348,7 @@ To use an alternate style end-to-end:
             - manual
     ```
 
-    `box2d` is always fetched regardless of the list, so you don't strictly need to list it, but keeping it explicit makes the list self-documenting. See the [full `scan.media` table](../reference/configuration-file.md#scanmedia) for every type (fanart, title screens, marquees, bezels, videos, etc.).
+    `box2d` is always fetched regardless of the list, so you don't strictly need to list it, but keeping it explicit makes the list self-documenting (see the [full `scan.media` table](../reference/configuration-file.md#scanmedia) for every type, including fanart, title screens, marquees, bezels, and videos).
 
 2. Re-fetch the art. Most styles come from ScreenScraper, which only pulls media types in `scan.media` during a scan. Run an **Update Metadata** scan on the platforms you want.
 
@@ -364,6 +364,4 @@ When multiple providers return different values for the same field, the winner i
 
 A provider that isn't enabled is skipped wherever it sits in the list, so leaving all of them in place costs nothing.
 
-Reorder these lists to taste. For example, put `ss` first if you prefer ScreenScraper boxart, or move `hltb` up if you care about completion times more than descriptions.
-
-See the full [Configuration File reference](../reference/configuration-file.md) for everything `scan.priority` can do
+Reorder these lists to taste. For example, put `ss` first if you prefer ScreenScraper boxart, or move `hltb` up if you care about completion times more than descriptions (see the full [Configuration File reference](../reference/configuration-file.md) for everything `scan.priority` can do).
