@@ -59,7 +59,7 @@ Scan, enrich, browse and play your ROM collection from one free, self-hosted app
 
 ## Philosophy
 
-RomM is self-hosted and open source, with no tracking and no upsells. The core app is licensed under [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/), and other projects in the umbrella use permissive licenses ([GPLv3](https://choosealicense.com/licenses/gpl-3.0/) for software, [CC0](https://choosealicense.com/licenses/cc0-1.0/) for documentation).
+RomM is self-hosted and open source, with no tracking and no upsells. The core app is licensed under [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/), and other projects in the umbrella use different licenses ([GPLv3](https://choosealicense.com/licenses/gpl-3.0/) or [MIT](https://choosealicense.com/licenses/mit/) for software, [CC0](https://choosealicense.com/licenses/cc0-1.0/) for documentation).
 
 **RomM is and will always be free and open-source software.**
 

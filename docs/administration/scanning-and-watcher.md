@@ -60,7 +60,7 @@ environment:
 Behaviour:
 
 - Watches `/romm/library` (and everything under it) recursively
-- Debounces bursts of events: the delay (default 10 seconds) lets a large `cp` or `rsync` settle before scanning.
+- Debounces bursts of events: the delay (default 5 minutes) lets a large `cp` or `rsync` settle before scanning.
 - Batches many events into a single consolidated scan instead of running one scan per file
 - Ignores content modifications and metadata-only changes, caring only about files appearing or disappearing (not `chmod`)
 - Skips OS noise (`.DS_Store`, `Thumbs.db`, `.tmp`, etc.)

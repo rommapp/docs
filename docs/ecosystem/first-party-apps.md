@@ -34,7 +34,7 @@ For third-party clients, see the [Community section in the README](https://githu
 ### What it does
 
 - Browses your full library from an Android device
-- Handles authentication via [Client API Tokens](../developers/client-api-tokens.md), paired over a short code so you don't type a 44-character string
+- Handles authentication via [Client API Tokens](../developers/client-api-tokens.md), paired over a short code so you don't type a 68-character string
 - Downloads ROMs on demand to your device's storage
 - Launches RetroArch (or another configured emulator) with the downloaded ROM
 - Syncs saves/states back to RomM when you finish a session (optional)

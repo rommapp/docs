@@ -15,7 +15,7 @@ If you're an OIDC user and want to show your `preferred_username` from the token
 
 These are long-lived API tokens for companion apps, scripts, and integrations. Each token is scoped to a subset of your user's scopes, and optionally expires.
 
-For handheld apps where typing a 44-character token isn't realistic, the server exposes a pairing flow: it issues a short numeric code (8 digits, valid for 5 minutes) that the device exchanges for the full token via the pairing API (see [Client API Tokens](../developers/client-api-tokens.md) for the full flow).
+For handheld apps where typing a 68-character token isn't realistic, the server exposes a pairing flow: it issues a short numeric code (8 digits, valid for 5 minutes) that the device exchanges for the full token via the pairing API (see [Client API Tokens](../developers/client-api-tokens.md) for the full flow).
 
 ## Deleting your account
 

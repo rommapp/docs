@@ -158,7 +158,7 @@ For bugs, open an issue at [rommapp/romm](https://github.com/rommapp/romm/issues
 
 A small team of maintainers plus a group of active community contributors. Support the project via [Open Collective](https://opencollective.com/romm) if you'd like!
 
-## Where's can I find you?
+## Where can I find you?
 
 - **Discord**: [discord.gg/romm](https://discord.gg/romm)
 - **GitHub**: [rommapp/romm](https://github.com/rommapp/romm)
