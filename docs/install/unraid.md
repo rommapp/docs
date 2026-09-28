@@ -5,10 +5,10 @@ description: Install Unraid via the Community Apps template or the DCM plugin
 
 # Unraid
 
-Two supported install paths on Unraid. Pick one:
+Unraid has two supported install paths:
 
-- **[Community Apps template](#community-apps-template)**: Install RomM and MariaDB as separate CA templates. Good for users who already manage containers one-at-a-time
-- **[Docker Compose Manager](#docker-compose-manager)**: Drops the standard `docker-compose.yml` in and uses the Compose plugin to manage it, recommended if you're comfortable editing Compose files and want parity with other deployments
+- **[Community Apps template](#community-apps-template)**: Install RomM and MariaDB as separate CA templates, which suits users who already manage containers one at a time
+- **[Docker Compose Manager](#docker-compose-manager)**: Drop in the standard `docker-compose.yml` and manage it with the Compose plugin. This path is recommended if you're comfortable editing Compose files and want parity with other deployments
 
 Both end up with the same running stack.
 
@@ -23,7 +23,7 @@ Both end up with the same running stack.
 ### Prerequisites for CA
 
 - [Community Apps plugin](https://forums.unraid.net/topic/38582-plug-in-community-applications/) installed
-- A custom Docker bridge network so the app and MariaDB can talk to each other by container name. Skip this and you'll hit DNS issues that look like everything else.
+- A custom Docker bridge network so the app and MariaDB can talk to each other by container name. Without it, you'll hit DNS issues that are hard to tell apart from other problems.
 
 ```sh
 docker network create romm
@@ -34,11 +34,11 @@ docker network ls  # confirm `romm` is listed
 
 1. Install MariaDB
 
-From **Apps** → search `mariadb`. Only the [official `mariadb`](https://hub.docker.com/_/mariadb) and [linuxserver/docker-mariadb](https://github.com/linuxserver/docker-mariadb/pkgs/container/mariadb) templates are supported. **Prefer the official one.** If you point RomM at an existing MariaDB or MySQL server instead, check the [binary logging prerequisite](databases.md#binary-logging-and-trigger-privileges) before starting the app.
+From **Apps** → search `mariadb`. Only the [official `mariadb`](https://hub.docker.com/_/mariadb) and [linuxserver/docker-mariadb](https://github.com/linuxserver/docker-mariadb/pkgs/container/mariadb) templates are supported, and the official one is preferred. If you point RomM at an existing MariaDB or MySQL server instead, check the [binary logging prerequisite](databases.md#binary-logging-and-trigger-privileges) before starting the app.
 
 ![community apps search results for MariaDB](https://github.com/user-attachments/assets/76f4b6ef-5b63-454f-9357-d2920b9afd0e)
 
-Fill in the env vars. Names and sensible defaults live in the [reference `docker-compose.yml`](../getting-started/quick-start.md). Set the network to **Custom: romm**.
+Fill in the env vars (names and sensible defaults are in the [reference `docker-compose.yml`](../getting-started/quick-start.md)). Set the network to **Custom: romm**.
 
 ![MariaDB environment variables](https://github.com/user-attachments/assets/a11906c5-25b2-46f1-906b-451a9ee39dca)
 
@@ -52,7 +52,7 @@ From **Apps**, search `romm`, install the app labelled **OFFICIAL** (maintained 
 
 ![Official app](https://github.com/user-attachments/assets/57c4d47a-8604-4e8d-b05a-84dd68dda124)
 
-Fill in env vars, ports, and paths per the [reference compose](../getting-started/quick-start.md). Again, network type → `Custom: romm`.
+Fill in env vars, ports, and paths per the [reference compose](../getting-started/quick-start.md). Set the network type to `Custom: romm` here too.
 
 ![Docker tab](https://github.com/user-attachments/assets/4c4210c2-ed00-4790-a945-65cbe33620b0)
 
@@ -113,7 +113,7 @@ Copy `IP:Port` from the container and open it in a browser. The first-run Setup 
 
 ## Video walkthroughs
 
-Community-made, still relevant for general debugging even if specific UI screens have drifted.
+These videos are community-made. Some UI screens have changed since, but they're still relevant for general debugging.
 
 [DemonWarriorTech](https://www.youtube.com/@DemonWarriorTech): [How to Install RomM on Unraid (Beginner Friendly)](https://www.youtube.com/watch?v=Oo5obHNy2iw):
 

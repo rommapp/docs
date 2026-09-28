@@ -5,7 +5,7 @@ description: Track games you own on cartridge or disc
 
 # Physical Games
 
-Own a game on a cartridge or disc but have no ROM for it? Add it anyway! A physical game is a library entry with no file behind it, and it gets the same metadata, artwork, collections, notes and ratings as everything else, so you're not keeping a separate list somewhere for the shelf.
+A physical game is a library entry with no file behind it, for a game you own on cartridge or disc but have no ROM for. It gets the same metadata, artwork, collections, notes and ratings as everything else, so you're not keeping a separate list somewhere for the shelf.
 
 Add one by name or by barcode, and it gets matched against your enabled [metadata providers](../getting-started/metadata-providers.md) the same as it would a scanned file.
 

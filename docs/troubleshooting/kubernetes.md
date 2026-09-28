@@ -7,7 +7,7 @@ description: Fix Kubernetes-specific issues
 
 ## `invalid host in "tcp://<ip>:8080" of the "listen" directive`
 
-Kubernetes auto-injects service addresses as env vars (`SERVICENAME_PORT=tcp://...`), which the nginx then tries to bind to.
+Kubernetes auto-injects service addresses as env vars (`SERVICENAME_PORT=tcp://...`), which nginx then tries to bind to.
 
 Disable service-link env vars on the pod:
 
@@ -83,11 +83,11 @@ initContainers:
             runAsUser: 0
 ```
 
-- **Storage class that supports `fsGroup`**: add `fsGroup: 1000` to the pod's `securityContext`. Works on most CSI drivers but not all.
+- **Storage class that supports `fsGroup`**: add `fsGroup: 1000` to the pod's `securityContext`, which works on most CSI drivers but not all.
 
 ## Pod can reach the DB but crashes with `ConnectionRefused`
 
-RomM starts before the DB is ready, fails, and crashlooped-restarts forever because the restart is too fast for the DB to catch up.
+RomM starts before the DB is ready, fails, and restarts in a loop forever because each restart comes too fast for the DB to catch up.
 
 Fix: add an init container that waits, or a `readinessProbe` + generous `startupProbe` on the DB StatefulSet so the app pod doesn't start until the DB is reachable.
 
@@ -118,7 +118,7 @@ resources:
         memory: "4Gi"
 ```
 
-Or disable hashing on the Scan page to cut memory use by ~80% (you lose RetroAchievements + Hasheous matching, see [Metadata Providers](../getting-started/metadata-providers.md)).
+Or disable hashing on the Scan page to cut memory use by ~80% (you lose RetroAchievements and Hasheous matching, see [Metadata Providers](../getting-started/metadata-providers.md)).
 
 ## Still stuck?
 

@@ -82,13 +82,13 @@ environment:
 
 ## 5. Set your email
 
-In RomM → **Profile** → set your email to exactly the same address Authelia has for you. RomM matches OIDC users to existing accounts by email.
+In RomM's **Profile**, set your email to exactly the same address Authelia has for you. RomM matches OIDC users to existing accounts by email.
 
 ![Set email](../../resources/authelia/1-user-profile.png)
 
 ## 6. Test
 
-Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Authelia → authenticate → bounced back and signed in!
+Restart, navigate to `/login` and click the **Login with OIDC** button. RomM redirects you to Authelia, and after you authenticate it sends you back signed in.
 
 ![Login with OIDC](../../resources/authelia/2-romm-login.png)
 

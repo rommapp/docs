@@ -5,7 +5,7 @@ description: Wire up SSO to VoidAuth
 
 # OIDC with VoidAuth
 
-[VoidAuth](https://voidauth.app/) is an open-source SSO authentication and user management provider that stands guard in front of your self-hosted application. Before starting, read the [OIDC Setup overview](index.md), as it covers the RomM-side settings common to every provider.
+[VoidAuth](https://voidauth.app/) is an open-source SSO authentication and user management provider that sits in front of your self-hosted applications. Before starting, read the [OIDC Setup overview](index.md), as it covers the RomM-side settings common to every provider.
 
 ## 1. Prerequisites
 
@@ -19,7 +19,7 @@ Log in as an admin in the VoidAuth web interface. Create a new OIDC app (e.g. `R
 - **Name**: `RomM`
 - **Home Page URL**: `https://demo.romm.app`
 - **Logo URL**: `https://docs.romm.app/resources/romm/isotipo.png`
-- **Group**: You could add a group that the user must belong to get access to your RomM instance. If left empty, any user created in your VoidAuth instance will be allowed.
+- **Group**: You could add a group that the user must belong to in order to access to your RomM instance. If left empty, any user created in your VoidAuth instance will be allowed.
 - **Skip Consent** and **MFA Required**: These options can be enabled or left disabled as you prefer.
 - **Client ID**: Generate an ID using the button.
 - **Auth Method**: `Client Secret Basic`
@@ -29,7 +29,7 @@ Log in as an admin in the VoidAuth web interface. Create a new OIDC app (e.g. `R
 - **Grant Types**: check `authorization_code` and `refresh_token`
 - **Post Logout URL**: `https://demo.romm.app/`
 
-Don't forget to click the `Create` button to validate your app.
+Click the `Create` button to validate your app.
 
 ## 3. Configure
 
@@ -51,6 +51,6 @@ For role mapping from VoidAuth, see [OIDC Setup → Role mapping](index.md#role-
 
 ## 4. Test
 
-Restart, navigate to `/login` and click the **Login with VoidAuth** button. You're redirected to VoidAuth → authenticate → bounced back and signed in!
+Restart, navigate to `/login` and click the **Login with VoidAuth** button. RomM redirects you to VoidAuth, and after you authenticate it sends you back signed in.
 
 If it doesn't work, head to [Authentication Troubleshooting](../../troubleshooting/authentication.md).

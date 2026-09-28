@@ -39,12 +39,12 @@ Tracks can be browsed several ways:
 
 Four mixes are generated for you:
 
-- **Free Radio**, about an hour of tracks picked at random but balanced across albums
+- **Free Radio**, about an hour of tracks picked at random but balanced across albums.
 - **Decade Mix**, grouped by release decade.
 - **Recently added**, the newest tracks in the library.
 - **Favourites**, whatever you've starred.
 
-You can also build your own playlists. They're ordered, you can rename them, keep them private, or make them available to everyone on the instance.
+You can also build your own playlists. Playlists are ordered, and you can rename them and either keep them private or make them available to everyone on the instance.
 
 ## API
 

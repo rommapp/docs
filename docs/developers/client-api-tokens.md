@@ -5,7 +5,7 @@ description: Long-lived bearer tokens for companion apps
 
 # Client API Tokens
 
-A **Client API Token** is a long-lived credential that a companion app (or script, or CI job) uses to authenticate against RomM on behalf of a specific user. Think "personal access token" on GitHub. Tokens are **per-user** and **per-scope-subset**: a token can hold any subset of the owning user's scopes, scoped narrower than the user's role. You get up to **25 active tokens per user**.
+A **Client API Token** is a long-lived credential that a companion app (or script, or CI job) uses to authenticate against RomM on behalf of a specific user, similar to a personal access token on GitHub. Each token belongs to one user and can hold any subset of that user's scopes, so it can be narrower than the user's role. Each user can have up to 25 active tokens.
 
 ## Why not just store a password?
 
@@ -35,11 +35,11 @@ A token is created with three params:
 - **Expiration**: optional, blank = never expires until revoked
 - **Permissions**: default to read-only, and don't grant every token `users.write`.
 
-The token is shown **exactly once** at creation time. Copy it then, because if you lose it you'll need to revoke and regenerate.
+The token is shown exactly once, at creation time. Copy it then, because if you lose it you'll need to revoke and regenerate.
 
 ## Device pairing
 
-Typing a 68-character token into a handheld thumbstick isn't realistic. Instead:
+Typing a 68-character token with a handheld's thumbstick isn't realistic, so devices pair with a short code instead.
 
 ### Flow
 
@@ -68,17 +68,17 @@ Typing a 68-character token into a handheld thumbstick isn't realistic. Instead:
 
 ### Timing
 
-- Pairing codes are valid for **5 minutes** after creation
+- Pairing codes are valid for 5 minutes after creation
 - Once a device exchanges the code, it's invalid for anyone else (single-use)
 - Re-create it if the user doesn't complete the flow within the time window
 
 ### Who generates the code
 
-The user who owns the token from a device already signed into RomM (web UI, usually). The handheld/companion device then enters or scans the code.
+The token's owner generates the code from a device already signed into RomM (usually the web UI). The handheld or companion device then enters or scans the code.
 
 ### What "pairing" gives you
 
-The companion app stores the token and uses it on every subsequent API call. From RomM's side, it looks like any other token, and there's no special treatment beyond the fact that pairing is how the token got there.
+The companion app stores the token and uses it on every subsequent API call. RomM treats it like any other token, and pairing only affects how the token reached the device.
 
 ## Scoping tokens properly
 
@@ -86,12 +86,12 @@ A token can only hold scopes the owning user _also_ holds, and a user's scopes c
 
 ## What happens on permission change
 
-If the owning user's permissions are narrowed so they no longer hold what a token needs, the token continues to exist but fails at request time with **403 Forbidden**. It's the user's decision to revoke it. However if the user is deleted, all their tokens are revoked immediately.
+If the owning user's permissions are narrowed so they no longer hold what a token needs, the token continues to exist but fails at request time with 403 Forbidden, and revoking it is up to the user. Deleting the user revokes all their tokens immediately.
 
 ## Anti-patterns
 
 - **Sharing a token between users.** If two people need access, give them each an account and each creates their own token.
-- **Embedding a token in public source.** Obvious but worth saying, if you accidentally commit one, revoke it immediately.
+- **Embedding a token in public source.** If you accidentally commit one, revoke it immediately.
 - **A single token for every app.** Name and scope per-app, so revoking one doesn't kill the others.
 - **Infinite-expiry tokens in untrusted locations.** If a device might be lost/handed off, set an expiry.
 

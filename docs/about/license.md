@@ -30,7 +30,7 @@ The RomM umbrella hosts several projects under different licenses:
 | [rommapp/playnite-plugin](https://github.com/rommapp/playnite-plugin) | AGPLv3  |
 | [rommapp/docs](https://github.com/rommapp/docs) (what you're reading) | CC0     |
 
-Companion repos use more permissive licenses AGPLv3 or MIT because they're smaller, more-replaceable, and don't host the library. The AGPL network-service clause doesn't offer the same protection benefits there.
+Companion repos use more permissive licenses AGPLv3 or MIT because they're smaller, more replaceable, and don't host the library. The AGPL network-service clause doesn't offer the same protection benefits there.
 
 ## Third-party components
 

@@ -24,7 +24,7 @@ You don't have to configure any of this. How much a shared trait is worth depend
 
 **Similar games** stays empty until the index has been built once, which on a new instance is the morning after you set it up, or whenever you run the task yourself. **Recommended for you** doesn't wait: with no index and nothing played yet, it falls back to the best-reviewed games in your own library.
 
-Users can hide either section in their own settings. Setting `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` only stops the nightly rebuild, which saves the work on a very large library; both sections stay visible.
+Users can hide either section in their own settings. Setting `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` only stops the nightly rebuild, which saves the work on a very large library. Both sections stay visible.
 
 ## API
 

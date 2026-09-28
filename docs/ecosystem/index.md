@@ -5,7 +5,7 @@ description: Companion apps, feeds, and protocol references
 
 # Integrations & Ecosystem
 
-RomM has a sizeable ecosystem of companion apps and integration patterns.
+RomM works with first-party and community companion apps, URL feeds for third-party clients, and protocol references for building your own.
 
 ## First-party apps
 
@@ -27,9 +27,9 @@ RomM exposes several URL feed endpoints for external homebrew/custom firmware ap
 
 ## Community apps
 
-Maintained by individuals in the community, not the team, so support quality varies.
+Individuals in the community, not the team, maintain these apps, so support quality varies.
 
-See the **[Community section in the README](https://github.com/rommapp/romm/#community)** for the full list with status flags (active/maintenance-mode/abandoned) and links.
+See the [Community section in the README](https://github.com/rommapp/romm/#community) for the full list with status flags (active/maintenance-mode/abandoned) and links.
 
 Highlights:
 
@@ -63,6 +63,6 @@ Not a companion app but useful:
 
 ## Contributing a companion app
 
-Built something adjacent? Open a PR on [rommapp/romm](https://github.com/rommapp/romm) adding it to the [Community section in the README](https://github.com/rommapp/romm/#community), or drop a link in the [Discord](https://discord.gg/romm) `#community-projects` channel.
+If you've built something related, open a PR on [rommapp/romm](https://github.com/rommapp/romm) adding it to the [Community section in the README](https://github.com/rommapp/romm/#community), or drop a link in the [Discord](https://discord.gg/romm) `#community-projects` channel.
 
-We list active, maintained projects, with no gate on code quality, but we do flag abandoned projects so users know what's current.
+We list active, maintained projects without reviewing code quality, and we flag abandoned projects so users know what's current.

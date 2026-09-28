@@ -17,11 +17,11 @@ You'll need:
 
 <!-- prettier-ignore -->
 !!! warning "Metadata providers are recommended"
-    Scans work without a metadata API for basic use but setup problems and companion-app integrations (e.g. Playnite) can fail without them. Setting up **at least one** provider before your first scan is strongly recommended.
+    Scans work without a metadata API for basic use, but setup problems and companion-app integrations (e.g. Playnite) can fail without one. Setting up at least one provider before your first scan is strongly recommended.
 
 ## 1. Write your `docker-compose.yml`
 
-Start from the reference file shipped in the repo. A known-good, minimally-edited version is included below. Save it as `docker-compose.yml` in an empty directory on your host.
+Start from the reference file shipped in the repo. A known-good, minimally edited version is included below. Save it as `docker-compose.yml` in an empty directory on your host.
 
 <!-- prettier-ignore -->
 ???+ example "docker-compose.yml"
@@ -86,4 +86,4 @@ Open `http://<host>:8080` in a browser. On first start, you'll be redirected to 
 ## Next steps
 
 - Populate the library by [scanning the mounted ROMs](first-scan.md)
-- [Upload](../using/uploads.md) a handful of files in through the web UI
+- [Upload](../using/uploads.md) a handful of files through the web UI

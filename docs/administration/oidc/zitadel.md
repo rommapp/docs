@@ -9,7 +9,7 @@ description: Wire up SSO to Zitadel
 
 ## 1. Prerequisites
 
-Zitadel installed and running via their [self-hosted deployment docs](https://zitadel.com/docs/self-hosting/deploy/overview). Change the default organization password before you go further!
+Zitadel installed and running via their [self-hosted deployment docs](https://zitadel.com/docs/self-hosting/deploy/overview). Change the default organization password before you go further.
 
 ## 2. Create a project
 
@@ -36,11 +36,11 @@ On the project's **General** tab, under **Applications**, click **New**. Tick **
 - **Redirect URIs**: `https://demo.romm.app/api/oauth/openid`
 - **Post Logout URIs**: `https://demo.romm.app/`
 
-Click **Create**. The **client secret is shown once**, copy it now!
+Click **Create**. Zitadel shows the client secret only once, so copy it now.
 
 ## 4. Enable claims in the ID Token
 
-Without this, RomM throws "Email is missing from token" on login. Open the application's **Token Settings** tab → tick **User Info inside ID Token** → **Save**.
+Without this, RomM throws "Email is missing from token" on login. On the application's **Token Settings** tab, tick **User Info inside ID Token** and **Save**.
 
 ## 5. Configure
 
@@ -61,10 +61,10 @@ For role mapping from Zitadel, see [OIDC Setup → Role mapping](index.md#role-m
 
 ## 6. Set email + Zitadel
 
-In RomM → **Profile** → set your email to exactly the same address your Zitadel user has.
+In RomM's **Profile**, set your email to exactly the same address your Zitadel user has.
 
 ## 7. Test
 
-Restart, navigate to `/login` and click the **Login with OIDC** button. You're redirected to Zitadel → authenticate → bounced back and signed in!
+Restart, navigate to `/login` and click the **Login with OIDC** button. RomM redirects you to Zitadel, and after you authenticate it sends you back signed in.
 
 If it doesn't work, head to [Authentication Troubleshooting](../../troubleshooting/authentication.md).

@@ -5,7 +5,7 @@ description: Configure how users sign in.
 
 # Authentication
 
-This page is the **operator-side** authentication reference, the knobs you turn on the server to control how people sign in. The **client-side** reference ("how do I actually authenticate an API call?") is in [API Authentication](../developers/api-authentication.md).
+This page is the operator-side authentication reference: the settings you change on the server to control how people sign in. The client-side reference ("how do I actually authenticate an API call?") is in [API Authentication](../developers/api-authentication.md).
 
 Authentication flows RomM supports:
 
@@ -45,7 +45,7 @@ environment:
 
 ### Admin-triggered password reset
 
-Until email-based self-serve reset lands, admins set passwords manually for any user. The next login on that account will use the new password but existing sessions remain valid until they expire.
+Until email-based self-serve reset lands, admins set passwords manually for any user. The next login on that account will use the new password, but existing sessions remain valid until they expire.
 
 ## OIDC
 
@@ -65,10 +65,10 @@ When OIDC is configured, an OIDC sign-in option is offered alongside username/pa
 
 ## Client API Tokens
 
-For anything long-lived (a companion app, a cron job, a script) use **Client API Tokens** instead of storing a password. Each token:
+For anything long-lived (a companion app, a cron job, a script) use Client API Tokens instead of storing a password. Each token:
 
 - Belongs to a specific user
-- Carries a **subset** of that user's scopes (you choose which at creation time)
+- Carries a subset of that user's scopes (you choose which at creation time)
 - Has an optional expiry (no expiry = never expires until manually revoked)
 - Can be "paired" to a device via a short code
 
@@ -76,7 +76,7 @@ Each user gets up to 25 active tokens. The API side ("how do I send this thing i
 
 ## Kiosk mode
 
-Grants unauthenticated, read-only access to nearly every GET endpoint. Anyone reaching the instance can browse but only a logged-in admin can write, scan, upload, or manage users.
+Kiosk mode grants unauthenticated, read-only access to nearly every GET endpoint. Anyone reaching the instance can browse, but only a logged-in admin can write, scan, upload, or manage users.
 
 ```yaml
 environment:
@@ -98,7 +98,7 @@ environment:
     - DISABLE_DOWNLOAD_ENDPOINT_AUTH=true
 ```
 
-Skips auth on `GET /api/roms/{id}/content/…` and the firmware download endpoint. Exists so third-party apps that can't carry a bearer header (like dumb emulators loading a ROM by URL) can still pull files. **Only enable this when the public internet can't reach RomM directly**, i.e. there's auth or an IP allowlist at the reverse-proxy layer. Otherwise you've just made your library world-downloadable.
+Skips auth on `GET /api/roms/{id}/content/…` and the firmware download endpoint. It exists so third-party apps that can't carry a bearer header (like dumb emulators loading a ROM by URL) can still pull files. **Only enable this when the public internet can't reach RomM directly**, i.e. there's auth or an IP allowlist at the reverse-proxy layer. Otherwise you've just made your library world-downloadable.
 
 ## Revoking access
 

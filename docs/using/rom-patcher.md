@@ -5,7 +5,7 @@ description: Apply IPS, UPS, BPS, PPF, and other patch formats on the server
 
 # ROM Patcher
 
-The **ROM Patcher** applies a patch file (translation, hack, rebalance, no-intro fix) to a ROM **on the server**: no CLI, no local tooling, and no uploading half-patched files by hand. It's a **Patcher tab** on the game's detail page, powered by patcherjs.
+The **ROM Patcher** applies a patch file (translation, hack, rebalance, no-intro fix) to a ROM on the server, so you don't need a CLI or other local tools, and you don't upload half-patched files by hand. It's a **Patcher tab** on the game's detail page, powered by patcherjs.
 
 <!-- prettier-ignore -->
 !!! note "Server-side patching (5.0+)"
@@ -26,11 +26,11 @@ The patch's source checksum is validated against the ROM. If it doesn't match, R
 Choose one or both:
 
 - **Download patched ROM**: streams the patched file to your browser. Available to anyone who can view the ROM.
-- **Upload to RomM**: saves the patched ROM back into the library. You pick a target **platform**, RomM stores the file in that platform's folder, and a **scan starts automatically** to pick it up as a new entry.
+- **Upload to RomM**: saves the patched ROM back into the library. You pick a target **platform**, RomM stores the file in that platform's folder, and a scan starts automatically to pick it up as a new entry.
 
-Metadata isn't inherited, so an uploaded patched ROM is **unmatched** until that scan matches it.
+Metadata isn't inherited, so an uploaded patched ROM is unmatched until that scan matches it.
 
-Uploading requires write access; users without it only see the download option.
+Uploading requires write access, and users without it only see the download option.
 
 ## Supported patch formats
 
@@ -57,7 +57,7 @@ If your patch has an unusual extension, try renaming to one of the above. Many a
 
 ## Limits
 
-- **File size**: the ROM and the patch must each stay under `ROM_PATCHER_MAX_FILE_SIZE_BYTES` (default **4 GiB**). patcherjs loads the whole file into memory server-side, so oversized inputs are rejected with a `400`.
+- **File size**: the ROM and the patch must each stay under `ROM_PATCHER_MAX_FILE_SIZE_BYTES` (default 4 GiB). patcherjs loads the whole file into memory server-side, so oversized inputs are rejected with a `400`.
 - **Multi-file ROMs**: for multi-disc games, patch each ISO separately.
 - **Encrypted ROMs**: if the patch was authored against a decrypted ROM (e.g. DS `.nds` vs raw cartridge), your source has to match.
 - **Save format changes**: patches that alter save-data layout will invalidate existing save files. Back them up before applying.

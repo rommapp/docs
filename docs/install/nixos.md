@@ -5,11 +5,11 @@ description: Install RomM natively on NixOS via the services.romm module
 
 # NixOS
 
-Unlike the other platforms in this section, NixOS doesn't run the Docker image: RomM is packaged natively in [nixpkgs](https://github.com/NixOS/nixpkgs). The `services.romm` module sets up everything RomM needs — the RomM services themselves, a database, Redis, and a web server — from a few lines of configuration.
+Unlike the other platforms in this section, NixOS doesn't run the Docker image: RomM is packaged natively in [nixpkgs](https://github.com/NixOS/nixpkgs). The `services.romm` module sets up everything RomM needs from a few lines of configuration: the RomM services themselves, a database, Redis, and a web server.
 
 <!-- prettier-ignore -->
 !!! note "Availability"
-    RomM was recently merged into nixpkgs `master`, so it can take a little while to land in the `nixos-unstable` channel. It will be part of the next stable release (NixOS 26.11); whether it gets backported to 26.05 is not decided. You can check which channels have it on [search.nixos.org](https://search.nixos.org/packages?query=romm).
+    RomM was recently merged into nixpkgs `master`, so it can take a little while to land in the `nixos-unstable` channel. It will be part of the next stable release (NixOS 26.11). Whether it gets backported to 26.05 is not decided. You can check which channels have it on [search.nixos.org](https://search.nixos.org/packages?query=romm).
 
 ## Before you start
 
@@ -30,11 +30,11 @@ You'll need:
 }
 ```
 
-After a `nixos-rebuild switch`, RomM is up on that domain with everything included: a local PostgreSQL database and Redis instance (no credentials to manage), an nginx virtual host serving the app, and in-browser play, streamed downloads and RetroAchievements hashing all working out of the box.
+After a `nixos-rebuild switch`, RomM is up on that domain with a local PostgreSQL database and Redis instance (no credentials to manage) and an nginx virtual host serving the app. In-browser play, streamed downloads and RetroAchievements hashing work out of the box.
 
 <!-- prettier-ignore -->
 !!! note "PostgreSQL, not MariaDB"
-    The NixOS module uses PostgreSQL rather than the MariaDB default of the Docker setup. If you're migrating an existing instance from Docker, see [Backup & Restore](backup-and-restore.md) — you can't reuse a MariaDB dump directly.
+    The NixOS module uses PostgreSQL rather than the MariaDB default of the Docker setup. If you're migrating an existing instance from Docker, note that you can't reuse a MariaDB dump directly (see [Backup & Restore](backup-and-restore.md)).
 
 Don't forget to open the firewall if the machine should be reachable from elsewhere:
 
@@ -87,7 +87,7 @@ services.nginx.virtualHosts."romm.example.org" = {
 };
 ```
 
-The module detects TLS on the virtual host and configures RomM accordingly — no extra settings needed. If you terminate TLS on a different machine instead, point your external [reverse proxy](reverse-proxy.md) at this host's virtual host.
+The module detects TLS on the virtual host and configures RomM accordingly, so no extra settings are needed. If you terminate TLS on a different machine instead, point your external [reverse proxy](reverse-proxy.md) at this host's virtual host.
 
 ## Library location
 
@@ -118,4 +118,4 @@ RomM updates arrive with your channel: `nixos-rebuild switch --upgrade` (or your
 
 - Check the services: `systemctl status romm romm-worker romm-scheduler romm-watcher`
 - Follow the logs: `journalctl -fu romm`
-- Scan issues are usually permissions on the library path — everything under `/var/lib/romm` must be readable and writable by the `romm` user.
+- Scan issues are usually permissions on the library path. Everything under `/var/lib/romm` must be readable and writable by the `romm` user.

@@ -22,15 +22,15 @@ The 19 locales exist because individual community members took the time to trans
 
 ## Community apps
 
-Built by the community, not the RomM team. Full list in the [Community section in the RomM README](https://github.com/rommapp/romm/#community).
+These apps are built by the community, not the RomM team. The full list is in the [Community section in the RomM README](https://github.com/rommapp/romm/#community).
 
 ## Financial supporters
 
-Donors via [Open Collective](https://opencollective.com/romm) make continued development possible. The project wouldn't exist without you. Thank you! ❤️
+Donors via [Open Collective](https://opencollective.com/romm) make continued development possible, and the project wouldn't exist without you. Thank you! ❤️
 
 ## Upstream projects
 
-This stack stands on an enormous amount of open-source work. In rough order of "how visible they are to users":
+This stack depends on a large amount of open-source work. In rough order of "how visible they are to users":
 
 ### In-browser emulation
 

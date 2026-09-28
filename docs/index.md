@@ -10,14 +10,14 @@ hide:
 <img src="./resources/romm/isotipo.svg" height="200px" width="200px" alt="RomM logo">
 <img src="./resources/romm/logotipo.png" height="250px" width="250px" alt="RomM word type" style="margin-top: 10px;">
 /// caption
-Welcome to the **RomM Project**, the premier self-hosted, open source ROM manager.
+Welcome to the **RomM Project**, a self-hosted, open source ROM manager.
 ///
 
 <div style="text-align: center">
 <a href="https://romm.app" target="_blank">Website</a> · <a href="https://demo.romm.app" target="_blank" >Demo</a> · <a href="https://discord.gg/romm" target="_blank">Discord</a>
 </div>
 
-Scan, enrich, browse and play your ROM collection from one beautiful & free self-hosted app. Metadata from 10+ providers, save sync across your devices, and support for over 400 platforms. RomM is a must-have for anyone who plays on emulators.
+Scan, enrich, browse and play your ROM collection from one free, self-hosted app, with metadata from 10+ providers, save sync across your devices, and support for over 400 platforms.
 
 ## Where do you want to go?
 
@@ -59,7 +59,7 @@ Scan, enrich, browse and play your ROM collection from one beautiful & free self
 
 ## Philosophy
 
-RomM is built for its users, not for shareholders: self-hosted, open-source, no tracking, no upsells. The core app is licensed under [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/), and other projects in the umbrella use permissive licenses ([GPLv3](https://choosealicense.com/licenses/gpl-3.0/) for software, [CC0](https://choosealicense.com/licenses/cc0-1.0/) for documentation).
+RomM is self-hosted and open source, with no tracking and no upsells. The core app is licensed under [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/), and other projects in the umbrella use permissive licenses ([GPLv3](https://choosealicense.com/licenses/gpl-3.0/) for software, [CC0](https://choosealicense.com/licenses/cc0-1.0/) for documentation).
 
 **RomM is and will always be free and open-source software.**
 

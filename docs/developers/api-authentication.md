@@ -14,7 +14,7 @@ The API accepts multiple authentication modes:
 | **OAuth2 Bearer**    | Automation, CI, third-party apps                         | `Authorization: Bearer <jwt>`                    |
 | **Client API Token** | Companion apps (Argosy, Grout, Playnite, custom scripts) | `Authorization: Bearer rmm_<token>`              |
 
-All of them resolve to the same scope model. See the [OAuth scopes in Users & Roles](../administration/users-and-roles.md#oauth-scopes). A request is allowed if the active identity holds all scopes the endpoint requires.
+All of them resolve to the same scope model (see the [OAuth scopes in Users & Roles](../administration/users-and-roles.md#oauth-scopes)). A request is allowed if the active identity holds all scopes the endpoint requires.
 
 ## Base URL
 
@@ -33,7 +33,7 @@ Content-Type: application/x-www-form-urlencoded
 username=alice&password=s3cret
 ```
 
-Response sets a `romm_session` cookie, and subsequent requests from the same browser are authenticated automatically.
+The response sets a `romm_session` cookie, and subsequent requests from the same browser are authenticated automatically.
 
 Log out:
 
@@ -105,11 +105,11 @@ curl -H "Authorization: Bearer rmm_abcdef0123456789..." \
      https://demo.romm.app/api/roms
 ```
 
-Each user gets up to 25 active tokens. Tokens can be paired with a device via the [pairing flow](client-api-tokens.md), useful when you don't want to type a long token on a handheld.
+Each user gets up to 25 active tokens. Tokens can be paired with a device via the [pairing flow](client-api-tokens.md), which saves typing a long token on a handheld.
 
 ## OIDC
 
-Users signing in through an OIDC provider get a regular RomM session, same as username/password login. For the API side this means you can't use an OIDC access token directly. Authenticate the user through the browser first (they'll be redirected to the OIDC provider, then back to RomM), then use the resulting session cookie, **or** mint a Client API Token for programmatic use.
+Users signing in through an OIDC provider get a regular RomM session, same as username/password login. For the API side this means you can't use an OIDC access token directly. Authenticate the user through the browser first (they'll be redirected to the OIDC provider, then back to RomM), then use the resulting session cookie, or mint a Client API Token for programmatic use.
 
 OIDC provider setup lives in [Administration → OIDC](../administration/oidc/index.md).
 

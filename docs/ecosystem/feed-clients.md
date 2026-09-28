@@ -23,7 +23,7 @@ RomM exposes URL feeds for several homebrew installers and frontends. Point the 
 Two endpoints are involved on every install: the **feed** (the listing the client fetches) and the **download endpoint** (the per-ROM URLs the feed points at). Both default to requiring basic auth.
 
 - **pkgj and fpkgi** send basic auth on both feed and download requests, so they work with the default `DISABLE_DOWNLOAD_ENDPOINT_AUTH=false`.
-- **Tinfoil** authenticates the feed fetch but does _not_ propagate credentials to the download URLs returned in the feed. So the download endpoint has to be opened with `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`. **Only enable this when RomM isn't directly exposed to the public internet** (see [Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass) for the full security discussion).
+- **Tinfoil** authenticates the feed fetch but does _not_ propagate credentials to the download URLs returned in the feed, so the download endpoint has to be opened with `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true`. **Only enable this when RomM isn't directly exposed to the public internet** (see [Download-endpoint auth bypass](../administration/authentication.md#download-endpoint-auth-bypass) for the full security discussion).
 
 ## Tinfoil
 
@@ -64,7 +64,7 @@ Tinfoil sends your username/password as basic auth to fetch this feed. The downl
 4. Press `X` to save.
 5. Restart Tinfoil to trigger TitleID scanning and feed parsing.
 
-On reopen, you should see a custom message of the day: `RomM Switch Library`. If you do, it's working!
+On reopen, you should see a custom message of the day: `RomM Switch Library`. If you see it, the feed is working.
 
 ![Tinfoil after setup](../resources/tinfoil/tinfoilscreen.jpg)
 
@@ -102,7 +102,7 @@ The bracketed `[0100000000010000]` is the title ID. Without it, Tinfoil shows th
 
 ## pkgj
 
-[pkgj](https://github.com/blastrock/pkgj) is PS Vita homebrew for installing `.pkg`-format games and DLC. Default config points at well-known community URLs but you can point it at feed endpoints instead and install from your library over Wi-Fi.
+[pkgj](https://github.com/blastrock/pkgj) is PS Vita homebrew for installing `.pkg`-format games and DLC. Its default config points at well-known community URLs, but you can point it at RomM's feed endpoints instead and install from your library over Wi-Fi.
 
 ### Prerequisites
 
@@ -142,11 +142,11 @@ Replace `{romm_url}` with your actual RomM URL (e.g. `https://demo.romm.app`).
 
 ### Using pkgj
 
-Once configured, pkgj shows your PS Vita/PSP library. Select a title and install!
+Once configured, pkgj shows your PS Vita/PSP library, and you can select a title to install it.
 
 ### File format requirements
 
-**Listed in pkgj feeds: `.pkg` files plus compressed archives (`.zip`, `.7z`, etc.) for game entries. DLC stays `.pkg`-only.** If your Vita or PSP games are in `.iso`, `.chd`, or other uncompressed formats, they won't appear in pkgj. If you have non-`.pkg` files you want on the Vita, you'll need to convert them or use a different workflow (FTP through VitaShell, for example).
+pkgj feeds list `.pkg` files plus compressed archives (`.zip`, `.7z`, etc.) for game entries, and DLC stays `.pkg`-only. If your Vita or PSP games are in `.iso`, `.chd`, or other uncompressed formats, they won't appear in pkgj. If you have non-`.pkg` files you want on the Vita, you'll need to convert them or use a different workflow (FTP through VitaShell, for example).
 
 ### Authentication notes
 
@@ -186,7 +186,7 @@ For Vita and PSP, the layout is similar to [pkgj's config](#configuring-pkgj) ab
 
 ### File format requirements
 
-- `.pkg` files only!
+- `.pkg` files only.
 - **PS3 and PSP:** if a `.rap` license file sits as a sibling in the same ROM, its hash and download URL are included in the feed automatically. Without a matching `.rap`, the entry still appears but pkgi can't install it.
 - **PS Vita:** the `zRIF` column is left blank in the feed. You need to supply license keys separately (e.g. via NoNpDrm) for installs to succeed.
 
@@ -202,11 +202,11 @@ pkgi sends basic auth in its URL config like pkgj does. Either embed credentials
 
 ## fpkgi
 
-[fpkgi](https://github.com/CyberYoshi64/fpkgi) is PS4/PS5 homebrew for installing `.pkg` packages from custom URL feeds. fpkgi-compatible feeds are exposed for its PS4 and PS5 libraries.
+[fpkgi](https://github.com/CyberYoshi64/fpkgi) is PS4/PS5 homebrew for installing `.pkg` packages from custom URL feeds. RomM exposes fpkgi-compatible feeds for PS4 and PS5 libraries.
 
 ### Prerequisites
 
-- Games stored as `.pkg` files!
+- Games stored as `.pkg` files
 - **PS4 or PS5** with fpkgi installed (requires CFW/jailbreak, and setup is out of scope here)
 - **Reachable from the console over Wi-Fi.**
 
@@ -228,7 +228,7 @@ The feed returns JSON in the fpkgi-expected schema: titles, title IDs, content t
 
 ### Configuring fpkgi
 
-Exact steps depend on the fpkgi version but the gist is:
+Exact steps depend on the fpkgi version, but in general:
 
 1. Put the feed URL in fpkgi's config (check fpkgi's docs).
 2. Restart fpkgi.
@@ -247,7 +247,7 @@ fpkgi only installs `.pkg` (PS4 `.pkg` specifically, not `.iso` or compressed), 
 ### Troubleshooting
 
 - **Feed is empty.** No ROMs on the `ps4`/`ps5` platform. Check your library.
-- **Downloads fail with 401.** Auth config mismatch, see [Authentication](#authentication-applies-to-every-feed) above.
+- **Downloads fail with 401.** Auth config mismatch (see [Authentication](#authentication-applies-to-every-feed) above).
 - **Downloads succeed but install fails.** `.pkg` is for a different firmware version.
 
 ## Kekatsu
@@ -256,7 +256,7 @@ fpkgi only installs `.pkg` (PS4 `.pkg` specifically, not `.iso` or compressed), 
 
 ### Prerequisites
 
-- DS games in `.nds` format!
+- DS games in `.nds` format
 - A Nintendo DS with Kekatsu installed (requires a flashcart or homebrew launcher)
 - **Reachable from the DS over Wi-Fi** (the DS's Wi-Fi is WEP/old WPA only)
 
@@ -274,7 +274,7 @@ https://demo.romm.app/api/feeds/kekatsu/nds
 
 ### Configuring Kekatsu
 
-Exact config steps depend on your Kekatsu build but the shared concept is "point the app at this URL and it fetches the manifest". Consult Kekatsu's own docs for the current config-file location.
+Exact config steps depend on your Kekatsu build, but in each case you point the app at the feed URL and it fetches the manifest. Consult Kekatsu's own docs for the current config-file location.
 
 ### File format
 
@@ -282,7 +282,7 @@ Kekatsu only loads `.nds`, but the feed doesn't filter by extension. Every ROM o
 
 ### Authentication notes
 
-Kekatsu can send basic auth, either configure it on the DS side or set `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` in the environment variables.
+Kekatsu can send basic auth, so either configure it on the DS side or set `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` in the environment variables.
 
 ### Why the legacy-Wi-Fi hassle
 
@@ -292,7 +292,7 @@ The DS's original Wi-Fi hardware supports WEP and an older WPA variant only, whi
 - **Travel router in bridge mode.** A cheap travel router configured for WEP uplinks to your main (secure) network.
 - **Use a DSi, 3DS, or homebrew replacement driver.** These support secure connection standards.
 
-If none of this is appealing, Kekatsu-over-LAN isn't going to work. Fall back to sideloading via flashcart or similar.
+Without one of these workarounds, Kekatsu over the LAN won't work, so fall back to sideloading via flashcart or similar.
 
 ### Troubleshooting
 

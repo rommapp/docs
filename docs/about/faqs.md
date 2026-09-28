@@ -23,7 +23,7 @@ The emphasis here is self-hosted + multi-user + in-browser-play + the companion-
 
 ## Do I need metadata API keys?
 
-It runs without any but games won't match against a metadata source, so you won't get covers, descriptions, or ratings.
+It runs without any, but games won't match against a metadata source, so you won't get covers, descriptions, or ratings.
 
 ## Is RomM legal?
 
@@ -83,7 +83,7 @@ See [Folder Structure](../getting-started/folder-structure.md) and [Scanning Tro
 
 ## Why is my metadata wrong or incomplete?
 
-Metadata isn't owned, only pulled from third parties like IGDB and ScreenScraper. If a field is missing or wrong, the fix has to happen upstream on the provider's site. Cross-check against another provider if one is consistently off for your library.
+RomM doesn't own metadata. It pulls it from third parties like IGDB and ScreenScraper. If a field is missing or wrong, the fix has to happen upstream on the provider's site. Cross-check against another provider if one is consistently off for your library.
 
 ## Why am I getting a "Configuration file not Mounted!" error?
 
@@ -114,11 +114,11 @@ See [Invitations & Registration](../administration/invitations-and-registration.
 
 ## Can guests browse without an account?
 
-Absolutely, just set `KIOSK_MODE=true` in your environment variables and anonymous visitors get read-only access (see [Authentication → Kiosk mode](../administration/authentication.md#kiosk-mode)).
+Yes. Set `KIOSK_MODE=true` in your environment variables and anonymous visitors get read-only access (see [Authentication → Kiosk mode](../administration/authentication.md#kiosk-mode)).
 
 ## How do I back up?
 
-`mysqldump` the DB + rsync the `/romm/assets` and `/romm/config` volumes nightly. Full procedure and test-restore protocol in [Backup & Restore](../install/backup-and-restore.md).
+`mysqldump` the DB + rsync the `/romm/assets` and `/romm/config` volumes nightly. The full procedure and test-restore protocol are in [Backup & Restore](../install/backup-and-restore.md).
 
 ## Can I use RomM without the internet?
 
@@ -138,7 +138,7 @@ Several possibilities, in rough order of likelihood:
 2. Metadata providers rate-limiting (mostly ScreenScraper).
 3. Many files on a network mount with high latency.
 
-[Scanning Troubleshooting → Hash calculations are slow](../troubleshooting/scanning.md#hash-calculations-are-slow).
+See [Scanning Troubleshooting → Hash calculations are slow](../troubleshooting/scanning.md#hash-calculations-are-slow).
 
 ## When will [feature X] be added?
 
@@ -156,7 +156,7 @@ For bugs, open an issue at [rommapp/romm](https://github.com/rommapp/romm/issues
 
 ## Who runs RomM?
 
-A small team of maintainers plus a chunk of active community contributors. Support the project via [Open Collective](https://opencollective.com/romm) if you'd like!
+A small team of maintainers plus a group of active community contributors. Support the project via [Open Collective](https://opencollective.com/romm) if you'd like!
 
 ## Where's can I find you?
 

@@ -5,9 +5,9 @@ description: How to contribute to RomM and its documentation
 
 # Contributing to the documentation
 
-Thank you for considering contributing to the documentation! This document outlines some guidelines to help you get started with your contributions.
+Thank you for considering contributing to the documentation. The guidelines below cover how to get started.
 
-**If you're looking to implement a large feature or make significant changes to the project, it's best to open an issue first AND join the Discord to discuss your ideas with the maintainers.**
+**If you're looking to implement a large feature or make significant changes to the project, it's best to open an issue first and join the Discord to discuss your ideas with the maintainers.**
 
 ## Code of Conduct
 
@@ -60,13 +60,13 @@ uv run mkdocs serve [-a ip:port] --livereload
 
 ## Deploy
 
-We use [mike](https://github.com/jimporter/mike) to build and deploy documentation versions. Manually deploy a version needs to update and push the specific version (or a new one if creating a new version) with the following command:
+We use [mike](https://github.com/jimporter/mike) to build and deploy documentation versions. To deploy a version manually, update and push that version (or a new one, if you're creating a new version) with the following command:
 
 ```sh
 uv run mike deploy --push --update-aliases <version> [alias]
 ```
 
-This will update the `gh-pages` branch and automatically deploys the version with the fix/update to <https://docs.romm.app>.
+This updates the `gh-pages` branch and automatically deploys the updated version to <https://docs.romm.app>.
 
 ## Pull Request Guidelines
 
@@ -83,5 +83,3 @@ If you encounter any bugs or have suggestions for improvements, please [create a
 ## Licensing
 
 By contributing to the documentation, you agree that your contributions will be licensed under the project's [LICENSE](https://github.com/rommapp/docs/blob/main/LICENSE).
-
-Thank you for contributing to the documentation! Your help is greatly appreciated.

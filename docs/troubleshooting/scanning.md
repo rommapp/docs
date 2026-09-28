@@ -35,7 +35,7 @@ Common mount-path mistakes:
 
 Platform folder names are matched against IGDB platform slugs, so if your folder is named differently, it won't match.
 
-Example: Nintendo 64DD's IGDB slug is `64dd` ([igdb.com/platforms/64dd](https://www.igdb.com/platforms/64dd)), so the folder should be named `64dd/`. If your folder is `n64dd/` or `nintendo-64dd/`, it won't detect.
+Example: Nintendo 64DD's IGDB slug is `64dd` ([igdb.com/platforms/64dd](https://www.igdb.com/platforms/64dd)), so the folder should be named `64dd/`. If your folder is `n64dd/` or `nintendo-64dd/`, it won't be detected.
 
 Two fixes:
 
@@ -55,7 +55,7 @@ See the [full list of supported slugs](../platforms/supported-platforms.md).
 Scans are capped, so if yours hits the cap:
 
 1. **Use `Quick` mode** from the Scan page, which skips already-catalogued files so most repeated scans complete in minutes.
-2. **Raise the cap** if you need to run longer scans, set `SCAN_TIMEOUT=86400` (24 hours in seconds).
+2. **Raise the cap** if you need to run longer scans by setting `SCAN_TIMEOUT=86400` (24 hours in seconds).
 3. **Run scans per-platform** instead of everything at once, to checkpoint progress.
 
 ## Scan stops mid-platform
@@ -87,13 +87,13 @@ ERROR:    [RomM][screenscraper]   403, message='Forbidden', url='https://api.scr
 ERROR:    [RomM][scan]   401: Invalid ScreenScraper credentials
 ```
 
-Despite the message, this usually isn't your account. ScreenScraper also requires developer credentials identifying the application, which our official Docker images supply at build time and builds from source or third-party packages don't, so set `SCREENSCRAPER_DEV_ID` and `SCREENSCRAPER_DEV_PASSWORD` and rerun the scan (see [ScreenScraper](../getting-started/metadata-providers.md#screenscraper)).
+Despite the message, this usually isn't your account. ScreenScraper also requires developer credentials that identify the application. Our official Docker images supply them at build time, but builds from source and third-party packages don't, so set `SCREENSCRAPER_DEV_ID` and `SCREENSCRAPER_DEV_PASSWORD` and rerun the scan (see [ScreenScraper](../getting-started/metadata-providers.md#screenscraper)).
 
 If you're on an official image and still get 403s, re-check `SCREENSCRAPER_USER` and `SCREENSCRAPER_PASSWORD`, then check whether you've exhausted your account's daily request quota.
 
 ## Hash calculations are slow
 
-Hashing large ROMs (PS1, Saturn, DC images) is IO-bound, with a few options:
+Hashing large ROMs (PS1, Saturn, DC images) is IO-bound, and you have a few options:
 
 - **Skip hashing on small hosts**: set `filesystem.skip_hash_calculation: true` in `config.yml`, though you'll lose RetroAchievements and Hasheous matching since both depend on hashes.
 - **Use SSD/NVMe for the library** if you care about hash performance.

@@ -5,11 +5,11 @@ description: Export metadata for use in other frontends
 
 # Exports
 
-Library metadata can be emitted in formats other frontends expect, for setups where this is the library authority and a separate frontend (ES-DE, Batocera, Pegasus) is the actual launcher.
+RomM can export library metadata in the formats other frontends expect, for setups where RomM is the library authority and a separate frontend (ES-DE, Batocera, Pegasus) is the actual launcher.
 
 ## gamelist.xml (ES-DE/Batocera/RetroBAT)
 
-ES-DE, Batocera, and compatibles look for a `gamelist.xml` in each platform folder, and these can be generated automatically.
+ES-DE, Batocera, and compatible frontends look for a `gamelist.xml` in each platform folder, and RomM can generate these automatically.
 
 **Enable via `config.yml`**
 
@@ -26,7 +26,7 @@ With `export: true`, every scan writes a `gamelist.xml` into the platform folder
 
 Existing entries in `gamelist.xml` are rewritten with new data, so exporting into a library your frontend already scraped won't throw that work away. Games in subfolders keep their folder in the exported `<path>`, relative to the platform folder, and their media mirrors the same folders.
 
-Standard ES-DE/EmulationStation format:
+The output uses the standard ES-DE/EmulationStation format:
 
 ```xml
 <gameList>
@@ -59,11 +59,11 @@ Content-Type: application/json
 }
 ```
 
-Response includes where the files were written.
+The response includes where the files were written.
 
 ### Using with ES-DE
 
-Once `gamelist.xml` has been generated and populated `covers/` + `screenshots/`, point ES-DE at the library:
+Once the export has written `gamelist.xml` and populated `covers/` and `screenshots/`, point ES-DE at the library:
 
 ```xml
 <string name="MediaDirectory" value="/path/to/ROMs/folder" />
@@ -77,7 +77,7 @@ See also [Metadata Providers → gamelist.xml](../getting-started/metadata-provi
 
 ## Pegasus
 
-[Pegasus](https://pegasus-frontend.org/) is an alternative gaming frontend with its own metadata format. A `metadata.pegasus.txt` can be emitted per platform.
+[Pegasus](https://pegasus-frontend.org/) is an alternative gaming frontend with its own metadata format, and RomM can write a `metadata.pegasus.txt` per platform.
 
 **Enable via `config.yml`**
 
@@ -87,9 +87,9 @@ scan:
         export: true
 ```
 
-An existing `metadata.pegasus.txt` gets merged rather than overwritten. Both exports also **share their media folders**, so turning both on gives you one copy of each cover and screenshot rather than two.
+An existing `metadata.pegasus.txt` gets merged rather than overwritten. Both exports also share their media folders, so turning both on gives you one copy of each cover and screenshot rather than two.
 
-Human-readable text format:
+The format is human-readable text:
 
 ```text
 collection: Super Nintendo
@@ -121,9 +121,9 @@ Content-Type: application/json
 
 ## Re-running on changes
 
-Exports don't auto-rerun on every metadata edit, instead they run:
+Exports don't rerun on every metadata edit. They run on:
 
-- **Next scan**: exports are part of scan completion when enabled.
+- **Next scan**: when enabled, exports run as part of scan completion.
 - **Manual trigger** via the API above
 
 ## See also

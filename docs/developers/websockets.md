@@ -5,7 +5,7 @@ description: Endpoints for live updates
 
 # WebSockets
 
-RomM uses **socket.io** for real-time communication, with two endpoints serving distinct purposes:
+RomM uses socket.io for real-time communication over two endpoints:
 
 | Endpoint             | Purpose                                                                       |
 | -------------------- | ----------------------------------------------------------------------------- |
