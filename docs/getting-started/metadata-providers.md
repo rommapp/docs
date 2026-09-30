@@ -99,7 +99,7 @@ You must run a LaunchBox metadata update (either manually, or scheduled via cron
 
 ### Hasheous
 
-[Hasheous](https://hasheous.org/) is a free, open-source metadata provider that matches games by file hash (MD5, SHA1 and CRC). It proxies IGDB data for titles, descriptions, cover art and screenshots, and adds region and language tags from the matched dump. RetroAchievements matches come from RomM's own hash lookup, not from Hasheous (see [RetroAchievements](#retroachievements)).
+[Hasheous](https://hasheous.org/) is a free, open-source metadata provider that matches games by file hash (MD5, SHA1 and CRC). It proxies IGDB data for titles, descriptions, cover art and screenshots, and adds region and language tags from the matched dump.
 
 Set `HASHEOUS_API_ENABLED=true` in your environment variables, and future scans will start using the [Hasheous API](https://hasheous.org/swagger/index.html).
 
