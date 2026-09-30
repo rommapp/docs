@@ -9,20 +9,33 @@ This page documents the protocol RomM uses for bidirectional sync with companion
 
 ## Primitives
 
-- **Device**: a registered endpoint, bound to a [Client API Token](client-api-tokens.md).
-- **Sync session**: one atomic bidirectional run (pull, push, conflict reconcile, play-session ingest).
+- **Device**: a registered endpoint owned by a user, identified by a string UUID.
+- **Sync session**: one negotiate/complete run, identified by an integer ID.
+- **Operation**: one action the server asks the device to take for a save (`upload`, `download`, `conflict`, `delete`, `no_op`).
 - **Play session**: per-ROM playtime record, posted standalone or batched at sync end.
 
 ## Authentication
 
-Every call sends `Authorization: Bearer rmm_...`. Required scopes:
+The sync endpoints accept either:
 
-| Endpoint family              | Scope                                                         |
-| ---------------------------- | ------------------------------------------------------------- |
-| `/devices/*`                 | `devices.read`, `devices.write`                               |
-| `/sync/*`                    | `assets.read`, `assets.write`, `devices.write`                |
-| `/play-sessions/*`           | `me.read`, `me.write` (read own), `users.read` (read others') |
-| `/assets/*` (save/state I/O) | `assets.read`, `assets.write`                                 |
+- a [Client API Token](client-api-tokens.md): `Authorization: Bearer rmm_...`
+- a normal web session (see [API Authentication](api-authentication.md#session-login-browsers)): the `romm_session` cookie. Requests that change state also need the `romm_csrftoken` cookie, with its value repeated in an `X-CSRFToken` header. Bearer-token requests skip this check.
+
+Required scopes:
+
+| Endpoint                                                | Scope                          |
+| ------------------------------------------------------- | ------------------------------ |
+| `POST /api/devices`                                     | `devices.write`                |
+| `POST /api/sync/negotiate`                              | `assets.read` + `devices.read` |
+| `POST /api/sync/sessions/{id}/complete`                 | `devices.write`                |
+| `GET /api/sync/sessions`, `GET /api/sync/sessions/{id}` | `devices.read`                 |
+| `POST /api/saves`, `PUT /api/saves/{id}`                | `assets.write`                 |
+| `GET /api/saves/{id}/content`                           | `assets.read`                  |
+| `POST /api/saves/{id}/downloaded`                       | `devices.write`                |
+| `POST /api/play-sessions`                               | `roms.user.write`              |
+| `POST /api/sync/devices/{device_id}/push-pull`          | `devices.write`                |
+
+Passing `device_id` to the save endpoints also needs `devices.write` on upload and update, and `devices.read` on download. Without it the call returns `403`.
 
 ## Registering a device
 
@@ -36,94 +49,193 @@ Content-Type: application/json
 {
   "name": "RG35XX - Living Room",
   "platform": "muos",
+  "client": "grout",
+  "client_version": "1.4.0",
   "hostname": "rg35xx-livingroom.local",
-  "mac": "aa:bb:cc:dd:ee:ff",
-  "sync_mode": "push_pull",
-  "paths": { "roms": "/roms", "saves": "/saves", "states": "/saves/states" }
+  "mac_address": "aa:bb:cc:dd:ee:ff",
+  "sync_mode": "api"
 }
 ```
 
-The response includes `id`, which the device caches for subsequent calls. `sync_mode` can be `pull_only` (server → device), `push_only` (device → server), or `push_pull` (bidirectional, default).
+| Field             | Notes                                                                                        |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| `name`            | Display name.                                                                                |
+| `platform`        | Device platform or OS.                                                                       |
+| `client`          | Short slug for the app (for example `grout`). The activity feed shows it as the device type. |
+| `client_version`  | App version.                                                                                 |
+| `ip_address`      | Device IP address.                                                                           |
+| `mac_address`     | Used to match an existing device.                                                            |
+| `hostname`        | Used to match an existing device.                                                            |
+| `sync_mode`       | `api`, `file_transfer` or `push_pull`.                                                       |
+| `sync_config`     | Mode-specific settings.                                                                      |
+| `capabilities`    | Flags the device reports about itself, for example `{ "remote_install": true }`.             |
+| `allow_existing`  | Default `true`. Return a matching existing device. `false` returns `409` if one exists.      |
+| `allow_duplicate` | Default `false`. `true` always creates a new device and turns off `allow_existing`.          |
+| `reset_syncs`     | Default `false`.                                                                             |
 
-## Sync negotiation
+Registration is idempotent. The server looks for one of the user's devices with the same `mac_address`, or failing that the same `hostname` and `platform`, and returns it (`200`) instead of creating a second one (`201`), unless `allow_duplicate` is set. With `allow_existing: false`, a match returns `409` with `error: "device_exists"` and the existing `device_id`. Sending `capabilities` for an existing device updates them.
 
-The device sends what it has and RomM returns what to do:
-
-```http
-POST /api/sync/negotiate
-{
-  "device_id": 17,
-  "roms": [
-    {
-      "rom_id": 1234,
-      "saves": [
-        { "file": "mario.srm",   "mtime": "2026-04-18T09:42:01Z", "sha1": "abc..." },
-        { "file": "mario.state", "mtime": "2026-04-18T09:45:00Z", "sha1": "def..." }
-      ]
-    }
-  ]
-}
-```
-
-The response is a list of operations:
+Response:
 
 ```json
 {
-    "session_id": "550e8400-e29b-41d4-a716-446655440000",
-    "operations": [
-        {
-            "type": "upload",
-            "rom_id": 1234,
-            "file": "mario.srm",
-            "destination": "/api/saves"
-        },
-        {
-            "type": "download",
-            "rom_id": 5678,
-            "file": "zelda.srm",
-            "source": "/api/saves/42/content",
-            "dest_path": "/saves/zelda.srm"
-        },
-        {
-            "type": "conflict",
-            "rom_id": 9999,
-            "file": "tetris.srm",
-            "resolution": "keep_both"
-        },
-        { "type": "noop", "rom_id": 1111, "file": "goldeneye.srm" }
-    ]
+    "device_id": "3f1c2b9e-8a4d-4c7e-9f21-6d0b5a7e1c34",
+    "name": "RG35XX - Living Room",
+    "created_at": "2026-04-18T09:00:00Z"
 }
 ```
 
-| Op         | Meaning                                                                                            |
-| ---------- | -------------------------------------------------------------------------------------------------- |
-| `upload`   | Device `POST`s the file to `destination`.                                                          |
-| `download` | Device `GET`s `source` and writes to `dest_path`.                                                  |
-| `conflict` | Both sides newer, `resolution` must be one of `keep_both` (default), `server_wins`, `device_wins`. |
-| `noop`     | Hashes match, nothing to do.                                                                       |
+`device_id` is a string (a UUID). Cache it for subsequent calls.
 
-Upload (`POST /api/saves`, multipart) and download (`GET /api/saves/{id}/content`) both require the bearer token.
+## Sync negotiation
+
+The device sends the saves it has and RomM returns what to do:
+
+```http
+POST /api/sync/negotiate
+Content-Type: application/json
+
+{
+  "device_id": "3f1c2b9e-8a4d-4c7e-9f21-6d0b5a7e1c34",
+  "saves": [
+    {
+      "rom_id": 1234,
+      "file_name": "mario.srm",
+      "slot": "autosave",
+      "emulator": null,
+      "content_hash": "9e107d9d372bb6826bd81d3542a419d6",
+      "updated_at": "2026-04-18T09:42:01Z",
+      "file_size_bytes": 8192
+    }
+  ],
+  "rom_ids": [1234]
+}
+```
+
+- `device_id` is optional when the token is bound to a device, since the server works it out from the token. Otherwise leaving it out returns `400`.
+- An unknown device returns `404`. A device with sync turned off returns `400`.
+- `content_hash` is an MD5 hex digest of the file.
+- `rom_ids` is an optional, read-only scope. Downloads are offered only for these ROMs, plus any ROM a save was sent for. Leaving a ROM out never deletes anything. The number of IDs per request is capped.
+- Saves are paired on **(`rom_id`, `slot`)**. Send a stable slot such as `autosave`. A `null` slot marks an archival or manual save: it is never paired, so it always comes back as `upload`.
+- Every negotiate opens a new session, so one device can have several open at once (for example, two games running). A session nobody completes is marked failed by a scheduled cleanup after 24 hours.
+
+Response:
+
+```json
+{
+    "session_id": 42,
+    "operations": [
+        {
+            "action": "download",
+            "rom_id": 1234,
+            "save_id": 99,
+            "file_name": "mario.srm",
+            "slot": "autosave",
+            "emulator": null,
+            "reason": "server save is newer",
+            "server_updated_at": "2026-04-18T10:00:00Z",
+            "server_content_hash": "e4d909c290d0fb1ca068ffaddf22cbd0"
+        }
+    ],
+    "total_upload": 0,
+    "total_download": 1,
+    "total_conflict": 0,
+    "total_no_op": 0,
+    "total_delete": 0
+}
+```
+
+| Action     | Meaning                                                                                                                              |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `upload`   | The server doesn't have this version. `save_id` is `null` and `slot` echoes the device's slot.                                       |
+| `download` | The server has a newer save, or the device holds a version removed here. Fetch it using `save_id`. `slot` is the server save's slot. |
+| `conflict` | Both sides changed. `save_id` and `slot` refer to the server save.                                                                   |
+| `delete`   | The slot was emptied on the server. Remove the local copy. `save_id` is `null` and `slot` echoes the device's slot.                  |
+| `no_op`    | Hashes match, nothing to do.                                                                                                         |
+
+A `delete` keeps a device from uploading a save that was deleted on the server back to it.
+
+Operations carry no URLs or local paths: the client builds the request from `save_id` (see [Moving bytes](#moving-bytes)) and decides where the file goes on disk.
+
+A conflict carries no resolution, so the client decides what to do. One safe option is to keep both: upload the local copy as a `null`-slot (archival) save instead of overwriting the slot.
+
+## Moving bytes
+
+### Upload
+
+```http
+POST /api/saves?rom_id=1234&slot=autosave&device_id=<uuid>&session_id=42&content_hash=<md5>&overwrite=false&autocleanup=true&autocleanup_limit=10
+Content-Type: multipart/form-data
+
+saveFile=<file>
+screenshotFile=<file, optional>
+```
+
+- With `overwrite=false` and a `device_id`, an upload to a slot that already holds a save returns `409` unless this device has synced the slot's latest save and nothing has changed since. That includes the device's first upload to a slot another device filled, so negotiate and download or resolve first. Without a `slot`, `409` only comes back when a save with the same file name changed since this device last synced it.
+- `autocleanup=true` limits how many versions a slot keeps (`autocleanup_limit`, default 10).
+- `content_hash` is the device's MD5 of the file it sent, the same value it sends to negotiate. The server stores it as the device's baseline for the save, so the next negotiate can tell that the device's copy hasn't changed.
+- The response is the stored save, including its `id`.
+
+To replace a version the client itself created, use `PUT /api/saves/{id}?device_id=<uuid>&content_hash=<md5>` with the same multipart body. There is no conflict guard on this call, so only use it on your own saves.
+
+### Download
+
+```http
+GET /api/saves/{save_id}/content?device_id=<uuid>&session_id=42&optimistic=true
+```
+
+With `optimistic=true` (the default), the device is marked as synced for the save as soon as the file is served. With `optimistic=false`, it isn't marked until the client confirms:
+
+```http
+POST /api/saves/{save_id}/downloaded
+Content-Type: application/json
+
+{
+  "device_id": "3f1c2b9e-8a4d-4c7e-9f21-6d0b5a7e1c34",
+  "content_hash": "e4d909c290d0fb1ca068ffaddf22cbd0"
+}
+```
+
+This records the device's sync baseline for the save. `content_hash` is optional: send the MD5 of the file as written. The server keeps it when an optimistic download already recorded which version it served, or when it matches the save's current hash. Otherwise it drops it.
 
 ## Completing a session
 
 ```http
 POST /api/sync/sessions/{session_id}/complete
+Content-Type: application/json
+
 {
   "operations_completed": 15,
   "operations_failed": 1,
   "play_sessions": [
-    { "rom_id": 1234, "start": "2026-04-18T09:00:00Z", "end": "2026-04-18T09:45:00Z", "duration_seconds": 2700 }
+    {
+      "rom_id": 1234,
+      "save_slot": "autosave",
+      "start_time": "2026-04-18T09:00:00Z",
+      "end_time": "2026-04-18T09:45:00Z",
+      "duration_ms": 2700000
+    }
   ]
 }
 ```
 
-This call closes the session and ingests the batched play sessions.
+- `play_sessions` is optional. `save_slot` is optional. `end_time` must be after `start_time`, and both are truncated to whole seconds.
+- Playtime can also be sent on its own to `POST /api/play-sessions`. Sending it there (with retries) means playtime is still recorded when a sync fails.
+- The response is `{ session, play_session_ingest }`.
+- An unknown session returns `404`. A session that was cancelled or failed on purpose returns `400`. One that the cleanup expired can still be completed, so its counts and playtime aren't lost.
+
+## Other endpoints
+
+- `GET /api/sync/sessions` and `GET /api/sync/sessions/{id}`: list and inspect sync sessions.
+- `POST /api/sync/devices/{device_id}/push-pull`: push/pull sync for a device.
+
+See the [API Reference](api-reference.md) for their full schemas.
 
 ## Rate limits and polling
 
 - Sync once per session, not per save
 - Don't poll `/api/sync/negotiate` tightly
-- No push channel yet, so polling is the only model
+- Nothing tells a device to start a sync. The `/devices` Socket.IO namespace only carries install requests, so the device decides when to negotiate
 
 ## See also
 
