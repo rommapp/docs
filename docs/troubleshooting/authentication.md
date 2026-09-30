@@ -69,7 +69,7 @@ The `OIDC_REDIRECT_URI` in the env doesn't **exactly** match what's registered a
 
 You configured `OIDC_CLAIM_ROLES` but it's not being honoured.
 
-1. **Is the claim actually in the token?** Decode your IdP's ID token at [jwt.io](https://jwt.io) and verify the claim name (e.g. `groups`, `realm_access.roles`) is present and non-empty.
+1. **Is the claim actually sent?** Decode your IdP's ID token at [jwt.io](https://jwt.io), or check its UserInfo response, and verify the claim name (e.g. `groups`, `realm_access.roles`) is present and non-empty. RomM reads the ID token first and falls back to UserInfo for a claim it leaves out.
 2. **Does the value match?** `OIDC_ROLE_ADMIN=romm-admin` will only match if the claim contains exactly the string `romm-admin`, and it's case-sensitive.
 3. **Is the claim mapper on the IdP side configured to include the claim?** On Keycloak, for example, you need a Client Scope with a Group Membership mapper added to the client.
 
@@ -96,9 +96,9 @@ environment:
 
 `OIDC_ROLE_VIEWER` and `OIDC_ROLE_EDITOR` both resolve to **User**, but they still grant access when role claims are enabled (see [Role mapping](../administration/oidc/index.md#role-mapping)).
 
-### "Email is missing from token" (Zitadel-specific)
+### "Email is missing from token"
 
-On Zitadel, open the application → **Token Settings** → tick **User Info inside ID Token** → Save (see [OIDC with Zitadel → Enable claims](../administration/oidc/zitadel.md) for the full walkthrough).
+Neither the ID token nor the provider's UserInfo endpoint returned an `email` claim. Check that the client requests the `email` scope and that the provider releases it. On Zitadel, also open the application → **Token Settings** → tick **User Info inside ID Token** → Save (see [OIDC with Zitadel → Enable claims](../administration/oidc/zitadel.md) for the full walkthrough).
 
 ### Authentik 2025.10: login succeeds but the user is rejected
 
@@ -112,6 +112,16 @@ Two possibilities:
 
 1. **Email not verified in Keycloak**: Admin Console → Users → open the user → **Email Verified**: on. Unverified emails are rejected.
 2. **Email mismatch between Keycloak and a pre-existing local user**: if a local account `alice@example.com` already exists, the first OIDC login for `alice@example.com` signs into that account. If the emails don't match exactly, a _second_ account is created. Fix: edit the local user to set the correct email, then log in via OIDC.
+
+### `This account is linked to a different identity at the provider`
+
+The login's email belongs to a RomM account that is already linked to another user (subject) at the same provider. RomM refuses it so that an email reassigned at the provider can't take over the account. It also happens when you delete and recreate the user at the provider.
+
+If the new provider user really is the account's owner, clear the stored link in the database, then log in again to relink it:
+
+```sql
+UPDATE users SET oidc_issuer = NULL, oidc_sub = NULL WHERE username = 'alice';
+```
 
 ### `OAuthException: expired token` on callback
 

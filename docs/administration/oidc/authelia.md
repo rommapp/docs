@@ -82,7 +82,7 @@ environment:
 
 ## 5. Set your email
 
-In RomM's **Profile**, set your email to exactly the same address Authelia has for you. RomM matches OIDC users to existing accounts by email.
+In RomM's **Profile**, set your email to exactly the same address Authelia has for you. RomM matches an existing account by email on its first OIDC login, then by the Authelia user it linked, so a later email change in Authelia carries over.
 
 ![Set email](../../resources/authelia/1-user-profile.png)
 
