@@ -25,7 +25,7 @@ Every scheduled task takes a standard 5-field cron expression:
 - `*/30 * * * *`: every 30 minutes
 - `0 2 * * 0`: 2 AM every Sunday
 
-Set the env var and restart the container. The scheduler picks up the new schedule as soon as RomM is back.
+Set the env var and restart the container. The scheduler picks up the new schedule as soon as RomM is back. An expression that doesn't parse leaves the task unscheduled, and the startup log names the task and the rejected expression.
 
 ## Enabling a scheduled task
 
@@ -33,7 +33,7 @@ Most tasks have an `ENABLE_*` environment variable, like `ENABLE_SCHEDULED_UPDAT
 
 Unlike other tasks, **build recommendations index** ships enabled, because the [recommendation](../using/recommendations.md) sections read that index and similar games sits empty without it. Setting `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS=false` stops the nightly rebuild, but doesn't hide either section. Users turn those off in their own settings.
 
-The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup) are always on and have no env vars. Check the [env var reference](../reference/environment-variables.md) for the full list.
+The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup, sync session cleanup) also ship enabled. Each has an `ENABLE_SCHEDULED_CLEANUP_*` var to turn it off and a matching `SCHEDULED_CLEANUP_*_CRON` to move it. With upload tmp cleanup off, abandoned chunked uploads stay in `tmp/uploads` under `ROMM_TMP_PATH` (or the resources folder when that's unset) until you delete them. Check the [env var reference](../reference/environment-variables.md) for the full list.
 
 ## Triggering a task manually
 
