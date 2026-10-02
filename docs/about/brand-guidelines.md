@@ -73,7 +73,7 @@ If you're building something that integrates with RomM and would like to use/rem
 
 ## Downloadables
 
-The logo assets live at [rommapp/romm/tree/master/frontend/assets/](https://github.com/rommapp/romm/tree/master/frontend/assets/):
+The logo assets live at [rommapp/romm/tree/master/frontend/public/assets/](https://github.com/rommapp/romm/tree/master/frontend/public/assets/):
 
 - `isotipo.svg`/`isotipo.png`: the mark (circular logo)
 - `logotipo.svg`/`logotipo.png`: the wordmark
