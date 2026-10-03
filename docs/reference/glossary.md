@@ -35,7 +35,7 @@ These are the terms the docs, UI, and API use consistently. Foundational concept
 
 **Firmware**: BIOS or system firmware required for certain emulators (PS1, GBA, Saturn, etc.). Lives wherever the [`filesystem.structure.firmware`](configuration-file.md#filesystemstructure) template points, `bios/{platform}` by default. Uploaded via the UI and managed by admins and users with the `firmware.write` scope (see [Firmware Management](../administration/firmware-management.md)).
 
-**Full image**: the default container variant, bundling all four browser runtimes (EmulatorJS, Ruffle, `js-dos`, FAKE-08). `rommapp/romm:X.Y.Z` (see [Image Variants](../install/image-variants.md)).
+**Full image**: the default container variant, bundling all five browser runtimes (EmulatorJS, Ruffle, `js-dos`, FAKE-08, EasyRPG). `rommapp/romm:X.Y.Z` (see [Image Variants](../install/image-variants.md)).
 
 **Game Data tab**: the ROM detail page tab for saves, states, and screenshots. User-specific.
 

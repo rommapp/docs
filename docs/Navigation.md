@@ -55,6 +55,7 @@ search:
     - [Downloads](using/downloads.md)
     - [Uploads](using/uploads.md)
     - In-Browser Play
+        - [EasyRPG](using/in-browser-play/easyrpg.md)
         - [EmulatorJS](using/in-browser-play/emulatorjs.md)
         - [`js-dos`](using/in-browser-play/js-dos.md)
         - [MS-DOS](using/in-browser-play/ms-dos.md)

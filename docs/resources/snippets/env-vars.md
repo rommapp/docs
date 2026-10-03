@@ -145,12 +145,13 @@
 
 ### Emulation
 
-| Variable              | Default | Required | Description                                              |
-| --------------------- | ------- | :------: | -------------------------------------------------------- |
-| `DISABLE_EMULATOR_JS` | `false` |          | Disable in-browser play via EmulatorJS                   |
-| `DISABLE_RUFFLE_RS`   | `false` |          | Disable in-browser Flash playback via RuffleRS           |
-| `DISABLE_JSDOS`       | `false` |          | Disable in-browser Win3.x and Win9.x playback via js-dos |
-| `DISABLE_PICO8`       | `false` |          | Disable in-browser PICO-8 playback via FAKE-08           |
+| Variable              | Default | Required | Description                                                 |
+| --------------------- | ------- | :------: | ----------------------------------------------------------- |
+| `DISABLE_EMULATOR_JS` | `false` |          | Disable in-browser play via EmulatorJS                      |
+| `DISABLE_RUFFLE_RS`   | `false` |          | Disable in-browser Flash playback via RuffleRS              |
+| `DISABLE_JSDOS`       | `false` |          | Disable in-browser Win3.x and Win9.x playback via js-dos    |
+| `DISABLE_PICO8`       | `false` |          | Disable in-browser PICO-8 playback via FAKE-08              |
+| `DISABLE_EASYRPG`     | `false` |          | Disable in-browser RPG Maker 2000/2003 playback via EasyRPG |
 
 ### Integrations
 

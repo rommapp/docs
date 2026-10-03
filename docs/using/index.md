@@ -7,6 +7,7 @@ description: Browse, play, collect, patch, and share from the UI
 
 ## Browse and play
 
+- **[EasyRPG](in-browser-play/easyrpg.md)**
 - **[EmulatorJS](in-browser-play/emulatorjs.md)**
     - **[MS-DOS](in-browser-play/ms-dos.md)**
 - **[`js-dos`](in-browser-play/js-dos.md)**
