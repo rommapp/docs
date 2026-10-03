@@ -99,7 +99,7 @@ You must run a LaunchBox metadata update (either manually, or scheduled via cron
 
 ### Hasheous
 
-[Hasheous](https://hasheous.org/) is a free, open-source metadata provider that uses file hashes to match games. It proxies IGDB data for titles, descriptions, and cover art, and can provide Retroachievements IDs for matched games.
+[Hasheous](https://hasheous.org/) is a free, open-source metadata provider that matches games by file hash (MD5, SHA1 and CRC). It proxies IGDB data for titles, descriptions, cover art and screenshots, and adds region and language tags from the matched dump.
 
 Set `HASHEOUS_API_ENABLED=true` in your environment variables, and future scans will start using the [Hasheous API](https://hasheous.org/swagger/index.html).
 
@@ -126,6 +126,12 @@ To access the SteamGridDB API, you need to login to their [website](https://www.
 Achievements are displayed from [RetroAchievements](https://retroachievements.org/). To sync, you need to generate an API key from your RetroAchievements account in your [settings](https://retroachievements.org/settings).
 
 Copy the key shown and use it to set `RETROACHIEVEMENTS_API_KEY` and perform a `UNMATCHED` scan targeting the platform you want to match with RetroAchievements.
+
+Matching is hash-only: RomM computes each ROM's RetroAchievements hash with RAHasher and looks it up in RetroAchievements' list of compatible hashes. This needs the RetroAchievements API key and hash calculation, which is on by default (see [`filesystem.skip_hash_calculation`](../reference/configuration-file.md#filesystemskip_hash_calculation)).
+
+<!-- prettier-ignore -->
+!!! note "Disc images inside archives"
+    On disc-based platforms (PSX, PS2, Saturn, Sega CD, Dreamcast, PSP, Wii and others), RomM can't compute a RetroAchievements hash for a disc image inside a zip, 7z, rar or tar archive, so a scan won't match those ROMs. CHD and uncompressed images (bin/cue, ISO) work. You can still match them manually or add an `(ra-12345)` [filename tag](#metadata-tags-in-filenames). A fix is tracked in [rommapp/romm#4967](https://github.com/rommapp/romm/issues/4967).
 
 After that, each user needs to set their own username in their profile and sync it with RetroAchievements. A new `Achievements` tab will appear in the `Personal` tab in the game details.
 
