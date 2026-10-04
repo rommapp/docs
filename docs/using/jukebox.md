@@ -14,12 +14,19 @@ roms/snes/chrono trigger/
 ├─ chrono trigger.sfc
 └─ soundtrack/
    ├─ 01 - Chrono Trigger.flac
-   └─ 02 - Memories of Green.flac
+   ├─ 02 - Memories of Green.flac
+   └─ 03 - Wind Scene.spc
 ```
 
 Supported formats are `.mp3`, `.ogg`, `.oga`, `.opus`, `.m4a`, `.aac`, `.wav` and `.flac`.
 
+Console sound files also work, and play in the browser through [game-music-emu](https://github.com/libgme/game-music-emu): `.spc` for the SNES, and `.vgm`, `.vgz` and `.gym` for the Sega Genesis/Mega Drive and other systems VGM covers. They're much smaller than rips (a whole SNES soundtrack as SPC is about 1 MB). Each file holds one song, so multi-song formats such as `.nsf` and `.gbs` aren't supported. SPC sets often ship as `.rsn` files, which are RAR archives, so extract the `.spc` files into the `soundtrack/` folder first.
+
 Scanning reads each file's tags (title, artist, album, genre, year, track number, duration) and grabs the embedded cover if there is one. Drop in a properly tagged rip and it'll display correctly, while untagged files just show their filename.
+
+Console sound files aren't read for tags yet. They show their filename and have no duration in the library, which also leaves them out of Free Radio and Decade Mix. Their length appears once they start playing.
+
+Media keys and lock-screen controls don't work while a console sound file plays.
 
 ## Browsing
 
