@@ -131,7 +131,7 @@ Matching is hash-only: RomM computes each ROM's RetroAchievements hash with RAHa
 
 <!-- prettier-ignore -->
 !!! note "Disc images inside archives"
-    On disc-based platforms (PSX, PS2, Saturn, Sega CD, Dreamcast, PSP, Wii and others), RomM can't compute a RetroAchievements hash for a disc image inside a zip, 7z, rar or tar archive, so a scan won't match those ROMs. CHD and uncompressed images (bin/cue, ISO) work. You can still match them manually or add an `(ra-12345)` [filename tag](#metadata-tags-in-filenames). A fix is tracked in [rommapp/romm#4967](https://github.com/rommapp/romm/issues/4967).
+    On disc-based platforms (PSX, PS2, Saturn, Sega CD, Dreamcast, PSP, Wii and others), RomM can't compute a RetroAchievements hash for a disc image inside a zip, 7z, rar or tar archive, so a scan won't match those ROMs. CHD and uncompressed images (bin/cue, ISO) work. You can still match them manually or add an `(ra-12345)` [filename tag](#metadata-tags-in-filenames).
 
 After that, each user needs to set their own username in their profile and sync it with RetroAchievements. A new `Achievements` tab will appear in the `Personal` tab in the game details.
 
