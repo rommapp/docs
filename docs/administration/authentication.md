@@ -52,8 +52,6 @@ A user who forgot their password can ask for a reset link from the sign-in page 
 
 The response is the same whether or not the username exists, so the form can't be used to find out which accounts exist. Requests for an existing account and completed resets are both recorded in the [audit log](audit-log.md).
 
-The new password has to meet the same rules as any other: 6 to 255 characters, ASCII only. A password that breaks them returns `400` and leaves the link usable for another try.
-
 Admins can also set any user's password directly. The next login on that account uses the new password, but existing sessions remain valid until they expire.
 
 ## OIDC
