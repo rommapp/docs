@@ -243,26 +243,36 @@ What each block buys you:
 
 ## Set `FORWARDED_ALLOW_IPS` for your proxy
 
-Inside the container, a bundled nginx sits in front of gunicorn, and by default gunicorn only trusts that nginx. When you put your own reverse proxy in front, the bundled nginx appends your proxy's address to `X-Forwarded-For` before passing the request on. Gunicorn reads the header from right to left and takes the first address it doesn't trust as the client. That address is your proxy, so every request looks like it came from the proxy instead of the real visitor.
+Inside the container, a bundled nginx sits in front of gunicorn and appends the address it received each request from to `X-Forwarded-For`. Gunicorn reads that header from right to left, skips every address listed in `FORWARDED_ALLOW_IPS`, and takes the first one it doesn't trust as the client. By default it trusts loopback and the private ranges:
 
-The client IP matters beyond the logs. RomM uses it to rate-limit metadata heartbeats, device pairing and client tokens, and as part of the fingerprint that identifies a browser as a web device. When every visitor shares the proxy's address, they all share one rate-limit bucket, and a single user hitting the limit blocks everyone else until the window resets. Every browser behind the proxy also ends up registered as the same device.
+```text
+127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,fc00::/7
+```
 
-Append your proxy's address to the default rather than replacing it:
+That covers a reverse proxy on the same host, on a Docker network, on your LAN or on a Tailscale network (`100.64.0.0/10`), so most setups need no change. A Cloudflare Tunnel is covered too, because `cloudflared` connects from inside your network.
+
+A proxy that reaches RomM from a public address is not trusted, such as a VPS that forwards to your home server or a CDN that connects straight to your public IP. RomM then sees every visitor as the proxy, and that matters beyond the logs:
+
+- The [audit log](../administration/audit-log.md) records the proxy's address for every sign-in, failed sign-in and download. It also caps how many failed sign-ins it records per address, so one noisy client can crowd out everyone else's.
+- Metadata heartbeats, device pairing and client token requests are rate limited per address, so every visitor shares one bucket, and a single user hitting the limit blocks everyone else until the window resets.
+- The address is part of the fingerprint that identifies a browser as a web device, so every browser behind the proxy ends up registered as the same device.
+
+Append the proxy's public address (or its published ranges, for a CDN) to the default rather than replacing it:
 
 ```yaml
 environment:
-    - FORWARDED_ALLOW_IPS=127.0.0.1,172.18.0.0/16
+    - FORWARDED_ALLOW_IPS=127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,fc00::/7,203.0.113.10
 ```
 
-The value is a comma-separated list of addresses and CIDR ranges. If your proxy runs in another container, use a range, because the container gets a new address each time it's recreated. To find the address, check the last entry of `X-Forwarded-For` on a real request. Your proxy's access log shows it, and so does the bundled nginx log (`docker logs romm`).
+The value is a comma-separated list of addresses and CIDR ranges. To find the address to add, check the last entry of `X-Forwarded-For` on a real request in the bundled nginx log (`docker logs romm`).
 
 <!-- prettier-ignore -->
 !!! warning "Keep `127.0.0.1`, and don't reach for `*`"
     `127.0.0.1` is the bundled nginx, the only hop gunicorn talks to directly, so leave it in the list. `*` trusts every hop, which makes gunicorn fall back to the leftmost entry of the header, and that one is whatever the client sent.
 
 <!-- prettier-ignore -->
-!!! note "Why listing your proxy is still safe"
-    Addresses to the left of the first untrusted hop are never read, so adding your proxy to the list does not hand clients a way to spoof the address they are seen as.
+!!! note "What trusting a range means"
+    When every address in the header is trusted, gunicorn takes the leftmost one, which the client wrote itself. With the default list, a client connecting from your own private network can therefore choose the address RomM records for it. Clients reaching RomM from the internet through a trusted proxy can't, because their real address is the first untrusted hop. If you don't trust your LAN, narrow the list to your proxy's own address.
 
 ## Set `ROMM_BASE_URL` behind HTTPS
 
@@ -286,4 +296,10 @@ environment:
 ```
 
 - `ROMM_SESSION_SECURE_COOKIE` marks the session and CSRF cookies `Secure` so browsers only send them over HTTPS. Leave it `false` if you still reach the instance over plain HTTP, or logins will silently fail.
-- `ROMM_CORS_ALLOWED_ORIGINS` is a comma-separated list of origins allowed to call the API from a browser. It's empty by default, which blocks every other origin, and most deployments can leave it that way because the UI and the API share an origin. Add an entry only for another browser app that calls this instance. `*` allows any origin, but browsers won't hand a wildcard response to a request that carries credentials, so it only works for endpoints that don't need a login.
+- `ROMM_CORS_ALLOWED_ORIGINS` is a comma-separated list of origins allowed to call the API from a browser. It's empty by default, which denies every other origin, and most deployments can leave it that way because the UI and the API share an origin. Add an entry only for another browser app that calls this instance, written as scheme, host and port with no trailing slash. `*` answers any origin, but RomM then leaves out `Access-Control-Allow-Credentials`, so browsers won't send the session cookie and only endpoints that don't need a login work. A browser client that signs in with the session cookie needs its origin listed explicitly.
+
+Before 5.4, an empty `ROMM_CORS_ALLOWED_ORIGINS` allowed every origin (see [Upgrading](upgrading.md#cross-origin-requests-are-denied-by-default)). Native apps and scripts don't send an `Origin` header, so CORS doesn't affect them.
+
+## RetroArch Cloud Sync (WebDAV)
+
+[RetroArch Cloud Sync](../ecosystem/retroarch-cloud-sync.md) talks WebDAV to `/api/sync/retroarch/`. Besides `GET`, `HEAD`, `PUT` and `DELETE`, it sends `OPTIONS`, `PROPFIND`, `MOVE`, `MKCOL`, `LOCK` and `UNLOCK`. Caddy, nginx, Traefik and NPM pass any method through by default, but a proxy, WAF or security rule that filters HTTP methods has to allow these on that path. The client signs in with HTTP Basic, so the proxy must also forward the `Authorization` header and RomM's `401` challenge untouched.

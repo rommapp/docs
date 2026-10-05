@@ -20,6 +20,8 @@ OpenID Connect (OIDC) lets users sign in through an external identity provider: 
 5. The code is exchanged for an ID token and the user's email, username and role claims are read. Claims the ID token leaves out are fetched from the provider's UserInfo endpoint.
 6. The matching local user is logged in (see [Account matching](#account-matching)), or a new one is created on the fly unless you've [turned off registration](#auto-provisioning).
 
+If the provider returns an error, or the callback fails validation, RomM sends the browser to `/login?bypass_autologin=true` and logs the reason on an `OIDC callback rejected` line, rather than failing with a server error. The bypass flag keeps [autologin](#autologin) from looping straight back to the provider.
+
 ## Provider guides
 
 Pick your provider and follow the step-by-step instructions. Every guide ends with the same set of app-side env vars and differs only in how you register the app and where you find the client ID and secret.
@@ -49,6 +51,19 @@ environment:
 ```
 
 `OIDC_REDIRECT_URI` must exactly match what you register at the provider (same scheme, host, path, no trailing slash).
+
+## Private certificate authority
+
+If your provider's HTTPS certificate comes from a private CA, such as a homelab step-ca or an internal Active Directory CA, RomM can't verify it out of the box. Mount the CA certificate into the container and point `OIDC_TLS_CACERTFILE` at it:
+
+```yaml
+environment:
+    - OIDC_TLS_CACERTFILE=/romm/config/ca/homelab-root.pem
+volumes:
+    - ./ca:/romm/config/ca:ro
+```
+
+The path can be a single bundle file or a directory, in which case every file in it is read. PEM, DER and PKCS#7 (`.p7b`) certificates all work. These certificates are trusted in addition to the system CAs, so they don't replace the public roots. A path that doesn't exist, or a file with no certificate in it, is logged and skipped.
 
 ## Auto-provisioning
 

@@ -11,9 +11,15 @@ These are the terms the docs, UI, and API use consistently. Foundational concept
 
 **Admin**: highest user role. Full scope set, including user management and task execution (see [Users & Roles](../administration/users-and-roles.md)).
 
+**Age limit**: a parental control set on a permission group or a single user. Members see only games rated for that age or younger, and admins are never limited (see [Parental Controls](../administration/parental-controls.md)).
+
 **API token**: see Client API Token.
 
+**Apprise**: the notification library behind RomM's admin-only notification channels for services such as Discord, Telegram, ntfy or Matrix (see [Notifications](../using/notifications.md)).
+
 **Asset**: user-uploaded content attached to a ROM, such as save files, emulator states, and screenshots. Assets live under `/romm/assets` (separate from the library) and are owned per-user. Saves and states can sync to registered devices, and are not the same as a Resource (see [Saves & States](../using/saves-and-states.md)).
+
+**Audit log**: the record of who did what, such as downloads, launches, edits, scans and sign-ins, kept for `AUDIT_LOG_RETENTION_DAYS` (see [Audit Log](../administration/audit-log.md)).
 
 **Autologin**: OIDC feature that bypasses the login page and redirects straight to the IdP. Set via `OIDC_AUTOLOGIN=true`.
 
@@ -27,6 +33,10 @@ These are the terms the docs, UI, and API use consistently. Foundational concept
 
 **Device**: a registered endpoint that syncs with RomM, such as a handheld running Grout, an Android phone running Argosy, or a SteamDeck running DeckRommSync. Devices pull saves and states, and some push them back after a session (see [Device Sync Protocol](../developers/device-sync-protocol.md)).
 
+**Device-bound token**: a Client API Token tied to one registered device. Only a bound token can claim that device's install requests or connect to the `/devices` socket namespace (see [Client API Tokens](../developers/client-api-tokens.md)).
+
+**EasyRPG**: the bundled in-browser player for RPG Maker 2000 and 2003 games, full image only (see [In-Browser Play → EasyRPG](../using/in-browser-play/easyrpg.md)).
+
 **EmulatorJS**: the bundled in-browser retro emulator. Handles NES, SNES, N64, PSX, Saturn, and 20+ more cores (see [In-Browser Play → EmulatorJS](../using/in-browser-play/emulatorjs.md)).
 
 **Facet**: one axis a [recommendation](../using/recommendations.md) is explained by, such as a shared franchise, genre, theme or developer. A facet counts for as much as it is rare in your own library.
@@ -35,11 +45,13 @@ These are the terms the docs, UI, and API use consistently. Foundational concept
 
 **Firmware**: BIOS or system firmware required for certain emulators (PS1, GBA, Saturn, etc.). Lives wherever the [`filesystem.structure.firmware`](configuration-file.md#filesystemstructure) template points, `bios/{platform}` by default. Uploaded via the UI and managed by admins and users with the `firmware.write` scope (see [Firmware Management](../administration/firmware-management.md)).
 
-**Full image**: the default container variant, bundling all four browser runtimes (EmulatorJS, Ruffle, `js-dos`, FAKE-08). `rommapp/romm:X.Y.Z` (see [Image Variants](../install/image-variants.md)).
+**Full image**: the default container variant, bundling all five browser runtimes (EmulatorJS, EasyRPG, Ruffle, `js-dos`, FAKE-08). `rommapp/romm:X.Y.Z` (see [Image Variants](../install/image-variants.md)).
 
 **Game Data tab**: the ROM detail page tab for saves, states, and screenshots. User-specific.
 
 **gamelist.xml**: ES-DE/Batocera-compatible metadata format. Importable as a metadata source and exportable.
+
+**Install request**: a game queued for download on one of your devices, which the device picks up the next time it's online (see [Devices](../using/devices.md)).
 
 **Invite link**: single-use URL that lets a new user register with a pre-assigned role (see [Invitations & Registration](../administration/invitations-and-registration.md)).
 
@@ -56,6 +68,8 @@ These are the terms the docs, UI, and API use consistently. Foundational concept
 **Metadata provider**: external source of game data, queried during a scan, with results merged. Configured via env vars + priority in `config.yml` (see [Metadata Providers](../getting-started/metadata-providers.md)).
 
 **Netplay**: EmulatorJS's multiplayer mode. Two or more players share a session across the internet. Open rooms are tracked and brokered via WebSocket. Needs STUN/TURN (ICE servers) configured in `config.yml` for reliable NAT traversal (see [Netplay](../using/netplay.md)).
+
+**Notification channel**: a per-user destination that notifications are forwarded to, such as a webhook, an email address or an Apprise service, filtered by level and topic (see [Notifications](../using/notifications.md)).
 
 **OIDC**: OpenID Connect. Supported SSO protocol for external auth (see [OIDC Setup](../administration/oidc/index.md)).
 
@@ -79,6 +93,8 @@ These are the terms the docs, UI, and API use consistently. Foundational concept
 
 **Role**: an account's top-level type. Two roles: User (access governed by a permission group) and Admin, which has full access and bypasses groups (see [Users & Roles](../administration/users-and-roles.md)).
 
+**rom-converto**: the conversion tool behind the Convert library task and `?format=` downloads, shipped in both images (see [Library Conversion](../administration/library-conversion.md)).
+
 **Ruffle**: the bundled in-browser Flash/Shockwave emulator (see [In-Browser Play → Ruffle](../using/in-browser-play/ruffle.md)).
 
 **Scan**: the process of walking the library, hashing files, calling metadata providers, and updating the DB. Scans run in six modes (New Platforms, Quick, Unmatched, Update, Hashes, Complete) and can be triggered manually, on a cron, or by the filesystem watcher (see [Scanning & Watcher](../administration/scanning-and-watcher.md)).
@@ -91,13 +107,15 @@ These are the terms the docs, UI, and API use consistently. Foundational concept
 
 **Smart Collection**: rule-based auto-populating collection (see [Smart Collections](../using/smart-collections.md)).
 
-**socket.io**: the WebSocket protocol. Two endpoints: `/ws` and `/netplay` (see [WebSockets](../developers/websockets.md)).
+**socket.io**: the WebSocket protocol. Two endpoints, `/ws` (with its `/devices` namespace for companion apps) and `/netplay` (see [WebSockets](../developers/websockets.md)).
 
 **Task**: a unit of background work (scan, metadata sync, cleanup, device sync). Runs through RQ. Can be scheduled (cron), watcher-triggered, or manual (see [Scheduled Tasks](../administration/scheduled-tasks.md)).
 
 **Tinfoil**: Nintendo Switch homebrew that installs from RomM's feed (see [Tinfoil](../ecosystem/feed-clients.md#tinfoil)).
 
 **Title id**: the platform-native identifier read out of a ROM's own binary during a scan, on the platforms that have one. Identifies a game where RomM doesn't hash, and says where the game writes its saves (see [Scanning & Watcher](../administration/scanning-and-watcher.md#title-ids-read-from-the-binary)).
+
+**Trusted proxy**: a proxy RomM believes when it reports the client's address in `X-Forwarded-For`, set by `FORWARDED_ALLOW_IPS` (see [Reverse Proxy](../install/reverse-proxy.md)).
 
 **User**: an account. Its role is either User (access from a permission group plus per-user overrides) or Admin (full access). Can be created by the Setup Wizard, an admin, an invite link, or OIDC auto-provisioning (see [Users & Roles](../administration/users-and-roles.md)).
 

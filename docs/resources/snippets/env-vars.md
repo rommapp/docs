@@ -38,42 +38,53 @@
 
 ### Authentication
 
-| Variable                             | Default   | Required | Description                                                          |
-| ------------------------------------ | --------- | :------: | -------------------------------------------------------------------- |
-| `ROMM_AUTH_SECRET_KEY`               |           |   `✓`    | App secret, generate with `openssl rand -hex 32`                     |
-| `OAUTH_ACCESS_TOKEN_EXPIRE_SECONDS`  | `1800`    |          | Access token lifetime in seconds                                     |
-| `OAUTH_REFRESH_TOKEN_EXPIRE_SECONDS` | `604800`  |          | Refresh token lifetime in seconds                                    |
-| `SESSION_MAX_AGE_SECONDS`            | `1209600` |          | Maximum age of a session in seconds                                  |
-| `INVITE_TOKEN_EXPIRY_SECONDS`        | `600`     |          | Invite token lifetime in seconds                                     |
-| `DISABLE_DOWNLOAD_ENDPOINT_AUTH`     | `false`   |          | Disable auth on the download endpoint for WebRcade/Tinfoil           |
-| `DISABLE_CSRF_PROTECTION`            | `false`   |          | Disable CSRF protection (not recommended)                            |
-| `DISABLE_USERPASS_LOGIN`             | `false`   |          | Disable username/password login when using OIDC                      |
-| `DISABLE_SETUP_WIZARD`               | `false`   |          | Skip the first-boot setup wizard                                     |
-| `DISABLE_LOGS_VIEWER`                | `false`   |          | Disable the backend logs viewer                                      |
-| `ROMM_CORS_ALLOWED_ORIGINS`          |           |          | Comma-separated list of allowed CORS origins (empty allows all)      |
-| `ROMM_SESSION_SECURE_COOKIE`         | `false`   |          | Mark session and CSRF cookies Secure (enable when served over HTTPS) |
+| Variable                             | Default   | Required | Description                                                                                                          |
+| ------------------------------------ | --------- | :------: | -------------------------------------------------------------------------------------------------------------------- |
+| `ROMM_AUTH_SECRET_KEY`               |           |   `✓`    | App secret, generate with `openssl rand -hex 32`                                                                     |
+| `OAUTH_ACCESS_TOKEN_EXPIRE_SECONDS`  | `1800`    |          | Access token lifetime in seconds                                                                                     |
+| `OAUTH_REFRESH_TOKEN_EXPIRE_SECONDS` | `604800`  |          | Refresh token lifetime in seconds                                                                                    |
+| `SESSION_MAX_AGE_SECONDS`            | `1209600` |          | Maximum age of a session in seconds                                                                                  |
+| `INVITE_TOKEN_EXPIRY_SECONDS`        | `600`     |          | Invite token lifetime in seconds                                                                                     |
+| `DISABLE_DOWNLOAD_ENDPOINT_AUTH`     | `false`   |          | Disable auth on the download endpoint for WebRcade/Tinfoil                                                           |
+| `DISABLE_CSRF_PROTECTION`            | `false`   |          | Disable CSRF protection (not recommended)                                                                            |
+| `DISABLE_USERPASS_LOGIN`             | `false`   |          | Disable username/password login when using OIDC                                                                      |
+| `DISABLE_SETUP_WIZARD`               | `false`   |          | Skip the first-boot setup wizard                                                                                     |
+| `DISABLE_LOGS_VIEWER`                | `false`   |          | Disable the backend logs viewer                                                                                      |
+| `ROMM_CORS_ALLOWED_ORIGINS`          |           |          | Comma-separated list of allowed CORS origins (empty allows none; a wildcard allows any origin but never credentials) |
+| `ROMM_SESSION_SECURE_COOKIE`         | `false`   |          | Mark session and CSRF cookies Secure (enable when served over HTTPS)                                                 |
+
+### Email, for notification channels and password reset links (off unless SMTP_HOST and SMTP_FROM are set)
+
+| Variable        | Default    | Required | Description                                                                              |
+| --------------- | ---------- | :------: | ---------------------------------------------------------------------------------------- |
+| `SMTP_HOST`     |            |          | SMTP server host                                                                         |
+| `SMTP_PORT`     | `587`      |          | SMTP server port                                                                         |
+| `SMTP_USERNAME` |            |          | Login for the SMTP server, if it needs one                                               |
+| `SMTP_PASSWORD` |            |          | Password for the SMTP server                                                             |
+| `SMTP_FROM`     |            |          | Sender address, such as romm@example.com                                                 |
+| `SMTP_SECURITY` | `starttls` |          | starttls, tls (implicit TLS, usually port 465) or none; any other value leaves email off |
 
 ### OpenID Connect
 
-| Variable                      | Default              | Required | Description                                                                        |
-| ----------------------------- | -------------------- | :------: | ---------------------------------------------------------------------------------- |
-| `OIDC_ENABLED`                | `false`              |          | Enable OpenID Connect authentication                                               |
-| `OIDC_AUTOLOGIN`              | `false`              |          | Skip the OIDC button on the login page and auto-redirect                           |
-| `OIDC_ALLOW_REGISTRATION`     | `true`               |          | Allow new accounts to be created automatically on first OIDC login                 |
-| `OIDC_PROVIDER`               |                      |          | Name of the OIDC provider in use                                                   |
-| `OIDC_CLIENT_ID`              |                      |          | Client ID for OIDC authentication                                                  |
-| `OIDC_CLIENT_SECRET`          |                      |          | Client secret for OIDC authentication                                              |
-| `OIDC_REDIRECT_URI`           |                      |          | Absolute redirect URI for OIDC authentication                                      |
-| `OIDC_SERVER_APPLICATION_URL` |                      |          | Absolute URL of the OIDC server application                                        |
-| `OIDC_SERVER_METADATA_URL`    |                      |          | URL to the OIDC provider metadata endpoint                                         |
-| `OIDC_CLAIM_ROLES`            |                      |          | OIDC claim containing user roles                                                   |
-| `OIDC_ROLE_VIEWER`            |                      |          | Role value mapping to viewer permissions                                           |
-| `OIDC_ROLE_EDITOR`            |                      |          | Role value mapping to editor permissions                                           |
-| `OIDC_ROLE_ADMIN`             |                      |          | Role value mapping to admin permissions                                            |
-| `OIDC_TLS_CACERTFILE`         |                      |          | CA bundle file (PEM, DER or `.p7b`) or directory, trusted alongside the system CAs |
-| `OIDC_USERNAME_ATTRIBUTE`     | `preferred_username` |          | Attribute on OIDC user info used as the username                                   |
-| `OIDC_RP_INITIATED_LOGOUT`    | `false`              |          | Enable RP-initiated logout flow                                                    |
-| `OIDC_END_SESSION_ENDPOINT`   |                      |          | OIDC end-session endpoint override URL                                             |
+| Variable                      | Default              | Required | Description                                                                      |
+| ----------------------------- | -------------------- | :------: | -------------------------------------------------------------------------------- |
+| `OIDC_ENABLED`                | `false`              |          | Enable OpenID Connect authentication                                             |
+| `OIDC_AUTOLOGIN`              | `false`              |          | Skip the OIDC button on the login page and auto-redirect                         |
+| `OIDC_ALLOW_REGISTRATION`     | `true`               |          | Allow new accounts to be created automatically on first OIDC login               |
+| `OIDC_PROVIDER`               |                      |          | Name of the OIDC provider in use                                                 |
+| `OIDC_CLIENT_ID`              |                      |          | Client ID for OIDC authentication                                                |
+| `OIDC_CLIENT_SECRET`          |                      |          | Client secret for OIDC authentication                                            |
+| `OIDC_REDIRECT_URI`           |                      |          | Absolute redirect URI for OIDC authentication                                    |
+| `OIDC_SERVER_APPLICATION_URL` |                      |          | Absolute URL of the OIDC server application                                      |
+| `OIDC_SERVER_METADATA_URL`    |                      |          | URL to the OIDC provider metadata endpoint                                       |
+| `OIDC_CLAIM_ROLES`            |                      |          | OIDC claim containing user roles                                                 |
+| `OIDC_ROLE_VIEWER`            |                      |          | Role value mapping to viewer permissions                                         |
+| `OIDC_ROLE_EDITOR`            |                      |          | Role value mapping to editor permissions                                         |
+| `OIDC_ROLE_ADMIN`             |                      |          | Role value mapping to admin permissions                                          |
+| `OIDC_TLS_CACERTFILE`         |                      |          | CA bundle file (PEM, DER or .p7b) or directory, trusted alongside the system CAs |
+| `OIDC_USERNAME_ATTRIBUTE`     | `preferred_username` |          | Attribute on OIDC user info used as the username                                 |
+| `OIDC_RP_INITIATED_LOGOUT`    | `false`              |          | Enable RP-initiated logout flow                                                  |
+| `OIDC_END_SESSION_ENDPOINT`   |                      |          | OIDC end-session endpoint override URL                                           |
 
 ### Metadata Providers
 
@@ -108,49 +119,81 @@
 
 ### Scans & Tasks
 
-| Variable                                           | Default      | Required | Description                                                                               |
-| -------------------------------------------------- | ------------ | :------: | ----------------------------------------------------------------------------------------- |
-| `SCAN_TIMEOUT`                                     | `14400`      |          | Timeout for background scan/rescan tasks in seconds                                       |
-| `SCAN_WORKERS`                                     | `4`          |          | How many ROMs a scan processes at once                                                    |
-| `TASK_TIMEOUT`                                     | `300`        |          | Timeout for other background tasks in seconds                                             |
-| `TASK_RESULT_TTL`                                  | `86400`      |          | How long to keep task results in Valkey in seconds                                        |
-| `SEVEN_ZIP_TIMEOUT`                                | `180`        |          | Timeout for 7-Zip operations in seconds                                                   |
-| `ENABLE_RESCAN_ON_FILESYSTEM_CHANGE`               | `false`      |          | Re-scan the library automatically when the filesystem changes                             |
-| `RESCAN_ON_FILESYSTEM_CHANGE_DELAY`                | `5`          |          | Delay in minutes before re-scanning after a filesystem change                             |
-| `ENABLE_SCHEDULED_RESCAN`                          | `false`      |          | Enable scheduled library re-scans                                                         |
-| `SCHEDULED_RESCAN_CRON`                            | `0 3 * * *`  |          | Cron expression for scheduled re-scans                                                    |
-| `ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB`           | `false`      |          | Enable scheduled Switch TitleDB index updates                                             |
-| `SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON`             | `0 4 * * *`  |          | Cron expression for scheduled Switch TitleDB updates                                      |
-| `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA`       | `false`      |          | Enable scheduled LaunchBox metadata updates                                               |
-| `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON`         | `0 4 * * *`  |          | Cron expression for scheduled LaunchBox metadata updates                                  |
-| `ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP`          | `false`      |          | Enable scheduled conversion of images to WebP                                             |
-| `SCHEDULED_CONVERT_IMAGES_TO_WEBP_CRON`            | `0 4 * * *`  |          | Cron expression for scheduled WebP conversion                                             |
-| `ENABLE_SCHEDULED_CLEANUP_ORPHANED_RESOURCES`      | `false`      |          | Enable scheduled cleanup of orphaned resources (covers, screenshots) left by deleted ROMs |
-| `SCHEDULED_CLEANUP_ORPHANED_RESOURCES_CRON`        | `0 5 * * *`  |          | Cron expression for scheduled orphaned resource cleanup                                   |
-| `ENABLE_SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC` | `false`      |          | Enable scheduled RetroAchievements progress sync                                          |
-| `SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC_CRON`   | `0 4 * * *`  |          | Cron expression for scheduled RetroAchievements sync                                      |
-| `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS`           | `true`       |          | Enable the scheduled rebuild of the recommendations index                                 |
-| `SCHEDULED_BUILD_RECOMMENDATIONS_CRON`             | `30 5 * * *` |          | Cron expression for the recommendations index rebuild                                     |
+| Variable                                           | Default        | Required | Description                                                                                                            |
+| -------------------------------------------------- | -------------- | :------: | ---------------------------------------------------------------------------------------------------------------------- |
+| `SCAN_TIMEOUT`                                     | `14400`        |          | Timeout for background scan/rescan tasks in seconds                                                                    |
+| `SCAN_WORKERS`                                     | `4`            |          | How many ROMs a scan processes at once                                                                                 |
+| `TASK_TIMEOUT`                                     | `300`          |          | Timeout for other background tasks in seconds                                                                          |
+| `TASK_RESULT_TTL`                                  | `86400`        |          | How long to keep task results in Valkey in seconds                                                                     |
+| `SEVEN_ZIP_TIMEOUT`                                | `180`          |          | Timeout for 7-Zip operations in seconds                                                                                |
+| `ENABLE_RESCAN_ON_FILESYSTEM_CHANGE`               | `false`        |          | Re-scan the library automatically when the filesystem changes                                                          |
+| `RESCAN_ON_FILESYSTEM_CHANGE_DELAY`                | `5`            |          | Delay in minutes before re-scanning after a filesystem change                                                          |
+| `ENABLE_SCHEDULED_RESCAN`                          | `false`        |          | Enable scheduled library re-scans                                                                                      |
+| `SCHEDULED_RESCAN_CRON`                            | `0 3 * * *`    |          | Cron expression for scheduled re-scans                                                                                 |
+| `ENABLE_SCHEDULED_UPDATE_SWITCH_TITLEDB`           | `false`        |          | Enable scheduled Switch TitleDB index updates                                                                          |
+| `SCHEDULED_UPDATE_SWITCH_TITLEDB_CRON`             | `0 4 * * *`    |          | Cron expression for scheduled Switch TitleDB updates                                                                   |
+| `ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA`       | `false`        |          | Enable scheduled LaunchBox metadata updates                                                                            |
+| `SCHEDULED_UPDATE_LAUNCHBOX_METADATA_CRON`         | `0 4 * * *`    |          | Cron expression for scheduled LaunchBox metadata updates                                                               |
+| `ENABLE_SCHEDULED_CONVERT_IMAGES_TO_WEBP`          | `false`        |          | Enable scheduled conversion of images to WebP                                                                          |
+| `SCHEDULED_CONVERT_IMAGES_TO_WEBP_CRON`            | `0 4 * * *`    |          | Cron expression for scheduled WebP conversion                                                                          |
+| `ENABLE_SCHEDULED_CLEANUP_NETPLAY`                 | `true`         |          | Enable scheduled cleanup of empty netplay rooms                                                                        |
+| `SCHEDULED_CLEANUP_NETPLAY_CRON`                   | `*/30 * * * *` |          | Cron expression for scheduled netplay room cleanup                                                                     |
+| `ENABLE_SCHEDULED_CLEANUP_UPLOAD_TMP`              | `true`         |          | Enable scheduled cleanup of abandoned chunked uploads; when disabled, expired temp directories must be removed by hand |
+| `SCHEDULED_CLEANUP_UPLOAD_TMP_CRON`                | `0 * * * *`    |          | Cron expression for scheduled upload temp cleanup                                                                      |
+| `ENABLE_SCHEDULED_CLEANUP_ZIP_CACHE`               | `true`         |          | Enable scheduled cleanup of stale cached ZIP files                                                                     |
+| `SCHEDULED_CLEANUP_ZIP_CACHE_CRON`                 | `0 4 * * *`    |          | Cron expression for scheduled ZIP cache cleanup                                                                        |
+| `ENABLE_SCHEDULED_CLEANUP_SYNC_SESSIONS`           | `true`         |          | Enable scheduled failing of sync sessions no client completed                                                          |
+| `SCHEDULED_CLEANUP_SYNC_SESSIONS_CRON`             | `23 * * * *`   |          | Cron expression for scheduled sync session cleanup                                                                     |
+| `ENABLE_SCHEDULED_CLEANUP_ORPHANED_RESOURCES`      | `false`        |          | Enable scheduled cleanup of orphaned resources (covers, screenshots) left by deleted ROMs                              |
+| `SCHEDULED_CLEANUP_ORPHANED_RESOURCES_CRON`        | `0 5 * * *`    |          | Cron expression for scheduled orphaned resource cleanup                                                                |
+| `ENABLE_SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC` | `false`        |          | Enable scheduled RetroAchievements progress sync                                                                       |
+| `SCHEDULED_RETROACHIEVEMENTS_PROGRESS_SYNC_CRON`   | `0 4 * * *`    |          | Cron expression for scheduled RetroAchievements sync                                                                   |
+| `ENABLE_SCHEDULED_BUILD_RECOMMENDATIONS`           | `true`         |          | Enable the scheduled rebuild of the recommendations index                                                              |
+| `SCHEDULED_BUILD_RECOMMENDATIONS_CRON`             | `30 5 * * *`   |          | Cron expression for the recommendations index rebuild                                                                  |
+
+### Audit log
+
+| Variable                   | Default | Required | Description                                                                                         |
+| -------------------------- | ------- | :------: | --------------------------------------------------------------------------------------------------- |
+| `AUDIT_LOG_RETENTION_DAYS` | `90`    |          | Days to keep audit log events (plays, downloads, library and account changes); 0 keeps them forever |
 
 ### Sync
 
-| Variable                     | Default        | Required | Description                                                               |
-| ---------------------------- | -------------- | :------: | ------------------------------------------------------------------------- |
-| `ENABLE_SYNC_FOLDER_WATCHER` | `false`        |          | Watch the sync folder and trigger scans on change                         |
-| `SYNC_FOLDER_SCAN_DELAY`     | `2`            |          | Delay in minutes before scanning after a sync folder change               |
-| `ENABLE_SYNC_PUSH_PULL`      | `false`        |          | Enable scheduled sync push/pull                                           |
-| `SYNC_PUSH_PULL_CRON`        | `*/30 * * * *` |          | Cron expression for scheduled sync push/pull                              |
-| `SYNC_SSH_KEYS_PATH`         |                |          | Path to SSH keys for sync remotes (defaults to $ROMM_BASE_PATH/sync/keys) |
-| `SYNC_SSH_KNOWN_HOSTS_PATH`  |                |          | Path to SSH known_hosts (defaults to $ROMM_BASE_PATH/sync/known_hosts)    |
+| Variable                        | Default        | Required | Description                                                                                               |
+| ------------------------------- | -------------- | :------: | --------------------------------------------------------------------------------------------------------- |
+| `ENABLE_SYNC_FOLDER_WATCHER`    | `false`        |          | Watch the sync folder and trigger scans on change                                                         |
+| `SYNC_FOLDER_SCAN_DELAY`        | `2`            |          | Delay in minutes before scanning after a sync folder change                                               |
+| `ENABLE_SYNC_PUSH_PULL`         | `false`        |          | Enable scheduled sync push/pull                                                                           |
+| `SYNC_PUSH_PULL_CRON`           | `*/30 * * * *` |          | Cron expression for scheduled sync push/pull                                                              |
+| `SYNC_SSH_KEYS_PATH`            |                |          | Path to SSH keys for sync remotes (defaults to $ROMM_BASE_PATH/sync/keys)                                 |
+| `SYNC_SSH_KNOWN_HOSTS_PATH`     |                |          | Path to SSH known_hosts (defaults to $ROMM_BASE_PATH/sync/known_hosts)                                    |
+| `SYNC_RETROARCH_PSP_SERIAL_MAP` |                |          | JSON map of PSP serial to extensionless ROM file name, for RetroArch PSP saves whose title matches no ROM |
+
+### Device install
+
+| Variable                                 | Default                        | Required | Description                                                                                    |
+| ---------------------------------------- | ------------------------------ | :------: | ---------------------------------------------------------------------------------------------- |
+| `DEVICE_INSTALL_ENABLED`                 | `true`                         |          | Let users push a ROM to one of their registered devices for install                            |
+| `DEVICE_INSTALL_REQUEST_TTL_DAYS`        | `2`                            |          | Days an unfinished install request waits for its device after its last change; 0 waits forever |
+| `DEVICE_INSTALL_EXCLUDED_PLATFORM_SLUGS` | `win,win3x,win9x,windows-apps` |          | Comma-separated platform slugs that can never be pushed to a device                            |
 
 ### Emulation
 
-| Variable              | Default | Required | Description                                              |
-| --------------------- | ------- | :------: | -------------------------------------------------------- |
-| `DISABLE_EMULATOR_JS` | `false` |          | Disable in-browser play via EmulatorJS                   |
-| `DISABLE_RUFFLE_RS`   | `false` |          | Disable in-browser Flash playback via RuffleRS           |
-| `DISABLE_JSDOS`       | `false` |          | Disable in-browser Win3.x and Win9.x playback via js-dos |
-| `DISABLE_PICO8`       | `false` |          | Disable in-browser PICO-8 playback via FAKE-08           |
+| Variable              | Default | Required | Description                                                 |
+| --------------------- | ------- | :------: | ----------------------------------------------------------- |
+| `DISABLE_EMULATOR_JS` | `false` |          | Disable in-browser play via EmulatorJS                      |
+| `DISABLE_RUFFLE_RS`   | `false` |          | Disable in-browser Flash playback via RuffleRS              |
+| `DISABLE_JSDOS`       | `false` |          | Disable in-browser Win3.x and Win9.x playback via js-dos    |
+| `DISABLE_PICO8`       | `false` |          | Disable in-browser PICO-8 playback via FAKE-08              |
+| `DISABLE_EASYRPG`     | `false` |          | Disable in-browser RPG Maker 2000/2003 playback via EasyRPG |
+
+### ROM conversion
+
+| Variable                       | Default | Required | Description                                                                          |
+| ------------------------------ | ------- | :------: | ------------------------------------------------------------------------------------ |
+| `ROM_CONVERTO_ENABLED`         | `false` |          | Enable rom-converto for the "Convert library" task and ?format= download conversions |
+| `ROM_CONVERTO_TIMEOUT`         | `600`   |          | Timeout for each rom-converto operation in seconds                                   |
+| `ROM_CONVERTO_MAX_CONCURRENCY` | `2`     |          | Concurrent conversions per web or task worker                                        |
 
 ### Integrations
 
@@ -177,16 +220,17 @@
 
 ### Web Server
 
-| Variable                           | Default | Required | Description                                                                              |
-| ---------------------------------- | ------- | :------: | ---------------------------------------------------------------------------------------- |
-| `WEB_SERVER_CONCURRENCY`           | `4`     |          | Number of API worker processes, raise for several concurrent users                       |
-| `WEB_SERVER_TIMEOUT`               | `300`   |          | Timeout for web server requests in seconds                                               |
-| `WEB_SERVER_KEEPALIVE`             | `65`    |          | Keep-Alive connection wait time in seconds, keep above nginx's 60s upstream idle timeout |
-| `WEB_SERVER_MAX_REQUESTS`          | `1000`  |          | Maximum requests a worker processes before restarting                                    |
-| `WEB_SERVER_MAX_REQUESTS_JITTER`   | `100`   |          | Random jitter added to max requests value                                                |
-| `WEB_SERVER_WORKER_CONNECTIONS`    | `1000`  |          | Maximum simultaneous clients per worker process                                          |
-| `WEB_SERVER_GUNICORN_WAIT_SECONDS` | `30`    |          | Seconds to wait for Gunicorn to start before giving up                                   |
-| `IPV4_ONLY`                        | `false` |          | Bind only to IPv4                                                                        |
+| Variable                           | Default                                                                        | Required | Description                                                                                                                |
+| ---------------------------------- | ------------------------------------------------------------------------------ | :------: | -------------------------------------------------------------------------------------------------------------------------- |
+| `WEB_SERVER_CONCURRENCY`           | `4`                                                                            |          | Number of API worker processes, raise for several concurrent users                                                         |
+| `WEB_SERVER_TIMEOUT`               | `300`                                                                          |          | Timeout for web server requests in seconds                                                                                 |
+| `WEB_SERVER_KEEPALIVE`             | `65`                                                                           |          | Keep-Alive connection wait time in seconds, keep above nginx's 60s upstream idle timeout                                   |
+| `WEB_SERVER_MAX_REQUESTS`          | `1000`                                                                         |          | Maximum requests a worker processes before restarting                                                                      |
+| `WEB_SERVER_MAX_REQUESTS_JITTER`   | `100`                                                                          |          | Random jitter added to max requests value                                                                                  |
+| `WEB_SERVER_WORKER_CONNECTIONS`    | `1000`                                                                         |          | Maximum simultaneous clients per worker process                                                                            |
+| `WEB_SERVER_GUNICORN_WAIT_SECONDS` | `30`                                                                           |          | Seconds to wait for Gunicorn to start before giving up                                                                     |
+| `FORWARDED_ALLOW_IPS`              | `127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,fc00::/7` |          | Proxies trusted to report the client's address (X-Forwarded-For); add a reverse proxy's public IP here, or \* to trust any |
+| `IPV4_ONLY`                        | `false`                                                                        |          | Bind only to IPv4                                                                                                          |
 
 ### Proxy
 
@@ -204,18 +248,19 @@
 
 ### Development
 
-| Variable                       | Default     | Required | Description                                        |
-| ------------------------------ | ----------- | :------: | -------------------------------------------------- |
-| `DEV_MODE`                     | `false`     |          | Enable development mode (debugging, hot-reloading) |
-| `DEV_HOST`                     | `127.0.0.1` |          | Host for the development server                    |
-| `DEV_PORT`                     | `5000`      |          | Port for the development server                    |
-| `DEV_HTTPS`                    | `false`     |          | Enable HTTPS in the development server             |
-| `DEV_SQL_ECHO`                 | `false`     |          | Log all SQL queries in development mode            |
-| `POSTGRES_DB`                  | `authentik` |          | Postgres database name for the Authentik dev stack |
-| `POSTGRES_USER`                | `authentik` |          | Postgres user for the Authentik dev stack          |
-| `POSTGRES_PASSWORD`            | `authentik` |          | Postgres password for the Authentik dev stack      |
-| `AUTHENTIK_SECRET_KEY`         |             |          | Authentik secret key                               |
-| `AUTHENTIK_BOOTSTRAP_PASSWORD` |             |          | Initial Authentik admin bootstrap password         |
+| Variable                       | Default     | Required | Description                                                         |
+| ------------------------------ | ----------- | :------: | ------------------------------------------------------------------- |
+| `DEV_MODE`                     | `false`     |          | Enable development mode (debugging, hot-reloading)                  |
+| `DEV_HOST`                     | `127.0.0.1` |          | Host for the development server                                     |
+| `DEV_PORT`                     | `5000`      |          | Port for the development server                                     |
+| `DEV_PROXY_TARGET`             |             |          | Optional RomM origin (e.g. https://romm.example.com) for vite proxy |
+| `DEV_HTTPS`                    | `false`     |          | Enable HTTPS in the development server                              |
+| `DEV_SQL_ECHO`                 | `false`     |          | Log all SQL queries in development mode                             |
+| `POSTGRES_DB`                  | `authentik` |          | Postgres database name for the Authentik dev stack                  |
+| `POSTGRES_USER`                | `authentik` |          | Postgres user for the Authentik dev stack                           |
+| `POSTGRES_PASSWORD`            | `authentik` |          | Postgres password for the Authentik dev stack                       |
+| `AUTHENTIK_SECRET_KEY`         |             |          | Authentik secret key                                                |
+| `AUTHENTIK_BOOTSTRAP_PASSWORD` |             |          | Initial Authentik admin bootstrap password                          |
 
 ### Emulator Streaming
 

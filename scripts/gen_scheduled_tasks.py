@@ -10,8 +10,9 @@ Run manually:
 
 Sources, all fetched at the ref pinned in sources.toml:
 
-    backend/tasks/registry.py   the SCHEDULED_TASKS and MANUAL_TASKS registries
-    backend/tasks/**.py         each task's title, enabled flag and cron default
+    backend/tasks/registry.py   the SCHEDULED_TASKS and MANUAL_TASKS registries,
+                                and the TaskSpec each entry maps to (title,
+                                enabled flag and cron default)
     env.template                resolves env constants to documented defaults
 
 Every env var name in the output is resolved through env.template. A task
@@ -19,7 +20,7 @@ referencing a constant env.template doesn't define fails the build instead of
 printing an invented name, which is how this table drifted for several releases
 (see the `*_INTERVAL_CRON` names that never existed upstream).
 
-Watchers aren't Task subclasses, so they can't be discovered the same way. They
+Watchers aren't registered tasks, so they can't be discovered the same way. They
 stay declared in WATCHERS below, but their env vars go through the same
 env.template check as everything else.
 """
@@ -50,31 +51,17 @@ WATCHERS = [
     },
 ]
 
-TASK_BASES = {"Task", "PeriodicTask", "RemoteFilePullTask"}
 ABSENT = object()  # Distinguishes "resolved to None" from "keyword not passed".
+
+# Tasks whose `enabled=` is a function call rather than an env constant. The
+# call can't be resolved statically, so its meaning is declared here instead.
+ENABLED_CALLS = {
+    "streaming_enabled": "Runs only while emulator streaming is enabled.",
+}
 
 
 class UpstreamDrift(RuntimeError):
     """Upstream no longer matches what this generator knows how to read."""
-
-
-def import_map(tree: ast.Module) -> dict[str, str]:
-    """Map imported task singletons to the module path they came from.
-
-    `from tasks.scheduled.scan_library import scan_library_task`
-        -> {"scan_library_task": "backend/tasks/scheduled/scan_library.py"}
-    """
-    out: dict[str, str] = {}
-    for node in ast.walk(tree):
-        if not isinstance(node, ast.ImportFrom) or not node.module:
-            continue
-        # `tasks.tasks` holds the base classes and TaskType, not task singletons.
-        if not node.module.startswith("tasks.") or node.module == "tasks.tasks":
-            continue
-        path = "backend/" + node.module.replace(".", "/") + ".py"
-        for alias in node.names:
-            out[alias.asname or alias.name] = path
-    return out
 
 
 def assigned_dict(tree: ast.Module, name: str) -> ast.Dict:
@@ -106,66 +93,70 @@ def assigned_dict(tree: ast.Module, name: str) -> ast.Dict:
     )
 
 
-def registry_module_paths(
-    tree: ast.Module, imports: dict[str, str], name: str
-) -> list[str]:
-    """Module paths for the task singletons a registry dict maps to.
+def task_specs(tree: ast.Module) -> dict[str, dict[str, ast.expr]]:
+    """Keyword args of every module-level `X_SPEC = TaskSpec(...)` assignment.
 
-    `SCHEDULED_TASKS = {"scan_library": scan_library_task, ...}`
-        -> ["backend/tasks/scheduled/scan_library.py", ...]
-
-    Registry order is the table's order, so the dict is read in source order.
+    `SCAN_LIBRARY_SPEC: Final = TaskSpec(title="Scheduled rescan", ...)`
+        -> {"SCAN_LIBRARY_SPEC": {"title": <Constant>, ...}}
     """
-    paths: list[str] = []
+    specs: dict[str, dict[str, ast.expr]] = {}
+    for node in tree.body:
+        if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+            name, value = node.target.id, node.value
+        elif (
+            isinstance(node, ast.Assign)
+            and len(node.targets) == 1
+            and isinstance(node.targets[0], ast.Name)
+        ):
+            name, value = node.targets[0].id, node.value
+        else:
+            continue
+        if (
+            isinstance(value, ast.Call)
+            and isinstance(value.func, ast.Name)
+            and value.func.id == "TaskSpec"
+        ):
+            specs[name] = {kw.arg: kw.value for kw in value.keywords if kw.arg}
+    return specs
+
+
+def registry_specs(
+    tree: ast.Module, specs: dict[str, dict[str, ast.expr]], name: str
+) -> list[tuple[str, dict[str, ast.expr]]]:
+    """The (spec name, kwargs) pairs a registry dict maps to, in source order.
+
+    `SCHEDULED_TASKS = {"scan_library": SCAN_LIBRARY_SPEC, ...}`
+        -> [("SCAN_LIBRARY_SPEC", {...}), ...]
+    """
+    out: list[tuple[str, dict[str, ast.expr]]] = []
     for value in assigned_dict(tree, name).values:
         if not isinstance(value, ast.Name):
             raise UpstreamDrift(
                 f"{name} in backend/tasks/registry.py maps a key to a "
-                f"{type(value).__name__} rather than an imported task "
-                "singleton, which this parser cannot resolve."
+                f"{type(value).__name__} rather than a TaskSpec constant, which "
+                "this parser cannot resolve."
             )
-        path = imports.get(value.id)
-        if path is None:
+        if value.id not in specs:
             raise UpstreamDrift(
-                f"{name} references {value.id}, which is not imported from a "
-                "tasks.* module in backend/tasks/registry.py."
+                f"{name} references {value.id}, which is not a module-level "
+                "TaskSpec(...) in backend/tasks/registry.py."
             )
-        if path in paths:
-            # Registry keys are unique, so two of them resolving to one module
-            # means two task singletons share a file. `task_kwargs` reads only
-            # the first task class it finds there, so the second would vanish
-            # from the table without a word.
-            raise UpstreamDrift(
-                f"{name} maps two tasks to {path}. task_kwargs() reads only the "
-                "first task class in a module, so one would be dropped silently."
-            )
-        paths.append(path)
-    return paths
+        out.append((value.id, specs[value.id]))
+    return out
 
 
-def task_kwargs(module_src: str, path: str) -> dict[str, ast.expr]:
-    """Keyword args of the `super().__init__(...)` call in a task class."""
-    tree = ast.parse(module_src)
-
-    for node in ast.walk(tree):
-        if not isinstance(node, ast.ClassDef):
-            continue
-        base_names = {b.id for b in node.bases if isinstance(b, ast.Name)}
-        if not base_names & TASK_BASES:
-            continue
-        for call in ast.walk(node):
-            if not isinstance(call, ast.Call):
-                continue
-            func = call.func
-            if not isinstance(func, ast.Attribute) or func.attr != "__init__":
-                continue
-            return {kw.arg: kw.value for kw in call.keywords if kw.arg}
-
-    raise UpstreamDrift(f"no task class with a `super().__init__(...)` call in {path}")
+def env_name(var: str, env: dict[str, dict], where: str, field: str) -> str:
+    if var not in env:
+        raise UpstreamDrift(
+            f"{where} passes {field}={var}, but env.template does not define "
+            f"{var}. Either the variable was renamed upstream or it is "
+            f"undocumented, and printing it here would be a guess."
+        )
+    return var
 
 
-def resolve(node: ast.expr | None, env: dict[str, dict], path: str, field: str):
-    """Resolve a constructor argument to (env_var_name, value).
+def resolve(node: ast.expr | None, env: dict[str, dict], where: str, field: str):
+    """Resolve a TaskSpec argument to (env_var_name, value).
 
     A literal resolves to itself with no env var. A `Name` is an env constant, so
     it is looked up in env.template and fails loudly if absent.
@@ -177,39 +168,61 @@ def resolve(node: ast.expr | None, env: dict[str, dict], path: str, field: str):
         return None, node.value
 
     if isinstance(node, ast.Name):
-        var = node.id
-        if var not in env:
-            raise UpstreamDrift(
-                f"{path} passes {field}={var}, but env.template does not define "
-                f"{var}. Either the variable was renamed upstream or it is "
-                f"undocumented, and printing it here would be a guess."
-            )
+        var = env_name(node.id, env, where, field)
         return var, env[var]["default"]
 
-    # Anything else (a call, an f-string, a conditional) is beyond what this
-    # parser claims to understand, so say so rather than print something wrong.
+    # `f"... {ENV_VAR} ..."`: print the env var's name where its value goes.
+    if isinstance(node, ast.JoinedStr):
+        parts: list[str] = []
+        for v in node.values:
+            if isinstance(v, ast.Constant):
+                parts.append(str(v.value))
+            elif isinstance(v, ast.FormattedValue) and isinstance(v.value, ast.Name):
+                parts.append(f"`{env_name(v.value.id, env, where, field)}`")
+            else:
+                break
+        else:
+            return None, "".join(parts)
+
+    # `enabled=ENV_VAR > 0`: the env var is still what turns the task on.
+    if isinstance(node, ast.Compare) and isinstance(node.left, ast.Name):
+        var = env_name(node.left.id, env, where, field)
+        return var, env[var]["default"]
+
+    # Anything else (a call, a conditional) is beyond what this parser claims
+    # to understand, so say so rather than print something wrong.
     raise UpstreamDrift(
-        f"{path} passes a {type(node).__name__} for {field}, which this parser "
+        f"{where} passes a {type(node).__name__} for {field}, which this parser "
         f"cannot resolve. Extend resolve() to handle it."
     )
 
 
-def build_row(path: str, kind: str, env: dict[str, dict]) -> dict:
-    kwargs = task_kwargs(fetch_text(romm_raw_url(path)), path)
+def build_row(where: str, kwargs: dict[str, ast.expr], kind: str, env: dict[str, dict]) -> dict:
+    _, title = resolve(kwargs.get("title"), env, where, "title")
+    _, description = resolve(kwargs.get("description"), env, where, "description")
+    cron_var, cron = resolve(kwargs.get("cron_string"), env, where, "cron_string")
 
-    _, title = resolve(kwargs.get("title"), env, path, "title")
-    _, description = resolve(kwargs.get("description"), env, path, "description")
-    enable_var, _ = resolve(kwargs.get("enabled"), env, path, "enabled")
-    cron_var, cron = resolve(kwargs.get("cron_string"), env, path, "cron_string")
+    enabled = kwargs.get("enabled")
+    note = ""
+    if (
+        isinstance(enabled, ast.Call)
+        and isinstance(enabled.func, ast.Name)
+        and enabled.func.id in ENABLED_CALLS
+    ):
+        enable_var, note = None, ENABLED_CALLS[enabled.func.id]
+    else:
+        enable_var, _ = resolve(enabled, env, where, "enabled")
 
     if title in (ABSENT, None, ""):
-        raise UpstreamDrift(f"{path} has no title= in its constructor")
+        raise UpstreamDrift(f"{where} has no title=")
 
     if description in (ABSENT, None, ""):
         purpose = "-"
     else:
         purpose = str(description).rstrip(".") + "."
-    if kind == "Scheduled" and not enable_var:
+    if note:
+        purpose += " " + note
+    elif kind == "Scheduled" and not enable_var:
         purpose += " Always on, not configurable."
 
     return {
@@ -224,14 +237,19 @@ def build_row(path: str, kind: str, env: dict[str, dict]) -> dict:
 
 def collect(env: dict[str, dict]) -> list[dict]:
     registry = ast.parse(fetch_text(romm_raw_url("backend/tasks/registry.py")))
-    imports = import_map(registry)
-    scheduled = registry_module_paths(registry, imports, "SCHEDULED_TASKS")
-    manual = registry_module_paths(registry, imports, "MANUAL_TASKS")
+    specs = task_specs(registry)
+    scheduled = registry_specs(registry, specs, "SCHEDULED_TASKS")
+    manual = registry_specs(registry, specs, "MANUAL_TASKS")
+    scheduled_names = {name for name, _ in scheduled}
 
-    rows = [build_row(p, "Scheduled", env) for p in scheduled]
+    rows = [build_row(n, kw, "Scheduled", env) for n, kw in scheduled]
     # A task in both registries is scheduled and also runnable by hand, so it is
     # already listed above.
-    rows += [build_row(p, "Manual", env) for p in manual if p not in scheduled]
+    rows += [
+        build_row(n, kw, "Manual", env)
+        for n, kw in manual
+        if n not in scheduled_names
+    ]
 
     for w in WATCHERS:
         for field in ("enable_var", "env_var"):

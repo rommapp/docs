@@ -54,6 +54,10 @@ environment:
 
 This also disables the `GET /api/logs` endpoint that backs it. The container logs above are unaffected.
 
+### Audit log
+
+The server log says what RomM's code did, and the [audit log](audit-log.md) says what people did with it: who downloaded or played what, who changed the library, and who signed in or failed to. It's stored in the database rather than the container log, so it survives restarts, and admins can read it even with `DISABLE_LOGS_VIEWER=true`.
+
 ## `/api/heartbeat`
 
 This single-request endpoint returns health and config information. It works when not logged in, though some fields only appear for authenticated callers.

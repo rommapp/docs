@@ -16,12 +16,15 @@ Netplay lets you play [in-browser](in-browser-play/emulatorjs.md) games with oth
 - EmulatorJS Netplay enabled in `config.yml` (server owner-level)
 - ICE servers configured (STUN + TURN). Without them, Netplay only works when all players are on the same LAN.
 - All players need access to your instance, as Netplay doesn't proxy the ROM to people without accounts.
+- A reverse proxy that forwards WebSocket upgrades. Netplay connects over WebSockets only, with no long-polling fallback (see [Reverse Proxy](../install/reverse-proxy.md)).
 
 See [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay) for the server owner setup.
 
 ## Hosting and joining
 
 The host creates a room with an optional password from a supported game and becomes Player 1. Up to three more players can join as Players 2-4 (depending on the core, since some only support 2). Other players must be on the same instance, since Netplay doesn't federate across instances.
+
+Opening a room needs the `roms.read` scope and access to the game, so a game that's hidden from you, or above your [age limit](../administration/parental-controls.md), can't be hosted. The same check applies to joining a room without a password, and only players who can see the game find its rooms in the list. A password-protected room admits anyone with the password instead.
 
 ## Controls
 
@@ -38,7 +41,7 @@ WebRTC, the protocol Netplay uses, needs help to punch through some consumer rou
 
 - **Not all cores support Netplay.** SNES9x, Mupen64Plus, Mednafen PSX, Genesis Plus GX are the most battle-tested.
 - **Frame-perfect fighting isn't realistic.** Netplay is meant for casual co-op. For tournament-level fighting games, use something like [FightCade](https://www.fightcade.com/).
-- **All players need an account.** Guests can't join a friend's game without an account, so each one needs at least a User account on your instance.
+- **All players need an account.** Each player needs a User account on your instance to reach the player at all, and one that can see the game unless the room has a password.
 - **RTC over TURN uses real bandwidth.** Hosting a 4-player N64 session over TURN can saturate a modest uplink.
 
 ## Security

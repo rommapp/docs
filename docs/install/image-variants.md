@@ -12,6 +12,8 @@ RomM publishes two production image variants. They're interchangeable at the con
 | **Full** (default) | `rommapp/romm:latest` `rommapp/romm:5.0.0`    | ~400MB      | You want in-browser play with every runtime baked in (most users pick this).         |
 | **Slim**           | `rommapp/romm:slim` `rommapp/romm:5.0.0-slim` | ~100MB      | Headless use, or you're fine fetching EmulatorJS and `js-dos` from a CDN at runtime. |
 
+Only EmulatorJS and `js-dos` have a CDN fallback. The Ruffle, PICO-8 and [EasyRPG](../using/in-browser-play/easyrpg.md) players ship with the full image only, so slim can't play Flash, PICO-8 or RPG Maker 2000/2003 games in the browser. Both variants include the `rom-converto` CLI that [library conversion](../administration/library-conversion.md) uses.
+
 Both variants are published on Docker Hub (`docker.io/rommapp/romm`) and GitHub Container Registry (`ghcr.io/rommapp/romm`). The GHCR images track the same tags and are a good choice if you run into Docker Hub's rate limits.
 
 ## Switching variants

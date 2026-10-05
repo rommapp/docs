@@ -18,6 +18,26 @@ The raw spec:
 
 For code generation, see [Consuming OpenAPI](openapi.md).
 
+## Starting a scan
+
+Clients that authenticate with a token rather than a session cookie can queue a library scan over REST. `POST /api/tasks/scan` needs the `tasks.run` scope and takes the same `ScanPayload` body as the `scan` socket event (see [WebSockets → Scans](websockets.md#scans)). Leave the body out for a quick scan of the whole library:
+
+```bash
+curl -X POST https://demo.romm.app/api/tasks/scan \
+     -H "Authorization: Bearer rmm_..." \
+     -H "Content-Type: application/json" \
+     -d '{"type": "unmatched", "platforms": [12], "apis": ["igdb", "ss"]}'
+```
+
+| Status | Meaning                                                                                     |
+| ------ | ------------------------------------------------------------------------------------------- |
+| `202`  | Queued. The response's `task_id` can be followed on `GET /api/tasks/{task_id}`              |
+| `409`  | A library scan is already queued or running. A scan limited to `roms_ids` is still accepted |
+| `422`  | The body has an unknown key or an invalid value                                             |
+| `503`  | No scan worker is running, so the scan can't be queued                                      |
+
+`POST /api/tasks/run/{task_name}` likewise returns `409` when a task that only runs one at a time, such as Convert library, is already queued or running. `GET /api/tasks` flags destructive tasks such as Convert library, which replaces the original files, with `destructive: true`, so a client can ask for confirmation before running one.
+
 ## WebSockets
 
 Alongside REST, two socket.io endpoints cover live-update and coordination use cases (see [WebSockets](websockets.md)).

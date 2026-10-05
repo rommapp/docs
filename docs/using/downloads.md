@@ -40,6 +40,24 @@ This makes ROM and firmware download URLs work unauthenticated.
 !!! danger "Only enable this behind upstream auth"
     This flag makes your library world-downloadable from whatever URL serves it. Only set it when you have authentication at the reverse-proxy layer (Authelia, Cloudflare Access, an IP allowlist, or a VPN).
 
+## Downloading in another format
+
+When an admin turns on [download conversion](../administration/library-conversion.md#download-conversion), a single-file game can be downloaded in another format rom-converto can produce from it, such as a `.zso` or `.iso` of a PSP game stored as CHD. The web UI lists these formats as "Download as" on the game page, and the same list is in the `download_formats` field of a game's API response.
+
+API clients ask for one with `?format=` on the download URL, listing every format they can read in order of preference:
+
+```bash
+curl -H "Authorization: Bearer rmm_..." \
+     -o game.iso \
+     "https://demo.romm.app/api/roms/123/content/game.chd?format=zso,iso"
+```
+
+The stored file is served as-is when its format is in the list. Otherwise RomM converts it, answering `202` with a `Retry-After` header while the conversion runs and `406` when none of the listed formats can be produced. Converted copies are cached, so the next download of the same format is immediate. Only signed-in users can start a conversion.
+
+## Downloads and player loads
+
+The download endpoint takes a `purpose` query parameter, `download` (the default) or `play`. In-browser players send `purpose=play` when they fetch a game to run it, so the [audit log](../administration/audit-log.md) records a player load rather than a download. The parameter doesn't change what's served.
+
 ## Nintendo 3DS direct install
 
 The 3DS built-in QR scanner can install compatible `.cia` files directly from a URL. RomM produces compatible QR codes, so a 3DS with FBI (or another CIA installer) can install over the air given network access to your instance and either basic-auth on the 3DS side or `DISABLE_DOWNLOAD_ENDPOINT_AUTH=true` behind upstream auth.
