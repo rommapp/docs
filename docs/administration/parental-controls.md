@@ -1,6 +1,6 @@
 ---
 title: Parental Controls
-description: Age limits on permission groups and users, and how RomM works out a game's age
+description: Age limits on permission groups and users
 ---
 
 # Parental Controls
