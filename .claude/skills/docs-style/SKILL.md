@@ -7,7 +7,7 @@ description: RomM's house style for docs pages, covering what the general humani
 
 These rules come from edits maintainers kept making by hand on docs PRs. Apply them while drafting, not only as a cleanup pass. They sit on top of `.claude/skills/humanizer/SKILL.md`, and when the two disagree this file wins (see rule 2 on passive voice).
 
-Every rule has the same limit: never drop or add a fact, and never change code, inline code, paths, env vars, link targets, anchors or table values. Each edit should read better *and* say the same thing.
+Every rule has the same limit: never drop or add a fact, and never change code, inline code, paths, env vars, link targets, anchors or table values. Each edit should read better _and_ say the same thing.
 
 ## 1. Don't restate context the reader already has
 
@@ -23,7 +23,7 @@ When trimming around a link, keep the link and make its text the noun that's lef
 
 ## 2. Don't use "RomM" as a filler subject
 
-Every page is about RomM, so "RomM <verbs> X" usually just names the obvious actor. Lead with the thing acted on, and use the passive if that's what it takes.
+Every page is about RomM, so `RomM <verbs> X` usually just names the obvious actor. Lead with the thing acted on, and use the passive if that's what it takes.
 
 - "RomM seeds two groups" → "Two groups are seeded"
 - "RomM keeps a notification inbox for each user" → "Each user has a notification inbox"
