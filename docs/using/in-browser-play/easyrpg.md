@@ -26,7 +26,7 @@ A game is playable in EasyRPG when `RPG_RT.ldb` is in the game folder itself, wh
 
 ## The RTP
 
-Many RPG Maker games rely on the RTP (run-time package), a shared set of graphics, sounds and music the original engine installs separately. The [EasyRPG RTP](https://github.com/EasyRPG/RTP), a free replacement under CC-BY-4.0, is bundled and merged into each game, so games that need it start without you supplying one. A game's own files always win over the RTP's.
+Many RPG Maker games rely on the RTP (run-time package), a shared set of graphics, sounds and music the original engine installs separately. [EasyRPG RTP](https://github.com/EasyRPG/RTP), a free replacement under CC-BY-4.0, is bundled and merged into each game, so games that need it start without you supplying one. A game's own files always win over the RTP's.
 
 The free RTP doesn't have every asset of the commercial ones yet, mostly ones used in battles, so a game can show a blank graphic or stay silent where it uses a missing one. Games that bundle their own copy of the assets they use aren't affected.
 
