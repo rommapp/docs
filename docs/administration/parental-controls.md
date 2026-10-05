@@ -9,7 +9,7 @@ Parental controls hide games above an age from the members of a [permission grou
 
 Two settings make up a rule:
 
-- **Age limit**: members only see games rated for this age or younger. The UI offers 3, 6, 7, 10, 12, 13, 15, 16, 17 and 18, and the API accepts any whole number from `0` to `21`. No limit is the default.
+- **Age limit**: members only see games rated for this age or younger, from `0` to `21`, with no limit as the default.
 - **Hide unrated games**: also hides every game that no known rating covers. Without it, an unrated game stays visible whatever the limit, because RomM has nothing to judge it by.
 
 The switch works without an age limit too, and then hides only unrated games.
