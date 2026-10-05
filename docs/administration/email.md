@@ -5,7 +5,7 @@ description: Send notification emails and password reset links over SMTP
 
 # Email
 
-RomM can send email through an SMTP server you provide, once both `SMTP_HOST` and `SMTP_FROM` are set. It uses email for:
+RomM can send email through an SMTP server you provide, once both `SMTP_HOST` and `SMTP_FROM` are set. It's used for:
 
 - Password reset links (see [Password reset](authentication.md#password-reset))
 - Email [notification channels](../using/notifications.md#email)
@@ -53,6 +53,6 @@ Set [`ROMM_BASE_URL`](../reference/environment-variables.md) to the address user
 - `EMAIL_ENABLED` is `true` once the `SMTP_*` settings are complete.
 - `EMAILS_RESET_LINKS` is `true` when reset links will be emailed, which also needs `ROMM_BASE_URL`.
 
-To check that mail actually goes out, add an email [notification channel](../using/notifications.md#email) for your own address. The confirmation code is the first email RomM sends to it, and if the SMTP server refuses that message, the request returns the server's error right away. A confirmed channel can send a test notification on demand too.
+To check that mail actually goes out, add an email [notification channel](../using/notifications.md#email) for your own address. The confirmation code is the first message sent there, and if the SMTP server refuses that message, the request returns the server's error right away. A confirmed channel can send a test notification on demand too.
 
 If a reset link can't be emailed, RomM writes it to the container log instead, so check `docker logs romm` for `Could not email the reset link` along with the SMTP server's error.

@@ -15,7 +15,7 @@ All five in-browser players ([EmulatorJS](in-browser-play/emulatorjs.md), [EasyR
 
 When a game launches, the browser negotiates its saves with the server, the same way a handheld does at the start of a sync (see [Saves & States](saves-and-states.md#syncing-saves-between-browsers-and-devices)). A save made in one browser is waiting in another. When both changed the same slot, the browser plays the server's copy and archives its own, so neither is overwritten.
 
-Saves a browser holds stay in its storage until they reach the server. A browser's storage can be cleared or evicted, so a save it no longer holds is treated as lost rather than deleted, and the server offers it back on the next launch.
+Saves a browser holds stay in its storage until they reach the server. Its storage can be cleared or evicted, so a save it no longer holds is treated as lost rather than deleted, and the server offers it back on the next launch.
 
 An account without the `devices.write` permission can't register devices, so its browsers keep their saves locally and skip device sync.
 
@@ -23,23 +23,23 @@ An account without the `devices.write` permission can't register devices, so its
 
 - **Renaming** changes only the name RomM shows, for example to tell two handhelds of the same model apart.
 - **Turning sync off** makes RomM refuse that device's sync requests, so nothing moves in either direction until you turn it back on. Saves in a browser with sync turned off stay in that browser.
-- **Removing** a device deletes it and its sync history, and drops any installs queued for it. The saves it uploaded stay on the server. A browser registers itself again the next time you play in it, and an app re-registers on its next sync, so removing one is mostly useful to clean up a device you no longer use.
+- **Removing** a device deletes it and its sync history, and drops any installs queued for it. The saves it uploaded stay on the server. A browser registers itself again the next time you play in it, and an app re-registers on its next sync, so it's mostly for cleaning up a device you no longer use.
 
 ## Install on device
 
-You can send a game from RomM to one of your devices. RomM adds it to that device's download queue, and the device downloads it the next time it's online.
+You can send a game to one of your devices. RomM adds it to that device's download queue, and the device downloads it the next time it's online.
 
 Only devices whose app reports that it accepts installs are offered, which leaves out browsers and RetroArch. RomM also shows whether each device is online right now. A device counts as online while it holds an open connection to RomM's `/devices` socket, which a supporting app keeps open while it runs.
 
 A request waits in the device's queue until the device takes it and reports back. You get a [notification](notifications.md) when it finishes or fails, and you can cancel a request any time before it finishes. A request nothing picks up expires after `DEVICE_INSTALL_REQUEST_TTL_DAYS` days without a change (2 by default).
 
-The device receives the game's own files, along with any update and DLC files in the game's folder. Manuals and other extras aren't sent. A game with none of those files on disk can't be installed.
+The device receives the game's own files, along with any update and DLC files in its folder. Manuals and other extras aren't sent. A game with none of those files on disk can't be installed.
 
 ### Server settings
 
 | Variable                                 | Default                        | Description                                                                |
 | ---------------------------------------- | ------------------------------ | -------------------------------------------------------------------------- |
-| `DEVICE_INSTALL_ENABLED`                 | `true`                         | Turn installing on devices on or off for everyone                          |
+| `DEVICE_INSTALL_ENABLED`                 | `true`                         | Turn installs on or off for everyone                                       |
 | `DEVICE_INSTALL_REQUEST_TTL_DAYS`        | `2`                            | Days an unfinished request waits after its last change (`0` waits forever) |
 | `DEVICE_INSTALL_EXCLUDED_PLATFORM_SLUGS` | `win,win3x,win9x,windows-apps` | Comma-separated platform slugs that can never be sent to a device          |
 
@@ -49,6 +49,6 @@ Apps that accept installs follow the request lifecycle and `/devices` socket eve
 
 ## See also
 
-- [Saves & States](saves-and-states.md): how saves and states sync
-- [RetroArch Cloud Sync](../ecosystem/retroarch-cloud-sync.md): syncing RetroArch with RomM
+- [Saves & States](saves-and-states.md): how they sync
+- [RetroArch Cloud Sync](../ecosystem/retroarch-cloud-sync.md): saves and states over WebDAV
 - [Client API Tokens](../developers/client-api-tokens.md): how apps pair with RomM

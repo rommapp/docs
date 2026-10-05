@@ -13,7 +13,7 @@ If you're an OIDC user and want to show your `preferred_username` from the token
 
 ## Forgotten password
 
-The sign-in page can send you a password reset link, valid for 10 minutes. If the server has [email](../administration/email.md) set up and your account has an email address, the link arrives by email. Otherwise it goes to the server log, so ask an admin for it, or to set a new password for you. A new password must be 6 to 255 ASCII characters.
+The sign-in page can send you a password reset link, valid for 10 minutes. If the server has [email](../administration/email.md) set up and your account has an email address, the link is sent to that address. Otherwise it goes to the server log, so ask an admin for it, or to set a new password for you. A new password must be 6 to 255 ASCII characters.
 
 ## Notifications
 

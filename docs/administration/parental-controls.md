@@ -5,28 +5,28 @@ description: Age limits on permission groups and users, and how RomM works out a
 
 # Parental Controls
 
-Parental controls hide games above an age from the members of a [permission group](users-and-roles.md#permission-groups), or from a single user. You set them in the **Parental controls** section of the group and user dialogs under Administration.
+Parental controls hide games above an age from the members of a [permission group](users-and-roles.md#permission-groups), or from a single user. You set them in the group and user dialogs under Administration.
 
 Two settings make up a rule:
 
 - **Age limit**: members only see games rated for this age or younger. The UI offers 3, 6, 7, 10, 12, 13, 15, 16, 17 and 18, and the API accepts any whole number from `0` to `21`. No limit is the default.
 - **Hide unrated games**: also hides every game that no known rating covers. Without it, an unrated game stays visible whatever the limit, because RomM has nothing to judge it by.
 
-Hide unrated games works without an age limit too, in which case it hides only the unrated games.
+The switch works without an age limit too, and then hides only unrated games.
 
 ## Who a rule applies to
 
 - **Groups** carry a limit and a hide-unrated switch for every member. A user with no group follows the server's default group, its age settings included.
 - **Users** can replace either setting of their group. A user's own value wins, and an unset value inherits the group's, so you can give one member a stricter or looser limit than the rest of the group.
-- **Admins** are never limited, whatever their group says, because admins bypass permission groups entirely.
+- **Admins** are never limited, whatever their group says, because they bypass permission groups entirely.
 
 ## Where it applies
 
-A game hidden by an age rule is hidden the same way as a [hidden ROM](users-and-roles.md#hidden-entities), so it stays out of everything a member can reach: the gallery, search, collections (smart and virtual ones included), server stats, recommendations, the Jukebox, feeds for [feed clients](../ecosystem/feed-clients.md), netplay rooms, device installs and sync, and every per-ROM route such as downloads, manuals and screenshots. A direct request for a hidden game answers as if the game didn't exist, usually with a `404`.
+An age rule hides a game the same way as a [hidden ROM](users-and-roles.md#hidden-entities), so it stays out of everything a member can reach: the gallery, search, collections (smart and virtual ones included), server stats, recommendations, the Jukebox, feeds for [feed clients](../ecosystem/feed-clients.md), netplay rooms, device installs and sync, and every per-ROM route such as downloads, manuals and screenshots. A direct request for one answers as if the game didn't exist, usually with a `404`.
 
 ## How a game's age is worked out
 
-RomM stores one minimum age per game, the **strictest** age any of its ratings sets, and recomputes it whenever the game's metadata changes. The ratings it reads come from:
+RomM stores one minimum age per game, the **strictest** age any of its ratings sets, and recomputes it whenever that metadata changes. The ratings it reads come from:
 
 | Source                        | What RomM reads                                                     |
 | ----------------------------- | ------------------------------------------------------------------- |
@@ -36,7 +36,7 @@ RomM stores one minimum age per game, the **strictest** age any of its ratings s
 | Steam                         | The required age, when the store sets one                           |
 | Manual metadata (Edit dialog) | The game's own age rating list, which **replaces** all of the above |
 
-A manual rating list overrides the providers entirely, the same way it does on the game page, so you can loosen a rating as well as tighten it. Manual entries take the form `BOARD:RATING`, such as `ESRB:T` or `PEGI:12`. A game with an empty manual list and no provider ratings counts as unrated.
+As on the game page, the manual list overrides the providers entirely, so you can loosen a rating as well as tighten it. Manual entries take the form `BOARD:RATING`, such as `ESRB:T` or `PEGI:12`. A game with an empty manual list and no provider ratings counts as unrated.
 
 RomM ignores ratings it can't read (an unknown board, or a value it doesn't recognise), so a game whose only rating is unreadable counts as unrated.
 
@@ -68,4 +68,4 @@ The permission group schemas (`PermissionGroupSchema`, `PermissionGroupCreate` a
 | `age_limit`         | `0` to `21`, or `null` for no limit | `0` to `21`, or `null` to inherit the group's     |
 | `hide_unrated_roms` | `true` or `false`                   | `true`, `false`, or `null` to inherit the group's |
 
-The update payloads (`PUT /api/permissions/groups/{id}` and `PUT /api/permissions/users/{user_id}`) apply both fields only when `set_age_settings` is `true`, and then write them exactly as given, so an update that leaves `set_age_settings` out never touches a group's or user's age rule. Both routes require `users.write` and an admin caller.
+The update payloads (`PUT /api/permissions/groups/{id}` and `PUT /api/permissions/users/{user_id}`) apply both fields only when `set_age_settings` is `true`, and then write them exactly as given, so an update that leaves `set_age_settings` out never touches its age rule. Both routes require `users.write` and an admin caller.

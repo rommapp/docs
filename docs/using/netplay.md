@@ -41,7 +41,7 @@ WebRTC, the protocol Netplay uses, needs help to punch through some consumer rou
 
 - **Not all cores support Netplay.** SNES9x, Mupen64Plus, Mednafen PSX, Genesis Plus GX are the most battle-tested.
 - **Frame-perfect fighting isn't realistic.** Netplay is meant for casual co-op. For tournament-level fighting games, use something like [FightCade](https://www.fightcade.com/).
-- **All players need an account.** Each player needs a User account on your instance to reach the player at all, and one that can see the game unless the room has a password.
+- **All players need an account.** Without a User account on your instance nobody can reach the player at all, and the account has to see the game unless the room has a password.
 - **RTC over TURN uses real bandwidth.** Hosting a 4-player N64 session over TURN can saturate a modest uplink.
 
 ## Security

@@ -47,7 +47,7 @@ environment:
 
 A user who forgot their password can ask for a reset link from the sign-in page (`POST /api/forgot-password`). The link is valid for 10 minutes and works once. Where it goes depends on the server:
 
-- With [email](email.md) set up, `ROMM_BASE_URL` pointing at a real host, and an email address on the account, RomM emails the link to that address, at most once a minute per user.
+- With [email](email.md) set up, `ROMM_BASE_URL` pointing at a real host, and an email address on the account, RomM sends it there, at most once a minute per user.
 - Otherwise, or when the email can't be sent, RomM writes the link to the container log for an admin to pass on.
 
 The response is the same whether or not the username exists, so the form can't be used to find out which accounts exist. Requests for an existing account and completed resets are both recorded in the [audit log](audit-log.md).

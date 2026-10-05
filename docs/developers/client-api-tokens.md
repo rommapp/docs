@@ -86,9 +86,9 @@ A token issued through the device authorization flow under `/api/auth/device/` (
 
 - Claiming and reporting [installs on devices](device-sync-protocol.md#installs-on-devices) only works with a token bound to that device.
 - The [`/devices` socket](device-sync-protocol.md#the-devices-socket) only admits bound tokens that hold `devices.read`.
-- A bound token can read its own device's play sessions without `devices.read`.
+- It can read its own device's play sessions without `devices.read`.
 
-A bound token can't manage installs for another of the same user's devices, and deleting the device closes the sockets its tokens opened.
+It can't manage installs for the user's other devices, and deleting the device closes the sockets its tokens opened.
 
 ## Scoping tokens properly
 

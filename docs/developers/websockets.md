@@ -20,7 +20,7 @@ Signing out, or revoking a session, disconnects every socket that session opened
 
 ### The `/devices` namespace
 
-Companion apps that hold a [device-bound Client API Token](client-api-tokens.md) connect to the `/devices` namespace instead. The token goes in the handshake's `auth` payload, or in an `Authorization: Bearer` header:
+Companion apps that hold a [device-bound Client API Token](client-api-tokens.md) connect to this namespace instead. The token goes in the handshake's `auth` payload, or in an `Authorization: Bearer` header:
 
 ```javascript
 const socket = io("https://demo.romm.app/devices", {
@@ -172,7 +172,7 @@ Both events answer through the socket.io acknowledgement with an error string, s
 
 ## Reverse-proxy requirements
 
-Every reverse-proxy setup must forward the WebSocket upgrade. The recipes in [Reverse Proxy](../install/reverse-proxy.md) all keep WebSockets on by default. The main UI falls back to HTTP long polling when the upgrade fails, but netplay has no fallback and stops working outright.
+Your proxy must forward the WebSocket upgrade. The recipes in [Reverse Proxy](../install/reverse-proxy.md) all keep WebSockets on by default. The main UI falls back to HTTP long polling when the upgrade fails, but netplay has no fallback and stops working outright.
 
 Common breakages:
 

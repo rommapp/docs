@@ -124,7 +124,7 @@ Content-Type: application/json
 - An unknown device returns `404`. A device with sync turned off returns `400`.
 - `content_hash` is an MD5 hex digest of the file.
 - `rom_ids` is an optional, read-only scope. Downloads are offered only for these ROMs, plus any ROM a save was sent for. Leaving a ROM out never deletes anything. The number of IDs per request is capped.
-- `restore_unlisted` (default `false`) offers every current server save the device didn't list as a `download`, even one it already synced. Normally a save the device synced before and no longer lists is taken as deleted on the device and left alone. Set it for a client that never deletes saves itself, such as a browser whose storage can be evicted, so a missing save reads as lost and comes back.
+- `restore_unlisted` (default `false`) offers every current server save the device didn't list as a `download`, even one it already synced. Normally a save the device synced before and no longer lists is taken as deleted there and left alone. Set it for a client that never deletes saves itself, such as a browser whose storage can be evicted, so a missing save reads as lost and comes back.
 - `emulators` (default `null`) limits pairing to server saves written by one of these emulators, so a save another emulator wrote into the same slot is neither paired nor offered. RomM's browser players send their own emulator here.
 - Saves are paired on **(`rom_id`, `slot`)**. Send a stable slot such as `autosave`. A `null` slot marks an archival or manual save: it is never paired, so it always comes back as `upload`.
 - Every negotiate opens a new session that lasts one launch, so one device can have several open at once (for example, two games running). A session nobody completes is marked failed by the scheduled sync session cleanup (`ENABLE_SCHEDULED_CLEANUP_SYNC_SESSIONS`, hourly at `23 * * * *` by default, set by `SCHEDULED_CLEANUP_SYNC_SESSIONS_CRON`) once it's 24 hours old.
@@ -236,13 +236,13 @@ Content-Type: application/json
 
 ## Play sessions
 
-`GET /api/play-sessions` lists the caller's play sessions, filtered by `rom_id`, `device_id`, `start_after` and `end_before`. Reading another device's sessions, or every device's at once, needs `devices.read`. A device-bound token without that scope can still read its own device's sessions by passing its own `device_id`. The server never fills in `device_id` from the token, so leaving it out lists every device and needs `devices.read`.
+`GET /api/play-sessions` lists the caller's sessions, filtered by `rom_id`, `device_id`, `start_after` and `end_before`. Reading another device's sessions, or every device's at once, needs `devices.read`. A device-bound token without that scope can still read its own device's sessions by passing its own `device_id`. The server never fills in `device_id` from the token, so leaving it out lists every device and needs `devices.read`.
 
 Play session responses have no `sync_session_id` field.
 
 ## Paging
 
-`GET /api/play-sessions` and `GET /api/sync/sessions` share the same page parameters:
+`GET /api/play-sessions` and `GET /api/sync/sessions` share these page parameters:
 
 | Parameter | Default | Range       |
 | --------- | ------- | ----------- |
@@ -315,7 +315,7 @@ Queueing needs `devices.write` and `roms.read`. A ROM the user can't see returns
 
 ### The `/devices` socket
 
-A device learns about requests over the `/devices` Socket.IO namespace. Connect with a device-bound client token holding `devices.read`, passed either in the handshake's `auth` payload as `{ "token": "rmm_..." }` or as an `Authorization: Bearer` header. Any other credential is refused, and so is every connection while installs are disabled.
+A device learns about requests over this Socket.IO namespace. Connect with a device-bound client token holding `devices.read`, passed either in the handshake's `auth` payload as `{ "token": "rmm_..." }` or as an `Authorization: Bearer` header. Any other credential is refused, and so is every connection while installs are disabled.
 
 The server sends two events, each with a payload of `{ "id": "<request id>", "rom_id": 1234 }`:
 

@@ -161,7 +161,7 @@ npm run dev
 
 #### Run the frontend against a remote RomM
 
-To work on the frontend against another RomM instance, such as a home server with a full library, set `DEV_PROXY_TARGET` in the repo-root `.env` to its origin:
+Set `DEV_PROXY_TARGET` in the repo-root `.env` to another instance's origin, such as a home server with a full library:
 
 ```sh
 DEV_PROXY_TARGET=https://romm.example.com

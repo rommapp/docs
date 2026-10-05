@@ -42,7 +42,7 @@ This makes ROM and firmware download URLs work unauthenticated.
 
 ## Downloading in another format
 
-When an admin turns on [download conversion](../administration/library-conversion.md#download-conversion), a single-file game can be downloaded in another format rom-converto can produce from it, such as a `.zso` or `.iso` of a PSP game stored as CHD. The web UI lists these formats as "Download as" on the game page, and the same list is in the `download_formats` field of a game's API response.
+When an admin turns on [download conversion](../administration/library-conversion.md#download-conversion), a single-file game can be downloaded as any format rom-converto can produce from it, such as a `.zso` or `.iso` of a PSP game stored as CHD. The web UI lists these formats as "Download as" on the game page, and the same list is in the `download_formats` field of a game's API response.
 
 API clients ask for one with `?format=` on the download URL, listing every format they can read in order of preference:
 

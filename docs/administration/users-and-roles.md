@@ -64,7 +64,7 @@ Beyond allow/deny, you can hide specific platforms or ROMs from a user or from a
 
 ### Age limits
 
-A group can also carry an age limit, which hides games rated above an age from its members, and each user can replace their group's limit with their own. Admins are never limited (see [Parental Controls](parental-controls.md)).
+A group can also hide games rated above an age from its members, and each user can replace the group's limit with their own. Admins are never limited (see [Parental Controls](parental-controls.md)).
 
 ## Creating users
 

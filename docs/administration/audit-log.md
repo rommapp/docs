@@ -42,7 +42,7 @@ The IP address on each event is the client address RomM's web server settled on.
 
 ## Retention
 
-Events are kept for 90 days by default. The scheduled audit log cleanup runs daily at `30 4 * * *` and deletes older events in batches, so the table stays writable while it runs.
+Events are kept for 90 days by default. A scheduled cleanup runs daily at `30 4 * * *` and deletes older events in batches, so the table stays writable while it runs.
 
 ```yaml
 environment:

@@ -45,7 +45,7 @@ An upload the server doesn't take (it's down, the connection dropped) is held in
 
 ## Save slots
 
-Saves are organized into slots, the same model used by the [sync clients](#syncing-saves-between-browsers-and-devices), so the same slots show up whether you played in the browser or on a device.
+Saves are organized into slots, the model the [sync clients](#syncing-saves-between-browsers-and-devices) use too, so you see the same slots whether you played in the browser or on a device.
 
 - **`autosave`** is where ordinary play goes, and it keeps a capped history, so it prunes itself as you play.
 - **A named slot**, created on launch, keeps every version. Use one when you want a checkpoint you can always come back to.
@@ -62,16 +62,16 @@ When both sides changed the same slot, the browser plays the server's copy and u
 
 Saves and states also sync with companion apps on other devices (Grout on muOS, Argosy on Android, DeckRommSync on a Deck, etc.), and with [RetroArch](../ecosystem/retroarch-cloud-sync.md) through its built-in Cloud Sync. These pages cover it in depth:
 
-- [Devices](devices.md): the devices you sync from, and managing them
-- [RetroArch Cloud Sync](../ecosystem/retroarch-cloud-sync.md): RetroArch setup
+- [Devices](devices.md): registering, renaming and removing them
+- [RetroArch Cloud Sync](../ecosystem/retroarch-cloud-sync.md): setup and what syncs
 - [Device Sync Protocol](../developers/device-sync-protocol.md): wire-level reference
 - [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher)/[Grout](../ecosystem/first-party-apps.md#grout): per-app setup
 
-Once a device is paired and sync is running, saves made on the device appear server-side on its next sync. When the same slot is saved on two devices between syncs, RomM reports the conflict to the app, which decides what to keep. Most apps keep both as separate save entries.
+Once a device is paired and sync is running, saves made on it appear server-side on its next sync. When the same slot is saved on two devices between syncs, RomM reports the conflict to the app, which decides what to keep. Most apps keep both as separate save entries.
 
 ## Favorites, labels and names
 
-You can mark your own saves and states as favorites and tag them with free-text labels, for example to name a run or flag the save before a boss. A save or state takes up to 20 labels of up to 255 characters each, and labels that differ only in case count as one. You can also act on several saves or states at once, to favorite, label or delete them together.
+You can mark your own saves and states as favorites and tag them with free-text labels, for example to name a run or flag the save before a boss. A save or state takes up to 20 labels of up to 255 characters each, and labels that differ only in case count as one. You can also favorite, label or delete several at once.
 
 A save or state can be renamed, and its screenshot follows it. The new name has to be free among that game's saves (or states), ignoring case, and keep a name before the extension. A device or RetroArch that syncs by file name sees a renamed file as a different file.
 

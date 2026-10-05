@@ -37,7 +37,7 @@ The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup, 
 
 A few tasks follow other settings instead of an `ENABLE_*` var:
 
-- **Scheduled audit log cleanup** removes [audit log](audit-log.md) events older than `AUDIT_LOG_RETENTION_DAYS` (90 by default) every day at 04:30, and doesn't run at all when that var is `0`, which keeps events forever.
+- **Scheduled audit log cleanup** removes [events](audit-log.md) older than `AUDIT_LOG_RETENTION_DAYS` (90 by default) every day at 04:30, and doesn't run at all when that var is `0`, which keeps events forever.
 - **Scheduled streaming session reaper** runs every minute, but only while [emulator streaming](../using/emulator-streaming.md) is enabled, and stops sessions whose player stopped sending heartbeats.
 - **Scheduled conversion cache cleanup** removes expired [converted downloads](library-conversion.md#the-conversion-cache) every day at 04:00.
 - **Convert library** is manual only, and can only run with `ROM_CONVERTO_ENABLED=true` (see [Library Conversion](library-conversion.md)).
@@ -71,7 +71,7 @@ The body also accepts `platform_fs_slugs`, `roms_ids` and `launchbox_remote_enab
 
 ### Destructive tasks
 
-A task that deletes or replaces files in your library is flagged `destructive` in the task list (`GET /api/tasks`), and the UI asks you to type a confirmation before running it. Convert library is one, since it deletes each original once its converted copy is in place. The API doesn't ask for a confirmation, so a script that calls a destructive task runs it straight away.
+A task that deletes or replaces files in your library is flagged `destructive` in the task list (`GET /api/tasks`), and the UI asks you to type a confirmation before running it. Convert library is one, since it deletes each original once its converted copy is in place. The API doesn't ask for a confirmation, so a script that calls one runs it straight away.
 
 ## Monitoring tasks
 

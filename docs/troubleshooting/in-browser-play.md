@@ -61,4 +61,4 @@ For Netplay-specific issues: [Netplay Troubleshooting](netplay.md).
 ## RPG Maker game won't start in EasyRPG
 
 - **No browser play offered?** The game has to be an extracted folder on the `rpg-maker` platform with `RPG_RT.ldb` at its top, since the web player can't read archives. `DISABLE_EASYRPG=true` also removes browser play, and so does the slim image, which doesn't bundle the player (see [EasyRPG](../using/in-browser-play/easyrpg.md)).
-- **Missing graphics or silent sounds**, mostly in battles, come from assets the bundled free RTP doesn't have yet. Copying the missing files from the game's original RTP into the game's own folder and rescanning the game fills the gap, because a game's files win over the RTP's.
+- **Missing graphics or silent sounds**, mostly in battles, come from assets the bundled free RTP doesn't have yet. Copying the missing files from the original RTP into the game's own folder and rescanning it fills the gap, because a game's files win over the RTP's.

@@ -7,8 +7,6 @@ description: Fix login, session, CSRF, and OIDC issues
 
 ## `401 Unauthorized` or `403 Forbidden` on API calls
 
-The two codes mean different things:
-
 - **`401 Unauthorized`**: the request carries no credential RomM can use. You're signed out, your session expired or was revoked, or the `Authorization` header is malformed, has the wrong password, or holds an expired token. Sign in again, or refresh or replace the token.
 - **`403 Forbidden`**: you're signed in, but your account or token lacks the scope the endpoint needs. Check the user's permission group and the token's scopes (see [API Authentication → Errors](../developers/api-authentication.md#errors)).
 
@@ -16,7 +14,7 @@ If a browser session seems broken in a way signing in again doesn't fix (for exa
 
 ## Browser app on another origin is blocked by CORS
 
-The browser console shows `blocked by CORS policy` or `No 'Access-Control-Allow-Origin' header` when a web app served from another domain or port calls RomM. An empty `ROMM_CORS_ALLOWED_ORIGINS` denies every cross-origin request, so list the app's origin:
+The browser console shows `blocked by CORS policy` or `No 'Access-Control-Allow-Origin' header`. An empty `ROMM_CORS_ALLOWED_ORIGINS` denies every cross-origin request, so list the app's origin:
 
 ```yaml
 environment:
@@ -138,7 +136,7 @@ UPDATE users SET oidc_issuer = NULL, oidc_sub = NULL WHERE username = 'alice';
 
 ### Signing in at the provider lands back on the RomM login page
 
-You authenticate at the provider, but end up on `/login?bypass_autologin=true` instead of signed in. RomM rejected the provider's callback, for example because the provider returned an error, the authorization code was already used or expired, or the ID token failed validation. The `bypass_autologin` flag keeps `OIDC_AUTOLOGIN` from sending you straight back into the same failure.
+You end up on `/login?bypass_autologin=true` instead of signed in. RomM rejected the provider's callback, for example because the provider returned an error, the authorization code was already used or expired, or the ID token failed validation. The `bypass_autologin` flag keeps `OIDC_AUTOLOGIN` from sending you straight back into the same failure.
 
 The container log names the reason on an `OIDC callback rejected` line:
 

@@ -22,11 +22,11 @@ Set `ROM_CONVERTO_ENABLED=true` and restart the container. RomM probes the CLI o
 | `ROM_CONVERTO_TIMEOUT`         | `600`   | Seconds each rom-converto operation may run                         |
 | `ROM_CONVERTO_MAX_CONCURRENCY` | `2`     | Concurrent conversions per web or task worker                       |
 
-With it enabled, scans also use rom-converto to read title IDs and serials from the files of supported platforms (3DS, DS, PSP, PS Vita, PlayStation, PS2, PS3, GameCube, Wii, Wii U, Switch, Switch 2, Xbox and Xbox 360), which you can turn off with [`converto.scan_metadata`](#configuration).
+With it enabled, scans also use the CLI to read title IDs and serials from the files of supported platforms (3DS, DS, PSP, PS Vita, PlayStation, PS2, PS3, GameCube, Wii, Wii U, Switch, Switch 2, Xbox and Xbox 360), which you can turn off with [`converto.scan_metadata`](#configuration).
 
 ## Configuration
 
-Admins set the conversion options on the **Conversion settings** page, which writes them to the `converto` section of [`config.yml`](../reference/configuration-file.md#converto). You can also edit that section by hand:
+Admins set these options on the **Conversion settings** page, which writes them to the `converto` section of [`config.yml`](../reference/configuration-file.md#converto). You can also edit that section by hand:
 
 ```yaml
 converto:
@@ -51,7 +51,7 @@ converto:
 
 ## Library formats
 
-Only lossless conversions are offered as library formats, so a converted game holds the same data as the original. Each platform can be stored in these formats, listed by platform slug:
+Only lossless conversions are offered as library formats, so a converted game holds the same data as the original:
 
 | Platform                                | Slug                            | Library formats            |
 | --------------------------------------- | ------------------------------- | -------------------------- |
@@ -64,14 +64,14 @@ Only lossless conversions are offered as library formats, so a converted game ho
 | Switch, Switch 2                        | `switch`, `switch-2`            | `nsz`, `xcz`, `nsp`, `xci` |
 | Xbox 360                                | `xbox360`                       | `zar`                      |
 
-Which source files can reach a format depends on the format. For example, CHD is made from `.cue` sheets or `.iso` images, RVZ from GameCube `.iso`, `.gcm`, `.gcz` and NKit images or Wii `.iso`, `.wbfs`, `.wia`, `.gcz` and NKit images, and NSZ from `.nsp`. A file with no route to the chosen format is counted as unsupported and left alone. The `iso`, `cia`, `cci`, `nsp`, `xci` and `wbfs` targets are uncompressed, so converting to one of them can grow your library rather than shrink it.
+Each format accepts its own set of source files. For example, CHD is made from `.cue` sheets or `.iso` images, RVZ from GameCube `.iso`, `.gcm`, `.gcz` and NKit images or Wii `.iso`, `.wbfs`, `.wia`, `.gcz` and NKit images, and NSZ from `.nsp`. A file with no route to the chosen format is counted as unsupported and left alone. The `iso`, `cia`, `cci`, `nsp`, `xci` and `wbfs` targets are uncompressed, so converting to one of them can grow your library rather than shrink it.
 
 ## The Convert library task
 
 **Convert library** is a manual [task](scheduled-tasks.md) that converts every game on a platform with a library format, in place:
 
 - Only matched games are converted. A converted file no longer hash-matches a DAT, so games that aren't identified yet are skipped. Match them first.
-- Games keep their identity. The game's database entry is updated to point at the new file, so saves, states, collections, notes and play history carry over. In a multi-file game, the `.m3u` playlists beside the files are rewritten to the new names.
+- Games keep their identity. The database entry is updated to point at the new file, so saves, states, collections, notes and play history carry over. In a multi-file game, the `.m3u` playlists beside the files are rewritten to the new names.
 - Originals are deleted once their conversion succeeds and the game points at the new file. A conversion that fails, or whose output name is already taken, keeps the original.
 - A `.cue` sheet converts with its tracks. Its `.bin` tracks are deleted along with it, and a cue that shares tracks with another cue, or references a file outside its folder, is refused.
 
@@ -98,7 +98,7 @@ RomM answers with:
 
 `HEAD` on the same URL reports the same outcome without starting a conversion. A conversion that a download started keeps running when the client stops waiting, and its result lands in the cache for the next request.
 
-Download conversion can produce any format rom-converto can reach from the stored file, lossy ones included. `DetailedRomSchema.download_formats` lists the formats the caller can request for a game, which is empty for multi-file games, when conversion is off, and for callers who can't start a conversion. Only signed-in users can start one, so visitors in [kiosk mode](authentication.md) or on an unauthenticated download endpoint (`DISABLE_DOWNLOAD_ENDPOINT_AUTH`) get a cached copy or a `406`. The web UI offers the same list as "Download as" on a game page.
+Any format rom-converto can reach from the stored file is allowed here, lossy ones included. `DetailedRomSchema.download_formats` lists the formats the caller can request for a game, which is empty for multi-file games, when conversion is off, and for callers who can't start a conversion. Only signed-in users can start one, so visitors in [kiosk mode](authentication.md) or on an unauthenticated download endpoint (`DISABLE_DOWNLOAD_ENDPOINT_AUTH`) get a cached copy or a `406`. The web UI offers the same list as "Download as" on a game page.
 
 ### The conversion cache
 

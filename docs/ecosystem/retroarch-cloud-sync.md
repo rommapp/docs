@@ -5,7 +5,7 @@ description: Use RomM as the WebDAV target for RetroArch's built-in Cloud Sync
 
 # RetroArch Cloud Sync
 
-RetroArch has a built-in Cloud Sync feature that mirrors its saves, states and other folders to a WebDAV server. RomM serves that WebDAV endpoint itself, so RetroArch syncs directly into your library without a companion app.
+RetroArch has a built-in Cloud Sync feature that mirrors its saves, states and other folders to a WebDAV server. RomM can be that server, so RetroArch syncs directly into your library without a companion app.
 
 Each save and state is attached to the ROM it belongs to, next to the ones from the web player and other [devices](../using/devices.md).
 
@@ -17,7 +17,7 @@ Each save and state is attached to the ROM it belongs to, next to the ones from 
 
 ## Configure RetroArch
 
-Point RetroArch's Cloud Sync at RomM's WebDAV path and sign in with your RomM username and password:
+Point Cloud Sync at RomM's WebDAV path and sign in with your RomM username and password:
 
 ```text
 https://romm.example.com/api/sync/retroarch/
@@ -25,7 +25,7 @@ https://romm.example.com/api/sync/retroarch/
 
 The trailing slash matters, because RetroArch appends its own paths to the URL as written.
 
-You can set it in RetroArch's Cloud Sync settings or directly in `retroarch.cfg`:
+You can set it in the Cloud Sync settings or directly in `retroarch.cfg`:
 
 ```ini
 cloud_sync_enable = "true"
@@ -41,7 +41,7 @@ cloud_sync_sync_thumbs = "false"
 cloud_sync_sync_system = "false"
 ```
 
-We also recommend turning on RetroArch's options to sort saves and states into per-core folders (`sort_savefiles_enable` and `sort_savestates_enable`). RomM stores each save and state with the emulator that wrote it, and the per-core folder is how that emulator round-trips between RetroArch and RomM (see [Cores and folders](#cores-and-folders)).
+We also recommend turning on RetroArch's options to sort saves and states into per-core folders (`sort_savefiles_enable` and `sort_savestates_enable`). RomM stores each save and state with the emulator that wrote it, and the per-core folder is how that emulator survives the round trip (see [Cores and folders](#cores-and-folders)).
 
 Every request is authenticated. RomM answers an unauthenticated request with a `401` Basic challenge, which is what prompts RetroArch to send its credentials.
 
@@ -57,19 +57,19 @@ Every request is authenticated. RomM answers an unauthenticated request with a `
 
 The `config`, `thumbnails` and `system` categories belong to no game, so RomM keeps them as opaque files under `/romm/retroarch_sync/users/<user>/` and serves them back unchanged. Two RetroArch installs signed in as the same user share them.
 
-On every sync, RomM builds the `manifest.server` file that RetroArch compares against from its own database. RomM accepts RetroArch's uploaded copy of the manifest and discards it.
+On every sync, RomM builds the `manifest.server` file that RetroArch compares against from its own database. It accepts RetroArch's uploaded copy and discards it.
 
 The first time a user syncs, RomM registers a device named **RetroArch** for them, which shows up with their other [devices](../using/devices.md). RetroArch's requests don't identify the install they come from, so every RetroArch a user syncs from shares that one device.
 
 ### Saves
 
-RetroArch sees the saves stored without a slot, which covers everything RetroArch itself uploaded and saves you uploaded by hand. Saves written into a [slot](../using/saves-and-states.md#save-slots), such as the browser player's `autosave` history or the ones other device-sync apps upload, are left out of the manifest because they're RomM's versioned history and not files a core would load.
+RetroArch sees the saves stored without a slot, which covers everything it uploaded itself and saves you uploaded by hand. Saves written into a [slot](../using/saves-and-states.md#save-slots), such as the browser player's `autosave` history or the ones other device-sync apps upload, are left out of the manifest because they're RomM's versioned history and not files a core would load.
 
 ### States
 
 RetroArch only loads states from its numbered slots (`<game>.state`, `<game>.state1` and so on, plus `<game>.state.auto`). RomM groups every state for a game by core and by the slot its file name ends in, and offers the newest one in each slot under the name RetroArch would give it.
 
-A state made in RomM's web player has a label and a timestamp in its name instead of a slot number. It still ends in `.state`, so RomM offers it to RetroArch as that game's slot 0 when it's the newest state there, and RetroArch loads it like any other.
+A state made in RomM's web player has a label and a timestamp in its name instead of a slot number. It still ends in `.state`, so RomM offers it as that game's slot 0 when it's the newest state there, and RetroArch loads it like any other.
 
 ### Deletes
 
@@ -141,6 +141,6 @@ Most proxies forward any method, but some web application firewalls and CDN rule
 
 ## See also
 
-- [Saves & States](../using/saves-and-states.md): how RomM stores saves and states
+- [Saves & States](../using/saves-and-states.md): how RomM stores them
 - [Devices](../using/devices.md): the RetroArch device and the others you sync from
 - [Device Sync Protocol](../developers/device-sync-protocol.md): the API that companion apps sync over instead

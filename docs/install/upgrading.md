@@ -22,11 +22,11 @@ Before a minor or major upgrade:
 
 ### Let the first start finish its migrations
 
-Several of 5.4's migrations rewrite the `roms` table and backfill it in batches, which can take a while on a large library. RomM doesn't start serving the web UI until they finish, and the container log lists each migration as it runs, then `Database migrations succeeded` once they're done.
+Several migrations rewrite the `roms` table and backfill it in batches, which can take a while on a large library. RomM doesn't start serving the web UI until they finish, and the container log lists each migration as it runs, then `Database migrations succeeded` once they're done.
 
 <!-- prettier-ignore -->
 !!! warning "Don't restart the container while migrations run"
-    Stopping the container mid-migration can leave the database half upgraded. If an orchestrator restarts containers that fail a health check, such as Kubernetes or a NAS app manager, give the first start a longer grace period or turn the check off until that line appears.
+    Stopping mid-migration can leave the database half upgraded. If an orchestrator restarts containers that fail a health check, such as Kubernetes or a NAS app manager, give the first start a longer grace period or turn the check off until that line appears.
 
 ### Cross-origin requests are denied by default
 
@@ -64,7 +64,7 @@ The "Viewer (legacy)" and "Editor (legacy)" groups become "Viewer" and "Editor".
 
 ### New settings worth reviewing
 
-5.4 adds several features that are configured through environment variables, all with working defaults. The ones you may want to set right away:
+Several new features are configured through environment variables, all with working defaults. The ones you may want to set right away:
 
 - `SMTP_*` to send notification and password reset emails (see [Email](../administration/email.md))
 - `AUDIT_LOG_RETENTION_DAYS` to keep audit events for longer or shorter than 90 days (see [Audit Log](../administration/audit-log.md))
@@ -76,7 +76,7 @@ The [Environment Variables](../reference/environment-variables.md) reference lis
 
 ### API changes for client authors
 
-Most API changes in 5.4 are additions. These ones can break an existing client:
+Most changes are additions. These can break an existing client:
 
 | Change                                      | What to do                                                                                                                                                                                                                                                                   |
 | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -15,7 +15,7 @@ These are the terms the docs, UI, and API use consistently. Foundational concept
 
 **API token**: see Client API Token.
 
-**Apprise**: the notification library behind RomM's admin-only notification channels for services such as Discord, Telegram, ntfy or Matrix (see [Notifications](../using/notifications.md)).
+**Apprise**: the notification library behind the admin-only channels for services such as Discord, Telegram, ntfy or Matrix (see [Notifications](../using/notifications.md)).
 
 **Asset**: user-uploaded content attached to a ROM, such as save files, emulator states, and screenshots. Assets live under `/romm/assets` (separate from the library) and are owned per-user. Saves and states can sync to registered devices, and are not the same as a Resource (see [Saves & States](../using/saves-and-states.md)).
 

@@ -5,7 +5,7 @@ description: Your notification inbox, and forwarding it to webhooks, email and c
 
 # Notifications
 
-RomM keeps a notification inbox for each user at `/notifications`. RomM stores each notification and then pushes it to every tab you have open, so one that arrives while you're away is still there the next time you sign in. The inbox keeps your 200 newest notifications, and you can mark them read or dismiss them one at a time or all at once.
+RomM keeps a notification inbox for each user at `/notifications`. It stores each one and then pushes it to every tab you have open, so one that arrives while you're away is still there the next time you sign in. The inbox keeps your 200 newest notifications, and you can mark them read or dismiss them one at a time or all at once.
 
 ## What sends a notification
 
@@ -17,7 +17,7 @@ RomM keeps a notification inbox for each user at `/notifications`. RomM stores e
 | A task failed                                               | error           | Whoever ran it, or every admin for a scheduled run                                                                   | `tasks`     |
 | Someone else ended your streaming session                   | warning         | The user whose stream was ended                                                                                      | `streaming` |
 | Your role changed                                           | info            | The user whose role an admin changed                                                                                 | `account`   |
-| A notification channel was turned off                       | warning         | The channel's owner, after 10 failed deliveries in a row                                                             | `account`   |
+| One of your channels was turned off                         | warning         | The channel's owner, after 10 failed deliveries in a row                                                             | `account`   |
 | A game was installed on one of your devices, or couldn't be | success / error | The user who sent the [install request](devices.md)                                                                  | `devices`   |
 | A notification sent through the API                         | any             | The recipients the sender named (see [Sending notifications](#sending-notifications))                                | `custom`    |
 
@@ -85,7 +85,7 @@ def is_from_romm(secret: str, body: bytes, header: str | None) -> bool:
 
 ### Email
 
-An email channel sends each notification to an address as a plain-text message whose subject starts with `[RomM]`. It's only offered once the server has [email set up](../administration/email.md).
+Each notification arrives as a plain-text message whose subject starts with `[RomM]`. This channel is only offered once the server has [email set up](../administration/email.md).
 
 Before a new address gets anything, RomM emails it a 6-digit confirmation code, which you enter to confirm the channel. The code expires after 30 minutes and allows 5 tries. A new code can be requested after a minute, and changing a channel's address asks for a new confirmation.
 
@@ -93,7 +93,7 @@ Before a new address gets anything, RomM emails it a 6-digit confirmation code, 
 
 Admins can also forward notifications to any service [Apprise](https://github.com/caronc/apprise) supports, such as Discord, Telegram, Slack, ntfy, Gotify, Matrix, Pushover or Microsoft Teams. A channel takes the service's fields, or the service's own URL (a Discord webhook URL, for example) or an Apprise URL, which RomM splits into those fields. Each service links to its setup guide on the [Apprise wiki](https://github.com/caronc/apprise/wiki).
 
-Apprise channels are admin-only because Apprise opens its own connections, which could otherwise be pointed at the local network. Apprise services that act on the machine running RomM (desktop notifications, syslog, D-Bus and the like) aren't offered.
+Apprise channels are admin-only because Apprise opens its own connections, which could otherwise be pointed at the local network. Services that act on the machine running RomM (desktop notifications, syslog, D-Bus and the like) aren't offered.
 
 ## Sending notifications
 
@@ -127,7 +127,7 @@ curl -X POST https://romm.example.com/api/notifications \
 
 The response is the list of notifications created, one per recipient. Disabled users are skipped when sending to `admins` or `all`, and naming a missing or disabled user by id returns `404`.
 
-Notifications sent through the API belong to the `custom` topic, so channels filter them by that topic and by their level.
+They belong to the `custom` topic, so channels filter them by that topic and by their level.
 
 ## API
 
