@@ -75,7 +75,7 @@ Each format accepts its own set of source files. For example, CHD is made from `
 
 Because it deletes files, the task is flagged as **destructive**, and the UI asks you to type a confirmation before it runs. It's also single-instance, so asking to run it again while it's queued or running returns `409 Conflict`. A full run can take hours on a large library, bounded per file by `ROM_CONVERTO_TIMEOUT`. When it finishes, the task reports how many files it converted, skipped as already converted, unmatched or unsupported, and failed, and how many bytes it saved.
 
-Back up your library before the first run. The conversions are lossless, but the originals are gone afterwards.
+**Back up your library before the first run!**
 
 ## Download conversion
 
