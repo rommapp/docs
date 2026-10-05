@@ -42,7 +42,7 @@ environment:
 
 For a provider that only offers implicit TLS, set `SMTP_PORT=465` and `SMTP_SECURITY=tls`. Many mail providers refuse an account's normal password over SMTP and want an app password or an SMTP-specific credential instead.
 
-Set [`ROMM_BASE_URL`](../reference/environment-variables.md) to the address users reach RomM at. Reset links are only emailed when it points at a real host, not `localhost` or a loopback address, and notification emails use it to link back into RomM.
+Set [`ROMM_BASE_URL`](../reference/environment-variables.md) to your instance's public URL, such as `https://romm.example.com`. Reset links are only emailed when it points at a real host, not `localhost` or a loopback address, and notification emails use it to link back into RomM.
 
 ## Testing it
 
