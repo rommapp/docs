@@ -1,15 +1,18 @@
 ---
 name: humanize-docs
-description: Run the vendored humanizer over the documentation pages a change adds or edits, as the last step before opening a PR. Rewrites prose only, leaving headings, front matter, snippet partials and MkDocs syntax untouched.
+description: Run the vendored humanizer and the docs-style house rules over the documentation pages a change adds or edits, as the last step before opening a PR. Rewrites prose only, leaving headings, front matter, snippet partials and MkDocs syntax untouched.
 argument-hint: "[page paths | nothing for the pages changed since main]"
 disable-model-invocation: true
 ---
 
 # Humanize changed docs pages
 
-Apply `.claude/skills/humanizer/SKILL.md` to the prose a change adds, then prove
-the site still builds. Read that file and follow it rather than invoking the
-skill, since a personal install of the same name would load instead.
+Apply `.claude/skills/humanizer/SKILL.md` and then `.claude/skills/docs-style/SKILL.md`
+to the prose a change adds, then prove the site still builds. Read both files and
+follow them rather than invoking the skills, since a personal install of the same
+name would load instead. Where the two disagree, `docs-style` wins, because it
+holds the house rules (such as the passive voice that replaces "RomM" as a filler
+subject).
 
 ## Target
 

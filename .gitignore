@@ -6,3 +6,10 @@ site
 *.kate-swp
 __pycache__
 *.pyc
+
+# AI tools
+# Keep shared agent skills tracked; ignore personal/local Claude config.
+.claude/*
+!.claude/skills/
+!.claude/hooks/
+!.claude/settings.json
