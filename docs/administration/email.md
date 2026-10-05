@@ -5,7 +5,7 @@ description: Send notification emails and password reset links over SMTP
 
 # Email
 
-RomM can send email through an SMTP server you provide, once both `SMTP_HOST` and `SMTP_FROM` are set. Once it's on, RomM uses it for:
+RomM can send email through an SMTP server you provide, once both `SMTP_HOST` and `SMTP_FROM` are set. It uses email for:
 
 - Password reset links (see [Password reset](authentication.md#password-reset))
 - Email notification channels, which users add to get their [notifications](../using/notifications.md#email) by email
