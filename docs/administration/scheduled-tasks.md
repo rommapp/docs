@@ -67,11 +67,11 @@ Content-Type: application/json
 {"type": "quick", "platforms": [12], "apis": ["igdb", "ss"]}
 ```
 
-The body also accepts `platform_fs_slugs`, `roms_ids` and `launchbox_remote_enabled`, and rejects unknown keys with `422` rather than falling back to a whole-library scan. It answers `202` with the queued job, `409` while another scan is in flight, and `503` when no scan worker is running.
+The body also accepts `platform_fs_slugs`, `roms_ids` and `launchbox_remote_enabled`, and rejects unknown keys with `422`. It answers `202` with the queued job, `409` while another scan is in flight, and `503` when no scan worker is running.
 
 ### Destructive tasks
 
-A task that deletes or replaces files in your library is flagged `destructive` in the task list (`GET /api/tasks`), and the UI asks you to type a confirmation before running it. Convert library is one, since it deletes each original once its converted copy is in place. The API doesn't ask for a confirmation, so scripts calling a destructive task should mean it.
+A task that deletes or replaces files in your library is flagged `destructive` in the task list (`GET /api/tasks`), and the UI asks you to type a confirmation before running it. Convert library is one, since it deletes each original once its converted copy is in place. The API doesn't ask for a confirmation, so a script that calls a destructive task runs it straight away.
 
 ## Monitoring tasks
 

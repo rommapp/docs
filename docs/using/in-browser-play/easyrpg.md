@@ -26,7 +26,7 @@ RomM marks a game as playable in EasyRPG when it finds `RPG_RT.ldb` in the game 
 
 ## The RTP
 
-Many RPG Maker games rely on the RTP (run-time package), a shared set of graphics, sounds and music the original engine installs separately. RomM ships the free [EasyRPG RTP](https://github.com/EasyRPG/RTP), a freely licensed (CC-BY-4.0) replacement, and merges it into each game, so games that need the RTP start without you supplying it. A game's own files always win over the RTP's.
+Many RPG Maker games rely on the RTP (run-time package), a shared set of graphics, sounds and music the original engine installs separately. RomM ships the [EasyRPG RTP](https://github.com/EasyRPG/RTP), a free replacement under CC-BY-4.0, and merges it into each game, so games that need the RTP start without you supplying it. A game's own files always win over the RTP's.
 
 The free RTP doesn't have every asset of the commercial ones yet, mostly ones used in battles, so a game can show a blank graphic or stay silent where it uses a missing one. Games that bundle their own copy of the assets they use aren't affected.
 
@@ -49,4 +49,4 @@ The player loads everything through one route, `GET /api/roms/{id}/easyrpg/{path
 
 The route answers `404` when EasyRPG is disabled, the ROM isn't an RPG Maker 2000/2003 game folder, or the caller can't see the ROM.
 
-More troubleshooting in [In-Browser Play Troubleshooting](../../troubleshooting/in-browser-play.md).
+For more troubleshooting, see [In-Browser Play Troubleshooting](../../troubleshooting/in-browser-play.md).

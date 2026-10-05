@@ -5,7 +5,7 @@ description: Your notification inbox, and forwarding it to webhooks, email and c
 
 # Notifications
 
-RomM keeps a notification inbox for each user at `/notifications`. A notification is stored first and then pushed to every tab you have open, so one that arrives while you're away is still waiting the next time you sign in. The inbox keeps your 200 newest notifications, and you can mark them read or dismiss them one at a time or all at once.
+RomM keeps a notification inbox for each user at `/notifications`. RomM stores each notification and then pushes it to every tab you have open, so one that arrives while you're away is still there the next time you sign in. The inbox keeps your 200 newest notifications, and you can mark them read or dismiss them one at a time or all at once.
 
 ## What sends a notification
 
@@ -30,7 +30,7 @@ A channel forwards your notifications somewhere outside RomM. Each user sets up 
 - **Minimum level**: `info` forwards everything, `warning` forwards warnings and errors, and `error` forwards errors only. Success notifications count as `info`.
 - **Topics**: any of `scans`, `tasks`, `streaming`, `devices`, `account` and `custom`, or all of them (the default).
 
-Channels are delivered by a background worker, so a slow destination never holds up RomM. A failed delivery is retried after 30 seconds, 2 minutes and 10 minutes. After 10 failed deliveries in a row the channel turns itself off and you get a notification saying why, with the last error kept on the channel. Every channel can also send a test notification on demand, which reports the destination's error right away instead of retrying.
+A background worker delivers to channels, so a slow destination doesn't hold up RomM. A failed delivery is retried after 30 seconds, 2 minutes and 10 minutes. After 10 failed deliveries in a row the channel turns itself off and you get a notification saying why, with the last error kept on the channel. A test notification, which any channel can send on demand, reports the destination's error right away and isn't retried.
 
 Text that leaves RomM is in English, whatever language the UI is set to. When [`ROMM_BASE_URL`](../reference/environment-variables.md) points at a real host (not `localhost` or a loopback address), messages carry an absolute link back to the page the notification is about.
 
@@ -91,13 +91,13 @@ Before a new address gets anything, RomM emails it a 6-digit confirmation code, 
 
 ### Apprise
 
-Admins can also forward notifications to any service [Apprise](https://github.com/caronc/apprise) supports, such as Discord, Telegram, Slack, ntfy, Gotify, Matrix, Pushover or Microsoft Teams. Pick the service and fill in its fields, or paste the service's own URL (a Discord webhook URL, for example) or an Apprise URL, and RomM splits it into the fields for you. Each service links to its setup guide on the [Apprise wiki](https://github.com/caronc/apprise/wiki).
+Admins can also forward notifications to any service [Apprise](https://github.com/caronc/apprise) supports, such as Discord, Telegram, Slack, ntfy, Gotify, Matrix, Pushover or Microsoft Teams. A channel takes the service's fields, or the service's own URL (a Discord webhook URL, for example) or an Apprise URL, which RomM splits into those fields. Each service links to its setup guide on the [Apprise wiki](https://github.com/caronc/apprise/wiki).
 
 Apprise channels are admin-only because Apprise opens its own connections, which could otherwise be pointed at the local network. Apprise services that act on the machine running RomM (desktop notifications, syslog, D-Bus and the like) aren't offered.
 
 ## Sending notifications
 
-Anyone can send a notification to themselves, which is handy for scripts and companion apps reporting back. Admins can also send one to other users, to every admin or to everyone, and the recipients see the admin as its sender.
+Anyone can send a notification to themselves, so scripts and companion apps can report back. Admins can also send one to other users, to every admin or to everyone, and the recipients see the admin as its sender.
 
 ```sh
 curl -X POST https://romm.example.com/api/notifications \

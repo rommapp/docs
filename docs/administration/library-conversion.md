@@ -10,7 +10,7 @@ RomM can convert disc and cartridge images between formats with [rom-converto](h
 - **Library conversion** rewrites the files in your library to one storage format per platform, such as CHD for PlayStation or RVZ for GameCube, to save disk space.
 - **Download conversion** leaves the library alone and converts a single download to a format the client asks for, for a handheld or emulator that can't read the stored one.
 
-Both are off by default. The rom-converto CLI ships in the slim and full images alike, so turning it on is a matter of configuration.
+Both are off by default. The rom-converto CLI ships in both the slim and full images, so turning it on only takes configuration.
 
 ## Enabling rom-converto
 
@@ -70,10 +70,10 @@ Which source files can reach a format depends on the format. For example, CHD is
 
 **Convert library** is a manual [task](scheduled-tasks.md) that converts every game on a platform with a library format, in place:
 
-- **Only matched games are converted.** A converted file no longer hash-matches a DAT, so games that aren't identified yet are skipped. Match them first.
-- **Games keep their identity.** The game's database entry is updated to point at the new file, so saves, states, collections, notes and play history carry over. In a multi-file game, the `.m3u` playlists beside the files are rewritten to the new names.
-- **Originals are deleted** once their conversion succeeds and the game points at the new file. A conversion that fails, or whose output name is already taken, keeps the original.
-- **A `.cue` sheet converts with its tracks.** Its `.bin` tracks are deleted along with it, and a cue that shares tracks with another cue, or references a file outside its folder, is refused.
+- Only matched games are converted. A converted file no longer hash-matches a DAT, so games that aren't identified yet are skipped. Match them first.
+- Games keep their identity. The game's database entry is updated to point at the new file, so saves, states, collections, notes and play history carry over. In a multi-file game, the `.m3u` playlists beside the files are rewritten to the new names.
+- Originals are deleted once their conversion succeeds and the game points at the new file. A conversion that fails, or whose output name is already taken, keeps the original.
+- A `.cue` sheet converts with its tracks. Its `.bin` tracks are deleted along with it, and a cue that shares tracks with another cue, or references a file outside its folder, is refused.
 
 Because it deletes files, the task is flagged as **destructive**, and the UI asks you to type a confirmation before it runs. It's also single-instance, so asking to run it again while it's queued or running returns `409 Conflict`. A full run can take hours on a large library, bounded per file by `ROM_CONVERTO_TIMEOUT`. When it finishes, the task reports how many files it converted, skipped as already converted, unmatched or unsupported, and failed, and how many bytes it saved.
 
@@ -98,7 +98,7 @@ RomM answers with:
 
 `HEAD` on the same URL reports the same outcome without starting a conversion. A conversion that a download started keeps running when the client stops waiting, and its result lands in the cache for the next request.
 
-Download conversion can produce any format rom-converto can reach from the stored file, not only the lossless library formats. `DetailedRomSchema.download_formats` lists the formats the caller can request for a game, which is empty for multi-file games, when conversion is off, and for callers who can't start a conversion. Only signed-in users can start one, so visitors in [kiosk mode](authentication.md) or on an unauthenticated download endpoint (`DISABLE_DOWNLOAD_ENDPOINT_AUTH`) get a cached copy or a `406`. The web UI offers the same list as "Download as" on a game page.
+Download conversion can produce any format rom-converto can reach from the stored file, lossy ones included. `DetailedRomSchema.download_formats` lists the formats the caller can request for a game, which is empty for multi-file games, when conversion is off, and for callers who can't start a conversion. Only signed-in users can start one, so visitors in [kiosk mode](authentication.md) or on an unauthenticated download endpoint (`DISABLE_DOWNLOAD_ENDPOINT_AUTH`) get a cached copy or a `406`. The web UI offers the same list as "Download as" on a game page.
 
 ### The conversion cache
 

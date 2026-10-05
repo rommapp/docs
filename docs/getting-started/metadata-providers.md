@@ -328,7 +328,7 @@ Filenames will not be renamed to add tags, as they are a non-standard formatting
 
 ### Regions, languages and tags from hash matches
 
-A file's name isn't the only source of its region, language and tags. When ScreenScraper or Hasheous matches a game by its hash, RomM reads the region and languages of the exact dump that matched, so a correctly dumped `.chd` with no tags in its name still gets them. ScreenScraper's flags on that dump also become tags: a translation, a hack, a beta or a demo gets the same `Translation`, `Hack`, `Beta` or `Demo` tag a filename would give it. A scan that skips one of these sources keeps the tags it gave before, rather than dropping them.
+When ScreenScraper or Hasheous matches a game by its hash, RomM reads the region and languages of the exact dump that matched, so a correctly dumped `.chd` with no tags in its name still gets them. ScreenScraper's flags on that dump also become tags: a translation, a hack, a beta or a demo gets the same `Translation`, `Hack`, `Beta` or `Demo` tag a filename would give it. A scan that skips one of these sources keeps the tags it gave before.
 
 ### Fan translations
 

@@ -5,11 +5,11 @@ description: Send notification emails and password reset links over SMTP
 
 # Email
 
-RomM can send email through an SMTP server you provide. Email is off until both `SMTP_HOST` and `SMTP_FROM` are set, and once it's on it powers three things:
+RomM can send email through an SMTP server you provide. Email is off until both `SMTP_HOST` and `SMTP_FROM` are set. Once it's on, RomM uses it for:
 
-- **Password reset links**, emailed to the account's address (see [Password reset](authentication.md#password-reset)).
-- **Email notification channels**, which users add to get their [notifications](../using/notifications.md#email) by email.
-- **Confirmation codes** that prove an address belongs to the user who added it as a channel.
+- Password reset links, emailed to the account's address (see [Password reset](authentication.md#password-reset))
+- Email notification channels, which users add to get their [notifications](../using/notifications.md#email) by email
+- Confirmation codes that prove an address belongs to the user who added it as a channel
 
 Messages are plain text and in English.
 
@@ -48,11 +48,11 @@ Set [`ROMM_BASE_URL`](../reference/environment-variables.md) to the address user
 
 ## Testing it
 
-`GET /api/heartbeat` reports what the server thinks of its email settings under `NOTIFICATIONS`:
+`GET /api/heartbeat` reports the email status under `NOTIFICATIONS`:
 
 - `EMAIL_ENABLED` is `true` once the `SMTP_*` settings are complete.
 - `EMAILS_RESET_LINKS` is `true` when reset links will be emailed, which also needs `ROMM_BASE_URL`.
 
-To check that mail actually goes out, add an email [notification channel](../using/notifications.md#email) for your own address. Its confirmation code is the first email RomM sends, and a server that refuses it returns the SMTP server's error straight away. A confirmed channel can send a test notification on demand too.
+To check that mail actually goes out, add an email [notification channel](../using/notifications.md#email) for your own address. The confirmation code is the first email RomM sends to it, and if the SMTP server refuses that message, the request returns the server's error right away. A confirmed channel can send a test notification on demand too.
 
 If a reset link can't be emailed, RomM writes it to the container log instead, so check `docker logs romm` for `Could not email the reset link` along with the SMTP server's error.

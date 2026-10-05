@@ -50,9 +50,9 @@ A user who forgot their password can ask for a reset link from the sign-in page 
 - With [email](email.md) set up, `ROMM_BASE_URL` pointing at a real host, and an email address on the account, RomM emails the link to that address, at most once a minute per user.
 - Otherwise, or when the email can't be sent, RomM writes the link to the container log for an admin to pass on.
 
-The answer is the same whether or not the username exists, so the form can't be used to find out which accounts there are. Requests for an existing account and completed resets are both recorded in the [audit log](audit-log.md).
+The response is the same whether or not the username exists, so the form can't be used to find out which accounts exist. Requests for an existing account and completed resets are both recorded in the [audit log](audit-log.md).
 
-The new password has to meet the same rules as any other: 6 to 255 characters, ASCII only. A password that doesn't returns `400` and leaves the link usable for another try.
+The new password has to meet the same rules as any other: 6 to 255 characters, ASCII only. A password that breaks them returns `400` and leaves the link usable for another try.
 
 Admins can also set any user's password directly. The next login on that account uses the new password, but existing sessions remain valid until they expire.
 

@@ -238,7 +238,7 @@ Content-Type: application/json
 
 `GET /api/play-sessions` lists the caller's play sessions, filtered by `rom_id`, `device_id`, `start_after` and `end_before`. Reading another device's sessions, or every device's at once, needs `devices.read`. A device-bound token without that scope can still read its own device's sessions by passing its own `device_id`. The server never fills in `device_id` from the token, so leaving it out lists every device and needs `devices.read`.
 
-Play session responses no longer carry a `sync_session_id`.
+Play session responses have no `sync_session_id` field.
 
 ## Paging
 
@@ -266,7 +266,7 @@ Users can send a game to one of their devices from the web UI (see [Devices](../
 { "capabilities": { "remote_install": true } }
 ```
 
-Only devices with that flag are offered as install targets. The whole feature answers `404` when the server sets `DEVICE_INSTALL_ENABLED=false`, and `GET /api/heartbeat` reports it under `DEVICE_INSTALL` (`ENABLED` and `EXCLUDED_PLATFORM_SLUGS`).
+Only devices with that flag are offered as install targets. Every install endpoint answers `404` when the server sets `DEVICE_INSTALL_ENABLED=false`, and `GET /api/heartbeat` reports it under `DEVICE_INSTALL` (`ENABLED` and `EXCLUDED_PLATFORM_SLUGS`).
 
 ### Request lifecycle
 
@@ -324,7 +324,7 @@ The server sends two events, each with a payload of `{ "id": "<request id>", "ro
 | `install:queued`    | A request is waiting. Claim it with `POST .../installs/claim`         |
 | `install:cancelled` | The user cancelled a request. Stop downloading it if it's in progress |
 
-Holding the socket open is also what marks the device as online. The server drops the connection when the token expires or is revoked, or when the device is deleted. Events sent while the device is offline aren't replayed, so claim on every connect to pick up whatever queued in the meantime.
+The open socket also marks the device as online. The server drops the connection when the token expires or is revoked, or when the device is deleted. Events sent while the device is offline aren't replayed, so claim on every connect to pick up whatever queued in the meantime.
 
 ## Rate limits and polling
 

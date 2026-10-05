@@ -14,9 +14,9 @@ docker compose up -d
 
 Before a minor or major upgrade:
 
-- **Take a backup** of the database and `/romm/assets` (see [Backup & Restore](backup-and-restore.md)). Migrations only run forward, so a backup is the only way back to the old version.
-- **Read the [release notes](https://github.com/rommapp/romm/releases)** for anything marked as a breaking change, and the section for your target version below.
-- **Pin a version tag** such as `rommapp/romm:5.4.0` instead of `latest`, so a container recreated later doesn't upgrade without you noticing.
+- Take a backup of the database and `/romm/assets` (see [Backup & Restore](backup-and-restore.md)). Migrations only run forward, so a backup is the only way back to the old version.
+- Read the [release notes](https://github.com/rommapp/romm/releases) for anything marked as a breaking change, and the section for your target version below.
+- Pin a version tag such as `rommapp/romm:5.4.0` instead of `latest`, so a container recreated later doesn't upgrade without you noticing.
 
 ## 5.3 to 5.4
 
@@ -92,4 +92,4 @@ Most API changes in 5.4 are additions. These ones can break an existing client:
 | CORS                                        | See [above](#cross-origin-requests-are-denied-by-default). A browser client on another origin must be allowlisted.                                                                                                                                                           |
 | Sync `delete` operation                     | `SyncOperationSchema.action` can now be `delete`, meaning the slot was emptied on the server. Handle it, or at least ignore it, rather than failing on an unknown action (see [Device Sync Protocol](../developers/device-sync-protocol.md)).                                |
 
-Invalid credentials also behave differently. A malformed Basic header or an invalid or expired JWT bearer used to fail with a `500`, and the request now proceeds unauthenticated and gets the route's `401` or `403` (see [API Authentication → Errors](../developers/api-authentication.md#errors)).
+A malformed Basic header or an invalid or expired JWT bearer no longer fails with a `500`. The request proceeds unauthenticated and gets the route's `401` or `403` (see [API Authentication → Errors](../developers/api-authentication.md#errors)).

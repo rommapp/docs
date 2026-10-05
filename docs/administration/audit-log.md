@@ -7,7 +7,7 @@ description: A record of who downloaded, played, changed and signed in to what
 
 RomM records who did what on the server: downloads and player launches, play sessions, uploads and edits, collection changes, scans and tasks, and security events like sign-ins, failed sign-ins and permission changes. Admins read it in the Events tab of the logs settings page, filtered by user, category and date, with a search over names and IP addresses.
 
-Each event keeps the actor, the action, its target, when it happened, the client's IP address and, for a request made with a device-bound token, the [device](../using/devices.md) it came from. Names are copied into the event, so it still reads after the user or the game it names is deleted. Recording is best effort, which means a failure to write an event never fails the request it describes.
+Each event keeps the actor, the action, its target, when it happened, the client's IP address and, for a request made with a device-bound token, the [device](../using/devices.md) it came from. Names are copied into the event, so it still reads after the user or the game it names is deleted. Recording is best effort, so a request still succeeds when its event can't be written.
 
 ## What's recorded
 
@@ -21,7 +21,7 @@ Events fall into five categories:
 | `operations`  | `scan.start`, `scan.finish`, `scan.stop`, `task.run`                                                                                                                                                                                                                                                                                                                                           |
 | `security`    | `auth.login`, `auth.login_failed`, `auth.password_reset_request`, `auth.password_reset`, `user.create`, `user.register`, `user.edit`, `user.delete`, `user.permissions_edit`, `permission_group.create`, `permission_group.edit`, `permission_group.delete`, `visibility.hide`, `visibility.unhide`, `client_token.create`, `client_token.regenerate`, `client_token.revoke`, `device.approve` |
 
-A few of these need a word of explanation:
+Some actions and actors need more detail:
 
 - **`rom.download` and `rom.player_load`** both come from the ROM content endpoint. Clients pass `purpose=play` on `GET /api/roms/{id}/content/{file_name}` when a player fetches the file to run it, which is recorded as a player load, and `purpose=download` (the default) otherwise. A repeat of the same download by the same caller within 10 minutes counts as one event, so resumed and ranged downloads don't flood the log.
 - **`rom.play`** is a [play session](../using/saves-and-states.md) reported by a player or a companion app, recorded at the time the session started.

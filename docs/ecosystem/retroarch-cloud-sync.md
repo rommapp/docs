@@ -5,9 +5,9 @@ description: Use RomM as the WebDAV target for RetroArch's built-in Cloud Sync
 
 # RetroArch Cloud Sync
 
-RetroArch has a built-in Cloud Sync feature that mirrors its saves, states and other folders to a WebDAV server. RomM serves that WebDAV endpoint itself, so RetroArch can sync straight into your library with no extra app or shim in between.
+RetroArch has a built-in Cloud Sync feature that mirrors its saves, states and other folders to a WebDAV server. RomM serves that WebDAV endpoint itself, so RetroArch syncs directly into your library without a companion app.
 
-Saves and states land against the ROM they belong to, so they show up on the game in RomM alongside the ones from the web player and other [devices](../using/devices.md).
+Each save and state is attached to the ROM it belongs to, next to the ones from the web player and other [devices](../using/devices.md).
 
 ## Requirements
 
@@ -57,19 +57,19 @@ Every request is authenticated. RomM answers an unauthenticated request with a `
 
 The `config`, `thumbnails` and `system` categories belong to no game, so RomM keeps them as opaque files under `/romm/retroarch_sync/users/<user>/` and serves them back unchanged. Two RetroArch installs signed in as the same user share them.
 
-RomM builds the `manifest.server` file RetroArch compares against from its own database on every sync. RetroArch's uploaded copy of the manifest is accepted and discarded.
+On every sync, RomM builds the `manifest.server` file that RetroArch compares against from its own database. RomM accepts RetroArch's uploaded copy of the manifest and discards it.
 
 The first time a user syncs, RomM registers a device named **RetroArch** for them, which shows up with their other [devices](../using/devices.md). RetroArch's requests don't identify the install they come from, so every RetroArch a user syncs from shares that one device.
 
 ### Saves
 
-RetroArch sees the saves stored without a slot, which covers everything RetroArch itself uploaded and saves you uploaded by hand. Saves written into a [slot](../using/saves-and-states.md#save-slots), such as the browser player's `autosave` history or the ones other device-sync apps upload, are RomM's versioned history rather than a file a core would load, so they're left out of the manifest.
+RetroArch sees the saves stored without a slot, which covers everything RetroArch itself uploaded and saves you uploaded by hand. Saves written into a [slot](../using/saves-and-states.md#save-slots), such as the browser player's `autosave` history or the ones other device-sync apps upload, are left out of the manifest because they're RomM's versioned history and not files a core would load.
 
 ### States
 
 RetroArch only loads states from its numbered slots (`<game>.state`, `<game>.state1` and so on, plus `<game>.state.auto`). RomM groups every state for a game by core and by the slot its file name ends in, and offers the newest one in each slot under the name RetroArch would give it.
 
-A state made in RomM's web player is named with a label and a timestamp rather than a slot number, but it still ends in `.state`, so it's offered to RetroArch as that game's slot 0 when it's the newest state there. Load it from RetroArch's Load State menu like any other.
+A state made in RomM's web player has a label and a timestamp in its name instead of a slot number. It still ends in `.state`, so RomM offers it to RetroArch as that game's slot 0 when it's the newest state there, and RetroArch loads it like any other.
 
 ### Deletes
 
@@ -88,7 +88,7 @@ An upload that matches no ROM is refused with `409`, and RomM logs a `Cloud sync
 
 ### Cores and folders
 
-With saves and states sorted by core, RetroArch puts them in folders named after the core, such as `saves/Snes9x/`. RomM maps the common RetroArch folder names to the core IDs its web player uses, so a state from the web player's `snes9x` core shows up in RetroArch's `Snes9x` folder and the other way around. A folder name RomM doesn't know is stored as the emulator name verbatim.
+With saves and states sorted by core, RetroArch puts them in folders named after the core, such as `saves/Snes9x/`. RomM maps the common RetroArch folder names to the core IDs its web player uses, so a state from the web player's `snes9x` core shows up in RetroArch's `Snes9x` folder and the other way around. RomM stores a folder name it doesn't recognize as the emulator name, unchanged.
 
 ## PSP saves
 
@@ -101,7 +101,7 @@ RomM finds the ROM for a save folder in two ways:
 
 The serial is the folder name with any trailing `DATA<n>` dropped, so `ULUS10041DATA00` has the serial `ULUS10041`. Until one of those finds a ROM, RomM holds the folder's files in its cache and retries when the rest of the folder arrives.
 
-When a game's title doesn't match the ROM's name (a translated title, say, or a ROM renamed by hand), map its serial to the ROM's file name without the extension:
+When a game's title doesn't match the ROM's name, as with a translated title or a ROM renamed by hand, map its serial to the ROM's file name without the extension:
 
 ```yaml
 environment:
@@ -117,7 +117,7 @@ The same path works read-only in generic WebDAV clients, such as a file manager 
 - `roms/` lists your platforms and their ROM files. Opening a file redirects to the normal [download endpoint](../using/downloads.md), so range requests and multi-file ZIPs behave the same way.
 - `saves/` and `states/` list the same files RetroArch sees.
 
-Reading anything needs the `assets.read` permission, browsing `roms/` also needs `roms.read` and shows only the platforms and games you can see, and changes (`PUT`, `DELETE`, `MOVE`, `MKCOL`) need `assets.write`. RomM answers `LOCK` and `UNLOCK` with a lock that always succeeds, because some clients refuse to mount a share without one.
+Reading anything needs the `assets.read` permission. Browsing `roms/` also needs `roms.read` and shows only the platforms and games you can see. Changes (`PUT`, `DELETE`, `MOVE`, `MKCOL`) need `assets.write`. RomM answers `LOCK` and `UNLOCK` with a lock that always succeeds, because some clients refuse to mount a share without one.
 
 ## Reverse proxy
 

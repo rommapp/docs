@@ -16,7 +16,7 @@ Hide unrated games works without an age limit too, in which case it hides only t
 
 ## Who a rule applies to
 
-- **Groups** carry a limit and a hide-unrated switch, which apply to every member. A user with no group follows the server's default group, its age settings included.
+- **Groups** carry a limit and a hide-unrated switch for every member. A user with no group follows the server's default group, its age settings included.
 - **Users** can replace either setting of their group. A user's own value wins, and an unset value inherits the group's, so you can give one member a stricter or looser limit than the rest of the group.
 - **Admins** are never limited, whatever their group says, because admins bypass permission groups entirely.
 
@@ -38,7 +38,7 @@ RomM stores one minimum age per game, the **strictest** age any of its ratings s
 
 A manual rating list overrides the providers entirely, the same way it does on the game page, so you can loosen a rating as well as tighten it. Manual entries take the form `BOARD:RATING`, such as `ESRB:T` or `PEGI:12`. A game with an empty manual list and no provider ratings counts as unrated.
 
-Ratings RomM can't read (an unknown board, or a value it doesn't recognise) are ignored rather than guessed at, so a game whose only rating is unreadable counts as unrated.
+RomM ignores ratings it can't read (an unknown board, or a value it doesn't recognise), so a game whose only rating is unreadable counts as unrated.
 
 ### Rating boards
 

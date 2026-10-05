@@ -13,13 +13,11 @@ If you're an OIDC user and want to show your `preferred_username` from the token
 
 ## Forgotten password
 
-The sign-in page can send you a password reset link, valid for 10 minutes. If the server has [email](../administration/email.md) set up and your account has an email address, the link arrives by email. Otherwise it goes to the server log, so ask an admin for it, or to set a new password for you.
-
-Passwords are 6 to 255 characters, ASCII only.
+The sign-in page can send you a password reset link, valid for 10 minutes. If the server has [email](../administration/email.md) set up and your account has an email address, the link arrives by email. Otherwise it goes to the server log, so ask an admin for it, or to set a new password for you. A new password must be 6 to 255 ASCII characters.
 
 ## Notifications
 
-Scans, tasks, role changes and other events leave a notification in your inbox, and you can forward them to a webhook, an email address or (for admins) chat services like Discord and Telegram (see [Notifications](notifications.md)).
+Scans, tasks, role changes and other events leave a notification in your inbox. You can forward them to a webhook, an email address or (for admins) chat services like Discord and Telegram (see [Notifications](notifications.md)).
 
 ## Client API tokens
 

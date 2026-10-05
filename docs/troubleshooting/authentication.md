@@ -16,7 +16,7 @@ If a browser session seems broken in a way signing in again doesn't fix (for exa
 
 ## Browser app on another origin is blocked by CORS
 
-The browser console shows `blocked by CORS policy` or `No 'Access-Control-Allow-Origin' header` when a web app served from another domain or port calls RomM. Since 5.4, an empty `ROMM_CORS_ALLOWED_ORIGINS` denies every cross-origin request, so list the app's origin:
+The browser console shows `blocked by CORS policy` or `No 'Access-Control-Allow-Origin' header` when a web app served from another domain or port calls RomM. An empty `ROMM_CORS_ALLOWED_ORIGINS` denies every cross-origin request, so list the app's origin:
 
 ```yaml
 environment:
@@ -150,7 +150,7 @@ Common causes are clock drift (see below), a client secret that changed at the p
 
 ### `certificate verify failed` when RomM talks to the provider
 
-Your provider's certificate is signed by a private CA that the container doesn't trust. Mount the CA certificate and point `OIDC_TLS_CACERTFILE` at it (see [OIDC Setup → Private certificate authority](../administration/oidc/index.md#private-certificate-authority)). The certificate is trusted in addition to the system CAs, so public providers keep working.
+Your provider's certificate is signed by a private CA that the container doesn't trust. Mount the CA certificate and point `OIDC_TLS_CACERTFILE` at it (see [OIDC Setup → Private certificate authority](../administration/oidc/index.md#private-certificate-authority)). RomM trusts it alongside the system CAs, so public providers keep working.
 
 ### `OAuthException: expired token` on callback
 
@@ -166,7 +166,7 @@ This usually happens because something else in the chain (a CSRF check, a cookie
 2. Sign in as a local admin.
 3. Disable `OIDC_AUTOLOGIN`, restart, and debug the IdP config with autologin off.
 
-Since 5.4, a callback the provider or RomM rejects already redirects to `/login?bypass_autologin=true`, so a loop usually means the callback succeeds but the session doesn't stick, which points at cookies or the proxy. If `bypass_autologin` doesn't work in your version, shell into the container and unset `OIDC_AUTOLOGIN` in the env, or edit your compose and restart.
+A callback the provider or RomM rejects already redirects to `/login?bypass_autologin=true`, so a loop usually means the callback succeeds but the session doesn't stick, which points at cookies or the proxy. If `bypass_autologin` doesn't work in your version, shell into the container and unset `OIDC_AUTOLOGIN` in the env, or edit your compose and restart.
 
 ## Still stuck?
 

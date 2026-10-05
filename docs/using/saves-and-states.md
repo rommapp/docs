@@ -56,9 +56,9 @@ The server prunes a slot to `MAX_SAVES_PER_SLOT` (50 by default, `0` to disable 
 
 ## Syncing saves between browsers and devices
 
-Every in-browser player ([EmulatorJS](in-browser-play/emulatorjs.md), EasyRPG, [`js-dos`](in-browser-play/js-dos.md), [PICO-8](in-browser-play/pico-8.md) and [Ruffle](in-browser-play/ruffle.md)) syncs saves the same way a handheld does. Each browser profile registers as one of your [devices](devices.md), and when a game launches it negotiates its saves with the server: it downloads what's newer on the server, uploads what's newer locally, and drops a save that was deleted on the server.
+Every in-browser player ([EmulatorJS](in-browser-play/emulatorjs.md), [EasyRPG](in-browser-play/easyrpg.md), [`js-dos`](in-browser-play/js-dos.md), [PICO-8](in-browser-play/pico-8.md) and [Ruffle](in-browser-play/ruffle.md)) syncs saves the same way a handheld does. Each browser profile registers as one of your [devices](devices.md), and when a game launches it negotiates its saves with the server: it downloads what's newer on the server, uploads what's newer locally, and drops a save that was deleted on the server.
 
-When both sides changed the same slot, the browser plays the server's copy and uploads its own as a separate archived save, named after the game and the time it was captured, so neither version is lost. A browser only pairs saves written by its own player, so a save from another emulator in the same slot is left alone.
+When both sides changed the same slot, the browser plays the server's copy and uploads its own as a separate archived save, named after the game and the time it was captured, so neither version is lost. A browser only pairs saves written by its own player and leaves a save from another emulator in the same slot alone.
 
 Saves and states also sync with companion apps on other devices (Grout on muOS, Argosy on Android, DeckRommSync on a Deck, etc.), and with [RetroArch](../ecosystem/retroarch-cloud-sync.md) through its built-in Cloud Sync. These pages cover it in depth:
 
@@ -67,13 +67,13 @@ Saves and states also sync with companion apps on other devices (Grout on muOS, 
 - [Device Sync Protocol](../developers/device-sync-protocol.md): wire-level reference
 - [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher)/[Grout](../ecosystem/first-party-apps.md#grout): per-app setup
 
-Once a device is paired and sync is running, saves made on the device appear server-side on its next sync. A conflict (the same slot saved on two devices between syncs) is reported to the app, which decides what to keep, and most keep both as separate save entries.
+Once a device is paired and sync is running, saves made on the device appear server-side on its next sync. When the same slot is saved on two devices between syncs, RomM reports the conflict to the app, which decides what to keep. Most apps keep both as separate save entries.
 
 ## Favorites, labels and names
 
 You can mark your own saves and states as favorites and tag them with free-text labels, for example to name a run or flag the save before a boss. A save or state takes up to 20 labels of up to 255 characters each, and labels that differ only in case count as one. You can also act on several saves or states at once, to favorite, label or delete them together.
 
-A save or state can be renamed, and its screenshot follows it. The new name has to be free among that game's saves (or states), ignoring case, and keep a name before the extension. Renaming a file a device or RetroArch syncs by name means the device sees it as a different file.
+A save or state can be renamed, and its screenshot follows it. The new name has to be free among that game's saves (or states), ignoring case, and keep a name before the extension. A device or RetroArch that syncs by file name sees a renamed file as a different file.
 
 Saves and states written in the browser are named after the game and the local time they were captured, so the timestamp in the name matches your clock.
 

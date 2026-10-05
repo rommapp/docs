@@ -100,7 +100,7 @@ The "now playing" feed. Clients report their own sessions, and the acting user a
 | `activity:clear`     | Server to client | `{"user_id", "device_id", "rom_id"}`, sent to the same audience                         |
 | `activity:refresh`   | Server to client | `{}`. Refetch `GET /api/activity`, because RomM couldn't work out who may see a session |
 
-Before 5.4, `activity:update` went to every connected client. It now reaches only the `user:{id}` rooms of users allowed to see the ROM, which takes [hidden entities](../administration/users-and-roles.md#hidden-entities) and [age limits](../administration/parental-controls.md) into account. When that audience can't be resolved, RomM sends `activity:refresh` to everyone instead, coalesced across workers so a burst of failures produces one refresh.
+`activity:update` reaches only the `user:{id}` rooms of users allowed to see the ROM, which takes [hidden entities](../administration/users-and-roles.md#hidden-entities) and [age limits](../administration/parental-controls.md) into account. When that audience can't be resolved, RomM sends `activity:refresh` to everyone instead, coalesced across workers so a burst of failures produces one refresh.
 
 ### Device sync
 
@@ -144,7 +144,7 @@ Sent to the user's tabs while an [emulator streaming](../using/emulator-streamin
 
 ### Netplay
 
-Netplay runs on `/netplay/socket.io`, on a separate channel, so a client there can never address the per-user or admin rooms of the main endpoint. RomM's player connects to it over the WebSocket transport only, because long polling breaks when gunicorn runs more than one worker.
+Netplay runs on its own endpoint, `/netplay/socket.io`, so a client there can never address the per-user or admin rooms of the main endpoint. RomM's player connects to it over the WebSocket transport only, because long polling breaks when gunicorn runs more than one worker.
 
 | Event                                                              | Who may send it                                                                                              |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |

@@ -251,7 +251,7 @@ Inside the container, a bundled nginx sits in front of gunicorn and appends the 
 
 That covers a reverse proxy on the same host, on a Docker network, on your LAN or on a Tailscale network (`100.64.0.0/10`), so most setups need no change. A Cloudflare Tunnel is covered too, because `cloudflared` connects from inside your network.
 
-A proxy that reaches RomM from a public address is not trusted, such as a VPS that forwards to your home server or a CDN that connects straight to your public IP. RomM then sees every visitor as the proxy, and that matters beyond the logs:
+A proxy that reaches RomM from a public address, such as a VPS that forwards to your home server or a CDN that connects straight to your public IP, isn't trusted. RomM then sees every visitor as the proxy, which affects more than the logs:
 
 - The [audit log](../administration/audit-log.md) records the proxy's address for every sign-in, failed sign-in and download. It also caps how many failed sign-ins it records per address, so one noisy client can crowd out everyone else's.
 - Metadata heartbeats, device pairing and client token requests are rate limited per address, so every visitor shares one bucket, and a single user hitting the limit blocks everyone else until the window resets.
@@ -298,7 +298,7 @@ environment:
 - `ROMM_SESSION_SECURE_COOKIE` marks the session and CSRF cookies `Secure` so browsers only send them over HTTPS. Leave it `false` if you still reach the instance over plain HTTP, or logins will silently fail.
 - `ROMM_CORS_ALLOWED_ORIGINS` is a comma-separated list of origins allowed to call the API from a browser. It's empty by default, which denies every other origin, and most deployments can leave it that way because the UI and the API share an origin. Add an entry only for another browser app that calls this instance, written as scheme, host and port with no trailing slash. `*` answers any origin, but RomM then leaves out `Access-Control-Allow-Credentials`, so browsers won't send the session cookie and only endpoints that don't need a login work. A browser client that signs in with the session cookie needs its origin listed explicitly.
 
-Before 5.4, an empty `ROMM_CORS_ALLOWED_ORIGINS` allowed every origin (see [Upgrading](upgrading.md#cross-origin-requests-are-denied-by-default)). Native apps and scripts don't send an `Origin` header, so CORS doesn't affect them.
+Native apps and scripts don't send an `Origin` header, so CORS doesn't affect them. If you're upgrading from 5.3, where an empty list allowed every origin, read [Upgrading](upgrading.md#cross-origin-requests-are-denied-by-default) first.
 
 ## RetroArch Cloud Sync (WebDAV)
 

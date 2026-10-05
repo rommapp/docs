@@ -32,7 +32,9 @@ The host's account can't see the game, or lacks the `roms.read` scope. Check the
 
 ## Room never gets created, `Invalid session` in the logs
 
-Before 5.4, Netplay opened its socket with HTTP long polling, which breaks when gunicorn runs several workers (`WEB_SERVER_CONCURRENCY`, 4 by default): the backend logs `Invalid session` and the room is never created. 5.4 connects over WebSockets only, which fixes this but means the WebSocket upgrade must reach RomM. If rooms still fail, check that your proxy forwards it (see [Authentication Troubleshooting → WebSockets](authentication.md#400-bad-request-on-the-websocket-endpoint)). On an older release, `WEB_SERVER_CONCURRENCY=1` works around it.
+Releases before 5.4 opened Netplay's socket with HTTP long polling, which breaks when gunicorn runs several workers (`WEB_SERVER_CONCURRENCY`, 4 by default). The backend logs `Invalid session` and the room is never created. On those releases, `WEB_SERVER_CONCURRENCY=1` works around it.
+
+Netplay connects over WebSockets only, so the WebSocket upgrade must reach RomM. If rooms still fail, check that your proxy forwards it (see [Authentication Troubleshooting → WebSockets](authentication.md#400-bad-request-on-the-websocket-endpoint)).
 
 ## Joined but video never appears
 

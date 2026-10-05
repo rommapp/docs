@@ -47,7 +47,7 @@ RomM seeds two groups, which an upgrade from a release before permission groups 
 | **Viewer** | Read the library, and manage only your own collections, assets and devices              |
 | **Editor** | Viewer access plus library-wide create, edit and delete of ROMs, platforms and firmware |
 
-You can rename them, edit their grants or delete them like any other group, and the UI warns you first. These were named "Viewer (legacy)" and "Editor (legacy)" before 5.4, and the upgrade renames them unless you'd already renamed them yourself or another group holds the name. In the API, `PermissionGroupSchema.system_key` marks them as `viewer` or `editor` whatever they're called (and is `null` on groups you created), replacing the old `is_system` flag.
+You can rename them, edit their grants or delete them like any other group, and the UI warns you first. In the API, `PermissionGroupSchema.system_key` marks them as `viewer` or `editor` whatever they're called, and is `null` on groups you created.
 
 ### Per-user overrides
 
