@@ -53,11 +53,7 @@ We also recommend turning on RetroArch's options to sort saves and states into p
 | `thumbnails/`    | Stored as-is, per user                                                                          |
 | `system/`        | Stored as-is, per user                                                                          |
 
-The `config`, `thumbnails` and `system` categories belong to no game, so RomM keeps them as opaque files under `/romm/retroarch_sync/users/<user>/` and serves them back unchanged to every RetroArch install signed in as the same user.
-
-On every sync, RomM builds the `manifest.server` file that RetroArch compares against from its own database, and discards the copy RetroArch uploads.
-
-The first time a user syncs, RomM registers a device named **RetroArch** for them, which shows up with their other [devices](../using/devices.md). RetroArch's requests don't identify the install they come from, so every RetroArch a user syncs from shares that one device.
+The `config`, `thumbnails` and `system` folders belong to no game, so RomM keeps them as opaque files under `/romm/retroarch_sync/users/<user>/` and hands them back unchanged to every RetroArch install signed in as that user. To RomM those installs are all one device, because RetroArch's requests don't say which install they come from. The first sync registers a single device named **RetroArch**, which shows up with the user's other [devices](../using/devices.md). RomM also ignores the `manifest.server` file RetroArch uploads and builds its own from the database on every sync, so RetroArch always compares against what RomM actually holds.
 
 ### Saves
 
