@@ -1,6 +1,6 @@
 ---
 title: Library Conversion
-description: Convert your library to compressed formats with rom-converto, and convert downloads on request
+description: Convert your library to compressed formats with rom-converto
 ---
 
 # Library Conversion
