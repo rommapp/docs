@@ -29,7 +29,7 @@ from __future__ import annotations
 
 import ast
 import sys
-from typing import Iterable
+from collections.abc import Iterable, Iterator
 
 from scripts._sources import fetch_text, romm_raw_url, write_snippet
 from scripts.gen_env_vars import parse as parse_env_template
@@ -64,11 +64,11 @@ class UpstreamDrift(RuntimeError):
     """Upstream no longer matches what this generator knows how to read."""
 
 
-def assigned_dict(tree: ast.Module, name: str) -> ast.Dict:
-    """The dict literal assigned to a module-level `name`.
+def module_assignments(tree: ast.Module) -> Iterator[tuple[str, ast.expr | None]]:
+    """(name, value) for every module-level `name = value` or `name: T = value`.
 
-    Both registries are module-level, so `tree.body` is enough and nothing is
-    gained by walking into function bodies.
+    The registries and their TaskSpecs are module-level, so `tree.body` is
+    enough and nothing is gained by walking into function bodies.
     """
     for node in tree.body:
         if isinstance(node, ast.AnnAssign):
@@ -77,15 +77,23 @@ def assigned_dict(tree: ast.Module, name: str) -> ast.Dict:
             targets = list(node.targets)
         else:
             continue
-        if not any(isinstance(t, ast.Name) and t.id == name for t in targets):
+        for target in targets:
+            if isinstance(target, ast.Name):
+                yield target.id, node.value
+
+
+def assigned_dict(tree: ast.Module, name: str) -> ast.Dict:
+    """The dict literal assigned to a module-level `name`."""
+    for target, value in module_assignments(tree):
+        if target != name:
             continue
-        if not isinstance(node.value, ast.Dict):
+        if not isinstance(value, ast.Dict):
             raise UpstreamDrift(
                 f"`{name}` in backend/tasks/registry.py is a "
-                f"{type(node.value).__name__}, not a dict literal, so this "
+                f"{type(value).__name__}, not a dict literal, so this "
                 "parser can no longer read the registry."
             )
-        return node.value
+        return value
 
     raise UpstreamDrift(
         f"no `{name}` dict found in backend/tasks/registry.py. The registry moved "
@@ -100,23 +108,21 @@ def task_specs(tree: ast.Module) -> dict[str, dict[str, ast.expr]]:
         -> {"SCAN_LIBRARY_SPEC": {"title": <Constant>, ...}}
     """
     specs: dict[str, dict[str, ast.expr]] = {}
-    for node in tree.body:
-        if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
-            name, value = node.target.id, node.value
-        elif (
-            isinstance(node, ast.Assign)
-            and len(node.targets) == 1
-            and isinstance(node.targets[0], ast.Name)
-        ):
-            name, value = node.targets[0].id, node.value
-        else:
-            continue
-        if (
+    for name, value in module_assignments(tree):
+        if not (
             isinstance(value, ast.Call)
             and isinstance(value.func, ast.Name)
             and value.func.id == "TaskSpec"
         ):
-            specs[name] = {kw.arg: kw.value for kw in value.keywords if kw.arg}
+            continue
+        # Positional or `**` arguments would hide a title, flag or cron from
+        # this parser, which would then print a default instead of failing.
+        if value.args or any(kw.arg is None for kw in value.keywords):
+            raise UpstreamDrift(
+                f"{name} passes positional or ** arguments to TaskSpec, which "
+                "this parser cannot resolve."
+            )
+        specs[name] = {kw.arg: kw.value for kw in value.keywords if kw.arg}
     return specs
 
 
@@ -140,6 +146,11 @@ def registry_specs(
             raise UpstreamDrift(
                 f"{name} references {value.id}, which is not a module-level "
                 "TaskSpec(...) in backend/tasks/registry.py."
+            )
+        if any(spec_name == value.id for spec_name, _ in out):
+            raise UpstreamDrift(
+                f"{name} maps two keys to {value.id}, which would list the same "
+                "task twice."
             )
         out.append((value.id, specs[value.id]))
     return out
@@ -197,13 +208,16 @@ def resolve(node: ast.expr | None, env: dict[str, dict], where: str, field: str)
     )
 
 
-def build_row(where: str, kwargs: dict[str, ast.expr], kind: str, env: dict[str, dict]) -> dict:
+def build_row(
+    where: str, kwargs: dict[str, ast.expr], kind: str, env: dict[str, dict]
+) -> dict:
     _, title = resolve(kwargs.get("title"), env, where, "title")
     _, description = resolve(kwargs.get("description"), env, where, "description")
     cron_var, cron = resolve(kwargs.get("cron_string"), env, where, "cron_string")
 
     enabled = kwargs.get("enabled")
     note = ""
+    enabled_value: object = True
     if (
         isinstance(enabled, ast.Call)
         and isinstance(enabled.func, ast.Name)
@@ -211,7 +225,10 @@ def build_row(where: str, kwargs: dict[str, ast.expr], kind: str, env: dict[str,
     ):
         enable_var, note = None, ENABLED_CALLS[enabled.func.id]
     else:
-        enable_var, _ = resolve(enabled, env, where, "enabled")
+        enable_var, enabled_value = resolve(enabled, env, where, "enabled")
+        if isinstance(enabled, ast.Compare):
+            # The env var isn't a plain on/off switch, so spell out the test.
+            note = f"Runs while `{ast.unparse(enabled)}`."
 
     if title in (ABSENT, None, ""):
         raise UpstreamDrift(f"{where} has no title=")
@@ -223,7 +240,11 @@ def build_row(where: str, kwargs: dict[str, ast.expr], kind: str, env: dict[str,
     if note:
         purpose += " " + note
     elif kind == "Scheduled" and not enable_var:
-        purpose += " Always on, not configurable."
+        # TaskSpec defaults `enabled` to False, so a missing flag means off too.
+        if enabled_value is True:
+            purpose += " Always on, not configurable."
+        else:
+            purpose += " Off, not configurable."
 
     return {
         "name": str(title),
@@ -246,9 +267,7 @@ def collect(env: dict[str, dict]) -> list[dict]:
     # A task in both registries is scheduled and also runnable by hand, so it is
     # already listed above.
     rows += [
-        build_row(n, kw, "Manual", env)
-        for n, kw in manual
-        if n not in scheduled_names
+        build_row(n, kw, "Manual", env) for n, kw in manual if n not in scheduled_names
     ]
 
     for w in WATCHERS:

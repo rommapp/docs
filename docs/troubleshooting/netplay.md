@@ -22,7 +22,7 @@ Full config: [Configuration File → `emulatorjs.netplay`](../reference/configur
 You created a room as host but other players don't see it.
 
 - **They need accounts on your instance.** Netplay doesn't federate, which means a user with no account or on a different instance can't see or join.
-- **They can't see the game.** Rooms are only listed to players with `roms.read` and access to the ROM, so a game hidden from them or above their [age limit](../administration/parental-controls.md) shows no rooms. Give the room a password to let them join anyway.
+- **They can't see the game.** Rooms are only listed to players with `roms.read` and access to the ROM, so a game hidden from them or above their [age limit](../administration/parental-controls.md) shows no rooms. A room password doesn't get around this, because they can't load the game in the player either, so unhide the game for them or raise their age limit.
 - **WebSocket connection is broken.** Open devtools → Network → WS tab. If socket.io is disconnecting, see [Authentication Troubleshooting → WebSockets](authentication.md#400-bad-request-on-the-websocket-endpoint).
 - **Other player didn't open the Netplay panel.** They need to click the 🌐 icon on the emulator toolbar to see the room list.
 

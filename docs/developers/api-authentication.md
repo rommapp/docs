@@ -122,7 +122,7 @@ environment:
     - ROMM_CORS_ALLOWED_ORIGINS=https://dashboard.example.com
 ```
 
-A listed origin gets `Access-Control-Allow-Credentials: true`, so the browser can send the session cookie with `credentials: "include"`. A `*` entry answers any origin but never sends that header, so it only suits requests that carry no cookie, such as ones authenticated with a bearer token in the `Authorization` header. Native apps, scripts and server-side code don't send an `Origin` header, so CORS doesn't apply to them.
+A listed origin gets `Access-Control-Allow-Credentials: true`, so the browser can send the session cookie with `credentials: "include"`. A `*` entry answers any origin but turns that header off for every origin, listed ones included, so it only suits requests that carry no cookie, such as ones authenticated with a bearer token in the `Authorization` header. Native apps, scripts and server-side code don't send an `Origin` header, so CORS doesn't apply to them.
 
 ## Which scopes do I need?
 

@@ -65,6 +65,7 @@ Saves and states also sync with companion apps on other devices (Grout on muOS, 
 - [Devices](devices.md): registering, renaming and removing them
 - [RetroArch Cloud Sync](../ecosystem/retroarch-cloud-sync.md): setup and what syncs
 - [Device Sync Protocol](../developers/device-sync-protocol.md): wire-level reference
+- [SSH Sync](../developers/ssh-sync.md): server owner config
 - [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher)/[Grout](../ecosystem/first-party-apps.md#grout): per-app setup
 
 Once a device is paired and sync is running, saves made on it appear server-side on its next sync. When the same slot is saved on two devices between syncs, RomM reports the conflict to the app, which decides what to keep, and most apps keep both as separate save entries.

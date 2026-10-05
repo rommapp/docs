@@ -43,8 +43,6 @@ cloud_sync_sync_system = "false"
 
 We also recommend turning on RetroArch's options to sort saves and states into per-core folders (`sort_savefiles_enable` and `sort_savestates_enable`). RomM stores each save and state with the emulator that wrote it, and the per-core folder is how that emulator survives the round trip (see [Cores and folders](#cores-and-folders)).
 
-Every request is authenticated, and RomM answers one without credentials with a `401` Basic challenge, which prompts RetroArch to send them.
-
 ## What syncs
 
 | RetroArch folder | Where it goes in RomM                                                                           |
@@ -117,7 +115,7 @@ The same path works read-only in generic WebDAV clients, such as a file manager 
 - `roms/` lists your platforms and their ROM files. Opening a file redirects to the normal [download endpoint](../using/downloads.md), so range requests and multi-file ZIPs behave the same way.
 - `saves/` and `states/` list the same files RetroArch sees.
 
-Reading anything needs the `assets.read` permission, and browsing `roms/` also needs `roms.read` and shows only the platforms and games you can see. Changes (`PUT`, `DELETE`, `MOVE`, `MKCOL`) need `assets.write`. `LOCK` and `UNLOCK` always succeed, because some clients refuse to mount a share without a lock.
+Reading anything needs the `assets.read` permission, and browsing `roms/` also needs `roms.read` and shows only the platforms and games you can see. With [kiosk mode](../administration/authentication.md#kiosk-mode) on, anonymous visitors can browse `roms/` without signing in, but `saves/` and `states/` still ask for credentials. Changes (`PUT`, `DELETE`, `MOVE`, `MKCOL`) need `assets.write`. `LOCK` and `UNLOCK` always succeed, because some clients refuse to mount a share without a lock.
 
 ## Reverse proxy
 

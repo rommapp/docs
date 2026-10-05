@@ -48,7 +48,7 @@ API clients ask for one with `?format=` on the download URL, listing every forma
 
 ```bash
 curl -H "Authorization: Bearer rmm_..." \
-     -o game.iso \
+     -OJ \
      "https://demo.romm.app/api/roms/123/content/game.chd?format=zso,iso"
 ```
 

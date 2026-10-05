@@ -32,7 +32,7 @@ A channel forwards your notifications somewhere outside RomM. Each user sets up 
 
 A background worker delivers to channels, so a slow destination doesn't hold up RomM. A failed delivery is retried after 30 seconds, 2 minutes and 10 minutes. After 10 failed deliveries in a row the channel turns itself off and you get a notification saying why, with the last error kept on the channel. Any channel can send a test notification on demand, which reports the destination's error right away and isn't retried.
 
-Text that leaves RomM is in English, whatever language the UI is set to. When [`ROMM_BASE_URL`](../reference/environment-variables.md) points at a real host (not `localhost` or a loopback address), messages carry an absolute link back to the page the notification is about.
+Text that leaves RomM is in English, whatever language the UI is set to. When [`ROMM_BASE_URL`](../reference/environment-variables.md) points at a real host (not `localhost`, a loopback address or the default `0.0.0.0`), messages carry an absolute link back to the page the notification is about.
 
 Channel settings, including webhook URLs, secrets and service tokens, are encrypted with `ROMM_AUTH_SECRET_KEY`. Changing that key leaves existing channels unreadable, so they have to be set up again.
 
@@ -80,7 +80,10 @@ import hmac
 
 def is_from_romm(secret: str, body: bytes, header: str | None) -> bool:
     expected = "sha256=" + hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
-    return header is not None and hmac.compare_digest(expected, header)
+    # Bytes, because compare_digest raises on a str with non-ASCII characters.
+    return header is not None and hmac.compare_digest(
+        expected.encode(), header.encode()
+    )
 ```
 
 ### Email

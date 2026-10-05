@@ -21,7 +21,7 @@ environment:
     - ROMM_CORS_ALLOWED_ORIGINS=https://dashboard.example.com
 ```
 
-Write it as scheme, host and port, exactly as the browser shows it in the `Origin` request header, with no trailing slash. A `*` entry won't fix an app that signs in with the session cookie, because credentials are never allowed for a wildcard (see [Reverse Proxy → Cookies and CORS](../install/reverse-proxy.md#harden-cookies-and-cors-behind-https)).
+Write it as scheme, host and port, exactly as the browser shows it in the `Origin` request header, with no trailing slash. A `*` entry won't fix an app that signs in with the session cookie, because a `*` anywhere in the list turns credentials off for every origin, listed ones included (see [Reverse Proxy → Cookies and CORS](../install/reverse-proxy.md#harden-cookies-and-cors-behind-https)).
 
 ## `Forbidden (403) CSRF verification failed`
 
@@ -42,7 +42,7 @@ Your reverse proxy is stripping the WebSocket upgrade, and live updates (scan pr
 - **Caddy**: WebSockets work out of the box with `reverse_proxy`.
 - **Cloudflare**: enable **WebSockets** under Network settings.
 
-The main UI falls back to HTTP long polling when the upgrade fails, so it mostly keeps working, but [Netplay](../using/netplay.md) connects over WebSockets only and fails outright.
+The main UI falls back to HTTP long polling when the upgrade fails, but that only works with a single gunicorn worker (`WEB_SERVER_CONCURRENCY=1`), so with the default of 4 live updates break too. [Netplay](../using/netplay.md) connects over WebSockets only and fails outright.
 
 ## `Error: Could not get twitch auth token: check client_id and client_secret`
 
@@ -164,7 +164,7 @@ This usually happens because something else in the chain (a CSRF check, a cookie
 2. Sign in as a local admin.
 3. Disable `OIDC_AUTOLOGIN`, restart, and debug the IdP config with autologin off.
 
-A callback rejected by the provider or by RomM already redirects to `/login?bypass_autologin=true`, so a loop usually means the callback succeeds but the session doesn't stick, which points at cookies or the proxy. If `bypass_autologin` doesn't work in your version, shell into the container and unset `OIDC_AUTOLOGIN` in the env, or edit your compose and restart.
+A callback the provider rejects, or whose code exchange or ID token fails validation, already redirects to `/login?bypass_autologin=true`, so a loop usually means the callback succeeds but the session doesn't stick, which points at cookies or the proxy. If `bypass_autologin` doesn't work in your version, shell into the container and unset `OIDC_AUTOLOGIN` in the env, or edit your compose and restart.
 
 ## Still stuck?
 

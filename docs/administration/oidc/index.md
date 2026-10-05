@@ -20,7 +20,7 @@ OpenID Connect (OIDC) lets users sign in through an external identity provider: 
 5. The code is exchanged for an ID token and the user's email, username and role claims are read. Claims the ID token leaves out are fetched from the provider's UserInfo endpoint.
 6. The matching local user is logged in (see [Account matching](#account-matching)), or a new one is created on the fly unless you've [turned off registration](#auto-provisioning).
 
-If the provider returns an error, or the callback fails validation, RomM logs the reason on an `OIDC callback rejected` line and sends the browser to `/login?bypass_autologin=true`, where the bypass flag keeps [autologin](#autologin) from looping straight back to the provider.
+If the provider returns an error, or the code exchange or ID token fails validation, RomM logs the reason on an `OIDC callback rejected` line and sends the browser to `/login?bypass_autologin=true`, where the bypass flag keeps [autologin](#autologin) from looping straight back to the provider. A sign-in RomM refuses after that, such as for a disabled account or with registration turned off, returns an error instead of redirecting.
 
 ## Provider guides
 

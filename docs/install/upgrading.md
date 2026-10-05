@@ -39,7 +39,7 @@ environment:
     - ROMM_CORS_ALLOWED_ORIGINS=https://dashboard.example.com,http://localhost:5173
 ```
 
-A `*` still answers any origin, but without credentials, so a browser client that signs in with the session cookie needs its origin listed explicitly (see [Reverse Proxy → Cookies and CORS](reverse-proxy.md#harden-cookies-and-cors-behind-https)).
+A `*` still answers any origin, but without credentials, so a browser client that signs in with the session cookie needs its origin listed explicitly, in a list without `*` (see [Reverse Proxy → Cookies and CORS](reverse-proxy.md#harden-cookies-and-cors-behind-https)).
 
 ### Add a reverse proxy on a public address to `FORWARDED_ALLOW_IPS`
 

@@ -167,7 +167,7 @@ Set `DEV_PROXY_TARGET` in the repo-root `.env` to another instance's origin, suc
 DEV_PROXY_TARGET=https://romm.example.com
 ```
 
-Vite then proxies `/api`, `/ws` and `/assets/romm` to that instance instead of the local backend, which you don't need to run. Leave it empty to keep the default `http://127.0.0.1:${DEV_PORT}`. The remote's TLS certificate must be valid. Sign in with a username and password, because OIDC doesn't work through the proxy: the identity provider redirects to the remote's `OIDC_REDIRECT_URI`, so the session never reaches localhost.
+Vite then proxies `/api`, `/ws`, `/netplay`, `/openapi.json`, the EasyRPG player's game files and `/assets/romm` to that instance instead of the local backend, which you don't need to run. Leave it empty to keep the default `http://127.0.0.1:${DEV_PORT}`. The remote's TLS certificate must be valid. Sign in with a username and password, because OIDC doesn't work through the proxy: the identity provider redirects to the remote's `OIDC_REDIRECT_URI`, so the session never reaches localhost.
 
 ## Setting up the linter
 

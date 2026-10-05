@@ -635,7 +635,7 @@ Let clients ask for a single-file download in another format with `?format=` on 
 
 **Default:** `{}`
 
-Map of [platform slug](../platforms/supported-platforms.md) to the format the Convert library task stores that platform's games in. Platforms left out are never converted. Each platform only accepts its own lossless library formats (see [Library formats](../administration/library-conversion.md#library-formats)), and an invalid entry is rejected at startup with a log line listing the valid options.
+Map of [platform slug](../platforms/supported-platforms.md) to the format the Convert library task stores that platform's games in. Platforms left out are never converted. Each platform only accepts its own lossless library formats (see [Library formats](../administration/library-conversion.md#library-formats)), and an invalid entry stops RomM from starting, with a log line listing the valid options.
 
 ### `converto.cache_ttl_hours`
 

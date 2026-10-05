@@ -45,7 +45,7 @@ converto:
 | `cache_ttl_hours`             | `24`    | Hours a converted download stays cached after it was last served (at least `1`)                             |
 | `scan_metadata`               | `true`  | Read title IDs with rom-converto during scans                                                               |
 
-`cache_ttl_hours` and `scan_metadata` are only set in `config.yml`, and the settings page keeps whatever value they have there. A `platform_formats` entry is rejected, with a log line listing the valid ones, when rom-converto can't store that platform or the format isn't one of its library formats.
+`cache_ttl_hours` and `scan_metadata` are only set in `config.yml`, and the settings page keeps whatever value they have there. An invalid value in this section stops RomM from starting, with an `Invalid config.yml: converto...` log line. For `platform_formats`, that's a platform rom-converto can't store or a format that isn't one of its library formats, and the log line lists the valid options.
 
 ## Library formats
 
@@ -62,7 +62,7 @@ Only lossless conversions are offered as library formats, so a converted game ho
 | Switch, Switch 2                        | `switch`, `switch-2`            | `nsz`, `xcz`, `nsp`, `xci` |
 | Xbox 360                                | `xbox360`                       | `zar`                      |
 
-Each format accepts its own source files: CHD is made from `.cue` sheets or `.iso` images, RVZ from GameCube `.iso`, `.gcm`, `.gcz` and NKit images or Wii `.iso`, `.wbfs`, `.wia`, `.gcz` and NKit images, and NSZ from `.nsp`. A file with no route to the chosen format is counted as unsupported and left alone. The `iso`, `cia`, `cci`, `nsp`, `xci` and `wbfs` targets are uncompressed, so converting to one of them can grow your library rather than shrink it.
+Each format accepts its own source files: CHD is made from `.cue` sheets or `.iso` images (and for PSP and PS2 also from `.cso`, `.zso` and `.dax`), RVZ from GameCube `.iso`, `.gcm`, `.gcz` and NKit images or Wii `.iso`, `.wbfs`, `.wia`, `.gcz` and NKit images, and NSZ from `.nsp`. A file with no route to the chosen format is counted as unsupported and left alone. The `iso`, `cia`, `cci`, `nsp`, `xci` and `wbfs` targets are uncompressed, so converting to one of them can grow your library rather than shrink it.
 
 ## The Convert library task
 

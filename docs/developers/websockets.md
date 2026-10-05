@@ -172,7 +172,7 @@ Both events answer through the socket.io acknowledgement with an error string, s
 
 ## Reverse-proxy requirements
 
-Your proxy must forward the WebSocket upgrade, which all the recipes in [Reverse Proxy](../install/reverse-proxy.md) do by default. The main UI falls back to HTTP long polling when the upgrade fails, but netplay has no fallback and stops working outright.
+Your proxy must forward the WebSocket upgrade, which all the recipes in [Reverse Proxy](../install/reverse-proxy.md) do by default. The main UI falls back to HTTP long polling when the upgrade fails, but polling only works with a single gunicorn worker (`WEB_SERVER_CONCURRENCY=1`), since with the default of 4 a request can land on a worker that never saw the handshake. Netplay has no fallback at all and stops working outright.
 
 Common breakages:
 
