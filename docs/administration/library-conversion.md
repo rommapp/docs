@@ -10,8 +10,6 @@ RomM can convert disc and cartridge images between formats with [rom-converto](h
 - **Library conversion** rewrites the files in your library to one storage format per platform, such as CHD for PlayStation or RVZ for GameCube, to save disk space.
 - **Download conversion** leaves the library alone and converts a single download to a format the client asks for, for a handheld or emulator that can't read the stored one.
 
-Both are off by default. The rom-converto CLI ships in both the slim and full images, so turning it on only takes configuration.
-
 ## Enabling rom-converto
 
 Set `ROM_CONVERTO_ENABLED=true` and restart the container. RomM probes the CLI on first use and logs the version it found, and if the probe fails it logs a warning and leaves conversion off until the next restart.
