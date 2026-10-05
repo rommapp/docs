@@ -332,15 +332,13 @@ When ScreenScraper or Hasheous matches a game by its hash, RomM reads the region
 
 ### Fan translations
 
-Filenames with a fan translation tag get the `Translation` tag, and the language the tag names is added to the game's languages, since that's the language you'll play it in. RomM reads the common spellings:
+Filenames with a fan translation tag get the `Translation` tag, and the language the tag names is added to the game's languages, since that's the language you'll play it in. RomM reads the common spellings, and tags a superseded GoodTools translation (`[T-Eng]`) the same way:
 
 | Set convention | Example                         | Language added |
 | -------------- | ------------------------------- | -------------- |
 | GoodTools      | `[T+Eng1.1_RPGe]`               | English        |
 | TOSEC          | `[tr fr]`                       | French         |
 | Plain          | `(Translation)`, `(Translated)` | none           |
-
-A superseded GoodTools translation (`[T-Eng]`) is tagged the same way.
 
 ## Boxart styles and media types
 

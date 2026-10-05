@@ -34,7 +34,7 @@ Some actions and actors need more detail:
 | An admin with the `users.read` scope | Everyone's events           |
 | Any other signed-in user (`me.read`) | Only the events they caused |
 
-Only admins get the Events tab in the UI. Other users can still read their own history through the API. Either way, events about a platform or game the caller [can't see](users-and-roles.md) are left out, so a hidden or age-restricted game doesn't leak through the log.
+Only admins get the Events tab in the UI, but other users can still read their own history through the API. Either way, events about a platform or game the caller [can't see](users-and-roles.md) are left out, so a hidden or age-restricted game doesn't leak through the log.
 
 ## Client IP addresses
 
@@ -42,7 +42,7 @@ The IP address on each event is the client address RomM's web server settled on.
 
 ## Retention
 
-Events are kept for 90 days by default. A scheduled cleanup runs daily at `30 4 * * *` and deletes older events in batches, so the table stays writable while it runs.
+Events are kept for 90 days by default, and a scheduled cleanup deletes older ones daily at `30 4 * * *`, in batches so the table stays writable while it runs.
 
 ```yaml
 environment:

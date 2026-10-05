@@ -27,7 +27,7 @@ A notification caused by another user, such as a role change or an ended stream,
 
 A channel forwards your notifications somewhere outside RomM. Each user sets up their own, up to 20, and each channel has two filters:
 
-- **Minimum level**: `info` forwards everything, `warning` forwards warnings and errors, and `error` forwards errors only. Success notifications count as `info`.
+- **Minimum level**: `info` forwards everything, `warning` forwards warnings and errors, and `error` forwards errors only, with success notifications counting as `info`.
 - **Topics**: any of `scans`, `tasks`, `streaming`, `devices`, `account` and `custom`, or all of them (the default).
 
 A background worker delivers to channels, so a slow destination doesn't hold up RomM. A failed delivery is retried after 30 seconds, 2 minutes and 10 minutes. After 10 failed deliveries in a row the channel turns itself off and you get a notification saying why, with the last error kept on the channel. A test notification, which any channel can send on demand, reports the destination's error right away and isn't retried.
@@ -67,7 +67,7 @@ A webhook channel `POST`s RomM's own JSON to a URL you give it:
 
 The request has `Content-Type: application/json` and `User-Agent: RomM`, and must answer with a 2xx within 15 seconds. Redirects aren't followed, so a `3xx` counts as a failure.
 
-Only an admin's webhook may point at a private or local address (`192.168.x.x`, `10.x.x.x`, a container name, and so on). Other users' webhooks are limited to public hosts.
+Only an admin's webhook may point at a private or local address (`192.168.x.x`, `10.x.x.x`, a container name, and so on), so other users' webhooks are limited to public hosts.
 
 #### Verifying the signature
 
@@ -87,7 +87,7 @@ def is_from_romm(secret: str, body: bytes, header: str | None) -> bool:
 
 Each notification arrives as a plain-text message whose subject starts with `[RomM]`. This channel is only offered once the server has [email set up](../administration/email.md).
 
-Before a new address gets anything, RomM emails it a 6-digit confirmation code, which you enter to confirm the channel. The code expires after 30 minutes and allows 5 tries. A new code can be requested after a minute, and changing a channel's address asks for a new confirmation.
+Before a new address gets anything, RomM emails it a 6-digit confirmation code, which you enter to confirm the channel. The code expires after 30 minutes and allows 5 tries, and a new one can be requested after a minute. Changing a channel's address asks for a new confirmation.
 
 ### Apprise
 
@@ -125,9 +125,7 @@ curl -X POST https://romm.example.com/api/notifications \
 | `data`       |          | Any JSON object up to 4096 characters, forwarded as-is in webhook payloads                                                                          |
 | `recipients` |          | `null` (yourself, the default), a list of user ids, `"admins"` or `"all"`. Anything but yourself needs an admin with the `users.write` scope.       |
 
-The response is the list of notifications created, one per recipient. Disabled users are skipped when sending to `admins` or `all`, and naming a missing or disabled user by id returns `404`.
-
-They belong to the `custom` topic, so channels filter them by that topic and by their level.
+The response is the list of notifications created, one per recipient, each in the `custom` topic that channels filter by. Disabled users are skipped when sending to `admins` or `all`, and naming a missing or disabled user by id returns `404`.
 
 ## API
 

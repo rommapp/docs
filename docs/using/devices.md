@@ -11,29 +11,29 @@ Your devices are listed at `/devices`, where you can rename a device, turn sync 
 
 ## Browsers are devices too
 
-All five in-browser players ([EmulatorJS](in-browser-play/emulatorjs.md), [EasyRPG](in-browser-play/easyrpg.md), [`js-dos`](in-browser-play/js-dos.md), [PICO-8](in-browser-play/pico-8.md) and [Ruffle](in-browser-play/ruffle.md)) sync saves through device sync. Each browser profile registers itself as a device the first time you play, named after the browser and OS, such as "Firefox on macOS". A second browser, or a second profile in the same browser, is a separate device.
+All five in-browser players ([EmulatorJS](in-browser-play/emulatorjs.md), [EasyRPG](in-browser-play/easyrpg.md), [`js-dos`](in-browser-play/js-dos.md), [PICO-8](in-browser-play/pico-8.md) and [Ruffle](in-browser-play/ruffle.md)) sync saves through device sync. Each browser profile registers itself as a device the first time you play, named after the browser and OS, such as "Firefox on macOS", so a second browser, or a second profile in the same browser, is a separate device.
 
-When a game launches, the browser negotiates its saves with the server, the same way a handheld does at the start of a sync (see [Saves & States](saves-and-states.md#syncing-saves-between-browsers-and-devices)). A save made in one browser is waiting in another. When both changed the same slot, the browser plays the server's copy and archives its own, so neither is overwritten.
+When a game launches, the browser negotiates its saves with the server, the same way a handheld does at the start of a sync (see [Saves & States](saves-and-states.md#syncing-saves-between-browsers-and-devices)). A save made in one browser is waiting in another, and when both changed the same slot, the browser plays the server's copy and archives its own so neither is overwritten.
 
-Saves a browser holds stay in its storage until they reach the server. Its storage can be cleared or evicted, so a save it no longer holds is treated as lost rather than deleted, and the server offers it back on the next launch.
+A browser keeps its saves in local storage until they reach the server. Because that storage can be cleared or evicted, a save the browser no longer holds is treated as lost rather than deleted, and the server offers it back on the next launch.
 
 An account without the `devices.write` permission can't register devices, so its browsers keep their saves locally and skip device sync.
 
 ## Managing devices
 
 - **Renaming** changes only the name RomM shows, for example to tell two handhelds of the same model apart.
-- **Turning sync off** makes RomM refuse that device's sync requests, so nothing moves in either direction until you turn it back on. Saves in a browser with sync turned off stay in that browser.
-- **Removing** a device deletes it and its sync history, and drops any installs queued for it. The saves it uploaded stay on the server. A browser registers itself again the next time you play in it, and an app re-registers on its next sync, so it's mostly for cleaning up a device you no longer use.
+- **Turning sync off** makes RomM refuse that device's sync requests, so nothing moves in either direction until you turn it back on, and a browser with sync off keeps its saves locally.
+- **Removing** a device deletes it, its sync history and any installs queued for it, but the saves it uploaded stay on the server. A browser registers itself again the next time you play in it, and an app re-registers on its next sync, so removing is mostly for cleaning up a device you no longer use.
 
 ## Install on device
 
-You can send a game to one of your devices. RomM adds it to that device's download queue, and the device downloads it the next time it's online.
+You can send a game to one of your devices, and RomM adds it to that device's download queue for the device to fetch the next time it's online.
 
-Only devices whose app reports that it accepts installs are offered, which leaves out browsers and RetroArch. RomM also shows whether each device is online right now. A device counts as online while it holds an open connection to RomM's `/devices` socket, which a supporting app keeps open while it runs.
+Only devices whose app reports that it accepts installs are offered, which leaves out browsers and RetroArch. RomM also shows whether each device is online, meaning it holds an open connection to RomM's `/devices` socket, which a supporting app keeps open while it runs.
 
 A request waits in the device's queue until the device takes it and reports back. You get a [notification](notifications.md) when it finishes or fails, and you can cancel a request any time before it finishes. A request nothing picks up expires after `DEVICE_INSTALL_REQUEST_TTL_DAYS` days without a change (2 by default).
 
-The device receives the game's own files, along with any update and DLC files in its folder. Manuals and other extras aren't sent. A game with none of those files on disk can't be installed.
+The device receives the game's own files, along with any update and DLC files in its folder, but not manuals or other extras. A game with none of those files on disk can't be installed.
 
 ### Server settings
 

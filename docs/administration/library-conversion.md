@@ -62,16 +62,16 @@ Only lossless conversions are offered as library formats, so a converted game ho
 | Switch, Switch 2                        | `switch`, `switch-2`            | `nsz`, `xcz`, `nsp`, `xci` |
 | Xbox 360                                | `xbox360`                       | `zar`                      |
 
-Each format accepts its own set of source files. For example, CHD is made from `.cue` sheets or `.iso` images, RVZ from GameCube `.iso`, `.gcm`, `.gcz` and NKit images or Wii `.iso`, `.wbfs`, `.wia`, `.gcz` and NKit images, and NSZ from `.nsp`. A file with no route to the chosen format is counted as unsupported and left alone. The `iso`, `cia`, `cci`, `nsp`, `xci` and `wbfs` targets are uncompressed, so converting to one of them can grow your library rather than shrink it.
+Each format accepts its own source files: CHD is made from `.cue` sheets or `.iso` images, RVZ from GameCube `.iso`, `.gcm`, `.gcz` and NKit images or Wii `.iso`, `.wbfs`, `.wia`, `.gcz` and NKit images, and NSZ from `.nsp`. A file with no route to the chosen format is counted as unsupported and left alone. The `iso`, `cia`, `cci`, `nsp`, `xci` and `wbfs` targets are uncompressed, so converting to one of them can grow your library rather than shrink it.
 
 ## The Convert library task
 
 **Convert library** is a manual [task](scheduled-tasks.md) that converts every game on a platform with a library format, in place:
 
-- Only matched games are converted. A converted file no longer hash-matches a DAT, so games that aren't identified yet are skipped. Match them first.
-- Games keep their identity. The database entry is updated to point at the new file, so saves, states, collections, notes and play history carry over. In a multi-file game, the `.m3u` playlists beside the files are rewritten to the new names.
+- Only matched games are converted, and unidentified ones are skipped because a converted file no longer hash-matches a DAT, so match them first.
+- Games keep their identity: the database entry is updated to point at the new file, so saves, states, collections, notes and play history carry over. In a multi-file game, the `.m3u` playlists beside the files are rewritten to the new names.
 - Originals are deleted once their conversion succeeds and the game points at the new file. A conversion that fails, or whose output name is already taken, keeps the original.
-- A `.cue` sheet converts with its tracks. Its `.bin` tracks are deleted along with it, and a cue that shares tracks with another cue, or references a file outside its folder, is refused.
+- A `.cue` sheet converts with its `.bin` tracks, which are deleted along with it. A cue that shares tracks with another cue, or references a file outside its folder, is refused.
 
 Because it deletes files, the task is flagged as **destructive**, and the UI asks you to type a confirmation before it runs. It's also single-instance, so asking to run it again while it's queued or running returns `409 Conflict`. A full run can take hours on a large library, bounded per file by `ROM_CONVERTO_TIMEOUT`. When it finishes, the task reports how many files it converted, skipped as already converted, unmatched or unsupported, and failed, and how many bytes it saved.
 

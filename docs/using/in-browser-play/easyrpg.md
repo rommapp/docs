@@ -36,7 +36,7 @@ The player keeps a game's saves in the browser while it runs, and RomM syncs the
 
 ## Disabling it
 
-Set `DISABLE_EASYRPG=true` to turn EasyRPG off for everyone. The games stay in your library and can still be downloaded, but none of them offer browser play.
+Set `DISABLE_EASYRPG=true` to turn EasyRPG off for everyone, which keeps the games in your library and downloadable but without browser play.
 
 The slim image doesn't bundle the player, so these games need the full image (see [Image Variants](../../install/image-variants.md)).
 

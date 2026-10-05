@@ -10,9 +10,7 @@ Parental controls hide games above an age from the members of a [permission grou
 Two settings make up a rule:
 
 - **Age limit**: members only see games rated for this age or younger, from `0` to `21`, with no limit as the default.
-- **Hide unrated games**: also hides every game that no known rating covers. Without it, an unrated game stays visible whatever the limit, because RomM has nothing to judge it by.
-
-The switch works without an age limit too, and then hides only unrated games.
+- **Hide unrated games**: also hides every game that no known rating covers, even with no age limit set. Without it, an unrated game stays visible whatever the limit, because RomM has nothing to judge it by.
 
 ## Who a rule applies to
 
@@ -36,9 +34,9 @@ RomM stores one minimum age per game, the **strictest** age any of its ratings s
 | Steam                         | The required age, when the store sets one                           |
 | Manual metadata (Edit dialog) | The game's own age rating list, which **replaces** all of the above |
 
-As on the game page, the manual list overrides the providers entirely, so you can loosen a rating as well as tighten it. Manual entries take the form `BOARD:RATING`, such as `ESRB:T` or `PEGI:12`. A game with an empty manual list and no provider ratings counts as unrated.
+As on the game page, the manual list overrides the providers entirely, so you can loosen a rating as well as tighten it. Manual entries take the form `BOARD:RATING`, such as `ESRB:T` or `PEGI:12`.
 
-RomM ignores ratings it can't read (an unknown board, or a value it doesn't recognise), so a game whose only rating is unreadable counts as unrated.
+A game counts as unrated when it has no ratings at all, or only ones RomM can't read (an unknown board, or a value it doesn't recognise).
 
 ### Rating boards
 

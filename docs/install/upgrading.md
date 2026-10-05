@@ -30,7 +30,7 @@ Several migrations rewrite the `roms` table and backfill it in batches, which ca
 
 ### Cross-origin requests are denied by default
 
-An unset or empty `ROMM_CORS_ALLOWED_ORIGINS` used to allow every origin, and now allows none. The web UI and the API share an origin, so most installs need no change. You only need to act if a browser-based app on another origin calls your RomM, such as a custom dashboard on a different domain. Native companion apps like Argosy, Grout and Playnite don't use CORS and are unaffected.
+An unset or empty `ROMM_CORS_ALLOWED_ORIGINS` used to allow every origin, and now allows none. The web UI and the API share an origin, so most installs need no change, and you only need to act if a browser-based app on another origin calls your RomM, such as a custom dashboard on a different domain. Native companion apps like Argosy, Grout and Playnite don't use CORS and are unaffected.
 
 List each origin that should be allowed, comma-separated, with no trailing slash:
 
@@ -39,7 +39,7 @@ environment:
     - ROMM_CORS_ALLOWED_ORIGINS=https://dashboard.example.com,http://localhost:5173
 ```
 
-A `*` still answers any origin, but without credentials, so a browser won't send the session cookie with those requests. A client that signs in with the session cookie needs its origin listed explicitly (see [Reverse Proxy → Cookies and CORS](reverse-proxy.md#harden-cookies-and-cors-behind-https)).
+A `*` still answers any origin, but without credentials, so a browser client that signs in with the session cookie needs its origin listed explicitly (see [Reverse Proxy → Cookies and CORS](reverse-proxy.md#harden-cookies-and-cors-behind-https)).
 
 ### Add a reverse proxy on a public address to `FORWARDED_ALLOW_IPS`
 
@@ -49,7 +49,7 @@ RomM now trusts `X-Forwarded-For` only from loopback and private ranges. The new
 127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,fc00::/7
 ```
 
-A reverse proxy on the same host, on a Docker network or on your LAN already falls inside those ranges and needs no change. A proxy that reaches RomM from a public address, such as a VPS that forwards to your home server, has to be added. Otherwise every request is logged, audited and rate limited as coming from the proxy's address. Append it to the default rather than replacing the list:
+A reverse proxy on the same host, on a Docker network or on your LAN already falls inside those ranges and needs no change. A proxy that reaches RomM from a public address, such as a VPS that forwards to your home server, has to be added, or every request is logged, audited and rate limited as coming from the proxy's address. Append it to the default rather than replacing the list:
 
 ```yaml
 environment:
@@ -64,7 +64,7 @@ The "Viewer (legacy)" and "Editor (legacy)" groups become "Viewer" and "Editor".
 
 ### New settings worth reviewing
 
-Several new features are configured through environment variables, all with working defaults. The ones you may want to set right away:
+Several new features are configured through environment variables with working defaults, and these are the ones you may want to set right away:
 
 - `SMTP_*` to send notification and password reset emails (see [Email](../administration/email.md))
 - `AUDIT_LOG_RETENTION_DAYS` to keep audit events for longer or shorter than 90 days (see [Audit Log](../administration/audit-log.md))
@@ -92,4 +92,4 @@ Most changes are additions. These can break an existing client:
 | CORS                                        | See [above](#cross-origin-requests-are-denied-by-default). A browser client on another origin must be allowlisted.                                                                                                                                                           |
 | Sync `delete` operation                     | `SyncOperationSchema.action` can now be `delete`, meaning the slot was emptied on the server. Handle it, or at least ignore it, rather than failing on an unknown action (see [Device Sync Protocol](../developers/device-sync-protocol.md)).                                |
 
-A malformed Basic header or an invalid or expired JWT bearer no longer fails with a `500`. The request proceeds unauthenticated and gets the route's `401` or `403` (see [API Authentication → Errors](../developers/api-authentication.md#errors)).
+A malformed Basic header or an invalid or expired JWT bearer now leaves the request unauthenticated, so it gets the route's `401` or `403` instead of a `500` (see [API Authentication → Errors](../developers/api-authentication.md#errors)).

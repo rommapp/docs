@@ -249,7 +249,7 @@ Inside the container, a bundled nginx sits in front of gunicorn and appends the 
 127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,fc00::/7
 ```
 
-That covers a reverse proxy on the same host, on a Docker network, on your LAN or on a Tailscale network (`100.64.0.0/10`), so most setups need no change. A Cloudflare Tunnel is covered too, because `cloudflared` connects from inside your network.
+That covers a reverse proxy on the same host, on a Docker network, on your LAN or on a Tailscale network (`100.64.0.0/10`), and a Cloudflare Tunnel because `cloudflared` connects from inside your network, so most setups need no change.
 
 A proxy that reaches RomM from a public address, such as a VPS that forwards to your home server or a CDN that connects straight to your public IP, isn't trusted. RomM then sees every visitor as the proxy, which affects more than the logs:
 
@@ -302,4 +302,4 @@ Native apps and scripts don't send an `Origin` header, so CORS doesn't affect th
 
 ## RetroArch Cloud Sync (WebDAV)
 
-[RetroArch Cloud Sync](../ecosystem/retroarch-cloud-sync.md) talks WebDAV to `/api/sync/retroarch/`. Besides `GET`, `HEAD`, `PUT` and `DELETE`, it sends `OPTIONS`, `PROPFIND`, `MOVE`, `MKCOL`, `LOCK` and `UNLOCK`. Caddy, nginx, Traefik and NPM pass any method through by default, but a proxy, WAF or security rule that filters HTTP methods has to allow these on that path. The client signs in with HTTP Basic, so the proxy must also forward the `Authorization` header and RomM's `401` challenge untouched.
+[RetroArch Cloud Sync](../ecosystem/retroarch-cloud-sync.md) talks WebDAV to `/api/sync/retroarch/`, sending `OPTIONS`, `PROPFIND`, `MOVE`, `MKCOL`, `LOCK` and `UNLOCK` besides `GET`, `HEAD`, `PUT` and `DELETE`. Caddy, nginx, Traefik and NPM pass any method through by default, but a proxy, WAF or security rule that filters HTTP methods has to allow these on that path. The client signs in with HTTP Basic, so the proxy must also forward the `Authorization` header and RomM's `401` challenge untouched.

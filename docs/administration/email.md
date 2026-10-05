@@ -26,7 +26,7 @@ RomM can send email through an SMTP server you provide, once both `SMTP_HOST` an
 
 - `starttls` connects in plain text and upgrades with STARTTLS before logging in, which is what port `587` expects.
 - `tls` uses implicit TLS from the first byte, usually on port `465`.
-- `none` sends everything, including the SMTP password, unencrypted. Keep it for a relay on the same host or a trusted network.
+- `none` sends everything, including the SMTP password, unencrypted, so keep it for a relay on the same host or a trusted network.
 
 Any other value leaves email off rather than falling back to plain text. Certificates are checked against the system CAs.
 

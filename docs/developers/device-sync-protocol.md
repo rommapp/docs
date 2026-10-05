@@ -91,7 +91,7 @@ Response:
 
 `device_id` is a string (a UUID). Cache it for subsequent calls.
 
-`PUT /api/devices/{device_id}` updates a device with the same fields, plus `sync_enabled`. A device with `sync_enabled: false` gets `400` from negotiate until it's turned back on, which users can do from their [devices list](../using/devices.md). `DELETE /api/devices/{device_id}` removes a device, closes the sockets its tokens opened and drops its queued installs. The saves it uploaded stay.
+`PUT /api/devices/{device_id}` updates a device with the same fields, plus `sync_enabled`. A device with `sync_enabled: false` gets `400` from negotiate until it's turned back on, which users can do from their [devices list](../using/devices.md). `DELETE /api/devices/{device_id}` removes a device, closes the sockets its tokens opened and drops its queued installs, but keeps the saves it uploaded.
 
 ## Sync negotiation
 
@@ -324,7 +324,7 @@ The server sends two events, each with a payload of `{ "id": "<request id>", "ro
 | `install:queued`    | A request is waiting. Claim it with `POST .../installs/claim`         |
 | `install:cancelled` | The user cancelled a request. Stop downloading it if it's in progress |
 
-The open socket also marks the device as online. The server drops the connection when the token expires or is revoked, or when the device is deleted. Events sent while the device is offline aren't replayed, so claim on every connect to pick up whatever queued in the meantime.
+The open socket also marks the device as online until the server drops it, which happens when the token expires or is revoked, or when the device is deleted. Events sent while the device is offline aren't replayed, so claim on every connect to pick up whatever queued in the meantime.
 
 ## Rate limits and polling
 

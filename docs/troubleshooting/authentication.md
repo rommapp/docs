@@ -7,7 +7,7 @@ description: Fix login, session, CSRF, and OIDC issues
 
 ## `401 Unauthorized` or `403 Forbidden` on API calls
 
-- **`401 Unauthorized`**: the request carries no credential RomM can use. You're signed out, your session expired or was revoked, or the `Authorization` header is malformed, has the wrong password, or holds an expired token. Sign in again, or refresh or replace the token.
+- **`401 Unauthorized`**: the request carries no credential RomM can use, because you're signed out, your session expired or was revoked, or the `Authorization` header is malformed, has the wrong password, or holds an expired token. Sign in again, or refresh or replace the token.
 - **`403 Forbidden`**: you're signed in, but your account or token lacks the scope the endpoint needs. Check the user's permission group and the token's scopes (see [API Authentication → Errors](../developers/api-authentication.md#errors)).
 
 If a browser session seems broken in a way signing in again doesn't fix (for example a session signed with an old `ROMM_AUTH_SECRET_KEY`), [clear cookies](https://support.google.com/accounts/answer/32050) for the host and sign in again.
@@ -136,7 +136,7 @@ UPDATE users SET oidc_issuer = NULL, oidc_sub = NULL WHERE username = 'alice';
 
 ### Signing in at the provider lands back on the RomM login page
 
-You end up on `/login?bypass_autologin=true` instead of signed in. RomM rejected the provider's callback, for example because the provider returned an error, the authorization code was already used or expired, or the ID token failed validation. The `bypass_autologin` flag keeps `OIDC_AUTOLOGIN` from sending you straight back into the same failure.
+You end up on `/login?bypass_autologin=true` instead of signed in when RomM rejects the provider's callback, for example because the provider returned an error, the authorization code was already used or expired, or the ID token failed validation. The `bypass_autologin` flag keeps `OIDC_AUTOLOGIN` from sending you straight back into the same failure.
 
 The container log names the reason on an `OIDC callback rejected` line:
 

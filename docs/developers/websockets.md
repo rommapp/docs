@@ -14,13 +14,13 @@ RomM uses socket.io for real-time communication over two endpoints:
 
 ## Authentication
 
-The default namespace on `/ws/socket.io` and the netplay endpoint authenticate with the browser's session cookie. The handshake reads the `romm_session` cookie and binds the socket to that login session. A socket without a valid session still connects, but it joins no per-user room, so it never receives events addressed to a user, and the events that act on a user's behalf (`scan`, `activity:*`) are rejected or ignored.
+The default namespace on `/ws/socket.io` and the netplay endpoint authenticate with the browser's session cookie, and the handshake binds the socket to the login session in `romm_session`. A socket without a valid session still connects, but it joins no per-user room, so it never receives events addressed to a user, and the events that act on a user's behalf (`scan`, `activity:*`) are rejected or ignored.
 
-Signing out, or revoking a session, disconnects every socket that session opened, on both endpoints and on every worker. The client has to sign in again before it reconnects.
+Signing out, or revoking a session, disconnects every socket that session opened, on both endpoints and on every worker, and the client has to sign in again before it reconnects.
 
 ### The `/devices` namespace
 
-Companion apps that hold a [device-bound Client API Token](client-api-tokens.md) connect to this namespace instead. The token goes in the handshake's `auth` payload, or in an `Authorization: Bearer` header:
+Companion apps that hold a [device-bound Client API Token](client-api-tokens.md) connect to this namespace instead, passing the token in the handshake's `auth` payload or in an `Authorization: Bearer` header:
 
 ```javascript
 const socket = io("https://demo.romm.app/devices", {
@@ -30,7 +30,7 @@ const socket = io("https://demo.romm.app/devices", {
 });
 ```
 
-The handshake is refused with `unauthorized` unless the token is live, bound to a device, and holds `devices.read` (as does its owner). It's refused with `disabled` when `DEVICE_INSTALL_ENABLED=false`. While connected, the device counts as online for `GET /api/devices/online`. The socket is closed when the token expires or is revoked, and when the device is deleted.
+The handshake is refused with `unauthorized` unless the token is live, bound to a device, and holds `devices.read` (as does its owner), and with `disabled` when `DEVICE_INSTALL_ENABLED=false`. While connected, the device counts as online for `GET /api/devices/online`, until the socket closes because the token expired or was revoked, or the device was deleted.
 
 ## Events
 
@@ -168,11 +168,11 @@ The room password travels as a top-level `password` field beside `extra`, which 
 }
 ```
 
-Both events answer through the socket.io acknowledgement with an error string, such as `Not authorized to open a room for this game` or `Incorrect password`, when they fail. Over REST, `GET /api/netplay/list?game_id=<rom id>` lists a game's open rooms. It requires `roms.read` and returns `404` for a ROM the caller can't see.
+Both events answer through the socket.io acknowledgement with an error string, such as `Not authorized to open a room for this game` or `Incorrect password`, when they fail. Over REST, `GET /api/netplay/list?game_id=<rom id>` lists a game's open rooms, requiring `roms.read` and returning `404` for a ROM the caller can't see.
 
 ## Reverse-proxy requirements
 
-Your proxy must forward the WebSocket upgrade. The recipes in [Reverse Proxy](../install/reverse-proxy.md) all keep WebSockets on by default. The main UI falls back to HTTP long polling when the upgrade fails, but netplay has no fallback and stops working outright.
+Your proxy must forward the WebSocket upgrade, which all the recipes in [Reverse Proxy](../install/reverse-proxy.md) do by default. The main UI falls back to HTTP long polling when the upgrade fails, but netplay has no fallback and stops working outright.
 
 Common breakages:
 

@@ -20,7 +20,7 @@ For code generation, see [Consuming OpenAPI](openapi.md).
 
 ## Starting a scan
 
-Clients that authenticate with a token rather than a session cookie can queue a library scan over REST. `POST /api/tasks/scan` needs the `tasks.run` scope and takes the same `ScanPayload` body as the `scan` socket event (see [WebSockets → Scans](websockets.md#scans)). Leave the body out for a quick scan of the whole library:
+Clients that authenticate with a token rather than a session cookie can queue a library scan with `POST /api/tasks/scan`, which needs the `tasks.run` scope and takes the same `ScanPayload` body as the `scan` socket event (see [WebSockets → Scans](websockets.md#scans)). Leave the body out for a quick scan of the whole library:
 
 ```bash
 curl -X POST https://demo.romm.app/api/tasks/scan \

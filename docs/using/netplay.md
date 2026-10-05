@@ -16,7 +16,7 @@ Netplay lets you play [in-browser](in-browser-play/emulatorjs.md) games with oth
 - EmulatorJS Netplay enabled in `config.yml` (server owner-level)
 - ICE servers configured (STUN + TURN). Without them, Netplay only works when all players are on the same LAN.
 - All players need access to your instance, as Netplay doesn't proxy the ROM to people without accounts.
-- A reverse proxy that forwards WebSocket upgrades. Netplay connects over WebSockets only, with no long-polling fallback (see [Reverse Proxy](../install/reverse-proxy.md)).
+- A reverse proxy that forwards WebSocket upgrades, since Netplay connects over WebSockets only, with no long-polling fallback (see [Reverse Proxy](../install/reverse-proxy.md)).
 
 See [Configuration File → `emulatorjs.netplay`](../reference/configuration-file.md#emulatorjsnetplay) for the server owner setup.
 

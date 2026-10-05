@@ -612,7 +612,7 @@ See [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-
 
 ## `converto`
 
-Configure [library and download conversion](../administration/library-conversion.md) with rom-converto. Nothing here takes effect unless `ROM_CONVERTO_ENABLED=true` is set. Admins can also edit `download_conversion_enabled`, `platform_formats` and `cache_max_size_gb` from the Conversion settings page, which writes them back to this file.
+Configure [library and download conversion](../administration/library-conversion.md) with rom-converto, which only takes effect with `ROM_CONVERTO_ENABLED=true`. Admins can also edit `download_conversion_enabled`, `platform_formats` and `cache_max_size_gb` from the Conversion settings page, which writes them back to this file.
 
 ```yaml
 converto:
@@ -647,7 +647,7 @@ Hours a converted download stays cached after it was last served.
 
 **Default:** `20` (`0` for no limit)
 
-Size cap of the converted download cache. Once a new conversion would exceed it, the least recently served copies are evicted first.
+Size cap of the converted download cache, past which the least recently served copies are evicted first.
 
 ### `converto.scan_metadata`
 

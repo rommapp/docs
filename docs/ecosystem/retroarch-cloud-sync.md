@@ -12,7 +12,7 @@ Each save and state is attached to the ROM it belongs to, next to the ones from 
 ## Requirements
 
 - A RetroArch build with Cloud Sync and the WebDAV driver (desktop, Android and most handheld builds have it)
-- A RomM account with a password. RetroArch signs in with HTTP Basic auth, so an account that only signs in through [OIDC](../administration/oidc/index.md) has no password for RetroArch to send.
+- A RomM account with a password, since RetroArch signs in with HTTP Basic auth and an account that only signs in through [OIDC](../administration/oidc/index.md) has none to send
 - Your ROM files named the same on both sides, because that's how RomM tells which game a save belongs to (see [How files match games](#how-files-match-games))
 
 ## Configure RetroArch
@@ -43,7 +43,7 @@ cloud_sync_sync_system = "false"
 
 We also recommend turning on RetroArch's options to sort saves and states into per-core folders (`sort_savefiles_enable` and `sort_savestates_enable`). RomM stores each save and state with the emulator that wrote it, and the per-core folder is how that emulator survives the round trip (see [Cores and folders](#cores-and-folders)).
 
-Every request is authenticated. RomM answers an unauthenticated request with a `401` Basic challenge, which is what prompts RetroArch to send its credentials.
+Every request is authenticated, and RomM answers one without credentials with a `401` Basic challenge, which prompts RetroArch to send them.
 
 ## What syncs
 
@@ -55,9 +55,9 @@ Every request is authenticated. RomM answers an unauthenticated request with a `
 | `thumbnails/`    | Stored as-is, per user                                                                          |
 | `system/`        | Stored as-is, per user                                                                          |
 
-The `config`, `thumbnails` and `system` categories belong to no game, so RomM keeps them as opaque files under `/romm/retroarch_sync/users/<user>/` and serves them back unchanged. Two RetroArch installs signed in as the same user share them.
+The `config`, `thumbnails` and `system` categories belong to no game, so RomM keeps them as opaque files under `/romm/retroarch_sync/users/<user>/` and serves them back unchanged to every RetroArch install signed in as the same user.
 
-On every sync, RomM builds the `manifest.server` file that RetroArch compares against from its own database. It accepts RetroArch's uploaded copy and discards it.
+On every sync, RomM builds the `manifest.server` file that RetroArch compares against from its own database, and discards the copy RetroArch uploads.
 
 The first time a user syncs, RomM registers a device named **RetroArch** for them, which shows up with their other [devices](../using/devices.md). RetroArch's requests don't identify the install they come from, so every RetroArch a user syncs from shares that one device.
 
@@ -69,7 +69,7 @@ RetroArch sees the saves stored without a slot, which covers everything it uploa
 
 RetroArch only loads states from its numbered slots (`<game>.state`, `<game>.state1` and so on, plus `<game>.state.auto`). RomM groups every state for a game by core and by the slot its file name ends in, and offers the newest one in each slot under the name RetroArch would give it.
 
-A state made in RomM's web player has a label and a timestamp in its name instead of a slot number. It still ends in `.state`, so RomM offers it as that game's slot 0 when it's the newest state there, and RetroArch loads it like any other.
+A state made in RomM's web player has a label and a timestamp in its name instead of a slot number, but it still ends in `.state`, so RomM offers it as that game's slot 0 when it's the newest state there, and RetroArch loads it like any other.
 
 ### Deletes
 
@@ -117,7 +117,7 @@ The same path works read-only in generic WebDAV clients, such as a file manager 
 - `roms/` lists your platforms and their ROM files. Opening a file redirects to the normal [download endpoint](../using/downloads.md), so range requests and multi-file ZIPs behave the same way.
 - `saves/` and `states/` list the same files RetroArch sees.
 
-Reading anything needs the `assets.read` permission. Browsing `roms/` also needs `roms.read` and shows only the platforms and games you can see. Changes (`PUT`, `DELETE`, `MOVE`, `MKCOL`) need `assets.write`. RomM answers `LOCK` and `UNLOCK` with a lock that always succeeds, because some clients refuse to mount a share without one.
+Reading anything needs the `assets.read` permission, and browsing `roms/` also needs `roms.read` and shows only the platforms and games you can see. Changes (`PUT`, `DELETE`, `MOVE`, `MKCOL`) need `assets.write`. RomM answers `LOCK` and `UNLOCK` with a lock that always succeeds, because some clients refuse to mount a share without one.
 
 ## Reverse proxy
 

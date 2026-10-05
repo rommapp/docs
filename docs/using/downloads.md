@@ -56,7 +56,7 @@ The stored file is served as-is when its format is in the list. Otherwise RomM c
 
 ## Downloads and player loads
 
-The download endpoint takes a `purpose` query parameter, `download` (the default) or `play`. In-browser players send `purpose=play` when they fetch a game to run it, so the [audit log](../administration/audit-log.md) records a player load rather than a download. The parameter doesn't change what's served.
+The download endpoint takes a `purpose` query parameter, `download` (the default) or `play`. In-browser players send `purpose=play` when they fetch a game to run it, so the [audit log](../administration/audit-log.md) records a player load rather than a download, though the file served is the same.
 
 ## Nintendo 3DS direct install
 
