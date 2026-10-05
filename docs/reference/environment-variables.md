@@ -55,10 +55,6 @@ For metadata providers (IGDB, ScreenScraper, etc.) see [Metadata Providers](../g
 
 ## Full reference
 
-<!-- prettier-ignore -->
-!!! warning "Defaults that changed in 5.4"
-    An empty `ROMM_CORS_ALLOWED_ORIGINS` now denies cross-origin requests instead of allowing them, and `FORWARDED_ALLOW_IPS` trusts only loopback and private ranges where earlier releases trusted every proxy. [Upgrading](../install/upgrading.md#53-to-54) covers when either needs a value.
-
 --8<-- "env-vars.md"
 
 ## See also

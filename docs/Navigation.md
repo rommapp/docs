@@ -27,7 +27,6 @@ search:
     - [ZimaOS](install/zimaos.md)
     - [NixOS](install/nixos.md)
     - [Backup & Restore](install/backup-and-restore.md)
-    - [Upgrading](install/upgrading.md)
 - Administration
     - [Overview](administration/index.md)
     - [Users & Roles](administration/users-and-roles.md)

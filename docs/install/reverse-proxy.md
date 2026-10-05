@@ -298,7 +298,7 @@ environment:
 - `ROMM_SESSION_SECURE_COOKIE` marks the session and CSRF cookies `Secure` so browsers only send them over HTTPS. Leave it `false` if you still reach the instance over plain HTTP, or logins will silently fail.
 - `ROMM_CORS_ALLOWED_ORIGINS` is a comma-separated list of origins allowed to call the API from a browser. It's empty by default, which denies every other origin, and most deployments can leave it that way because the UI and the API share an origin. Add an entry only for another browser app that calls this instance, written as scheme, host and port with no trailing slash. `*` answers any origin, but then no response carries `Access-Control-Allow-Credentials`, even for origins also listed by name, so browsers won't send the session cookie and only endpoints that don't need a login work.
 
-Native apps and scripts don't send an `Origin` header, so CORS doesn't affect them. If you're upgrading from 5.3, where an empty list allowed every origin, read [Upgrading](upgrading.md#cross-origin-requests-are-denied-by-default) first.
+Native apps and scripts don't send an `Origin` header, so CORS doesn't affect them. Before 5.4, an empty list allowed every origin.
 
 ## RetroArch Cloud Sync (WebDAV)
 
