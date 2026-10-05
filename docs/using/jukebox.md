@@ -26,7 +26,11 @@ Scanning reads each file's tags (title, artist, album, genre, year, track number
 
 Console sound files aren't read for tags yet. They show their filename and have no duration in the library, which also leaves them out of Free Radio and Decade Mix. Their length appears once they start playing.
 
-Media keys and lock-screen controls don't work while a console sound file plays.
+## Playback
+
+The player hands the playing track to your operating system through the browser's Media Session API, so media keys, the OS media overlay and phone lock screens show the track and its cover and can play, pause, skip and seek, except while a console sound file plays.
+
+An opt-in "Resume music after reload" user setting saves the queue and position per user and per browser, and picks the last track up where it stopped. If it was playing, it starts again on your first click or key press, since browsers block audio that starts on its own.
 
 ## Browsing
 

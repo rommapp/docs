@@ -1,13 +1,13 @@
 ---
 title: In-Browser Play Troubleshooting
-description: Diagnose EmulatorJS and Ruffle issues
+description: Diagnose EmulatorJS, Ruffle and EasyRPG issues
 ---
 
 # In-Browser Play Troubleshooting
 
 ## EmulatorJS won't load at all
 
-- **On the slim image without internet?** The slim image fetches EmulatorJS cores from a CDN at runtime rather than bundling them, so without outbound network the browser can't load games. Either switch to the full image (cores bundled) or open outbound access (see [Image Variants](../install/image-variants.md)). Ruffle and PICO-8 are full-image only.
+- **On the slim image without internet?** The slim image fetches EmulatorJS cores from a CDN at runtime rather than bundling them, so without outbound network the browser can't load games. Either switch to the full image (cores bundled) or open outbound access (see [Image Variants](../install/image-variants.md)). Ruffle, PICO-8 and EasyRPG are full-image only.
 - Check the **browser console** and look for 404s on `/assets/emulatorjs/...`, which indicate the EmulatorJS bundle didn't install correctly in the container. Check `docker logs romm` for entrypoint install-step failures.
 - **Browser compatibility**: EmulatorJS uses SharedArrayBuffer, which needs a modern Chrome/Firefox/Safari and an HTTPS-served instance (cross-origin isolation requires HTTPS). If you're still on plain HTTP, set up TLS first (see [Reverse Proxy](../install/reverse-proxy.md)).
 
@@ -57,3 +57,8 @@ See the [MS-DOS](../using/in-browser-play/ms-dos.md) page for DOS-specific notes
 - **Consider a native app.** [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher) on Android uses native emulators, which are orders of magnitude more efficient.
 
 For Netplay-specific issues: [Netplay Troubleshooting](netplay.md).
+
+## RPG Maker game won't start in EasyRPG
+
+- **No browser play offered?** The game has to be an extracted folder on the `rpg-maker` platform with `RPG_RT.ldb` at its top, since the web player can't read archives. `DISABLE_EASYRPG=true` also removes browser play, and so does the slim image, which doesn't bundle the player (see [EasyRPG](../using/in-browser-play/easyrpg.md)).
+- **Missing graphics or silent sounds**, mostly in battles, come from assets the bundled free RTP doesn't have yet. Copying the missing files from the original RTP into the game's own folder and rescanning it fills the gap, because a game's files win over the RTP's.

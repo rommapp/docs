@@ -80,6 +80,16 @@ The token's owner generates the code from a device already signed into RomM (usu
 
 The companion app stores the token and uses it on every subsequent API call. RomM treats it like any other token, and pairing only affects how the token reached the device.
 
+## Device-bound tokens
+
+A token issued through the device authorization flow under `/api/auth/device/` (where the device starts the flow and the user approves its code) is bound to the [device](device-sync-protocol.md#registering-a-device) it registers. A bound token identifies its device on every call, so sync endpoints can leave out `device_id`, and some calls accept nothing else:
+
+- Claiming and reporting [installs on devices](device-sync-protocol.md#installs-on-devices) only works with a token bound to that device.
+- The [`/devices` socket](device-sync-protocol.md#the-devices-socket) only admits bound tokens that hold `devices.read`.
+- It can read its own device's play sessions without `devices.read`.
+
+It can't manage installs for the user's other devices, and deleting the device closes the sockets its tokens opened.
+
 ## Scoping tokens properly
 
 A token can only hold scopes the owning user _also_ holds, and a user's scopes come from their [permission group](../administration/users-and-roles.md#permission-groups) plus any overrides (Admins hold everything). For example, a token can't carry `users.write` unless its owner is an Admin. Default to read-only, and only grant write scopes the app actually needs.

@@ -5,7 +5,9 @@ description: UI translation
 
 # Languages
 
-Pick the language you want for the UI. The choice is stored server-side, so it follows you across devices. If you're not signed in (Kiosk mode), the UI picks based on browser `Accept-Language` and falls back to `en_US`.
+By default the UI follows your browser's language. This is the **Auto** setting, which takes the first language in the browser's preferred list with a translation, matching a regional variant to its base language when there's no exact match (so `it-CH` gets Italian), and falls back to `en_US` when none match. Visitors who aren't signed in, such as in Kiosk mode, always get Auto.
+
+Picking a specific language overrides Auto. The choice is stored server-side with your other UI settings, so it follows you across devices, and switching back to Auto lets each browser follow its own language again.
 
 ## Supported locales
 

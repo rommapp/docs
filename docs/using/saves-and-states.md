@@ -45,7 +45,7 @@ An upload the server doesn't take (it's down, the connection dropped) is held in
 
 ## Save slots
 
-Saves are organized into slots, the same model used by the [sync clients](#device-sync), so the same slots show up whether you played in the browser or on a device.
+Saves are organized into slots, the model the [sync clients](#syncing-saves-between-browsers-and-devices) use too, so you see the same slots whether you played in the browser or on a device.
 
 - **`autosave`** is where ordinary play goes, and it keeps a capped history, so it prunes itself as you play.
 - **A named slot**, created on launch, keeps every version. Use one when you want a checkpoint you can always come back to.
@@ -54,15 +54,31 @@ Each slot lists its newest version first, tagged **Latest**, with older versions
 
 The server prunes a slot to `MAX_SAVES_PER_SLOT` (50 by default, `0` to disable the cap). A client that asks for a tighter limit of its own gets the tighter of the two. Saves uploaded without a slot, such as one you imported by hand, are never pruned.
 
-## Device sync
+## Syncing saves between browsers and devices
 
-Saves and states can sync to/from registered devices (Grout on muOS, DeckRommSync on a Deck, etc.). These pages cover it in depth:
+Every in-browser player ([EmulatorJS](in-browser-play/emulatorjs.md), [EasyRPG](in-browser-play/easyrpg.md), [`js-dos`](in-browser-play/js-dos.md), [PICO-8](in-browser-play/pico-8.md) and [Ruffle](in-browser-play/ruffle.md)) syncs saves the same way a handheld does. Each browser profile registers as one of your [devices](devices.md), and when a game launches it negotiates its saves with the server: it downloads what's newer on the server, uploads what's newer locally, and drops a save that was deleted on the server.
 
+When both sides changed the same slot, the browser plays the server's copy and uploads its own as a separate archived save, named after the game and the time it was captured, so neither version is lost. A browser only pairs saves written by its own player and leaves a save from another emulator in the same slot alone.
+
+Saves and states also sync with companion apps on other devices (Grout on muOS, Argosy on Android, DeckRommSync on a Deck, etc.), and with [RetroArch](../ecosystem/retroarch-cloud-sync.md) through its built-in Cloud Sync. These pages cover it in depth:
+
+- [Devices](devices.md): registering, renaming and removing them
+- [RetroArch Cloud Sync](../ecosystem/retroarch-cloud-sync.md): setup and what syncs
 - [Device Sync Protocol](../developers/device-sync-protocol.md): wire-level reference
 - [SSH Sync](../developers/ssh-sync.md): server owner config
 - [Argosy Launcher](../ecosystem/first-party-apps.md#argosy-launcher)/[Grout](../ecosystem/first-party-apps.md#grout): per-app setup
 
-Once a device is paired and sync is running, saves made on the device appear server-side within a couple of sync cycles (default: 15 minutes). Conflicts (same ROM saved on two devices between syncs) surface as two separate save entries, so pick which to keep.
+Once a device is paired and sync is running, saves made on it appear server-side on its next sync. When the same slot is saved on two devices between syncs, RomM reports the conflict to the app, which decides what to keep, and most apps keep both as separate save entries.
+
+## Favorites, labels and names
+
+You can mark your own saves and states as favorites and tag them with free-text labels, for example to name a run or flag the save before a boss. A save or state takes up to 20 labels of up to 255 characters each, and labels that differ only in case count as one. You can also favorite, label or delete several at once.
+
+A save or state can be renamed, and its screenshot follows it. The new name has to be free among that game's saves (or states), ignoring case, and keep a name before the extension. A device or RetroArch that syncs by file name sees a renamed file as a different file.
+
+Saves and states written in the browser are named after the game and the local time they were captured, so the timestamp in the name matches your clock.
+
+When you share a save or state with other users, they see its author but not its favorite flag or labels, which stay yours.
 
 ## Format/core compatibility
 
@@ -85,6 +101,8 @@ If you're moving saves between the bundled EmulatorJS and a stand-alone emulator
 ### States
 
 Save states are always core-specific (a SNES9x state will not load in bsnes), so switching cores leaves your existing states unusable.
+
+States made through [emulator streaming](emulator-streaming.md) record the RetroArch core that wrote them. When you resume from a state another core wrote, such as after a per-platform core override, the container starts the game fresh instead of loading a state its core can't read. States from before cores were recorded count as the platform's default core.
 
 If you use states heavily, stick to one core per platform, or use save files (which are interchangeable) as your primary persistence.
 

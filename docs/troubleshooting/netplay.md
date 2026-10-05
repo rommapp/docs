@@ -22,8 +22,19 @@ Full config: [Configuration File → `emulatorjs.netplay`](../reference/configur
 You created a room as host but other players don't see it.
 
 - **They need accounts on your instance.** Netplay doesn't federate, which means a user with no account or on a different instance can't see or join.
+- **They can't see the game.** Rooms are only listed to players with `roms.read` and access to the ROM, so a game hidden from them or above their [age limit](../administration/parental-controls.md) shows no rooms. A room password doesn't get around this, because they can't load the game in the player either, so unhide the game for them or raise their age limit.
 - **WebSocket connection is broken.** Open devtools → Network → WS tab. If socket.io is disconnecting, see [Authentication Troubleshooting → WebSockets](authentication.md#400-bad-request-on-the-websocket-endpoint).
 - **Other player didn't open the Netplay panel.** They need to click the 🌐 icon on the emulator toolbar to see the room list.
+
+## `Not authorized to open a room for this game`
+
+The host's account can't see the game, or lacks the `roms.read` scope. Check the user's permission group, [hidden entities](../administration/users-and-roles.md#hidden-entities) and age limit. The same message on join (`Not authorized to join this room`) means the joining player can't see the game and the room has no password.
+
+## Room never gets created, `Invalid session` in the logs
+
+Releases before 5.4 opened Netplay's socket with HTTP long polling, which breaks when gunicorn runs several workers (`WEB_SERVER_CONCURRENCY`, 4 by default). On those releases, `WEB_SERVER_CONCURRENCY=1` works around it.
+
+Netplay connects over WebSockets only, so the WebSocket upgrade must reach RomM. If rooms still fail, check that your proxy forwards it (see [Authentication Troubleshooting → WebSockets](authentication.md#400-bad-request-on-the-websocket-endpoint)).
 
 ## Joined but video never appears
 

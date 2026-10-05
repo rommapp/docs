@@ -113,6 +113,17 @@ Users signing in through an OIDC provider get a regular RomM session, same as us
 
 OIDC provider setup lives in [Administration → OIDC](../administration/oidc/index.md).
 
+## Browser clients on another origin (CORS)
+
+A browser app on another domain, port or scheme can only call the API if that origin is listed in `ROMM_CORS_ALLOWED_ORIGINS`. The list is empty by default, which denies every cross-origin request:
+
+```yaml
+environment:
+    - ROMM_CORS_ALLOWED_ORIGINS=https://dashboard.example.com
+```
+
+A listed origin gets `Access-Control-Allow-Credentials: true`, so the browser can send the session cookie with `credentials: "include"`. A `*` entry answers any origin but turns that header off for every origin, listed ones included, so it only suits requests that carry no cookie, such as ones authenticated with a bearer token in the `Authorization` header. Native apps, scripts and server-side code don't send an `Origin` header, so CORS doesn't apply to them.
+
 ## Which scopes do I need?
 
 Every endpoint in the [API Reference](api-reference.md) lists its required scopes. The short version:
@@ -128,6 +139,8 @@ Every endpoint in the [API Reference](api-reference.md) lists its required scope
 | `401 Unauthorized` | No credential, expired credential, bad credential.                      |
 | `403 Forbidden`    | Authenticated but the identity lacks a required scope.                  |
 | `404 Not Found`    | The resource doesn't exist, or, for privacy, the identity can't see it. |
+
+An unusable credential never fails the request on its own. A malformed `Authorization` header, a Basic header that doesn't decode, wrong Basic credentials, or an invalid or expired JWT all leave the request unauthenticated, and it then gets the route's usual answer: `401` on a route that needs a login, or the normal response on one that doesn't.
 
 When debugging a 403, check:
 

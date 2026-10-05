@@ -38,6 +38,17 @@ Rules of the model:
 - **`own_only`** narrows a grant to entities the user owns. For example, `assets.write` with `own_only` lets a user manage their own saves/states/screenshots but not anyone else's.
 - **Default group**: exactly one group is marked as the server-wide default and is applied automatically to every new User (invite sign-up, OIDC first login, admin-created accounts without an explicit group).
 
+### Seeded groups
+
+Two groups are seeded, which are also used by an upgrade from a release before permission groups to keep existing accounts working:
+
+| Group      | Grants                                                                                  |
+| ---------- | --------------------------------------------------------------------------------------- |
+| **Viewer** | Read the library, and manage only your own collections, assets and devices              |
+| **Editor** | Viewer access plus library-wide create, edit and delete of ROMs, platforms and firmware |
+
+You can rename them, edit their grants or delete them like any other group, and the UI warns you first. In the API, `PermissionGroupSchema.system_key` marks them as `viewer` or `editor` whatever they're called, and is `null` on groups you created.
+
 ### Per-user overrides
 
 On top of the group, you can add or revoke individual capabilities for one user without creating a whole new group:
@@ -50,6 +61,10 @@ Use overrides for one-offs ("this one user can also delete ROMs"), and use group
 ### Hidden entities
 
 Beyond allow/deny, you can hide specific platforms or ROMs from a user or from an entire group. A hidden entity simply doesn't appear for that principal, regardless of read grants. Firmware can't be hidden directly, because its visibility cascades from the platform it belongs to.
+
+### Age limits
+
+A group can also hide games rated above an age from its members. Each user can replace the group's limit with their own, and admins are never limited (see [Parental Controls](parental-controls.md)).
 
 ## Creating users
 

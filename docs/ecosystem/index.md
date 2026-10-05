@@ -25,6 +25,10 @@ RomM exposes several URL feed endpoints for external homebrew/custom firmware ap
 - **[fpkgi](feed-clients.md#fpkgi)**: PS4/PS5 installer
 - **[Kekatsu](feed-clients.md#kekatsu)**: Nintendo DS multiboot loader
 
+## RetroArch
+
+RomM is a WebDAV target for RetroArch's built-in Cloud Sync, so saves and states sync between RetroArch and your library with no companion app (see [RetroArch Cloud Sync](retroarch-cloud-sync.md)).
+
 ## Community apps
 
 Individuals in the community, not the team, maintain these apps, so support quality varies.

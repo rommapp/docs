@@ -35,6 +35,13 @@ Unlike other tasks, **build recommendations index** ships enabled, because the [
 
 The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup, sync session cleanup) also ship enabled. Each has an `ENABLE_SCHEDULED_CLEANUP_*` var to turn it off and a matching `SCHEDULED_CLEANUP_*_CRON` to move it. With upload tmp cleanup off, abandoned chunked uploads stay in `tmp/uploads` under `ROMM_TMP_PATH` (or the resources folder when that's unset) until you delete them. Check the [env var reference](../reference/environment-variables.md) for the full list.
 
+A few tasks follow other settings instead of an `ENABLE_*` var:
+
+- **Scheduled audit log cleanup** removes [events](audit-log.md) older than `AUDIT_LOG_RETENTION_DAYS` (90 by default) every day at 04:30, and doesn't run at all when that var is `0`, which keeps events forever.
+- **Scheduled streaming session reaper** runs every minute, but only while [emulator streaming](../using/emulator-streaming.md) is enabled, and stops sessions whose player stopped sending heartbeats.
+- **Scheduled conversion cache cleanup** removes expired [converted downloads](library-conversion.md#the-conversion-cache) every day at 04:00.
+- **Convert library** is manual only, and can only run with `ROM_CONVERTO_ENABLED=true` (see [Library Conversion](library-conversion.md)).
+
 ## Triggering a task manually
 
 ### From the Administration page
@@ -47,6 +54,24 @@ The housekeeping tasks (netplay cleanup, upload tmp cleanup, ZIP cache cleanup, 
 POST /api/tasks/run/{task_name}
 Authorization: Bearer <token-with-tasks.run>
 ```
+
+The call answers `503` when no task worker is running to pick the job up. Some tasks, such as Convert library, are **single-instance**: asking to run one while it's already queued or running returns `409 Conflict` instead of queueing a second copy.
+
+Library scans have their own endpoint, `POST /api/tasks/scan`, for clients that authenticate with a token rather than a session cookie. Its optional JSON body takes the same options as the `scan` socket event, and an empty body queues a quick scan of the whole library with every enabled metadata source:
+
+```http
+POST /api/tasks/scan
+Authorization: Bearer <token-with-tasks.run>
+Content-Type: application/json
+
+{"type": "quick", "platforms": [12], "apis": ["igdb", "ss"]}
+```
+
+The body also accepts `platform_fs_slugs`, `roms_ids` and `launchbox_remote_enabled`, and rejects unknown keys with `422`. It answers `202` with the queued job, `409` while another scan is in flight, and `503` when no scan worker is running.
+
+### Destructive tasks
+
+A task that deletes or replaces files in your library is flagged `destructive` in the task list (`GET /api/tasks`), and the UI asks you to type a confirmation before running it. Convert library is one, since it deletes each original once its converted copy is in place. The API doesn't ask for a confirmation, so a script that calls one runs it straight away.
 
 ## Monitoring tasks
 

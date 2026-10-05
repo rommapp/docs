@@ -43,9 +43,16 @@ environment:
 !!! warning "Keep a way in"
     Before setting `DISABLE_USERPASS_LOGIN=true`, confirm that at least one Admin account can sign in via OIDC. If OIDC breaks and you've already disabled local login, your only way in is editing the container env.
 
-### Admin-triggered password reset
+### Password reset
 
-Until email-based self-serve reset lands, admins set passwords manually for any user. The next login on that account will use the new password, but existing sessions remain valid until they expire.
+A user who forgot their password can ask for a reset link from the sign-in page (`POST /api/forgot-password`), which works once within 10 minutes. Where it goes depends on the server:
+
+- With [email](email.md) set up, `ROMM_BASE_URL` pointing at a real host, and an email address on the account, the link goes to that address, at most once a minute per user.
+- Otherwise, or when the email can't be sent, the link is written to the container log for an admin to pass on.
+
+The response is the same whether or not the username exists, so the form can't be used to find out which accounts exist. Requests for an existing account and completed resets are both recorded in the [audit log](audit-log.md).
+
+Admins can also set any user's password directly, and the new password applies from the next login while existing sessions stay valid until they expire.
 
 ## OIDC
 

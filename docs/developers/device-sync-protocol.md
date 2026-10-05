@@ -23,17 +23,21 @@ The sync endpoints accept either:
 
 Required scopes:
 
-| Endpoint                                                | Scope                          |
-| ------------------------------------------------------- | ------------------------------ |
-| `POST /api/devices`                                     | `devices.write`                |
-| `POST /api/sync/negotiate`                              | `assets.read` + `devices.read` |
-| `POST /api/sync/sessions/{id}/complete`                 | `devices.write`                |
-| `GET /api/sync/sessions`, `GET /api/sync/sessions/{id}` | `devices.read`                 |
-| `POST /api/saves`, `PUT /api/saves/{id}`                | `assets.write`                 |
-| `GET /api/saves/{id}/content`                           | `assets.read`                  |
-| `POST /api/saves/{id}/downloaded`                       | `devices.write`                |
-| `POST /api/play-sessions`                               | `roms.user.write`              |
-| `POST /api/sync/devices/{device_id}/push-pull`          | `devices.write`                |
+| Endpoint                                                | Scope                                                  |
+| ------------------------------------------------------- | ------------------------------------------------------ |
+| `POST /api/devices`                                     | `devices.write`                                        |
+| `POST /api/sync/negotiate`                              | `assets.read` + `devices.read`                         |
+| `POST /api/sync/sessions/{id}/complete`                 | `devices.write`                                        |
+| `GET /api/sync/sessions`, `GET /api/sync/sessions/{id}` | `devices.read`                                         |
+| `POST /api/saves`, `PUT /api/saves/{id}`                | `assets.write`                                         |
+| `GET /api/saves/{id}/content`                           | `assets.read`                                          |
+| `POST /api/saves/{id}/downloaded`                       | `devices.write`                                        |
+| `POST /api/play-sessions`                               | `roms.user.write`                                      |
+| `GET /api/play-sessions`                                | `roms.user.read` (see [Play sessions](#play-sessions)) |
+| `POST /api/sync/devices/{device_id}/push-pull`          | `devices.write`                                        |
+| `PUT /api/devices/{device_id}`                          | `devices.write`                                        |
+| `POST /api/devices/{device_id}/installs/claim`          | `devices.write` + `roms.read`, device-bound token      |
+| `PUT /api/devices/{device_id}/installs/{request_id}`    | `devices.write`, device-bound token                    |
 
 Passing `device_id` to the save endpoints also needs `devices.write` on upload and update, and `devices.read` on download. Without it the call returns `403`.
 
@@ -57,21 +61,21 @@ Content-Type: application/json
 }
 ```
 
-| Field             | Notes                                                                                        |
-| ----------------- | -------------------------------------------------------------------------------------------- |
-| `name`            | Display name.                                                                                |
-| `platform`        | Device platform or OS.                                                                       |
-| `client`          | Short slug for the app (for example `grout`). The activity feed shows it as the device type. |
-| `client_version`  | App version.                                                                                 |
-| `ip_address`      | Device IP address.                                                                           |
-| `mac_address`     | Used to match an existing device.                                                            |
-| `hostname`        | Used to match an existing device.                                                            |
-| `sync_mode`       | `api`, `file_transfer` or `push_pull`.                                                       |
-| `sync_config`     | Mode-specific settings.                                                                      |
-| `capabilities`    | Flags the device reports about itself, for example `{ "remote_install": true }`.             |
-| `allow_existing`  | Default `true`. Return a matching existing device. `false` returns `409` if one exists.      |
-| `allow_duplicate` | Default `false`. `true` always creates a new device and turns off `allow_existing`.          |
-| `reset_syncs`     | Default `false`.                                                                             |
+| Field             | Notes                                                                                                                           |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `name`            | Display name.                                                                                                                   |
+| `platform`        | Device platform or OS.                                                                                                          |
+| `client`          | Short slug for the app (for example `grout`). The activity feed shows it as the device type.                                    |
+| `client_version`  | App version.                                                                                                                    |
+| `ip_address`      | Device IP address.                                                                                                              |
+| `mac_address`     | Used to match an existing device.                                                                                               |
+| `hostname`        | Used to match an existing device.                                                                                               |
+| `sync_mode`       | `api`, `file_transfer` or `push_pull`.                                                                                          |
+| `sync_config`     | Mode-specific settings.                                                                                                         |
+| `capabilities`    | Boolean flags the device reports about itself, for example `{ "remote_install": true }`. At most 32 keys of 1 to 64 characters. |
+| `allow_existing`  | Default `true`. Return a matching existing device. `false` returns `409` if one exists.                                         |
+| `allow_duplicate` | Default `false`. `true` always creates a new device and turns off `allow_existing`.                                             |
+| `reset_syncs`     | Default `false`.                                                                                                                |
 
 Registration is idempotent. The server looks for one of the user's devices with the same `mac_address`, or failing that the same `hostname` and `platform`, and returns it (`200`) instead of creating a second one (`201`), unless `allow_duplicate` is set. With `allow_existing: false`, a match returns `409` with `error: "device_exists"` and the existing `device_id`. Sending `capabilities` for an existing device updates them.
 
@@ -86,6 +90,8 @@ Response:
 ```
 
 `device_id` is a string (a UUID). Cache it for subsequent calls.
+
+`PUT /api/devices/{device_id}` updates a device with the same fields, plus `sync_enabled`. A device with `sync_enabled: false` gets `400` from negotiate until sync is turned back on from the user's [devices list](../using/devices.md). `DELETE /api/devices/{device_id}` removes a device, closes the sockets its tokens opened and drops its queued installs, but keeps the saves it uploaded.
 
 ## Sync negotiation
 
@@ -108,7 +114,9 @@ Content-Type: application/json
       "file_size_bytes": 8192
     }
   ],
-  "rom_ids": [1234]
+  "rom_ids": [1234],
+  "restore_unlisted": false,
+  "emulators": null
 }
 ```
 
@@ -116,8 +124,10 @@ Content-Type: application/json
 - An unknown device returns `404`. A device with sync turned off returns `400`.
 - `content_hash` is an MD5 hex digest of the file.
 - `rom_ids` is an optional, read-only scope. Downloads are offered only for these ROMs, plus any ROM a save was sent for. Leaving a ROM out never deletes anything. The number of IDs per request is capped.
+- `restore_unlisted` (default `false`) offers every current server save the device didn't list as a `download`, even one it already synced. Normally a save the device synced before and no longer lists is taken as deleted there and left alone. Set it for a client that never deletes saves itself, such as a browser whose storage can be evicted, so a missing save reads as lost and comes back.
+- `emulators` (default `null`) limits pairing to server saves written by one of these emulators, so a save another emulator wrote into the same slot is neither paired nor offered. RomM's browser players send their own emulator here.
 - Saves are paired on **(`rom_id`, `slot`)**. Send a stable slot such as `autosave`. A `null` slot marks an archival or manual save: it is never paired, so it always comes back as `upload`.
-- Every negotiate opens a new session, so one device can have several open at once (for example, two games running). A session nobody completes is marked failed by a scheduled cleanup after 24 hours.
+- Every negotiate opens a new session that lasts one launch, so one device can have several open at once (for example, two games running). A session nobody completes is marked failed by the scheduled sync session cleanup (`ENABLE_SCHEDULED_CLEANUP_SYNC_SESSIONS`, hourly at `23 * * * *` by default, set by `SCHEDULED_CLEANUP_SYNC_SESSIONS_CRON`) once it's 24 hours old.
 
 Response:
 
@@ -224,18 +234,103 @@ Content-Type: application/json
 - The response is `{ session, play_session_ingest }`.
 - An unknown session returns `404`. A session that was cancelled or failed on purpose returns `400`. One that the cleanup expired can still be completed, so its counts and playtime aren't lost.
 
+## Play sessions
+
+`GET /api/play-sessions` lists the caller's sessions, filtered by `rom_id`, `device_id`, `start_after` and `end_before`. Reading another device's sessions, or every device's at once, needs `devices.read`. A device-bound token without that scope can still read its own device's sessions by passing its own `device_id`. The server never fills in `device_id` from the token, so leaving it out lists every device and needs `devices.read`.
+
+Play session responses have no `sync_session_id` field.
+
+## Paging
+
+`GET /api/play-sessions` and `GET /api/sync/sessions` share these page parameters:
+
+| Parameter | Default | Range       |
+| --------- | ------- | ----------- |
+| `limit`   | `50`    | 1 to 10000  |
+| `offset`  | `0`     | 0 and above |
+
+On play sessions, `limit` is ignored when `start_after` or `end_before` is set, so a time window always comes back whole.
+
 ## Other endpoints
 
-- `GET /api/sync/sessions` and `GET /api/sync/sessions/{id}`: list and inspect sync sessions.
+- `GET /api/sync/sessions` (filtered by `device_id`) and `GET /api/sync/sessions/{id}`: list and inspect sync sessions.
 - `POST /api/sync/devices/{device_id}/push-pull`: push/pull sync for a device.
 
 See the [API Reference](api-reference.md) for their full schemas.
+
+## Installs on devices
+
+Users can send a game to one of their devices from the web UI (see [Devices](../using/devices.md#install-on-device)), and the device downloads it the next time it's online. A device opts in by registering with the `remote_install` capability:
+
+```json
+{ "capabilities": { "remote_install": true } }
+```
+
+Only devices with that flag are offered as install targets. Every install endpoint answers `404` when the server sets `DEVICE_INSTALL_ENABLED=false`, and `GET /api/heartbeat` reports it under `DEVICE_INSTALL` (`ENABLED` and `EXCLUDED_PLATFORM_SLUGS`).
+
+### Request lifecycle
+
+An install request is a JSON object:
+
+```json
+{
+    "id": "b6f1d3c2-6a0e-4d55-9f3e-7f6b1c2d9e10",
+    "user_id": 1,
+    "device_id": "3f1c2b9e-8a4d-4c7e-9f21-6d0b5a7e1c34",
+    "rom_id": 1234,
+    "file_ids": [5678, 5679],
+    "status": "pending",
+    "reason": null,
+    "created_at": "2026-10-05T09:00:00Z",
+    "updated_at": "2026-10-05T09:00:00Z"
+}
+```
+
+`file_ids` lists the ROM's game, update and DLC files on disk, which is what the device should download, for example with `GET /api/roms/{rom_id}/content/{file_name}?file_ids=5678,5679`.
+
+| Status              | Meaning                                                   |
+| ------------------- | --------------------------------------------------------- |
+| `pending`           | Queued, waiting for the device to claim it                |
+| `taken`             | Claimed by the device, which is downloading it            |
+| `done`              | The device installed it                                   |
+| `already_installed` | The device already had it                                 |
+| `failed`            | The device couldn't install it, with an optional `reason` |
+| `cancelled`         | The user cancelled it before it finished                  |
+
+`done`, `already_installed`, `failed` and `cancelled` end a request, and an ended request is gone from every list. A request nobody touches expires `DEVICE_INSTALL_REQUEST_TTL_DAYS` days (2 by default) after its last change.
+
+### Endpoints
+
+| Method and path                                         | Called by | Description                                                                                            |
+| ------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------ |
+| `POST /api/devices/{device_id}/installs`                | Web UI    | Queue `{ "rom_id": 1234 }`. `201` with a new request, or `200` with the live one for the same pair     |
+| `GET /api/devices/{device_id}/installs`                 | Either    | The device's `pending` and `taken` requests, oldest first                                              |
+| `POST /api/devices/{device_id}/installs/claim`          | Device    | Take every `pending` request and return all the device holds `taken`, oldest first                     |
+| `PUT /api/devices/{device_id}/installs/{request_id}`    | Device    | Report `{ "status": "done" \| "already_installed" \| "failed", "reason": "..." }` on a `taken` request |
+| `DELETE /api/devices/{device_id}/installs/{request_id}` | Either    | Cancel a `pending` or `taken` request                                                                  |
+| `GET /api/devices/online`                               | Web UI    | IDs of the caller's devices with an open `/devices` socket                                             |
+| `GET /api/roms/{id}/installs`                           | Web UI    | The caller's open requests for a ROM, across devices                                                   |
+
+Queueing needs `devices.write` and `roms.read`. A ROM the user can't see returns `404`, and a device without the `remote_install` capability, a ROM on a platform in `DEVICE_INSTALL_EXCLUDED_PLATFORM_SLUGS` or a ROM with no installable file returns `400`. Claiming and reporting need a token bound to that same device (see [Client API Tokens](client-api-tokens.md#device-bound-tokens)), and any other caller gets `403`. A report or cancel on a request in the wrong status returns `409`, and `reason` is capped at 500 characters. Each report also sends the user a notification.
+
+### The `/devices` socket
+
+A device learns about requests over this Socket.IO namespace. Connect with a device-bound client token holding `devices.read`, passed either in the handshake's `auth` payload as `{ "token": "rmm_..." }` or as an `Authorization: Bearer` header. Any other credential is refused, and so is every connection while installs are disabled.
+
+The server sends two events, each with a payload of `{ "id": "<request id>", "rom_id": 1234 }`:
+
+| Event               | Meaning                                                               |
+| ------------------- | --------------------------------------------------------------------- |
+| `install:queued`    | A request is waiting. Claim it with `POST .../installs/claim`         |
+| `install:cancelled` | The user cancelled a request. Stop downloading it if it's in progress |
+
+The open socket also marks the device as online until the server drops it, which happens when the token expires or is revoked, or when the device is deleted. Events sent while the device is offline aren't replayed, so claim on every connect to pick up whatever queued in the meantime.
 
 ## Rate limits and polling
 
 - Sync once per session, not per save
 - Don't poll `/api/sync/negotiate` tightly
-- Nothing tells a device to start a sync. The `/devices` Socket.IO namespace only carries install requests, so the device decides when to negotiate
+- Nothing tells a device to start a sync. The [`/devices` Socket.IO namespace](#the-devices-socket) only carries install requests, so the device decides when to negotiate
 
 ## See also
 

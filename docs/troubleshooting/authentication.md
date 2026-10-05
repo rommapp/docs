@@ -5,14 +5,23 @@ description: Fix login, session, CSRF, and OIDC issues
 
 # Authentication Troubleshooting
 
-## `403 Forbidden` on API calls
+## `401 Unauthorized` or `403 Forbidden` on API calls
 
-When auth is enabled (almost always), any endpoint that requires a session returns `403` if:
+- **`401 Unauthorized`**: the request carries no usable credential, because you're signed out, your session expired or was revoked, or the `Authorization` header is malformed, has the wrong password, or holds an expired token. Sign in again, or refresh or replace the token.
+- **`403 Forbidden`**: you're signed in, but your account or token lacks the scope the endpoint needs. Check the user's permission group and the token's scopes (see [API Authentication → Errors](../developers/api-authentication.md#errors)).
 
-- You're not authenticated.
-- Your session is in a broken state (expired, signed with an old secret, missing CSRF).
+If a browser session seems broken in a way signing in again doesn't fix (for example a session signed with an old `ROMM_AUTH_SECRET_KEY`), [clear cookies](https://support.google.com/accounts/answer/32050) for the host and sign in again.
 
-Fix: [clear cookies](https://support.google.com/accounts/answer/32050) for the host and sign in again.
+## Browser app on another origin is blocked by CORS
+
+The browser console shows `blocked by CORS policy` or `No 'Access-Control-Allow-Origin' header`. An empty `ROMM_CORS_ALLOWED_ORIGINS` denies every cross-origin request, so list the app's origin:
+
+```yaml
+environment:
+    - ROMM_CORS_ALLOWED_ORIGINS=https://dashboard.example.com
+```
+
+Write it as scheme, host and port, exactly as the browser shows it in the `Origin` request header, with no trailing slash. A `*` entry won't fix an app that signs in with the session cookie, because a `*` anywhere in the list turns credentials off for every origin, listed ones included (see [Reverse Proxy → Cookies and CORS](../install/reverse-proxy.md#harden-cookies-and-cors-behind-https)).
 
 ## `Forbidden (403) CSRF verification failed`
 
@@ -32,6 +41,8 @@ Your reverse proxy is stripping the WebSocket upgrade, and live updates (scan pr
 - **Traefik**: add `proxy_set_header Upgrade $http_upgrade` (or use the Traefik middleware equivalent).
 - **Caddy**: WebSockets work out of the box with `reverse_proxy`.
 - **Cloudflare**: enable **WebSockets** under Network settings.
+
+The main UI falls back to HTTP long polling when the upgrade fails, but that only works with a single gunicorn worker (`WEB_SERVER_CONCURRENCY=1`), so with the default of 4 live updates break too. [Netplay](../using/netplay.md) connects over WebSockets only and fails outright.
 
 ## `Error: Could not get twitch auth token: check client_id and client_secret`
 
@@ -123,6 +134,22 @@ If the new provider user really is the account's owner, clear the stored link in
 UPDATE users SET oidc_issuer = NULL, oidc_sub = NULL WHERE username = 'alice';
 ```
 
+### Signing in at the provider lands back on the RomM login page
+
+You end up on `/login?bypass_autologin=true` instead of signed in when RomM rejects the provider's callback, for example because the provider returned an error, the authorization code was already used or expired, or the ID token failed validation. The `bypass_autologin` flag keeps `OIDC_AUTOLOGIN` from sending you straight back into the same failure.
+
+The container log names the reason on an `OIDC callback rejected` line:
+
+```sh
+docker logs romm 2>&1 | grep -i "OIDC callback rejected"
+```
+
+Common causes are clock drift (see below), a client secret that changed at the provider, or a provider that expects a different redirect URI.
+
+### `certificate verify failed` when RomM talks to the provider
+
+Your provider's certificate is signed by a private CA that the container doesn't trust. Mount the CA certificate and point `OIDC_TLS_CACERTFILE` at it (see [OIDC Setup → Private certificate authority](../administration/oidc/index.md#private-certificate-authority)). It's trusted alongside the system CAs, so public providers keep working.
+
 ### `OAuthException: expired token` on callback
 
 Your host and the IdP have significant clock drift, so run NTP on both.
@@ -137,7 +164,7 @@ This usually happens because something else in the chain (a CSRF check, a cookie
 2. Sign in as a local admin.
 3. Disable `OIDC_AUTOLOGIN`, restart, and debug the IdP config with autologin off.
 
-If `bypass_autologin` doesn't work in your version, shell into the container and unset `OIDC_AUTOLOGIN` in the env, or edit your compose and restart.
+A callback the provider rejects, or whose code exchange or ID token fails validation, already redirects to `/login?bypass_autologin=true`, so a loop usually means the callback succeeds but the session doesn't stick, which points at cookies or the proxy. If `bypass_autologin` doesn't work in your version, shell into the container and unset `OIDC_AUTOLOGIN` in the env, or edit your compose and restart.
 
 ## Still stuck?
 

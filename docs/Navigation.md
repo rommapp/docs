@@ -30,8 +30,10 @@ search:
 - Administration
     - [Overview](administration/index.md)
     - [Users & Roles](administration/users-and-roles.md)
+    - [Parental Controls](administration/parental-controls.md)
     - [Invitations & Registration](administration/invitations-and-registration.md)
     - [Authentication](administration/authentication.md)
+    - [Email](administration/email.md)
     - OIDC Setup
         - [Overview](administration/oidc/index.md)
         - [Authelia](administration/oidc/authelia.md)
@@ -42,8 +44,10 @@ search:
         - [VoidAuth](administration/oidc/voidauth.md)
     - [Scanning & Watcher](administration/scanning-and-watcher.md)
     - [Scheduled Tasks](administration/scheduled-tasks.md)
+    - [Library Conversion](administration/library-conversion.md)
     - [Server Stats](administration/server-stats.md)
     - [Observability](administration/observability.md)
+    - [Audit Log](administration/audit-log.md)
     - [Firmware Management](administration/firmware-management.md)
 - Using RomM
     - [Overview](using/index.md)
@@ -55,6 +59,7 @@ search:
     - [Downloads](using/downloads.md)
     - [Uploads](using/uploads.md)
     - In-Browser Play
+        - [EasyRPG](using/in-browser-play/easyrpg.md)
         - [EmulatorJS](using/in-browser-play/emulatorjs.md)
         - [`js-dos`](using/in-browser-play/js-dos.md)
         - [MS-DOS](using/in-browser-play/ms-dos.md)
@@ -64,11 +69,13 @@ search:
         - [Migrating to webstation](using/emulator-streaming-migration.md)
     - [Jukebox](using/jukebox.md)
     - [Saves & States](using/saves-and-states.md)
+    - [Devices](using/devices.md)
     - [RetroAchievements](using/retroachievements.md)
     - [Walkthroughs](using/walkthroughs.md)
     - [ROM Patcher](using/rom-patcher.md)
     - [Netplay](using/netplay.md)
     - [Account & Profile](using/account-and-profile.md)
+    - [Notifications](using/notifications.md)
     - [Languages](using/languages.md)
 - Platforms & Players
     - [Overview](platforms/index.md)
@@ -78,6 +85,7 @@ search:
     - [Overview](ecosystem/index.md)
     - [First-Party Apps](ecosystem/first-party-apps.md)
     - [Feed Clients](ecosystem/feed-clients.md)
+    - [RetroArch Cloud Sync](ecosystem/retroarch-cloud-sync.md)
     - [Igir Collection Manager](ecosystem/igir.md)
 - API & Development
     - [Overview](developers/index.md)

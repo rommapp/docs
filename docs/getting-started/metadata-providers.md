@@ -97,6 +97,8 @@ To enable LaunchBox, set `LAUNCHBOX_API_ENABLED=true` and `ENABLE_SCHEDULED_UPDA
 
 You must run a LaunchBox metadata update (either manually, or scheduled via cron) to generate a local `.xml` file with Launchbox metadata before using it as a metadata provider. Manual LaunchBox updates can be run from the System/Administration/Tasks Page. The server will parse the local `.xml` file when trying to match a ROM and fetch metadata from this source.
 
+Besides the front cover, LaunchBox supplies the box back, the spine and the 3D box for games that have them, picking the image for the ROM's region first. These are stored under the same media types ScreenScraper uses (`box2d_back`, `box2d_side` and `box3d`), so a face one provider lacks can come from the other, and like ScreenScraper's they're only downloaded when listed in [`scan.media`](#boxart-styles-and-media-types).
+
 ### Hasheous
 
 [Hasheous](https://hasheous.org/) is a free, open-source metadata provider that matches games by file hash (MD5, SHA1 and CRC). It proxies IGDB data for titles, descriptions, cover art and screenshots, and adds region and language tags from the matched dump.
@@ -134,6 +136,8 @@ Matching is hash-only: RomM computes each ROM's RetroAchievements hash with RAHa
     On disc-based platforms (PSX, PS2, Saturn, Sega CD, Dreamcast, PSP, Wii and others), RomM can't compute a RetroAchievements hash for a disc image inside a zip, 7z, rar or tar archive, so a scan won't match those ROMs. CHD and uncompressed images (bin/cue, ISO) work. You can still match them manually or add an `(ra-12345)` [filename tag](#metadata-tags-in-filenames).
 
 After that, each user needs to set their own username in their profile and sync it with RetroAchievements. A new `Achievements` tab will appear in the `Personal` tab in the game details.
+
+A game matched by its RetroAchievements hash counts as **verified**, the same as a Hasheous match against a No-Intro, Redump or other DAT, so it shows in the `verified` gallery filter and [smart collection](../using/smart-collections.md) rule. A later hash scan that no longer finds the hash on RetroAchievements clears the flag. A game matched by an `(ra-xxxx)` filename tag or by hand is only verified when its file's hash is also one RetroAchievements lists for that game.
 
 To avoid unnecessary API calls, a cached file with the RA database is stored locally. Refresh time for that cache file can be changed with the environment variable `REFRESH_RETROACHIEVEMENTS_CACHE_DAYS`.
 
@@ -321,6 +325,20 @@ Scans parse custom metadata tags in the filename that match specific patterns an
 (csdb-xxxx) for [CSDb](https://csdb.dk/)
 
 Filenames will not be renamed to add tags, as they are a non-standard formatting system and could create conflicts with other software.
+
+### Regions, languages and tags from hash matches
+
+When ScreenScraper or Hasheous matches a game by its hash, the game takes the region and languages of the exact dump that matched, so a correctly dumped `.chd` with no tags in its name still gets them. ScreenScraper's flags on that dump also become tags: a translation, a hack, a beta or a demo gets the same `Translation`, `Hack`, `Beta` or `Demo` tag a filename would give it. A scan that skips one of these sources keeps the tags it gave before.
+
+### Fan translations
+
+Filenames with a fan translation tag get the `Translation` tag, and the language the tag names is added to the game's languages, since that's the language you'll play it in. The common spellings are all recognised, and a superseded GoodTools translation (`[T-Eng]`) is tagged the same way:
+
+| Set convention | Example                         | Language added |
+| -------------- | ------------------------------- | -------------- |
+| GoodTools      | `[T+Eng1.1_RPGe]`               | English        |
+| TOSEC          | `[tr fr]`                       | French         |
+| Plain          | `(Translation)`, `(Translated)` | none           |
 
 ## Boxart styles and media types
 

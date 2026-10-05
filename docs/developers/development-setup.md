@@ -159,6 +159,16 @@ ln -s ../romm_mock/assets assets/romm/assets
 npm run dev
 ```
 
+#### Run the frontend against a remote RomM
+
+Set `DEV_PROXY_TARGET` in the repo-root `.env` to another instance's origin, such as a home server with a full library:
+
+```sh
+DEV_PROXY_TARGET=https://romm.example.com
+```
+
+Vite then proxies `/api`, `/ws`, `/netplay`, `/openapi.json`, the EasyRPG player's game files and `/assets/romm` to that instance instead of the local backend, which you don't need to run. Leave it empty to keep the default `http://127.0.0.1:${DEV_PORT}`. The remote's TLS certificate must be valid. Sign in with a username and password, because OIDC doesn't work through the proxy: the identity provider redirects to the remote's `OIDC_REDIRECT_URI`, so the session never reaches localhost.
+
 ## Setting up the linter
 
 We use [Trunk](https://trunk.io) for linting, which combines multiple linters and formatters with sensible defaults and a single configuration file. You'll need to install the Trunk CLI to use it.

@@ -610,8 +610,56 @@ See [Emulator Streaming → Memory cards](../using/emulator-streaming.md#memory-
 
 ---
 
+## `converto`
+
+Configure [library and download conversion](../administration/library-conversion.md) with rom-converto, which only takes effect with `ROM_CONVERTO_ENABLED=true`. Admins can also edit `download_conversion_enabled`, `platform_formats` and `cache_max_size_gb` from the Conversion settings page, which writes them back to this file.
+
+```yaml
+converto:
+    download_conversion_enabled: true
+    scan_metadata: true
+    cache_ttl_hours: 24
+    cache_max_size_gb: 20
+    platform_formats:
+        psx: chd
+        ngc: rvz
+```
+
+### `converto.download_conversion_enabled`
+
+**Default:** `false`
+
+Let clients ask for a single-file download in another format with `?format=` on the download URL.
+
+### `converto.platform_formats`
+
+**Default:** `{}`
+
+Map of [platform slug](../platforms/supported-platforms.md) to the format the Convert library task stores that platform's games in. Platforms left out are never converted. Each platform only accepts its own lossless library formats (see [Library formats](../administration/library-conversion.md#library-formats)), and an invalid entry stops RomM from starting, with a log line listing the valid options.
+
+### `converto.cache_ttl_hours`
+
+**Default:** `24` (minimum `1`)
+
+Hours a converted download stays cached after it was last served.
+
+### `converto.cache_max_size_gb`
+
+**Default:** `20` (`0` for no limit)
+
+Size cap of the converted download cache, past which the least recently served copies are evicted first.
+
+### `converto.scan_metadata`
+
+**Default:** `true`
+
+Read title IDs and serials with rom-converto while scanning the platforms it supports.
+
+---
+
 ## Related
 
 - [Folder Structure](../getting-started/folder-structure.md): how the filesystem shape interacts with `config.yml`
 - [Metadata Providers](../getting-started/metadata-providers.md): per-provider detail for the `scan.priority.*` slugs
 - [Emulator Streaming](../using/emulator-streaming.md): the full setup guide for the `streaming` block
+- [Library Conversion](../administration/library-conversion.md): what the `converto` block drives
