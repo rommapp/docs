@@ -91,7 +91,7 @@ Response:
 
 `device_id` is a string (a UUID). Cache it for subsequent calls.
 
-`PUT /api/devices/{device_id}` updates a device with the same fields, plus `sync_enabled`. A device with `sync_enabled: false` gets `400` from negotiate until it's turned back on, which users can do from their [devices list](../using/devices.md). `DELETE /api/devices/{device_id}` removes a device, closes the sockets its tokens opened and drops its queued installs, but keeps the saves it uploaded.
+`PUT /api/devices/{device_id}` updates a device with the same fields, plus `sync_enabled`. A device with `sync_enabled: false` gets `400` from negotiate until sync is turned back on from the user's [devices list](../using/devices.md). `DELETE /api/devices/{device_id}` removes a device, closes the sockets its tokens opened and drops its queued installs, but keeps the saves it uploaded.
 
 ## Sync negotiation
 

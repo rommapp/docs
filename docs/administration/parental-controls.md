@@ -10,7 +10,7 @@ Parental controls hide games above an age from the members of a [permission grou
 Two settings make up a rule:
 
 - **Age limit**: members only see games rated for this age or younger, from `0` to `21`, with no limit as the default.
-- **Hide unrated games**: also hides every game that no known rating covers, even with no age limit set. Without it, an unrated game stays visible whatever the limit, because RomM has nothing to judge it by.
+- **Hide unrated games**: also hides every game that no known rating covers, even with no age limit set. Without it, an unrated game stays visible whatever the limit, because there's nothing to judge it by.
 
 ## Who a rule applies to
 
@@ -24,7 +24,7 @@ An age rule hides a game the same way as a [hidden ROM](users-and-roles.md#hidde
 
 ## How a game's age is worked out
 
-RomM stores one minimum age per game, the **strictest** age any of its ratings sets, and recomputes it whenever that metadata changes. The ratings it reads come from:
+Each game stores one minimum age, the **strictest** age any of its ratings sets, which is recomputed whenever that metadata changes. Ratings are read from:
 
 | Source                        | What RomM reads                                                     |
 | ----------------------------- | ------------------------------------------------------------------- |
@@ -36,7 +36,7 @@ RomM stores one minimum age per game, the **strictest** age any of its ratings s
 
 As on the game page, the manual list overrides the providers entirely, so you can loosen a rating as well as tighten it. Manual entries take the form `BOARD:RATING`, such as `ESRB:T` or `PEGI:12`.
 
-A game counts as unrated when it has no ratings at all, or only ones RomM can't read (an unknown board, or a value it doesn't recognise).
+A game counts as unrated when it has no ratings at all, or only ones that can't be read (an unknown board, or an unrecognised value).
 
 ### Rating boards
 
@@ -51,7 +51,7 @@ Boards that rate with letters map to the youngest age each rating admits:
 
 Boards that rate with numbers use the number as the age, with `L` or `ALL` meaning any age: PEGI, USK, GRAC, ClassInd (also DJCTQ), ScreenScraper's own `SS` classification, ELSPA and JV.
 
-ESRB's `E` maps to 6 rather than to "everyone" because RomM treats it as the pre-1998 Kids to Adults floor, so a 3-year limit hides `E` games but shows `EC` ones.
+ESRB's `E` maps to 6 rather than to "everyone" because it's treated as the pre-1998 Kids to Adults floor, so a 3-year limit hides `E` games but shows `EC` ones.
 
 ## Existing libraries
 

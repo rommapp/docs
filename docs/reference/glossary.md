@@ -115,7 +115,7 @@ These are the terms the docs, UI, and API use consistently. Foundational concept
 
 **Title id**: the platform-native identifier read out of a ROM's own binary during a scan, on the platforms that have one. Identifies a game where RomM doesn't hash, and says where the game writes its saves (see [Scanning & Watcher](../administration/scanning-and-watcher.md#title-ids-read-from-the-binary)).
 
-**Trusted proxy**: a proxy RomM believes when it reports the client's address in `X-Forwarded-For`, set by `FORWARDED_ALLOW_IPS` (see [Reverse Proxy](../install/reverse-proxy.md)).
+**Trusted proxy**: a proxy allowed to report the client's address in `X-Forwarded-For`, listed in `FORWARDED_ALLOW_IPS` (see [Reverse Proxy](../install/reverse-proxy.md)).
 
 **User**: an account. Its role is either User (access from a permission group plus per-user overrides) or Admin (full access). Can be created by the Setup Wizard, an admin, an invite link, or OIDC auto-provisioning (see [Users & Roles](../administration/users-and-roles.md)).
 

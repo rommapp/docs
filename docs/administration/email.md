@@ -53,4 +53,4 @@ Set [`ROMM_BASE_URL`](../reference/environment-variables.md) to your instance's 
 
 To check that mail actually goes out, add an email [notification channel](../using/notifications.md#email) for your own address. The confirmation code is the first message sent there, and if the SMTP server refuses that message, the request returns the server's error right away. A confirmed channel can send a test notification on demand too.
 
-If a reset link can't be emailed, RomM writes it to the container log instead, so check `docker logs romm` for `Could not email the reset link` along with the SMTP server's error.
+If a reset link can't be emailed, it's written to the container log instead, so check `docker logs romm` for `Could not email the reset link` along with the SMTP server's error.

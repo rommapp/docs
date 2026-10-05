@@ -5,7 +5,7 @@ description: UI translation
 
 # Languages
 
-By default the UI follows your browser's language. This is the **Auto** setting, which takes the first language in the browser's preferred list that RomM has a translation for, matching a regional variant to its base language when there's no exact match (so `it-CH` gets Italian), and falls back to `en_US` when none match. Visitors who aren't signed in, such as in Kiosk mode, always get Auto.
+By default the UI follows your browser's language. This is the **Auto** setting, which takes the first language in the browser's preferred list with a translation, matching a regional variant to its base language when there's no exact match (so `it-CH` gets Italian), and falls back to `en_US` when none match. Visitors who aren't signed in, such as in Kiosk mode, always get Auto.
 
 Picking a specific language overrides Auto. The choice is stored server-side with your other UI settings, so it follows you across devices, and switching back to Auto lets each browser follow its own language again.
 

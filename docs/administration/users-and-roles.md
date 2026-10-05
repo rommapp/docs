@@ -40,7 +40,7 @@ Rules of the model:
 
 ### Seeded groups
 
-RomM seeds two groups, which an upgrade from a release before permission groups also uses to keep existing accounts working:
+Two groups are seeded, which are also used by an upgrade from a release before permission groups to keep existing accounts working:
 
 | Group      | Grants                                                                                  |
 | ---------- | --------------------------------------------------------------------------------------- |
@@ -64,7 +64,7 @@ Beyond allow/deny, you can hide specific platforms or ROMs from a user or from a
 
 ### Age limits
 
-A group can also hide games rated above an age from its members, and each user can replace the group's limit with their own, and admins are never limited (see [Parental Controls](parental-controls.md)).
+A group can also hide games rated above an age from its members. Each user can replace the group's limit with their own, and admins are never limited (see [Parental Controls](parental-controls.md)).
 
 ## Creating users
 

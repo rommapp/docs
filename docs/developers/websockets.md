@@ -75,7 +75,7 @@ Server to client, broadcast to every connected socket:
 | `scan:done`              | Final stats                                                                                                        |
 | `scan:done_ko`           | An error message string                                                                                            |
 
-`scan:done_ko` also answers a `scan` event that couldn't start, sent only to the socket that asked. That happens when the caller lacks `tasks.run`, when the payload fails validation (the message lists each invalid field), when no scan worker is running, or when a library scan is already queued or running.
+`scan:done_ko` is also sent, only to the socket that asked, when a `scan` event couldn't start. That happens when the caller lacks `tasks.run`, when the payload fails validation (the message lists each invalid field), when no scan worker is running, or when a library scan is already queued or running.
 
 ### Notifications
 
@@ -91,16 +91,16 @@ Sent to every open tab of the user they belong to (see [Notifications](../using/
 
 The "now playing" feed. Clients report their own sessions, and the acting user always comes from the socket's session, never from the payload:
 
-| Event                | Direction        | Payload                                                                                 |
-| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
-| `activity:start`     | Client to server | `{"rom_id": 123, "device_id": "..."}`                                                   |
-| `activity:heartbeat` | Client to server | Same as `activity:start`, to keep the session alive                                     |
-| `activity:stop`      | Client to server | Same as `activity:start`                                                                |
-| `activity:update`    | Server to client | An activity entry, sent only to users who can see the ROM                               |
-| `activity:clear`     | Server to client | `{"user_id", "device_id", "rom_id"}`, sent to the same audience                         |
-| `activity:refresh`   | Server to client | `{}`. Refetch `GET /api/activity`, because RomM couldn't work out who may see a session |
+| Event                | Direction        | Payload                                                                                |
+| -------------------- | ---------------- | -------------------------------------------------------------------------------------- |
+| `activity:start`     | Client to server | `{"rom_id": 123, "device_id": "..."}`                                                  |
+| `activity:heartbeat` | Client to server | Same as `activity:start`, to keep the session alive                                    |
+| `activity:stop`      | Client to server | Same as `activity:start`                                                               |
+| `activity:update`    | Server to client | An activity entry, sent only to users who can see the ROM                              |
+| `activity:clear`     | Server to client | `{"user_id", "device_id", "rom_id"}`, sent to the same audience                        |
+| `activity:refresh`   | Server to client | `{}`. Refetch `GET /api/activity`, because the session's audience couldn't be resolved |
 
-`activity:update` reaches only the `user:{id}` rooms of users allowed to see the ROM, which takes [hidden entities](../administration/users-and-roles.md#hidden-entities) and [age limits](../administration/parental-controls.md) into account. When that audience can't be resolved, RomM sends `activity:refresh` to everyone instead, coalesced across workers so a burst of failures produces one refresh.
+`activity:update` reaches only the `user:{id}` rooms of users allowed to see the ROM, which takes [hidden entities](../administration/users-and-roles.md#hidden-entities) and [age limits](../administration/parental-controls.md) into account. When that audience can't be resolved, `activity:refresh` goes to everyone instead, coalesced across workers so a burst of failures produces one refresh.
 
 ### Device sync
 

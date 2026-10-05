@@ -84,22 +84,22 @@ A synced file names no platform or ROM, so RomM matches it by file name. The sav
 
 The match prefers the exact spelling and falls back to a case-insensitive one. Only ROMs you can see count, and when two visible ROMs on different platforms share a name, the one with the lowest ID wins.
 
-An upload that matches no ROM is refused with `409`, and RomM logs a `Cloud sync upload ... matches no ROM in the library` warning. RetroArch reports the sync as failed for that file and tries again next time.
+An upload that matches no ROM is refused with `409`, and a `Cloud sync upload ... matches no ROM in the library` warning is logged. RetroArch reports the sync as failed for that file and tries again next time.
 
 ### Cores and folders
 
-With saves and states sorted by core, RetroArch puts them in folders named after the core, such as `saves/Snes9x/`. RomM maps the common RetroArch folder names to the core IDs its web player uses, so a state from the web player's `snes9x` core shows up in RetroArch's `Snes9x` folder and the other way around. RomM stores a folder name it doesn't recognize as the emulator name, unchanged.
+With saves and states sorted by core, RetroArch puts them in folders named after the core, such as `saves/Snes9x/`. RomM maps the common RetroArch folder names to the core IDs its web player uses, so a state from the web player's `snes9x` core shows up in RetroArch's `Snes9x` folder and the other way around. A folder name that isn't recognized is stored unchanged as the emulator name.
 
 ## PSP saves
 
 PPSSPP keeps each game's save as a folder of files under `PSP/SAVEDATA/<folder>/`, and those files only make sense together. RomM bundles each folder into one zipped save on the matching ROM, named `PSP-<folder>.zip`, and unpacks it again when RetroArch downloads it. Files under `PSP/SYSTEM/` are PPSSPP's own caches and are ignored.
 
-RomM finds the ROM for a save folder in two ways:
+The ROM for a save folder is found in two ways:
 
 1. **From `SYNC_RETROARCH_PSP_SERIAL_MAP`**, if the folder's serial is listed there
 2. **From the title in the folder's `PARAM.SFO`**, compared against your ROMs' names with punctuation and case ignored
 
-The serial is the folder name with any trailing `DATA<n>` dropped, so `ULUS10041DATA00` has the serial `ULUS10041`. Until one of those finds a ROM, RomM holds the folder's files in its cache and retries when the rest of the folder arrives.
+The serial is the folder name with any trailing `DATA<n>` dropped, so `ULUS10041DATA00` has the serial `ULUS10041`. Until one of those finds a ROM, the folder's files are held in the cache and retried when the rest of the folder arrives.
 
 When a game's title doesn't match the ROM's name, as with a translated title or a ROM renamed by hand, map its serial to the ROM's file name without the extension:
 
@@ -108,7 +108,7 @@ environment:
     SYNC_RETROARCH_PSP_SERIAL_MAP: '{"ULUS10041": "Lumines (USA)", "NPJH50465": "Persona 3 Portable (Japan) (En)"}'
 ```
 
-RomM logs the serial to add whenever it can't match a folder.
+Whenever a folder can't be matched, the serial to add is logged.
 
 ## Browsing with other WebDAV clients
 
@@ -117,11 +117,11 @@ The same path works read-only in generic WebDAV clients, such as a file manager 
 - `roms/` lists your platforms and their ROM files. Opening a file redirects to the normal [download endpoint](../using/downloads.md), so range requests and multi-file ZIPs behave the same way.
 - `saves/` and `states/` list the same files RetroArch sees.
 
-Reading anything needs the `assets.read` permission, and browsing `roms/` also needs `roms.read` and shows only the platforms and games you can see. Changes (`PUT`, `DELETE`, `MOVE`, `MKCOL`) need `assets.write`. RomM answers `LOCK` and `UNLOCK` with a lock that always succeeds, because some clients refuse to mount a share without one.
+Reading anything needs the `assets.read` permission, and browsing `roms/` also needs `roms.read` and shows only the platforms and games you can see. Changes (`PUT`, `DELETE`, `MOVE`, `MKCOL`) need `assets.write`. `LOCK` and `UNLOCK` always succeed, because some clients refuse to mount a share without a lock.
 
 ## Reverse proxy
 
-RomM serves WebDAV under `/api/sync/retroarch/`, so a proxy that already forwards `/api` covers it, as long as it lets these methods through:
+WebDAV is served under `/api/sync/retroarch/`, so a proxy that already forwards `/api` covers it, as long as it lets these methods through:
 
 ```text
 OPTIONS, PROPFIND, GET, HEAD, PUT, DELETE, MKCOL, MOVE, LOCK, UNLOCK
@@ -141,6 +141,6 @@ Most proxies forward any method, but some web application firewalls and CDN rule
 
 ## See also
 
-- [Saves & States](../using/saves-and-states.md): how RomM stores them
+- [Saves & States](../using/saves-and-states.md): how they're stored
 - [Devices](../using/devices.md): the RetroArch device and the others you sync from
 - [Device Sync Protocol](../developers/device-sync-protocol.md): the API that companion apps sync over instead

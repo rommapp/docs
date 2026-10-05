@@ -328,11 +328,11 @@ Filenames will not be renamed to add tags, as they are a non-standard formatting
 
 ### Regions, languages and tags from hash matches
 
-When ScreenScraper or Hasheous matches a game by its hash, RomM reads the region and languages of the exact dump that matched, so a correctly dumped `.chd` with no tags in its name still gets them. ScreenScraper's flags on that dump also become tags: a translation, a hack, a beta or a demo gets the same `Translation`, `Hack`, `Beta` or `Demo` tag a filename would give it. A scan that skips one of these sources keeps the tags it gave before.
+When ScreenScraper or Hasheous matches a game by its hash, the game takes the region and languages of the exact dump that matched, so a correctly dumped `.chd` with no tags in its name still gets them. ScreenScraper's flags on that dump also become tags: a translation, a hack, a beta or a demo gets the same `Translation`, `Hack`, `Beta` or `Demo` tag a filename would give it. A scan that skips one of these sources keeps the tags it gave before.
 
 ### Fan translations
 
-Filenames with a fan translation tag get the `Translation` tag, and the language the tag names is added to the game's languages, since that's the language you'll play it in. RomM reads the common spellings, and tags a superseded GoodTools translation (`[T-Eng]`) the same way:
+Filenames with a fan translation tag get the `Translation` tag, and the language the tag names is added to the game's languages, since that's the language you'll play it in. The common spellings are all recognised, and a superseded GoodTools translation (`[T-Eng]`) is tagged the same way:
 
 | Set convention | Example                         | Language added |
 | -------------- | ------------------------------- | -------------- |

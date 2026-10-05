@@ -5,7 +5,7 @@ description: Play RPG Maker 2000 and 2003 games in the browser
 
 # EasyRPG
 
-[EasyRPG Player](https://easyrpg.org/) is an open-source engine for RPG Maker 2000 and 2003 games, and RomM bundles its web build with the full container image. It plays games on the `rpg-maker` platform (an `easyrpg` folder maps to it too).
+[EasyRPG Player](https://easyrpg.org/) is an open-source engine for RPG Maker 2000 and 2003 games, and its web build ships with the full container image. It plays games on the `rpg-maker` platform (an `easyrpg` folder maps to it too).
 
 <!-- prettier-ignore -->
 !!! important "Games must be extracted folders"
@@ -22,17 +22,17 @@ roms/rpg-maker/
 └─ another game.zip   ← not playable in the browser
 ```
 
-RomM marks a game as playable in EasyRPG when it finds `RPG_RT.ldb` in the game folder itself, and the API exposes this as `is_easyrpg_game` on every ROM. Other games on the platform, archives included, can still be downloaded but don't offer browser play.
+A game is playable in EasyRPG when `RPG_RT.ldb` is in the game folder itself, which the API exposes as `is_easyrpg_game` on every ROM. Other games on the platform, archives included, can still be downloaded but don't offer browser play.
 
 ## The RTP
 
-Many RPG Maker games rely on the RTP (run-time package), a shared set of graphics, sounds and music the original engine installs separately. RomM ships the [EasyRPG RTP](https://github.com/EasyRPG/RTP), a free replacement under CC-BY-4.0, and merges it into each game, so games that need it start without you supplying one. A game's own files always win over the RTP's.
+Many RPG Maker games rely on the RTP (run-time package), a shared set of graphics, sounds and music the original engine installs separately. The [EasyRPG RTP](https://github.com/EasyRPG/RTP), a free replacement under CC-BY-4.0, is bundled and merged into each game, so games that need it start without you supplying one. A game's own files always win over the RTP's.
 
 The free RTP doesn't have every asset of the commercial ones yet, mostly ones used in battles, so a game can show a blank graphic or stay silent where it uses a missing one. Games that bundle their own copy of the assets they use aren't affected.
 
 ## Saves
 
-The player keeps a game's saves in the browser while it runs, and RomM syncs them with the server through [device sync](../saves-and-states.md), the same way as the other in-browser players. Each save slot (`Save01.lsd`, `Save02.lsd` and so on) syncs as its own save, so a save made in one browser is there when you launch the game in another. They're kept per user, so two RomM accounts on the same browser keep separate slots. EasyRPG has no save states.
+The player keeps a game's saves in the browser while it runs, and they sync with the server through [device sync](../saves-and-states.md), the same way as the other in-browser players. Each save slot (`Save01.lsd`, `Save02.lsd` and so on) syncs as its own save, so a save made in one browser is there when you launch the game in another. They're kept per user, so two RomM accounts on the same browser keep separate slots. EasyRPG has no save states.
 
 ## Disabling it
 

@@ -36,7 +36,7 @@ curl -X POST https://demo.romm.app/api/tasks/scan \
 | `422`  | The body has an unknown key or an invalid value                                             |
 | `503`  | No scan worker is running, so the scan can't be queued                                      |
 
-`POST /api/tasks/run/{task_name}` likewise returns `409` when a task that only runs one at a time, such as Convert library, is already queued or running. `GET /api/tasks` flags destructive tasks such as Convert library, which replaces the original files, with `destructive: true`, so a client can ask for confirmation before running one.
+`POST /api/tasks/run/{task_name}` likewise returns `409` when a single-instance task such as Convert library is already queued or running. In `GET /api/tasks`, destructive tasks such as Convert library (which replaces the original files) carry `destructive: true`, so a client can ask for confirmation before running one.
 
 ## WebSockets
 

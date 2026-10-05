@@ -5,7 +5,7 @@ description: The browsers, handhelds and apps your saves sync with, and installi
 
 # Devices
 
-A device is anything that syncs saves with RomM on your behalf: a handheld running [Grout](../ecosystem/first-party-apps.md#grout), a phone running [Argosy](../ecosystem/first-party-apps.md#argosy-launcher), [RetroArch](../ecosystem/retroarch-cloud-sync.md), or a web browser you play in. Each device belongs to one user, and RomM tracks which version of each save every device last synced, which is how it tells an ordinary update apart from a conflict.
+A device is anything that syncs saves with RomM on your behalf: a handheld running [Grout](../ecosystem/first-party-apps.md#grout), a phone running [Argosy](../ecosystem/first-party-apps.md#argosy-launcher), [RetroArch](../ecosystem/retroarch-cloud-sync.md), or a web browser you play in. Each device belongs to one user and keeps a record of the last version of each save it synced, which is how an ordinary update is told apart from a conflict.
 
 Your devices are listed at `/devices`, where you can rename a device, turn sync off for it, or remove it.
 
@@ -21,15 +21,15 @@ An account without the `devices.write` permission can't register devices, so its
 
 ## Managing devices
 
-- **Renaming** changes only the name RomM shows, for example to tell two handhelds of the same model apart.
-- **Turning sync off** makes RomM refuse that device's sync requests, so nothing moves in either direction until you turn it back on, and a browser with sync off keeps its saves locally.
+- **Renaming** changes only its display name, for example to tell two handhelds of the same model apart.
+- **Turning sync off** means that device's sync requests are refused, so nothing moves in either direction until you turn it back on, and a browser with sync off keeps its saves locally.
 - **Removing** a device deletes it, its sync history and any installs queued for it, but the saves it uploaded stay on the server. A browser registers itself again the next time you play in it, and an app re-registers on its next sync, so removing is mostly for cleaning up a device you no longer use.
 
 ## Install on device
 
-You can send a game to one of your devices, and RomM adds it to that device's download queue for the device to fetch the next time it's online.
+A game you send to one of your devices is added to its download queue and fetched the next time the device is online.
 
-Only devices whose app reports that it accepts installs are offered, which leaves out browsers and RetroArch. RomM also shows whether each device is online, meaning it holds an open connection to RomM's `/devices` socket, which a supporting app keeps open while it runs.
+Only devices whose app reports that it accepts installs are offered, which leaves out browsers and RetroArch. Devices also show their online status, meaning the app holds an open connection to the `/devices` socket, as a supporting app does while it runs.
 
 A request waits in the device's queue until the device takes it and reports back. You get a [notification](notifications.md) when it finishes or fails, and you can cancel a request any time before it finishes. A request nothing picks up expires after `DEVICE_INSTALL_REQUEST_TTL_DAYS` days without a change (2 by default).
 

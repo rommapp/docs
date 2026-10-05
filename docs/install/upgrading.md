@@ -5,7 +5,7 @@ description: Move to a new RomM release safely, and what changes in each one
 
 # Upgrading
 
-RomM upgrades in place. Pull the new image, recreate the container, and the database migrations run on the first start:
+Upgrades happen in place. Pull the new image, recreate the container, and the database migrations run on the first start:
 
 ```sh
 docker compose pull
@@ -22,7 +22,7 @@ Before a minor or major upgrade:
 
 ### Let the first start finish its migrations
 
-Several migrations rewrite the `roms` table and backfill it in batches, which can take a while on a large library. RomM doesn't start serving the web UI until they finish, and the container log lists each migration as it runs, then `Database migrations succeeded` once they're done.
+Several migrations rewrite the `roms` table and backfill it in batches, which can take a while on a large library. The web UI isn't served until they finish, and the container log lists each migration as it runs, then `Database migrations succeeded` once they're done.
 
 <!-- prettier-ignore -->
 !!! warning "Don't restart the container while migrations run"
@@ -30,7 +30,7 @@ Several migrations rewrite the `roms` table and backfill it in batches, which ca
 
 ### Cross-origin requests are denied by default
 
-An unset or empty `ROMM_CORS_ALLOWED_ORIGINS` used to allow every origin, and now allows none. The web UI and the API share an origin, so most installs need no change, and you only need to act if a browser-based app on another origin calls your RomM, such as a custom dashboard on a different domain. Native companion apps like Argosy, Grout and Playnite don't use CORS and are unaffected.
+An unset or empty `ROMM_CORS_ALLOWED_ORIGINS` used to allow every origin, and now allows none. The web UI and the API share an origin, so most installs need no change, and you only need to act if a browser-based app on another origin calls your instance, such as a custom dashboard on a different domain. Native companion apps like Argosy, Grout and Playnite don't use CORS and are unaffected.
 
 List each origin that should be allowed, comma-separated, with no trailing slash:
 
@@ -43,7 +43,7 @@ A `*` still answers any origin, but without credentials, so a browser client tha
 
 ### Add a reverse proxy on a public address to `FORWARDED_ALLOW_IPS`
 
-RomM now trusts `X-Forwarded-For` only from loopback and private ranges. The new default is:
+`X-Forwarded-For` is now trusted only from loopback and private ranges. The new default is:
 
 ```text
 127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,fc00::/7
@@ -56,7 +56,7 @@ environment:
     - FORWARDED_ALLOW_IPS=127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,fc00::/7,203.0.113.10
 ```
 
-Earlier releases trusted every hop, which let any client choose the address RomM recorded for it. Setting `FORWARDED_ALLOW_IPS=*` brings that behavior back, so avoid it (see [Reverse Proxy → `FORWARDED_ALLOW_IPS`](reverse-proxy.md#set-forwarded_allow_ips-for-your-proxy)).
+Earlier releases trusted every hop, which let any client choose the address recorded for it. Setting `FORWARDED_ALLOW_IPS=*` brings that behavior back, so avoid it (see [Reverse Proxy → `FORWARDED_ALLOW_IPS`](reverse-proxy.md#set-forwarded_allow_ips-for-your-proxy)).
 
 ### Seeded permission groups are renamed
 

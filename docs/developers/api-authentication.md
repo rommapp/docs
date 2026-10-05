@@ -140,7 +140,7 @@ Every endpoint in the [API Reference](api-reference.md) lists its required scope
 | `403 Forbidden`    | Authenticated but the identity lacks a required scope.                  |
 | `404 Not Found`    | The resource doesn't exist, or, for privacy, the identity can't see it. |
 
-A credential RomM can't use never fails the request on its own. A malformed `Authorization` header, a Basic header that doesn't decode, wrong Basic credentials, or an invalid or expired JWT all leave the request unauthenticated, and it then gets the route's usual answer: `401` on a route that needs a login, or the normal response on one that doesn't.
+An unusable credential never fails the request on its own. A malformed `Authorization` header, a Basic header that doesn't decode, wrong Basic credentials, or an invalid or expired JWT all leave the request unauthenticated, and it then gets the route's usual answer: `401` on a route that needs a login, or the normal response on one that doesn't.
 
 When debugging a 403, check:
 

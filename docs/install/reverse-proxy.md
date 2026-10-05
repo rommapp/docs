@@ -243,7 +243,7 @@ What each block buys you:
 
 ## Set `FORWARDED_ALLOW_IPS` for your proxy
 
-Inside the container, a bundled nginx sits in front of gunicorn and appends the address it received each request from to `X-Forwarded-For`. Gunicorn reads that header from right to left, skips every address listed in `FORWARDED_ALLOW_IPS`, and takes the first one it doesn't trust as the client. By default it trusts loopback and the private ranges:
+Inside the container, a bundled nginx sits in front of gunicorn and appends the address each request came from to `X-Forwarded-For`. Gunicorn reads that header from right to left, skips every address listed in `FORWARDED_ALLOW_IPS`, and takes the first one it doesn't trust as the client. By default it trusts loopback and the private ranges:
 
 ```text
 127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,fc00::/7
@@ -251,7 +251,7 @@ Inside the container, a bundled nginx sits in front of gunicorn and appends the 
 
 That covers a reverse proxy on the same host, on a Docker network, on your LAN or on a Tailscale network (`100.64.0.0/10`), and a Cloudflare Tunnel because `cloudflared` connects from inside your network, so most setups need no change.
 
-A proxy that reaches RomM from a public address, such as a VPS that forwards to your home server or a CDN that connects straight to your public IP, isn't trusted. RomM then sees every visitor as the proxy, which affects more than the logs:
+A proxy that reaches RomM from a public address, such as a VPS that forwards to your home server or a CDN that connects straight to your public IP, isn't trusted. Every visitor then looks like the proxy, which affects more than the logs:
 
 - The [audit log](../administration/audit-log.md) records the proxy's address for every sign-in, failed sign-in and download. It also caps how many failed sign-ins it records per address, so one noisy client can crowd out everyone else's.
 - Metadata heartbeats, device pairing and client token requests are rate limited per address, so every visitor shares one bucket, and a single user hitting the limit blocks everyone else until the window resets.
@@ -272,7 +272,7 @@ The value is a comma-separated list of addresses and CIDR ranges. To find the ad
 
 <!-- prettier-ignore -->
 !!! note "What trusting a range means"
-    When every address in the header is trusted, gunicorn takes the leftmost one, which the client wrote itself. With the default list, a client connecting from your own private network can therefore choose the address RomM records for it. Clients reaching RomM from the internet through a trusted proxy can't, because their real address is the first untrusted hop. If you don't trust your LAN, narrow the list to your proxy's own address.
+    When every address in the header is trusted, gunicorn takes the leftmost one, which the client wrote itself. With the default list, a client connecting from your own private network can therefore choose the address recorded for it. Clients connecting from the internet through a trusted proxy can't, because their real address is the first untrusted hop. If you don't trust your LAN, narrow the list to your proxy's own address.
 
 ## Set `ROMM_BASE_URL` behind HTTPS
 
@@ -296,7 +296,7 @@ environment:
 ```
 
 - `ROMM_SESSION_SECURE_COOKIE` marks the session and CSRF cookies `Secure` so browsers only send them over HTTPS. Leave it `false` if you still reach the instance over plain HTTP, or logins will silently fail.
-- `ROMM_CORS_ALLOWED_ORIGINS` is a comma-separated list of origins allowed to call the API from a browser. It's empty by default, which denies every other origin, and most deployments can leave it that way because the UI and the API share an origin. Add an entry only for another browser app that calls this instance, written as scheme, host and port with no trailing slash. `*` answers any origin, but RomM then leaves out `Access-Control-Allow-Credentials`, so browsers won't send the session cookie and only endpoints that don't need a login work.
+- `ROMM_CORS_ALLOWED_ORIGINS` is a comma-separated list of origins allowed to call the API from a browser. It's empty by default, which denies every other origin, and most deployments can leave it that way because the UI and the API share an origin. Add an entry only for another browser app that calls this instance, written as scheme, host and port with no trailing slash. `*` answers any origin, but the response then leaves out `Access-Control-Allow-Credentials`, so browsers won't send the session cookie and only endpoints that don't need a login work.
 
 Native apps and scripts don't send an `Origin` header, so CORS doesn't affect them. If you're upgrading from 5.3, where an empty list allowed every origin, read [Upgrading](upgrading.md#cross-origin-requests-are-denied-by-default) first.
 

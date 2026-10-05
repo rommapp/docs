@@ -54,7 +54,7 @@ environment:
 
 ## Private certificate authority
 
-If your provider's HTTPS certificate comes from a private CA, such as a homelab step-ca or an internal Active Directory CA, RomM can't verify it out of the box. Mount the CA certificate into the container and point `OIDC_TLS_CACERTFILE` at it:
+If your provider's HTTPS certificate comes from a private CA, such as a homelab step-ca or an internal Active Directory CA, it can't be verified out of the box. Mount the CA certificate into the container and point `OIDC_TLS_CACERTFILE` at it:
 
 ```yaml
 environment:
@@ -63,7 +63,7 @@ volumes:
     - ./ca:/romm/config/ca:ro
 ```
 
-The path can be a single bundle file or a directory, in which case every file in it is read, and PEM, DER and PKCS#7 (`.p7b`) certificates all work. RomM trusts these certificates alongside the system CAs, so public providers keep working. A path that doesn't exist, or a file with no certificate in it, is logged and skipped.
+The path can be a single bundle file or a directory, in which case every file in it is read, and PEM, DER and PKCS#7 (`.p7b`) certificates all work. These certificates are trusted alongside the system CAs, so public providers keep working. A path that doesn't exist, or a file with no certificate in it, is logged and skipped.
 
 ## Auto-provisioning
 

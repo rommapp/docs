@@ -44,7 +44,7 @@ description: Browse, play, collect, patch, and share from the UI
 
 ## Search
 
-Search matches a game's title, its file name, and every alternative title RomM knows for it, so a search for a Japanese title finds the game listed under its English name and the other way around. Alternative titles come from IGDB (Hasheous matches included), MobyGames and ScreenScraper, localized and regional names among them. A matched game picks up new alternative titles on its next metadata refresh.
+Search matches a game's title, its file name, and every known alternative title, so a search for a Japanese title finds the game listed under its English name and the other way around. Alternative titles come from IGDB (Hasheous matches included), MobyGames and ScreenScraper, localized and regional names among them. A matched game picks up new alternative titles on its next metadata refresh.
 
 You can also set a game's alternative titles yourself in its manual metadata, for an abbreviation like "ACNH" or a fan translation's name. A hand-set list **replaces** the providers' titles for that game, so include any provider title you still want to match. The API takes it as `alternative_names` in `raw_manual_metadata` on `PUT /api/roms/{id}`, and returns the resolved list as `alternative_names` on the game.
 

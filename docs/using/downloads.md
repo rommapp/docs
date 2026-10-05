@@ -52,7 +52,7 @@ curl -H "Authorization: Bearer rmm_..." \
      "https://demo.romm.app/api/roms/123/content/game.chd?format=zso,iso"
 ```
 
-The stored file is served as-is when its format is in the list. Otherwise RomM converts it, answering `202` with a `Retry-After` header while the conversion runs and `406` when none of the listed formats can be produced. Converted copies are cached, so the next download of the same format is immediate. Only signed-in users can start a conversion.
+The stored file is served as-is when its format is in the list. Otherwise it's converted, with a `202` and a `Retry-After` header while the conversion runs, and a `406` when none of the listed formats can be produced. Converted copies are cached, so the next download of the same format is immediate. Only signed-in users can start a conversion.
 
 ## Downloads and player loads
 

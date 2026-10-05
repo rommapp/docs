@@ -5,14 +5,14 @@ description: Convert your library to compressed formats with rom-converto
 
 # Library Conversion
 
-RomM can convert disc and cartridge images between formats with [rom-converto](https://github.com/DevYukine/rom-converto), in two ways:
+Disc and cartridge images can be converted between formats with [rom-converto](https://github.com/DevYukine/rom-converto), in two ways:
 
 - **Library conversion** rewrites the files in your library to one storage format per platform, such as CHD for PlayStation or RVZ for GameCube, to save disk space.
 - **Download conversion** leaves the library alone and converts a single download to a format the client asks for, for a handheld or emulator that can't read the stored one.
 
 ## Enabling rom-converto
 
-Set `ROM_CONVERTO_ENABLED=true` and restart the container. RomM probes the CLI on first use and logs the version it found, and if the probe fails it logs a warning and leaves conversion off until the next restart.
+Set `ROM_CONVERTO_ENABLED=true` and restart the container. The CLI is probed on first use and its version logged. If the probe fails, a warning is logged and conversion stays off until the next restart.
 
 | Variable                       | Default | Description                                                         |
 | ------------------------------ | ------- | ------------------------------------------------------------------- |
@@ -45,7 +45,7 @@ converto:
 | `cache_ttl_hours`             | `24`    | Hours a converted download stays cached after it was last served (at least `1`)                             |
 | `scan_metadata`               | `true`  | Read title IDs with rom-converto during scans                                                               |
 
-`cache_ttl_hours` and `scan_metadata` are only set in `config.yml`, and the settings page keeps whatever value they have there. RomM rejects a `platform_formats` entry for a platform rom-converto can't store, or a format that isn't one of that platform's library formats, and logs which ones are valid.
+`cache_ttl_hours` and `scan_metadata` are only set in `config.yml`, and the settings page keeps whatever value they have there. A `platform_formats` entry is rejected, with a log line listing the valid ones, when rom-converto can't store that platform or the format isn't one of its library formats.
 
 ## Library formats
 
@@ -85,7 +85,7 @@ With `download_conversion_enabled` on, a client can ask for a single-file downlo
 GET /api/roms/{id}/content/{file_name}?format=zso,iso
 ```
 
-RomM answers with:
+The response is one of:
 
 | Response                     | When                                                                                          |
 | ---------------------------- | --------------------------------------------------------------------------------------------- |
@@ -94,13 +94,13 @@ RomM answers with:
 | `202` with `Retry-After: 30` | A conversion is running. Repeat the request after the delay.                                  |
 | `406 Not Acceptable`         | No listed format can be produced, the request covers more than one file, or conversion is off |
 
-`HEAD` on the same URL reports the same outcome without starting a conversion. A conversion that a download started keeps running when the client stops waiting, and its result lands in the cache for the next request.
+`HEAD` on the same URL reports the same outcome without starting a conversion. A conversion started by a download keeps running when the client stops waiting, and its result lands in the cache for the next request.
 
 Any format rom-converto can reach from the stored file is allowed here, lossy ones included. `DetailedRomSchema.download_formats` lists the formats the caller can request for a game, which is empty for multi-file games, when conversion is off, and for callers who can't start a conversion. Only signed-in users can start one, so visitors in [kiosk mode](authentication.md) or on an unauthenticated download endpoint (`DISABLE_DOWNLOAD_ENDPOINT_AUTH`) get a cached copy or a `406`. The web UI offers the same list as "Download as" on a game page.
 
 ### The conversion cache
 
-Converted downloads are cached in `/romm/cache/converts`. A copy expires `cache_ttl_hours` after it was last served, and when the cache would grow past `cache_max_size_gb`, RomM evicts the least recently served copies first. The **Scheduled conversion cache cleanup** task removes expired copies every day at 04:00. A conversion that failed is remembered, so RomM doesn't retry it on every request until its cache entry expires.
+Converted downloads are cached in `/romm/cache/converts`. A copy expires `cache_ttl_hours` after it was last served, and when the cache would grow past `cache_max_size_gb`, the least recently served copies are evicted first. The **Scheduled conversion cache cleanup** task removes expired copies every day at 04:00. A conversion that failed is remembered, so it isn't retried on every request until its cache entry expires.
 
 ## API
 

@@ -5,7 +5,7 @@ description: A record of who downloaded, played, changed and signed in to what
 
 # Audit Log
 
-RomM records who did what on the server: downloads and player launches, play sessions, uploads and edits, collection changes, scans and tasks, and security events like sign-ins, failed sign-ins and permission changes. Admins read it in the Events tab of the logs settings page, filtered by user, category and date, with a search over names and IP addresses.
+The audit log records who did what on the server: downloads and player launches, play sessions, uploads and edits, collection changes, scans and tasks, and security events like sign-ins, failed sign-ins and permission changes. Admins read it in the Events tab of the logs settings page, filtered by user, category and date, with a search over names and IP addresses.
 
 Each event keeps the actor, the action, its target, when it happened, the client's IP address and, for a request made with a device-bound token, the [device](../using/devices.md) it came from. Names are copied into the event, so it still reads after the user or the game it names is deleted. Recording is best effort, so a request still succeeds when its event can't be written.
 
@@ -23,7 +23,7 @@ Events fall into five categories:
 
 Some actions and actors need more detail:
 
-- **`rom.download` and `rom.player_load`** both come from the ROM content endpoint. Clients pass `purpose=play` on `GET /api/roms/{id}/content/{file_name}` when a player fetches the file to run it, which is recorded as a player load, and `purpose=download` (the default) otherwise. A repeat of the same download by the same caller within 10 minutes counts as one event, so resumed and ranged downloads don't flood the log.
+- **`rom.download` and `rom.player_load`** both come from the ROM content endpoint. When a player fetches the file to run it, the client passes `purpose=play` on `GET /api/roms/{id}/content/{file_name}` and the fetch is recorded as a player load. Any other fetch is a download (`purpose=download`, the default). A repeat of the same download by the same caller within 10 minutes counts as one event, so resumed and ranged downloads don't flood the log.
 - **`rom.play`** is a [play session](../using/saves-and-states.md) reported by a player or a companion app, recorded at the time the session started.
 - **Actors** are a user, an anonymous visitor (a [kiosk](authentication.md#kiosk-mode) guest, a download with endpoint auth turned off, or a failed sign-in for a username that doesn't exist), or the system for scheduled tasks and the filesystem watcher.
 
@@ -38,7 +38,7 @@ Only admins get the Events tab in the UI, but other users can still read their o
 
 ## Client IP addresses
 
-The IP address on each event is the client address RomM's web server settled on. Behind a reverse proxy, that's the address from `X-Forwarded-For`, which is only trusted when the proxy's own address is in `FORWARDED_ALLOW_IPS`. The default trusts loopback and the private ranges, so a proxy on a public address has to be added, or every event is logged as coming from the proxy (see [Reverse Proxy](../install/reverse-proxy.md)).
+Each event records the client address as the web server resolved it. Behind a reverse proxy, that's the address from `X-Forwarded-For`, which is only trusted when the proxy's own address is in `FORWARDED_ALLOW_IPS`. The default trusts loopback and the private ranges, so a proxy on a public address has to be added, or every event is logged as coming from the proxy (see [Reverse Proxy](../install/reverse-proxy.md)).
 
 ## Retention
 
