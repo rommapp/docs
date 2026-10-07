@@ -63,7 +63,7 @@ The `config`, `thumbnails` and `system` folders belong to no game, so RomM keeps
 
 RetroArch sees the saves stored without a slot, which covers everything it uploaded itself and saves you uploaded by hand. Saves written into a [slot](../using/saves-and-states.md#save-slots), such as the browser player's `autosave` history or the ones other device-sync apps upload, are left out of the manifest because they're RomM's versioned history and not files a core would load.
 
-A save with no emulator recorded, such as one uploaded through the web UI, is offered in the `saves/` root rather than a core's folder. With saves sorted by core, the core won't find it there until you move it into the core's folder on the device.
+A save uploaded through the web UI with a core picked is offered in that core's folder (`saves/<core folder>/`). One uploaded with **Any core** has no emulator recorded, so it's offered in the `saves/` root, where a core that sorts saves by core won't find it. When uploading a save for RetroArch, pick **No slot** and the core you use in RetroArch.
 
 ### States
 
@@ -138,7 +138,7 @@ Most proxies forward any method, but some web application firewalls and CDN rule
 - **RetroArch says the sync failed right away**: check the URL ends in `/api/sync/retroarch/`, with the trailing slash, and that the username and password sign in to the RomM web UI.
 - **A save never shows up in RomM**: its file name matches no ROM you can see. Look for a `matches no ROM in the library` warning in the logs, then rename the ROM or the save so they agree.
 - **A web player state doesn't show up in RetroArch**: only the newest state per slot is offered, so a newer state in the same slot hides it. RetroArch also has to be sorting states by core for the state to land in the folder the core reads from.
-- **A browser or uploaded save doesn't show up in RetroArch**: saves in a slot aren't offered to RetroArch (see [Saves](#saves)). Pick **No slot** when uploading a save you want RetroArch to see.
+- **A browser or uploaded save doesn't show up in RetroArch**: saves in a slot aren't offered to RetroArch (see [Saves](#saves)). When uploading, pick **No slot** and the core you use in RetroArch.
 - **A PSP save doesn't sync**: the folder's title didn't match a ROM. Add the serial from the log message to `SYNC_RETROARCH_PSP_SERIAL_MAP` and restart RomM.
 - **Errors only on `PROPFIND`, `MOVE` or `MKCOL` requests**: something in front of RomM blocks WebDAV methods (see [Reverse proxy](#reverse-proxy)).
 - **Large states fail to upload**: raise your proxy's body size limit.
