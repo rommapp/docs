@@ -57,7 +57,11 @@ The `config`, `thumbnails` and `system` folders belong to no game, so RomM keeps
 
 ### Saves
 
-RetroArch sees the saves stored without a slot, which covers everything it uploaded itself and saves you uploaded by hand. Saves written into a [slot](../using/saves-and-states.md#save-slots), such as the browser player's `autosave` history or the ones other device-sync apps upload, are left out of the manifest because they're RomM's versioned history and not files a core would load.
+RetroArch saves go through the same [save slots](../using/saves-and-states.md#save-slots) as the web player and other device-sync apps. For each game, core and file extension, RomM offers the newest save from any slot under the name RetroArch expects (`<game>.srm`, for example), so progress made in the browser or on another device reaches RetroArch, and the other way around.
+
+Each upload adds a new version to the slot of the save RetroArch was offered, or to `autosave` when there was none. An upload with the same bytes as the newest version adds nothing. The slot keeps up to `MAX_SAVES_PER_SLOT` versions for that core and extension, so a `.rtc` file or another core's save in the same slot keeps its own history.
+
+A save stored without a slot, such as one you uploaded by hand, is offered until the first upload for that game and core files a slotted version.
 
 ### States
 
@@ -67,7 +71,7 @@ A state made in RomM's web player has a label and a timestamp in its name instea
 
 ### Deletes
 
-Deleting a save or state in RetroArch deletes it in RomM too. In non-destructive mode RetroArch moves a deleted file into a `deleted/` folder instead, and RomM treats that move as a delete as well, since keeping the row would push the file straight back on the next sync.
+Deleting a save or state in RetroArch deletes it in RomM too. For a save, that's every version RomM could offer in its place (the game's slotted saves for that core and extension in every slot, plus the unslotted save at that path), so no older version comes back on the next sync. In non-destructive mode RetroArch moves a deleted file into a `deleted/` folder instead, and RomM treats that move as a delete as well, since keeping the row would push the file straight back on the next sync.
 
 ## How files match games
 
@@ -128,7 +132,7 @@ Most proxies forward any method, but some web application firewalls and CDN rule
 - **RetroArch says the sync failed right away**: check the URL ends in `/api/sync/retroarch/`, with the trailing slash, and that the username and password sign in to the RomM web UI.
 - **A save never shows up in RomM**: its file name matches no ROM you can see. Look for a `matches no ROM in the library` warning in the logs, then rename the ROM or the save so they agree.
 - **A web player state doesn't show up in RetroArch**: only the newest state per slot is offered, so a newer state in the same slot hides it. RetroArch also has to be sorting states by core for the state to land in the folder the core reads from.
-- **A browser save doesn't show up in RetroArch**: saves in a slot aren't offered to RetroArch (see [Saves](#saves)).
+- **A browser save doesn't show up in RetroArch**: only the newest save for the game, core and extension is offered (see [Saves](#saves)), and it lands in the folder of the core that wrote it. Check that RetroArch sorts saves by core and runs the same core as the browser player.
 - **A PSP save doesn't sync**: the folder's title didn't match a ROM. Add the serial from the log message to `SYNC_RETROARCH_PSP_SERIAL_MAP` and restart RomM.
 - **Errors only on `PROPFIND`, `MOVE` or `MKCOL` requests**: something in front of RomM blocks WebDAV methods (see [Reverse proxy](#reverse-proxy)).
 - **Large states fail to upload**: raise your proxy's body size limit.
