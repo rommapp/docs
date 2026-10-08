@@ -77,7 +77,7 @@ A state made in RomM's web player has a label and a timestamp in its name instea
 
 ### Deletes
 
-Deleting a save or state in RetroArch deletes it in RomM too. For a `.srm`, that's every `autosave` version for that game and core, plus the one stored without a slot, so no older version comes back on the next sync. Named slots are left alone. In non-destructive mode RetroArch moves a deleted file into a `deleted/` folder instead, and RomM treats that move as a delete as well, since keeping the row would push the file straight back on the next sync.
+Deleting a save or state in RetroArch deletes it in RomM too. For a `.srm`, that's every `autosave` version for that game and core plus the one stored without a slot (named slots are left alone), so no older version comes back on the next sync. In non-destructive mode RetroArch moves a deleted file into a `deleted/` folder instead, and RomM treats that move as a delete as well, since keeping the row would push the file straight back on the next sync.
 
 ## How files match games
 
