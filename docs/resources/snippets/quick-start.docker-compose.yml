@@ -27,6 +27,7 @@ services:
             - /path/to/library:/romm/library # Your game library. Check https://github.com/rommapp/romm?tab=readme-ov-file#folder-structure for more details.
             - /path/to/assets:/romm/assets # Uploaded saves, states, etc.
             - /path/to/config:/romm/config # Path where config.yml is stored
+            # - /path/to/sync:/romm/sync # Required for ENABLE_SYNC_FOLDER_WATCHER and ENABLE_SYNC_PUSH_PULL
         ports:
             - 80:8080
         depends_on:

@@ -100,7 +100,7 @@ Any format rom-converto can reach from the stored file is allowed here, lossy on
 
 ### The conversion cache
 
-Converted downloads are cached in `/romm/cache/converts`. A copy expires `cache_ttl_hours` after it was last served, and when the cache would grow past `cache_max_size_gb`, the least recently served copies are evicted first. The **Scheduled conversion cache cleanup** task removes expired copies every day at 04:00. A conversion that failed is remembered, so it isn't retried on every request until its cache entry expires.
+Converted downloads are cached inside the container at `/tmp/romm/cache/converts`, or `$ROMM_TMP_PATH/cache/converts` when [`ROMM_TMP_PATH`](../reference/environment-variables.md) is set. The cache is cleared when the container is recreated, and converted downloads are rebuilt on demand. With the default `cache_max_size_gb` of 20, a small Docker disk (such as Unraid's `docker.img`) can fill up, so point `ROMM_TMP_PATH` at a mounted host folder if that's a concern. Library conversion writes into the library itself and doesn't use this cache. A copy expires `cache_ttl_hours` after it was last served, and when the cache would grow past `cache_max_size_gb`, the least recently served copies are evicted first. The **Scheduled conversion cache cleanup** task removes expired copies every day at 04:00. A conversion that failed is remembered, so it isn't retried on every request until its cache entry expires.
 
 ## API
 
