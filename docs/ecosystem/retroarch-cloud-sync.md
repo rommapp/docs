@@ -11,7 +11,7 @@ Each save and state is attached to the ROM it belongs to, next to the ones from 
 
 ## Requirements
 
-- A RetroArch build with Cloud Sync and the WebDAV driver. Use RetroArch 1.22 or newer: the 1.19.x builds for Windows and Android have no Cloud Sync menu.
+- RetroArch 1.22 or newer, built with Cloud Sync and the WebDAV driver (the 1.19.x builds for Windows and Android have no Cloud Sync menu)
 - A RomM account with a password, since RetroArch signs in with HTTP Basic auth and an account that only signs in through [OIDC](../administration/oidc/index.md) has none to send
 - Your ROM files named the same on both sides, because that's how RomM tells which game a save belongs to (see [How files match games](#how-files-match-games))
 
@@ -175,7 +175,7 @@ RetroArch's requests don't identify the install, so every install signed in as t
 
 ### Why does a new device's first sync take so long?
 
-It downloads every save without a slot, for every game you have, plus the newest state in each slot. Saves with no emulator recorded land in the device's `saves/` root.
+It downloads the newest save for every game and core you have, plus the newest state in each slot. Saves with no emulator recorded land in the device's `saves/` root.
 
 ### Why does the same state have a different size on each device?
 

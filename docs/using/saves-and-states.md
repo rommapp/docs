@@ -78,7 +78,7 @@ A save or state can be renamed, and its screenshot follows it. The new name has 
 
 Saves and states written in the browser are named after the game and the local time they were captured, so the timestamp in the name matches your clock.
 
-A new version of a save uploaded by a device or RetroArch is tagged with the server's time instead. That follows the container's time zone, which is UTC unless you set `TZ` (for example `TZ=America/New_York`) in RomM's environment.
+A new version of a save uploaded by a device or RetroArch is tagged with the server's time instead, which follows the container's time zone: UTC unless you set `TZ` (for example `TZ=America/New_York`) in RomM's environment.
 
 When you share a save or state with other users, they see its author but not its favorite flag or labels, which stay yours.
 
