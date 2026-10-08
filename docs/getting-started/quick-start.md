@@ -41,6 +41,7 @@ You'll want to edit the following values before launching:
 | `romm`    | `/path/to/library` volume | Host path to the directory containing your `roms/` folder.                                           |
 | `romm`    | `/path/to/assets` volume  | Host storage paths for saves, states and screenshots.                                                |
 | `romm`    | `/path/to/config` volume  | Host path to a directory that will hold `config.yml`.                                                |
+| `romm`    | `/path/to/sync` volume    | Only if you enable the sync folder watcher or push/pull sync. Uncomment it and pick a host path.     |
 
 Generate the auth secret now so you don't forget:
 

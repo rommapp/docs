@@ -16,6 +16,10 @@ Both end up with the same running stack.
 !!! warning "Back up `appdata` before updates"
     Tearing down the container wipes its resources directory (covers, screenshots, cached metadata). Mount `appdata` on a safe path or [back it up](backup-and-restore.md) before every upgrade.
 
+<!-- prettier-ignore -->
+!!! note "Only mounted paths are writable"
+    Containers on Unraid usually run as `99:100` (`nobody:users`), which can only write to the paths you map. If you enable `ENABLE_SYNC_FOLDER_WATCHER` or `ENABLE_SYNC_PUSH_PULL`, add a path mapping for `/romm/sync`, or the sync folder watcher stays off. Download caches live in `/tmp/romm/cache` inside `docker.img`; set `ROMM_TMP_PATH` to a mapped folder to keep them off it.
+
 ---
 
 ## Community Apps template
