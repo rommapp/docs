@@ -11,7 +11,7 @@ Each save and state is attached to the ROM it belongs to, next to the ones from 
 
 ## Requirements
 
-- A RetroArch build with Cloud Sync and the WebDAV driver (desktop, Android and most handheld builds have it)
+- A RetroArch build with Cloud Sync and the WebDAV driver. Use RetroArch 1.22 or newer: the 1.19.x builds for Windows and Android have no Cloud Sync menu.
 - A RomM account with a password, since RetroArch signs in with HTTP Basic auth and an account that only signs in through [OIDC](../administration/oidc/index.md) has none to send
 - Your ROM files named the same on both sides, because that's how RomM tells which game a save belongs to (see [How files match games](#how-files-match-games))
 
@@ -41,6 +41,10 @@ cloud_sync_sync_thumbs = "false"
 cloud_sync_sync_system = "false"
 ```
 
+Edit `retroarch.cfg` only while RetroArch is closed. A running instance writes its own settings back to the file when it exits, overwriting your changes.
+
+Turn off **Write Saves to Content Directory** and **Write Save States to Content Directory** (`savefiles_in_content_dir` and `savestates_in_content_dir`). With them on, RetroArch writes saves and states next to the ROMs instead of into its `saves/` and `states/` folders, and Cloud Sync never sees them.
+
 We also recommend turning on RetroArch's options to sort saves and states into per-core folders (`sort_savefiles_enable` and `sort_savestates_enable`). RomM stores each save and state with the emulator that wrote it, and the per-core folder is how that emulator survives the round trip (see [Cores and folders](#cores-and-folders)).
 
 ## What syncs
@@ -58,6 +62,8 @@ The `config`, `thumbnails` and `system` folders belong to no game, so RomM keeps
 ### Saves
 
 RetroArch sees the saves stored without a slot, which covers everything it uploaded itself and saves you uploaded by hand. Saves written into a [slot](../using/saves-and-states.md#save-slots), such as the browser player's `autosave` history or the ones other device-sync apps upload, are left out of the manifest because they're RomM's versioned history and not files a core would load.
+
+A save uploaded through the web UI with a core picked is offered in that core's folder (`saves/<core folder>/`). One uploaded with **Any core** has no emulator recorded, so it's offered in the `saves/` root, where a core that sorts saves by core won't find it. When uploading a save for RetroArch, pick **No slot** and the core you use in RetroArch.
 
 ### States
 
@@ -83,6 +89,10 @@ An upload that matches no ROM is refused with `409`, and a `Cloud sync upload ..
 ### Cores and folders
 
 With saves and states sorted by core, RetroArch puts them in folders named after the core, such as `saves/Snes9x/`. RomM maps the common RetroArch folder names to the core IDs its web player uses, so a state from the web player's `snes9x` core shows up in RetroArch's `Snes9x` folder and the other way around. A folder name that isn't recognized is stored unchanged as the emulator name.
+
+### Files that never match
+
+Some cores keep one file for all games, such as YabaSanshiro's `backup.bin` or MAME's `default.cfg`. These name no ROM, so RomM refuses them with `409` and they stay on the device. The same happens to a save whose name differs from the ROM's, for example a translated, renamed or timestamped copy.
 
 ## PSP saves
 
@@ -144,10 +154,28 @@ Most proxies forward any method, but some web application firewalls and CDN rule
 - **RetroArch says the sync failed right away**: check the URL ends in `/api/sync/retroarch/`, with the trailing slash, and that the username and password sign in to the RomM web UI.
 - **A save never shows up in RomM**: its file name matches no ROM you can see. Look for a `matches no ROM in the library` warning in the logs, then rename the ROM or the save so they agree.
 - **A web player state doesn't show up in RetroArch**: only the newest state per slot is offered, so a newer state in the same slot hides it. RetroArch also has to be sorting states by core for the state to land in the folder the core reads from.
-- **A browser save doesn't show up in RetroArch**: saves in a slot aren't offered to RetroArch (see [Saves](#saves)).
+- **A browser or uploaded save doesn't show up in RetroArch**: saves in a slot aren't offered to RetroArch (see [Saves](#saves)). When uploading, pick **No slot** and the core you use in RetroArch.
 - **A PSP save doesn't sync**: the folder's title didn't match a ROM. Add the serial from the log message to `SYNC_RETROARCH_PSP_SERIAL_MAP` and restart RomM.
 - **Errors only on `PROPFIND`, `MOVE` or `MKCOL` requests**: something in front of RomM blocks WebDAV methods (see [Reverse proxy](#reverse-proxy)).
 - **Large states fail to upload**: raise your proxy's body size limit.
+- **Saves stay next to the ROMs and never upload**: turn off **Write Saves to Content Directory** and **Write Save States to Content Directory** (see [Configure RetroArch](#configure-retroarch)).
+- **Cloud Sync settings reset on every launch on muOS**: enable muOS's advanced **retrofree** option. Without it, muOS restores its default `retroarch.cfg` each time RetroArch starts.
+- **Settings edited in `retroarch.cfg` revert**: RetroArch was running and wrote its old settings back on exit. Close it before editing the file.
+- **A save from another device doesn't load**: with **Auto Load State** on, a synced `.state.auto` from the other device loads instead of the `.srm`. Turn **Auto Load State** off when you want the `.srm` to load.
+
+## FAQ
+
+### Why is there only one RetroArch device for several installs?
+
+RetroArch's requests don't identify the install, so every install signed in as the same user shares the single **RetroArch** device.
+
+### Why does a new device's first sync take so long?
+
+It downloads every save without a slot, for every game you have, plus the newest state in each slot. Saves with no emulator recorded land in the device's `saves/` root.
+
+### Why does the same state have a different size on each device?
+
+States follow each install's RetroArch state compression setting, and RomM stores the file as uploaded. RetroArch reads both compressed and uncompressed states, so this is harmless.
 
 ## See also
 
