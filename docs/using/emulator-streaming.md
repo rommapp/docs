@@ -189,9 +189,4 @@ Three env vars bound how long streaming waits, listed with their defaults in [En
 
 ## Troubleshooting
 
-- **No stream action on a platform.** Either `streaming.enabled` is off, nothing is configured for that platform slug, or the config hasn't reloaded. RomM reads the streaming config when the app loads, so refresh the page after editing `config.yml`.
-- **Stream never loads.** The browser can't reach `host`, or `host` isn't HTTPS. Open the Selkies URL directly in a browser from the client machine and see what happens.
-- **Launch or save errors out.** Either the server can't reach `broker_host` or the secret is wrong. Check `STREAMING_BROKER_SECRET` matches on both sides, and that `broker_host` actually resolves from the server.
-- **A container shows as unconfigured in the fleet.** Its `host` is missing a scheme, or RomM has no reachable broker for it. It can't be claimed until that's fixed.
-- **Platform stuck as in use.** Someone disconnected without releasing it. Wait for the heartbeat to go stale or force-release it from the fleet.
-- **"The previous session is still saving".** An exit is still pulling state off the container. Give it a moment and try again.
+Setup, GPU, reverse proxy and session issues are covered in [Emulator Streaming Troubleshooting](../troubleshooting/emulator-streaming.md).
