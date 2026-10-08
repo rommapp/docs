@@ -11,7 +11,7 @@ Each save and state is attached to the ROM it belongs to, next to the ones from 
 
 ## Requirements
 
-- A RetroArch build with Cloud Sync and the WebDAV driver. Use RetroArch 1.22 or newer: the 1.19.x builds for Windows and Android have no Cloud Sync menu.
+- RetroArch 1.22 or newer, built with Cloud Sync and the WebDAV driver (the 1.19.x builds for Windows and Android have no Cloud Sync menu)
 - A RomM account with a password, since RetroArch signs in with HTTP Basic auth and an account that only signs in through [OIDC](../administration/oidc/index.md) has none to send
 - Your ROM files named the same on both sides, because that's how RomM tells which game a save belongs to (see [How files match games](#how-files-match-games))
 
@@ -61,9 +61,13 @@ The `config`, `thumbnails` and `system` folders belong to no game, so RomM keeps
 
 ### Saves
 
-RetroArch sees the saves stored without a slot, which covers everything it uploaded itself and saves you uploaded by hand. Saves written into a [slot](../using/saves-and-states.md#save-slots), such as the browser player's `autosave` history or the ones other device-sync apps upload, are left out of the manifest because they're RomM's versioned history and not files a core would load.
+A game's `.srm` save shares the `autosave` [slot](../using/saves-and-states.md#save-slots) with the web player and other device-sync apps, so progress made in the browser or on another device reaches RetroArch, and the other way around. For each game and core, the newest `autosave` version is offered under the name RetroArch uses for the game.
 
-A save uploaded through the web UI with a core picked is offered in that core's folder (`saves/<core folder>/`). One uploaded with **Any core** has no emulator recorded, so it's offered in the `saves/` root, where a core that sorts saves by core won't find it. When uploading a save for RetroArch, pick **No slot** and the core you use in RetroArch.
+Each upload adds a new version to `autosave`, unless it has the same bytes as the newest one. Up to `MAX_SAVES_PER_SLOT` versions are kept for each core, so another core's save in the slot keeps its own history. Saves in named slots aren't offered to RetroArch and are never changed by it.
+
+Other files RetroArch puts in `saves/`, such as a `.rtc` clock file, are stored without a slot and overwritten on each upload. A `.srm` stored without a slot, such as one you uploaded by hand, is offered until the first upload for that game and core.
+
+A save uploaded through the web UI with a core picked is offered in that core's folder (`saves/<core folder>/`). One uploaded with **Any core** has no emulator recorded, so it's offered in the `saves/` root, where a core that sorts saves by core won't find it. When uploading a save for RetroArch, pick the core you use in RetroArch.
 
 ### States
 
@@ -73,7 +77,7 @@ A state made in RomM's web player has a label and a timestamp in its name instea
 
 ### Deletes
 
-Deleting a save or state in RetroArch deletes it in RomM too. In non-destructive mode RetroArch moves a deleted file into a `deleted/` folder instead, and RomM treats that move as a delete as well, since keeping the row would push the file straight back on the next sync.
+Deleting a save or state in RetroArch deletes it in RomM too. For a `.srm`, that's every `autosave` version for that game and core plus the one stored without a slot (named slots are left alone), so no older version comes back on the next sync. In non-destructive mode RetroArch moves a deleted file into a `deleted/` folder instead, and RomM treats that move as a delete as well, since keeping the row would push the file straight back on the next sync.
 
 ## How files match games
 
@@ -154,7 +158,7 @@ Most proxies forward any method, but some web application firewalls and CDN rule
 - **RetroArch says the sync failed right away**: check the URL ends in `/api/sync/retroarch/`, with the trailing slash, and that the username and password sign in to the RomM web UI.
 - **A save never shows up in RomM**: its file name matches no ROM you can see. Look for a `matches no ROM in the library` warning in the logs, then rename the ROM or the save so they agree.
 - **A web player state doesn't show up in RetroArch**: only the newest state per slot is offered, so a newer state in the same slot hides it. RetroArch also has to be sorting states by core for the state to land in the folder the core reads from.
-- **A browser or uploaded save doesn't show up in RetroArch**: saves in a slot aren't offered to RetroArch (see [Saves](#saves)). When uploading, pick **No slot** and the core you use in RetroArch.
+- **A browser save doesn't show up in RetroArch**: only the newest `autosave` save for the game and core is offered (see [Saves](#saves)), and it lands in the folder of the core that wrote it. Check that RetroArch sorts saves by core and runs the same core as the browser player, and that the save isn't in a named slot.
 - **A PSP save doesn't sync**: the folder's title didn't match a ROM. Add the serial from the log message to `SYNC_RETROARCH_PSP_SERIAL_MAP` and restart RomM.
 - **Errors only on `PROPFIND`, `MOVE` or `MKCOL` requests**: something in front of RomM blocks WebDAV methods (see [Reverse proxy](#reverse-proxy)).
 - **Large states fail to upload**: raise your proxy's body size limit.
@@ -171,7 +175,7 @@ RetroArch's requests don't identify the install, so every install signed in as t
 
 ### Why does a new device's first sync take so long?
 
-It downloads every save without a slot, for every game you have, plus the newest state in each slot. Saves with no emulator recorded land in the device's `saves/` root.
+It downloads the newest save for every game and core you have, plus the newest state in each slot. Saves with no emulator recorded land in the device's `saves/` root.
 
 ### Why does the same state have a different size on each device?
 
