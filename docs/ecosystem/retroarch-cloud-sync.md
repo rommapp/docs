@@ -104,6 +104,22 @@ environment:
 
 Whenever a folder can't be matched, the serial to add is logged.
 
+## Known RetroArch issues
+
+These happen inside RetroArch, before any request reaches RomM.
+
+### Launching a game from a frontend
+
+RetroArch syncs when it starts. When a frontend such as muOS starts RetroArch with a game already chosen, the core can load the local save before that sync finishes. The game then runs on the old local save instead of the one just downloaded, and the next sync uploads that old save as the newest version. Other frontends that start RetroArch with a game (ES-DE, Batocera, Android launchers) are likely affected in the same way.
+
+To avoid it, open RetroArch on its own first and let the sync finish, then launch the game.
+
+If a stale or blank save was already uploaded, the good one is still in the game's `autosave` [version history](../using/saves-and-states.md#save-slots). Delete the bad newest version in RomM, and RetroArch downloads the previous one on its next sync.
+
+### `Begin failed` after closing content
+
+RetroArch sometimes logs `Begin failed` with HTTP status `-1` when it syncs after **Close Content**. The request never reaches RomM, so nothing shows up in RomM's logs. Restart RetroArch and it syncs normally.
+
 ## Browsing with other WebDAV clients
 
 The same path works read-only in generic WebDAV clients, such as a file manager that mounts WebDAV shares:

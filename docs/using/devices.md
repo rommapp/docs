@@ -29,7 +29,7 @@ An account without the `devices.write` permission can't register devices, so its
 
 A game you send to one of your devices is added to its download queue and fetched the next time the device is online.
 
-Only devices whose app reports that it accepts installs are offered, which leaves out browsers and RetroArch. Devices also show their online status, meaning the app holds an open connection to the `/devices` socket, as a supporting app does while it runs.
+Only devices whose app reports that it accepts installs are offered, which leaves out browsers and RetroArch. Devices also show their online status: a device is online while its app holds an open connection to the `/devices` socket, or when it checked for installs in the last 90 seconds. An app that only checks every few minutes shows as offline between checks, but still picks up the request.
 
 A request waits in the device's queue until the device takes it and reports back. You get a [notification](notifications.md) when it finishes or fails, and you can cancel a request any time before it finishes. A request nothing picks up expires after `DEVICE_INSTALL_REQUEST_TTL_DAYS` days without a change (2 by default).
 
