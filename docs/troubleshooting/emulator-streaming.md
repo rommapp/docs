@@ -5,11 +5,9 @@ description: Fix emulator streaming setup, GPU and network issues
 
 # Emulator Streaming Troubleshooting
 
-Most of this applies to both the [webstation](../using/emulator-streaming.md) container and the deprecated per-emulator broker mods, and where they differ it's called out.
-
 ## Test the container on its own first
 
-Get the emulator container working by itself before you add it to `config.yml`. Open its Selkies web UI from the machine you'll play on, launch a game from inside the emulator, and check that it runs at full speed. If it doesn't, nothing in RomM's config will fix it.
+Get the [webstation](../using/emulator-streaming.md#run-the-webstation-container) container working by itself before you add it to `config.yml`. Open its Selkies web UI from the machine you'll play on, launch a game from inside the emulator, and check that it runs at full speed. If it doesn't, nothing in RomM's config will fix it.
 
 To confirm the GPU is in use, open a terminal inside the container and run `vkcube`. It should name your graphics card, and `llvmpipe` means the container fell back to software rendering. When a desktop container can't get the GPU at all, smoke-test a plain Selkies container such as [webtop](https://docs.linuxserver.io/images/docker-webtop/) with the [LinuxServer GPU guide](https://docs.linuxserver.io/selkies/user-guide/gpu/) before you go back to the emulator.
 
@@ -39,8 +37,6 @@ sudo systemctl restart docker
 
 Start from a minimal compose file with only the image, the broker variables, ports, volumes and the block above. Extra settings such as `security_opt`, `QT_QPA_PLATFORM` or `PIXELFLUX_WAYLAND` can stop the emulator from starting, so add them back one at a time once it works.
 
-If Dolphin fails to initialize its video backend on OpenGL, switch it to Vulkan (`GFXBackend = Vulkan` under `[Core]` in `Dolphin.ini`, in the container's `/config` volume).
-
 ## The container crashes without an error
 
 Check the host's kernel log right after the crash. The first command shows NVIDIA driver (Xid) errors, and the second shows processes the kernel killed for running out of memory:
@@ -68,7 +64,7 @@ The stream is an iframe the browser loads straight from `host`, so `host` has to
 
 For remote play, put the container behind your [reverse proxy](../install/reverse-proxy.md) and set `host` to its public HTTPS address. Selkies serves a self-signed certificate on its HTTPS port, so either proxy to that port with certificate checks turned off (`tls_insecure_skip_verify` in Caddy) or proxy to the container's plain HTTP port.
 
-`broker_host` is only called by the RomM server, so it can stay on an internal address such as `http://pcsx2:8000` when both containers share a Docker network. With the per-emulator broker mods, the broker listens on its own port (`8000` by default) apart from the Selkies stream (`3001`). Exposing the broker separately takes a second proxy host pointing at that port. A webstation container serves the broker under its `SUBFOLDER` on the same origin as the stream, so a single proxy host covers both.
+The broker is served under the container's `SUBFOLDER` on the same origin as the stream, so a single proxy host covers both. `broker_host` is only called by the RomM server, so if you set it, it can stay on an internal address.
 
 ## Launch or save errors out
 
@@ -77,8 +73,6 @@ Either the server can't reach `broker_host` or the secret is wrong. Check that `
 ## The emulator can't find the game
 
 The path sent to the container is `library_path` (default `/romm/library`) followed by the ROM's path inside the RomM library, such as `roms/ps2/game.iso`. The container's mount has to mirror the RomM library layout under that prefix. If your library uses `roms/ps2/` and you mount the PS2 folder at `/romm/library/ps2/roms`, the emulator gets a path that doesn't exist. Either fix the mount or set `library_path` to wherever the container sees the library.
-
-Dolphin also remembers the game directories it was given. If it keeps looking in an old folder after you change the mount, remove the stale entries from its game list and add the correct directory again.
 
 ## Controllers or the virtual gamepad don't respond
 
