@@ -157,7 +157,7 @@ streaming:
     enabled: true
     containers:
         - protocol: webstation
-          host: https://192.168.1.56:3010
+          host: https://stream.example.com
           subfolder: /streaming
           label: Emulation station
           platforms:
@@ -170,7 +170,7 @@ streaming:
 
 Four of those keys have consequences worth knowing before you pick their values:
 
-- `host` is what the browser connects to, and it has to be **HTTPS**: Selkies WebRTC won't run without a secure context. Use the container's self-signed cert, or put it behind a [reverse proxy with TLS](../install/reverse-proxy.md). A path like `/streaming` works if you've proxied the container onto RomM's own origin, but then you must set `broker_host` yourself, because a bare path gives RomM no address to call.
+- `host` is what the browser connects to, and it has to be **HTTPS**: Selkies WebRTC won't run without a secure context. Put the container's plain HTTP port behind a [reverse proxy with TLS](../install/reverse-proxy.md). A path like `/streaming` works if you've proxied the container onto RomM's own origin, but then you must set `broker_host` yourself, because a bare path gives RomM no address to call.
 - `broker_host` is only ever called server to server, so plain HTTP is fine. Pooled containers are identified by it, so two serving the same platform need different ones.
 - `library_path` is where the container sees your library. Don't change it casually, since your state and save history is keyed to it.
 - The per-platform `emulator` names what that platform's states and memory cards are filed under, so renaming it later orphans everything stored under the old name. A container-level `emulator` is ignored whenever `platforms` is used.
@@ -189,9 +189,4 @@ Three env vars bound how long streaming waits, listed with their defaults in [En
 
 ## Troubleshooting
 
-- **No stream action on a platform.** Either `streaming.enabled` is off, nothing is configured for that platform slug, or the config hasn't reloaded. RomM reads the streaming config when the app loads, so refresh the page after editing `config.yml`.
-- **Stream never loads.** The browser can't reach `host`, or `host` isn't HTTPS. Open the Selkies URL directly in a browser from the client machine and see what happens.
-- **Launch or save errors out.** Either the server can't reach `broker_host` or the secret is wrong. Check `STREAMING_BROKER_SECRET` matches on both sides, and that `broker_host` actually resolves from the server.
-- **A container shows as unconfigured in the fleet.** Its `host` is missing a scheme, or RomM has no reachable broker for it. It can't be claimed until that's fixed.
-- **Platform stuck as in use.** Someone disconnected without releasing it. Wait for the heartbeat to go stale or force-release it from the fleet.
-- **"The previous session is still saving".** An exit is still pulling state off the container. Give it a moment and try again.
+Setup, GPU, reverse proxy and session issues are covered in [Emulator Streaming Troubleshooting](../troubleshooting/emulator-streaming.md).
