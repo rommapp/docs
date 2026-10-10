@@ -157,7 +157,7 @@ streaming:
     enabled: true
     containers:
         - protocol: webstation
-          host: https://192.168.1.56:3010
+          host: https://stream.example.com
           subfolder: /streaming
           label: Emulation station
           platforms:
@@ -170,7 +170,7 @@ streaming:
 
 Four of those keys have consequences worth knowing before you pick their values:
 
-- `host` is what the browser connects to, and it has to be **HTTPS**: Selkies WebRTC won't run without a secure context. Use the container's self-signed cert, or put it behind a [reverse proxy with TLS](../install/reverse-proxy.md). A path like `/streaming` works if you've proxied the container onto RomM's own origin, but then you must set `broker_host` yourself, because a bare path gives RomM no address to call.
+- `host` is what the browser connects to, and it has to be **HTTPS**: Selkies WebRTC won't run without a secure context. Put the container's plain HTTP port behind a [reverse proxy with TLS](../install/reverse-proxy.md). A path like `/streaming` works if you've proxied the container onto RomM's own origin, but then you must set `broker_host` yourself, because a bare path gives RomM no address to call.
 - `broker_host` is only ever called server to server, so plain HTTP is fine. Pooled containers are identified by it, so two serving the same platform need different ones.
 - `library_path` is where the container sees your library. Don't change it casually, since your state and save history is keyed to it.
 - The per-platform `emulator` names what that platform's states and memory cards are filed under, so renaming it later orphans everything stored under the old name. A container-level `emulator` is ignored whenever `platforms` is used.
