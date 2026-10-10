@@ -62,7 +62,7 @@ A YAML mapping can't hold the same key twice, so a second `containers:` under `s
 
 The stream is an iframe the browser loads straight from `host`, so `host` has to be HTTPS and reachable from wherever the browser is. A LAN address works at home but gives a 502 or a blank player outside it. Open the `host` URL directly from the client machine to see what it does.
 
-For remote play, put the container behind your [reverse proxy](../install/reverse-proxy.md) and set `host` to its public HTTPS address. Selkies serves a self-signed certificate on its HTTPS port, so either proxy to that port with certificate checks turned off (`tls_insecure_skip_verify` in Caddy) or proxy to the container's plain HTTP port.
+For remote play, put the container behind your [reverse proxy](../install/reverse-proxy.md) and set `host` to its public HTTPS address. Point the proxy at the container's plain HTTP port and let the proxy handle TLS.
 
 The broker is served under the container's `SUBFOLDER` on the same origin as the stream, so a single proxy host covers both. `broker_host` is only called by the RomM server, so if you set it, it can stay on an internal address.
 
