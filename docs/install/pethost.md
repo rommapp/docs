@@ -7,7 +7,7 @@ description: One-click deploy with Pethost's RomM template
 
 [Pethost](https://pethost.dev/) is managed Docker hosting with one-click templates. Its RomM template runs the standard stack as a Docker Compose project, with an HTTPS address and nightly backups.
 
-[![Deploy on Pethost](../resources/pethost/button.svg)](https://console.pethost.dev/?template=romm)
+[![Deploy on Pethost](../resources/pethost/button.svg)](https://pethost.dev/templates/romm/)
 
 <!-- prettier-ignore -->
 !!! note "Maintained by Pethost"
