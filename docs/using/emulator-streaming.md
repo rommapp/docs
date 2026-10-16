@@ -177,9 +177,9 @@ Four of those keys have consequences worth knowing before you pick their values:
 
 ### Set the shared secret
 
-`STREAMING_BROKER_SECRET` is what authenticates RomM to the broker, and it has to match the container's `BROKER_SECRET`. Use the same value everywhere.
+`STREAMING_BROKER_SECRET` is what authenticates RomM to the broker, and it has to match the container's `BROKER_SECRET`. One value covers every container that shares it.
 
-If one broker needs its own secret, put `broker_secret` on that entry in `config.yml` and leave `STREAMING_BROKER_SECRET` unset entirely. The env var beats the per-container value whenever it's set, so you can't mix the two.
+If one broker needs its own secret, put `broker_secret` on that entry in `config.yml`. A container's own `broker_secret` wins over `STREAMING_BROKER_SECRET`, which only covers the containers that set none, so you can mix the two.
 
 ### Tune the timeouts
 
