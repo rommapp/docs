@@ -40,7 +40,7 @@ The broker ships standalone emulators for the platforms below, and RetroArch for
 | `switch`            | Eden        | -                           | -           | -         |
 | `3ds`               | Azahar      | -                           | -           | -         |
 | `ps4`               | shadPS4     | -                           | -           | -         |
-| `psp`               | PPSSPP      | -                           | -           | -         |
+| `psp`               | PPSSPP      | One resume state            | -           | -         |
 | `dc`                | Flycast     | -                           | -           | Yes       |
 | _(anything else)_   | RetroArch   | One resume state            | -           | Varies    |
 | _(adventure games)_ | ScummVM     | One resume state            | -           | -         |
