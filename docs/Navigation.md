@@ -22,6 +22,7 @@ search:
     - [TrueNAS](install/truenas.md)
     - [Kubernetes](install/kubernetes.md)
     - [Railway](install/railway.md)
+    - [Pethost](install/pethost.md)
     - [Cloudzy](install/cloudzy.md)
     - [Hostinger](install/hostinger.md)
     - [ZimaOS](install/zimaos.md)
