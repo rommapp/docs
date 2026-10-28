@@ -68,7 +68,7 @@ The broker is served under the container's `SUBFOLDER` on the same origin as the
 
 ## Launch or save errors out
 
-Either the server can't reach `broker_host` or the secret is wrong. Check that `STREAMING_BROKER_SECRET` matches the container's `BROKER_SECRET`, and that `broker_host` resolves from the RomM server. A `broker_secret` in `config.yml` is ignored whenever `STREAMING_BROKER_SECRET` is set (see [Set the shared secret](../using/emulator-streaming.md#set-the-shared-secret)).
+Either the server can't reach `broker_host` or the secret is wrong. Check that the secret RomM sends matches the container's `BROKER_SECRET`: that is the entry's `broker_secret` in `config.yml` when it sets one, and `STREAMING_BROKER_SECRET` otherwise (see [Set the shared secret](../using/emulator-streaming.md#set-the-shared-secret)). Also check that `broker_host` resolves from the RomM server.
 
 ## The emulator can't find the game
 

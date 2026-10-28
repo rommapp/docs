@@ -572,7 +572,7 @@ Add one entry per container, not per platform. A container serves every platform
 | `label`              | No       | Name for the container, shown in the fleet view. The play action is named after the emulator instead                                                                                  |
 | `subfolder`          | No       | URL prefix the broker is served under, matching the container's `SUBFOLDER`                                                                                                           |
 | `broker_host`        | No       | Server-to-broker API base. Derived from `host` when omitted, and **required** when `host` is a path                                                                                   |
-| `broker_secret`      | No       | Secret for this container, used only when the `STREAMING_BROKER_SECRET` env var is unset                                                                                              |
+| `broker_secret`      | No       | Secret for this container. Overrides the `STREAMING_BROKER_SECRET` env var, which covers containers that set none                                                                     |
 | `library_path`       | No       | In-container path to the RomM library, if it is mounted somewhere other than the default `/romm/library`                                                                              |
 | `emulator`           | No       | Lowercased name grouping states and memory cards. Ignored when `platforms` is used, since each platform's own emulator names them                                                     |
 | `memory_card_sync`   | No       | Sync the whole memory card to the RomM library. Ignored only on platforms known to have no card (`wii`, `psx`, `ps3`, `ps4`, `xbox`, `xbox360`, `wiiu`, `3ds`, `switch`)              |
@@ -589,7 +589,7 @@ streaming:
           host: https://192.168.1.56:3010 # browser-facing, must be HTTPS
           subfolder: /streaming # matches the container's SUBFOLDER
           library_path: /romm # where it mounts your ROM library
-          broker_secret: change-me # matches the container's BROKER_SECRET
+          broker_secret: change-me # the container's BROKER_SECRET; overrides STREAMING_BROKER_SECRET
           label: Emulation station
           platforms:
               snes: retroarch # the emulator name directly...
