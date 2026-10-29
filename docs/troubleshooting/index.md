@@ -35,6 +35,10 @@ description: Diagnose common issues by symptom
 - EmulatorJS won't load/404 → [In-Browser Play Troubleshooting](in-browser-play.md) (on the slim image, cores come from a CDN at runtime, so a 404 usually means outbound networks are blocked).
 - Netplay doesn't connect → [Netplay Troubleshooting](netplay.md) (the cause is almost always NAT or missing ICE servers)
 
+## Emulator streaming
+
+- Stream won't load, launch fails or the GPU isn't used → [Emulator Streaming Troubleshooting](emulator-streaming.md)
+
 ## Platform-specific
 
 - [Synology Troubleshooting](synology.md): permission errors, DSM gotchas

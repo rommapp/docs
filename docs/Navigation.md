@@ -22,6 +22,7 @@ search:
     - [TrueNAS](install/truenas.md)
     - [Kubernetes](install/kubernetes.md)
     - [Railway](install/railway.md)
+    - [Pethost](install/pethost.md)
     - [Cloudzy](install/cloudzy.md)
     - [Hostinger](install/hostinger.md)
     - [CoreHost](install/corehost.md)
@@ -112,6 +113,7 @@ search:
     - [Authentication](troubleshooting/authentication.md)
     - [In-Browser Play](troubleshooting/in-browser-play.md)
     - [Netplay](troubleshooting/netplay.md)
+    - [Emulator Streaming](troubleshooting/emulator-streaming.md)
     - [Synology](troubleshooting/synology.md)
     - [Kubernetes](troubleshooting/kubernetes.md)
 - About
