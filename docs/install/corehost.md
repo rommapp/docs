@@ -5,9 +5,9 @@ description: Run a managed RomM instance on CoreHost
 
 # CoreHost
 
-[CoreHost](https://corehost.io/apps/romm) runs RomM as a managed app: each customer gets their own instance, with the database, cache, and scanner already running alongside the web app. CoreHost tests new RomM releases on its platform before rolling them out, and the instance runs the same unmodified code documented everywhere else in these docs.
+[CoreHost](https://corehost.io/p/romm) runs RomM as a managed app: each customer gets their own instance, with the database, cache, and scanner already running alongside the web app. CoreHost tests new RomM releases on its platform before rolling them out, and the instance runs the same unmodified code documented everywhere else in these docs.
 
-[![Deploy on CoreHost](../resources/corehost/button.svg)](https://corehost.io/apps/romm)
+[![Deploy on CoreHost](../resources/corehost/button.svg)](https://corehost.io/p/romm)
 
 <!-- prettier-ignore -->
 !!! info "Supporting RomM"
@@ -15,7 +15,7 @@ description: Run a managed RomM instance on CoreHost
 
 ## Plans
 
-Instances are billed hourly from a prepaid balance, and new accounts start with free credit. **Standard** (1 vCPU, 2 GB RAM, 10 GB NVMe) is the smallest plan that fits RomM, and **Power** and **Scale** add CPU, memory, and storage. Your games count toward the plan's storage, so a large collection needs a bigger tier or extra 25 GB storage blocks, which stack on any plan. See the [app page](https://corehost.io/apps/romm) for current prices and regions.
+Instances are billed hourly from a prepaid balance, and new accounts start with free credit. **Standard** (1 vCPU, 2 GB RAM, 10 GB NVMe) is the smallest plan that fits RomM, and **Power** and **Scale** add CPU, memory, and storage. Your games count toward the plan's storage, so a large collection needs a bigger tier or extra 25 GB storage blocks, which stack on any plan. See the [app page](https://corehost.io/p/romm) for current prices and regions.
 
 ## Install
 
