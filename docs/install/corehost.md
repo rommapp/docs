@@ -5,7 +5,7 @@ description: Run a managed RomM instance on CoreHost
 
 # CoreHost
 
-[CoreHost](https://corehost.io/p/romm) runs RomM as a managed app: each customer gets their own instance, with the database, cache, and scanner already running alongside the web app. CoreHost tests new RomM releases on its platform before rolling them out, and the instance runs the same unmodified code documented everywhere else in these docs.
+[CoreHost](https://corehost.io/p/romm) runs RomM as a managed app. Each customer gets their own instance, with the database, cache, and scanner already set up next to the web app. CoreHost tests each RomM release before rolling it out, and instances run the same unmodified RomM that the rest of these docs describe.
 
 [![Deploy on CoreHost](../resources/corehost/button.svg)](https://corehost.io/p/romm)
 
@@ -15,23 +15,23 @@ description: Run a managed RomM instance on CoreHost
 
 ## Plans
 
-Instances are billed hourly from a prepaid balance, and new accounts start with free credit. **Standard** (1 vCPU, 2 GB RAM, 10 GB NVMe) is the smallest plan that fits RomM, and **Power** and **Scale** add CPU, memory, and storage. Your games count toward the plan's storage, so a large collection needs a bigger tier or extra 25 GB storage blocks, which stack on any plan. See the [app page](https://corehost.io/p/romm) for current prices and regions.
+Instances are billed hourly from a prepaid balance, and new accounts start with free credit. Standard (1 vCPU, 2 GB RAM, 10 GB NVMe) is the smallest plan that fits RomM, and Power and Scale add more CPU, memory, and storage. Your games count against the plan's storage, so a large collection needs a bigger plan or extra 25 GB storage blocks, which you can add to any plan. See the [app page](https://corehost.io/p/romm) for current prices and regions.
 
 ## Install
 
-Open the [RomM app on CoreHost](https://corehost.io/p/romm), choose a plan and region, and the instance comes up with a generated password for the `admin` user, shown on the app page in the CoreHost panel. If you lose it, reset it under **Admin password** in the app settings and restart the app.
+Open the [RomM app on CoreHost](https://corehost.io/p/romm) and choose a plan and region. The new instance gets a generated password for the `admin` user, which the CoreHost panel shows on the app page. If you lose it, reset it under **Admin password** in the app settings and restart the app.
 
-Fill in the metadata provider credentials before your first scan, since matching quality depends on them (see [Metadata Providers](../getting-started/metadata-providers.md)). Hasheous and LaunchBox need no account, while the others take an API key.
+Set up metadata provider credentials before your first scan, because they decide how well games get matched (see [Metadata Providers](../getting-started/metadata-providers.md)). Hasheous and LaunchBox need no account, while the others take an API key.
 
 ## Adding ROMs
 
 Small batches can go through the [upload dialog](../using/uploads.md) in the browser. For a larger collection, copy files over SFTP into `romm/library/roms/<platform>` (and BIOS files into `romm/library/bios/<platform>`), using the SFTP credentials from the CoreHost panel.
 
-Platform folder names have to match the expected naming (see [Folder Structure](../getting-started/folder-structure.md)). Once the files land, run a scan (see [Your First Scan](../getting-started/first-scan.md)). If you add files over SFTP often, enabling the nightly library scan picks them up without a manual run.
+Platform folder names must follow RomM's naming (see [Folder Structure](../getting-started/folder-structure.md)). After the upload finishes, run a scan (see [Your First Scan](../getting-started/first-scan.md)). If you add files over SFTP often, turn on the nightly library scan so new files get picked up without a manual run.
 
 ## Backups and updates
 
-CoreHost backs up every instance daily, with a one-click restore from the panel, and can also send encrypted backups to your own S3-compatible storage. Updates are tested on a copy of the instance and roll back on their own if health checks fail. Data is purged 14 days after an instance is cancelled, so take an SFTP copy first if you want to keep it.
+CoreHost backs up every instance daily, and you can restore a backup in one click from the panel. It can also send encrypted backups to your own S3-compatible storage. Updates run on a copy of the instance first and roll back automatically if health checks fail. CoreHost deletes an instance's data 14 days after you cancel it, so copy your files off over SFTP first if you want to keep them.
 
 ## Custom domain
 
