@@ -19,7 +19,7 @@ Instances are billed hourly from a prepaid balance, and new accounts start with 
 
 ## Install
 
-Pick RomM from the [CoreHost app catalog](https://corehost.io/apps), choose a plan and region, and the instance comes up with a generated password for the `admin` user, shown on the app page in the CoreHost panel. If you lose it, reset it under **Admin password** in the app settings and restart the app.
+Open the [RomM app on CoreHost](https://corehost.io/p/romm), choose a plan and region, and the instance comes up with a generated password for the `admin` user, shown on the app page in the CoreHost panel. If you lose it, reset it under **Admin password** in the app settings and restart the app.
 
 Fill in the metadata provider credentials before your first scan, since matching quality depends on them (see [Metadata Providers](../getting-started/metadata-providers.md)). Hasheous and LaunchBox need no account, while the others take an API key.
 
