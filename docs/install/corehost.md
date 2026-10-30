@@ -33,7 +33,7 @@ Then pick Standard (or a larger plan) and a region, which is also where the inst
 
 ## First sign-in
 
-RomM's setup wizard is turned off on CoreHost, because the `admin` user is created before the instance goes online. Its generated password is on the app page in the CoreHost panel. Sign in at the app address with those credentials, then set your own email and password from your RomM profile. If you lose the password, reset it under **Admin password** in the app settings and restart the app.
+RomM's setup wizard is turned off on CoreHost, because the `admin` user is created before the instance goes online. Its generated password is on the app page in the CoreHost panel. Sign in at the app address with those credentials, then set your own email and password from your profile. If you lose the password, reset it under **Admin password** in the app settings and restart the app.
 
 ![The RomM app page in the CoreHost panel, with the admin credentials](../resources/corehost/app-overview.png)
 
