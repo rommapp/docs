@@ -59,7 +59,7 @@ Platform folder names must follow RomM's naming (see [Folder Structure](../getti
 
 ## Backups and updates
 
-CoreHost backs up every instance daily, keeping the last 14 daily and 4 weekly backups, and any of them can be restored from the panel in one click. It can also send encrypted backups to your own S3-compatible storage. Updates run on a copy of the instance first and roll back automatically if health checks fail. CoreHost deletes an instance's data 14 days after you cancel it, so copy your files off over SFTP first if you want to keep them.
+CoreHost backs up every instance daily, keeping the last 14 daily and 4 weekly backups, and any of them can be restored from the panel in one click. Updates run on a copy of the instance first and roll back automatically if health checks fail. CoreHost deletes an instance's data 14 days after you cancel it, so copy your files off over SFTP first if you want to keep them.
 
 ![Backups and restore points in the CoreHost panel](../resources/corehost/backups.png)
 
