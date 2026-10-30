@@ -15,7 +15,7 @@ description: Run a managed RomM instance on CoreHost
 
 ## Plans
 
-Standard (1 vCPU, 2 GB RAM, 10 GB NVMe) is the smallest plan that fits RomM, and Power and Scale add more CPU, memory, and storage. Your games count against the plan's storage, so a large collection needs a bigger plan or extra 25 GB storage blocks, which you can add to any plan. Instances run in Australia, the United States, or Poland, where they cost less. See the [app page](https://corehost.io/p/romm) for current prices.
+Standard (1 vCPU, 2 GB RAM, 10 GB NVMe) is the smallest plan that fits RomM, and Power and Scale add more CPU, memory, and storage. Your games count against the plan's storage, so a large collection needs a bigger plan or extra 25 GB storage blocks, which you can add to any plan.
 
 ## Install
 
