@@ -23,7 +23,7 @@ Open the [RomM app on CoreHost](https://corehost.io/p/romm). The name you give t
 
 ![Naming the RomM app, which sets its web address](../resources/corehost/deploy-name.png)
 
-Then pick Standard or a larger plan, and a region, which is also where the instance's backups stay.
+Then pick Standard (or a larger plan) and a region, which is also where the instance's backups stay.
 
 ![Choosing a plan for RomM](../resources/corehost/deploy-plan.png)
 
