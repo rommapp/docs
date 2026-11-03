@@ -311,7 +311,7 @@ scan:
 
 Preferred localisation language.
 
-**Default:** `["en", "fr"]`
+**Default:** `["en"]`
 
 ```yaml
 scan:
