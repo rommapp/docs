@@ -119,7 +119,7 @@ By default RomM talks to the community-hosted Playmatch instance. To point at yo
 
 ### SteamGridDB
 
-SteamGridDB provides custom cover art for games or collections. It's not accessed through the scanner but from the "search cover" button when manually editing a game.
+SteamGridDB provides custom cover art for games or collections. A scan that includes it searches it by each game's title, and its covers come first in the default [artwork order](../reference/configuration-file.md#scanpriorityartwork). Covers can also be picked from the "search cover" button when manually editing a game.
 
 To access the SteamGridDB API, you need to login to their [website](https://www.steamgriddb.com/) with a [Steam account](https://store.steampowered.com/join). Once logged in, go to your [API tab under the preferences page](https://www.steamgriddb.com/profile/preferences/api). Copy the key shown and use it to set `STEAMGRIDDB_API_KEY`.
 
