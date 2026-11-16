@@ -27,7 +27,7 @@ It runs without any, but games won't match against a metadata source, so you won
 
 ## Is RomM legal?
 
-The software is legal but what you put in it depends on your jurisdiction. **We don't ship ROMs or firmware, don't help you find them, and can't give legal advice.**
+The software is legal but what you put in it depends on your jurisdiction. **We don't ship ROMs or firmware, don't help you find them, and can't give legal advice.** See the [Legal Disclaimer](legal.md).
 
 ## Can I run RomM on [X]?
 

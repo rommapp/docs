@@ -120,4 +120,5 @@ search:
     - [FAQs](about/faqs.md)
     - [Brand Guidelines](about/brand-guidelines.md)
     - [License](about/license.md)
+    - [Legal Disclaimer](about/legal.md)
     - [Credits](about/credits.md)
