@@ -134,6 +134,12 @@ If the new provider user really is the account's owner, clear the stored link in
 UPDATE users SET oidc_issuer = NULL, oidc_sub = NULL WHERE username = 'alice';
 ```
 
+### `An account with this email exists but an administrator has not confirmed its email`
+
+The login's email belongs to a RomM account whose email the user set themselves, from their profile or an invite registration, and no admin has confirmed it. RomM won't link the provider identity to it, since that user could have entered someone else's address.
+
+If the account really belongs to the person signing in, an admin turns on **Confirm this email** in **Administration → Users → Edit** and applies, then the user logs in again. See [Account matching](../administration/oidc/index.md#account-matching).
+
 ### Signing in at the provider lands back on the RomM login page
 
 You end up on `/login?bypass_autologin=true` instead of signed in when RomM rejects the provider's callback, for example because the provider returned an error, the authorization code was already used or expired, or the ID token failed validation. The `bypass_autologin` flag keeps `OIDC_AUTOLOGIN` from sending you straight back into the same failure.

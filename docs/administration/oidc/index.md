@@ -122,6 +122,8 @@ The first OIDC login for an existing local account matches it by email, so set t
 - **Switching providers keeps accounts.** A login from a new issuer matches by email again and relinks the account to the new provider.
 - **A new subject for a linked email is refused.** When the same provider sends a different subject for an email that is already linked, RomM rejects the login with a 403 rather than hand the account to someone else. This happens when the provider reassigns the email or recreates the user. See [Authentication Troubleshooting](../../troubleshooting/authentication.md#this-account-is-linked-to-a-different-identity-at-the-provider) to relink it.
 
+Matching by email only links an account whose email an admin or the provider set. A user can type any address into their profile or an invite registration, so an email they chose themselves doesn't count until an admin confirms it: in **Administration → Users → Edit**, turn on **Confirm this email** and apply. Until then, a first OIDC login with that email is refused with a 403 and nothing is linked. An email an admin sets when creating or editing a user needs no confirmation, and accounts that existed before upgrading count as confirmed.
+
 ## Autologin
 
 To bypass the login page entirely and redirect straight to the IdP, so RomM feels like a native part of your SSO stack:
