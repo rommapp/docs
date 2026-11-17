@@ -23,7 +23,7 @@ Threaded cores need the `SharedArrayBuffer` API, and browsers only hand that out
 
 ## "Firmware required"
 
-The platform needs BIOS files, so upload them via [Firmware Management](../administration/firmware-management.md).
+The platform needs BIOS files, so upload them via [Firmware Management](../administration/firmware-management.md). Use only firmware dumped from hardware you own (see the [Legal Disclaimer](../about/legal.md)).
 
 Not sure which files you need? The error message usually names them, otherwise check the [EmulatorJS Systems docs](https://emulatorjs.org/docs/systems/). For multi-file firmware, zip the files together and upload as a single `firmware.zip`, which EmulatorJS unpacks automatically.
 
