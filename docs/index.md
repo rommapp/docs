@@ -63,7 +63,7 @@ RomM is self-hosted and open source, with no tracking and no upsells. The core a
 
 **RomM is and will always be free and open-source software.**
 
-RomM doesn't include or link to any games, BIOS, firmware, or keys. Use only files you legally own, and see the [Legal Disclaimer](about/legal.md).
+RomM doesn't include or link to any games, BIOS, firmware, or keys. Use only files you have the right to use, and see the [Legal Disclaimer](about/legal.md).
 
 ## Community
 
