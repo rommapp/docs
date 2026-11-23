@@ -26,6 +26,7 @@ search:
     - [Cloudzy](install/cloudzy.md)
     - [Hostinger](install/hostinger.md)
     - [CoreHost](install/corehost.md)
+    - [Simafri](install/simafri.md)
     - [ZimaOS](install/zimaos.md)
     - [NixOS](install/nixos.md)
     - [Backup & Restore](install/backup-and-restore.md)
